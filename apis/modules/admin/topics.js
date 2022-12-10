@@ -12,7 +12,7 @@ export default {
     return API.post("/apis/topics/create.php", input, headers)
   },
   getAll() {
-    return API.get(`/apis/admin/topics/index.php`)
+    return API.get(`/apis/topics/getAll.php`)  
   },
   show(params) {
     return API.get(`/apis/topics/show.php`,params)

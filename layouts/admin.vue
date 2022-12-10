@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import api from "@/apis/modules/admin/index"
+// import api from "@/apis/modules/admin/index"
 
 export default {
   name: "Adminlayout",

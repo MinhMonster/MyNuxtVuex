@@ -38,15 +38,20 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/axios',
+
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'cookie-universal-nuxt',
-
     // With options
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
+    
     // 'vuex-persistedstate'
+    '@nuxtjs/dotenv',
+    "vue2-editor/nuxt",
+    "nuxt-sweetalert2",
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
