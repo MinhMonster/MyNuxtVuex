@@ -1,5 +1,5 @@
 <template>
-  <div>Index Admin</div>
+  <div></div>
   
 </template>
 
