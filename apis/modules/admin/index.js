@@ -1,4 +1,8 @@
 import request from "axios";
+// import Vue from 'vue'
+// import Toasted from 'vue-toasted'
+
+// import toasted from "vue-toasted"
 // import router from 'vue-router'
 
 // import store from "@/store/store";
@@ -19,6 +23,7 @@ api.interceptors.request.use((config) => {
 
 
 api.interceptors.response.use((result) => {
+  // Toasted.success("okok")
   if((result.data.status_code == 401)){
     window.location.href = "/"
     // router('/')

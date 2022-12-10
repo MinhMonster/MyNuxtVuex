@@ -28,6 +28,10 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: "@/plugins/vuex-persistedstate", ssr: false },
+    // "~/plugins/vee-validate",
+    // "~/plugins/vee-validate",  
+    // { src: "@/plugins/vee-validate", ssr: false },
+
 
   ],
 
@@ -52,7 +56,26 @@ export default {
     '@nuxtjs/dotenv',
     "vue2-editor/nuxt",
     "nuxt-sweetalert2",
+    "@nuxtjs/toast",
+    // 'nuxt-validate'
+     
   ],
+
+  nuxtValidate: {
+    lang: 'es',
+    nuxti18n: {
+      locale: {
+        'zh-CN': 'zh_CN'
+      }
+    }
+  },
+  // @nuxtjs/toast configurations
+  toast: {
+    position: "top-right",
+    duration: 3000, // ms
+    theme: "bubble",
+    iconPack: "material",
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -75,10 +98,14 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // transpile: ["vee-validate/dist/rules"],
+    
     plugins: [
       new webpack.ProvidePlugin({
         _: "lodash",
       }),
     ],
+    // extend(config, ctx) {},
+
   }
 }

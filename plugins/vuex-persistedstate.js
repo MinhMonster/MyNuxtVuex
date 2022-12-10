@@ -6,7 +6,8 @@ export default ({ store, req }) => {
   createPersistedState({
     key: "DST",
     paths: [
-      "test"
+      "test",
+      "admin.auth.token"
       // "console.global.sidebarActive",
       // "console.global.token",
       // "console.global.agencyToken",
