@@ -1,5 +1,7 @@
-// import API from "@/apis/index"
+// import API from "@/apis/admin/index"
 import API from "@/apis/modules/admin/index"
+// import API from "~/plugins/axios"
+
 
 const headers = {
   headers: {

@@ -31,6 +31,7 @@ export default {
     // "~/plugins/vee-validate",
     // "~/plugins/vee-validate",  
     // { src: "@/plugins/vee-validate", ssr: false },
+    // "~/apis/modules/admin",
 
 
   ],

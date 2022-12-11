@@ -63,10 +63,14 @@ export default {
     };
   },
   name: "NewTopic",
+  props: {
+  },
   data() {
     return {
-      titel: "Admin: Edit Topic - " + this.$route.params.id,
+      ID: "",
+      titel: "Admin: Edit Topic - " + [this.$route.query.id || this.$route.params.id],
       topic: {
+        ID:"",
         title: "",
         link: "",
         content: "",
@@ -75,7 +79,13 @@ export default {
   },
 
   created() {
-    this.show(this.$route.params.id);
+    if (this.$route.params.id) {
+      this.ID = this.$route.params.id;
+    } else {
+      this.ID = this.$route.query.id;
+    } 
+    this.show(this.ID);
+    console.log(this.$route);
   },
   methods: {
     async show(ID) {
