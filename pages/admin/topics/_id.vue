@@ -6,9 +6,8 @@
 <script>
 import API from "@/apis/modules/admin/topics";
 
-
 export default {
-  components: { TopicForm },
+  // components: { TopicForm },
   layout: "admin",
   head() {
     return {
@@ -46,29 +45,6 @@ export default {
       });
       this.topic = res.data.topic;
     },
-    async edit() {
-      const formData = new FormData();
-      formData.append("id", this.topic.ID);
-      formData.append("title", this.topic.title);
-      formData.append("link", this.topic.link);
-      formData.append("content", this.topic.content);
-      const res = await API.edit(formData);
-      this.$swal.fire(res.data.message, "", res.data.status);
-      this.$emit("reset");
-    },
-
-    async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
-      const formData = new FormData();
-      formData.append("file", file);
-      const input = {
-        file: formData,
-      };
-      const res = await api_file.upload(input);
-      const url = res.data.file;
-      Editor.insertEmbed(cursorLocation, "image", url);
-      resetUploader();
-    },
   },
 };
 </script>
-

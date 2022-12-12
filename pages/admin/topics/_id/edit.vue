@@ -62,7 +62,7 @@ export default {
       ],
     };
   },
-  name: "NewTopic",
+  name: "EditTopic",
   props: {
   },
   data() {

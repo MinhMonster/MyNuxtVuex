@@ -1,3 +1,7 @@
+
+import AdminAuth from "./admin/auth"
+
+
 export default {
   state() {
     return {
@@ -14,6 +18,10 @@ export default {
     setTest({commit}, value){
       commit('setTest', value)
     }
+  },
+
+  modules: {
+    ADAU: AdminAuth,
   },
   
 };
