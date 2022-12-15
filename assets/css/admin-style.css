@@ -330,6 +330,48 @@ ul.menu-admin li.sub-menu li a {
   text-align: center;
 }
 
+.view_javascript{
+  background:#1e1e2d;
+  color:#33CCFF;
+}
+.view_css{
+  background:#1e1e2d;
+  color:#FF9933;
+}
+.view_html{
+  background:#272727;
+  color:#ffffff;
+}
+
+p{
+  margin-bottom:0px;
+  margin-top:0px;
+}
+
+ol{
+   margin: 1em 0;
+   background-color: #212529;
+  border: 1px solid #e5e5e5;
+  color: #fff
+}
+
+ol li::before{
+  
+  content: '|';
+  height:100%;
+  padding:0 5px;
+  color:#ffffff;
+}
+code{
+  background:none;
+}
+
+#admin .bg-view {
+  background: var(--admin-master) !important;
+  color: var(--white);
+}
+
+
 #admin .table th {
   background: var(--admin-master) !important;
   color: var(--white);

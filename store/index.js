@@ -1,5 +1,9 @@
 
 import AdminAuth from "./admin/auth"
+import AdminTopics from "./admin/topics"
+import AdminDeverlopers from "./admin/deverlopers"
+
+
 
 
 export default {
@@ -18,10 +22,15 @@ export default {
     setTest({commit}, value){
       commit('setTest', value)
     }
+
+
+    
   },
 
   modules: {
     ADAU: AdminAuth,
+    ADTP: AdminTopics,
+    ADDV: AdminDeverlopers
   },
   
 };

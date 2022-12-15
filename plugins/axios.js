@@ -1,35 +1,27 @@
-// const GLOBAL_TOAST_ERROR_MESSAGE =
-//   "エラーが発生しました。ご確認をお願い致します。";
+export default function ({store, $axios, redirect }, inject) {
 
-export default function ({ $axios, store, redirect, app }, inject) {
-  const api = $axios.create({
-    baseURL: process.env.VUE_APP_API_HOME
-  }); 
-  
-  api.interceptors.request.use((config) => {
-      console.log(store)
-      config.headers = {
-        // Authorization: "Bearer " + store,
-        Authorization: "Bearer " + "admxinS"
-    
-      };
-  
-    
-    return config;
-  });
-  
-  
-  
-  api.interceptors.response.use((result) => {
-    // Toasted.success("okok")
-    console.log(result)
-      if((result.data.status_code == 401)){
-        window.location.href = "/"
-        // router('/')
-      }
-   
-    return result;
+  const axiosConfig = { timeout: 60000 };
+  axiosConfig.baseURL = process.env.apiUrl;
+
+  const api = $axios.create(axiosConfig);
+
+  api.onRequest(config => {
+    // console.log('Making request to ' + config.url)
+    config.headers = {  
+      Authorization: "Bearer " + store.state.admin.auth.token
+    };
   })
 
+  api.onError(error => {
+    const code = parseInt(error.response && error.response.status)
+    console.log(code)
+    if (code === 400) {
+      redirect('/400')
+    }
+    if (code === 401) {
+      redirect('/logout')
+
+    }
+  })
   inject("api", api);
 }

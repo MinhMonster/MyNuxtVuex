@@ -3,6 +3,7 @@ import webpack from "webpack";
 
 
 export default {
+  mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - DST',
@@ -29,6 +30,7 @@ export default {
   plugins: [
     { src: "@/plugins/vuex-persistedstate", ssr: false },
     "@/plugins/axios",
+    '~/plugins/repositories.js'
 
     // "~/plugins/axios",
     // "~/plugins/vee-validate",  
@@ -37,7 +39,14 @@ export default {
 
 
   ],
-
+  axios: {
+    baseURL: process.env.API_BASE_URL || 'https://quanlychiphidst.com'
+  },
+  env: {
+    // nodeEnv: process.env.NODE_ENV || "development",
+    apiUrl:
+      process.env.API_BASE_URL ,
+  },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -79,6 +88,18 @@ export default {
     theme: "bubble",
     iconPack: "material",
   },
+  // toast: {
+  //   position: 'top-center',
+  //   register: [ // Register custom toasts
+  //     {
+  //       name: 'my-error',
+  //       message: 'Oops...Something went wrong',
+  //       options: {
+  //         type: 'error'
+  //       }
+  //     }
+  //   ]
+  // },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

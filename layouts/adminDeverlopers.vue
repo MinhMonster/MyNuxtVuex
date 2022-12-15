@@ -7,14 +7,14 @@
       fixed
       app
     >
-      <v-menu v-for="(text, index) in this.menus" :key="index" offset-y>
+      <v-menu v-for="(text, index) in deverlopers" :key="index" offset-y>
         <template v-slot:activator="{ attrs }">
           <v-list class="" v-bind="attrs">
 
-            <v-list-item @click.native="showSubMenu(index)">
-              <v-list-item-action>
-                <v-icon>
-                  {{ text.icon }}
+            <v-list-item :to="`/admin/deverlopers/${text.ID}/show`">
+              <v-list-item-action >
+                <v-icon >
+                  mdi-apps
                 </v-icon>
               </v-list-item-action>
 
@@ -25,47 +25,11 @@
               </v-list-item-content>
 
             </v-list-item>
-            <v-list v-if="text.active">
-              <v-list-item
-
-                v-for="item in text.sub_menu"
-                :key="item.title"
-                link
-                :to="item.link"
-                class="sub-menu"
-                router
-                exact
-
-              >
-                <v-list-item-action>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </v-list-item-action>
-                <v-list-item-title v-text="item.title"></v-list-item-title>
-              </v-list-item>
-
-            </v-list>
+            
           </v-list>
         </template>
       </v-menu>
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-          :class="[$route.path.includes(`${item.to}`) ? 'v-list-item--active' : '']" 
-
-        >
-          <v-list-item-action
-          >
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+      
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
@@ -107,73 +71,27 @@
 
 <script>
 // import api from "@/apis/modules/admin/index"
+import { mapActions, mapState } from 'vuex'
+
 
 export default {
-  name: "Adminlayout",
+  name: "AdminLayoutDeverlopers",
+  created(){
+    this.get_deverlopers()
+  },
+  computed: {
+    ...mapState('admin/deverlopers',["deverlopers"]),
+  },
+  methods: {
+    ...mapActions('admin/deverlopers',["get_deverlopers"]),
+  },
   data() {
     return {
       is_show: false,
-      menus: [
-        {
-          active: false,
-          icon: "mdi-apps",
-          title: "menu1",
-          sub_menu: [
-            {
-              icon: "mdi-apps",
-              title: "sub 1",
-              link: "/",
-            },
-            {
-              icon: "mdi-apps",
-              title: "sub 2",
-              link: "/2",
-            },
-          ],
-        },
-        {
-          active: false,
-          icon: "mdi-apps",
-          title: "menu2",
-          sub_menu: [
-            {
-              icon: "mdi-apps",
-              title: "sub 2-1",
-              link: "/3",
-            },
-            {
-              icon: "mdi-apps",
-              title: "sub 2-2",
-              link: "/4",
-            },
-          ],
-        },
-      ],
+      
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [
-        {
-          icon: "mdi-home-circle",
-          title: "Admin",
-          to: "/admin",
-        },
-        {
-          icon: "mdi-playlist-edit",
-          title: "Menus",
-          to: "/admin/menus",
-        },
-        {
-          icon: "mdi-file-document-edit",
-          title: "Topics",
-          to: "/admin/topics",
-        },
-        {
-          icon: "mdi-file-document-edit",
-          title: "Deverlopers",
-          to: "/admin/deverlopers",
-        },
-      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
@@ -205,6 +123,7 @@ export default {
 <style>
 @import '~/assets/css/admin-style.css';
 @import '~/assets/css/mms-style.css';
+@import '~/assets/css/reset.css';
 .bg-default {
   background: #f0f2f5;
   color: #333;
