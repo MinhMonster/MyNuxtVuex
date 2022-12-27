@@ -7,16 +7,18 @@
       fixed
       app
     >
-      <v-menu v-for="(text, index) in deverlopers" :key="index" offset-y>
+         
+      <v-menu v-for="(text, index) in menu_dev" :key="index" offset-y>
+        
         <template v-slot:activator="{ attrs }">
           <v-list class="" v-bind="attrs">
 
             <v-list-item :to="`/admin/deverlopers/${text.ID}/show`">
-              <v-list-item-action >
+              <!-- <v-list-item-action >
                 <v-icon >
                   mdi-apps
                 </v-icon>
-              </v-list-item-action>
+              </v-list-item-action> -->
 
               <v-list-item-content>
                 <v-list-item-title>
@@ -29,6 +31,7 @@
           </v-list>
         </template>
       </v-menu>
+      
       
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
@@ -53,15 +56,57 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light> mdi-repeat </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
+    <v-navigation-drawer 
+    v-model="rightDrawer" :right="right" 
+   
+      :clipped="clipped"
+      fixed
+      app
+    >
+      <v-menu v-for="text in menu_dev_view" :key="text.ID" offset-y >
+        <template v-slot:activator="{ attrs }">
+            <v-list v-bind="attrs" class="v-menus">
+              <v-list-item >
+                <!-- <v-list-item-action >
+                  <v-icon >
+                    mdi-apps
+                  </v-icon>
+                </v-list-item-action> -->
+
+                <v-list-item-content>
+                  <v-list-item-title class="bold">
+                    {{ text.title }}
+                  </v-list-item-title>
+                </v-list-item-content>
+
+              </v-list-item>
+        <v-menu v-for="(item, index) in text.items" :key="index" offset-y>
+          
+          
+          <template v-slot:activator="{ attrs }">
+            <v-list class="" v-bind="attrs">
+
+              <v-list-item :to="`/admin/deverlopers/${item.ID}/view`">
+                <!-- <v-list-item-action >
+                  <v-icon >
+                    mdi-apps
+                  </v-icon>
+                </v-list-item-action> -->
+
+                <v-list-item-content>
+                  <v-list-item-title>
+                    {{ item.title }}
+                  </v-list-item-title>
+                </v-list-item-content>
+
+              </v-list-item>
+              
+            </v-list>
+          </template>
+        </v-menu>
       </v-list>
+      </template>
+      </v-menu>
     </v-navigation-drawer>
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
@@ -71,16 +116,32 @@
 
 <script>
 // import api from "@/apis/modules/admin/index"
+import { mapFields } from "vuex-map-fields";
+
 import { mapActions, mapState } from 'vuex'
 
 
 export default {
   name: "AdminLayoutDeverlopers",
+  async fetch() { 
+    // await this.get_deverloper(this.routeId)
+  // // },
+  // // async fetch() { 
+    // await this.get_deverlopers()
+  //   await this.get_deverloper_view(this.routeId)
+
+   },
   created(){
-    this.get_deverlopers()
+    // this.get_deverlopers()
   },
   computed: {
-    ...mapState('admin/deverlopers',["deverlopers"]),
+    ...mapFields('admin/deverlopers',["deverlopers", "deverloper"]),
+    menu_dev(){
+      return this.deverlopers
+    },
+    menu_dev_view(){
+      return this.deverloper
+    }
   },
   methods: {
     ...mapActions('admin/deverlopers',["get_deverlopers"]),
@@ -176,5 +237,22 @@ export default {
 
 #admin .v-navigation-drawer--mini-variant .sub-menu {
   margin-left: 0px;
+}
+
+#admin .v-footer 
+{
+  position: fixed;
+}
+
+#admin .v-menus{
+  /* background-color: rgba(0, 0, 0, 0.12); */
+  margin-bottom: 10px;
+}
+
+#admin .v-menus .bold{
+  font-size: 20px;
+}
+#admin .v-list {
+    padding: 0;
 }
 </style>

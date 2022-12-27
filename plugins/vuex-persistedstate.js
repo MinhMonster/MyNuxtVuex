@@ -7,7 +7,10 @@ export default ({ store, req }) => {
     key: "DST",
     paths: [
       "test",
-      "admin.auth.token"
+      "admin.auth.token",
+      "admin.deverlopers.deverlopers",
+      "admin.deverlopers.deverloper"
+
       // "console.global.sidebarActive",
       // "console.global.token",
       // "console.global.agencyToken",

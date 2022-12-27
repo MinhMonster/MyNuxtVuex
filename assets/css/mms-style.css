@@ -3374,6 +3374,11 @@ h6+p.content {
   text-align: center;
 }
 
+.text-middle td {
+  vertical-align: middle;
+
+}
+
 .center-center {
   display: flex;
   justify-content: center;

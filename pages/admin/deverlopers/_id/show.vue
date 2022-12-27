@@ -27,18 +27,46 @@
                 <th class="w-10 text-center">Thao tác</th>
               </tr>
             </thead>
-            <tbody>
+            <draggable
+            v-model="deverloper"
+            ghost-class="ghost"
+            @remove="changeByDrag"
+            @change="changeByDrag"
+            handle=".handle"
+            tag="tbody"
+          >
               <tr v-for="(item, index) in deverloper" :key="index">
                 <td class="text-center">{{ index + 1 }}</td>
                 <td>{{ item.title }}</td>
-                <td class="text-left">
-                  <ul>
+                <td class="text-left ">
+                 <ul>
                     <li v-for="info in item.items" :key="info.ID" >
-                      <nuxt-link :to="`/admin/deverlopers/${info.ID}/view` ">{{info.title}}</nuxt-link>
-                    
+                     
+                      <div class="w-100 flex-row-space-between" >
+                        <nuxt-link :to="`/admin/deverlopers/${info.ID}/view` ">{{info.title}}</nuxt-link>
+                        <div>
+                          <v-btn light icon class="">
+                   <v-icon 
+                  >mdi-chevron-double-up</v-icon>
+                  </v-btn>
+                  <v-btn light icon class="handle">
+                    |<v-icon 
+                  >mdi-menu</v-icon>|
+                  </v-btn>
+                  <v-btn light icon class="">
+                   <v-icon 
+                  >mdi-chevron-double-down</v-icon>
+                  </v-btn>
+                        </div>
+                      </div>
+                     
+
+                        
+                     
                     <hr/>
+                    
                   </li>
-                  </ul>
+                </ul>
                   
                 </td>
 
@@ -48,7 +76,7 @@
                   </v-btn>
                 </td>
               </tr>
-            </tbody>
+            </draggable>
           </template>
         </v-simple-table>
       </div>
@@ -71,9 +99,15 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
 import { mapActions, mapState } from 'vuex'
+import draggable from "vuedraggable";
+import { cloneDeep } from "lodash";
 export default {
   layout: "adminDeverlopers",
+  components: {
+    draggable
+  },
   head() {
     return {
       title: "Admin: Deverlopers",
@@ -87,15 +121,41 @@ export default {
     };
   },
   name: "Deverlopers",
+  data(){
+    return{
+      list_deverloper:[]
+    }
+  },
+  created(){
+    // this.list_deverloper = cloneDeep(this.deverloper)
+  },
+  async fetch() { 
+    await this.get_deverloper(this.routeId)
+  // // },
+  // // async fetch() { 
+    await this.get_deverlopers()
+  //   await this.get_deverloper_view(this.routeId)
 
+   },
   computed: {
-    ...mapState('admin/deverlopers',["deverloper"]),
+    ...mapFields('admin/deverlopers',["deverloper"]),
     routeId() {
       return this.$route.params.id;
     },
   },
   methods: {
-    ...mapActions('admin/deverlopers',["get_deverloper, get_deverlopers"]),
+    ...mapActions('admin/deverlopers',["get_deverloper", "get_deverlopers"]),
+    changeByDrag(event) {
+      console.log(event);
+      // this.updatePosition(event.moved.element.ID, event.moved.newIndex);
+    },
+    updatePosition(id, newIndex) {
+      console.log(id,newIndex);
+      // const formData = new FormData();
+      // formData.append("id", id);
+      // formData.append("newIndex", newIndex);
+      // this.change_positions(formData)
+    }    
   },
 };
 </script>

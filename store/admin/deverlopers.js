@@ -1,12 +1,22 @@
+import { getField, updateField } from "vuex-map-fields";
 export default {
   namespaced: true,
   state: () => ({
+    deverlopers_scroll:[],
+    datas:[],
     deverlopers: [],
     deverloper: [],
     deverloper_view:{}
   }),
-
+  getters: {
+    getField,
+  },
   mutations: {
+    updateField,
+    SET_Deverlopers_scroll(state, deverlopers_scroll) {
+      state.deverlopers.push(deverlopers_scroll)
+      // state.deverlopers_scroll = deverlopers_scroll
+    },
     SET_Deverlopers(state, deverlopers) {
       state.deverlopers = deverlopers
     },
@@ -28,6 +38,16 @@ export default {
     //     // Handle error here
     //   }
     // },
+    async get_deverlopers_scroll({ commit },payload) {
+      try{
+        const res = await this.$repositories.adminDeverlopers.scroll(payload)
+        // this.items.push('Item ' + this.nextItem++);
+        // store.state.deverlopers_scroll.push(res.data.deverlopers_scroll)
+        commit('SET_Deverlopers_scroll', res.data.deverlopers_scroll)
+      } catch(error) {
+
+      }
+    },
     async get_deverlopers({ commit }) {
       try{
         const res = await this.$repositories.adminDeverlopers.all()
@@ -49,6 +69,15 @@ export default {
       try{
         const res = await this.$repositories.adminDeverlopers.view(id)
         commit('SET_Deverloper_view', res.data.deverloper_view)
+        commit('SET_Deverloper', res.data.deverloper)
+      } catch(error) {
+
+      }
+    },
+    async change_positions({ commit }, payload) {
+      try{
+        const res = await this.$repositories.adminDeverlopers.change_positions(payload)
+        commit('SET_Deverlopers', res.data.deverlopers)
       } catch(error) {
 
       }

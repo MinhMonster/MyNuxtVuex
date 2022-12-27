@@ -32,9 +32,19 @@ export default {
       },
     };
   },
-
+  async asyncData({ params }) {
+        // const { data } = await axios.get(`https://my-api/posts/${params.id}`)
+        // return { title: data.title }
+        const res  = await API.showEdit({
+        params: {
+          id: params.id,
+        },
+      });
+      console.log(`rres`,res.data.topic)
+      return {topic: res.data.topic }
+  },
   created() {
-    this.show(this.$route.params.id);
+    // this.show(this.$route.params.id);
   },
   methods: {
     async show(ID) {

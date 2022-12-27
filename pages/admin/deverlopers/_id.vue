@@ -1,9 +1,11 @@
 <template>
   <div>
-    <nuxt-child v-if="deverloper" :deverloper="deverloper" :deverloper_view="deverloper_view" />
+    <nuxt-child v-if="deverloper" :deverloper="deverloper" :deverlopers="deverlopers" :deverloper_view="deverloper_view" />
   </div>
 </template>
 <script>
+import { mapFields } from "vuex-map-fields";
+
 import { mapActions, mapState } from 'vuex'
 
 export default {
@@ -34,15 +36,15 @@ export default {
   },
 
   async fetch() { 
-    await this.get_deverloper(this.routeId)
-  // },
-  // async fetch() { 
-    await this.get_deverlopers()
-    await this.get_deverloper_view(this.routeId)
+    // await this.get_deverloper(this.routeId)
+  // // },
+  // // async fetch() { 
+    // await this.get_deverlopers()
+  //   await this.get_deverloper_view(this.routeId)
 
    },
   computed: {
-    ...mapState('admin/deverlopers',["deverloper","deverlopers", "deverloper_view"]),
+    ...mapFields('admin/deverlopers',["deverloper","deverlopers", "deverloper_view"]),
     routeId() {
       return this.$route.params.id;
     },

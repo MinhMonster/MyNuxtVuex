@@ -6,11 +6,11 @@
           <v-card-title>{{deverloper_view.title}}</v-card-title>
         </v-col>
         <!-- <v-spacer /> -->
-        <v-col
+        <!-- <v-col
           ><v-btn class="right mgr-15px" color="primary" :to="`/admin/deverlopers/${deverloper_view.level_1}/show`"
             >Quay lại
           </v-btn></v-col
-        >
+        > -->
       </v-row>
 
       <div id="body-admin" >
@@ -57,7 +57,14 @@ export default {
     };
   },
   name: "View_Deverloper",
+  async fetch() { 
+    // await this.get_deverloper(this.routeId)
+  // // },
+  // // async fetch() { 
+  //   await this.get_deverlopers()
+    await this.get_deverloper_view(this.routeId)
 
+   },
   computed: {
     ...mapState('admin/deverlopers',["deverloper","deverloper_view"]),
     routeId() {

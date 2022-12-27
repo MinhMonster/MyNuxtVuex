@@ -30,7 +30,9 @@ export default {
   plugins: [
     { src: "@/plugins/vuex-persistedstate", ssr: false },
     "@/plugins/axios",
-    '~/plugins/repositories.js'
+    '~/plugins/repositories.js',
+    { src: "@/plugins/vue-infinite-scroll", ssr: false },
+
 
     // "~/plugins/axios",
     // "~/plugins/vee-validate",  
@@ -55,6 +57,8 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxtjs/axios',
+    "lodash",
+
 
   ],
 
@@ -69,6 +73,8 @@ export default {
     "vue2-editor/nuxt",
     "nuxt-sweetalert2",
     "@nuxtjs/toast",
+    "lodash",
+
     // 'nuxt-validate'
      
   ],

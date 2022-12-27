@@ -1,5 +1,8 @@
 const resource = '/apis/deverloper/'
 export default ($api) => ({
+  scroll(payload) {
+    return $api.get(`${resource}/scroll.php`,payload)
+  },
   all() {
     return $api.get(`${resource}/getAll.php`)
   },
@@ -17,6 +20,9 @@ export default ($api) => ({
         id: id
       }
     })
+  },
+  change_positions(payload) {
+    return $api.post(`${resource}/change_positions.php`, payload)
   },
 
   create(payload) {
