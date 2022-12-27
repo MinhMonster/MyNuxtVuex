@@ -3,7 +3,9 @@
     <div>
       <v-card-title>Bài viết mới</v-card-title>
       <div id="body-admin">
-        <form @submit.prevent="edit()">
+        <h1>okok</h1>
+        {{this.topic }}
+        <!-- <form @submit.prevent="edit()">
           <TopicForm :topic="topic"></TopicForm>
           <v-row>
             <v-col cols="12" sm="12" md="12">
@@ -36,7 +38,7 @@
               <v-btn right type="submit" color="primary"> Sửa </v-btn>
             </v-col>
           </v-row>
-        </form>
+        </form> -->
       </div>
     </div>
   </client-only>
@@ -77,13 +79,13 @@ export default {
       },
     };
   },
-
+  
   created() {
-    if (this.$route.params.id) {
+    // if (this.$route.params.id) {
       this.ID = this.$route.params.id;
-    } else {
-      this.ID = this.$route.query.id;
-    } 
+    // } else {
+    //   this.ID = this.$route.query.id;
+    // } 
     this.show(this.ID);
     console.log(this.$route);
   },
