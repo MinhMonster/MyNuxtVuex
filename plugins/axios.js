@@ -22,7 +22,11 @@ export default function ({store, $axios, redirect }, inject) {
 
   api.onResponse((response) => {
 
-    store.dispatch("removeRequest", response.config.id);
+    // store.dispatch("removeRequest", response.config.id);
+    setTimeout(() => {
+      store.dispatch("disableLoading");
+    }, 500);
+
 
   });
 

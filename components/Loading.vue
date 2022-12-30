@@ -28,6 +28,9 @@ export default {
       return this.$store.state.requests;
     },
   },
+  mouted(){
+    console.log(this.$store.state.requests);
+  },
   watch: {
     "requests.length"(value) {
       console.log(value);

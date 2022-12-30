@@ -71,19 +71,20 @@
 
 <script>
 // import api from "@/apis/modules/admin/index"
-import { mapActions, mapState } from 'vuex'
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("admin/deverlopers");
 export default {
   name: "AdminLayoutDeverlopers",
  
-  async mounted() {
-    await this.get_deverlopers
+   mounted() {
+     this.get_deverlopers;
   },
 
   computed: {
-    ...mapState('admin/deverlopers',["deverlopers"]),
+    ...mapState(["deverlopers"]),
   },
   methods: {
-    ...mapActions('admin/deverlopers',["get_deverlopers"]),
+    ...mapActions(["get_deverlopers"]),
   },
   data() {
     return {
