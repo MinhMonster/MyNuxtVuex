@@ -73,7 +73,7 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 export default {
-  layout: "adminDeverlopers",
+  layout: "adminDev",
   head() {
     return {
       title: "Admin: Deverlopers",

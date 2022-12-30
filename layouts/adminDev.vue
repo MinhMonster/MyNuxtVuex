@@ -1,7 +1,6 @@
 <template>
-  
-    <v-app dark id="admin">
-      <client-only>
+  <v-app dark id="admin">
+    <client-only>
       <v-navigation-drawer
         v-model="drawer"
         :mini-variant="miniVariant"
@@ -9,14 +8,12 @@
         fixed
         app
       >
-        <v-menu v-for="(text, index) in this.menus" :key="index" offset-y>
+        <v-menu v-for="(text, index) in this.deverlopers" :key="index" offset-y>
           <template v-slot:activator="{ attrs }">
             <v-list class="" v-bind="attrs">
-              <v-list-item @click.native="showSubMenu(index)">
+              <v-list-item :to="`/admin/deverlopers/${text.ID}/show`">
                 <v-list-item-action>
-                  <v-icon>
-                    {{ text.icon }}
-                  </v-icon>
+                  <v-icon> mdi-apps </v-icon>
                 </v-list-item-action>
 
                 <v-list-item-content>
@@ -44,6 +41,7 @@
             </v-list>
           </template>
         </v-menu>
+
         <v-list>
           <v-list-item
             v-for="(item, i) in items"
@@ -93,26 +91,48 @@
         fixed
         app
       >
-        <v-list>
-          <v-list-item @click.native="right = !right">
-            <v-list-item-action>
-              <v-icon light> mdi-repeat </v-icon>
-            </v-list-item-action>
-            <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-          </v-list-item>
-        </v-list>
+        <v-menu v-for="(text, index) in this.deverloper" :key="index" offset-y>
+          <template v-slot:activator="{ attrs }">
+            <v-list class="" v-bind="attrs">
+              <v-list-item :to="`/admin/deverlopers/${text.ID}/show`" >
+                
+
+                <v-list-item-content >
+                  <v-list-item-title class="menu-show">
+                    {{ text.title }}
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <!-- <v-list v-if="text.items"> -->
+              <v-list-item
+                v-for="item in text.items"
+                :key="item.title"
+                link
+                :to="`/admin/deverlopers/${item.ID}/view`"
+                
+                router
+                exact
+              >
+              <v-list-item-content>
+                <v-list-item-title v-text="item.title"></v-list-item-title>
+              </v-list-item-content>
+              </v-list-item>
+              <!-- </v-list> -->
+            </v-list>
+          </template>
+        </v-menu>
       </v-navigation-drawer>
       <v-footer :absolute="!fixed" app>
         <span>&copy; {{ new Date().getFullYear() }}</span>
       </v-footer>
     </client-only>
-    </v-app>
- 
+  </v-app>
 </template>
 
 <script>
 // import api from "@/apis/modules/admin/index"
-
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("admin/deverlopers");
 export default {
   name: "Adminlayout",
   data() {
@@ -185,8 +205,17 @@ export default {
       title: "Admin",
     };
   },
-  created() {},
+  async mounted() {
+    await this.get_deverlopers();
+    console.log(`tesy`);
+  },
+
+  computed: {
+    ...mapState(["deverlopers", "deverloper"]),
+  },
   methods: {
+    ...mapActions(["get_deverlopers"]),
+
     showSubMenu(index) {
       this.is_show = !this.is_show;
       console.log(`active`, index);
@@ -260,5 +289,9 @@ export default {
 
 #admin .v-navigation-drawer--mini-variant .sub-menu {
   margin-left: 0px;
+}
+#admin .menu-show{
+  font-size: 20px;
+  font-weight: 800;
 }
 </style>

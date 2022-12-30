@@ -29,7 +29,6 @@
           </v-list>
         </template>
       </v-menu>
-
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
@@ -53,7 +52,7 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
+    <v-navigation-drawer v-model="rightDrawer" :right="right" :clipped="clipped"  fixed app>
       <v-list>
         <v-list-item @click.native="right = !right">
           <v-list-item-action>
@@ -76,8 +75,9 @@ const { mapState, mapActions } = createNamespacedHelpers("admin/deverlopers");
 export default {
   name: "AdminLayoutDeverlopers",
  
-   mounted() {
+  mounted() {
      this.get_deverlopers;
+     console.log(`tesy`);
   },
 
   computed: {
@@ -89,7 +89,6 @@ export default {
   data() {
     return {
       is_show: false,
-      
       clipped: false,
       drawer: false,
       fixed: false,
