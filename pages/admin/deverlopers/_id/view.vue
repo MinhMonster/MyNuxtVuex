@@ -57,14 +57,9 @@ export default {
     };
   },
   name: "View_Deverloper",
-  async fetch() { 
-    // await this.get_deverloper(this.routeId)
-  // // },
-  // // async fetch() { 
-  //   await this.get_deverlopers()
-    await this.get_deverloper_view(this.routeId)
-
-   },
+   async mounted() {
+    await this.get_deverloper_view(this.routeId);
+  },
   computed: {
     ...mapState('admin/deverlopers',["deverloper","deverloper_view"]),
     routeId() {

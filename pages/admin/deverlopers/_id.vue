@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nuxt-child v-if="deverloper" :deverloper="deverloper" :deverlopers="deverlopers" :deverloper_view="deverloper_view" />
+    <nuxt-child v-if="deverloper" :deverloper="deverloper" :deverloper_view="deverloper_view" />
   </div>
 </template>
 <script>
@@ -34,15 +34,6 @@ export default {
       // },
     };
   },
-
-  async fetch() { 
-    // await this.get_deverloper(this.routeId)
-  // // },
-  // // async fetch() { 
-    // await this.get_deverlopers()
-  //   await this.get_deverloper_view(this.routeId)
-
-   },
   computed: {
     ...mapFields('admin/deverlopers',["deverloper","deverlopers", "deverloper_view"]),
     routeId() {

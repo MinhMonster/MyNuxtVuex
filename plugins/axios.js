@@ -7,10 +7,24 @@ export default function ({store, $axios, redirect }, inject) {
 
   api.onRequest(config => {
     // console.log('Making request to ' + config.url)
+    const hideLoading = config.hideLoading;
+
+    if (!hideLoading) {
+      config.id =
+        new Date().getTime() + Math.random().toString(36).substring(2, 15);
+      store.dispatch("addRequest", config.id);
+    }
+
     config.headers = {  
       Authorization: "Bearer " + store.state.admin.auth.token
     };
   })
+
+  api.onResponse((response) => {
+
+    store.dispatch("removeRequest", response.config.id);
+
+  });
 
   api.onError(error => {
     const code = parseInt(error.response && error.response.status)

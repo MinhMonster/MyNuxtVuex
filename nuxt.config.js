@@ -3,7 +3,9 @@ import webpack from "webpack";
 
 
 export default {
-  mode: 'universal',
+  // target: 'static', // default is 'server'
+
+  // mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - DST',
@@ -73,8 +75,6 @@ export default {
     "vue2-editor/nuxt",
     "nuxt-sweetalert2",
     "@nuxtjs/toast",
-    "lodash",
-
     // 'nuxt-validate'
      
   ],
@@ -137,5 +137,7 @@ export default {
     ],
     // extend(config, ctx) {},
 
-  }
+  },
+  loading: "@/components/Loading.vue",
+
 }

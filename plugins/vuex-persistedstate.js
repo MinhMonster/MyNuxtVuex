@@ -6,7 +6,6 @@ export default ({ store, req }) => {
   createPersistedState({
     key: "DST",
     paths: [
-      "test",
       "admin.auth.token",
       "admin.deverlopers.deverlopers",
       "admin.deverlopers.deverloper"
