@@ -7,6 +7,7 @@ export default ({ store, req }) => {
     key: "DST",
     paths: [
       "admin.auth.token",
+      "admin.auth.authenticated",
       "admin.deverlopers.deverlopers",
       "admin.deverlopers.deverloper"
 

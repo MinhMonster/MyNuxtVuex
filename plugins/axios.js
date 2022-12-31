@@ -18,11 +18,20 @@ export default function ({store, $axios, redirect }, inject) {
     config.headers = {  
       Authorization: "Bearer " + store.state.admin.auth.token
     };
+    if(!store.state.admin.auth.token || !store.state.admin.auth.authenticated ){
+      store.dispatch("admin/auth/logout");
+      redirect('/admin/login')
+    }
   })
 
   api.onResponse((response) => {
+    const code = response.data.code;
 
     // store.dispatch("removeRequest", response.config.id);
+    if (code && code === 401) {
+      store.dispatch("admin/auth/logout");
+      redirect('/admin/login')
+    }
     setTimeout(() => {
       store.dispatch("disableLoading");
     }, 500);
@@ -32,13 +41,14 @@ export default function ({store, $axios, redirect }, inject) {
 
   api.onError(error => {
     const code = parseInt(error.response && error.response.status)
-    console.log(code)
+    // const code = parseInt(error.response && error.response.status)
+
     if (code === 400) {
       redirect('/400')
     }
     if (code === 401) {
-      redirect('/logout')
-
+      store.dispatch("admin/auth/logout");
+      redirect('/admin/login')
     }
   })
   inject("api", api);

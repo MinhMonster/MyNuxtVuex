@@ -2,7 +2,7 @@
 
 const AUTH_SUCCESS = "AUTH_SUCCESS";
 const AUTH_ERROR = "AUTH_ERROR";
-// const AUTH_LOGOUT = "AUTH_LOGOUT";
+const AUTH_LOGOUT = "AUTH_LOGOUT";
 // const SET_AGENCY_USER_INFO = "SET_AGENCY_USER_INFO";
 
 export default {
@@ -10,7 +10,7 @@ export default {
   state: () => ({
     sidebarActive: true,
     token: null,
-    authenticated:null,
+    authenticated:false,
     authErrorMessage:null,
     user:null
   }),
@@ -45,9 +45,9 @@ export default {
         // commit(AUTH_ERROR, err[0].message);
       // }
     },
-    // logout({ commit }) {
-    //   commit(AUTH_LOGOUT);
-    // },
+    logout({ commit }) {
+      commit(AUTH_LOGOUT);
+    },
   },
   mutations: {
     // updateField,
