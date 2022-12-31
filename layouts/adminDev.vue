@@ -175,7 +175,7 @@ export default {
         },
       ],
       clipped: false,
-      drawer: true,
+      drawer: false,
       fixed: false,
       items: [
         {
@@ -201,13 +201,18 @@ export default {
       ],
       miniVariant: false,
       right: true,
-      rightDrawer: true,
+      rightDrawer: false,
       title: "Admin",
     };
   },
   async mounted() {
     await this.get_deverlopers();
-    console.log(`tesy`);
+    console.log(`layoutDev`);
+    const body = document.querySelector("body");
+    if(body.clientWidth > 1000){
+      this.drawer = true;
+      this.rightDrawer = true;
+    }
   },
 
   computed: {
@@ -293,5 +298,30 @@ export default {
 #admin .menu-show{
   font-size: 20px;
   font-weight: 800;
+}
+#admin .v-list.v-sheet.theme--dark{
+  color: #dadada;
+    padding: 0px;
+    /* padding-left: 20px; */
+    cursor: pointer;
+    font-size: 18px;
+    border-bottom: 1px solid #4f4f4f;
+    border-bottom: 1px solid #000000;
+    -webkit-user-select: none;
+    -moz-user-select: none; 
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#admin .v-navigation-drawer__content::-webkit-scrollbar-thumb {
+    background: #999999;
+}
+
+#admin .v-navigation-drawer__content::-webkit-scrollbar-track {
+    background: #555555;
+}
+
+#admin .v-navigation-drawer__content::-webkit-scrollbar {
+    width: 12px;
 }
 </style>
