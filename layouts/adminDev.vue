@@ -2,6 +2,7 @@
   <v-app dark id="admin">
     <client-only>
       <v-navigation-drawer
+        style="top: 104px;  min-height: calc(100% - 104px); height: calc(100% - 104px)" 
         v-model="drawer"
         :mini-variant="miniVariant"
         :clipped="clipped"
@@ -62,7 +63,7 @@
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
-      <v-app-bar :clipped-left="clipped" fixed app>
+      <v-app-bar :clipped-left="clipped" :clipped-right="clipped" fixed app>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
         <v-btn icon @click.stop="miniVariant = !miniVariant">
           <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
@@ -79,25 +80,52 @@
           <v-icon>mdi-menu</v-icon>
         </v-btn>
       </v-app-bar>
-      <v-main class="bg-default">
+      <v-sheet class="mx-auto"  :clipped-left="clipped" :clipped-right="clipped" fixed >
+        <v-slide-group multiple show-arrows>
+          <v-slide-item 
+            v-for="(item, i) in items" 
+            :key="i"
+            
+            v-slot="{ active, toggle }" 
+            :class="[
+              $route.path.includes(`${item.to}`) ? 'v-btn--active' : '',
+            ]"
+              >
+            <v-btn
+              class="mx-2"
+              :input-value="active"
+              active-class=" white--text"
+              depressed
+              rounded
+              @click="toggle"
+              :to="item.to"
+            >
+            <!-- <nuxt-link to="/admin"> -->
+               {{ item.title }}
+            <!-- </nuxt-link> -->
+             
+            </v-btn>
+          </v-slide-item>
+        </v-slide-group>
+      </v-sheet>
+      <v-main class="bg-default" style="margin-top:50px">
         <v-container>
           <Nuxt />
         </v-container>
       </v-main>
       <v-navigation-drawer
+        style="top: 104px;  min-height: calc(100% - 104px); height: calc(100% - 104px); direction:rtl; text-align: left;" 
         v-model="rightDrawer"
         :right="right"
         :clipped="clipped"
         fixed
         app
       >
-        <v-menu v-for="(text, index) in this.deverloper" :key="index" offset-y>
+        <v-menu v-for="(text, index) in this.deverloper" :key="index" offset-y >
           <template v-slot:activator="{ attrs }">
-            <v-list class="" v-bind="attrs">
-              <v-list-item :to="`/admin/deverlopers/${text.ID}/show`" >
-                
-
-                <v-list-item-content >
+            <v-list class="" v-bind="attrs" style="direction:ltr;">
+              <v-list-item :to="`/admin/deverlopers/${text.ID}/show`">
+                <v-list-item-content>
                   <v-list-item-title class="menu-show">
                     {{ text.title }}
                   </v-list-item-title>
@@ -109,13 +137,12 @@
                 :key="item.title"
                 link
                 :to="`/admin/deverlopers/${item.ID}/view`"
-                
                 router
                 exact
               >
-              <v-list-item-content>
-                <v-list-item-title v-text="item.title"></v-list-item-title>
-              </v-list-item-content>
+                <v-list-item-content>
+                  <v-list-item-title v-text="item.title"></v-list-item-title>
+                </v-list-item-content>
               </v-list-item>
               <!-- </v-list> -->
             </v-list>
@@ -174,7 +201,7 @@ export default {
           ],
         },
       ],
-      clipped: false,
+      clipped: true,
       drawer: false,
       fixed: false,
       items: [
@@ -209,9 +236,12 @@ export default {
     await this.get_deverlopers();
     console.log(`layoutDev`);
     const body = document.querySelector("body");
-    if(body.clientWidth > 1000){
+    if (body.clientWidth > 1000) {
       this.drawer = true;
       this.rightDrawer = true;
+      document.querySelector(
+        "#admin .v-sheet.theme--dark.v-toolbar.v-app-bar.v-app-bar--fixed"
+      ).style.left = 0;
     }
   },
 
@@ -295,33 +325,61 @@ export default {
 #admin .v-navigation-drawer--mini-variant .sub-menu {
   margin-left: 0px;
 }
-#admin .menu-show{
+#admin .menu-show {
   font-size: 20px;
   font-weight: 800;
 }
-#admin .v-list.v-sheet.theme--dark{
+#admin .v-list.v-sheet.theme--dark {
   color: #dadada;
-    padding: 0px;
-    /* padding-left: 20px; */
-    cursor: pointer;
-    font-size: 18px;
-    border-bottom: 1px solid #4f4f4f;
-    border-bottom: 1px solid #000000;
-    -webkit-user-select: none;
-    -moz-user-select: none; 
-    -ms-user-select: none;
-    user-select: none;
+  padding: 0px;
+  /* padding-left: 20px; */
+  cursor: pointer;
+  font-size: 18px;
+  border-bottom: 1px solid #4f4f4f;
+  border-bottom: 1px solid #000000;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-
+body::-webkit-scrollbar-thumb,
 #admin .v-navigation-drawer__content::-webkit-scrollbar-thumb {
-    background: #999999;
+  background: #999999;
+  border-radius: 10px;
 }
 
 #admin .v-navigation-drawer__content::-webkit-scrollbar-track {
-    background: #555555;
+  background: #555555;
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-track{
+  background: #555555;
 }
 
+body::-webkit-scrollbar,
 #admin .v-navigation-drawer__content::-webkit-scrollbar {
-    width: 12px;
+  width: 12px;
+  direction:ltr;
+}
+
+#admin
+  .v-navigation-drawer.v-navigation-drawer--fixed.v-navigation-drawer--open.theme--dark,
+  #admin .v-navigation-drawer.v-navigation-drawer--clipped.v-navigation-drawer--fixed.v-navigation-drawer--is-mobile.v-navigation-drawer--open.theme--dark
+  {
+  min-height: calc(100% - 104px);
+}
+#admin .v-sheet.theme--dark.v-toolbar.v-app-bar.v-app-bar--fixed {
+  margin-right: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+#admin .mx-auto.v-sheet.theme--dark{
+  height: 50px;
+  padding: 7px;
+  margin-top: 54px;
+  z-index: 1000000;
+  width: 100%;
+  position: fixed;
 }
 </style>

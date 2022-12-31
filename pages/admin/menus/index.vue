@@ -52,7 +52,7 @@
 <script>
 import API from "@/apis/modules/admin/menu";
 export default {
-  layout: "admin",
+  layout: "adminDev",
   data() {
     return {
       title: "Admin: Menus",

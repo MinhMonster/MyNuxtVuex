@@ -96,7 +96,7 @@ import { cloneDeep } from "lodash";
 
 
 export default {
-  layout: "admin",
+  layout: "adminDev",
   components: {
     draggable
   },

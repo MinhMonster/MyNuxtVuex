@@ -64,7 +64,7 @@
 <script>
 import API from "@/apis/modules/admin/topics";
 export default {
-  layout: "admin",
+  layout: "adminDev",
   data() {
     return {
       title: "Admin: topics",
