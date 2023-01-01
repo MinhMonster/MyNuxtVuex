@@ -7,17 +7,18 @@ export default ($api) => ({
     return $api.get(`${resource}/getAll.php`)
   },
 
-  show(id) {
+  show(type) {
     return $api.get(`${resource}/show.php`,{
       params:{
-        id: id
+        type: type
       }
     })
   },
-  view(id) {
+  view(input) {
     return $api.get(`${resource}/view.php`,{
       params:{
-        id: id
+        type: input.type,
+        link: input.link,
       }
     })
   },

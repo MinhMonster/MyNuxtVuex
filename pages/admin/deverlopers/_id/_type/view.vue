@@ -57,7 +57,17 @@ export default {
     };
   },
   name: "View_Deverloper",
-   async mounted() {
+  //  async mounted() {
+  //   await this.get_deverloper_view({
+  //     // input:{
+  //       id: this.routeId,
+  //       type: this.queryType,
+  //     // }
+  //   });
+  // },
+  async mounted() {
+    console.log(this.routeId,);
+    console.log( this.queryType);
     await this.get_deverloper_view({
       // input:{
         id: this.routeId,
@@ -71,7 +81,7 @@ export default {
       return this.$route.params.id;
     },
     queryType() {
-      return this.$route.query.type;
+      return this.$route.params.type;
     },
   },
   methods: {

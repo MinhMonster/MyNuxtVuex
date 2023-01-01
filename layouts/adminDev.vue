@@ -16,7 +16,7 @@
         <v-menu v-for="(text, index) in this.deverlopers" :key="index" offset-y>
           <template v-slot:activator="{ attrs }">
             <v-list class="" v-bind="attrs">
-              <v-list-item :to="`/admin/deverlopers/${text.ID}/show`">
+              <v-list-item :to="`/admin/deverlopers/${text.type}`">
                 <v-list-item-action>
                   <v-icon> mdi-apps </v-icon>
                 </v-list-item-action>

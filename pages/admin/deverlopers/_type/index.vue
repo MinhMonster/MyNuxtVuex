@@ -34,7 +34,7 @@
                 <td class="text-left">
                   <ul>
                     <li v-for="info in item.items" :key="info.ID" >
-                      <nuxt-link :to="`/admin/deverlopers/${info.link}/view?id=${info.ID}}` ">{{info.title}}</nuxt-link>
+                      <nuxt-link :to="`/admin/deverlopers/${info.type}/${info.link}` ">{{info.title}}</nuxt-link>
 
                     <hr/>
                   </li>
@@ -88,12 +88,13 @@ export default {
   },
   name: "Deverlopers",
   async mounted() {
-    await this.get_deverloper(this.routeId);
+    console.log(this.paramType);
+    await this.get_deverloper(this.paramType);
   },
   computed: {
     ...mapState('admin/deverlopers',["deverloper"]),
-    routeId() {
-      return this.$route.params.id;
+    paramType() {
+      return this.$route.params.type;
     },
   },
   methods: {

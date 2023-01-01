@@ -57,21 +57,31 @@ export default {
     };
   },
   name: "View_Deverloper",
-   async mounted() {
+  //  async mounted() {
+  //   await this.get_deverloper_view({
+  //     // input:{
+  //       id: this.routeId,
+  //       type: this.queryType,
+  //     // }
+  //   });
+  // },
+  async mounted() {
+    console.log(this.routeId,);
+    console.log( this.queryType);
     await this.get_deverloper_view({
       // input:{
-        id: this.routeId,
-        type: this.queryType,
+        link: this.paramLink,
+        type: this.paramType,
       // }
     });
   },
   computed: {
     ...mapState('admin/deverlopers',["deverloper","deverloper_view"]),
-    routeId() {
-      return this.$route.params.id;
+    paramType() {
+      return this.$route.params.type;
     },
-    queryType() {
-      return this.$route.query.type;
+    paramLink() {
+      return this.$route.params.link;
     },
   },
   methods: {
