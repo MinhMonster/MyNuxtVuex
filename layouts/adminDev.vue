@@ -137,7 +137,7 @@
                 v-for="item in text.items"
                 :key="item.title"
                 link
-                :to="`/admin/deverlopers/${item.ID}/view`"
+                :to="`/admin/deverlopers/${item.type}/${item.link}`"
                 router
                 exact
               >

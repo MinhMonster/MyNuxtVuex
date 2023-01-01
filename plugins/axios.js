@@ -32,6 +32,9 @@ export default function ({store, $axios, redirect }, inject) {
       store.dispatch("admin/auth/logout");
       redirect('/admin/login')
     }
+    if (code && code === 404) {
+      redirect('/404')
+    }
     setTimeout(() => {
       store.dispatch("disableLoading");
     }, 500);
