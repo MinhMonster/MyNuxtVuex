@@ -96,14 +96,12 @@
               @click="toggle"
               :to="item.to"
             >
-              <!-- <nuxt-link to="/admin"> -->
               {{ item.title }}
-              <!-- </nuxt-link> -->
             </v-btn>
           </v-slide-item>
         </v-slide-group>
       </v-sheet>
-      <v-main class="bg-default" style="margin-top: 50px">
+      <v-main class=" bg-default" style="margin-top: 50px">
         <v-container>
           <Nuxt />
         </v-container>
