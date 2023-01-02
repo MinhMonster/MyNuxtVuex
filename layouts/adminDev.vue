@@ -5,7 +5,7 @@
         style="
           top: 104px;
           min-height: calc(100% - 104px);
-          height: calc(100% - 104px);
+          height: calc(100% - 104px)
         "
         v-model="drawer"
         :mini-variant="miniVariant"
@@ -16,7 +16,11 @@
         <v-menu v-for="(text, index) in this.deverlopers" :key="index" offset-y>
           <template v-slot:activator="{ attrs }">
             <v-list class="" v-bind="attrs">
-              <v-list-item :to="`/admin/deverlopers/${text.type}`">
+              <v-list-item :to="`/admin/deverlopers/${text.type}`" :class="[
+                    $route.path.includes(`${text.ID}`)
+                      ? 'v-btn--active'
+                      : '',
+                  ]">
                 <v-list-item-action>
                   <v-icon> mdi-apps </v-icon>
                 </v-list-item-action>
@@ -36,6 +40,11 @@
                   class="sub-menu"
                   router
                   exact
+                  :class="[
+                    $route.path.includes(`${item.ID}`)
+                      ? 'v-btn--active'
+                      : '',
+                  ]"
                 >
                   <v-list-item-action>
                     <v-icon>{{ item.icon }}</v-icon>
@@ -85,7 +94,11 @@
             v-for="(item, i) in items"
             :key="i"
             v-slot="{ active, toggle }"
-            :class="[$route.path.includes(`${item.to}`) ? 'v-btn--active' : '']"
+            :class="[
+              $route.path.includes(`${item.to}`)
+                ? 'v-btn--active'
+                : '',
+            ]"
           >
             <v-btn
               class="mx-2"
@@ -101,7 +114,7 @@
           </v-slide-item>
         </v-slide-group>
       </v-sheet>
-      <v-main class=" bg-default" style="margin-top: 50px">
+      <v-main class="bg-default" style="margin-top: 50px">
         <v-container>
           <Nuxt />
         </v-container>
@@ -112,7 +125,7 @@
           min-height: calc(100% - 104px);
           height: calc(100% - 104px);
           direction: rtl;
-          text-align: left;
+          text-align: left
         "
         v-model="rightDrawer"
         :right="right"
@@ -120,7 +133,11 @@
         fixed
         app
       >
-        <v-menu v-for="(text, index) in this.deverloper" :key="index" offset-y>
+        <v-menu
+          v-for="(text, index) in this.deverloper.items"
+          :key="index"
+          offset-y
+        >
           <template v-slot:activator="{ attrs }">
             <v-list class="" v-bind="attrs" style="direction: ltr">
               <v-list-item :to="`/admin/deverlopers/${text.ID}/show`">

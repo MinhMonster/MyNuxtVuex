@@ -3,11 +3,11 @@
     <div class="">
       <v-row align="center">
         <v-col>
-          <v-card-title>Bài viết</v-card-title>
+          <v-card-title>Deverloper | {{ this.deverloper.title }}</v-card-title>
         </v-col>
         <v-spacer />
         <v-col
-          ><v-btn class="right mgr-15px" color="primary" to="/admin/deverlopers/new"
+          ><v-btn class="right mgr-15px" color="primary" :to="`/admin/deverlopers/${this.routeId}/new`"
             >Viết bài
           </v-btn></v-col
         >
@@ -23,12 +23,12 @@
               <tr class="w-100">
                 <th class="w-10 text-center">STT</th>
                 <th class="w-30 text-left">Tên hiển thị</th>
-                <th class="w-50 text-left">Danh sách</th>
-                <th class="w-10 text-center">Thao tác</th>
+                <th class="w-45 text-left">Danh sách</th>
+                <th class="w-15 text-center">Thao tác</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in deverloper" :key="index">
+              <tr v-for="(item, index) in deverloper.items" :key="index">
                 <td class="text-center">{{ index + 1 }}</td>
                 <td>{{ item.title }}</td>
                 <td class="text-left">
@@ -36,13 +36,16 @@
                     <li v-for="info in item.items" :key="info.ID" >
                       <nuxt-link :to="`/admin/deverlopers/${info.link}/view?id=${info.ID}}` ">{{info.title}}</nuxt-link>
 
-                    <hr/>
-                  </li>
+                      <hr/>
+                    </li>
                   </ul>
 
                 </td>
 
                 <td class="text-center">
+                  <v-btn light icon :to="`/admin/deverlopers/${item.ID}/new`">
+                    <v-icon>mdi-plus-box-multiple-outline</v-icon>
+                  </v-btn>
                   <v-btn light icon :to="`/admin/deverlopers/${item.ID}/edit`">
                     <v-icon>mdi-pencil-box-multiple-outline</v-icon>
                   </v-btn>
@@ -88,7 +91,10 @@ export default {
   },
   name: "Deverlopers",
   async mounted() {
-    await this.get_deverloper(this.routeId);
+    await this.get_deverloper({
+      params:{
+      id: this.routeId}
+  });
   },
   computed: {
     ...mapState('admin/deverlopers',["deverloper"]),

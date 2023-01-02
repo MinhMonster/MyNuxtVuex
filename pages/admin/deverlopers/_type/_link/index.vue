@@ -45,8 +45,10 @@ export default {
   async mounted() {
 
     await this.get_deverloper_view({
+      params:{
         link: this.paramLink,
         type: this.paramType,
+      }
     });
   },
   computed: {

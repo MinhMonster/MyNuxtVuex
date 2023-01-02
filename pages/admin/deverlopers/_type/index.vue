@@ -28,7 +28,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in deverloper" :key="index">
+              <tr v-for="(item, index) in deverloper.items" :key="index">
                 <td class="text-center">{{ index + 1 }}</td>
                 <td>{{ item.title }}</td>
                 <td class="text-left">
@@ -74,8 +74,11 @@ export default {
   },
   name: "Deverlopers",
   async mounted() {
-    console.log(this.paramType);
-    await this.get_deverloper(this.paramType);
+    await this.get_deverloper({
+      params:{
+        type: this.paramType
+      }
+    });
   },
   computed: {
     ...mapState('admin/deverlopers',["deverloper"]),

@@ -7,20 +7,11 @@ export default ($api) => ({
     return $api.get(`${resource}/getAll.php`)
   },
 
-  show(type) {
-    return $api.get(`${resource}/show.php`,{
-      params:{
-        type: type
-      }
-    })
+  show(payload) {
+    return $api.get(`${resource}/show.php`,payload)
   },
-  view(input) {
-    return $api.get(`${resource}/view.php`,{
-      params:{
-        type: input.type,
-        link: input.link,
-      }
-    })
+  view(payload) {
+    return $api.get(`${resource}/view.php`,payload)
   },
   change_positions(payload) {
     return $api.post(`${resource}/change_positions.php`, payload)
