@@ -18,24 +18,9 @@
           <div class=""></div>
         </div>
         <div >
-          <!-- <h1>{{deverloper_view.title}}</h1> -->
           <v-card-text v-html="deverloper_view.info" class="bg-view view_html"></v-card-text>
         </div>
       </div>
-      <!-- <div v-if="is_edit" class="popup">
-      <div class="body-popup abs">
-        <b @click="closed" class="cancel abs">x</b>
-        <edit :IDProps="IDEdit" @reset="getAll"></edit>
-      </div>
-      <div class="modal-backdrop in"></div>
-    </div>
-    <div v-if="is_create" class="popup">
-      <div class="body-popup abs">
-        <b @click="closed" class="cancel abs">x</b>
-        <create @reset="getAll"></create>
-      </div>
-      <div class="modal-backdrop in"></div>
-    </div> -->
     </div>
   </client-only>
 </template>
@@ -46,33 +31,22 @@ export default {
   layout: "adminDev",
   head() {
     return {
-      title: "Admin: Deverlopers",
+      title: "Admin: Deverlopers - " + this.paramType + " - " + this.deverloper_view.title,
       meta: [
         {
-          hid: "Admin: Deverlopers",
-          name: "Admin: Deverlopers",
-          content: "Admin: Deverlopers",
+          hid: "Admin: Deverlopers - " + this.paramType + " - " + this.deverloper_view.title,
+          name: "Admin: Deverlopers - " + this.paramType + " - " + this.deverloper_view.title,
+          content: "Admin: Deverlopers - " + this.paramType + " - " + this.deverloper_view.title,
         },
       ],
     };
   },
   name: "View_Deverloper",
-  //  async mounted() {
-  //   await this.get_deverloper_view({
-  //     // input:{
-  //       id: this.routeId,
-  //       type: this.queryType,
-  //     // }
-  //   });
-  // },
   async mounted() {
-    console.log(this.routeId,);
-    console.log( this.queryType);
+
     await this.get_deverloper_view({
-      // input:{
         link: this.paramLink,
         type: this.paramType,
-      // }
     });
   },
   computed: {
@@ -90,7 +64,4 @@ export default {
 };
 </script>
 <style>
-#admin td ul li{
-padding: 10px 0;
-}
 </style>

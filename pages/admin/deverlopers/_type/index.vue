@@ -52,20 +52,6 @@
           </template>
         </v-simple-table>
       </div>
-      <!-- <div v-if="is_edit" class="popup">
-      <div class="body-popup abs">
-        <b @click="closed" class="cancel abs">x</b>
-        <edit :IDProps="IDEdit" @reset="getAll"></edit>
-      </div>
-      <div class="modal-backdrop in"></div>
-    </div>
-    <div v-if="is_create" class="popup">
-      <div class="body-popup abs">
-        <b @click="closed" class="cancel abs">x</b>
-        <create @reset="getAll"></create>
-      </div>
-      <div class="modal-backdrop in"></div>
-    </div> -->
     </div>
   </client-only>
 </template>
@@ -76,12 +62,12 @@ export default {
   layout: "adminDev",
   head() {
     return {
-      title: "Admin: Deverlopers",
+      title: "Admin: Deverlopers - " + this.paramType,  
       meta: [
         {
-          hid: "Admin: Deverlopers",
-          name: "Admin: Deverlopers",
-          content: "Admin: Deverlopers",
+          hid: "Admin: Deverlopers - " + this.paramType,
+          name: "Admin: Deverlopers - " + this.paramType,
+          content: "Admin: Deverlopers - " + this.paramType,
         },
       ],
     };
@@ -103,7 +89,5 @@ export default {
 };
 </script>
 <style>
-#admin td ul li{
-padding: 10px 0;
-}
+
 </style>
