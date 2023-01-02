@@ -4,13 +4,13 @@
       <v-card-title>Bài viết mới</v-card-title>
       <div id="body-admin">
         <form @submit.prevent="create()">
-          <TopicForm :topic="topic"></TopicForm>
+          <DeverloperForm :deverloper="deverloper"></DeverloperForm>
           <v-row>
             <v-col cols="12" sm="12" md="12">
               <VueEditor
                 id="editor"
                 useCustomImageHandler
-                v-model="topic.content"
+                v-model="deverloper.content"
                 @image-added="handleImageAdded"
               />
             </v-col>
@@ -26,30 +26,29 @@
 </template>
 
 <script>
-import API from "@/apis/modules/admin/topics";
-import api_file from "@/apis/modules/admin/files";
-import TopicForm from "@/components/pages/admin/topics/form/TopicForm.vue";
+import { mapActions } from 'vuex'
+import DeverloperForm from "@/components/pages/admin/deverlopers/form/DeverloperForm.vue";
 
 export default {
-  components: { TopicForm },
-  layout: "admin",
+  components: { DeverloperForm },
+  layout: "adminDev",
   head() {
     return {
-      title: "New Topic",
+      title: "New Deverloper",
       meta: [
         {
-          hid: "New Topic",
-          name: "New Topic",
-          content: "New Topic",
+          hid: "New Deverloper",
+          name: "New Deverloper",
+          content: "New Deverloper",
         },
       ],
     };
   },
-  name: "NewTopic",
+  name: "NewDeverloper",
   data() {
     return {
       input: {},
-      topic: {
+      deverloper: {
         title: "",
         link: "",
         content: "",
@@ -59,14 +58,25 @@ export default {
   
   created() {},
   methods: {
+    ...mapActions('admin/deverlopers',["get_deverlopers", "new"]),
     async create() {
       const formData = new FormData();
-      formData.append("title", this.topic.title);
-      formData.append("link", this.topic.link);
-      formData.append("content", this.topic.content);
-      const res = await API.create(formData);
-      this.$swal.fire(res.data.message, "", res.data.status);
+      formData.append("title", this.deverloper.title);
+      formData.append("link", this.deverloper.link);
+      formData.append("content", this.deverloper.content);
+      // const res = await API.create(formData);
+      // this.$swal.fire(res.data.message, "", res.data.status);
+      try{
+        const res = await this.$repositories.adminDeverlopers.create(formData)
+        if(res.data.code === 200){
+          this.$toasted.success(res.data.message);
+          this.$router.push("/admin/deverlopers")
+        }
+      } catch(e) {
+        console.log(e)
+      }
     },
+    
 
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
       const formData = new FormData();

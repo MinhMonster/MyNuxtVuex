@@ -3,12 +3,12 @@
     <div class="">
       <v-row align="center">
         <v-col>
-          <v-card-title>Bài viết</v-card-title>
+          <v-card-title>Deverlopers</v-card-title>
         </v-col>
         <v-spacer />
         <v-col
           ><v-btn class="right mgr-15px" color="primary" to="/admin/deverlopers/new"
-            >Viết bài
+            >Thêm mới
           </v-btn></v-col
         >
       </v-row>
@@ -17,8 +17,6 @@
         <div v-if="!deverlopers" class="">
           <div class=""></div>
         </div>
-        <h3>Draggable {{ this.draggingInfo }}</h3>
-
         <v-simple-table class="table" dark>
           <template v-slot:default>
             <thead>
@@ -30,14 +28,14 @@
               </tr>
             </thead>
             <draggable
-            v-model="list_deverlopers"
+            v-model="deverlopers"
             ghost-class="ghost"
 
             @change="changeByDrag"
             handle=".handle"
             tag="tbody"
           >
-              <tr v-for="(item, index) in list_deverlopers" :key="index" class="text-middle">
+              <tr v-for="(item, index) in deverlopers" :key="index" class="text-middle">
                 <td class="text-center">{{ index + 1 }}</td>
                 <td>
                   <nuxt-link :to="`/admin/deverlopers/${item.ID}/show`">{{ item.title }}</nuxt-link>
@@ -92,7 +90,7 @@
 import { mapFields } from "vuex-map-fields";
 import { mapActions, mapState } from 'vuex'
 import draggable from "vuedraggable";
-import { cloneDeep } from "lodash";
+// import { cloneDeep } from "lodash";
 
 
 export default {
@@ -103,7 +101,7 @@ export default {
   
   data() {
     return {
-      list_deverlopers:[],
+      // list_deverlopers:[],
     };
   },
   head() {
@@ -119,24 +117,11 @@ export default {
     };
   },
   name: "Deverlopers",
-  async fetch() {
-    await this.get_deverlopers()
-  },
-  created(){
-this.list_deverlopers = cloneDeep(this.deverlopers)
+  async mounted() {
+    await this.get_deverlopers();
   },
   computed: {
     ...mapFields('admin/deverlopers',["deverlopers"]),
-    //  list_deverlopers(){
-    //   // tests.value = cloneDeep(deverlopers);
-
-    //   return cloneDeep(this.deverlopers)
-    //  },
-     draggingInfo() {
-      return this.dragging ? "under drag" : "";
-    },
-    
-
   },
   methods: {
     ...mapActions('admin/deverlopers',["get_deverlopers", "change_positions"]),

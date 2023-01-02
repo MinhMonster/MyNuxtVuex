@@ -27,7 +27,7 @@ export default ($api) => ({
   },
 
   create(payload) {
-    return $api.post(`${resource}`, payload)
+    return $api.post(`${resource}/create.php`, payload)
   },
 
   update(id, payload) {
