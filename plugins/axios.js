@@ -1,4 +1,4 @@
-export default function ({store, $axios, redirect }, inject) {
+export default function ({store, $axios,$toast, redirect }, inject) {
 
   const axiosConfig = { timeout: 60000 };
   axiosConfig.baseURL = process.env.apiUrl;
@@ -35,11 +35,14 @@ export default function ({store, $axios, redirect }, inject) {
     if (code && code === 404) {
       redirect('/404')
     }
+    if (code && code === 422) {
+      $toast.error(response.data.message);
+    }
     setTimeout(() => {
       store.dispatch("disableLoading");
     }, 500);
 
-
+    
   });
 
   api.onError(error => {
