@@ -10,6 +10,9 @@ export default ($api) => ({
   show(payload) {
     return $api.get(`${resource}/show.php`,payload)
   },
+  show_edit(payload) {
+    return $api.get(`${resource}/show_edit.php`,payload)
+  },
   view(payload) {
     return $api.get(`${resource}/view.php`,payload)
   },
@@ -20,12 +23,15 @@ export default ($api) => ({
   create(payload) {
     return $api.post(`${resource}/create.php`, payload)
   },
+  edit(payload) {
+    return $api.post(`${resource}/edit.php`, payload)
+  },
 
   update(id, payload) {
     return $api.post(`${resource}/${id}`, payload)
   },
 
-  delete(id) {
-    return $api.delete(`${resource}/${id}`)
+  delete(payload) {
+    return $api.get(`${resource}/delete.php`,payload)
   }
 })

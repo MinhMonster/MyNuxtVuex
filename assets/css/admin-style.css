@@ -9,10 +9,6 @@
   --admin-active-color: #fff;
 }
 
-body {
-  /* min-width: 450px; */
-}
-
 #admin .body-admin,
 #admin #nav.menu-left-off #header-admin,
 #admin #header-site,
@@ -38,8 +34,6 @@ body {
   }
 }
 
-
-#admin .menu-icon {}
 
 #admin #menu-left,
 #admin #menu-icon,
@@ -369,6 +363,7 @@ code{
 #admin .bg-view {
   background: var(--admin-master) !important;
   color: var(--white);
+  padding: 10px;
 }
 
 

@@ -17,8 +17,11 @@
         <div v-if="!deverloper_view" class="">
           <div class=""></div>
         </div>
-        <div >
-          <v-card-text v-html="deverloper_view.info" class="bg-view view_html"></v-card-text>
+       
+          <div class="ck-content">
+            <div class="bg-view view_htm">
+            <div   v-html=deverloper_view.info></div>
+          </div>
         </div>
       </div>
     </div>
@@ -65,5 +68,9 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+.v-card__title{
+  background: #212529;
+  margin: 0 16px;
+}
 </style>

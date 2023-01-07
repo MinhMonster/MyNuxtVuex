@@ -27,7 +27,7 @@
                 <th class="w-10 text-center">Thao tác</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody v-if="deverloper">
               <tr v-for="(item, index) in deverloper.items" :key="index">
                 <td class="text-center">{{ index + 1 }}</td>
                 <td>{{ item.title }}</td>

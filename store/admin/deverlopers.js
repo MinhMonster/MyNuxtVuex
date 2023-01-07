@@ -5,8 +5,9 @@ export default {
     deverlopers_scroll:[],
     datas:[],
     deverlopers: [],
-    deverloper: [],
-    deverloper_view:{}
+    deverloper: false,
+    deverloper_view:{},
+    deverloper_edit:{}
   }),
   getters: {
     getField,
@@ -25,6 +26,9 @@ export default {
     },
     SET_Deverloper_view(state, deverloper_view) {
       state.deverloper_view = deverloper_view
+    },
+    SET_Deverloper_edit(state, deverloper_edit) {
+      state.deverloper_edit = deverloper_edit
     }
   },
 
@@ -69,6 +73,15 @@ export default {
       try{
         const res = await this.$repositories.adminDeverlopers.view(id)
         commit('SET_Deverloper_view', res.data.deverloper_view)
+        commit('SET_Deverloper', res.data.deverloper)
+      } catch(error) {
+
+      }
+    },
+    async get_deverloper_edit({ commit }, id) {
+      try{
+        const res = await this.$repositories.adminDeverlopers.show_edit(id)
+        commit('SET_Deverloper_edit', res.data.deverloper_edit)
         commit('SET_Deverloper', res.data.deverloper)
       } catch(error) {
 

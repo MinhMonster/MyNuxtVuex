@@ -1,5 +1,5 @@
 <template>
-  <client-only>
+  <client-only v-if="deverloper">
     <div class="">
       <v-row align="center">
         <v-col>
@@ -27,15 +27,14 @@
                 <th class="w-15 text-center">Thao tác</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody v-if="deverloper">
               <tr v-for="(item, index) in deverloper.items" :key="index">
                 <td class="text-center">{{ index + 1 }}</td>
                 <td>{{ item.title }}</td>
                 <td class="text-left">
                   <ul>
                     <li v-for="info in item.items" :key="info.ID" >
-                      <nuxt-link :to="`/admin/deverlopers/${info.link}/view?id=${info.ID}}` ">{{info.title}}</nuxt-link>
-
+                      <nuxt-link :to="`/admin/deverlopers/${info.ID}/edit` ">{{info.title}}</nuxt-link>
                       <hr/>
                     </li>
                   </ul>
@@ -103,7 +102,22 @@ export default {
     },
   },
   methods: {
-    ...mapActions('admin/deverlopers',["get_deverloper"]),
+    ...mapActions('admin/deverlopers',["","get_deverloper"]),
+    async delete(id) {
+      const formData = new FormData();
+      formData.append("id", id);
+      // const res = await API.create(formData);
+      // this.$swal.fire(res.data.message, "", res.data.status);
+      try{
+        const res = await this.$repositories.adminDeverlopers.delete(formData)
+        if(res.data.code === 200){
+          this.$toasted.success(res.data.message);
+          // this.$router.push(`/admin/deverlopers/${this.paramId}/show`)
+        }
+      } catch(e) {
+        console.log(e)
+      }
+    },
   },
 };
 </script>

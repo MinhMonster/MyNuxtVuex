@@ -8,8 +8,8 @@ export default {
   // mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - DST',
-    title: 'DST',
+    titleTemplate: '%s - MinhMonster',
+    title: 'MinhMonster',
     htmlAttrs: {
       lang: 'en'
     },
@@ -26,6 +26,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    "@/assets/styles/common.scss",
+    "@/assets/styles/home/_ckeditor.scss",
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -34,6 +36,7 @@ export default {
     "@/plugins/axios",
     '~/plugins/repositories.js',
     { src: "@/plugins/vue-infinite-scroll", ssr: false },
+    { src: "@plugins/vue-code-mirror", ssr: false },
 
 
     // "~/plugins/axios",
@@ -60,9 +63,12 @@ export default {
     '@nuxtjs/vuetify',
     '@nuxtjs/axios',
     "lodash",
-
+    "@nuxt/content",
 
   ],
+  content: {
+    liveEdit: false,
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -128,8 +134,13 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    postcss: null,
     // transpile: ["vee-validate/dist/rules"],
-    
+    loaders: {
+      vue: {
+        prettify: false,
+      },
+    },
     plugins: [
       new webpack.ProvidePlugin({
         _: "lodash",

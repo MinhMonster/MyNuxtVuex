@@ -74,7 +74,7 @@
           
         </v-toolbar-title> -->
         <v-spacer />
-        <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+        <v-btn v-if="deverloper" icon @click.stop="rightDrawer = !rightDrawer">
           <v-icon>mdi-menu</v-icon>
         </v-btn>
       </v-app-bar>
@@ -120,6 +120,7 @@
         </v-container>
       </v-main>
       <v-navigation-drawer
+        v-if="deverloper"
         style="
           top: 104px;
           min-height: calc(100% - 104px);
@@ -147,7 +148,6 @@
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
-              <!-- <v-list v-if="text.items"> -->
               <v-list-item
                 v-for="item in text.items"
                 :key="item.title"
@@ -160,7 +160,6 @@
                   <v-list-item-title v-text="item.title"></v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
-              <!-- </v-list> -->
             </v-list>
           </template>
         </v-menu>
@@ -254,9 +253,9 @@ export default {
       if (body.clientWidth > 1000) {
         this.drawer = true;
         this.rightDrawer = true;
-        document.querySelector(
-          "#admin .v-sheet.theme--dark.v-toolbar.v-app-bar.v-app-bar--fixed"
-        ).style.left = 0;
+        // document.querySelector(
+        //   "#admin .v-sheet.theme--dark.v-toolbar.v-app-bar.v-app-bar--fixed"
+        // ).style.left = 0;
       }
     }
   },

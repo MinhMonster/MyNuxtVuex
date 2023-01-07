@@ -4,38 +4,12 @@
       <v-card-title>Bài viết mới</v-card-title>
       <div id="body-admin">
         <form @submit.prevent="edit()">
-          <TopicForm :topic="topic"></TopicForm>
-          <v-row>
-            <v-col cols="12" sm="12" md="12">
-              <VueEditor
-                id="editor"
-                useCustomImageHandler
-                v-model="topic.content"
-                @image-added="handleImageAdded"
-              />
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col class="tex-left">
-              <v-btn type="submit" color="error" to="/admin/topics">
-                Xóa
-              </v-btn>
-              <v-spacer />
-            </v-col>
-            <v-col class="text-right">
-              <v-btn
-                right
-                depressed
-                type="submit"
-                color="light"
-                to="/admin/topics"
-              >
-                Trở Về
-              </v-btn>
-              <v-btn right type="submit" color="primary"> Sửa </v-btn>
-            </v-col>
-          </v-row>
+          <DeverloperForm :deverloper="deverloper_item"></DeverloperForm>
+          <div class="text-right">
+            <br/>
+            <v-btn type="submit" color="" to="/admin/deverlopers"> Trở Về </v-btn>
+            <v-btn type="submit" color="primary"> Sửa </v-btn>
+          </div>
         </form>
       </div>
     </div>
@@ -45,11 +19,15 @@
 <script>
 import API from "@/apis/modules/admin/topics";
 import api_file from "@/apis/modules/admin/files";
-import TopicForm from "@/components/pages/admin/topics/form/TopicForm.vue";
+import { mapActions, mapState } from 'vuex'
+import DeverloperForm from "@/components/pages/admin/deverlopers/form/DeverloperForm.vue";
+import { mapFields } from "vuex-map-fields";
+import { cloneDeep } from "lodash";
+
 
 export default {
-  components: { TopicForm },
-  layout: "admin",
+  components: { DeverloperForm },
+  layout: "adminDev",
   head() {
     return {
       title: this.titel,
@@ -62,32 +40,40 @@ export default {
       ],
     };
   },
-  name: "EditTopic",
+  name: "EditDeverloper",
   props: {
   },
   data() {
     return {
       ID: "",
-      titel: "Admin: Edit Topic - " + [this.$route.query.id || this.$route.params.id],
-      topic: {
-        ID:"",
-        title: "",
-        link: "",
-        content: "",
-      },
+      titel: "Admin: Edit Deverloper - ",
     };
   },
-
-  created() {
-    if (this.$route.params.id) {
-      this.ID = this.$route.params.id;
-    } else {
-      this.ID = this.$route.query.id;
-    } 
-    this.show(this.ID);
-    console.log(this.$route);
+  async mounted() {
+    await this.get_deverloper_edit({
+      params:{
+      // input:{
+        id: this.routeId,
+        // type: this.queryType,
+      // }
+      }
+    });
+  },
+  computed: {
+    ...mapFields('admin/deverlopers',["deverloper","deverloper_edit"]),
+    // ...mapState('admin/deverlopers',["deverloper","deverloper_view"]),
+    routeId() {
+      return this.$route.params.id;
+    },
+    // queryType() {
+    //   return this.$route.query.type;
+    // },
+    deverloper_item(){
+      return cloneDeep(this.deverloper_edit);
+    }
   },
   methods: {
+    ...mapActions('admin/deverlopers',["get_deverloper_edit"]),
     async show(ID) {
       const res = await API.showEdit({
         params: {
@@ -98,13 +84,21 @@ export default {
     },
     async edit() {
       const formData = new FormData();
-      formData.append("id", this.topic.ID);
-      formData.append("title", this.topic.title);
-      formData.append("link", this.topic.link);
-      formData.append("content", this.topic.content);
-      const res = await API.edit(formData);
-      this.$swal.fire(res.data.message, "", res.data.status);
-      this.$emit("reset");
+      formData.append("id", this.deverloper_item.ID);
+      formData.append("title", this.deverloper_item.title);
+      formData.append("link", this.deverloper_item.link);
+      formData.append("info", this.deverloper_item.info);
+      try{
+        const res = await this.$repositories.adminDeverlopers.edit(formData)
+        if(res.data.code === 200){
+          this.$toasted.success(res.data.message);
+          // this.$router.push(`/admin/deverlopers/${this.paramId}/show`)
+        }
+      } catch(e) {
+        console.log(e)
+      }
+      // this.$swal.fire(res.data.message, "", res.data.status);
+      // this.$emit("reset");
     },
 
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {

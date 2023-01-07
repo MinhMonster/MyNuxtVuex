@@ -5,16 +5,6 @@
       <div id="body-admin">
         <form @submit.prevent="create()">
           <DeverloperForm :deverloper="deverloper_new"></DeverloperForm>
-          <v-row>
-            <v-col cols="12" sm="12" md="12">
-              <VueEditor
-                id="editor"
-                useCustomImageHandler
-                v-model="deverloper_new.content"
-                @image-added="handleImageAdded"
-              />
-            </v-col>
-          </v-row>
           <div class="text-right">
             <v-btn type="submit" color="" to="/admin/topics"> Trở Về </v-btn>
             <v-btn type="submit" color="primary"> Thêm mới </v-btn>
@@ -51,7 +41,7 @@ export default {
       deverloper_new: {
         title: "",
         link: "",
-        content: "",
+        info: "",
       },
     };
   },
@@ -77,7 +67,7 @@ export default {
       formData.append("id", this.paramId);
       formData.append("title", this.deverloper_new.title);
       formData.append("link", this.deverloper_new.link);
-      formData.append("content", this.deverloper_new.content);
+      formData.append("info", this.deverloper_new.info);
       // const res = await API.create(formData);
       // this.$swal.fire(res.data.message, "", res.data.status);
       try{
