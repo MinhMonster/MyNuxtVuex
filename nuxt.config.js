@@ -34,10 +34,11 @@ export default {
   plugins: [
     { src: "@/plugins/vuex-persistedstate", ssr: false },
     "@/plugins/axios",
+    // "@/plugins/vue-sweetalert",
+
     '~/plugins/repositories.js',
     { src: "@/plugins/vue-infinite-scroll", ssr: false },
     { src: "@plugins/vue-code-mirror", ssr: false },
-
 
     // "~/plugins/axios",
     // "~/plugins/vee-validate",  
@@ -79,8 +80,9 @@ export default {
     // 'vuex-persistedstate'
     '@nuxtjs/dotenv',
     "vue2-editor/nuxt",
-    "nuxt-sweetalert2",
+    // "nuxt-sweetalert2",
     "@nuxtjs/toast",
+    "vue-sweetalert2/nuxt"
     // 'nuxt-validate'
      
   ],

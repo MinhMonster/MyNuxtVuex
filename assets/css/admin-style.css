@@ -356,16 +356,102 @@ ol li::before{
   padding:0 5px;
   color:#ffffff;
 }
+
+.v-application ul, .v-application ol {
+  padding-left: 35px;
+}
 code{
   background:none;
 }
 
-#admin .bg-view {
+#admin .bg-view, 
+#admin .bg-editor .ck.ck-editor__main>.ck-editor__editable, 
+#admin .bg-editor  input {
   background: var(--admin-master) !important;
   color: var(--white);
   padding: 10px;
 }
+#admin .bg-editor .ck.ck-button {
+  background: var(--admin-master) ;
+  color: var(--white);
+  
+  /* padding: 10px; */
+}
 
+#admin .bg-editor  .v-text-field__slot{
+  background: var(--admin-master) !important;
+padding: 10px;
+  min-height: 50px !important;
+  line-height: 50px;
+  caret-color: #fff;  
+}
+
+#admin .bg-editor  .v-text-field__slot input{
+  height: 32px;
+  border: 1px solid #c4c4c4;
+}
+
+#admin .bg-editor label{
+  color: #fff;
+}
+
+#admin .bg-editor .v-text-field .v-label--active {
+  max-width: 100%;
+  transform: translateY(-35px) scale(0.8);
+  pointer-events: auto;
+  color: #333;
+  font-size: 20px;
+  padding-left: 0px ;
+}
+
+#admin .bg-editor .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
+  border: 1px solid var(--admin-table-border);
+
+}
+#admin .bg-editor label{
+  margin: 10px;
+}
+
+#admin .bg-editor .ck.ck-dropdown.ck-color-ui-dropdown .ck.ck-button.ck.ck-color-grid__tile{
+  /* background: none; */
+}
+/* ck ck-color-grid */
+#admin .bg-editor .ck.ck-toolbar__items, 
+#admin .bg-editor .ck.ck-reset{
+  background: #212529 ;
+  color: var(--white);
+  padding: 10px;
+}
+
+#admin .bg-editor .ck.ck-toolbar.ck-toolbar_grouping
+{
+  background: #212529 ;
+  color: var(--white);
+}
+
+/* #admin .bg-editor .ck.ck-reset:hover{
+  background: var(--admin-master) !important;
+} */
+/* #admin .bg-editor .ck.ck-sticky-panel__content {
+  padding: 0px;
+} */
+
+#admin .bg-editor .ck.ck-button.ck-on{
+  border: 1px solid var(--admin-table-border);
+  font-weight: 800;
+}
+
+
+
+#admin .bg-editor .ck.ck-editor::-webkit-scrollbar-thumb {
+  background: #999999;
+  border-radius: 10px;
+}
+
+#admin .bg-editor .ck.ck-editor::-webkit-scrollbar-track {
+  background: #555555;
+  border-radius: 10px;
+}
 
 #admin .table th {
   background: var(--admin-master) !important;

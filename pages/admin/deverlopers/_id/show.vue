@@ -8,8 +8,9 @@
         <v-spacer />
         <v-col
           ><v-btn class="right mgr-15px" color="primary" :to="`/admin/deverlopers/${this.routeId}/new`"
-            >Viết bài
-          </v-btn></v-col
+            >Thêm mới
+          </v-btn>
+        </v-col
         >
       </v-row>
 
@@ -35,6 +36,7 @@
                   <ul>
                     <li v-for="info in item.items" :key="info.ID" >
                       <nuxt-link :to="`/admin/deverlopers/${info.ID}/edit` ">{{info.title}}</nuxt-link>
+                      
                       <hr/>
                     </li>
                   </ul>
@@ -103,21 +105,6 @@ export default {
   },
   methods: {
     ...mapActions('admin/deverlopers',["","get_deverloper"]),
-    async delete(id) {
-      const formData = new FormData();
-      formData.append("id", id);
-      // const res = await API.create(formData);
-      // this.$swal.fire(res.data.message, "", res.data.status);
-      try{
-        const res = await this.$repositories.adminDeverlopers.delete(formData)
-        if(res.data.code === 200){
-          this.$toasted.success(res.data.message);
-          // this.$router.push(`/admin/deverlopers/${this.paramId}/show`)
-        }
-      } catch(e) {
-        console.log(e)
-      }
-    },
   },
 };
 </script>

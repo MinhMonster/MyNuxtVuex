@@ -1,10 +1,19 @@
 <template>
   <client-only>
     <div>
-      <v-card-title>Bài viết mới</v-card-title>
+      <v-row align="center">
+        <v-col>
+          <v-card-title>Deverloper</v-card-title>
+        </v-col>
+        <v-spacer />
+        <v-col>
+          <v-card-title class="right" >Bài viết mới</v-card-title>
+        </v-col>
+      </v-row>
       <div id="body-admin">
         <form @submit.prevent="create()">
           <DeverloperForm :deverloper="deverloper"></DeverloperForm>
+          <br/>
           <div class="text-right">
             <v-btn type="submit" color="" to="/admin/topics"> Trở Về </v-btn>
             <v-btn type="submit" color="primary"> Thêm mới </v-btn>

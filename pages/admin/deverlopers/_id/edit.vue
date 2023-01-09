@@ -4,12 +4,22 @@
       <v-card-title>Bài viết mới</v-card-title>
       <div id="body-admin">
         <form @submit.prevent="edit()">
-          <DeverloperForm :deverloper="deverloper_item"></DeverloperForm>
-          <div class="text-right">
-            <br/>
-            <v-btn type="submit" color="" to="/admin/deverlopers"> Trở Về </v-btn>
-            <v-btn type="submit" color="primary"> Sửa </v-btn>
-          </div>
+          <DeverloperForm v-if="deverloper_item" :deverloper="deverloper_item"></DeverloperForm>
+            <v-row align="center">
+              <v-col>
+                <v-btn @click="onDelete()" color="red"> Xóa</v-btn>
+              </v-col>
+              <v-spacer />
+              <v-col
+                >
+                <div class="text-right">
+                <v-btn type="submit" color="" to="/admin/deverlopers"> Trở Về </v-btn>
+                <v-btn type="submit" color="primary"> Sửa </v-btn>
+              </div>
+              </v-col
+              >
+            </v-row>
+            
         </form>
       </div>
     </div>
@@ -69,7 +79,11 @@ export default {
     //   return this.$route.query.type;
     // },
     deverloper_item(){
-      return cloneDeep(this.deverloper_edit);
+      if(this.deverloper_edit){
+        return cloneDeep(this.deverloper_edit);
+      } else {
+        this.$router.push("/admin/deverlopers")
+      }
     }
   },
   methods: {
@@ -92,25 +106,54 @@ export default {
         const res = await this.$repositories.adminDeverlopers.edit(formData)
         if(res.data.code === 200){
           this.$toasted.success(res.data.message);
-          // this.$router.push(`/admin/deverlopers/${this.paramId}/show`)
         }
       } catch(e) {
         console.log(e)
       }
-      // this.$swal.fire(res.data.message, "", res.data.status);
-      // this.$emit("reset");
     },
 
-    async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
-      const formData = new FormData();
-      formData.append("file", file);
-      const input = {
-        file: formData,
-      };
-      const res = await api_file.upload(input);
-      const url = res.data.file;
-      Editor.insertEmbed(cursorLocation, "image", url);
-      resetUploader();
+
+    async onDelete() {
+      this.$swal
+        .fire({
+          title: `Bạn muốn xóa ID: ${this.routeId} <br/> Title: ${this.deverloper_item.title}?`,
+          text: "",
+          icon: "question",
+          type: "warning",
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Xóa",
+          cancelButtonText: "Hủy",
+          timer: 5000,
+          // closeOnConfirm: false,
+          // closeOnCancel: false
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            const formData = new FormData();
+            formData.append("id", this.routeId);
+            try{
+              const res = await this.$repositories.adminDeverlopers.delete({
+                params:{
+                  id: this.routeId
+                }
+              });
+              if(res.data.code === 200){
+                this.$toasted.success(res.data.message);
+              
+                if(this.routeId === this.deverloper.ID){
+                  this.$router.push(`/admin/deverlopers`)
+                } else {
+                  this.$router.push(`/admin/deverlopers/${this.deverloper.ID}/show`)
+                }
+              }
+            } catch(e) {
+              console.log(e)
+            }
+          }
+        });
     },
   },
 };

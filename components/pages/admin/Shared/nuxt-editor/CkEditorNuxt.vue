@@ -1,6 +1,6 @@
 <template>
   <client-only placeholder="loading...">
-    <ckeditor-nuxt
+    <ckeditor-nuxt class="bg-view view_htm"
       :config="editorConfig"
       :value="value"
       :disabled="disabled"
@@ -109,6 +109,6 @@ export default {
 </script>
 <style >
 .ck.ck-content{
-  height: 500px;
+  height: 450px;
 }
 </style>

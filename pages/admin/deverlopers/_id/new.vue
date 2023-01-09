@@ -5,6 +5,8 @@
       <div id="body-admin">
         <form @submit.prevent="create()">
           <DeverloperForm :deverloper="deverloper_new"></DeverloperForm>
+          <br/>
+          <br/>
           <div class="text-right">
             <v-btn type="submit" color="" to="/admin/topics"> Trở Về </v-btn>
             <v-btn type="submit" color="primary"> Thêm mới </v-btn>
@@ -16,7 +18,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import DeverloperForm from "@/components/pages/admin/deverlopers/form/DeverloperForm.vue";
 
 export default {
@@ -48,7 +50,6 @@ export default {
   
   created() {},
   async mounted() {
-    console.log(this.paramType);
     await this.get_deverloper({
       params:{
         id: this.paramId,
@@ -56,6 +57,7 @@ export default {
     });
   },
   computed: {
+    ...mapState('admin/deverlopers',["deverlopers", "deverloper"]),
     paramId() {
       return this.$route.params.id;
     },
@@ -74,7 +76,7 @@ export default {
         const res = await this.$repositories.adminDeverlopers.create(formData)
         if(res.data.code === 200){
           this.$toasted.success(res.data.message);
-          this.$router.push(`/admin/deverlopers/${this.paramId}/show`)
+          this.$router.push(`/admin/deverlopers/${this.deverloper.ID}/show`)
         }
       } catch(e) {
         console.log(e)

@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div class="">
+    <div class="view">
       <v-row align="center">
         <v-col>
           <v-card-title>{{deverloper_view.title}}</v-card-title>
@@ -69,8 +69,10 @@ export default {
 };
 </script>
 <style scoped>
-.v-card__title{
+.view .v-card__title{
   background: #212529;
   margin: 0 16px;
+  margin-top: 15px;
+  color: #fff;
 }
 </style>

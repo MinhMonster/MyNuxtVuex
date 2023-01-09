@@ -1,4 +1,4 @@
-// import { getField, updateField } from "vuex-map-fields";
+import { getField, updateField } from "vuex-map-fields";
 
 const AUTH_SUCCESS = "AUTH_SUCCESS";
 const AUTH_ERROR = "AUTH_ERROR";
@@ -15,7 +15,7 @@ export default {
     user:null
   }),
   getters: {
-    // getField,
+    getField,
     // getErrors: (state) => (name) => {
     //   // return _.get(state.validationErrors, name, []);
     // },
@@ -31,7 +31,6 @@ export default {
     //   } catch {}
     // },
     async authRequest({ commit }, authData) {
-      console.log(authData)
       // try {
         // const resp = await this.$repositories.globalAuth.agencyLogin(payload);
         // const authData = resp.data.data.loginAgency;
@@ -50,7 +49,7 @@ export default {
     },
   },
   mutations: {
-    // updateField,
+    updateField,
     AUTH_SUCCESS(state, authData) {
       state.token = authData.token;
       state.authenticated = true;
@@ -62,6 +61,7 @@ export default {
       state.authErrorMessage = payload;
     },
     AUTH_LOGOUT(state) {
+      console.log(`log`);
       state.authenticated = false;
       state.token = null;
     },

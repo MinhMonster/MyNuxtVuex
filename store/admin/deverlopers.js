@@ -72,8 +72,10 @@ export default {
     async get_deverloper_view({ commit }, id) {
       try{
         const res = await this.$repositories.adminDeverlopers.view(id)
-        commit('SET_Deverloper_view', res.data.deverloper_view)
-        commit('SET_Deverloper', res.data.deverloper)
+        // if(res.data.code === 200){
+          commit('SET_Deverloper_view', res.data.deverloper_view)
+          commit('SET_Deverloper', res.data.deverloper)
+        // }
       } catch(error) {
 
       }
@@ -81,8 +83,10 @@ export default {
     async get_deverloper_edit({ commit }, id) {
       try{
         const res = await this.$repositories.adminDeverlopers.show_edit(id)
-        commit('SET_Deverloper_edit', res.data.deverloper_edit)
-        commit('SET_Deverloper', res.data.deverloper)
+        if(res.data.code === 200){
+          commit('SET_Deverloper_edit', res.data.deverloper_edit)
+          commit('SET_Deverloper', res.data.deverloper)
+        }
       } catch(error) {
 
       }
@@ -90,7 +94,7 @@ export default {
     async change_positions({ commit }, payload) {
       try{
         const res = await this.$repositories.adminDeverlopers.change_positions(payload)
-        commit('SET_Deverlopers', res.data.deverlopers)
+        // commit('SET_Deverlopers', res.data.deverlopers)
       } catch(error) {
 
       }

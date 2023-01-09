@@ -62,9 +62,9 @@
           <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
         </v-btn>
 
-        <v-btn icon @click.stop="clipped = !clipped">
+        <!-- <v-btn icon @click.stop="clipped = !clipped">
           <v-icon>mdi-application</v-icon>
-        </v-btn>
+        </v-btn> -->
         <v-btn icon @click.stop="fixed = !fixed">
           <v-icon>mdi-minus</v-icon>
         </v-btn>
@@ -74,6 +74,9 @@
           
         </v-toolbar-title> -->
         <v-spacer />
+        <v-btn icon @click="onLogout">
+          <v-icon>mdi-power</v-icon>
+        </v-btn>
         <v-btn v-if="deverloper" icon @click.stop="rightDrawer = !rightDrawer">
           <v-icon>mdi-menu</v-icon>
         </v-btn>
@@ -266,7 +269,12 @@ export default {
   },
   methods: {
     ...mapActions(["get_deverlopers"]),
+    ...auth.mapActions(["logout"]),
 
+    onLogout(){
+      this.logout()
+      this.$router.push("/admin/login")
+    },
     showSubMenu(index) {
       this.is_show = !this.is_show;
       this.menus.active = false;
@@ -367,6 +375,7 @@ body::-webkit-scrollbar-thumb,
   background: #555555;
   border-radius: 10px;
 }
+
 body::-webkit-scrollbar-track {
   background: #555555;
 }

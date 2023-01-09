@@ -92,5 +92,7 @@ export default {
 };
 </script>
 <style>
-
+#admin td ul li{
+padding: 10px 0;
+}
 </style>

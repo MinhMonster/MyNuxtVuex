@@ -81,13 +81,8 @@ export default {
   },
   
   created() {
-    // if (this.$route.params.id) {
-      this.ID = this.$route.params.id;
-    // } else {
-    //   this.ID = this.$route.query.id;
-    // } 
+    this.ID = this.$route.params.id;
     this.show(this.ID);
-    console.log(this.$route);
   },
   methods: {
     async show(ID) {
