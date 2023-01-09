@@ -4,22 +4,24 @@
       <v-card-title>Bài viết mới</v-card-title>
       <div id="body-admin">
         <form @submit.prevent="edit()">
-          <DeverloperForm v-if="deverloper_item" :deverloper="deverloper_item"></DeverloperForm>
-            <v-row align="center">
-              <v-col>
-                <v-btn @click="onDelete()" color="red"> Xóa</v-btn>
-              </v-col>
-              <v-spacer />
-              <v-col
-                >
-                <div class="text-right">
-                <v-btn type="submit" color="" to="/admin/deverlopers"> Trở Về </v-btn>
+          <DeverloperForm
+            v-if="deverloper_item"
+            :deverloper="deverloper_item"
+          ></DeverloperForm>
+          <v-row align="center">
+            <v-col>
+              <v-btn @click="onDelete()" color="red"> Xóa</v-btn>
+            </v-col>
+            <v-spacer />
+            <v-col>
+              <div class="text-right">
+                <v-btn type="submit" color="" to="/admin/deverlopers">
+                  Trở Về
+                </v-btn>
                 <v-btn type="submit" color="primary"> Sửa </v-btn>
               </div>
-              </v-col
-              >
-            </v-row>
-            
+            </v-col>
+          </v-row>
         </form>
       </div>
     </div>
@@ -29,11 +31,10 @@
 <script>
 import API from "@/apis/modules/admin/topics";
 import api_file from "@/apis/modules/admin/files";
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 import DeverloperForm from "@/components/pages/admin/deverlopers/form/DeverloperForm.vue";
 import { mapFields } from "vuex-map-fields";
 import { cloneDeep } from "lodash";
-
 
 export default {
   components: { DeverloperForm },
@@ -51,8 +52,7 @@ export default {
     };
   },
   name: "EditDeverloper",
-  props: {
-  },
+  props: {},
   data() {
     return {
       ID: "",
@@ -61,33 +61,32 @@ export default {
   },
   async mounted() {
     await this.get_deverloper_edit({
-      params:{
-      // input:{
+      params: {
+        // input:{
         id: this.routeId,
         // type: this.queryType,
-      // }
-      }
+        // }
+      },
     });
   },
   computed: {
-    ...mapFields('admin/deverlopers',["deverloper","deverloper_edit"]),
-    // ...mapState('admin/deverlopers',["deverloper","deverloper_view"]),
+    ...mapFields("admin/deverlopers", ["deverloper", "deverloper_edit"]),
     routeId() {
       return this.$route.params.id;
     },
     // queryType() {
     //   return this.$route.query.type;
     // },
-    deverloper_item(){
-      if(this.deverloper_edit){
+    deverloper_item() {
+      if (this.deverloper_edit) {
         return cloneDeep(this.deverloper_edit);
       } else {
-        this.$router.push("/admin/deverlopers")
+        this.$router.push("/admin/deverlopers");
       }
-    }
+    },
   },
   methods: {
-    ...mapActions('admin/deverlopers',["get_deverloper_edit"]),
+    ...mapActions("admin/deverlopers", ["get_deverloper_edit"]),
     async show(ID) {
       const res = await API.showEdit({
         params: {
@@ -102,16 +101,20 @@ export default {
       formData.append("title", this.deverloper_item.title);
       formData.append("link", this.deverloper_item.link);
       formData.append("info", this.deverloper_item.info);
-      try{
-        const res = await this.$repositories.adminDeverlopers.edit(formData)
-        if(res.data.code === 200){
+      formData.append("content", this.deverloper_item.content);
+      formData.append("html_code", this.deverloper_item.html_code);
+      formData.append("css_code", this.deverloper_item.css_code);
+      formData.append("javascript_code", this.deverloper_item.javascript_code);
+
+      try {
+        const res = await this.$repositories.adminDeverlopers.edit(formData);
+        if (res.data.code === 200) {
           this.$toasted.success(res.data.message);
         }
-      } catch(e) {
-        console.log(e)
+      } catch (e) {
+        console.log(e);
       }
     },
-
 
     async onDelete() {
       this.$swal
@@ -134,23 +137,25 @@ export default {
           if (result.isConfirmed) {
             const formData = new FormData();
             formData.append("id", this.routeId);
-            try{
+            try {
               const res = await this.$repositories.adminDeverlopers.delete({
-                params:{
-                  id: this.routeId
-                }
+                params: {
+                  id: this.routeId,
+                },
               });
-              if(res.data.code === 200){
+              if (res.data.code === 200) {
                 this.$toasted.success(res.data.message);
-              
-                if(this.routeId === this.deverloper.ID){
-                  this.$router.push(`/admin/deverlopers`)
+
+                if (this.routeId === this.deverloper.ID) {
+                  this.$router.push(`/admin/deverlopers`);
                 } else {
-                  this.$router.push(`/admin/deverlopers/${this.deverloper.ID}/show`)
+                  this.$router.push(
+                    `/admin/deverlopers/${this.deverloper.ID}/show`
+                  );
                 }
               }
-            } catch(e) {
-              console.log(e)
+            } catch (e) {
+              console.log(e);
             }
           }
         });
@@ -158,3 +163,12 @@ export default {
   },
 };
 </script>
+<style >
+.CodeMirror {
+  height: 500px;
+  resize: horizontal;
+}
+.CodeMirror-wrap pre {
+  word-break: break-word;
+}
+</style>

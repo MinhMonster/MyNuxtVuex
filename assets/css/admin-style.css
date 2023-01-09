@@ -364,6 +364,12 @@ code{
   background:none;
 }
 
+#admin .bg-editor ul.nav.nav-tabs {
+  padding-left:0 ;
+
+}
+
+
 #admin .bg-view, 
 #admin .bg-editor .ck.ck-editor__main>.ck-editor__editable, 
 #admin .bg-editor  input {
@@ -371,6 +377,22 @@ code{
   color: var(--white);
   padding: 10px;
 }
+
+#admin .bg-editor .nav.nav-tabs .nav-item,
+#admin .bg-editor .ck.ck-button {
+  background: var(--admin-master) ;
+  color: var(--white);
+  
+  /* padding: 10px; */
+}
+
+#admin .bg-editor .nav.nav-tabs .nav-item a{
+  color: var(--white);
+
+}
+
+
+#admin .bg-editor .nav.nav-tabs .nav-item,
 #admin .bg-editor .ck.ck-button {
   background: var(--admin-master) ;
   color: var(--white);
@@ -416,11 +438,25 @@ padding: 10px;
   /* background: none; */
 }
 /* ck ck-color-grid */
+#admin .bg-editor .nav-tabs .nav-link.active,
 #admin .bg-editor .ck.ck-toolbar__items, 
 #admin .bg-editor .ck.ck-reset{
   background: #212529 ;
   color: var(--white);
   padding: 10px;
+}
+#admin .bg-editor .nav.nav-tabs .nav-item a:hover,
+
+#admin .bg-editor .nav-tabs .nav-link.active{
+  border: none !important;
+  /* border-top-left-radius: 5px; */
+}
+
+#admin .bg-editor .nav.nav-tabs .nav-item:first-child{
+  border-top-left-radius: 5px;
+}
+#admin .bg-editor .nav.nav-tabs .nav-item:last-child{
+  border-top-right-radius: 5px;
 }
 
 #admin .bg-editor .ck.ck-toolbar.ck-toolbar_grouping

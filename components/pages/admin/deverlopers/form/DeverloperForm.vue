@@ -8,13 +8,67 @@
         <v-text-field label="Đường link" v-model="deverloper.link"></v-text-field>
       </v-col>  
       <v-col cols="12" sm="12" md="12" >
-        <!-- <VueEditor
-          id="editor"
-          useCustomImageHandler
-          v-model="deverloper.info"
-          @image-added="handleImageAdded"
-        /> -->
-        <ContentEditer  label="Info" v-model="deverloper.info"></ContentEditer>
+        <b-form-group>
+        <b-tabs>
+          <b-tab title="Thông Tin">
+            <ContentEditer  label="Info" v-model="deverloper.info"></ContentEditer>
+            
+          </b-tab>
+          <b-tab title="Code">
+            <codemirror
+              v-model="deverloper.content"
+              :options="{
+                // lineWrapping: true,
+                mode: `text/x-vue`,
+                viewportMargin: 15,
+                // readOnly: false,
+                theme: `vscode-dark`,
+              }"
+            >
+            </codemirror>
+          </b-tab>
+          <b-tab title="HTML">
+            <codemirror
+              v-model="deverloper.html_code"
+              :options="{
+                lineWrapping: true,
+                mode: `text/x-vue`,
+                viewportMargin: 15,
+                readOnly: false,
+                theme: `vscode-dark`,
+              }"
+            >
+            </codemirror>
+          </b-tab>
+          <b-tab title="CSS">
+            <codemirror
+              v-model="deverloper.css_code"
+              :options="{
+                lineWrapping: true,
+                mode: `text/css`,
+                viewportMargin: 15,
+                readOnly: false,
+                theme: `vscode-dark`,
+              }"
+            >
+            </codemirror>
+          </b-tab>
+          <b-tab title="Javascript">
+            <codemirror
+              v-model="deverloper.javascript_code"
+              :options="{
+                lineWrapping: true,
+                mode: `text/x-java`,
+                viewportMargin: 15,
+                readOnly: false,
+                theme: `vscode-dark`,
+              }"
+            >
+            </codemirror>
+          </b-tab>
+        </b-tabs>
+      </b-form-group>
+        
       </v-col>
     </v-row>
   </client-only>
@@ -32,6 +86,17 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      editorOption: {
+        tabSize: 2,
+        mode: "text/javascript",
+        theme: "base16-dark",
+        lineNumbers: true,
+        line: true,
+      },
+    }
+  },
   name: "FormDeverloper",
   methods:{
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
@@ -48,3 +113,5 @@ export default {
   }
 };
 </script>
+<style >
+</style>

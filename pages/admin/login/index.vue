@@ -40,7 +40,7 @@ export default {
       ],
     };
   },
-  name: "NewTopic",
+  name: "Login Admin",
   data() {
     return {
       input: {},
@@ -54,7 +54,6 @@ export default {
     ...mapState(["token"]),
   },
   created() {
-    console.log(this.token);
   },
   methods: {
     ...mapActions(["authRequest"]),
@@ -70,8 +69,6 @@ export default {
         this.$toasted.error(res.data.message);
       }
       this.authRequest(res.data);
-
-      // this.$swal.fire(res.data.message, "", res.data.status);
     },
   },
 };

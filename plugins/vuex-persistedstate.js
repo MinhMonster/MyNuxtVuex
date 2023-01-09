@@ -10,17 +10,6 @@ export default ({ store, req }) => {
       "admin.auth.authenticated",
       "admin.deverlopers.deverlopers",
       "admin.deverlopers.deverloper"
-
-      // "console.global.sidebarActive",
-      // "console.global.token",
-      // "console.global.agencyToken",
-      // "console.pages.account_setting.basic_info.account",
-      // "console.global.authenticated",
-      // "console.global.localeTimestamp",
-      // "shop.global.token",
-      // "agency.global.sidebarActive",
-      // "agency.global.token",
-      // "agency.global.authenticated",
     ],
     storage: {
       getItem: (key) => {

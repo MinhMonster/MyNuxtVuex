@@ -61,7 +61,6 @@ export default {
       state.authErrorMessage = payload;
     },
     AUTH_LOGOUT(state) {
-      console.log(`log`);
       state.authenticated = false;
       state.token = null;
     },

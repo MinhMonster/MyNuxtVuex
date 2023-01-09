@@ -4,7 +4,6 @@ import webpack from "webpack";
 
 export default {
   // target: 'static', // default is 'server'
-
   // mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -38,7 +37,7 @@ export default {
 
     '~/plugins/repositories.js',
     { src: "@/plugins/vue-infinite-scroll", ssr: false },
-    { src: "@plugins/vue-code-mirror", ssr: false },
+    { src: "@/plugins/vue-codemirror", ssr: false },
 
     // "~/plugins/axios",
     // "~/plugins/vee-validate",  
@@ -73,6 +72,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    "bootstrap-vue/nuxt",
     'cookie-universal-nuxt',
     // With options
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
