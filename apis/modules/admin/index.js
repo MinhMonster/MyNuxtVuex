@@ -19,7 +19,7 @@ const api = request.create({
   baseURL: process.env.VUE_APP_API_HOME
 });
 
-// console.log(Cookies.get("DST"))
+// console.log(Cookies.get("MinhMonster"))
 
 
 api.interceptors.request.use((config) => {

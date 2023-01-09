@@ -4,7 +4,7 @@ import cookie from "cookie";
 
 export default ({ store, req }) => {
   createPersistedState({
-    key: "DST",
+    key: "MinhMonster",
     paths: [
       "admin.auth.token",
       "admin.auth.authenticated",
