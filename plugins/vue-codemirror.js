@@ -7,6 +7,7 @@ import "/theme/codemirror/base16-dark.css";
 import "/theme/codemirror/material-darker.css";
 import "/theme/codemirror/ayu-dark.css";
 import "/theme/codemirror/pastel-on-dark.css";
+import "/theme/codemirror/xq-dark.css";
 import "/theme/codemirror/vscode-dark.css";
 
 
@@ -25,7 +26,7 @@ const cmOptions = {
   mode: "text/html",
   lineNumbers: true,
   line: true,
-  collapseIdentical: false,
+  collapseIdentical: true,
   highlightDifferences: true,
 };
 Vue.use(VueCodemirror, {

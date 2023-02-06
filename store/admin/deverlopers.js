@@ -1,16 +1,35 @@
 import { getField, updateField } from "vuex-map-fields";
+import { cloneDeep } from "lodash";
+
+
+const ADD_ACTION = "ADD_ACTION";
+const UPDATE_ACTION = "UPDATE_ACTION";
+
+
 export default {
   namespaced: true,
   state: () => ({
-    deverlopers_scroll:[],
-    datas:[],
+    deverlopers_scroll: [],
+    datas: [],
     deverlopers: [],
     deverloper: false,
-    deverloper_view:{},
-    deverloper_edit:{}
+    deverloper_view: {},
+    deverloper_edit: {},
+    options: {},
+    actions: [],
   }),
   getters: {
     getField,
+
+    getAction: (state) => (index) => {
+      return (
+        state.actions[index] || {
+          id: Math.random().toString(36).substr(2, 8),
+          type: "message",
+          timing: "now",
+        }
+      );
+    },
   },
   mutations: {
     updateField,
@@ -29,10 +48,50 @@ export default {
     },
     SET_Deverloper_edit(state, deverloper_edit) {
       state.deverloper_edit = deverloper_edit
-    }
+    },
+    ADD_ACTION(state, type) {
+      switch (type) {
+        case "vue":
+          state.actions.push({
+            id: Math.random().toString(36).substr(2, 8),
+            typeCode: "vue",
+            code: "",
+            title: "",
+            content: "",
+          });
+          break;
+        case "html":
+          state.actions.push({
+            id: Math.random().toString(36).substr(2, 8),
+            typeCode: "html",
+            code: "",
+            title: "",
+            content: "",
+          });
+          break;
+          case "javascipt":
+          state.actions.push({
+            id: Math.random().toString(36).substr(2, 8),
+            typeCode: "javascipt",
+            code: "",
+            title: "",
+            content: "",
+          });
+          break;
+      }
+    },
+    UPDATE_ACTION(state, { index, value }) {
+      const actions = _.cloneDeep(state.actions);
+      actions[index] = _.cloneDeep(value);
+      state.actions = actions;
+    },
   },
 
   actions: {
+    setAction({ commit }, payload) {
+      console.log(payload);
+      commit(UPDATE_ACTION, payload);
+    },
     // async get_topics({ commit }) {
     //   const res = await this.$repositories.adminTopics.all()
     //   const { status, data } = res
@@ -42,63 +101,68 @@ export default {
     //     // Handle error here
     //   }
     // },
-    async get_deverlopers_scroll({ commit },payload) {
-      try{
+    async get_deverlopers_scroll({ commit }, payload) {
+      try {
         const res = await this.$repositories.adminDeverlopers.scroll(payload)
         // this.items.push('Item ' + this.nextItem++);
         // store.state.deverlopers_scroll.push(res.data.deverlopers_scroll)
         commit('SET_Deverlopers_scroll', res.data.deverlopers_scroll)
-      } catch(error) {
+      } catch (error) {
 
       }
     },
     async get_deverlopers({ commit }) {
-      try{
+      try {
         const res = await this.$repositories.adminDeverlopers.all()
         commit('SET_Deverlopers', res.data.deverlopers)
-      } catch(error) {
+      } catch (error) {
 
       }
     },
     async get_deverloper({ commit }, id) {
-      
-      try{
+
+      try {
         const res = await this.$repositories.adminDeverlopers.show(id)
         commit('SET_Deverloper', res.data.deverloper)
-      } catch(error) {
+      } catch (error) {
 
       }
     },
     async get_deverloper_view({ commit }, id) {
-      try{
+      try {
         const res = await this.$repositories.adminDeverlopers.view(id)
         // if(res.data.code === 200){
-          commit('SET_Deverloper_view', res.data.deverloper_view)
-          commit('SET_Deverloper', res.data.deverloper)
+        commit('SET_Deverloper_view', res.data.deverloper_view)
+        commit('SET_Deverloper', res.data.deverloper)
         // }
-      } catch(error) {
+      } catch (error) {
 
       }
     },
     async get_deverloper_edit({ commit }, id) {
-      try{
+      try {
         const res = await this.$repositories.adminDeverlopers.show_edit(id)
-        if(res.data.code === 200){
+        if (res.data.code === 200) {
           commit('SET_Deverloper_edit', res.data.deverloper_edit)
           commit('SET_Deverloper', res.data.deverloper)
         }
-      } catch(error) {
+      } catch (error) {
 
       }
     },
     async change_positions({ commit }, payload) {
-      try{
+      try {
         const res = await this.$repositories.adminDeverlopers.change_positions(payload)
         // commit('SET_Deverlopers', res.data.deverlopers)
-      } catch(error) {
+      } catch (error) {
 
       }
-    }
+    },
+    addAction({ commit, state }, payload) {
+      commit(ADD_ACTION, payload);
+      console.log(`actions`, state.actions);
+    },
+
   },
 
   // async get_deverloper({ commit }, id) {

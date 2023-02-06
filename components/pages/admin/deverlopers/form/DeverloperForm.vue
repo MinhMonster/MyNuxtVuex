@@ -12,7 +12,6 @@
         <b-tabs>
           <b-tab title="Thông Tin">
             <ContentEditer  label="Info" v-model="deverloper.info"></ContentEditer>
-            
           </b-tab>
           <b-tab title="Code">
             <codemirror
@@ -22,7 +21,7 @@
                 mode: `text/x-vue`,
                 viewportMargin: 15,
                 // readOnly: false,
-                theme: `vscode-dark`,
+                theme: `base16-dark`,
               }"
             >
             </codemirror>
@@ -89,8 +88,6 @@ export default {
   data() {
     return {
       editorOption: {
-        tabSize: 2,
-        mode: "text/javascript",
         theme: "base16-dark",
         lineNumbers: true,
         line: true,
@@ -114,4 +111,7 @@ export default {
 };
 </script>
 <style >
+.CodeMirror-sizer{
+  min-height: 500px;
+}
 </style>

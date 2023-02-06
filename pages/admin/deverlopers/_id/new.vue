@@ -5,24 +5,35 @@
       <div id="body-admin">
         <form @submit.prevent="create()">
           <DeverloperForm :deverloper="deverloper_new"></DeverloperForm>
-          <br/>
-          <br/>
+          <br />
+          <br />
           <div class="text-right">
             <v-btn type="submit" color="" to="/admin/topics"> Trở Về </v-btn>
             <v-btn type="submit" color="primary"> Thêm mới </v-btn>
           </div>
         </form>
+        <div v-if="actions.length">
+          <div v-for="action, index in actions" :key="index">
+            <div>{{ action.id }}</div>
+            <CodeForm :index="index"></CodeForm>
+          </div>
+        </div>
+        <AddActionBtnGroups></AddActionBtnGroups>
       </div>
     </div>
   </client-only>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapFields } from "vuex-map-fields";
+import { mapActions, mapState } from "vuex";
 import DeverloperForm from "@/components/pages/admin/deverlopers/form/DeverloperForm.vue";
+import CodeForm from "@/components/pages/admin/deverlopers/form/CodeForm.vue";
+
+import AddActionBtnGroups from "@/components/pages/admin/deverlopers/AddActionBtnGroups.vue";
 
 export default {
-  components: { DeverloperForm },
+  components: { DeverloperForm, AddActionBtnGroups, CodeForm },
   layout: "adminDev",
   head() {
     return {
@@ -47,23 +58,29 @@ export default {
       },
     };
   },
-  
+
   created() {},
   async mounted() {
     await this.get_deverloper({
-      params:{
+      params: {
         id: this.paramId,
-      }
+      },
     });
   },
   computed: {
-    ...mapState('admin/deverlopers',["deverlopers", "deverloper"]),
+    ...mapState("admin/deverlopers", ["deverlopers", "deverloper"]),
+    ...mapFields("admin/deverlopers", ["deverlopers", "actions"]),
+
     paramId() {
       return this.$route.params.id;
     },
   },
   methods: {
-    ...mapActions('admin/deverlopers',["get_deverlopers","get_deverloper", "new"]),
+    ...mapActions("admin/deverlopers", [
+      "get_deverlopers",
+      "get_deverloper",
+      "new",
+    ]),
     async create() {
       const formData = new FormData();
       formData.append("id", this.paramId);
@@ -72,17 +89,16 @@ export default {
       formData.append("info", this.deverloper_new.info);
       // const res = await API.create(formData);
       // this.$swal.fire(res.data.message, "", res.data.status);
-      try{
-        const res = await this.$repositories.adminDeverlopers.create(formData)
-        if(res.data.code === 200){
+      try {
+        const res = await this.$repositories.adminDeverlopers.create(formData);
+        if (res.data.code === 200) {
           this.$toasted.success(res.data.message);
-          this.$router.push(`/admin/deverlopers/${this.deverloper.ID}/show`)
+          this.$router.push(`/admin/deverlopers/${this.deverloper.ID}/show`);
         }
-      } catch(e) {
-        console.log(e)
+      } catch (e) {
+        console.log(e);
       }
     },
-    
 
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
       const formData = new FormData();
