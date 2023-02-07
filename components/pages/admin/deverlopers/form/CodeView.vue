@@ -11,7 +11,7 @@
               mode: `text/x-vue`,
               viewportMargin: 15,
               readOnly: true,
-              theme: `vscode-dark`,
+              theme: `base16-dark`,
             }"
           >
           </codemirror>
@@ -23,7 +23,7 @@
               mode: `text/css`,
               viewportMargin: 15,
               readOnly: true,
-              theme: `vscode-dark`,
+              theme: `base16-dark`,
             }"
           >
           </codemirror>
@@ -35,7 +35,7 @@
               mode: `text/x-java`,
               viewportMargin: 15,
               readOnly: true,
-              theme: `vscode-dark`,
+              theme: `base16-dark`,
             }"
           >
           </codemirror>

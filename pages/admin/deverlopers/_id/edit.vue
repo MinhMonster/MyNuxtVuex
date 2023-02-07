@@ -8,6 +8,15 @@
             v-if="deverloper_item"
             :deverloper="deverloper_item"
           ></DeverloperForm>
+
+          <div v-if="actions">
+            <div v-for="(action, index) in actions" :key="index">
+              <div>{{ action.id }}</div>
+              <CodeForm :index="index"></CodeForm>
+            </div>
+          </div>
+          <AddActionBtnGroups></AddActionBtnGroups>
+          <br/>
           <v-row align="center">
             <v-col>
               <v-btn @click="onDelete()" color="red"> Xóa</v-btn>
@@ -33,11 +42,14 @@ import API from "@/apis/modules/admin/topics";
 import api_file from "@/apis/modules/admin/files";
 import { mapActions, mapState } from "vuex";
 import DeverloperForm from "@/components/pages/admin/deverlopers/form/DeverloperForm.vue";
+import CodeForm from "@/components/pages/admin/deverlopers/form/CodeForm.vue";
+import AddActionBtnGroups from "@/components/pages/admin/deverlopers/AddActionBtnGroups.vue";
+
 import { mapFields } from "vuex-map-fields";
 import { cloneDeep } from "lodash";
 
 export default {
-  components: { DeverloperForm },
+  components: { DeverloperForm, CodeForm, AddActionBtnGroups },
   layout: "adminDev",
   head() {
     return {
@@ -70,7 +82,12 @@ export default {
     });
   },
   computed: {
-    ...mapFields("admin/deverlopers", ["deverloper", "deverloper_edit"]),
+    ...mapFields("admin/deverlopers", [
+      "deverloper",
+      "deverloper_edit",
+      "actions",
+    ]),
+
     routeId() {
       return this.$route.params.id;
     },
@@ -105,6 +122,9 @@ export default {
       formData.append("html_code", this.deverloper_item.html_code);
       formData.append("css_code", this.deverloper_item.css_code);
       formData.append("javascript_code", this.deverloper_item.javascript_code);
+      
+      const codeValue = JSON.stringify(this.actions);
+      formData.append("code", codeValue);
 
       try {
         const res = await this.$repositories.adminDeverlopers.edit(formData);

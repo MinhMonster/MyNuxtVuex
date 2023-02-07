@@ -21,7 +21,7 @@
         <div class="ck-content">
           <div class="bg-view view_htm">
             <div v-html="deverloper_view.info"></div>
-            <div v-for="(action, index) in deverloper_view.code" :key="index">
+            <div v-for="(action, index) in actions" :key="index">
               <p>{{ index + 1 }} {{ action.id }}</p>
               <CodeView :index="index"></CodeView>
             </div>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
 import { mapActions, mapState } from "vuex";
 import CodeView from "@/components/pages/admin/deverlopers/form/CodeView.vue";
 
@@ -79,6 +80,8 @@ export default {
   },
   computed: {
     ...mapState("admin/deverlopers", ["deverloper", "deverloper_view"]),
+    ...mapFields("admin/deverlopers", ["deverlopers", "actions"]),
+
     paramType() {
       return this.$route.params.type;
     },

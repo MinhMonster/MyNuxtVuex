@@ -12,7 +12,7 @@
             <v-btn type="submit" color="primary"> Thêm mới </v-btn>
           </div>
         </form>
-        <div v-if="actions.length">
+        <div v-if="actions">
           <div v-for="action, index in actions" :key="index">
             <div>{{ action.id }}</div>
             <CodeForm :index="index"></CodeForm>
@@ -87,11 +87,9 @@ export default {
       formData.append("title", this.deverloper_new.title);
       formData.append("link", this.deverloper_new.link);
       formData.append("info", this.deverloper_new.info);
-      // formData.append("code", this.actions);
 
       const codeValue = JSON.stringify(this.actions);
       formData.append("code", codeValue);
-
 
       const input = {
         code: this.actions,

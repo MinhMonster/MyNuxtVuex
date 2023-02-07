@@ -23,7 +23,7 @@
               mode: `text/css`,
               viewportMargin: 15,
               readOnly: false,
-              theme: `vscode-dark`,
+              theme: `base16-dark`,
             }"
           >
           </codemirror>
@@ -35,7 +35,7 @@
               mode: `text/x-java`,
               viewportMargin: 15,
               readOnly: false,
-              theme: `vscode-dark`,
+              theme: `base16-dark`,
             }"
           >
           </codemirror>
