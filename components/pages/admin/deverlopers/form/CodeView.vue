@@ -1,40 +1,40 @@
 <template>
   <client-only>
-    <v-row class="bg-editor">
+    <v-row class="bg-editor bg-view-code">
       <v-col cols="12" sm="12" md="12">
         <b-form-group>
           <codemirror
             v-if="action.typeCode == `vue`"
-            v-model="codeValue"
+            :value="codeValue"
             :options="{
-              // lineWrapping: true,
+              lineWrapping: true,
               mode: `text/x-vue`,
               viewportMargin: 15,
-              // readOnly: false,
-              theme: `base16-dark`,
+              readOnly: true,
+              theme: `vscode-dark`,
             }"
           >
           </codemirror>
           <codemirror
             v-if="action.typeCode == `css`"
-            v-model="codeValue"
+            :value="codeValue"
             :options="{
               lineWrapping: true,
               mode: `text/css`,
               viewportMargin: 15,
-              readOnly: false,
+              readOnly: true,
               theme: `vscode-dark`,
             }"
           >
           </codemirror>
           <codemirror
             v-if="action.typeCode == `javascipt`"
-            v-model="codeValue"
+            :value="codeValue"
             :options="{
               lineWrapping: true,
               mode: `text/x-java`,
               viewportMargin: 15,
-              readOnly: false,
+              readOnly: true,
               theme: `vscode-dark`,
             }"
           >
@@ -103,8 +103,8 @@ export default {
   },
 };
 </script>
-<style >
-.CodeMirror-sizer {
-  min-height: 500px;
+<style>
+.bg-view-code .CodeMirror {
+  height: auto !important;
 }
 </style>

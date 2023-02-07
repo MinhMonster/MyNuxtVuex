@@ -87,6 +87,20 @@ export default {
       formData.append("title", this.deverloper_new.title);
       formData.append("link", this.deverloper_new.link);
       formData.append("info", this.deverloper_new.info);
+      // formData.append("code", this.actions);
+
+      const codeValue = JSON.stringify(this.actions);
+      formData.append("code", codeValue);
+
+
+      const input = {
+        code: this.actions,
+        id: this.paramId,
+        title: this.deverloper_new.title,
+        link: this.deverloper_new.link,
+        info: this.deverloper_new.info,
+      }
+
       // const res = await API.create(formData);
       // this.$swal.fire(res.data.message, "", res.data.status);
       try {

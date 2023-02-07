@@ -45,6 +45,7 @@ export default {
     },
     SET_Deverloper_view(state, deverloper_view) {
       state.deverloper_view = deverloper_view
+      state.actions = deverloper_view.code
     },
     SET_Deverloper_edit(state, deverloper_edit) {
       state.deverloper_edit = deverloper_edit
