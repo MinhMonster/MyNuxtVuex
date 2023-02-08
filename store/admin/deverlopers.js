@@ -3,7 +3,12 @@ import { cloneDeep } from "lodash";
 
 
 const ADD_ACTION = "ADD_ACTION";
+const ADD_ACTION_INDEX = "ADD_ACTION_INDEX";
+
+const REMOVE_ACTION = "REMOVE_ACTION";
+
 const UPDATE_ACTION = "UPDATE_ACTION";
+
 
 
 export default {
@@ -45,7 +50,7 @@ export default {
     },
     SET_Deverloper_view(state, deverloper_view) {
       state.deverloper_view = deverloper_view
-      if(deverloper_view.code) {
+      if (deverloper_view.code) {
         state.actions = deverloper_view.code
       } else {
         state.actions = []
@@ -53,7 +58,7 @@ export default {
     },
     SET_Deverloper_edit(state, deverloper_edit) {
       state.deverloper_edit = deverloper_edit
-      if(deverloper_edit.code) {
+      if (deverloper_edit.code) {
         state.actions = deverloper_edit.code
       } else {
         state.actions = []
@@ -79,7 +84,7 @@ export default {
             content: "",
           });
           break;
-          case "javascipt":
+        case "javascipt":
           state.actions.push({
             id: Math.random().toString(36).substr(2, 8),
             typeCode: "javascipt",
@@ -89,6 +94,43 @@ export default {
           });
           break;
       }
+    },
+    ADD_ACTION_INDEX(state, payload) {
+      console.log(`payload`, payload);
+      switch (payload.typeCode) {
+        case "vue":
+          state.actions.splice((payload.index + 1), 0, {
+            id: Math.random().toString(36).substr(2, 8),
+            typeCode: "vue",
+            code: "",
+            title: "",
+            content: "",
+          });
+          break;
+        case "html":
+          state.actions.splice((payload.index + 1), 0, {
+            id: Math.random().toString(36).substr(2, 8),
+            typeCode: "html",
+            code: "",
+            title: "",
+            content: "",
+          });
+          break;
+        case "javascipt":
+          state.actions.splice((payload.index + 1), 0, {
+            id: Math.random().toString(36).substr(2, 8),
+            typeCode: "javascipt",
+            code: "",
+            title: "",
+            content: "",
+          });
+          break;
+      }
+    },
+    REMOVE_ACTION(state, index) {
+      state.actions = state.actions.filter((item, i) => i !== index);
+      // state.actions.splice((index), 1)
+
     },
     UPDATE_ACTION(state, { index, value }) {
       const actions = _.cloneDeep(state.actions);
@@ -171,6 +213,16 @@ export default {
     addAction({ commit, state }, payload) {
       commit(ADD_ACTION, payload);
       console.log(`actions`, state.actions);
+    },
+    
+    addActionIndex({ commit, state }, payload) {
+      console.log(payload);
+      commit(ADD_ACTION_INDEX, payload);
+      console.log(`addActionsIndex`, state.actions);
+    },
+    removeAction({ commit, state }, payload) {
+      commit(REMOVE_ACTION, payload);
+      console.log(`remove`, state.actions);
     },
 
   },

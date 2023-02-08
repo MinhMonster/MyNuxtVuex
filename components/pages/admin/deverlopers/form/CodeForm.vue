@@ -39,6 +39,18 @@
             }"
           >
           </codemirror>
+          <v-row align="center" class="mgt--50px">
+            <v-col>
+              <v-btn icon class="danger" @click="deleteAction(index)">
+                <v-icon>mdi-delete</v-icon>
+              </v-btn>
+            </v-col>
+            <v-spacer />
+
+            <v-col class="mgr-12-5px">
+              <CodeModalAction  :index="index" class="right"></CodeModalAction>
+            </v-col>
+          </v-row>
         </b-form-group>
       </v-col>
     </v-row>
@@ -47,12 +59,15 @@
 
 <script>
 import ContentEditer from "@/components/pages/admin/Shared/nuxt-editor/CkEditorNuxt.vue";
+import CodeModalAction from "@/components/pages/admin/deverlopers/form/CodeModalAction.vue";
+
 import { createNamespacedHelpers } from "vuex";
 
 const { mapActions, mapGetters } = createNamespacedHelpers("admin/deverlopers");
 export default {
   components: {
     ContentEditer,
+    CodeModalAction,
   },
   props: {
     index: {
@@ -99,6 +114,34 @@ export default {
       const url = res.data.file;
       Editor.insertEmbed(cursorLocation, "image", url);
       resetUploader();
+    },
+    deleteAction(index) {
+      this.$swal
+        .fire({
+          title: `Remove Action`,
+          confirmButtonColor: "#F64E60",
+          showCancelButton: true,
+          confirmButtonText: "YES",
+          cancelButtonText: "NO",
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            this.removeAction(index);
+          }
+        });
+
+      // this.$confirm({
+      //   message: "Xóa Phần Tử",
+      //   button: {
+      //     no: "NO",
+      //     yes: "YES",
+      //   },
+      //   callback: (confirm) => {
+      //     if (confirm) {
+      //       this.removeAction(index);
+      //     }
+      //   },
+      // });
     },
   },
 };

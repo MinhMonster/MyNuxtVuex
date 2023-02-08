@@ -16,7 +16,7 @@
             </div>
           </div>
           <AddActionBtnGroups></AddActionBtnGroups>
-          <br/>
+          <br />
           <v-row align="center">
             <v-col>
               <v-btn @click="onDelete()" color="red"> Xóa</v-btn>
@@ -103,7 +103,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("admin/deverlopers", ["get_deverloper_edit"]),
+    ...mapActions("admin/deverlopers", ["get_deverloper_edit", "removeAction"]),
     async show(ID) {
       const res = await API.showEdit({
         params: {
@@ -122,7 +122,7 @@ export default {
       formData.append("html_code", this.deverloper_item.html_code);
       formData.append("css_code", this.deverloper_item.css_code);
       formData.append("javascript_code", this.deverloper_item.javascript_code);
-      
+
       const codeValue = JSON.stringify(this.actions);
       formData.append("code", codeValue);
 
@@ -180,6 +180,35 @@ export default {
           }
         });
     },
+    deleteAction(index){
+      this.$swal
+        .fire({
+          title: `Remove Action`,
+          confirmButtonColor: "#F64E60",
+          showCancelButton: true,
+          confirmButtonText: "YES",
+          cancelButtonText: "NO",
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            this.removeAction(index);
+          }
+        });
+
+
+      // this.$confirm({
+      //   message: "Xóa Phần Tử",
+      //   button: {
+      //     no: "NO",
+      //     yes: "YES",
+      //   },
+      //   callback: (confirm) => {
+      //     if (confirm) {
+      //       this.removeAction(index);
+      //     }
+      //   },
+      // });
+    }
   },
 };
 </script>
