@@ -231,6 +231,11 @@ export default {
           to: "/admin/deverlopers",
         },
         {
+          icon: "mdi-file-document-edit",
+          title: "Finances",
+          to: "/admin/finances",
+        },
+        {
           icon: "mdi-playlist-edit",
           title: "Menus",
           to: "/admin/menus",

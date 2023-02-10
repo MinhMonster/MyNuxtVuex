@@ -5,6 +5,7 @@ import PromotionRepository from '~/repositories/PromotionRepository'
 //admin
 import adminTopics from '~/repositories/admin/topics'
 import adminDeverlopers from '~/repositories/admin/deverlopers'
+import adminFinances from '~/repositories/admin/finances'
 
 
 // import UserRepository from '~/repositories/UserRepository'
@@ -18,6 +19,7 @@ export default ($api) => ({
 
   adminTopics: adminTopics($api),
   adminDeverlopers: adminDeverlopers($api),
+  adminFinances: adminFinances($api),
 
   // user: UserRepository($axios),
   // comment: CommentRepository($axios),

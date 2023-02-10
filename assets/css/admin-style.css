@@ -372,7 +372,8 @@ code{
 
 #admin .bg-view, 
 #admin .bg-editor .ck.ck-editor__main>.ck-editor__editable, 
-#admin .bg-editor  input {
+#admin .bg-editor  input,
+#admin .bg-editor div.outline-format p.value-format{
   background: var(--admin-master) !important;
   color: var(--white);
   padding: 10px;
@@ -389,6 +390,13 @@ code{
 #admin .bg-editor .nav.nav-tabs .nav-item a{
   color: var(--white);
 
+}
+#admin .bg-editor div.outline-format{
+  margin-top: 16px;
+  background: var(--admin-master) ;
+  color: var(--white);
+  padding: 10px;
+  height: 52px;
 }
 
 
@@ -408,9 +416,11 @@ padding: 10px;
   caret-color: #fff;  
 }
 
-#admin .bg-editor  .v-text-field__slot input{
+#admin .bg-editor  .v-text-field__slot input,
+#admin .bg-editor div.outline-format p.value-format{
   height: 32px;
   border: 1px solid #c4c4c4;
+  line-height: 12px;
 }
 
 #admin .bg-editor label{
