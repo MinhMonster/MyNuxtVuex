@@ -40,15 +40,15 @@
           >
           </codemirror>
           <v-row align="center" class="mgt--50px">
-            <v-col>
+            <v-col class="center">
               <v-btn icon class="danger" @click="deleteAction(index)">
                 <v-icon>mdi-delete</v-icon>
               </v-btn>
             </v-col>
             <v-spacer />
 
-            <v-col class="mgr-12-5px">
-              <CodeModalAction  :index="index" class="right"></CodeModalAction>
+            <v-col>
+              <CodeModalAction :index="index"></CodeModalAction>
             </v-col>
           </v-row>
         </b-form-group>

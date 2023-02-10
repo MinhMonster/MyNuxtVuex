@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row justify="center">
     <v-dialog
       v-model="dialog"
       scrollable
@@ -93,6 +93,12 @@ import { mapActions } from "vuex";
 </script>
 <style scoped>
 .v-card.v-sheet.theme--dark {
-  border: 1px solid #fff;
+  border: 1px solid #a4a4a4;
+  /* border: 1px solid rgba(255, 255, 255, 0.12); */
+
 }
+
+/* .v-card.v-sheet.theme--dark {
+  background: #fff !important;
+} */
 </style>
