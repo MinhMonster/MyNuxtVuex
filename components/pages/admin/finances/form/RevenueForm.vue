@@ -38,7 +38,7 @@
 
 import { createNamespacedHelpers } from "vuex";
 
-const { mapActions, mapGetters } = createNamespacedHelpers("admin/finances");
+const { mapActions, mapGetters } = createNamespacedHelpers("admin/finances/edit");
 import mixins from "@/mixins/index";
 
 export default {

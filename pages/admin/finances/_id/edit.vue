@@ -1,29 +1,37 @@
 <template>
   <client-only>
     <div>
-      <v-card-title>Day: {{ this.finance_edit.title }} : {{ format_number(this.income) }} </v-card-title>
+      <v-card-title
+        >Day: {{ this.finance_edit.title }} : {{ format_number(this.income) }}
+      </v-card-title>
       <div id="body-admin">
         <form @submit.prevent="edit()">
           <FinanceForm
             v-if="finance_item"
             :finance="finance_item"
           ></FinanceForm>
-          <div class="d-flex">
-            <div v-if="revenues" style="width: 49%">
-              <h1 class=" big">REVENUE ({{ format_number(this.sumCashRevenues) }})</h1>
-              <div v-for="(revenue, index) in revenues" :key="index">
-                <RevenueForm :index="index"></RevenueForm>
+          <v-row>
+            <v-col :md="6" :sm="12" cols="12">
+              <div v-if="revenues">
+                <h1 class="big">
+                  REVENUE ({{ format_number(this.sumCashRevenues) }})
+                </h1>
+                <div v-for="(revenue, index) in revenues" :key="index">
+                  <RevenueForm :index="index"></RevenueForm>
+                </div>
               </div>
-            </div>
-            <v-spacer/>
-
-            <div v-if="expenses" style="width: 49%">
-              <h1 class=" big">EXPENSE ({{ format_number(this.sumCashExpenses) }})</h1>
-              <div v-for="(expense, index) in expenses" :key="index">
-                <ExpenseForm :index="index"></ExpenseForm>
+            </v-col>
+            <v-col :md="6" :sm="12" cols="12">
+              <div v-if="expenses">
+                <h1 class="big">
+                  EXPENSE ({{ format_number(this.sumCashExpenses) }})
+                </h1>
+                <div v-for="(expense, index) in expenses" :key="index">
+                  <ExpenseForm :index="index"></ExpenseForm>
+                </div>
               </div>
-            </div>
-          </div>
+            </v-col>
+          </v-row>
           <br />
           <AddRevenueBtn></AddRevenueBtn>
           <br />
@@ -49,8 +57,7 @@
 
 <script>
 import API from "@/apis/modules/admin/topics";
-import api_file from "@/apis/modules/admin/files";
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
 import FinanceForm from "@/components/pages/admin/finances/form/FinanceForm.vue";
 import RevenueForm from "@/components/pages/admin/finances/form/RevenueForm.vue";
 import ExpenseForm from "@/components/pages/admin/finances/form/ExpenseForm.vue";
@@ -58,10 +65,10 @@ import AddRevenueBtn from "@/components/pages/admin/finances/btn/AddRevenueBtn.v
 
 import { mapFields } from "vuex-map-fields";
 import { cloneDeep } from "lodash";
-import mixins from "@/mixins/index"
+import mixins from "@/mixins/index";
 
 export default {
-  mixins:[mixins],
+  mixins: [mixins],
   components: {
     FinanceForm,
     RevenueForm,
@@ -148,7 +155,6 @@ export default {
       formData.append("sumCashRevenues", this.sumCashRevenues);
       formData.append("sumCashExpenses", this.sumCashExpenses);
       formData.append("income", this.income);
-
 
       try {
         const res = await this.$repositories.adminFinances.edit(formData);

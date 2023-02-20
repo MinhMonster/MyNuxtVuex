@@ -15,7 +15,7 @@ import { mapActions } from "vuex";
 
 export default {
   methods: {
-    ...mapActions("admin/finances", [
+    ...mapActions("admin/finances/edit", [
       "addAction"
     ]),
   },

@@ -3,7 +3,7 @@
     <div class="">
       <v-row align="center">
         <v-col>
-          <v-card-title>finances</v-card-title>
+          <v-card-title>Finances</v-card-title>
         </v-col>
         <v-spacer />
         <v-col
@@ -21,9 +21,8 @@
           <template v-slot:default>
             <thead>
               <tr class="w-100">
-                <th class="w-10 text-center">STT</th>
-                <th class="w-60 text-left">Tên hiển thị</th>
-                <th class="w-20 text-left">Đường dẫn</th>
+                <th class="w-60 text-left">Year</th>
+                <th class="w-20 text-left">Position</th>
                 <th class="w-10 text-center">Thao tác</th>
               </tr>
             </thead>
@@ -36,9 +35,8 @@
             tag="tbody"
           >
               <tr v-for="(item, index) in finances" :key="index" class="text-middle">
-                <td class="text-center">{{ index + 1 }}</td>
                 <td>
-                  <nuxt-link :to="`/admin/finances/${item.ID}/show`">{{ item.title }}</nuxt-link>
+                  <nuxt-link :to="`/admin/finances/${item.year}`">{{ item.title }}</nuxt-link>
                   <!-- <v-btn light icon :to="`/admin/finances/${item.ID}/show`"> -->
                     <!-- {{ item.title }} -->
                   <!-- </v-btn> -->
@@ -159,4 +157,5 @@ export default {
 }
 .list-group-item, .handle {
     cursor: move;
-}</style>
+}
+</style>

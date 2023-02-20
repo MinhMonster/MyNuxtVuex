@@ -20,6 +20,7 @@
         <div >
           <!-- <h1>{{deverloper_view.title}}</h1> -->
           <v-card-text v-html="deverloper_view.info" class="bg-view view_html"></v-card-text>
+          <p>{{ JSON.parse(deverloper_view.code) }}</p>
         </div>
       </div>
       <!-- <div v-if="is_edit" class="popup">

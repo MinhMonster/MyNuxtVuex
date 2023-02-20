@@ -3,14 +3,14 @@
     <div class="">
       <v-row align="center">
         <v-col>
-          <v-card-title>Finance | Year: {{ this.finance.title }}</v-card-title>
+          <v-card-title>Year: {{ this.finance.year }}</v-card-title>
         </v-col>
-        <v-spacer />
+        <!-- <v-spacer /> -->
         <v-col
           ><v-btn
             class="right mgr-15px"
             color="primary"
-            :to="`/admin/finances/${this.routeId}/new`"
+            :to="`/admin/finances/${this.year}/new`"
             >Thêm mới
           </v-btn>
         </v-col>
@@ -59,7 +59,11 @@
                     item.title
                   }}</nuxt-link>
                   <br />
-                  <v-btn light icon :to="`/admin/finances/${item.ID}/new`">
+                  <v-btn
+                    light
+                    icon
+                    :to="`/admin/finances/${item.year}/${item.month}/new`"
+                  >
                     <v-icon>mdi-plus-box-multiple-outline</v-icon>
                   </v-btn>
                 </td>
@@ -71,14 +75,20 @@
                       handle=".handle-li"
                       tag="tbody"
                     >
-                      <tr
-                        v-for="info in item.items"
-                        :key="info.ID"
-                      >
+                      <tr v-for="info in item.items" :key="info.ID">
                         <td class="w-25 handle-li">
-                          <nuxt-link :to="`/admin/finances/${info.ID}/edit`">{{
-                            info.title
-                          }}</nuxt-link>
+                          <nuxt-link
+                            :to="`/admin/finances/${info.year}/${time_10(
+                              info.month
+                            )}/${time_10(info.day)}`"
+                            >{{
+                              time_10(info.day) +
+                              "/" +
+                              time_10(info.month) +
+                              "/" +
+                              time_10(info.year)
+                            }}</nuxt-link
+                          >
                         </td>
                         <td class="w-25 middle">
                           {{ format_number(info.sum_cash_revenues) }}
@@ -92,18 +102,32 @@
                       </tr>
                       <tr>
                         <td class="bg-dark">Tổng</td>
-                        <td class="finances-revenues ">{{format_number(sumCashRevenues(item.items))}}</td>
-                        <td class="finances-expenses">{{format_number(sumCashExpenses(item.items))}}</td>
-                        <td :class="colorText(sumCashIncome(item.items))">{{format_number(sumCashIncome(item.items))}}</td>
+                        <td class="finances-revenues">
+                          {{ format_number(sumCashRevenues(item.items)) }}
+                        </td>
+                        <td class="finances-expenses">
+                          {{ format_number(sumCashExpenses(item.items)) }}
+                        </td>
+                        <td :class="colorText(sumCashIncome(item.items))">
+                          {{ format_number(sumCashIncome(item.items)) }}
+                        </td>
                       </tr>
                       <tr>
                         <td class="bg-dark">Trung Bình</td>
-                        <td>{{format_number(averageRevenues(item.items))}}</td>
-                        <td>{{ format_number(averageExpenses(item.items)) }}</td>
+                        <td>
+                          {{ format_number(averageRevenues(item.items)) }}
+                        </td>
+                        <td>
+                          {{ format_number(averageExpenses(item.items)) }}
+                        </td>
                         <td>{{ format_number(averageIncome(item.items)) }}</td>
                       </tr>
                     </draggable>
                   </v-simple-table>
+                  <FinanceChart :listData="item.items"></FinanceChart>
+                  <FinanceBarChart :listData="item.items"></FinanceBarChart>
+                  <FinancePieChart :listData="item.items"></FinancePieChart>
+
                 </td>
               </tr>
             </draggable>
@@ -119,12 +143,18 @@ import { mapFields } from "vuex-map-fields";
 import draggable from "vuedraggable";
 import { mapActions, mapState } from "vuex";
 import mixins from "@/mixins/index";
+import FinanceChart from "@/components/pages/admin/finances/chart/FinanceChart.vue";
+import FinanceBarChart from "@/components/pages/admin/finances/chart/FinanceBarChart.vue";
+import FinancePieChart from "@/components/pages/admin/finances/chart/FinancePieChart.vue";
 
 export default {
   mixins: [mixins],
   layout: "adminDev",
   components: {
     draggable,
+    FinanceChart,
+    FinanceBarChart,
+    FinancePieChart
   },
   head() {
     return {
@@ -147,24 +177,24 @@ export default {
   async mounted() {
     await this.get_finance({
       params: {
-        id: this.routeId,
+        year: this.year,
       },
     });
     this.listFinances = _.cloneDeep(this.finance.items);
   },
   computed: {
-    ...mapState("admin/finances", ["finance"]),
-    ...mapFields("admin/finances", ["finances"]),
+    ...mapState("admin/finances/edit", ["finance"]),
+    ...mapFields("admin/finances/edit", ["finances"]),
 
-    routeId() {
-      return this.$route.params.id;
+    year() {
+      return this.$route.params.year;
     },
     // listFinances() {
     //   return _.cloneDeep(this.finance.items)
     // }
   },
   methods: {
-    ...mapActions("admin/finances", ["get_finance", "change_positions"]),
+    ...mapActions("admin/finances/edit", ["get_finance", "change_positions"]),
 
     changeFinances(event) {
       this.updatePositionFinances(event.moved.element.ID, event.moved.newIndex);
@@ -175,49 +205,51 @@ export default {
       formData.append("newIndex", newIndex);
       this.change_positions(formData);
     },
-    sumCashRevenues(items){
+    sumCashRevenues(items) {
       let sum = 0;
-      for(let i = 0; i <items.length; i ++) {
+      for (let i = 0; i < items.length; i++) {
         sum += Number(items[i].sum_cash_revenues);
       }
       return sum;
     },
 
-    sumCashExpenses(items){
+    sumCashExpenses(items) {
       let sum = 0;
-      for(let i = 0; i <items.length; i ++) {
+      for (let i = 0; i < items.length; i++) {
         sum += Number(items[i].sum_cash_expenses);
       }
       return sum;
     },
-    sumCashIncome(items){
+    sumCashIncome(items) {
       let sum = 0;
-      for(let i = 0; i <items.length; i ++) {
+      for (let i = 0; i < items.length; i++) {
         sum += Number(items[i].income);
       }
       return sum;
     },
-    colorText(number){
-      let color = '';
-      if(number < 0) {
-        color = 'text-danger'
-      } else if(number > 0) {
-        color = 'text-primary'
+    colorText(number) {
+      let color = "";
+      if (number < 0) {
+        color = "text-danger";
+      } else if (number > 0) {
+        color = "text-primary";
       } else {
-        color = 'text-warning'
+        color = "text-warning";
       }
       return color;
     },
     averageExpenses(items) {
-      return (this.sumCashExpenses(items)/items.length).toFixed();
+      return (this.sumCashExpenses(items) / items.length).toFixed();
     },
     averageRevenues(items) {
-      return (this.sumCashRevenues(items)/items.length).toFixed();
+      return (this.sumCashRevenues(items) / items.length).toFixed();
     },
-    averageIncome(items){
-      return (this.sumCashIncome(items)/items.length).toFixed();
-
-    }
+    averageIncome(items) {
+      return (this.sumCashIncome(items) / items.length).toFixed();
+    },
+    // time_10(time) {
+    //   return time < 10 ? "0" + time : time;
+    // }
   },
 };
 </script>
@@ -306,7 +338,7 @@ tr.table-main > td {
 element.style {
 }
 #admin .table td {
-    border: 1px solid var(--admin-table-border);
+  border: 1px solid var(--admin-table-border);
 }
 #admin td.bg-dark {
   color: #333 !important;
@@ -314,12 +346,18 @@ element.style {
   text-align: center;
 }
 
-.table.text-center tr, .table.text-center th, .table.text-center td {
+.table.text-center tr,
+.table.text-center th,
+.table.text-center td {
   text-align: center !important;
 }
 
 #admin .table .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
-  height: 22px;
-  font-size: 13.5px;
+  height: 20px;
+  font-size: 12.5px;
+}
+
+#admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
+  padding: 0 3px;
 }
 </style>

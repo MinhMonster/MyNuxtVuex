@@ -7,13 +7,14 @@
         </v-col>
         <v-spacer />
         <v-col>
-          <v-card-title class="right" >Bài viết mới</v-card-title>
+          <v-card-title class="right">Bài viết mới</v-card-title>
         </v-col>
       </v-row>
       <div id="body-admin">
         <form @submit.prevent="create()">
-          <FinanceForm :finance="finance"></FinanceForm>
-          <br/>
+          <FinanceForm
+          ></FinanceForm>
+          <br />
           <div class="text-right">
             <v-btn type="submit" color="" to="/admin/topics"> Trở Về </v-btn>
             <v-btn type="submit" color="primary"> Thêm mới </v-btn>
@@ -25,7 +26,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 import FinanceForm from "@/components/pages/admin/finances/form/FinanceForm.vue";
 
 export default {
@@ -48,34 +49,34 @@ export default {
     return {
       input: {},
       finance: {
+        day: null,
         title: "",
         link: "",
         info: "",
       },
     };
   },
-  
+
   created() {},
   methods: {
-    ...mapActions('admin/finances',["get_finances", "new"]),
+    ...mapActions("admin/finances/edit", ["get_finances", "new", setFinances]),
     async create() {
       const formData = new FormData();
       formData.append("title", this.finance.title);
-      formData.append("link", this.finance.link);
+      formData.append("link", "hgfds");
       formData.append("info", this.finance.info);
       // const res = await API.create(formData);
       // this.$swal.fire(res.data.message, "", res.data.status);
-      try{
-        const res = await this.$repositories.adminFinances.create(formData)
-        if(res.data.code === 200){
+      try {
+        const res = await this.$repositories.adminFinances.create(formData);
+        if (res.data.code === 200) {
           this.$toasted.success(res.data.message);
-          this.$router.push("/admin/finances")
+          this.$router.push("/admin/finances");
         }
-      } catch(e) {
-        console.log(e)
+      } catch (e) {
+        console.log(e);
       }
     },
-    
 
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
       const formData = new FormData();
@@ -87,6 +88,18 @@ export default {
       const url = res.data.file;
       Editor.insertEmbed(cursorLocation, "image", url);
       resetUploader();
+    },
+    updateFinance(finance) {
+      console.log(`update`,finance );
+      // this.setFinance({
+      //   value: { ...this.revenues[index], ...finance },
+      // });
+    },
+    updateRevenue(revenue, index) {
+      this.setFinance({
+        index,
+        value: { ...this.revenues[index], ...revenue },
+      });
     },
   },
 };

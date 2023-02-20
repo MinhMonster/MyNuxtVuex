@@ -2,7 +2,12 @@
   <client-only>
     <v-row class="bg-editor finance">
       <v-col cols="7" sm="7" md="7" class="name-finance">
-        <v-text-field label="" type="text" v-model="nameExpense"></v-text-field>
+        <v-text-field
+          label=""
+          type="text"
+          v-model="expense.name"
+          @input="updateExpense"
+        ></v-text-field>
       </v-col>
       <v-col
         v-if="activeCash"
@@ -23,7 +28,8 @@
         <v-text-field
           label=""
           type="number"
-          v-model="cashExpense"
+          v-model="expense.cash"
+          @input="updateExpense"
         ></v-text-field>
       </v-col>
       <v-col cols="1" sm="1" md="1">
@@ -38,7 +44,9 @@
 <script>
 import { createNamespacedHelpers } from "vuex";
 
-const { mapActions, mapGetters } = createNamespacedHelpers("admin/finances");
+const { mapActions, mapGetters } = createNamespacedHelpers(
+  "admin/finances/edit"
+);
 import mixins from "@/mixins/index";
 
 export default {
@@ -63,7 +71,7 @@ export default {
   },
   computed: {
     expense() {
-      return this.getAction()({ index: this.index, type: "expense" });
+      return _.cloneDeep(this.getAction()({ index: this.index, type: "expense" }));
     },
     nameExpense: {
       get() {
@@ -132,9 +140,16 @@ export default {
         })
         .then(async (result) => {
           if (result.isConfirmed) {
-            this.removeAction({index: index, type: "expense"});
+            this.removeAction({ index: index, type: "expense" });
           }
         });
+    },
+    updateExpense() {
+      this.setAction({
+        index: this.index,
+        type: "expense",
+        value: _.cloneDeep(this.expense),
+      });
     },
   },
 };

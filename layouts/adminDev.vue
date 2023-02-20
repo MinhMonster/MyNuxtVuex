@@ -74,8 +74,8 @@
           
         </v-toolbar-title> -->
         <v-spacer />
-        <v-btn icon @click="onLogout">
-          <v-icon>mdi-power</v-icon>
+        <v-btn color="red"  icon  @click="onLogout">
+          <v-icon >mdi-power</v-icon>
         </v-btn>
         <v-btn v-if="deverloper" icon @click.stop="rightDrawer = !rightDrawer">
           <v-icon>mdi-menu</v-icon>

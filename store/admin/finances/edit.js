@@ -1,5 +1,9 @@
 import { getField, updateField } from "vuex-map-fields";
 
+const SET_FINANCE = "SET_FINANCE";
+const SET_FINANCE_MONTH = "SET_FINANCE_MONTH";
+
+
 const ADD_ACTION = "ADD_ACTION";
 const REMOVE_ACTION = "REMOVE_ACTION";
 const UPDATE_ACTION = "UPDATE_ACTION";
@@ -21,8 +25,9 @@ export default {
     datas: [],
     finances: [],
     finance: {},
+    financeMonth: [],
     finance_view: {},
-    finance_edit: {},
+    finance_edit: null,
     options: {},
     actions: [],
     expenses: [],
@@ -30,8 +35,11 @@ export default {
     sumCashRevenues: 0,
     sumCashExpenses: 0,
     income: 0,
-
-
+    // listday:[],
+    preDay: null,
+    nextDay: null,
+    preMonth: null,
+    nexMonth: null,
   }),
 
   getters: {
@@ -52,6 +60,14 @@ export default {
 
   mutations: {
     updateField,
+
+    SET_FINANCE(state, payload) {
+      state.finance = _.cloneDeep(payload);
+    },
+    SET_FINANCE_MONTH(state, financeMonth) {
+      state.financeMonth = _.cloneDeep(financeMonth);
+    },
+
     SET_finances_scroll(state, finances_scroll) {
       state.finances.push(finances_scroll)
     },
@@ -63,6 +79,9 @@ export default {
     SET_finance(state, finance) {
       state.finance = finance
     },
+    // SET_finance_month(state, payload) {
+    //   state.finance_month = payload
+    // },
 
     SET_finance_view(state, finance_view) {
       state.finance_view = finance_view
@@ -91,7 +110,6 @@ export default {
             type_cash: "",
             name: "",
             cash: "",
-            content: "",
           });
           break;
         case "expense":
@@ -101,7 +119,6 @@ export default {
             type_cash: "",
             name: "",
             cash: "",
-            content: "",
           });
           break;
       }
@@ -116,16 +133,15 @@ export default {
     },
 
     UPDATE_ACTION(state, { index, type, value }) {
-      if (type == 'revenue') {
+      if (type === 'revenue') {
         const revenues = _.cloneDeep(state.revenues);
         revenues[index] = _.cloneDeep(value);
         state.revenues = revenues;
-      } else if (type == 'expense') {
+      } else if (type === 'expense') {
         const expenses = _.cloneDeep(state.expenses);
         expenses[index] = _.cloneDeep(value);
         state.expenses = expenses;
       }
-
     },
 
     UPDATE_REVENUES(state, payload) {
@@ -147,20 +163,58 @@ export default {
     UPDATE_INCOME(state, payload) {
       state.income = Number(payload.sumCashRevenues - payload.sumCashExpenses);
     },
-    UPDATE_ACTION(state, { index, value }) {
-      const actions = _.cloneDeep(state.actions);
-      actions[index] = _.cloneDeep(value);
-      state.actions = actions;
+    // UPDATE_LIST_DAY(state, payload) {
+    //   state.listday = payload || [];
+    // },
+    UPDATE_PRE_DAY(state, payload) {
+      state.preDay = payload || null
+    },
+    UPDATE_NEXT_DAY(state, payload) {
+      state.nextDay = payload || null
+    },
+    UPDATE_PRE_MONTH(state, payload) {
+      state.preMonth = payload || null
+    },
+    UPDATE_NEXT_MONTH(state, payload) {
+      state.nextMonth = payload || null
     },
   },
 
   actions: {
-    // newFinance(){
-    //   newReact({ commit, dispatch }, reactType = "user") {
-    //     commit(SET_REACT, { ...newReact, reactType });
-    //     dispatch(INIT_ACTIONS, { actions: [], options: {} }, { root: true });
-    //   },
-    // },
+    newFinance({ commit }, payload) {
+      commit(SET_FINANCE, newFinance);
+      commit(UPDATE_REVENUES, []);
+      commit(UPDATE_EXPENSES, []);
+      commit(UPDATE_SUM_CASH_REVENUES, 0);
+      commit(UPDATE_SUM_CASH_EXPENSES, 0);
+      commit(UPDATE_INCOME, {sumCashRevenues: 0, sumCashExpenses: 0});
+    },
+    async createFinance({ state }) {
+      const data = _.cloneDeep(state.finance);
+      data.expenses = JSON.stringify(state.expenses);
+      data.revenues = JSON.stringify(state.revenues);
+      data.sumCashRevenues = state.sumCashRevenues;
+      data.sumCashExpenses = state.sumCashExpenses;
+      data.income = state.income;
+      try {
+        return await this.$repositories.adminFinances.new_day(data)
+      } catch (error) { }
+    },
+    async updateFinance({ state }){
+      const data = _.cloneDeep(state.finance);
+      data.expenses = JSON.stringify(state.expenses);
+      data.revenues = JSON.stringify(state.revenues);
+      data.sumCashRevenues = state.sumCashRevenues;
+      data.sumCashExpenses = state.sumCashExpenses;
+      data.income = state.income;
+
+      try {
+        return await this.$repositories.adminFinances.update_day(data)
+      } catch (error) { }
+    },
+    setFinance({ commit }, payload) {
+      commit(SET_FINANCE, payload);
+    },
     setAction({ dispatch, commit }, payload) {
       commit(UPDATE_ACTION, payload);
       // sumCashRevenues
@@ -216,16 +270,38 @@ export default {
     async get_finance_day({ commit }, params) {
       try {
         const res = await this.$repositories.adminFinances.show_day(params)
-        if (res.data.code === 200) {
-          const finance = res.data.finance_day
-          commit('SET_finance_edit', res.data.finance_day || {})
-          commit('SET_finance', res.data.finance || {})
-          commit(UPDATE_REVENUES, res.data.finance_day.revenues || [])
-          commit(UPDATE_EXPENSES, res.data.finance_day.expenses || [])
-          commit(UPDATE_SUM_CASH_REVENUES, finance.sum_cash_revenues || 0);
-          commit(UPDATE_SUM_CASH_EXPENSES, finance.sum_cash_expenses || 0);
-          commit(UPDATE_INCOME, { sumCashRevenues: finance.sum_cash_revenues, sumCashExpenses: finance.sum_cash_expenses } || {});
-        }
+        const finance = res.data.finance_day
+        commit('SET_finance', res.data.finance_day || {})
+        
+        // commit('UPDATE_LIST_DAY', res.data.list || {})
+        commit(UPDATE_REVENUES, res.data.finance_day.revenues || [])
+        commit(UPDATE_EXPENSES, res.data.finance_day.expenses || [])
+        commit(UPDATE_SUM_CASH_REVENUES, res.data.finance_day.sumCashRevenues || 0);
+        commit(UPDATE_SUM_CASH_EXPENSES, res.data.finance_day.sumCashRevenues || 0);
+        commit(UPDATE_INCOME, { sumCashRevenues: res.data.finance_day.sumCashRevenues, sumCashExpenses: res.data.finance_day.sumCashExpenses } || {});
+        commit('UPDATE_NEXT_DAY', res.data.nextDay || null);
+        commit('UPDATE_PRE_DAY', res.data.preDay || null)
+
+
+      } catch (error) { }
+    },
+    async fetFinanceMonth({ commit }, payload) {
+      try {
+        const res = await this.$repositories.adminFinances.show_month(payload)
+        commit(SET_FINANCE_MONTH, res.data.finance_month || [])
+        commit('UPDATE_NEXT_MONTH', res.data.nextMonth || null);
+        commit('UPDATE_PRE_MONTH', res.data.preMonth || null)
+        
+        // // commit('UPDATE_LIST_DAY', res.data.list || {})
+        // commit(UPDATE_REVENUES, res.data.finance_day.revenues || [])
+        // commit(UPDATE_EXPENSES, res.data.finance_day.expenses || [])
+        // commit(UPDATE_SUM_CASH_REVENUES, res.data.finance_day.sumCashRevenues || 0);
+        // commit(UPDATE_SUM_CASH_EXPENSES, res.data.finance_day.sumCashRevenues || 0);
+        // commit(UPDATE_INCOME, { sumCashRevenues: res.data.finance_day.sumCashRevenues, sumCashExpenses: res.data.finance_day.sumCashExpenses } || {});
+        // commit('UPDATE_NEXT_DAY', res.data.nextDay || null);
+        // commit('UPDATE_PRE_DAY', res.data.preDay || null)
+
+
       } catch (error) { }
     },
 
@@ -252,9 +328,8 @@ export default {
 }
 
 export const newFinance = {
-  id: "",
-  title:"",
-  info:"",
+  title: "",
+  info: "",
   year: null,
   month: null,
   day: null,
