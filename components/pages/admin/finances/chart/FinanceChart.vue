@@ -26,17 +26,17 @@ export default {
           {
             data: this.listData.map((e) => Number(e.sum_cash_revenues)),
             label: "Doanh Thu",
-            borderColor: "#3e95cd",
+            backgroundColor: "#f87979",
           },
           {
             data: this.listData.map((e) => Number(e.sum_cash_expenses)),
             label: "Chi Tiêu",
-            borderColor: "#8e5ea2",
+            backgroundColor: "#8e5ea2",
           },
           {
             data: this.listData.map((e) => Number(e.income)),
             label: "Lợi nhuận",
-            borderColor: "#3cba9f",
+            backgroundColor: "#3cba9f",
           },
         ],
       },
@@ -50,18 +50,16 @@ export default {
       },
     };
   },
-  mounted(){
-    console.log(this.data);
+  mounted() {
     this.data.labels = this.listData.map((e) => Number(e.day));
-    this.data.datasets[0].data  = this.listData.map((e) => Number(e.income));
-    this.data.datasets[1].data  = this.listData.map((e) => Number(e.sum_cash_revenues));
-    this.data.datasets[2].data  = this.listData.map((e) => Number(e.sum_cash_expenses));
+    this.data.datasets[0].data = this.listData.map((e) =>
+      Number(e.sum_cash_revenues)
+    );
+    this.data.datasets[1].data = this.listData.map((e) =>
+      Number(e.sum_cash_expenses)
+    );
+    this.data.datasets[2].data = this.listData.map((e) => Number(e.income));
   },
-  computed: {
-    dataRevenues() {
-      return this.listData.map((e) => Number(e.sum_cash_revenues));
-    }
-  }
 };
 </script>
 

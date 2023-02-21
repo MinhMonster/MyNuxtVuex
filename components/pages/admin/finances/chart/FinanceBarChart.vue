@@ -6,12 +6,12 @@
 
 <script>
 import BarChart from "@/components/pages/admin/finances/chart/BarChart.vue";
-import { Bar } from "vue-chartjs";
+// import { Bar } from "vue-chartjs";
 
 export default {
   components: { BarChart },
 
-  extends: Bar,
+  // extends: Bar,
   props: {
     listData: {
       type: Array,
@@ -55,7 +55,6 @@ export default {
     this.data.datasets[0].data  = this.listData.map((e) => Number(e.sum_cash_revenues));
     this.data.datasets[1].data  = this.listData.map((e) => Number(e.sum_cash_expenses));
     this.data.datasets[2].data  = this.listData.map((e) => Number(e.income));
-
   },
   computed: {
   }

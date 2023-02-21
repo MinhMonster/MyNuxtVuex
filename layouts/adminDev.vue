@@ -3,9 +3,9 @@
     <client-only v-if="authenticated">
       <v-navigation-drawer
         style="
-          top: 104px;
-          min-height: calc(100% - 104px);
-          height: calc(100% - 104px)
+          top:94px;
+          min-height: calc(100% - 94px);
+          height: calc(100% - 94px)
         "
         v-model="drawer"
         :mini-variant="miniVariant"
@@ -117,7 +117,7 @@
           </v-slide-item>
         </v-slide-group>
       </v-sheet>
-      <v-main class="bg-default" style="margin-top: 50px">
+      <v-main class="bg-default" style="margin-top: 40px">
         <v-container>
           <Nuxt />
         </v-container>
@@ -125,9 +125,9 @@
       <v-navigation-drawer
         v-if="deverloper"
         style="
-          top: 104px;
-          min-height: calc(100% - 104px);
-          height: calc(100% - 104px);
+          top: 94px;
+          min-height: calc(100% - 94px);
+          height: calc(100% - 94px);
           direction: rtl;
           text-align: left
         "
@@ -395,7 +395,7 @@ body::-webkit-scrollbar,
   .v-navigation-drawer.v-navigation-drawer--fixed.v-navigation-drawer--open.theme--dark,
 #admin
   .v-navigation-drawer.v-navigation-drawer--clipped.v-navigation-drawer--fixed.v-navigation-drawer--is-mobile.v-navigation-drawer--open.theme--dark {
-  min-height: calc(100% - 104px);
+  min-height: calc(100% - 94px);
 }
 #admin .v-sheet.theme--dark.v-toolbar.v-app-bar.v-app-bar--fixed {
   margin-right: 0px;
@@ -404,10 +404,10 @@ body::-webkit-scrollbar,
 }
 
 #admin .mx-auto.v-sheet.theme--dark {
-  height: 50px;
-  padding: 7px;
+  height: 40px;
+  padding: 5px;
   margin-top: 54px;
-  z-index: 1000000;
+  z-index: 6;
   width: 100%;
   position: fixed;
 }

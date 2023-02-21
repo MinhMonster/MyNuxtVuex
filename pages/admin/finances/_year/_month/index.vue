@@ -8,8 +8,8 @@
           </v-card-title>
         </v-col>
         <v-col>
-        <PreNextMonthBtn></PreNextMonthBtn>
-      </v-col>
+          <PreNextMonthBtn></PreNextMonthBtn>
+        </v-col>
         <v-col>
           <v-btn
             icon
@@ -20,10 +20,10 @@
           </v-btn>
         </v-col>
       </v-row>
-      <v-row >
+      <v-row>
         <v-col cols="12" md="6" sm="12">
           <v-card>
-            <v-simple-table class="table text-center">
+            <v-simple-table class="table text-center mgb--10px">
               <template v-slot:default>
                 <thead>
                   <tr class="w-100">
@@ -64,27 +64,27 @@
                     </td>
                   </tr>
                   <tr>
-                        <td class="bg-dark">Tổng</td>
-                        <td class="finances-revenues">
-                          {{ format_number(sumCashRevenues(data)) }}
-                        </td>
-                        <td class="finances-expenses">
-                          {{ format_number(sumCashExpenses(data)) }}
-                        </td>
-                        <td :class="colorText(sumCashIncome(data))">
-                          {{ format_number(sumCashIncome(data)) }}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="bg-dark">Trung Bình</td>
-                        <td>
-                          {{ format_number(averageRevenues(data)) }}
-                        </td>
-                        <td>
-                          {{ format_number(averageExpenses(data)) }}
-                        </td>
-                        <td>{{ format_number(averageIncome(data)) }}</td>
-                      </tr>
+                    <td class="bg-dark">Tổng</td>
+                    <td class="finances-revenues">
+                      {{ format_number(sumCashRevenues(data)) }}
+                    </td>
+                    <td class="finances-expenses">
+                      {{ format_number(sumCashExpenses(data)) }}
+                    </td>
+                    <td :class="colorText(sumCashIncome(data))">
+                      {{ format_number(sumCashIncome(data)) }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="bg-dark">Trung Bình</td>
+                    <td>
+                      {{ format_number(averageRevenues(data)) }}
+                    </td>
+                    <td>
+                      {{ format_number(averageExpenses(data)) }}
+                    </td>
+                    <td>{{ format_number(averageIncome(data)) }}</td>
+                  </tr>
                 </tbody>
               </template>
             </v-simple-table>
@@ -94,7 +94,7 @@
           <v-card light class="mgb-15px">
             <FinanceChart :listData="data"></FinanceChart>
           </v-card>
-          <v-card light class="mgb-30px">
+          <v-card light class="mgb-15px">
             <FinanceBarChart :listData="data"></FinanceBarChart>
           </v-card>
 
