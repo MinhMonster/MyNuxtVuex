@@ -99,7 +99,6 @@ import AddRevenueBtn from "@/components/pages/admin/finances/btn/AddRevenueBtn.v
 import PreNextDayBtn from "@/components/pages/admin/finances/btn/PreNextDayBtn.vue";
 import FileSelector from "@/components/global/molecules/common/FileSelector.vue";
 import UploadModal from "@/components/global/plugins/UploadModal.vue";
-import UploadImageModal from "@/components/global/plugins/UploadImageModal.vue";
 
 export default {
   mixins: [mixins],
@@ -168,7 +167,6 @@ export default {
 
     updateFinance() {
       this.setFinance(this.financeForm);
-      console.log("form", this.financeForm);
     },
     onNextDay() {
       if (this.nextDay) {

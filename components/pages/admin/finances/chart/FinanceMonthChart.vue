@@ -59,7 +59,6 @@ export default {
     this.data.datasets[2].data = this.listData.map((e) =>
       Number(e.sum_cash_expenses)
     );
-    console.log(this.data);
   },
   computed: {
     dataRevenues() {

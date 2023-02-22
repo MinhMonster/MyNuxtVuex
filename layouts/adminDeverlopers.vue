@@ -77,7 +77,6 @@ export default {
  
   mounted() {
      this.get_deverlopers;
-     console.log(`tesy`);
   },
 
   computed: {

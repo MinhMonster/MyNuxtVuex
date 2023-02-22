@@ -57,7 +57,7 @@ export default {
 </script>
 <style>
 .loading{
-  z-index: 1000;
+  z-index: 100000;
   position: fixed;
   background-color: #333;
   opacity: 0.5;
@@ -67,7 +67,7 @@ export default {
 }
 
 .loading svg{
-  z-index: 1000;
+  z-index: 100000;
   position: fixed;
   background-color: #333;
   right: calc(50% - 30px);

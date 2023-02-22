@@ -45,10 +45,11 @@ export default {
     dialog: false,
     image: {},
   }),
+
   methods: {
-    uploaded(file) {
-      console.log(`Upload Modal`, file);
-      this.image = file;
+    uploaded(files) {
+      this.dialog = false;
+      this.$emit("onUploaded", files);
     },
   },
 };

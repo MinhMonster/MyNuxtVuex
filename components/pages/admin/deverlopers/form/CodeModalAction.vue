@@ -84,8 +84,6 @@ import { mapActions } from "vuex";
       "addActionIndex"
     ]),
       add() {
-        console.log(this.typeCode);
-        console.log(this.index);
         this.addActionIndex({typeCode: this.typeCode, index: this.index });
       }
     }

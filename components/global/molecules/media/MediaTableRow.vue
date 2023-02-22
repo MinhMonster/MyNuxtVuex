@@ -25,7 +25,7 @@
       </div>
     </td>
     <td  class="td-size">
-      {{ image.byteSize }}
+      {{ fileSizeFilter(image.byteSize) }}
     </td>
     <td  class="td-time">
       {{ image.createdAt }}
@@ -60,7 +60,11 @@
 </template>
 
 <script>
+import mixins from "@/mixins/index";
+
 export default {
+  mixins: [mixins],
+
   props: {
     image: {
       type: Object,

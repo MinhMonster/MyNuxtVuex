@@ -8,7 +8,7 @@ export default ($api) => ({
   scroll(payload) {
     return $api.get(`${resource}/scroll.php`,payload)
   },
-  fetMedias() {
+  fetchMedia() {
     return $api.get(`${resource}/index.php`)
   },
 

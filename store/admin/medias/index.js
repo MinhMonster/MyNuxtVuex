@@ -67,9 +67,9 @@ export default {
     },
 
     
-    async fetMedias({ commit }) {
+    async fetchMedia({ commit }) {
       try {
-        const res = await this.$repositories.adminMedias.fetMedias()
+        const res = await this.$repositories.adminMedias.fetchMedia()
         commit('SET_MEDIAS', res.data.files)
       } catch (error) { }
     },

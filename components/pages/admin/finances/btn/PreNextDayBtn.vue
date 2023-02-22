@@ -78,7 +78,6 @@ export default {
 
     updateFinance() {
       this.setFinance(this.financeForm);
-      console.log("form", this.financeForm);
     },
     onNextDay() {
       if (this.nextDay) {

@@ -1,20 +1,16 @@
 <template>
   <b-card class="border border-light shadow-none">
-    <v-row>
-      <v-col cols="4" md="4" sm="4">
-        <input
-          ref="file"
-          type="file"
-          :multiple="true"
-          class="d-none"
-          @click="clearImgPath"
-          @change="onFileChange"
-          id="upload"
-        />
-      </v-col>
-    </v-row>
+    <input
+      ref="file"
+      type="file"
+      :multiple="multiple"
+      class="d-none"
+      @click="clearImgPath"
+      @change="onFileChange"
+    />
 
     <div
+      v-if="preview.length == 0 || multiple"
       ref="upload"
       class="dropzone"
       @click="browseFiles"
@@ -32,38 +28,28 @@
     </div>
 
     <div v-if="preview.length" class="fileList">
-      <v-row>
-        <v-col
-          v-for="(file, index) in preview"
-          :key="index"
-          class="fileItem"
-          cols="12"
-          md="4"
-          sm="12"
-        >
-          <div class="fileItemWrapper">
-            <div class="fileIcon">
-              <img v-if="file.url" :src="file.url" />
-              <i v-else class="mdi mdi-file-document-outline"></i>
-            </div>
-            <div class="fileDescription">
-              <!-- <div class="fileName line-clamp-2">{{ file.fileName }}</div>
-            <div class="fileType">{{ file.type }}</div>
-            <div class="fileSize">{{ file.byteSize | fileSizeFilter }}</div> -->
-            </div>
-            <b-button
-              variant="danger"
-              size="sm"
-              class="ml-2"
-              pill
-              @click="removeFile(index)"
-            >
-              <i class="mdi mdi-close-thick"></i>
-            </b-button>
+      <div v-for="(file, index) in preview" :key="index" class="fileItem">
+        <div class="fileItemWrapper">
+          <div class="fileIcon">
+            <img v-if="file.url" :src="file.url" />
+            <i v-else class="mdi mdi-file-document-outline"></i>
           </div>
-        </v-col>
-      </v-row>
-
+          <div class="fileDescription">
+            <div class="fileName line-clamp-2">{{ file.fileName }}</div>
+            <div class="fileType">{{ file.type }}</div>
+            <div class="fileSize">{{ fileSizeFilter(file.byteSize) }}</div>
+          </div>
+          <b-button
+            variant="danger"
+            size="sm"
+            class="ml-2"
+            pill
+            @click="removeFile(index)"
+          >
+            <i class="mdi mdi-close-thick"></i>
+          </b-button>
+        </div>
+      </div>
       <div v-for="i in maxFile" :key="maxFile + i" class="fileItem e"></div>
     </div>
 
@@ -83,9 +69,12 @@
 </template>
 
 <script>
+import mixins from "@/mixins/index";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions, mapState } = createNamespacedHelpers("global");
+let WidgetCount = 0;
 export default {
+  mixins: [mixins],
   props: {
     label: {
       type: String,
@@ -109,11 +98,11 @@ export default {
     },
     pathUpload: {
       type: String,
-      default: "/uploads",
+      default: "/upload.php",
     },
     multiple: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     placeholder: {
       type: String,
@@ -212,17 +201,24 @@ export default {
       // const injectResult = await this.inject(target.files);
       // if (injectResult === false) return;
 
+      // if (this.autoupload) {
+      //   console.log(`path`, this.autoupload);
+      // this.files = Array.from(target.files);
+      // const res = await this.uploadFiles(fileArray);
+
+      // } else {
+      //   console.log(`not path`);
+      //   this.files = this.files.concat(Array.from(target.files));
+      //   console.log(`this.files`, this.files);
+
+      // this.previewFiles();
+      // }
       if (this.autoupload) {
-        console.log(`path`, this.autoupload);
-      this.files = Array.from(target.files);
-      const res = await this.uploadFiles(fileArray);
-
+        this.files = Array.from(target.files);
+        this.uploadFiles();
       } else {
-        console.log(`not path`);
         this.files = this.files.concat(Array.from(target.files));
-        console.log(`this.files`, this.files);
-
-      this.previewFiles();
+        this.previewFiles(Array.from(target.files));
       }
     },
     isFileTypeValid(file) {
@@ -236,19 +232,53 @@ export default {
 
       return this.fileTypes.includes(file.type);
     },
-    previewFiles(file) {
-      console.log(`file pre`, file);
-      
-      this.preview.push({
-       
-        url: file.url,
-        destroyed: file.destroyed
+    previewFiles(files) {
+      console.log(`previewFiles filés`, files);
+      const listFiles = [];
+      files.forEach((file, index) => {
+        if (file.type.startsWith("image")) {
+          console.log(`previewFiles if` );
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            this.preview.push({
+              byteSize: file.size,
+              fileName: file.name,
+              url: e.target.result,
+              type: file.type,
+              key: WidgetCount++
+            });
+            this.preview = this.preview.filter((value, index, self) => self.findIndex(item => item.url === value.url) === index)
+            console.log(this.preview)
+
+          };
+          reader.readAsDataURL(file);
+        } else {
+          console.log(`previewFiles else` );
+
+          this.preview.push({
+            byteSize: file.size,
+            fileName: file.name,
+            type: file.type,
+            key: WidgetCount++
+          });
+          this.preview = this.preview.filter((value, index, self) => self.findIndex(item => item.key === value.key) === index)
+
+        }
+
       });
+
+      // console.log(`file pre`, file);
+      
+      // this.preview.push({
+       
+      //   url: file.url,
+      //   destroyed: file.destroyed
+      // });
       
     },
     removeFile(index) {
-      // this.files[index].destroyed = true;
-      // this.files = this.files.filter((item) => !item.destroyed);
+      this.files[index].destroyed = true;
+      this.files = this.files.filter((item) => !item.destroyed);
       this.preview[index].destroyed = true;
       this.preview = this.preview.filter((item) => !item.destroyed);
     },
@@ -257,51 +287,81 @@ export default {
       this.preview = [];
       this.$refs.file.value = null;
     },
-    async uploadFiles(files) {
-      console.log(`uploadFiles 1`, files);
+    async uploadFiles() {
       try {
-        // if (this.files.length === 0) {
-        //   return;
-        // }
+        if (this.files.length === 0) {
+          return;
+        }
 
-        const formData = new FormData();
-        formData.append("upload", files[0]);
-        const input = {
-          file: formData,
-        };
-        // console.log(input);
-        // const formData = new FormData();
-        // formData.append("file", file);
-        // const input = {
-        //   file: formData,
-        // };
-        // const res = await api_file.upload(input);
-        // const data = new FormData();
-        // this.files.forEach((file, index) => {
-        // data.append(`file`, file);
-        // });
+        const data = new FormData();
+        this.files.forEach((file, index) => {
+          data.append(`file_${index}`, file);
+        });
 
-        const res = await this.fileUpload(
-          input
-          // path: this.pathUpload,
-
+        const result = await this.fileUpload({
+          path: this.pathUpload,
+          data,
           // namespace: this.namespace,
-        );
-        console.log(`2`, res);
-        this.previewFiles(res.data);
-
-        this.$emit("uploaded", res.data);
-        // this.files = [];
-        // this.preview = [];
-        // this.$refs.file.value = null;
+        });
+        if(result.data.code === 200) {
+          this.$toasted.success(result.data.message);
+        }
+        this.$emit("uploaded", _.get(result, "data.files", []));
+        this.files = [];
+        this.preview = [];
+        this.$refs.file.value = null;
       } catch (error) {
-        console.log(`error`, error);
-        // if (_.get(error, "response.status", 400) !== 401) {
-        //   const message = error.response.data.message;
-        //   this.$toasted.error(message);
-        // }
+        if (_.get(error, "response.status", 400) !== 401) {
+          const message = error.response.data.message;
+          this.$toasted.error(message);
+        }
       }
     },
+  //   async uploadFiles(files) {
+  //     console.log(`uploadFiles 1`, files);
+  //     try {
+  //       if (this.files.length === 0) {
+  //         return;
+  //       }
+
+  //       const formData = new FormData();
+  //       formData.append("upload", files[0]);
+  //       const input = {
+  //         file: formData,
+  //       };
+  //       // console.log(input);
+  //       // const formData = new FormData();
+  //       // formData.append("file", file);
+  //       // const input = {
+  //       //   file: formData,
+  //       // };
+  //       // const res = await api_file.upload(input);
+  //       // const data = new FormData();
+  //       // this.files.forEach((file, index) => {
+  //       // data.append(`file`, file);
+  //       // });
+
+  //       const res = await this.fileUpload(
+  //         input
+  //         // path: this.pathUpload,
+
+  //         // namespace: this.namespace,
+  //       );
+  //       console.log(`2`, res);
+  //       this.previewFiles(res.data);
+
+  //       this.$emit("uploaded", res.data);
+  //       // this.files = [];
+  //       // this.preview = [];
+  //       // this.$refs.file.value = null;
+  //     } catch (error) {
+  //       console.log(`error`, error);
+  //       // if (_.get(error, "response.status", 400) !== 401) {
+  //       //   const message = error.response.data.message;
+  //       //   this.$toasted.error(message);
+  //       // }
+  //     }
+  //   },
   },
 };
 </script>

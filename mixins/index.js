@@ -80,8 +80,8 @@ export default {
       return result;
     },
     time_10(time) {
-      if (time > 1000){
-        return time %100;
+      if (time > 1000) {
+        return time % 100;
       } else {
         return time < 10 ? "0" + time : time;
 
@@ -89,15 +89,27 @@ export default {
 
     },
 
-    format_money(money){
+    format_money(money) {
       // if(money = 0) {
 
       // }
-      if(money >= 0 && money < 1000) {
+      if (money >= 0 && money < 1000) {
         return 0;
       } else {
-        return Intl.NumberFormat().format(Math.round(money/1000) )+ "K";
+        return Intl.NumberFormat().format(Math.round(money / 1000)) + "K";
 
+      }
+    },
+
+    fileSizeFilter(size) {
+      if ((size > 0) && (size < 1000)) {
+        return size + "B";
+      } else if ((size >= 1000) && (size < 1000 * 1024)) {
+        return (size / 1000).toFixed(1) + "KB";
+      } else if ((size >= 1000 * 1024) && (size < 1000 * 1024)) {
+        return (size / (1000 * 1024)).toFixed(1) + "MB";
+      } else {
+        return (size / (1000 * 1024 * 1024)).toFixed(1) + "GB";
       }
     }
 

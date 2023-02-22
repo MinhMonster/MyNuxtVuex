@@ -6,7 +6,7 @@
           <v-card-title class="mgl--15px">Medias </v-card-title>
         </v-col>
         <v-col>
-          <UploadImageModal></UploadImageModal>
+          <UploadImageModal @onUploaded="onUploaded"></UploadImageModal>
         </v-col>
       </v-row>
       <v-row>
@@ -27,6 +27,7 @@
                     v-for="image in files"
                     :key="image.id"
                     :image="image"
+                    class="table-center text-middle"
                   ></media-table-row>
                 </tbody>
               </template>
@@ -66,7 +67,7 @@ export default {
     return {};
   },
   async mounted() {
-    await this.fetMedias();
+    await this.fetchMedia();
   },
   computed: {
     ...mapFields("admin/medias", ["medias"]),
@@ -97,10 +98,13 @@ export default {
     // },
   },
   methods: {
-    ...mapActions("admin/medias", ["fetMedias"]),
+    ...mapActions("admin/medias", ["fetchMedia"]),
 
     changeFinances(event) {
       this.updatePositionFinances(event.moved.element.ID, event.moved.newIndex);
+    },
+    async onUploaded() {
+      await this.fetchMedia();
     },
   },
 };

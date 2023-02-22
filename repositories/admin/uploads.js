@@ -9,8 +9,8 @@ export default ($api) => ({
   // upload(payload) {
   //   return $api.post(`${resource}/upload.php`, payload)
   // },
-  upload(input) {
-    return $api.post(`${resource}/upload.php`, input.file, headers)
+  upload(payload) {
+    return $api.post(`${resource}/${payload.path}`, payload.data, headers)
   },
 })
 
