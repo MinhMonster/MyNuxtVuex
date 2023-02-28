@@ -8,6 +8,7 @@ import adminDeverlopers from '~/repositories/admin/deverlopers'
 import adminFinances from '~/repositories/admin/finances'
 import adminUploads from '~/repositories/admin/uploads'
 import adminMedias from '~/repositories/admin/medias'
+import adminFolders from '~/repositories/admin/folders'
 
 
 // import UserRepository from '~/repositories/UserRepository'
@@ -24,6 +25,7 @@ export default ($api) => ({
   adminFinances: adminFinances($api),
   adminUploads: adminUploads($api),
   adminMedias: adminMedias($api),
+  adminFolders: adminFolders($api),
 
 
   // user: UserRepository($axios),

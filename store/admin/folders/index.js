@@ -11,7 +11,7 @@ const UPDATE_INCOME = "UPDATE_INCOME";
 export default {
   namespaced: true,
   state: () => ({
-    medias: [],
+    folders: [],
     media: {},
   }),
 
@@ -33,8 +33,8 @@ export default {
 
   mutations: {
     updateField,
-    SET_MEDIAS(state, payload) {
-      state.medias = payload
+    SET_FOLDERS(state, payload) {
+      state.folders = payload
     },
 
     SET_finance(state, finance) {
@@ -43,7 +43,7 @@ export default {
   },
 
   actions: {
-    
+
     setAction({ dispatch, commit }, payload) {
       commit(UPDATE_ACTION, payload);
       // sumCashRevenues
@@ -66,19 +66,26 @@ export default {
       commit(UPDATE_INCOME, { sumCashRevenues, sumCashExpenses });
     },
 
-    
-    async fetchMedia({ commit }) {
+
+    async fetchFolders({ commit }, payload) {
+      console.log(`store`);
       try {
-        const res = await this.$repositories.adminMedias.fetchMedia()
-        commit('SET_MEDIAS', res.data.files)
+        const res = await this.$repositories.adminFolders.fetchFolders()
+        commit('SET_FOLDERS', res.data.folders)
       } catch (error) { }
     },
-    async deleteMedia({commit, state}, id) {
+    async createFolder({ commit }, payload) {
+      console.log(`store`);
       try {
-        return  await this.$repositories.adminMedias.deleteMedia(id)
+        return await this.$repositories.adminFolders.createFolder(payload)
+      } catch (error) { }
+    },
+    async deleteMedia({ commit, state }, id) {
+      try {
+        return await this.$repositories.adminMedias.deleteMedia(id)
       } catch (error) { }
     }
-    
+
 
   },
 }

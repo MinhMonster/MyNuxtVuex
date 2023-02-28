@@ -1,22 +1,30 @@
 <template>
   <v-row class="right mgr-5px">
     <v-dialog light v-model="dialog" persistent width="1024" class="modal">
-      <template v-slot:activator="{ props }" class="right">
+      <template v-slot:activator="{ props }">
         <v-btn v-bind="props" icon class="right primary" @click="dialog = true">
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </template>
       <v-card class="modal-upload">
         <v-card-title>
-          <span class="text-h5">Upload Image</span>
+          <!-- <span class="text-h5">Upload Image</span> -->
         </v-card-title>
         <v-card-text>
           <v-container>
-            <v-row>
-              <v-col cols="12" sm="12" md="12">
+            <b-tabs>
+              <b-tab title="Upload Images">
                 <FileSelector @uploaded="uploaded"></FileSelector>
-              </v-col>
-            </v-row>
+              </b-tab>
+              <b-tab title="Manager Folder" @click="onFetchFolders()">
+                <FolderFile
+                  v-if="folders"
+                  :folders="folders"
+                  @newFolder="newFolder"
+                ></FolderFile>
+              </b-tab>
+            </b-tabs>
+            <v-col cols="12" sm="12" md="12"> </v-col>
           </v-container>
           <!-- <small>*indicates required field</small> -->
         </v-card-text>
@@ -35,22 +43,48 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+import { mapActions } from "vuex";
 import FileSelector from "@/components/global/molecules/common/FileSelector.vue";
+import FolderFile from "@/components/global/molecules/common/FolderFile.vue";
 
 export default {
   components: {
     FileSelector,
+    FolderFile,
   },
   data: () => ({
     dialog: false,
     image: {},
   }),
-
+  computed: {
+    ...mapFields("admin/folders", ["folders"]),
+  },
   methods: {
+    ...mapActions("admin/folders", [
+      "fetchFolders",
+      "deleteMedia",
+      "createFolder",
+    ]),
     uploaded(files) {
       this.dialog = false;
       this.$emit("onUploaded", files);
     },
+    async onFetchFolders() {
+      await this.fetchFolders();
+    },
+    async newFolder(value) {
+      const result = await this.createFolder(value);
+      if (result.data.code === 200) {
+        this.$toasted.success(result.data.message);
+      }
+      await this.fetchFolders();
+    },
   },
 };
 </script>
+<!-- <style >
+.v-dialog__content .v-dialog:not(.v-dialog--fullscreen) {
+    max-height: 100% !important;
+}
+</style> -->

@@ -20,6 +20,7 @@
                     <th>Image</th>
                     <th>Size</th>
                     <th>Time</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                     v-for="image in files"
                     :key="image.id"
                     :image="image"
+                    @dropImage="dropImage(image)"
                     class="table-center text-middle"
                   ></media-table-row>
                 </tbody>
@@ -49,7 +51,10 @@ import UploadImageModal from "@/components/global/plugins/UploadImageModal.vue";
 export default {
   mixins: [mixins],
   layout: "adminDev",
-  components: { MediaTableRow, UploadImageModal },
+  components: {
+    MediaTableRow,
+    UploadImageModal,
+  },
   head() {
     return {
       title: "Admin: Medias",
@@ -98,13 +103,32 @@ export default {
     // },
   },
   methods: {
-    ...mapActions("admin/medias", ["fetchMedia"]),
+    ...mapActions("admin/medias", ["fetchMedia", "deleteMedia"]),
 
     changeFinances(event) {
       this.updatePositionFinances(event.moved.element.ID, event.moved.newIndex);
     },
     async onUploaded() {
       await this.fetchMedia();
+    },
+    async dropImage(image) {
+      this.$swal
+        .fire({
+          title: `Delete Image ID: ${image.id}`,
+          confirmButtonColor: "#F64E60",
+          showCancelButton: true,
+          confirmButtonText: "YES",
+          cancelButtonText: "NO",
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            const result = await this.deleteMedia(image.id);
+            if (result.data.code === 200) {
+              this.$toasted.success(result.data.message);
+              await this.fetchMedia();
+            }
+          }
+        });
     },
   },
 };

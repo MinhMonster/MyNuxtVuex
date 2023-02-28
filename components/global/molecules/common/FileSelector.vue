@@ -9,36 +9,30 @@
       @change="onFileChange"
     />
 
-    <div
+    
+
+    <div  class="fileList">
+      <div
       v-if="preview.length == 0 || multiple"
       ref="upload"
-      class="dropzone"
+      class="dropzone middle"
+      :class="{'full-zone' : preview.length == 0}"
+
       @click="browseFiles"
       @dragover="dragover"
       @dragleave="dragleave"
       @drop="drop"
     >
       <div class="dz-message">
-        <div class="mb-3">
+        <div class="">
           <i class="display-4 text-muted mdi mdi-playlist-plus"></i>
         </div>
 
-        <h4>{{ label }}</h4>
+        <!-- <h4>{{ label }}</h4> -->
       </div>
     </div>
-
-    <div v-if="preview.length" class="fileList">
       <div v-for="(file, index) in preview" :key="index" class="fileItem">
         <div class="fileItemWrapper">
-          <div class="fileIcon">
-            <img v-if="file.url" :src="file.url" />
-            <i v-else class="mdi mdi-file-document-outline"></i>
-          </div>
-          <div class="fileDescription">
-            <div class="fileName line-clamp-2">{{ file.fileName }}</div>
-            <div class="fileType">{{ file.type }}</div>
-            <div class="fileSize">{{ fileSizeFilter(file.byteSize) }}</div>
-          </div>
           <b-button
             variant="danger"
             size="sm"
@@ -48,6 +42,14 @@
           >
             <i class="mdi mdi-close-thick"></i>
           </b-button>
+          <div class="fileIcon">
+            <img v-if="file.url" :src="file.url" />
+            <i v-else class="mdi mdi-file-document-outline"></i>
+          </div>
+          <div class="fileDescription">
+            <div class="fileName line-clamp-2">{{ file.fileName }}</div>
+            <div class="fileType">{{ file.type }} - {{ fileSizeFilter(file.byteSize) }}</div>
+          </div>
         </div>
       </div>
       <div v-for="i in maxFile" :key="maxFile + i" class="fileItem e"></div>
@@ -237,7 +239,7 @@ export default {
       const listFiles = [];
       files.forEach((file, index) => {
         if (file.type.startsWith("image")) {
-          console.log(`previewFiles if` );
+          console.log(`previewFiles if`);
           const reader = new FileReader();
           reader.onload = (e) => {
             this.preview.push({
@@ -245,36 +247,38 @@ export default {
               fileName: file.name,
               url: e.target.result,
               type: file.type,
-              key: WidgetCount++
+              key: WidgetCount++,
             });
-            this.preview = this.preview.filter((value, index, self) => self.findIndex(item => item.url === value.url) === index)
-            console.log(this.preview)
-
+            this.preview = this.preview.filter(
+              (value, index, self) =>
+                self.findIndex((item) => item.url === value.url) === index
+            );
+            console.log(this.preview);
           };
           reader.readAsDataURL(file);
         } else {
-          console.log(`previewFiles else` );
+          console.log(`previewFiles else`);
 
           this.preview.push({
             byteSize: file.size,
             fileName: file.name,
             type: file.type,
-            key: WidgetCount++
+            key: WidgetCount++,
           });
-          this.preview = this.preview.filter((value, index, self) => self.findIndex(item => item.key === value.key) === index)
-
+          this.preview = this.preview.filter(
+            (value, index, self) =>
+              self.findIndex((item) => item.key === value.key) === index
+          );
         }
-
       });
 
       // console.log(`file pre`, file);
-      
+
       // this.preview.push({
-       
+
       //   url: file.url,
       //   destroyed: file.destroyed
       // });
-      
     },
     removeFile(index) {
       this.files[index].destroyed = true;
@@ -303,7 +307,7 @@ export default {
           data,
           // namespace: this.namespace,
         });
-        if(result.data.code === 200) {
+        if (result.data.code === 200) {
           this.$toasted.success(result.data.message);
         }
         this.$emit("uploaded", _.get(result, "data.files", []));
@@ -317,51 +321,51 @@ export default {
         }
       }
     },
-  //   async uploadFiles(files) {
-  //     console.log(`uploadFiles 1`, files);
-  //     try {
-  //       if (this.files.length === 0) {
-  //         return;
-  //       }
+    //   async uploadFiles(files) {
+    //     console.log(`uploadFiles 1`, files);
+    //     try {
+    //       if (this.files.length === 0) {
+    //         return;
+    //       }
 
-  //       const formData = new FormData();
-  //       formData.append("upload", files[0]);
-  //       const input = {
-  //         file: formData,
-  //       };
-  //       // console.log(input);
-  //       // const formData = new FormData();
-  //       // formData.append("file", file);
-  //       // const input = {
-  //       //   file: formData,
-  //       // };
-  //       // const res = await api_file.upload(input);
-  //       // const data = new FormData();
-  //       // this.files.forEach((file, index) => {
-  //       // data.append(`file`, file);
-  //       // });
+    //       const formData = new FormData();
+    //       formData.append("upload", files[0]);
+    //       const input = {
+    //         file: formData,
+    //       };
+    //       // console.log(input);
+    //       // const formData = new FormData();
+    //       // formData.append("file", file);
+    //       // const input = {
+    //       //   file: formData,
+    //       // };
+    //       // const res = await api_file.upload(input);
+    //       // const data = new FormData();
+    //       // this.files.forEach((file, index) => {
+    //       // data.append(`file`, file);
+    //       // });
 
-  //       const res = await this.fileUpload(
-  //         input
-  //         // path: this.pathUpload,
+    //       const res = await this.fileUpload(
+    //         input
+    //         // path: this.pathUpload,
 
-  //         // namespace: this.namespace,
-  //       );
-  //       console.log(`2`, res);
-  //       this.previewFiles(res.data);
+    //         // namespace: this.namespace,
+    //       );
+    //       console.log(`2`, res);
+    //       this.previewFiles(res.data);
 
-  //       this.$emit("uploaded", res.data);
-  //       // this.files = [];
-  //       // this.preview = [];
-  //       // this.$refs.file.value = null;
-  //     } catch (error) {
-  //       console.log(`error`, error);
-  //       // if (_.get(error, "response.status", 400) !== 401) {
-  //       //   const message = error.response.data.message;
-  //       //   this.$toasted.error(message);
-  //       // }
-  //     }
-  //   },
+    //       this.$emit("uploaded", res.data);
+    //       // this.files = [];
+    //       // this.preview = [];
+    //       // this.$refs.file.value = null;
+    //     } catch (error) {
+    //       console.log(`error`, error);
+    //       // if (_.get(error, "response.status", 400) !== 401) {
+    //       //   const message = error.response.data.message;
+    //       //   this.$toasted.error(message);
+    //       // }
+    //     }
+    //   },
   },
 };
 </script>
@@ -373,8 +377,9 @@ export default {
   margin-top: 10px;
 
   .fileItem {
-    flex: 1;
+    // flex: 1;
     min-width: 33.33%;
+    min-width: 200px;
     padding-right: 10px;
     padding-bottom: 10px;
 
@@ -383,13 +388,24 @@ export default {
     }
 
     .fileItemWrapper {
+      position: relative;
       display: flex;
+      flex-flow: column;
       border: 1px solid #eff2f7;
       border-radius: 5px;
       padding: 10px;
       align-items: flex-start;
       height: 100%;
 
+      button {
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+        padding: 1px;
+      }
       .fileIcon {
         // width: 60px;
         text-align: center;
@@ -430,7 +446,30 @@ export default {
   background: #e1e1e1 !important;
 }
 
-.modal-upload .card-body{
-  min-height: 60vh;
+.modal-upload .card-body {
+  min-height: 50vh;
 }
+
+.full-zone {
+  width: 100% !important;
+  height: 50vh !important;
+}
+
+@media (min-width: 400px) {
+  .fileItem, .dropzone {
+    width: 100%;
+  }
+}
+@media (min-width: 675px) {
+  .fileItem, .dropzone {
+    width: 50%;
+  }
+}
+@media (min-width:960px) {
+
+.fileItem, .dropzone {
+  width: 33.33%;
+}
+}
+
 </style>

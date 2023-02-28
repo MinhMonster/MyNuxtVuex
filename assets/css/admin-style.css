@@ -23,7 +23,7 @@
 }
 
 #admin .v-dialog.v-dialog--active.v-dialog--persistent .v-sheet {
-  min-height: 70vh;
+  min-height: 50vh;
 }
 
 @keyframes menu-left-off {

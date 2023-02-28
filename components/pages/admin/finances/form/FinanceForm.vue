@@ -1,10 +1,6 @@
 <template>
   <client-only v-if="financeForm">
     <v-row class="bg-editor bg-finance" justify="center">
-      
-      <!-- <b-button block class="mb-2" @click="showModaluploadImage">
-        upload_image
-      </b-button> -->
       <v-col cols="4" sm="4" md="4">
         <div class="outline-format">
           <b-form-select
@@ -97,8 +93,6 @@ import RevenueForm from "@/components/pages/admin/finances/form/RevenueForm.vue"
 import ExpenseForm from "@/components/pages/admin/finances/form/ExpenseForm.vue";
 import AddRevenueBtn from "@/components/pages/admin/finances/btn/AddRevenueBtn.vue";
 import PreNextDayBtn from "@/components/pages/admin/finances/btn/PreNextDayBtn.vue";
-import FileSelector from "@/components/global/molecules/common/FileSelector.vue";
-import UploadModal from "@/components/global/plugins/UploadModal.vue";
 
 export default {
   mixins: [mixins],
@@ -109,9 +103,6 @@ export default {
     ExpenseForm,
     AddRevenueBtn,
     PreNextDayBtn,
-    FileSelector,
-    UploadModal,
-    UploadImageModal
   },
   props: {
     year: {
@@ -186,9 +177,6 @@ export default {
         );
       }
     },
-    // showModaluploadImage() {
-    //   this.$refs.image.show();
-    // },
   },
 };
 </script>

@@ -227,7 +227,7 @@ body {
 .bg-success,
 .bg-warning,
 .bg-dark {
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 
@@ -3376,6 +3376,12 @@ h6+p.content {
 
 .center {
   text-align: center;
+}
+
+.middle {
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .text-middle td {

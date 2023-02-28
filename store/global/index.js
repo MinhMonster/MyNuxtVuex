@@ -201,29 +201,73 @@ export default {
     //   commit(SET_ACCOUNT_NOTIFICATIONS, payload);
     // },
     async fileUpload({ state, commit, dispatch }, payload) {
-      console.log(`fileUpload 3`);
+      console.log(payload);
       // return new Promise((resolve, reject) => {
-      // const config = {
-      //   header: {
-      //     "Content-Type": "multiple/form-data",
-      //   },
-      //   timeout: 300000,
-      // };
+      //   const config = {
+      //     header: {
+      //       "Content-Type": "multiple/form-data",
+      //     },
+      //     timeout: 300000,
+      //   };
       try {
         const result = await this.$repositories.adminUploads.upload(payload)
-        console.log(`result`, result);
         return result;
-        // .then((res) => {
-        //   const namespace = payload.namespace || "console";
-        //   // if (state.token && namespace === "console") {
-        //   //   dispatch("fetchAccountUserInfo");
-        //   // }
-        //   resolve(res);
-        // })
       } catch (err) {
         console.log(err);
       };
+      // this.$api({
+      //   method: "post",
+      //   url: payload.path,
+      //   baseURL: process.env.uploadHost,
+      //   data: payload.data,
+      //   ...config,
+      // })
+      //   .then((res) => {
+      //     const namespace = payload.namespace || "console";
+      //     if (state.token && namespace === "console") {
+      //       dispatch("fetchAccountUserInfo");
+      //     }
+      //     resolve(res);
+      //   })
+      //   .catch((err) => {
+      //     reject(err);
+      //   });
+      // });
     },
+    async fetchFiles({ commit }, payload) {
+      return await this.$repositories.adminUploads.fetchFiles(
+        payload
+      );
+    },
+    async deleteFile({ commit }, payload) {
+      return await this.$repositories.adminUploads.deleteFile(
+        payload
+      );
+    },
+    // async fileUpload({ state, commit, dispatch }, payload) {
+    //   console.log(`fileUpload 3`);
+    //   // return new Promise((resolve, reject) => {
+    //   // const config = {
+    //   //   header: {
+    //   //     "Content-Type": "multiple/form-data",
+    //   //   },
+    //   //   timeout: 300000,
+    //   // };
+    //   try {
+    //     const result = await this.$repositories.adminUploads.upload(payload)
+    //     console.log(`result`, result);
+    //     return result;
+    //     // .then((res) => {
+    //     //   const namespace = payload.namespace || "console";
+    //     //   // if (state.token && namespace === "console") {
+    //     //   //   dispatch("fetchAccountUserInfo");
+    //     //   // }
+    //     //   resolve(res);
+    //     // })
+    //   } catch (err) {
+    //     console.log(err);
+    //   };
+    // },
     // async csvDownload({ commit }, payload) {
     //   return await this.$api.get(payload.path, payload.config);
     // },

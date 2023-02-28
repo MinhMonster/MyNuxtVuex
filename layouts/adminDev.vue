@@ -3,9 +3,9 @@
     <client-only v-if="authenticated">
       <v-navigation-drawer
         style="
-          top:94px;
+          top: 94px;
           min-height: calc(100% - 94px);
-          height: calc(100% - 94px)
+          height: calc(100% - 94px);
         "
         v-model="drawer"
         :mini-variant="miniVariant"
@@ -16,11 +16,12 @@
         <v-menu v-for="(text, index) in this.deverlopers" :key="index" offset-y>
           <template v-slot:activator="{ attrs }">
             <v-list class="" v-bind="attrs">
-              <v-list-item :to="`/admin/deverlopers/${text.type}`" :class="[
-                    $route.path.includes(`${text.ID}`)
-                      ? 'v-btn--active'
-                      : '',
-                  ]">
+              <v-list-item
+                :to="`/admin/deverlopers/${text.type}`"
+                :class="[
+                  $route.path.includes(`${text.ID}`) ? 'v-btn--active' : '',
+                ]"
+              >
                 <v-list-item-action>
                   <v-icon> mdi-apps </v-icon>
                 </v-list-item-action>
@@ -41,9 +42,7 @@
                   router
                   exact
                   :class="[
-                    $route.path.includes(`${item.ID}`)
-                      ? 'v-btn--active'
-                      : '',
+                    $route.path.includes(`${item.ID}`) ? 'v-btn--active' : '',
                   ]"
                 >
                   <v-list-item-action>
@@ -74,8 +73,8 @@
           
         </v-toolbar-title> -->
         <v-spacer />
-        <v-btn color="red"  icon  @click="onLogout">
-          <v-icon >mdi-power</v-icon>
+        <v-btn color="red" icon @click="onLogout">
+          <v-icon>mdi-power</v-icon>
         </v-btn>
         <v-btn v-if="deverloper" icon @click.stop="rightDrawer = !rightDrawer">
           <v-icon>mdi-menu</v-icon>
@@ -97,11 +96,7 @@
             v-for="(item, i) in items"
             :key="i"
             v-slot="{ active, toggle }"
-            :class="[
-              $route.path.includes(`${item.to}`)
-                ? 'v-btn--active'
-                : '',
-            ]"
+            :class="[$route.path.includes(`${item.to}`) ? 'v-btn--active' : '']"
           >
             <v-btn
               class="mx-2"
@@ -129,7 +124,7 @@
           min-height: calc(100% - 94px);
           height: calc(100% - 94px);
           direction: rtl;
-          text-align: left
+          text-align: left;
         "
         v-model="rightDrawer"
         :right="right"
@@ -245,6 +240,11 @@ export default {
           title: "Topics",
           to: "/admin/topics",
         },
+        {
+          icon: "mdi-image",
+          title: "Medias",
+          to: "/admin/medias",
+        },
       ],
       miniVariant: false,
       right: true,
@@ -276,9 +276,9 @@ export default {
     ...mapActions(["get_deverlopers"]),
     ...auth.mapActions(["logout"]),
 
-    onLogout(){
-      this.logout()
-      this.$router.push("/admin/login")
+    onLogout() {
+      this.logout();
+      this.$router.push("/admin/login");
     },
     showSubMenu(index) {
       this.is_show = !this.is_show;

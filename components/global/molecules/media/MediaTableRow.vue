@@ -1,6 +1,5 @@
 <template>
-  <tr
-  >
+  <tr>
     <td>{{ image.id }}</td>
     <td class="td-name">
       <div class="d-flex align-items-start" :title="image.fileName">
@@ -10,13 +9,7 @@
         >
           <i
             v-if="image.contentType == 'video/mp4'"
-            class="
-              mdi mdi-motion-play-outline
-              bg-secondary
-              line-height-1
-              p-1
-              text-white
-            "
+            class="mdi mdi-motion-play-outline bg-secondary line-height-1 p-1 text-white"
           ></i>
         </span>
         <!-- <div v-if="editable" class="white-space-normal line-clamp-2">
@@ -24,10 +17,10 @@
         </div> -->
       </div>
     </td>
-    <td  class="td-size">
+    <td class="td-size">
       {{ fileSizeFilter(image.byteSize) }}
     </td>
-    <td  class="td-time">
+    <td class="td-time">
       {{ image.createdAt }}
     </td>
     <!-- <td v-if="editable" class="td-type">
@@ -37,25 +30,12 @@
     <td v-if="editable" class="td-time">
       {{ image.createdAt | datetimeFilter }}
     </td> -->
-    <!-- <td v-if="editable" class="td-misc">
-      <a
-        v-b-tooltip.hover
-        :title="$i18n('misc.common.detail')"
-        :href="image.url"
-        class="text-primary pt-2"
-        target="_blank"
-      >
-        <i class="mdi mdi-file-find font-size-22"></i>
-      </a>
-
-      <i
-        v-b-tooltip.hover
-        :title="$i18n('misc.common.delete')"
-        role="button"
-        class="text-primary mdi mdi-trash-can-outline font-size-22"
-        @click="dropImage(image)"
-      ></i>
-    </td> -->
+    <td class="td-misc">
+      <v-btn :href="image.url" icon router exact>
+        <v-icon color="blue">mdi-eye </v-icon>
+      </v-btn>
+      <v-icon color="red" @click="dropImage(image)">mdi-delete</v-icon>
+    </td>
   </tr>
 </template>
 
@@ -105,9 +85,9 @@ export default {
     //     this.$emit("select");
     //   }
     // },
-    // dropImage(image) {
-    //   this.$emit("dropImage", image);
-    // },
+    dropImage(image) {
+      this.$emit("dropImage", image);
+    },
   },
 };
 </script>
