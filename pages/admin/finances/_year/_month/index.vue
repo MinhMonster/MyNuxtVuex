@@ -53,7 +53,7 @@
                         }}</nuxt-link
                       >
                     </td>
-                    <td class="w-25 middle">
+                    <td class="w-25">
                       {{ format_number(info.sum_cash_revenues) }}
                     </td>
                     <td class="w-25">

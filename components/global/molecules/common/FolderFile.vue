@@ -1,13 +1,20 @@
 <template>
-  <b-card class="border border-light shadow-none card-folder">
+  <b-card
+    class="border border-light shadow-none card-folder"
+    :class="{ 'zoom-modal': isZoom }"
+  >
     <div class="folder-plugin">
       <v-btn color="white" @click="browseFiles">
         <v-icon>mdi-upload</v-icon>
-        Upload
       </v-btn>
       <v-btn color="white" @click="isShow = true">
         <v-icon>mdi-folder-plus</v-icon>
-        Folder
+      </v-btn>
+      <v-btn v-if="!isZoom" color="white" @click="isZoom = true">
+        <v-icon>mdi-arrow-expand-all</v-icon>
+      </v-btn>
+      <v-btn v-if="isZoom" color="white" @click="isZoom = false">
+        <v-icon>mdi-arrow-collapse-all</v-icon>
       </v-btn>
     </div>
     <input
@@ -34,30 +41,47 @@
           class="pointer folder-item"
         >
           <div
-            @click="setPath(folder.folderPath)"
+            class="folder-item-body flex-row-space-between"
             :class="{ active: folderUpload == folder.folderPath }"
           >
-            <v-icon v-if="path == folder.folderPath" color="blue"
-              >mdi-folder-multiple</v-icon
-            >
-            <v-icon v-else color="blue">mdi-folder</v-icon>
+            <div class="body-folder" @click="setPath(folder.folderPath)">
+              <v-icon v-if="path == folder.folderPath" color="blue"
+                >mdi-folder-multiple</v-icon
+              >
+              <v-icon v-else color="blue">mdi-folder</v-icon>
 
-            {{ folder.folderName }}
-            <v-icon
-              class="icon-down"
-              v-if="
-                folderUpload != folder.folderPath && folder.subFolders.length
-              "
-              >mdi-menu-down</v-icon
-            >
-            <v-icon
-              class="icon-up"
-              v-if="
-                folderUpload == folder.folderPath && folder.subFolders.length
-              "
-              >mdi-menu-up</v-icon
-            >
+              {{ folder.folderName }}
+              <v-icon
+                class="icon-down"
+                v-if="
+                  pathActive != folder.folderPath && folder.subFolders.length
+                "
+                >mdi-menu-down</v-icon
+              >
+
+              <v-icon
+                class="icon-up"
+                v-if="
+                  pathActive == folder.folderPath && folder.subFolders.length
+                "
+                >mdi-menu-up</v-icon
+              >
+            </div>
+            <div>
+              <v-icon class="dots-vertical" @click="editFolder(folder)"
+                >mdi-dots-vertical</v-icon
+              >
+              <EditFolderModal
+                v-if="folderUpload == folder.folderPath"
+                :isShow="isShowEdit"
+                :folder="folder"
+                @closeModal="isShowEdit = false"
+                @change="newFolder"
+                @editNameFolder="isEdit = true"
+              ></EditFolderModal>
+            </div>
           </div>
+
           <template v-if="pathActive == folder.folderPath">
             <div
               v-for="(subFolder, index) in folder.subFolders"
@@ -71,6 +95,7 @@
                 >
                 <v-icon v-else color="blue">mdi-folder</v-icon>
                 {{ subFolder.folderName }}
+                <v-icon class="dots-vertical">mdi-dots-vertical</v-icon>
               </div>
             </div>
           </template>
@@ -119,12 +144,12 @@
                 <img v-if="image.url" :src="image.url" />
                 <i v-else class="mdi mdi-file-document-outline"></i>
               </div>
-              <!-- <div class="fileDescription">
-              <div class="fileName line-clamp-2">{{ file.folderPath }}</div> -->
-              <!-- <div class="fileType">
-              {{ file.type }} - {{ fileSizeFilter(file.byteSize) }}
-            </div> -->
-              <!-- </div> -->
+              <div class="fileDescription">
+                <div class="fileName break-line-1">{{ image.fileName }}</div>
+                <div class="fileType">
+                  {{ image.type }} - {{ fileSizeFilter(image.byteSize) }}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -153,20 +178,33 @@
       @closeModal="isShow = false"
       @change="newFolder"
     ></NewFolderModal>
+    <EditNameFolderModal
+      v-if="isEdit"
+      :isShow="isEdit"
+      :folder="folderEdit"
+      @closeModal="isEdit = false"
+      @change="updateNameFolder"
+    ></EditNameFolderModal>
   </b-card>
 </template>
 
 <script>
 import mixins from "@/mixins/index";
 import { createNamespacedHelpers } from "vuex";
-const { mapActions, mapState } = createNamespacedHelpers("global");
+// const { mapActions, mapState } = createNamespacedHelpers("global");
+import { mapActions } from "vuex";
+
 import NewFolderModal from "@/components/global/molecules/common/NewFolderModal.vue";
+import EditFolderModal from "@/components/global/molecules/common/EditFolderModal.vue";
+import EditNameFolderModal from "@/components/global/molecules/common/EditNameFolderModal.vue";
 
 let WidgetCount = 0;
 export default {
   mixins: [mixins],
   components: {
     NewFolderModal,
+    EditFolderModal,
+    EditNameFolderModal,
   },
   props: {
     folders: {
@@ -228,19 +266,36 @@ export default {
       files: [],
       preview: [],
       isShow: false,
+      showEdit: false,
+      isShowEdit: false,
+      isZoom: false,
+      isEdit: false,
+      folderEdit: {},
     };
   },
   computed: {
     // ...mapState("admin/folders", ["folders", "deleteMedia"]),
   },
   async mounted() {
-    console.log(this.path);
-    this.getFiles();
+    await this.fetchFolders();
+    await this.getFiles();
   },
   methods: {
-    ...mapActions(["fileUpload", "fetchFiles", "deleteFile"]),
+    ...mapActions("global", ["fileUpload", "fetchFiles", "deleteFile"]),
+    ...mapActions("admin/folders", [
+      "fetchFolders",
+      "deleteMedia",
+      "createFolder",
+      "editNameFolder",
+    ]),
+    async editFolder(folder) {
+      this.folderEdit = folder;
+      this.folderUpload = folder.folderPath;
+      this.isShowEdit = true;
+      this.showEdit = folder.folderPath;
+      // await this.getFiles();
+    },
     async setPath(value) {
-      console.log(this.path);
       if (this.pathActive !== value) {
         this.pathActive = value;
       } else {
@@ -275,7 +330,6 @@ export default {
     },
     async setFolderUpload(value) {
       this.folderUpload = value;
-      console.log(this.folderUpload);
       await this.getFiles();
     },
     dragover(event) {
@@ -306,7 +360,6 @@ export default {
       // }
 
       const fileArray = Array.from(target.files);
-      console.log(`files`, target.files, fileArray);
 
       // if (fileArray.some((file) => !this.isFileTypeValid(file))) {
       //   return this.$toasted.error("Invalid file format exists.");
@@ -373,11 +426,9 @@ export default {
       return this.fileTypes.includes(file.type);
     },
     previewFiles(files) {
-      console.log(`previewFiles filés`, files);
       const listFiles = [];
       files.forEach((file, index) => {
         if (file.type.startsWith("image")) {
-          console.log(`previewFiles if`);
           const reader = new FileReader();
           reader.onload = (e) => {
             this.preview.push({
@@ -391,12 +442,9 @@ export default {
               (value, index, self) =>
                 self.findIndex((item) => item.url === value.url) === index
             );
-            console.log(this.preview);
           };
           reader.readAsDataURL(file);
         } else {
-          console.log(`previewFiles else`);
-
           this.preview.push({
             byteSize: file.size,
             fileName: file.name,
@@ -511,14 +559,29 @@ export default {
         path: this.path,
         folder: value,
       };
-      console.log(input);
       this.$emit("newFolder", input);
+    },
+    async updateNameFolder(value) {
+      const input = {
+        newName: value,
+        folder: this.folderEdit,
+      };
+      const result = await this.editNameFolder(input);
+      if (result.data.code === 200) {
+        this.$toasted.success(result.data.message);
+        await this.setPath(result.data.folder.folderPath);
+        await this.fetchFolders();
+      }
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.body-folder {
+  width: 90%;
+}
+
 .card-folder .card-body {
   padding: 0;
 }
@@ -547,6 +610,11 @@ export default {
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 1px;
+    .dots-vertical {
+      float: right;
+      padding: 5px 0;
+      right: 0px !important;
+    }
   }
 }
 .fileList {
@@ -560,6 +628,7 @@ export default {
   flex-wrap: wrap;
   margin-top: 10px;
   .file-preview {
+    width: 100%;
     border-bottom: 2px solid #2196f3;
     margin-bottom: 10px;
   }
@@ -572,16 +641,17 @@ export default {
     justify-content: flex-start;
     // align-items: baseline;
     align-content: flex-start;
-
     .fileItem {
       // flex: 1;
-      min-width: 33.33%;
+      // min-width: 33.33%;
       // min-width: 200px;
       height: auto;
-      max-height: 120px;
+
       padding-right: 10px;
       padding-bottom: 10px;
-
+      img {
+        max-height: 200px;
+      }
       &:empty {
         padding-bottom: 0;
       }
@@ -589,11 +659,14 @@ export default {
       .fileItemWrapper {
         position: relative;
         display: flex;
-        flex-flow: column;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+
         border: 1px solid #eff2f7;
         border-radius: 5px;
         padding: 5px;
-        align-items: flex-start;
         height: 100%;
 
         button {
@@ -608,10 +681,11 @@ export default {
         .fileIcon {
           // width: 60px;
           text-align: center;
-          margin-right: 10px;
+          margin: 0 auto;
 
           img {
-            width: 100%;
+            max-width: 100%;
+            max-height: 120px;
           }
 
           .mdi {
@@ -625,6 +699,7 @@ export default {
           display: flex;
           flex-flow: column;
           flex: 1;
+          justify-content: flex-end;
 
           .fileName {
             font-weight: bold;
@@ -638,6 +713,24 @@ export default {
             color: gray;
           }
         }
+      }
+    }
+    @media (min-width: 400px) {
+      .fileItem,
+      .dropzone {
+        width: 100%;
+      }
+    }
+    @media (min-width: 675px) {
+      .fileItem,
+      .dropzone {
+        width: 50%;
+      }
+    }
+    @media (min-width: 960px) {
+      .fileItem,
+      .dropzone {
+        width: 33.33%;
       }
     }
   }
@@ -673,13 +766,24 @@ export default {
 .icon-down {
   float: right;
   padding: 5px 0;
-  // right: -5px;
+  right: 20px;
+}
+
+.dots-vertical {
+  // top: -50px;
+  // float: right;
+  // padding: 5px 0;
+  // right: -25px;
 }
 
 .folderList .folder-item .active {
   margin-left: -35px;
   padding-left: 35px;
   border: 2px solid #2196f3 !important;
+  .dots-vertical {
+    top: 0px;
+    right: -2px !important;
+  }
 }
 .folderList .folder-item .sub-folder.active {
   margin-left: -35px;
@@ -696,22 +800,46 @@ export default {
   border: 2px solid #2196f3 !important;
 }
 
-@media (min-width: 400px) {
-  .fileItem,
-  .dropzone {
-    width: 100%;
-  }
-}
-@media (min-width: 675px) {
-  .fileItem,
-  .dropzone {
-    width: 50%;
-  }
-}
-@media (min-width: 960px) {
-  .fileItem,
-  .dropzone {
-    width: 33.33%;
+.zoom-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  .fileList {
+    height: calc(100% - 120px);
+    max-height: calc(100vh - 120px);
+    @media (min-width: 400px) {
+      .fileItem,
+      .dropzone {
+        width: 100% !important;
+      }
+    }
+    @media (min-width: 675px) {
+      .fileItem,
+      .dropzone {
+        width: 50% !important;
+      }
+    }
+    @media (min-width: 960px) {
+      .fileItem,
+      .dropzone {
+        width: 33.33% !important;
+      }
+    }
+    @media (min-width: 1200px) {
+      .fileItem,
+      .dropzone {
+        width: 25% !important;
+      }
+    }
+    @media (min-width: 1500px) {
+      .fileItem,
+      .dropzone {
+        width: 20% !important;
+      }
+    }
   }
 }
 </style>

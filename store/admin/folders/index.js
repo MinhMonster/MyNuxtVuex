@@ -68,18 +68,22 @@ export default {
 
 
     async fetchFolders({ commit }, payload) {
-      console.log(`store`);
       try {
         const res = await this.$repositories.adminFolders.fetchFolders()
         commit('SET_FOLDERS', res.data.folders)
       } catch (error) { }
     },
     async createFolder({ commit }, payload) {
-      console.log(`store`);
       try {
         return await this.$repositories.adminFolders.createFolder(payload)
       } catch (error) { }
     },
+    async editNameFolder({ commit }, payload) {
+      try {
+        return await this.$repositories.adminFolders.editNameFolder(payload)
+      } catch (error) { }
+    },
+
     async deleteMedia({ commit, state }, id) {
       try {
         return await this.$repositories.adminMedias.deleteMedia(id)

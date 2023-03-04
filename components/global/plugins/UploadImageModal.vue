@@ -1,6 +1,6 @@
 <template>
   <v-row class="right mgr-5px">
-    <v-dialog light v-model="dialog" persistent width="1024" class="modal">
+    <v-dialog light v-model="dialog" persistent width="1250" class="modal">
       <template v-slot:activator="{ props }">
         <v-btn v-bind="props" icon class="right primary" @click="dialog = true">
           <v-icon>mdi-plus</v-icon>
@@ -16,7 +16,7 @@
               <b-tab title="Upload Images">
                 <FileSelector @uploaded="uploaded"></FileSelector>
               </b-tab>
-              <b-tab title="Manager Folder" @click="onFetchFolders()">
+              <b-tab title="Manager Folder">
                 <FolderFile
                   v-if="folders"
                   :folders="folders"
@@ -65,13 +65,11 @@ export default {
       "fetchFolders",
       "deleteMedia",
       "createFolder",
+      "editNameFolder",
     ]),
     uploaded(files) {
       this.dialog = false;
       this.$emit("onUploaded", files);
-    },
-    async onFetchFolders() {
-      await this.fetchFolders();
     },
     async newFolder(value) {
       const result = await this.createFolder(value);
@@ -83,8 +81,3 @@ export default {
   },
 };
 </script>
-<!-- <style >
-.v-dialog__content .v-dialog:not(.v-dialog--fullscreen) {
-    max-height: 100% !important;
-}
-</style> -->
