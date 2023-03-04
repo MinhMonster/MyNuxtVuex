@@ -5,20 +5,13 @@ const headers = {
   },
 }
 export default ($api) => ({
-
-  // upload(payload) {
-  //   return $api.post(`${resource}/upload.php`, payload)
-  // },
   upload(payload) {
-    console.log(`payload`, payload);
     return $api.post(`${resource}/${payload.path}?folder=${payload.folder}`, payload.data, headers)
   },
   fetchFiles(payload) {
-    console.log(`payload`, payload);
     return $api.get(`${resource}/get_files.php?folder=${payload}`)
   },
   deleteFile(payload) {
-    console.log(`payload`, payload);
     return $api.post(`${resource}/delete_file.php`, payload)
   },
 })
