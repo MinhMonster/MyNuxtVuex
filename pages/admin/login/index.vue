@@ -27,7 +27,7 @@ const { mapState, mapActions } = createNamespacedHelpers("admin/auth");
 
 export default {
   components: { LoginForm },
-  layout: "loginAdmin",
+  layout: "LoginAdmin",
   head() {
     return {
       title: "New Topic",

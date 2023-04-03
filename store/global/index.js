@@ -201,7 +201,6 @@ export default {
     //   commit(SET_ACCOUNT_NOTIFICATIONS, payload);
     // },
     async fileUpload({ state, commit, dispatch }, payload) {
-      console.log(payload);
       // return new Promise((resolve, reject) => {
       //   const config = {
       //     header: {

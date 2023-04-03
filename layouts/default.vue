@@ -1,16 +1,16 @@
 <template>
-  <v-app >
-   
+  <v-app>
 
-        <Nuxt />
-      
+
+    <Nuxt />
+
   </v-app>
 </template>
 
 <script>
 export default {
   name: 'DefaultLayout',
-  data () {
+  data() {
     return {
       clipped: false,
       drawer: false,

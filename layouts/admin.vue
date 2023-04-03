@@ -38,7 +38,7 @@
                   <v-list-item-action>
                     <v-icon>{{ item.icon }}</v-icon>
                   </v-list-item-action>
-                  <v-list-item-title v-text="item.title"></v-list-item-title>
+                  <v-list-item-title :v-text="item.title"></v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-list>
