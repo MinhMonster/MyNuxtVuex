@@ -48,7 +48,7 @@
                   <v-list-item-action>
                     <v-icon>{{ item.icon }}</v-icon>
                   </v-list-item-action>
-                  <v-list-item-title v-text="item.title"></v-list-item-title>
+                  <v-list-item-title >{{ item.title }}</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-list>
@@ -155,7 +155,7 @@
                 exact
               >
                 <v-list-item-content>
-                  <v-list-item-title v-text="item.title"></v-list-item-title>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </v-list>
@@ -244,6 +244,11 @@ export default {
           icon: "mdi-image",
           title: "Medias",
           to: "/admin/medias",
+        },
+        {
+          icon: "mdi-image",
+          title: "Ninja",
+          to: "/admin/game/ninjas",
         },
       ],
       miniVariant: false,

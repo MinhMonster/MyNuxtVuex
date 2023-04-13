@@ -10,6 +10,8 @@ import adminUploads from '~/repositories/admin/uploads'
 import adminMedias from '~/repositories/admin/medias'
 import adminFolders from '~/repositories/admin/folders'
 
+//admin Game
+import adminGameNinjas from '~/repositories/admin/game/ninjas'
 
 // import UserRepository from '~/repositories/UserRepository'
 // import CommentRepository from '~/repositories/CommentRepository'
@@ -26,6 +28,10 @@ export default ($api) => ({
   adminUploads: adminUploads($api),
   adminMedias: adminMedias($api),
   adminFolders: adminFolders($api),
+
+  // admin Game
+  adminGameNinjas: adminGameNinjas($api),
+
 
 
   // user: UserRepository($axios),

@@ -111,7 +111,74 @@ export default {
       } else {
         return (size / (1000 * 1024 * 1024)).toFixed(1) + "GB";
       }
+    },
+
+    classNinja(type) {
+      switch (type) {
+        case "1":
+          return "Đao";
+          break;
+        case "2":
+          return "Kiếm";
+          break;
+        case "3":
+          return "Tiêu";
+          break;
+        case "4":
+          return "Cung";
+          break;
+        case "5":
+          return "Quạt";
+          break;
+        case "6":
+          return "Kunai";
+          break;
+        case "7":
+          return "Chưa";
+          break;
+      }
+    },
+
+    serverNinja(type) {
+      switch (type) {
+        case "1":
+          return "Sv1";
+          break;
+        case "2":
+          return "Sv2+3";
+          break;
+        case "4":
+          return "Sv4";
+          break;
+        case "5":
+          return "Sv5";
+          break;
+        case "6":
+          return "Sv6";
+          break;
+        case "7":
+          return "Sv7";
+          break;
+        case "8":
+          return "Sv8";
+          break;
+      }
+    },
+
+    typeNinja(type) {
+      switch (type) {
+        case "3":
+          return "Thường";
+          break;
+        case "1":
+          return "VIP";
+          break;
+        case "2":
+          return "TTGT";
+          break;
+      }
     }
+
 
     // formatRangeTime(
     //   timeStart,
