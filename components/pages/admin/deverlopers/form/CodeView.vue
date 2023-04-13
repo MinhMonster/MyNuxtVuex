@@ -3,9 +3,11 @@
     <v-row class="bg-editor bg-view-code">
       <v-col cols="12" sm="12" md="12">
         <b-form-group>
+          <h1 class="bold">{{ action.title }}</h1>
+          <p>{{ action.content }}</p>
           <codemirror
             v-if="action.typeCode == `vue`"
-            :value="codeValue"
+            :value="action.code"
             :options="{
               lineWrapping: true,
               mode: `text/x-vue`,
@@ -17,7 +19,7 @@
           </codemirror>
           <codemirror
             v-if="action.typeCode == `css`"
-            :value="codeValue"
+            :value="action.code"
             :options="{
               lineWrapping: true,
               mode: `text/css`,
@@ -29,7 +31,7 @@
           </codemirror>
           <codemirror
             v-if="action.typeCode == `javascipt`"
-            :value="codeValue"
+            :value="action.code"
             :options="{
               lineWrapping: true,
               mode: `text/x-java`,
@@ -73,17 +75,17 @@ export default {
     action() {
       return this.getAction()(this.index);
     },
-    codeValue: {
-      get() {
-        return _.cloneDeep(this.action.code);
-      },
-      set(value) {
-        this.setAction({
-          index: this.index,
-          value: { ...this.action, code: _.cloneDeep(value) },
-        });
-      },
-    },
+    // codeValue: {
+    //   get() {
+    //     return _.cloneDeep(this.action.code);
+    //   },
+    //   set(value) {
+    //     this.setAction({
+    //       index: this.index,
+    //       value: { ...this.action, code: _.cloneDeep(value) },
+    //     });
+    //   },
+    // },
   },
   methods: {
     ...mapGetters(["getAction"]),

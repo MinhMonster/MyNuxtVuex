@@ -11,7 +11,6 @@
 
           <div v-if="actions">
             <div v-for="(action, index) in actions" :key="index">
-              <div>{{ action.id }}</div>
               <CodeForm :index="index"></CodeForm>
             </div>
           </div>

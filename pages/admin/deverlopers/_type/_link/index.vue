@@ -22,7 +22,6 @@
           <div class="bg-view view_htm">
             <div v-html="deverloper_view.info"></div>
             <div v-for="(action, index) in actions" :key="index">
-              <p>{{ index + 1 }} {{ action.id }}</p>
               <CodeView :index="index"></CodeView>
             </div>
           </div>

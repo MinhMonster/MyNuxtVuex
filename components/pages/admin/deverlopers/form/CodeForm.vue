@@ -1,7 +1,13 @@
 <template>
   <client-only>
-    <v-row class="bg-editor">
-      <v-col cols="12" sm="12" md="12">
+    <v-row class="bg-editor form-code">
+      <v-col cols="12" sm="12" md="12" class="code-title">
+        <v-text-field label="Title" v-model="nameValue"></v-text-field>
+      </v-col>
+      <v-col cols="12" sm="12" md="12" class="code-content">
+        <v-text-field label="Content" v-model="contentValue"></v-text-field>
+      </v-col>
+      <v-col cols="12" sm="12" md="12" class="code-value">
         <b-form-group>
           <codemirror
             v-if="action.typeCode == `vue`"
@@ -39,7 +45,7 @@
             }"
           >
           </codemirror>
-          <v-row align="center" class="mgt--50px">
+          <v-row align="center" class="mgt--40px mgb-5px">
             <v-col class="center">
               <v-btn icon class="danger" @click="deleteAction(index)">
                 <v-icon>mdi-delete</v-icon>
@@ -87,6 +93,28 @@ export default {
   computed: {
     action() {
       return this.getAction()(this.index);
+    },
+    nameValue: {
+      get() {
+        return _.cloneDeep(this.action.title);
+      },
+      set(value) {
+        this.setAction({
+          index: this.index,
+          value: { ...this.action, title: _.cloneDeep(value) },
+        });
+      },
+    },
+    contentValue: {
+      get() {
+        return _.cloneDeep(this.action.content);
+      },
+      set(value) {
+        this.setAction({
+          index: this.index,
+          value: { ...this.action, content: _.cloneDeep(value) },
+        });
+      },
     },
     codeValue: {
       get() {
@@ -149,5 +177,29 @@ export default {
 <style >
 .CodeMirror-sizer {
   min-height: 500px;
+
+}
+.vue-codemirror {
+  border: 1px solid #ccc;
+
+}
+.form-code .code-value .form-group {
+  background: #333;
+    border: 1px solid #fff;
+    padding: 10px;
+}
+
+.form-code .v-input{
+  margin-bottom: -20px;
+  margin-top: -15px;
+
+}
+
+.form-code .code-content {
+  margin-bottom: -5px;
+}
+
+.form-code .code-title{
+  margin-top: 30px;
 }
 </style>
