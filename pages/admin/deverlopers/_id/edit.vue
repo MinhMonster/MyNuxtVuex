@@ -179,7 +179,7 @@ export default {
           }
         });
     },
-    deleteAction(index){
+    deleteAction(index) {
       this.$swal
         .fire({
           title: `Remove Action`,
@@ -194,7 +194,6 @@ export default {
           }
         });
 
-
       // this.$confirm({
       //   message: "Xóa Phần Tử",
       //   button: {
@@ -207,7 +206,7 @@ export default {
       //     }
       //   },
       // });
-    }
+    },
   },
 };
 </script>
@@ -219,4 +218,16 @@ export default {
 .CodeMirror-wrap pre {
   word-break: break-word;
 }
+/* #body-admin {
+  position: relative;
+} */
+/* .btn-groups {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 9;
+  height: 50px;
+
+} */
 </style>

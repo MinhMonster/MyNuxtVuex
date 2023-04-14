@@ -7,11 +7,13 @@
         </v-col>
         <v-spacer />
         <v-col
-          ><v-btn class="right mgr-15px" color="primary" :to="`/admin/deverlopers/${this.routeId}/new`"
+          ><v-btn
+            class="right mgr-15px"
+            color="primary"
+            :to="`/admin/deverlopers/${this.routeId}/new`"
             >Thêm mới
           </v-btn>
-        </v-col
-        >
+        </v-col>
       </v-row>
 
       <div id="body-admin">
@@ -23,24 +25,24 @@
             <thead>
               <tr class="w-100">
                 <th class="w-10 text-center">STT</th>
-                <th class="w-30 text-left">Tên hiển thị</th>
-                <th class="w-45 text-left">Danh sách</th>
+                <th class="w-75 text-left">Danh sách</th>
                 <th class="w-15 text-center">Thao tác</th>
               </tr>
             </thead>
             <tbody v-if="deverloper">
               <tr v-for="(item, index) in deverloper.items" :key="index">
                 <td class="text-center">{{ index + 1 }}</td>
-                <td>{{ item.title }}</td>
                 <td class="text-left">
                   <ul>
-                    <li v-for="info in item.items" :key="info.ID" >
-                      <nuxt-link :to="`/admin/deverlopers/${info.ID}/edit` ">{{info.title}}</nuxt-link>
-                      
-                      <hr/>
+                    <li class="bold">
+                      {{ item.title }}
+                    </li>
+                    <li v-for="info in item.items" :key="info.ID">
+                      <nuxt-link :to="`/admin/deverlopers/${info.ID}/edit`">{{
+                        info.title
+                      }}</nuxt-link>
                     </li>
                   </ul>
-
                 </td>
 
                 <td class="text-center">
@@ -75,7 +77,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 export default {
   layout: "adminDev",
   head() {
@@ -93,23 +95,24 @@ export default {
   name: "Deverlopers",
   async mounted() {
     await this.get_deverloper({
-      params:{
-      id: this.routeId}
-  });
+      params: {
+        id: this.routeId,
+      },
+    });
   },
   computed: {
-    ...mapState('admin/deverlopers',["deverloper"]),
+    ...mapState("admin/deverlopers", ["deverloper"]),
     routeId() {
       return this.$route.params.id;
     },
   },
   methods: {
-    ...mapActions('admin/deverlopers',["","get_deverloper"]),
+    ...mapActions("admin/deverlopers", ["", "get_deverloper"]),
   },
 };
 </script>
 <style>
-#admin td ul li{
-padding: 10px 0;
+#admin td ul li {
+  padding: 10px 0;
 }
 </style>

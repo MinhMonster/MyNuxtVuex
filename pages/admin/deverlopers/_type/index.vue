@@ -22,27 +22,29 @@
             <thead>
               <tr class="w-100">
                 <th class="w-10 text-center">STT</th>
-                <th class="w-30 text-left">Tên hiển thị</th>
-                <th class="w-50 text-left">Danh sách</th>
-                <th class="w-10 text-center">Thao tác</th>
+                <th class="w-75 text-left">Danh sách</th>
+                <th class="w-15 text-center">Thao tác</th>
               </tr>
             </thead>
             <tbody v-if="deverloper">
               <tr v-for="(item, index) in deverloper.items" :key="index">
                 <td class="text-center">{{ index + 1 }}</td>
-                <td>{{ item.title }}</td>
                 <td class="text-left">
                   <ul>
+                    <li class="bold">
+                      {{ item.title }}
+                    </li>
                     <li v-for="info in item.items" :key="info.ID" >
                       <nuxt-link :to="`/admin/deverlopers/${info.type}/${info.link}` ">{{info.title}}</nuxt-link>
-
-                    <hr/>
                   </li>
                   </ul>
 
                 </td>
 
                 <td class="text-center">
+                  <v-btn light icon :to="`/admin/deverlopers/${item.ID}/new`">
+                    <v-icon>mdi-plus-box-multiple-outline</v-icon>
+                  </v-btn>
                   <v-btn light icon :to="`/admin/deverlopers/${item.ID}/edit`">
                     <v-icon>mdi-pencil-box-multiple-outline</v-icon>
                   </v-btn>

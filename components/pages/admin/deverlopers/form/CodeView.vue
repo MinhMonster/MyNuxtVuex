@@ -41,6 +41,42 @@
             }"
           >
           </codemirror>
+          <codemirror
+            v-if="action.typeCode == `ruby`"
+            :value="action.code"
+            :options="{
+              lineWrapping: true,
+              mode: `text/x-ruby`,
+              viewportMargin: 15,
+              readOnly: true,
+              theme: `base16-dark`,
+            }"
+          >
+          </codemirror>
+          <codemirror
+            v-if="action.typeCode == `php`"
+            :value="action.code"
+            :options="{
+              lineWrapping: true,
+              mode: `application/x-httpd-php`,
+              viewportMargin: 15,
+              readOnly: true,
+              theme: `base16-dark`,
+            }"
+          >
+          </codemirror>
+          <codemirror
+            v-if="action.typeCode == `react`"
+            :value="action.code"
+            :options="{
+              lineWrapping: true,
+              mode: `text/jsx`,
+              viewportMargin: 15,
+              readOnly: true,
+              theme: `base16-dark`,
+            }"
+          >
+          </codemirror>
         </b-form-group>
       </v-col>
     </v-row>

@@ -45,6 +45,42 @@
             }"
           >
           </codemirror>
+          <codemirror
+            v-if="action.typeCode == `ruby`"
+            v-model="codeValue"
+            :options="{
+              lineWrapping: true,
+              mode: `text/x-ruby`,
+              viewportMargin: 15,
+              readOnly: false,
+              theme: `base16-dark`,
+            }"
+          >
+          </codemirror>
+          <codemirror
+            v-if="action.typeCode == `php`"
+            v-model="codeValue"
+            :options="{
+              lineWrapping: true,
+              mode: `application/x-httpd-php`,
+              viewportMargin: 15,
+              readOnly: false,
+              theme: `base16-dark`,
+            }"
+          >
+          </codemirror>
+          <codemirror
+            v-if="action.typeCode == `react`"
+            v-model="codeValue"
+            :options="{
+              lineWrapping: true,
+              mode: `text/jsx`,
+              viewportMargin: 15,
+              readOnly: false,
+              theme: `base16-dark`,
+            }"
+          >
+          </codemirror>
           <v-row align="center" class="mgt--40px mgb-5px">
             <v-col class="center">
               <v-btn icon class="danger" @click="deleteAction(index)">

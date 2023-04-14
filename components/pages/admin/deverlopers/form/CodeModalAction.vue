@@ -1,10 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog
-      v-model="dialog"
-      scrollable
-      max-width="300px"
-    >
+    <v-dialog v-model="dialog" scrollable max-width="300px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           dark
@@ -14,46 +10,29 @@
           v-on="on"
           @click="typeCode = ''"
         >
-        <v-icon>mdi-plus</v-icon>
-          
+          <v-icon>mdi-plus</v-icon>
         </v-btn>
       </template>
       <v-card>
-        <v-card-title>
-            Select Code Action</v-card-title>
+        <v-card-title> Select Code Action</v-card-title>
         <v-divider></v-divider>
-        <v-card-text style="height: 300px;">
-          <v-radio-group
-            v-model="typeCode"
-            column
-          >
+        <v-card-text style="height: 300px">
+          <v-radio-group v-model="typeCode" column>
             <v-radio
-              label="Vue"
-              value="vue"
-            ></v-radio>
-            <v-radio
-              label="Javascript"
-              value="javascipt"
-            ></v-radio>
-            <v-radio
-              label="HTML"
-              value="html"
+              v-for="(type, index) in typeOptions"
+              :key="index"
+              :label="type.name"
+              :value="type"
             ></v-radio>
           </v-radio-group>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
+          <v-btn color="red" @click="dialog = false"> Close </v-btn>
           <v-btn
-            color="red"
-            
-            @click="dialog = false"
-          >
-            Close
-          </v-btn>
-          <v-btn v-if="typeCode"
+            v-if="typeCode"
             color="primary"
-            
-            @click="add(), dialog = false"
+            @click="add(), (dialog = false)"
           >
             Save
           </v-btn>
@@ -65,35 +44,64 @@
 <script>
 import { mapActions } from "vuex";
 
-  export default {
-    data () {
-      return {
-        dialogm1: '',
-        dialog: false,
-        typeCode: ''
-      }
-    },
-    props: {
+export default {
+  data() {
+    return {
+      dialogm1: "",
+      dialog: false,
+      typeCode: {},
+      typeOptions: [
+        {
+          name: "Vue",
+          type: "vue",
+          mode: "text/x-vue",
+        },
+        {
+          name: "Ruby",
+          type: "ruby",
+          mode: "text/x-ruby",
+        },
+        {
+          name: "PHP",
+          type: "php",
+          mode: "application/x-httpd-php",
+        },
+        {
+          name: "Javascipt",
+          type: "javascipt",
+          mode: "text/x-java",
+        },
+        {
+          name: "Css",
+          type: "css",
+          mode: "text/css",
+        },
+        {
+          name: "React",
+          type: "react",
+          mode: "text/jsx",
+        },
+      ],
+    };
+  },
+  props: {
     index: {
       type: [String, Number],
       required: true,
     },
   },
-    methods: {
-      ...mapActions("admin/deverlopers", [
-      "addActionIndex"
-    ]),
-      add() {
-        this.addActionIndex({typeCode: this.typeCode, index: this.index });
-      }
-    }
-  }
+  methods: {
+    ...mapActions("admin/deverlopers", ["addActionIndex"]),
+    add() {
+      this.addActionIndex({ typeCode: this.typeCode, index: this.index });
+    },
+  },
+};
 </script>
 <style scoped>
 .v-card.v-sheet.theme--dark {
   border: 1px solid #a4a4a4;
   /* border: 1px solid rgba(255, 255, 255, 0.12); */
-
 }
 
 /* .v-card.v-sheet.theme--dark {

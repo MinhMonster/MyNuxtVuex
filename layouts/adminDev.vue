@@ -6,6 +6,7 @@
           top: 94px;
           min-height: calc(100% - 94px);
           height: calc(100% - 94px);
+          width: 300px;
         "
         v-model="drawer"
         :mini-variant="miniVariant"
@@ -48,7 +49,7 @@
                   <v-list-item-action>
                     <v-icon>{{ item.icon }}</v-icon>
                   </v-list-item-action>
-                  <v-list-item-title >{{ item.title }}</v-list-item-title>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-list>
@@ -112,7 +113,7 @@
           </v-slide-item>
         </v-slide-group>
       </v-sheet>
-      <v-main class="bg-default" style="margin-top: 40px">
+      <v-main class="bg-white" style="margin-top: 40px">
         <v-container>
           <Nuxt />
         </v-container>
@@ -123,6 +124,7 @@
           top: 94px;
           min-height: calc(100% - 94px);
           height: calc(100% - 94px);
+          width: 300px;
           direction: rtl;
           text-align: left;
         "
@@ -145,6 +147,16 @@
                     {{ text.title }}
                   </v-list-item-title>
                 </v-list-item-content>
+                <v-slide-item>
+                  <v-btn icon :to="`/admin/deverlopers/${text.ID}/new`">
+                    <v-icon> mdi-plus</v-icon>
+                  </v-btn>
+                </v-slide-item>
+                <v-slide-item>
+                  <v-btn icon :to="`/admin/deverlopers/${text.ID}/edit`">
+                    <v-icon>mdi-pencil-box-multiple-outline</v-icon>
+                  </v-btn>
+                </v-slide-item>
               </v-list-item>
               <v-list-item
                 v-for="item in text.items"
@@ -157,6 +169,11 @@
                 <v-list-item-content>
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
+                <v-slide-item>
+                  <v-btn icon :to="`/admin/deverlopers/${item.ID}/edit`">
+                    <v-icon>mdi-pencil-box-multiple-outline</v-icon>
+                  </v-btn>
+                </v-slide-item>
               </v-list-item>
             </v-list>
           </template>

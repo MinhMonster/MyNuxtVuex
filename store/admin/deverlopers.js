@@ -65,67 +65,25 @@ export default {
       }
     },
     ADD_ACTION(state, type) {
-      switch (type) {
-        case "vue":
           state.actions.push({
             id: Math.random().toString(36).substr(2, 8),
-            typeCode: "vue",
+            typeCode: type.type,
             code: "",
             title: "",
             content: "",
+            mode: type.mode
           });
-          break;
-        case "html":
-          state.actions.push({
-            id: Math.random().toString(36).substr(2, 8),
-            typeCode: "html",
-            code: "",
-            title: "",
-            content: "",
-          });
-          break;
-        case "javascipt":
-          state.actions.push({
-            id: Math.random().toString(36).substr(2, 8),
-            typeCode: "javascipt",
-            code: "",
-            title: "",
-            content: "",
-          });
-          break;
-      }
     },
     ADD_ACTION_INDEX(state, payload) {
       console.log(`payload`, payload);
-      switch (payload.typeCode) {
-        case "vue":
           state.actions.splice((payload.index + 1), 0, {
             id: Math.random().toString(36).substr(2, 8),
-            typeCode: "vue",
+            typeCode: payload.typeCode.type,
             code: "",
             title: "",
             content: "",
+            mode: payload.typeCode.mode,
           });
-          break;
-        case "html":
-          state.actions.splice((payload.index + 1), 0, {
-            id: Math.random().toString(36).substr(2, 8),
-            typeCode: "html",
-            code: "",
-            title: "",
-            content: "",
-          });
-          break;
-        case "javascipt":
-          state.actions.splice((payload.index + 1), 0, {
-            id: Math.random().toString(36).substr(2, 8),
-            typeCode: "javascipt",
-            code: "",
-            title: "",
-            content: "",
-          });
-          break;
-      }
     },
     REMOVE_ACTION(state, index) {
       state.actions = state.actions.filter((item, i) => i !== index);
