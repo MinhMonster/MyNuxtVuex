@@ -179,34 +179,6 @@ export default {
           }
         });
     },
-    deleteAction(index) {
-      this.$swal
-        .fire({
-          title: `Remove Action`,
-          confirmButtonColor: "#F64E60",
-          showCancelButton: true,
-          confirmButtonText: "YES",
-          cancelButtonText: "NO",
-        })
-        .then(async (result) => {
-          if (result.isConfirmed) {
-            this.removeAction(index);
-          }
-        });
-
-      // this.$confirm({
-      //   message: "Xóa Phần Tử",
-      //   button: {
-      //     no: "NO",
-      //     yes: "YES",
-      //   },
-      //   callback: (confirm) => {
-      //     if (confirm) {
-      //       this.removeAction(index);
-      //     }
-      //   },
-      // });
-    },
   },
 };
 </script>

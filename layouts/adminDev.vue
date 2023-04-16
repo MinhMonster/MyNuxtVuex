@@ -74,6 +74,15 @@
           
         </v-toolbar-title> -->
         <v-spacer />
+        <v-btn v-if="rightDrawer" icon> <v-icon>mdi-cursor-move</v-icon>: </v-btn><br/>
+        <b-form-checkbox
+          v-if="rightDrawer"
+          v-model="checkedMove"
+          name="check-button"
+          switch
+        >
+        </b-form-checkbox>
+        <v-btn v-if="rightDrawer" icon> <v-icon>mdi-pencil-box-multiple-outline</v-icon>: </v-btn>
         <b-form-checkbox
           v-if="rightDrawer"
           v-model="checkedEdit"
@@ -84,7 +93,7 @@
         <v-btn color="red" icon @click="onLogout">
           <v-icon>mdi-power</v-icon>
         </v-btn>
-        <v-btn v-if="deverloper" icon @click.stop="rightDrawer = !rightDrawer">
+        <v-btn v-if="menuLeft" icon @click.stop="rightDrawer = !rightDrawer">
           <v-icon>mdi-menu</v-icon>
         </v-btn>
       </v-app-bar>
@@ -141,11 +150,7 @@
         fixed
         app
       >
-        <v-menu
-          v-for="(text, index) in this.deverloper.items"
-          :key="index"
-          offset-y
-        >
+        <v-menu v-for="(text, index) in menuLeft.items" :key="index" offset-y>
           <template v-slot:activator="{ attrs }">
             <v-list class="" v-bind="attrs" style="direction: ltr">
               <v-list-item :to="`/admin/deverlopers/${text.ID}/show`">
@@ -165,23 +170,36 @@
                   </v-btn>
                 </v-slide-item>
               </v-list-item>
-              <v-list-item
-                v-for="item in text.items"
-                :key="item.title"
-                link
-                :to="`/admin/deverlopers/${item.type}/${item.link}`"
-                router
-                exact
+              <draggable
+                v-model="text.items"
+                ghost-class="ghost"
+                @change="changeByDrag"
+                handle=".handle"
+                tag="div"
               >
-                <v-list-item-content>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-content>
-                <v-slide-item v-if="checkedEdit">
-                  <v-btn icon :to="`/admin/deverlopers/${item.ID}/edit`">
-                    <v-icon>mdi-pencil-box-multiple-outline</v-icon>
-                  </v-btn>
-                </v-slide-item>
-              </v-list-item>
+                <div v-for="item in text.items" :key="item.title">
+                  <v-list-item
+                    link
+                    :to="`/admin/deverlopers/${item.type}/${item.link}`"
+                    router
+                    exact
+                  >
+                    <v-list-item-content>
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item-content>
+                    <v-slide-item v-if="checkedMove">
+                      <v-btn icon>
+                        <v-icon class="handle">mdi-cursor-move</v-icon>
+                      </v-btn>
+                    </v-slide-item>
+                    <v-slide-item v-if="checkedEdit">
+                      <v-btn icon :to="`/admin/deverlopers/${item.ID}/edit`">
+                        <v-icon>mdi-pencil-box-multiple-outline</v-icon>
+                      </v-btn>
+                    </v-slide-item>
+                  </v-list-item>
+                </div>
+              </draggable>
             </v-list>
           </template>
         </v-menu>
@@ -195,16 +213,25 @@
 
 <script>
 // import api from "@/apis/modules/admin/index"
+// import { mapFields } from "vuex-map-fields";
+
 import { createNamespacedHelpers } from "vuex";
+import draggable from "vuedraggable";
+
 const { mapState, mapActions } = createNamespacedHelpers("admin/deverlopers");
 const auth = createNamespacedHelpers("admin/auth");
 
 export default {
   name: "Adminlayout",
+  components: {
+    draggable,
+  },
   data() {
     return {
+      // menuLeft: [],
       is_show: false,
       checkedEdit: false,
+      checkedMove: false,
       menus: [
         {
           active: false,
@@ -301,9 +328,16 @@ export default {
   computed: {
     ...mapState(["deverlopers", "deverloper"]),
     ...auth.mapState(["authenticated"]),
+    menuLeft() {
+      return _.cloneDeep(this.deverloper);
+    },
   },
   methods: {
-    ...mapActions(["get_deverlopers"]),
+    ...mapActions([
+      "get_deverlopers",
+      "changePositionItemDev",
+      "updateDeverloper",
+    ]),
     ...auth.mapActions(["logout"]),
 
     onLogout() {
@@ -324,10 +358,26 @@ export default {
         }
       }
     },
+    async changeByDrag(event) {
+      this.updatePosition(
+        event.moved.element.ID,
+        event.moved.newIndex,
+        event.moved.element.level_2
+      );
+      await this.updateDeverloper(this.menuLeft);
+    },
+    updatePosition(id, newIndex, level_2) {
+      const formData = new FormData();
+      formData.append("id", id);
+      formData.append("newIndex", newIndex);
+      formData.append("item", level_2);
+
+      this.changePositionItemDev(formData);
+    },
   },
 };
 </script>
-<style>
+<style >
 @import "~/assets/css/admin-style.css";
 @import "~/assets/css/mms-style.css";
 .bg-default {
@@ -440,5 +490,8 @@ body::-webkit-scrollbar,
   z-index: 6;
   width: 100%;
   position: fixed;
+}
+.handle {
+  cursor: move;
 }
 </style>

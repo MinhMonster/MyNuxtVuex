@@ -7,7 +7,10 @@
         </v-col>
         <v-spacer />
         <v-col
-          ><v-btn class="right mgr-15px" color="primary" to="/admin/deverlopers/new"
+          ><v-btn
+            class="right mgr-15px"
+            color="primary"
+            to="/admin/deverlopers/new"
             >Thêm mới
           </v-btn></v-col
         >
@@ -28,35 +31,37 @@
               </tr>
             </thead>
             <draggable
-            v-model="deverlopers"
-            ghost-class="ghost"
-
-            @change="changeByDrag"
-            handle=".handle"
-            tag="tbody"
-          >
-              <tr v-for="(item, index) in deverlopers" :key="index" class="text-middle">
+              v-model="deverlopers"
+              ghost-class="ghost"
+              @change="changeByDrag"
+              handle=".handle"
+              tag="tbody"
+            >
+              <tr
+                v-for="(item, index) in deverlopers"
+                :key="index"
+                class="text-middle"
+              >
                 <td class="text-center">{{ index + 1 }}</td>
                 <td>
-                  <nuxt-link :to="`/admin/deverlopers/${item.ID}/show`">{{ item.title }}</nuxt-link>
+                  <nuxt-link :to="`/admin/deverlopers/${item.ID}/show`">{{
+                    item.title
+                  }}</nuxt-link>
                   <!-- <v-btn light icon :to="`/admin/deverlopers/${item.ID}/show`"> -->
-                    <!-- {{ item.title }} -->
+                  <!-- {{ item.title }} -->
                   <!-- </v-btn> -->
                 </td>
                 <td class="text-center">
                   <v-btn light icon class="">
-                   <v-icon 
-                  >mdi-chevron-double-up</v-icon>
+                    <v-icon>mdi-chevron-double-up</v-icon>
                   </v-btn>
                   <v-btn light icon class="handle">
-                    |<v-icon 
-                  >mdi-menu</v-icon>|
+                    |<v-icon>mdi-menu</v-icon>|
                   </v-btn>
                   <v-btn light icon class="">
-                   <v-icon 
-                  >mdi-chevron-double-down</v-icon>
+                    <v-icon>mdi-chevron-double-down</v-icon>
                   </v-btn>
-                 </td>
+                </td>
 
                 <td class="text-center">
                   <v-btn light icon :to="`/admin/deverlopers/${item.ID}/edit`">
@@ -88,17 +93,16 @@
 
 <script>
 import { mapFields } from "vuex-map-fields";
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 import draggable from "vuedraggable";
 // import { cloneDeep } from "lodash";
-
 
 export default {
   layout: "adminDev",
   components: {
-    draggable
+    draggable,
   },
-  
+
   data() {
     return {
       // list_deverlopers:[],
@@ -121,10 +125,10 @@ export default {
     await this.get_deverlopers();
   },
   computed: {
-    ...mapFields('admin/deverlopers',["deverlopers"]),
+    ...mapFields("admin/deverlopers", ["deverlopers"]),
   },
   methods: {
-    ...mapActions('admin/deverlopers',["get_deverlopers", "change_positions"]),
+    ...mapActions("admin/deverlopers", ["get_deverlopers", "change_positions"]),
     // add: function() {
     //   this.list_deverlopers.push({ name: "Juan " + index, index: index++ });
     // },
@@ -144,8 +148,8 @@ export default {
       const formData = new FormData();
       formData.append("id", id);
       formData.append("newIndex", newIndex);
-      this.change_positions(formData)
-    }    
+      this.change_positions(formData);
+    },
   },
 };
 </script>
@@ -157,6 +161,8 @@ export default {
   opacity: 0.5;
   background: #c8ebfb;
 }
-.list-group-item, .handle {
-    cursor: move;
-}</style>
+.list-group-item,
+.handle {
+  cursor: move;
+}
+</style>

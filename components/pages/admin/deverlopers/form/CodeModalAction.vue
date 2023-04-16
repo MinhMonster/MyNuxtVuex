@@ -14,7 +14,7 @@
         </v-btn>
       </template>
       <v-card>
-        <v-card-title> Select Code Action</v-card-title>
+        <v-card-title class="title-modal"> Select Code Form</v-card-title>
         <v-divider></v-divider>
         <v-card-text style="height: 300px">
           <v-radio-group v-model="typeCode" column>
@@ -107,4 +107,10 @@ export default {
 /* .v-card.v-sheet.theme--dark {
   background: #fff !important;
 } */
+.v-card__title.title-modal {
+  color: #eee;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 </style>

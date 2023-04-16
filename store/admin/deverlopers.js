@@ -17,7 +17,7 @@ export default {
     deverlopers_scroll: [],
     datas: [],
     deverlopers: [],
-    deverloper: false,
+    deverloper: {},
     deverloper_view: {},
     deverloper_edit: {},
     options: {},
@@ -90,16 +90,14 @@ export default {
       // state.actions.splice((index), 1)
 
     },
-    UPDATE_ACTION(state, { index, value }) {
-      const actions = _.cloneDeep(state.actions);
-      actions[index] = _.cloneDeep(value);
-      state.actions = actions;
-    },
   },
 
   actions: {
     setNew({ commit },) {
       commit("SET_Deverloper_edit", { ...newDeverloper });
+    },
+    updateDeverloper({ commit }, payload) {
+      commit("SET_Deverloper", payload);
     },
     setAction({ commit }, payload) {
       console.log(payload);
@@ -128,7 +126,7 @@ export default {
 
       try {
         const res = await this.$repositories.adminDeverlopers.show(id)
-        commit('SET_Deverloper', res.data.deverloper)
+        commit('SET_Deverloper', res.data.deverloper || {})
       } catch (error) {
 
       }
@@ -144,6 +142,7 @@ export default {
 
       }
     },
+
     async get_deverloper_edit({ commit }, id) {
       try {
         const res = await this.$repositories.adminDeverlopers.show_edit(id)
@@ -155,14 +154,24 @@ export default {
 
       }
     },
+
     async change_positions({ commit }, payload) {
       try {
-        const res = await this.$repositories.adminDeverlopers.change_positions(payload)
-        // commit('SET_Deverlopers', res.data.deverlopers)
+        await this.$repositories.adminDeverlopers.change_positions(payload)
       } catch (error) {
+        console.log(error);
 
       }
     },
+
+    async changePositionItemDev({ commit }, payload) {
+      try {
+        await this.$repositories.adminDeverlopers.changePositionItemDev(payload)
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     addAction({ commit, state }, payload) {
       commit(ADD_ACTION, payload);
       console.log(`actions`, state.actions);

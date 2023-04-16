@@ -186,7 +186,7 @@ export default {
     deleteAction(index) {
       this.$swal
         .fire({
-          title: `Remove Action`,
+          title: `Remove Code`,
           confirmButtonColor: "#F64E60",
           showCancelButton: true,
           confirmButtonText: "YES",
