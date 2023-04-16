@@ -58,9 +58,9 @@
       </v-navigation-drawer>
       <v-app-bar :clipped-left="clipped" :clipped-right="clipped" fixed app>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-        <v-btn icon @click.stop="miniVariant = !miniVariant">
+        <!-- <v-btn icon @click.stop="miniVariant = !miniVariant">
           <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
-        </v-btn>
+        </v-btn> -->
 
         <!-- <v-btn icon @click.stop="clipped = !clipped">
           <v-icon>mdi-application</v-icon>
@@ -74,6 +74,13 @@
           
         </v-toolbar-title> -->
         <v-spacer />
+        <b-form-checkbox
+          v-if="rightDrawer"
+          v-model="checkedEdit"
+          name="check-button"
+          switch
+        >
+        </b-form-checkbox>
         <v-btn color="red" icon @click="onLogout">
           <v-icon>mdi-power</v-icon>
         </v-btn>
@@ -147,12 +154,12 @@
                     {{ text.title }}
                   </v-list-item-title>
                 </v-list-item-content>
-                <v-slide-item>
+                <v-slide-item v-if="checkedEdit">
                   <v-btn icon :to="`/admin/deverlopers/${text.ID}/new`">
                     <v-icon> mdi-plus</v-icon>
                   </v-btn>
                 </v-slide-item>
-                <v-slide-item>
+                <v-slide-item v-if="checkedEdit">
                   <v-btn icon :to="`/admin/deverlopers/${text.ID}/edit`">
                     <v-icon>mdi-pencil-box-multiple-outline</v-icon>
                   </v-btn>
@@ -169,7 +176,7 @@
                 <v-list-item-content>
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
-                <v-slide-item>
+                <v-slide-item v-if="checkedEdit">
                   <v-btn icon :to="`/admin/deverlopers/${item.ID}/edit`">
                     <v-icon>mdi-pencil-box-multiple-outline</v-icon>
                   </v-btn>
@@ -197,6 +204,7 @@ export default {
   data() {
     return {
       is_show: false,
+      checkedEdit: false,
       menus: [
         {
           active: false,

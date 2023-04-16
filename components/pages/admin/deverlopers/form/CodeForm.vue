@@ -38,7 +38,11 @@
             v-model="codeValue"
             :options="{
               lineWrapping: true,
-              mode: `text/x-java`,
+              mode: {
+                name: 'javascript',
+                json: true,
+                statementIndent: 2,
+              },
               viewportMargin: 15,
               readOnly: false,
               theme: `base16-dark`,
@@ -212,30 +216,27 @@ export default {
 </script>
 <style >
 .CodeMirror-sizer {
-  min-height: 500px;
-
+  min-height: 300px;
 }
 .vue-codemirror {
   border: 1px solid #ccc;
-
 }
 .form-code .code-value .form-group {
   background: #333;
-    border: 1px solid #fff;
-    padding: 10px;
+  border: 1px solid #fff;
+  padding: 10px;
 }
 
-.form-code .v-input{
+.form-code .v-input {
   margin-bottom: -20px;
   margin-top: -15px;
-
 }
 
 .form-code .code-content {
   margin-bottom: -5px;
 }
 
-.form-code .code-title{
+.form-code .code-title {
   margin-top: 30px;
 }
 </style>

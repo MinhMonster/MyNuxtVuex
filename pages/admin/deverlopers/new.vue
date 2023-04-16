@@ -55,9 +55,11 @@ export default {
     };
   },
   
-  created() {},
+  created() {
+    this.setNew();
+  },
   methods: {
-    ...mapActions('admin/deverlopers',["get_deverlopers", "new"]),
+    ...mapActions('admin/deverlopers',["get_deverlopers", "setNew"]),
     async create() {
       const formData = new FormData();
       formData.append("title", this.deverloper.title);

@@ -16,7 +16,7 @@
           </div>
           <AddActionBtnGroups></AddActionBtnGroups>
           <br />
-          <v-row align="center">
+          <v-row align="center" class="groups-btn">
             <v-col>
               <v-btn @click="onDelete()" color="red"> Xóa</v-btn>
             </v-col>
@@ -212,7 +212,8 @@ export default {
 </script>
 <style >
 .CodeMirror {
-  height: 500px;
+  height: auto;
+  min-height: 50px;
   resize: horizontal;
 }
 .CodeMirror-wrap pre {

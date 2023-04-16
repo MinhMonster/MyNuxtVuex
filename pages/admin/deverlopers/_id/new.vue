@@ -61,6 +61,7 @@ export default {
 
   created() {},
   async mounted() {
+    await this.setNew();
     await this.get_deverloper({
       params: {
         id: this.paramId,
@@ -79,7 +80,7 @@ export default {
     ...mapActions("admin/deverlopers", [
       "get_deverlopers",
       "get_deverloper",
-      "new",
+      "setNew",
     ]),
     async create() {
       const formData = new FormData();

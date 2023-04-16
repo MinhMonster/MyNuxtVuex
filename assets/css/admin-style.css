@@ -363,12 +363,16 @@ ol li::before {
   color: #ffffff;
 }
 
-.v-application ul,
-.v-application ol {
+.v-application ul {
   padding-left: 0px;
 }
 
-.v-card__title{
+
+.v-application ol {
+  padding-left: 30px;
+}
+
+.v-card__title {
   color: #555;
 }
 

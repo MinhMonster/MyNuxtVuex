@@ -65,25 +65,25 @@ export default {
       }
     },
     ADD_ACTION(state, type) {
-          state.actions.push({
-            id: Math.random().toString(36).substr(2, 8),
-            typeCode: type.type,
-            code: "",
-            title: "",
-            content: "",
-            mode: type.mode
-          });
+      state.actions.push({
+        id: Math.random().toString(36).substr(2, 8),
+        typeCode: type.type,
+        code: "",
+        title: "",
+        content: "",
+        mode: type.mode
+      });
     },
     ADD_ACTION_INDEX(state, payload) {
       console.log(`payload`, payload);
-          state.actions.splice((payload.index + 1), 0, {
-            id: Math.random().toString(36).substr(2, 8),
-            typeCode: payload.typeCode.type,
-            code: "",
-            title: "",
-            content: "",
-            mode: payload.typeCode.mode,
-          });
+      state.actions.splice((payload.index + 1), 0, {
+        id: Math.random().toString(36).substr(2, 8),
+        typeCode: payload.typeCode.type,
+        code: "",
+        title: "",
+        content: "",
+        mode: payload.typeCode.mode,
+      });
     },
     REMOVE_ACTION(state, index) {
       state.actions = state.actions.filter((item, i) => i !== index);
@@ -98,19 +98,14 @@ export default {
   },
 
   actions: {
+    setNew({ commit },) {
+      commit("SET_Deverloper_edit", { ...newDeverloper });
+    },
     setAction({ commit }, payload) {
       console.log(payload);
       commit(UPDATE_ACTION, payload);
     },
-    // async get_topics({ commit }) {
-    //   const res = await this.$repositories.adminTopics.all()
-    //   const { status, data } = res
-    //   if (status === 200) {
-    //     commit('SET_TOPICS', data.topics)
-    //   } else {
-    //     // Handle error here
-    //   }
-    // },
+
     async get_deverlopers_scroll({ commit }, payload) {
       try {
         const res = await this.$repositories.adminDeverlopers.scroll(payload)
@@ -172,7 +167,7 @@ export default {
       commit(ADD_ACTION, payload);
       console.log(`actions`, state.actions);
     },
-    
+
     addActionIndex({ commit, state }, payload) {
       console.log(payload);
       commit(ADD_ACTION_INDEX, payload);
@@ -228,4 +223,13 @@ export default {
   //   }
   // }
 }
+
+export const newDeverloper = {
+  title: "",
+  link: "",
+  info: "",
+  code: []
+};
+
+
 
