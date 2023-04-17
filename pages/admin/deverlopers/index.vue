@@ -1,20 +1,17 @@
 <template>
   <client-only>
     <div class="">
-      <v-row align="center">
-        <v-col>
+      <div class="d-flex" align="center">
+        <div>
           <v-card-title>Deverlopers</v-card-title>
-        </v-col>
+        </div>
         <v-spacer />
-        <v-col
-          ><v-btn
-            class="right mgr-15px"
-            color="primary"
-            to="/admin/deverlopers/new"
-            >Thêm mới
-          </v-btn></v-col
-        >
-      </v-row>
+        <div class="mgr-15px right middle">
+          <v-btn icon class="primary right" to="/admin/deverlopers/new">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </div>
+      </div>
 
       <div id="body-admin">
         <div v-if="!deverlopers" class="">

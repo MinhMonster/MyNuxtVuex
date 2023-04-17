@@ -593,7 +593,7 @@ code {
 #admin .v-btn:not(.v-btn--round).v-size--default {
   height: 30px;
   padding: 0 10px;
-  margin: 5px;
+  margin: 0 5px;
 }
 
 #admin .btn-groups {

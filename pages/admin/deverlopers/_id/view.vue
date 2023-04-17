@@ -1,9 +1,9 @@
 <template>
   <client-only>
-    <div class="">
-      <v-row align="center">
+    <div class="view-code">
+      <v-row align="center" class="view-title">
         <v-col>
-          <v-card-title>{{deverloper_view.title}}</v-card-title>
+          <v-card-title>{{ deverloper_view.title }}</v-card-title>
         </v-col>
         <!-- <v-spacer /> -->
         <!-- <v-col
@@ -13,13 +13,16 @@
         > -->
       </v-row>
 
-      <div id="body-admin" >
+      <div id="body-admin">
         <div v-if="!deverloper_view" class="">
           <div class=""></div>
         </div>
-        <div >
+        <div>
           <!-- <h1>{{deverloper_view.title}}</h1> -->
-          <v-card-text v-html="deverloper_view.info" class="bg-view view_html"></v-card-text>
+          <v-card-text
+            :v-html="deverloper_view.info"
+            class="bg-view view_html"
+          ></v-card-text>
           <p>{{ JSON.parse(deverloper_view.code) }}</p>
         </div>
       </div>
@@ -42,7 +45,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 export default {
   layout: "adminDev",
   head() {
@@ -58,16 +61,16 @@ export default {
     };
   },
   name: "View_Deverloper",
-   async mounted() {
+  async mounted() {
     await this.get_deverloper_view({
       // input:{
-        id: this.routeId,
-        type: this.queryType,
+      id: this.routeId,
+      type: this.queryType,
       // }
     });
   },
   computed: {
-    ...mapState('admin/deverlopers',["deverloper","deverloper_view"]),
+    ...mapState("admin/deverlopers", ["deverloper", "deverloper_view"]),
     routeId() {
       return this.$route.params.id;
     },
@@ -76,12 +79,15 @@ export default {
     },
   },
   methods: {
-    ...mapActions('admin/deverlopers',["get_deverloper_view"]),
+    ...mapActions("admin/deverlopers", ["get_deverloper_view"]),
   },
 };
 </script>
-<style>
-#admin td ul li{
-padding: 10px 0;
+<style scoped>
+#admin td ul li {
+  padding: 10px 0;
+}
+.view-title {
+  margin: -10px;
 }
 </style>

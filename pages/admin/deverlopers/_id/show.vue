@@ -1,20 +1,21 @@
 <template>
   <client-only v-if="deverloper">
     <div class="">
-      <v-row align="center">
-        <v-col>
+      <div class="d-flex" align="center">
+        <div>
           <v-card-title>Deverloper | {{ this.deverloper.title }}</v-card-title>
-        </v-col>
+        </div>
         <v-spacer />
-        <v-col
-          ><v-btn
-            class="right mgr-15px"
-            color="primary"
+        <div class="mgr-15px right middle">
+          <v-btn
+            icon
+            class="primary"
             :to="`/admin/deverlopers/${this.routeId}/new`"
-            >Thêm mới
+          >
+            <v-icon>mdi-plus</v-icon>
           </v-btn>
-        </v-col>
-      </v-row>
+        </div>
+      </div>
 
       <div id="body-admin">
         <div v-if="!deverloper" class="">

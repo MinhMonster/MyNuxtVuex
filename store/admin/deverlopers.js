@@ -90,6 +90,11 @@ export default {
       // state.actions.splice((index), 1)
 
     },
+    UPDATE_ACTION(state, { index, value }) {
+      const actions = _.cloneDeep(state.actions);
+      actions[index] = _.cloneDeep(value);
+      state.actions = actions;
+    },
   },
 
   actions: {

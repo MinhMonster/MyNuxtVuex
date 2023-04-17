@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div class="view">
-      <v-row align="center">
+      <v-row align="center" class="view-title">
         <v-col>
           <v-card-title>{{ deverloper_view.title }}</v-card-title>
         </v-col>
@@ -99,5 +99,8 @@ export default {
   margin: 0 16px;
   margin-top: 15px;
   color: #fff;
+}
+.view-title {
+  margin: -10px;
 }
 </style>

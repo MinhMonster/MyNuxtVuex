@@ -4,7 +4,7 @@
       <v-text-field
         label="Tài Khoản"
         v-model="user.username"
-        :rules="[rules.required,]"
+        :rules="[rules.required]"
         outlined
         clearable
       ></v-text-field>
@@ -13,8 +13,8 @@
       <v-text-field
         label="Mật Khẩu"
         v-model="user.password"
-        :rules="[rules.required,]"
-
+        type="password"
+        :rules="[rules.required]"
         outlined
         clearable
       ></v-text-field>
@@ -39,9 +39,8 @@ export default {
     return {
       // user: "",
       rules: {
-          required: value => !!value || 'Không được để trống.',
-      }
-      
+        required: (value) => !!value || "Không được để trống.",
+      },
     };
   },
   name: "FormLogin",
