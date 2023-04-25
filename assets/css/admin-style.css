@@ -584,6 +584,16 @@ code {
   border: #1976d2;
 } */
 
+.tab-account .tab-content {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  border-top: none;
+}
+
+.bg-ninja .ck.ck-content.ck-editor__editable.ck-rounded-corners {
+  max-height: 100px !important;
+}
+
 #admin .v-toolbar__content .v-btn.v-btn--icon.v-size--default,
 #admin.v-toolbar__extension .v-btn.v-btn--icon.v-size--default {
   height: 36px;

@@ -130,7 +130,13 @@
         </div>
         <div v-if="images.length" class="file-images">
           <div v-for="(image, index) in images" :key="index" class="fileItem">
-            <div class="fileItemWrapper">
+            <div
+              class="fileItemWrapper"
+              :class="{
+                active: is_selected(image),
+                activated: is_activated(image),
+              }"
+            >
               <b-button
                 variant="danger"
                 size="sm"
@@ -141,13 +147,18 @@
                 <i class="mdi mdi-close-thick"></i>
               </b-button>
               <div class="fileIcon">
-                <img v-if="image.url" :src="image.url" />
+                <img
+                  v-if="image.url"
+                  :src="image.url"
+                  :disabled="is_activated(image)"
+                  @click="addImage(image)"
+                />
                 <i v-else class="mdi mdi-file-document-outline"></i>
-              </div>
-              <div class="fileDescription">
-                <div class="fileName break-line-1">{{ image.fileName }}</div>
-                <div class="fileType">
-                  {{ image.type }} - {{ fileSizeFilter(image.byteSize) }}
+                <div class="fileDescription">
+                  <div class="fileName break-line-1">{{ image.fileName }}</div>
+                  <div class="fileType">
+                    {{ image.type }} - {{ fileSizeFilter(image.byteSize) }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -189,6 +200,8 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+
 import mixins from "@/mixins/index";
 import { createNamespacedHelpers } from "vuex";
 // const { mapActions, mapState } = createNamespacedHelpers("global");
@@ -207,6 +220,10 @@ export default {
     EditNameFolderModal,
   },
   props: {
+    activated: {
+      type: Array,
+      default: () => [],
+    },
     folders: {
       type: Array,
       default: () => [],
@@ -275,19 +292,39 @@ export default {
   },
   computed: {
     // ...mapState("admin/folders", ["folders", "deleteMedia"]),
+    ...mapFields("global", ["selectedImages"]),
+    selected: {
+      get() {
+        return _.cloneDeep(this.selectedImages);
+      },
+      set(value) {
+        this.setSelectedImages(_.cloneDeep(value));
+      },
+    },
   },
   async mounted() {
     await this.fetchFolders();
     await this.getFiles();
   },
   methods: {
-    ...mapActions("global", ["fileUpload", "fetchFiles", "deleteFile"]),
+    ...mapActions("global", [
+      "fileUpload",
+      "fetchFiles",
+      "deleteFile",
+      "setSelectedImages",
+    ]),
     ...mapActions("admin/folders", [
       "fetchFolders",
       "deleteMedia",
       "createFolder",
       "editNameFolder",
     ]),
+    is_selected(image) {
+      return this.selectedImages.find((item) => item.url == image.url);
+    },
+    is_activated(image) {
+      return this.activated.find((item) => item == image.url);
+    },
     async editFolder(folder) {
       this.folderEdit = folder;
       this.folderUpload = folder.folderPath;
@@ -573,11 +610,24 @@ export default {
         await this.fetchFolders();
       }
     },
+    addImage(image) {
+      if (this.is_selected(image)) {
+        this.selected = this.selected.filter((item) => item.url != image.url);
+      } else {
+        const list = [];
+        list.push(image);
+        this.selected = this.selected.concat(list);
+      }
+      this.$emit("selected", this.selected);
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+[disabled] {
+  pointer-events: none;
+}
 .body-folder {
   width: 90%;
 }
@@ -624,7 +674,7 @@ export default {
   width: calc(100% - 250px);
   min-height: 50vh;
   max-height: 50vh;
-  display: flex;
+  // display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
   .file-preview {
@@ -669,6 +719,17 @@ export default {
         padding: 5px;
         height: 100%;
 
+        &.active {
+          border: 2px solid #2196f3 !important;
+        }
+        &.activated,
+        &.activated.active {
+          border: 2px solid var(--danger) !important;
+          .fileIcon {
+            cursor: not-allowed;
+          }
+        }
+
         button {
           position: absolute;
           right: -10px;
@@ -682,6 +743,7 @@ export default {
           // width: 60px;
           text-align: center;
           margin: 0 auto;
+          cursor: pointer;
 
           img {
             max-width: 100%;
@@ -700,6 +762,7 @@ export default {
           flex-flow: column;
           flex: 1;
           justify-content: flex-end;
+          text-align: left;
 
           .fileName {
             font-weight: bold;

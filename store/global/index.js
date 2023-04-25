@@ -57,6 +57,7 @@ export default {
     isLoadingButton: false,
     notificaitonPage: 0,
     notificaitonPages: 1,
+    selectedImages: [],
   }),
   getters: {
     getField,
@@ -91,6 +92,9 @@ export default {
     // },
   },
   actions: {
+    setSelectedImages({commit}, payload){
+      commit("SET_SELECTED_IMAGES", payload)
+    },
     // register({ commit }, account) {
     //   commit(SET_VALIDATION_ERRORS, []);
     //   return this.$api.post("/graphql", {
@@ -380,6 +384,9 @@ export default {
   },
   mutations: {
     updateField,
+    SET_SELECTED_IMAGES(state, payload) {
+      state.selectedImages = payload;
+    },
     // AUTH_SUCCESS(state, account) {
     //   state.token = account.token;
     //   state.authenticated = true;

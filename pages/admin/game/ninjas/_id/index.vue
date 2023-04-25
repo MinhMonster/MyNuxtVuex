@@ -1,15 +1,9 @@
 <template>
   <client-only>
     <div>
-      <v-card-title
-        >Day: {{ this.finance_edit.title }} : {{ format_number(this.income) }}
-      </v-card-title>
       <div id="body-admin">
         <form @submit.prevent="edit()">
-          <NinjaForm
-            v-if="finance_item"
-            :finance="finance_item"
-          ></NinjaForm>
+          <NinjaForm></NinjaForm>
           <br />
           <v-row align="center">
             <v-col>
@@ -18,7 +12,7 @@
             <v-spacer />
             <v-col>
               <div class="text-right">
-                <v-btn type="submit" color="" to="/admin/finances">
+                <v-btn type="submit" color="" to="/admin/game/ninjas">
                   Trở Về
                 </v-btn>
                 <v-btn type="submit" color="primary"> Sửa </v-btn>
@@ -62,33 +56,20 @@ export default {
   data() {
     return {
       ID: "",
-      titel: "Admin: Edit Account Ninja - ",
+      titel: `Admin: Edit Account Ninja -  ${this.accountId}`,
     };
   },
   async mounted() {
     await this.fetchAccountNinja({
       params: {
-        id: this.routeId,
+        id: this.accountId,
       },
     });
   },
   computed: {
-    ...mapFields("admin/finances", [
-      "finance",
-      "finance_edit",
-      "revenues",
-      "expenses",
-      "sumCashRevenues",
-      "sumCashExpenses",
-      "income",
-    ]),
-
-    routeId() {
+    accountId() {
       return this.$route.params.id;
     },
-    // queryType() {
-    //   return this.$route.query.type;
-    // },
     finance_item() {
       if (this.finance_edit) {
         return cloneDeep(this.finance_edit);
@@ -98,7 +79,10 @@ export default {
     },
   },
   methods: {
-    ...mapActions("admin/game/ninjas", ["fetchAccountNinja"]),
+    ...mapActions("admin/game/ninjas", [
+      "fetchAccountNinja",
+      "updateAccountNinja",
+    ]),
     async show(ID) {
       const res = await API.showEdit({
         params: {
@@ -108,25 +92,8 @@ export default {
       this.topic = res.data.topic;
     },
     async edit() {
-      const formData = new FormData();
-      formData.append("id", this.finance_item.ID);
-      formData.append("title", this.finance_item.title);
-      formData.append("link", this.finance_item.link);
-      formData.append("info", this.finance_item.info);
-      formData.append("content", this.finance_item.content);
-
-      const revenues = JSON.stringify(this.revenues);
-      const expenses = JSON.stringify(this.expenses);
-
-      formData.append("revenues", revenues);
-      formData.append("expenses", expenses);
-
-      formData.append("sumCashRevenues", this.sumCashRevenues);
-      formData.append("sumCashExpenses", this.sumCashExpenses);
-      formData.append("income", this.income);
-
       try {
-        const res = await this.$repositories.adminFinances.edit(formData);
+        const res = await this.updateAccountNinja(this.accountId);
         if (res.data.code === 200) {
           this.$toasted.success(res.data.message);
         }
@@ -138,7 +105,7 @@ export default {
     async onDelete() {
       this.$swal
         .fire({
-          title: `Bạn muốn xóa ID: ${this.routeId} <br/> Title: ${this.finance_item.title}?`,
+          title: `Bạn muốn xóa ID: ${this.accountId} ?`,
           text: "",
           icon: "question",
           type: "warning",
@@ -154,56 +121,27 @@ export default {
         })
         .then(async (result) => {
           if (result.isConfirmed) {
-            const formData = new FormData();
-            formData.append("id", this.routeId);
-            try {
-              const res = await this.$repositories.adminFinances.delete({
-                params: {
-                  id: this.routeId,
-                },
-              });
-              if (res.data.code === 200) {
-                this.$toasted.success(res.data.message);
-
-                if (this.routeId === this.finance.ID) {
-                  this.$router.push(`/admin/finances`);
-                } else {
-                  this.$router.push(`/admin/finances/${this.finance.ID}/show`);
-                }
-              }
-            } catch (e) {
-              console.log(e);
-            }
+            // const formData = new FormData();
+            // formData.append("id", this.accountId);
+            // try {
+            //   const res = await this.$repositories.adminFinances.delete({
+            //     params: {
+            //       id: this.accountId,
+            //     },
+            //   });
+            //   if (res.data.code === 200) {
+            //     this.$toasted.success(res.data.message);
+            //     if (this.accountId === this.finance.ID) {
+            //       this.$router.push(`/admin/finances`);
+            //     } else {
+            //       this.$router.push(`/admin/finances/${this.finance.ID}/show`);
+            //     }
+            //   }
+            // } catch (e) {
+            //   console.log(e);
+            // }
           }
         });
-    },
-    deleteAction(index) {
-      this.$swal
-        .fire({
-          title: `Remove Action`,
-          confirmButtonColor: "#F64E60",
-          showCancelButton: true,
-          confirmButtonText: "YES",
-          cancelButtonText: "NO",
-        })
-        .then(async (result) => {
-          if (result.isConfirmed) {
-            this.removeAction(index);
-          }
-        });
-
-      // this.$confirm({
-      //   message: "Xóa Phần Tử",
-      //   button: {
-      //     no: "NO",
-      //     yes: "YES",
-      //   },
-      //   callback: (confirm) => {
-      //     if (confirm) {
-      //       this.removeAction(index);
-      //     }
-      //   },
-      // });
     },
   },
 };

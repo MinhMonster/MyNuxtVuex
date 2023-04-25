@@ -12,4 +12,7 @@ export default ($api) => ({
   fetchAccountNinja(payload){
     return $api.get(`${resource}/fetchAccountNinja.php`, payload)
   },
+  updateAccountNinja(payload){
+    return $api.post(`${resource}/updateAccountNinja.php`, payload)
+  },
 })

@@ -74,7 +74,9 @@
           
         </v-toolbar-title> -->
         <v-spacer />
-        <v-btn v-if="rightDrawer" icon> <v-icon>mdi-cursor-move</v-icon>: </v-btn><br/>
+        <v-btn v-if="rightDrawer" icon>
+          <v-icon>mdi-cursor-move</v-icon>: </v-btn
+        ><br />
         <b-form-checkbox
           v-if="rightDrawer"
           v-model="checkedMove"
@@ -82,7 +84,9 @@
           switch
         >
         </b-form-checkbox>
-        <v-btn v-if="rightDrawer" icon> <v-icon>mdi-pencil-box-multiple-outline</v-icon>: </v-btn>
+        <v-btn v-if="rightDrawer" icon>
+          <v-icon>mdi-pencil-box-multiple-outline</v-icon>:
+        </v-btn>
         <b-form-checkbox
           v-if="rightDrawer"
           v-model="checkedEdit"
@@ -315,13 +319,14 @@ export default {
     } else {
       await this.get_deverlopers();
       const body = document.querySelector("body");
-      if (body.clientWidth > 1000) {
+      if (body.clientWidth > 1000 && !this.is_game) {
         this.drawer = true;
         this.rightDrawer = true;
-        // document.querySelector(
-        //   "#admin .v-sheet.theme--dark.v-toolbar.v-app-bar.v-app-bar--fixed"
-        // ).style.left = 0;
       }
+    }
+    if (this.is_game) {
+      this.drawer = false;
+      this.rightDrawer = false;
     }
   },
 
@@ -330,6 +335,10 @@ export default {
     ...auth.mapState(["authenticated"]),
     menuLeft() {
       return _.cloneDeep(this.deverloper);
+    },
+    is_game() {
+      const path = this.$route.path;
+      return path.includes("game/ninjas") || path.includes("game/ngocrongs");
     },
   },
   methods: {

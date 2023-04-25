@@ -49,7 +49,6 @@ export default {
   },
 
   actions: {
-    
     async fetchNickNinjas({ commit }) {
       try {
         const res = await this.$repositories.adminGameNinjas.fetchNickNinjas()
@@ -60,9 +59,26 @@ export default {
       console.log(payload);
       try {
         const res = await this.$repositories.adminGameNinjas.fetchAccountNinja(payload)
-        commit('SET_NINJA', res.data)
+        commit('SET_NINJA', res.data.acountNinja)
       } catch (error) { }
     },
+
+    async updateAccountNinja({ commit, state }, id) {
+      console.log(id);
+      try {
+        const res = await this.$repositories.adminGameNinjas.updateAccountNinja({
+          id,
+          input: state.ninja
+        });
+        commit('SET_NINJA', res.data.accountNinja)
+        return res
+      } catch (error) { }
+    },
+
+    setAccountNinja({ commit }, payload) {
+      commit('SET_NINJA', payload);
+    },
+
   },
 }
 
