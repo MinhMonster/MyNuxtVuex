@@ -9,6 +9,7 @@
       </v-col>
       <v-col cols="12" sm="12" md="12" class="code-value">
         <b-form-group>
+          <ContentEditer v-if="action.typeCode == `editor`" v-model="codeValue"></ContentEditer>
           <codemirror
             v-if="action.typeCode == `vue`"
             v-model="codeValue"

@@ -24,6 +24,11 @@ export default {
       typeCode: {},
       typeOptions: [
         {
+          name: "Editor",
+          type: "editor",
+          mode: "nuxt-editor",
+        },
+        {
           name: "Vue",
           type: "vue",
           mode: "text/x-vue",

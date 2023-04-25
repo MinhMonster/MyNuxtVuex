@@ -5,6 +5,7 @@
         <b-form-group>
           <h1 class="bold">{{ action.title }}</h1>
           <p>{{ action.content }}</p>
+          <div v-if="action.typeCode == `editor`" v-html="action.code"></div>
           <codemirror
             v-if="action.typeCode == `vue`"
             :value="action.code"
