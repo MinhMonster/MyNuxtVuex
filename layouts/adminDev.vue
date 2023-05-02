@@ -133,7 +133,7 @@
           </v-slide-item>
         </v-slide-group>
       </v-sheet>
-      <v-main class="bg-white" style="margin-top: 40px">
+      <v-main class="bg-white" :style="styleMain">
         <v-container>
           <Nuxt />
         </v-container>
@@ -319,11 +319,12 @@ export default {
     } else {
       await this.get_deverlopers();
       const body = document.querySelector("body");
-      if (body.clientWidth > 1000 && !this.is_game) {
+      if (body.clientWidth > 1000) {
         this.drawer = true;
         this.rightDrawer = true;
       }
     }
+
     if (this.is_game) {
       this.drawer = false;
       this.rightDrawer = false;
@@ -339,6 +340,17 @@ export default {
     is_game() {
       const path = this.$route.path;
       return path.includes("game/ninjas") || path.includes("game/ngocrongs");
+    },
+    styleMain() {
+      if (!this.drawer && !this.rightDrawer) {
+        return "padding: 94px 0px 36px";
+      } else if (this.drawer && this.rightDrawer) {
+        return "padding: 94px 300px 36px";
+      } else if (!this.drawer && this.rightDrawer) {
+        return "padding: 94px 300px 36px 0";
+      } else {
+        return "padding: 94px 0 36px 300px";
+      }
     },
   },
   methods: {
@@ -432,7 +444,7 @@ export default {
 }
 
 #admin #body-admin {
-  padding: 0 16px;
+  padding: 0 0px;
 }
 
 #admin .sub-menu {
@@ -460,11 +472,13 @@ export default {
   user-select: none;
 }
 body::-webkit-scrollbar-thumb,
+#admin .tab-pane.tab-scroll.scroll-y::-webkit-scrollbar-thumb,
 #admin .v-navigation-drawer__content::-webkit-scrollbar-thumb {
   background: #999999;
   border-radius: 10px;
 }
 
+#admin .tab-pane.tab-scroll.scroll-y::-webkit-scrollbar-track,
 #admin .v-navigation-drawer__content::-webkit-scrollbar-track {
   background: #555555;
   border-radius: 10px;
@@ -502,5 +516,9 @@ body::-webkit-scrollbar,
 }
 .handle {
   cursor: move;
+}
+
+html {
+  overflow-y: auto;
 }
 </style>

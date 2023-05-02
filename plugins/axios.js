@@ -1,4 +1,4 @@
-export default function ({store, $axios,$toast, redirect }, inject) {
+export default function ({ store, $axios, $toast, redirect }, inject) {
 
   const axiosConfig = { timeout: 60000 };
   axiosConfig.baseURL = process.env.apiUrl;
@@ -15,10 +15,10 @@ export default function ({store, $axios,$toast, redirect }, inject) {
       store.dispatch("addRequest", config.id);
     }
 
-    config.headers = {  
+    config.headers = {
       Authorization: "Bearer " + store.state.admin.auth.token
     };
-    if(!store.state.admin.auth.token || !store.state.admin.auth.authenticated ){
+    if (!store.state.admin.auth.token || !store.state.admin.auth.authenticated) {
       store.dispatch("admin/auth/logout");
       redirect('/admin/login')
     }
@@ -26,6 +26,7 @@ export default function ({store, $axios,$toast, redirect }, inject) {
 
   api.onResponse((response) => {
     const code = response.data.code;
+    store.dispatch("admin/global/setValidationErrors", {});
 
     // store.dispatch("removeRequest", response.config.id);
     if (code && code === 401) {
@@ -37,12 +38,50 @@ export default function ({store, $axios,$toast, redirect }, inject) {
     }
     if (code && code === 422) {
       $toast.error(response.data.message);
+
+      const errors = response.data.errors;
+
+      if (response.data.errors) {
+        store.dispatch("admin/global/setValidationErrors", errors ? errors || {} : {});
+
+      }
+      if (!response.data.errors) {
+        store.dispatch("admin/global/setValidationErrors", {});
+      }
+
+      // const errors = response.data.errors;
+
+      // if (errors && errors.length > 0) {
+      //   errors.config = response.config;
+
+      //   const errorMessage =
+      //     response.config.toastErrorMessage ||
+      //     _.get(errors[0], "message") ||
+      //     GLOBAL_TOAST_ERROR_MESSAGE;
+      //   if (!response.config.hideToastError) {
+      //     store._vm.$nuxt.$toast.error(errorMessage);
+      //   }
+
+      //   // const findError = errors.find(
+      //   //   (item) => item.error_messages && item.code === 422
+      //   // );
+      //   const findError = errors.find(
+      //     (item) => item.error_messages && item.code === 422
+      //   );
+      //   store.dispatch(
+      //     "admin/global/setValidationErrors",
+      //     findError ? findError.error_messages || {} : {}
+      //   );
+      // }
+
     }
     setTimeout(() => {
       store.dispatch("disableLoading");
     }, 500);
 
-    
+
+
+
   });
 
   api.onError(error => {
