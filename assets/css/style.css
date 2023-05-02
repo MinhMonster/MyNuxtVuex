@@ -71,7 +71,8 @@ body {
   color: rgba(85, 85, 85, .8);
 }
 
-.header-layout ul.header-site li a.router-link-exact-active, .header-layout ul.header-site li a.active {
+.header-layout ul.header-site li a.router-link-exact-active,
+.header-layout ul.header-site li a.active {
   position: relative;
   color: var(--master);
 
@@ -89,7 +90,8 @@ body {
 
 } */
 
-.header-layout ul.header-site li a.router-link-exact-active::after, .header-layout ul.header-site li a.active::after {
+.header-layout ul.header-site li a.router-link-exact-active::after,
+.header-layout ul.header-site li a.active::after {
   content: " / ";
   display: flex;
   box-sizing: border-box;
@@ -551,8 +553,10 @@ input:focus .birthday select:hover,
 }
 
 .form-control[disabled],
-fieldset[disabled] .form-control, .lock{
-cursor: not-allowed;
+fieldset[disabled] .form-control,
+.lock,
+[disabled] {
+  cursor: not-allowed;
 }
 
 .birthday input,
@@ -695,7 +699,7 @@ svg {
 .agile__nav-button.agile__nav-button--next:hover {
   z-index: 3;
   color: #019fb3;
-  background-color: var(--white)  !important;
+  background-color: var(--white) !important;
   border: 2px solid #019fb3;
 }
 
@@ -744,7 +748,7 @@ svg {
 .agile__nav-button.agile__nav-button--prev:hover {
   z-index: 3;
   color: #019fb3;
-  background-color: var(--white)  !important;
+  background-color: var(--white) !important;
   border: 2px solid #019fb3;
 }
 
@@ -850,14 +854,14 @@ ul.pagination li.page-item.disabled+li a,
   background-position-x: -30px;
   background-size: 116px 3px;
   background-image: repeating-linear-gradient(45deg,
-          #6fa6d6,
-          #6fa6d6 33px,
-          transparent 0,
-          transparent 41px,
-          #f18d9b 0,
-          #f18d9b 74px,
-          transparent 0,
-          transparent 82px);
+      #6fa6d6,
+      #6fa6d6 33px,
+      transparent 0,
+      transparent 41px,
+      #f18d9b 0,
+      #f18d9b 74px,
+      transparent 0,
+      transparent 82px);
 }
 
 .address-body {
@@ -1691,22 +1695,33 @@ td .info-author .button-view-offer {
   border-top: 16px solid #3498db;
   width: 120px;
   height: 120px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
   animation: spin 2s linear infinite;
 }
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.body-saler{
+.body-saler {
   min-height: 478px;
 }
 
@@ -1723,30 +1738,30 @@ td .info-author .button-view-offer {
   padding: 20px;
 }
 
-.body-popup .panel-body form{
+.body-popup .panel-body form {
   padding: 15px;
   margin: 0 15px;
 }
 
 .cancel {
-    cursor: pointer;
-    height: 25px;
-    width: 25px;
-    line-height: 20px;
-    text-align: center;
-    border-radius: 50%;
-    background: var(--danger);
-    color: var(--white);
-    top: -7px;
-    right: -4px;
-    border: 1px solid #019fb3;
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--danger);
+  color: var(--white);
+  top: -7px;
+  right: -4px;
+  border: 1px solid #019fb3;
 }
 
-.point{
+.point {
   cursor: pointer;
 }
 
-#admin .active.on + .menu-icon #menu-icon{
+#admin .active.on+.menu-icon #menu-icon {
   display: block;
 }
 
@@ -1754,32 +1769,32 @@ td .info-author .button-view-offer {
 @media screen and (min-width:1000px) {
 
   ul.purchase {
-      width: 100%;
+    width: 100%;
   }
 
 
   .total .all {
-      /* text-align: right; */
+    /* text-align: right; */
   }
 
 
   #menu-left {
-      display: block;
+    display: block;
   }
 
   #main-body {
-      margin-left: 440px;
+    margin-left: 440px;
   }
 
   section#main-body {
-      width: calc(100% - 440px);
-      margin-left: 440px;
+    width: calc(100% - 440px);
+    margin-left: 440px;
   }
 
   .sales-bottom .row .col-md-6,
   .sales-bottom .row .col-xs-6,
   .sales-bottom .row .col-lg-6 {
-      width: 50%;
+    width: 50%;
   }
 }
 
@@ -1787,15 +1802,15 @@ td .info-author .button-view-offer {
 
   .slide.slider-banner,
   .box.banner-mobile {
-      display: none;
+    display: none;
   }
 
   .login-header-mobile {
-      display: none;
+    display: none;
   }
 
   .login-header {
-      display: block;
+    display: block;
   }
 
 }
@@ -1803,24 +1818,24 @@ td .info-author .button-view-offer {
 @media screen and (max-width:767px) {
 
   #header-client #header-top .list-menu-header {
-      gap: 0px;
+    gap: 0px;
   }
 
   .slide.slider-banner,
   .box.banner-mobile {
-      display: block;
-      /* padding: 10px; */
+    display: block;
+    /* padding: 10px; */
   }
 
   .box.banner {
-      display: none;
+    display: none;
   }
 }
 
 @media screen and (max-width:700px) {
 
   ul.purchase {
-      width: 700px;
+    width: 700px;
   }
 
 }
@@ -1829,47 +1844,47 @@ td .info-author .button-view-offer {
 
 
   #header-client #header-top {
-      background: linear-gradient(-180deg, var(--master-bold), var(--white));
+    background: linear-gradient(-180deg, var(--master-bold), var(--white));
 
   }
 
 
 
   .profile-body {
-      padding-top: 1.875rem;
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: flex-start;
+    padding-top: 1.875rem;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
   }
 
   .user-avatar {
-      width: 100%;
-      margin-bottom: 30px;
-      border-left: none;
-      padding-bottom: 20px;
-      border-bottom: 0.0625rem solid #efefef;
+    width: 100%;
+    margin-bottom: 30px;
+    border-left: none;
+    padding-bottom: 20px;
+    border-bottom: 0.0625rem solid #efefef;
   }
 
   .user-info {
-      width: 100%;
+    width: 100%;
 
   }
 
   #menu-left {
-      display: none;
+    display: none;
   }
 
   #main-body {
-      margin-left: 60px;
+    margin-left: 60px;
   }
 
   #main-body {
-      width: calc(100% - 60px);
+    width: calc(100% - 60px);
   }
 
   .sales-bottom .row .col-md-6,
   .sales-bottom .row .col-xs-6,
   .sales-bottom .row .col-lg-6 {
-      width: 50%;
+    width: 50%;
   }
 }

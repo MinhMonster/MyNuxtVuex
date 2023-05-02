@@ -26,7 +26,7 @@
               <b-tab title="Upload Images">
                 <FileSelector @uploaded="uploaded"></FileSelector>
               </b-tab>
-              <b-tab title="Manager Folder">
+              <b-tab title="Manager Folder" class="manager-folder">
                 <FolderFile
                   v-if="folders"
                   :folders="folders"
@@ -133,3 +133,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.mdi-playlist-plus {
+  cursor: pointer;
+}
+</style>

@@ -70,6 +70,8 @@ export default {
   max-height: 270px;
   min-height: 270px !important;
   width: 500px;
+  max-width: calc(100% - 20px);
+
   position: fixed;
   z-index: 2;
 }

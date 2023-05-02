@@ -1,7 +1,7 @@
 <template>
   <b-card
     class="border border-light shadow-none card-folder"
-    :class="{ 'zoom-modal': isZoom }"
+    :class="{ 'zoom-modal scroll-x': isZoom }"
   >
     <div class="folder-plugin">
       <v-btn color="white" @click="browseFiles">
@@ -25,7 +25,7 @@
       @click="clearImgPath"
       @change="onFileChange"
     />
-    <div class="flex-row">
+    <div class="flex-row folder-show">
       <div v-if="folders.length" class="folderList scroll-y">
         <div
           @click="setPath('/images/')"
@@ -90,12 +90,16 @@
               :class="{ active: folderUpload == subFolder.folderPath }"
             >
               <div @click="setFolderUpload(subFolder.folderPath)">
-                <v-icon v-if="folderUpload == subFolder.folderPath" color="blue"
-                  >mdi-folder-multiple</v-icon
-                >
-                <v-icon v-else color="blue">mdi-folder</v-icon>
-                {{ subFolder.folderName }}
-                <v-icon class="dots-vertical">mdi-dots-vertical</v-icon>
+                <span class="folder-name"
+                  ><v-icon
+                    v-if="folderUpload == subFolder.folderPath"
+                    color="blue"
+                    >mdi-folder-multiple</v-icon
+                  >
+                  <v-icon v-else color="blue">mdi-folder</v-icon
+                  >{{ subFolder.folderName }}
+                  <v-icon class="dots-vertical">mdi-dots-vertical</v-icon>
+                </span>
               </div>
             </div>
           </template>
@@ -639,8 +643,9 @@ export default {
   width: 250px;
   padding: 0px;
   min-height: 50vh;
-  max-height: 50vh;
+  max-height: calc(100vh - 130px);
   border-right: 1px solid #dee2e6;
+
   .folder-item {
     border-top: 1px solid #d7dcdf;
     padding-left: 35px;
@@ -660,11 +665,18 @@ export default {
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 1px;
+    position: relative;
     .dots-vertical {
       float: right;
       padding: 5px 0;
       right: 0px !important;
+      position: absolute;
     }
+  }
+}
+@media (max-width: 675px) {
+  .folderList {
+    width: 250px;
   }
 }
 .fileList {
@@ -781,7 +793,7 @@ export default {
     @media (min-width: 400px) {
       .fileItem,
       .dropzone {
-        width: 100%;
+        width: 50%;
       }
     }
     @media (min-width: 675px) {
@@ -796,6 +808,11 @@ export default {
         width: 33.33%;
       }
     }
+  }
+}
+@media (max-width: 675px) {
+  .fileList {
+    width: calc(100% - 200px);
   }
 }
 .bg-gray {
@@ -829,7 +846,7 @@ export default {
 .icon-down {
   float: right;
   padding: 5px 0;
-  right: 20px;
+  // right: 20px;
 }
 
 .dots-vertical {
@@ -902,6 +919,20 @@ export default {
       .dropzone {
         width: 20% !important;
       }
+    }
+  }
+}
+.zoom-modal .folder-plugin {
+    width: 100%;
+    min-width: 675px;
+  }
+.zoom-modal .folder-show {
+  min-width: 675px;
+  
+  @media (max-width: 675px) {
+    .fileItem,
+    .dropzone {
+      width: 50% !important;
     }
   }
 }
