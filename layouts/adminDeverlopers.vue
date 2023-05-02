@@ -117,7 +117,8 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="scss" scoped>
+
 @import '~/assets/css/admin-style.css';
 @import '~/assets/css/mms-style.css';
 @import '~/assets/css/reset.css';
@@ -157,9 +158,9 @@ export default {
 #admin .quillWrapper {
   margin: 30px 0;
 }
-#admin #body-admin {
+/* #admin #body-admin {
   padding: 0 16px;
-}
+} */
 #admin .sub-menu {
   margin-left: 50px;
 }

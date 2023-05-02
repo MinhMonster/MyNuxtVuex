@@ -5,20 +5,16 @@
         <form @submit.prevent="edit()">
           <NinjaForm></NinjaForm>
           <br />
-          <v-row align="center">
-            <v-col>
-              <v-btn @click="onDelete()" color="red"> Xóa</v-btn>
-            </v-col>
+          <div class="d-flex">
+            <v-btn @click="onDelete()" color="red"> Xóa</v-btn>
             <v-spacer />
-            <v-col>
-              <div class="text-right">
-                <v-btn type="submit" color="" to="/admin/game/ninjas">
-                  Trở Về
-                </v-btn>
-                <v-btn type="submit" color="primary"> Sửa </v-btn>
-              </div>
-            </v-col>
-          </v-row>
+            <div class="text-right">
+              <v-btn type="submit" color="" to="/admin/game/ninjas">
+                Trở Về
+              </v-btn>
+              <v-btn type="submit" color="primary"> Sửa </v-btn>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -121,25 +117,20 @@ export default {
         })
         .then(async (result) => {
           if (result.isConfirmed) {
-            // const formData = new FormData();
-            // formData.append("id", this.accountId);
-            // try {
-            //   const res = await this.$repositories.adminFinances.delete({
-            //     params: {
-            //       id: this.accountId,
-            //     },
-            //   });
-            //   if (res.data.code === 200) {
-            //     this.$toasted.success(res.data.message);
-            //     if (this.accountId === this.finance.ID) {
-            //       this.$router.push(`/admin/finances`);
-            //     } else {
-            //       this.$router.push(`/admin/finances/${this.finance.ID}/show`);
-            //     }
-            //   }
-            // } catch (e) {
-            //   console.log(e);
-            // }
+            try {
+              const res =
+                await this.$repositories.adminGameNinjas.destroyAccountNinja({
+                  params: {
+                    id: this.accountId,
+                  },
+                });
+              if (res.data.code === 200) {
+                this.$toasted.success(res.data.message);
+                this.$router.push(`/admin/game/ninjas`);
+              }
+            } catch (e) {
+              console.log(e);
+            }
           }
         });
     },

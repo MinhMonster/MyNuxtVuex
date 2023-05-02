@@ -96,7 +96,7 @@ export default {
 <style scoped>
 .view .v-card__title {
   background: #212529;
-  margin: 0 16px;
+  margin: 10px 0px;
   margin-top: 15px;
   color: #fff;
 }

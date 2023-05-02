@@ -1,16 +1,41 @@
 <template>
   <client-only>
-    <div>
-      <v-row align="center" >
-        <v-col >
-          <v-card-title class="mgl--15px">Ninjas: <br/> {{ format_number(countNinjas) }} Account</v-card-title>
-        </v-col>
-        <v-col class="text-right" >
-          <v-card-title class="right mgr--15px">
-            Total: <br/>{{ format_number(sumPriceNinjas) }} Đ</v-card-title
+    <div v-if="ninjas">
+      <div class="d-flex" align="center">
+        <div>
+          <v-card-title class="mgl--15px">Account Ninjas </v-card-title>
+        </div>
+        <v-spacer />
+        <div class=" right middle">
+          <v-btn icon class="primary right" to="/admin/game/ninjas/new">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </div>
+      </div>
+      <div class="d-flex" align="center">
+        <div>
+          <v-card-title class="mgl--15px"
+            >Account: {{ format_number(countNinjas) }}
+          </v-card-title>
+        </div>
+        <v-spacer />
+        <div class="mgr--15px right middle">
+          <v-card-title
+            >Total: {{ format_number(sumPriceNinjas) }} Đ
+          </v-card-title>
+        </div>
+      </div>
+      <!-- <v-row align="center">
+        <v-col>
+          <v-card-title class="mgl--15px"
+            >Ninjas: {{ format_number(countNinjas) }} Account</v-card-title
+          >
+          <v-card-title class="mgl--15px">
+            Total: {{ format_number(sumPriceNinjas) }} Đ</v-card-title
           >
         </v-col>
-      </v-row>
+        <v-col class="text-right"> </v-col>
+      </v-row> -->
       <v-row>
         <v-col cols="12" md="12" sm="12">
           <v-card>
@@ -25,7 +50,7 @@
                     <th class="text-center">Level</th>
                     <th class="text-center">Server</th>
                     <th class="text-center">Type</th>
-                    <th class="text-center" >Action</th>
+                    <th class="text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -76,7 +101,7 @@ export default {
     return {};
   },
   async mounted() {
-    await this.fetchNickNinjas();
+    await this.fetchAccountNinjas();
   },
   computed: {
     ...mapFields("admin/game/ninjas", [
@@ -86,7 +111,7 @@ export default {
     ]),
   },
   methods: {
-    ...mapActions("admin/game/ninjas", ["fetchNickNinjas"]),
+    ...mapActions("admin/game/ninjas", ["fetchAccountNinjas"]),
   },
 };
 </script>
