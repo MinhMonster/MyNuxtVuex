@@ -58,7 +58,7 @@ export default {
   methods: {},
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 #menu {
   width: 100%;
   bottom: 0;
@@ -70,6 +70,11 @@ export default {
   height: 70px;
   /* background: linear-gradient(180deg, #3f058d, #30046b 12%, #200347); */
   background: linear-gradient(180deg, #e28637, #9f5424 12%, #561d00);
+}
+@media (min-width: 340px) {
+  #menu {
+    height: 55px;
+  }
 }
 
 #menu a,

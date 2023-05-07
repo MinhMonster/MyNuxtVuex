@@ -28,6 +28,8 @@ export default {
 ::v-deep {
   .b-sidebar {
     width: 250px;
+    transition: width 0.5s;
+
   }
   .b-sidebar > .b-sidebar-header {
     padding: 0;

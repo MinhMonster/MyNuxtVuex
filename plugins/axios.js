@@ -1,4 +1,4 @@
-export default function ({ store, $axios, $toast, redirect }, inject) {
+export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
   const axiosConfig = { timeout: 60000 };
   axiosConfig.baseURL = process.env.apiUrl;
@@ -6,7 +6,6 @@ export default function ({ store, $axios, $toast, redirect }, inject) {
   const api = $axios.create(axiosConfig);
 
   api.onRequest(config => {
-    // console.log('Making request to ' + config.url)
     const hideLoading = config.hideLoading;
 
     if (!hideLoading) {
@@ -15,13 +14,45 @@ export default function ({ store, $axios, $toast, redirect }, inject) {
       store.dispatch("addRequest", config.id);
     }
 
-    config.headers = {
-      Authorization: "Bearer " + store.state.admin.auth.token
-    };
-    if (!store.state.admin.auth.token || !store.state.admin.auth.authenticated) {
-      store.dispatch("admin/auth/logout");
-      redirect('/admin/login')
+    try {
+      const namespace = _.get(store, "_vm.$nuxt.$data.layoutName", "");
+      let authToken = null;
+
+      // if (!config.noRequireToken) {
+      switch (namespace) {
+        case "clientLayout":
+          store.dispatch("disableLoading");
+          authToken = store.state.home.users.token;
+          break;
+        case "adminDev":
+          authToken = store.state.admin.auth.token;
+          break;
+        default:
+          authToken = null;
+      }
+      // }
+
+      if (authToken) {
+        config.headers = {
+          Authorization: "Bearer " + authToken
+        };
+      }
+    } catch { }
+
+    const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
+    switch (layout) {
+      case "clientLayout":
+        break;
+      case "adminDev":
+        if (!store.state.admin.auth.token || !store.state.admin.auth.authenticated) {
+          store.dispatch("admin/auth/logout");
+          redirect('/admin/login')
+        }
+        break;
     }
+
+    // return config;
+
   })
 
   api.onResponse((response) => {
@@ -30,14 +61,32 @@ export default function ({ store, $axios, $toast, redirect }, inject) {
 
     // store.dispatch("removeRequest", response.config.id);
     if (code && code === 401) {
-      store.dispatch("admin/auth/logout");
-      redirect('/admin/login')
+      const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
+      switch (layout) {
+        case "clientLayout":
+          break;
+        case "adminDev":
+          store.dispatch("admin/auth/logout");ientLayout
+          redirect('/admin/login')
+          break;
+      }
+      // store.dispatch("admin/auth/logout");
+      // redirect('/admin/login')
     }
     if (code && code === 404) {
       redirect('/404')
     }
     if (code && code === 422) {
-      $toast.error(response.data.message);
+
+      const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
+      switch (layout) {
+        case "clientLayout":
+          $swal.fire(response.data.message, response.data.error_content, "error");
+          break;
+        case "adminDev":
+          $toast.error(response.data.message);
+          break;
+      }
 
       const errors = response.data.errors;
 
@@ -95,6 +144,9 @@ export default function ({ store, $axios, $toast, redirect }, inject) {
       store.dispatch("admin/auth/logout");
       redirect('/admin/login')
     }
+    setTimeout(() => {
+      store.dispatch("disableLoading");
+    }, 500);
   })
   inject("api", api);
 }

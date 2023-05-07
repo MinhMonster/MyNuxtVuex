@@ -60,9 +60,6 @@ export default {
   getters: {
     getField,
     getErrors: (state) => (name) => {
-      console.log(name);
-      // const er = [{ "taikhoan": ["okok"] }, { "giatien": ["okok"] }];
-      console.log(_.get(state.validationErrors, name, []));
       return _.get(state.validationErrors, name, []);
     },
 

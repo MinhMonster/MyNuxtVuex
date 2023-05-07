@@ -3,13 +3,19 @@
     <div class="header-content">
       <div class="header-user">
         <div class="header-logo">
-          <img
+          <nuxt-link to="/">
+            <img
             src="https://muabannick.pro/images/logo/lg-muabannick.png"
             alt=""
           />
+          </nuxt-link>
+          
         </div>
         <div class="header-nav">
-          <div class="login-btn"><span>Đăng nhập</span></div>
+          <nuxt-link to="/login"
+            ><div class="login-btn"><span>Đăng nhập</span></div></nuxt-link
+          >
+
           <div class="register-btn"><span>Đăng ký</span></div>
           <SideBarHome></SideBarHome>
         </div>

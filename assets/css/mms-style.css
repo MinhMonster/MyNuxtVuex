@@ -330,6 +330,38 @@ body {
   min-height: 500px;
 }
 
+.swal2-popup {
+  background-color: #ffcf9c !important;
+  border: 2px solid #561d00 !important;
+  border-image: url(https://muabannick.pro/images/box/box.jpg) 10 round;
+  background: #e28637 url(https://muabannick.pro/images/header/bg_top.png) repeat-x !important;
+  border-radius: 3px;
+  border: 2px solid #561d00;
+}
+
+.swal2-confirm.swal2-styled {
+  color: #ffcf9c !important;
+  border: 1px solid #663019 !important;
+  background: #9f5424 !important;
+}
+
+.swal2-icon.swal2-error {
+  border-color: #dc3545 !important;
+  color: #dc3545 !important;
+}
+
+.swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+  background: #dc3545 !important;
+}
+
+.swal2-title {
+  color: #561d00 !important;
+}
+
+.swal2-html-container {
+  color: #ffcf9c !important;
+}
+
 
 
 
@@ -437,30 +469,30 @@ body {
 
 @media (max-width: 576px) and (max-width: 576px) {
   .box {
-      max-width: 100% !important;
-      width: 100% !important;
-      max-width: 100%;
+    max-width: 100% !important;
+    width: 100% !important;
+    max-width: 100%;
   }
 
   .container {
-      max-width: 100% !important;
-      width: 100% !important;
-      max-width: 100%;
+    max-width: 100% !important;
+    width: 100% !important;
+    max-width: 100%;
   }
 }
 
 
 @media (max-width: 768px) {
   .box {
-      max-width: 100% !important;
-      width: 100% !important;
-      max-width: 100%;
+    max-width: 100% !important;
+    width: 100% !important;
+    max-width: 100%;
   }
 
   .container {
-      max-width: 100% !important;
-      width: 100% !important;
-      max-width: 100%;
+    max-width: 100% !important;
+    width: 100% !important;
+    max-width: 100%;
   }
 }
 
@@ -468,192 +500,192 @@ body {
 @media (min-width: 768px) {
 
   .container {
-      max-width: 720px;
+    max-width: 720px;
   }
 
   .box {
-      max-width: 720px;
+    max-width: 720px;
   }
 
   .box-1 {
-      width: 8.33%;
+    width: 8.33%;
   }
 
   .box-2 {
-      width: 16.67%;
+    width: 16.67%;
   }
 
   .box-3 {
-      width: 25%;
+    width: 25%;
   }
 
   .box-3-1 {
-      width: 29.27%;
+    width: 29.27%;
   }
 
   .box-4 {
-      width: 33.33%;
+    width: 33.33%;
   }
 
   .box-4-1 {
-      width: 33.33%;
-      padding-left: 15px;
-      padding-right: 25px;
+    width: 33.33%;
+    padding-left: 15px;
+    padding-right: 25px;
   }
 
   .box-4-2 {
-      width: 33.74%;
-      padding-left: 15px;
-      padding-right: 25px;
+    width: 33.74%;
+    padding-left: 15px;
+    padding-right: 25px;
   }
 
   .box-4-3 {
-      width: 32.93%;
-      padding-left: 15px;
-      padding-right: 15px;
+    width: 32.93%;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .box-5 {
-      width: 41.67%;
+    width: 41.67%;
   }
 
   .box-5-1 {
-      width: 37.4%;
+    width: 37.4%;
   }
 
   .box-6 {
-      width: 50%;
+    width: 50%;
   }
 
   .box-7 {
-      width: 58.33%;
+    width: 58.33%;
   }
 
   .box-8 {
-      width: 66.67%;
+    width: 66.67%;
   }
 
   .box-9 {
-      width: 75%;
+    width: 75%;
   }
 
   .box-10 {
-      width: 83.33%;
+    width: 83.33%;
   }
 
   .box-11 {
-      width: 91.67%;
+    width: 91.67%;
   }
 
   .box-12 {
-      width: 100%;
+    width: 100%;
   }
 
   .body {
-      /* margin-top: 110px ; */
+    /* margin-top: 110px ; */
   }
 
   #header-bottom.active {
-      display: none;
-      /* margin-top: 110px; */
+    display: none;
+    /* margin-top: 110px; */
   }
 
 
   .button-search {
-      display: none;
+    display: none;
   }
 
 
   .form-input-search {
-      margin-left: 10px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .menu-toggle {
-      display: none;
+    display: none;
   }
 
   .list-menu-header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
   }
 
   #header-bottom {
-      display: none;
+    display: none;
 
   }
 
   #header-bottom .container .list-menu-header-bottom {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      height: 70px;
-      line-height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    line-height: 70px;
   }
 
   #menu-row {
-      display: flex;
-      flex-direction: row;
+    display: flex;
+    flex-direction: row;
   }
 
   #main {
-      margin-top: 0px
+    margin-top: 0px
   }
 
   .group-icon-right {
-      margin-top: 00px;
+    margin-top: 00px;
   }
 
 
   header#header section#header-2 {
 
-      display: block;
-      padding-top: 20px;
+    display: block;
+    padding-top: 20px;
   }
 
   .table-default table {
-      width: 100%;
+    width: 100%;
   }
 
   .box {
-      max-width: 720px;
+    max-width: 720px;
   }
 
   .container {
-      max-width: 720px;
+    max-width: 720px;
   }
 }
 
 
 @media (max-width: 992px) {
   .box {
-      width: 100% !important;
+    width: 100% !important;
   }
 
   .container {
-      width: 100% !important;
+    width: 100% !important;
   }
 
   .gap-10px .mgl--5px {
-      margin-left: 0;
+    margin-left: 0;
   }
 
   .gap-10px .mgr--5px {
-      margin-right: 0;
+    margin-right: 0;
   }
 
   .gap-15px .mgl--7-5px {
-      margin-left: 0;
+    margin-left: 0;
   }
 
   .gap-15px .mgr--7-5px {
-      margin-right: 0;
+    margin-right: 0;
   }
 }
 
@@ -661,85 +693,85 @@ body {
 
 
   .container {
-      max-width: 960px;
+    max-width: 960px;
   }
 
   .box {
-      max-width: 960px;
+    max-width: 960px;
   }
 
   .box-1 {
-      width: 8.33%;
+    width: 8.33%;
   }
 
   .box-2 {
-      width: 16.67%;
+    width: 16.67%;
   }
 
   .box-3 {
-      width: 25%;
+    width: 25%;
   }
 
   .box-3-1 {
-      width: 29.27%;
+    width: 29.27%;
   }
 
   .box-4 {
-      width: 33.33%;
+    width: 33.33%;
   }
 
   .box-4-1 {
-      width: 33.33%;
-      padding-left: 15px;
-      padding-right: 25px;
+    width: 33.33%;
+    padding-left: 15px;
+    padding-right: 25px;
   }
 
   .box-4-2 {
-      width: 33.74%;
-      padding-left: 15px;
-      padding-right: 25px;
+    width: 33.74%;
+    padding-left: 15px;
+    padding-right: 25px;
   }
 
   .box-4-3 {
-      width: 32.93%;
-      padding-left: 15px;
-      padding-right: 15px;
+    width: 32.93%;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .box-5 {
-      width: 41.67%;
+    width: 41.67%;
   }
 
   .box-5-1 {
-      width: 37.4%;
+    width: 37.4%;
   }
 
   .box-6 {
-      width: 50%;
+    width: 50%;
   }
 
   .box-7 {
-      width: 58.33%;
+    width: 58.33%;
   }
 
   .box-8 {
-      width: 66.67%;
+    width: 66.67%;
   }
 
   .box-9 {
-      width: 75%;
+    width: 75%;
   }
 
   .box-10 {
-      width: 83.33%;
+    width: 83.33%;
   }
 
   .box-11 {
-      width: 91.67%;
+    width: 91.67%;
   }
 
   .box-12 {
-      width: 100%;
+    width: 100%;
   }
 
 }
@@ -748,94 +780,94 @@ body {
 @media (min-width: 1300px) {
 
   #client .container {
-      max-width: 1230px;
+    max-width: 1230px;
   }
 
   #client .box {
-      max-width: 1230px;
+    max-width: 1230px;
   }
 
   .container {
-      max-width: 90%;
+    max-width: 90%;
   }
 
   .box {
-      max-width: 90%;
+    max-width: 90%;
   }
 
 
   .box-1 {
-      width: 8.33%;
+    width: 8.33%;
   }
 
   .box-2 {
-      width: 16.67%;
+    width: 16.67%;
   }
 
   .box-3 {
-      width: 25%;
+    width: 25%;
   }
 
   .box-3-1 {
-      width: 29.27%;
+    width: 29.27%;
   }
 
   .box-4 {
-      width: 33.33%;
+    width: 33.33%;
   }
 
   .box-4-1 {
-      width: 33.33%;
-      padding-left: 15px;
-      padding-right: 25px;
+    width: 33.33%;
+    padding-left: 15px;
+    padding-right: 25px;
   }
 
   .box-4-2 {
-      width: 33.74%;
-      padding-left: 15px;
-      padding-right: 25px;
+    width: 33.74%;
+    padding-left: 15px;
+    padding-right: 25px;
   }
 
   .box-4-3 {
-      width: 32.93%;
-      padding-left: 15px;
-      padding-right: 15px;
+    width: 32.93%;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .box-5 {
-      width: 41.67%;
+    width: 41.67%;
   }
 
   .box-5-1 {
-      width: 37.4%;
+    width: 37.4%;
   }
 
   .box-6 {
-      width: 50%;
+    width: 50%;
   }
 
   .box-7 {
-      width: 58.33%;
+    width: 58.33%;
   }
 
   .box-8 {
-      width: 66.67%;
+    width: 66.67%;
   }
 
   .box-9 {
-      width: 75%;
+    width: 75%;
   }
 
   .box-10 {
-      width: 83.33%;
+    width: 83.33%;
   }
 
   .box-11 {
-      width: 91.67%;
+    width: 91.67%;
   }
 
   .box-12 {
-      width: 100%;
+    width: 100%;
   }
 
   /* .box-1{ width: 8.33%; }
@@ -1106,83 +1138,103 @@ h6+p.content {
   display: none;
 }
 
-.width-100, .w-100 {
+.width-100,
+.w-100 {
   width: 100%
 }
 
-.width-95, .w-95 {
+.width-95,
+.w-95 {
   width: 95%
 }
 
-.width-90, .w-90 {
+.width-90,
+.w-90 {
   width: 90%
 }
 
-.width-85, .w-85 {
+.width-85,
+.w-85 {
   width: 85%
 }
 
-.width-80, .w-80 {
+.width-80,
+.w-80 {
   width: 80%
 }
 
-.width-75, .w-75 {
+.width-75,
+.w-75 {
   width: 75%
 }
 
-.width-70, .w-70 {
+.width-70,
+.w-70 {
   width: 70%
 }
 
-.width-65, .w-65 {
+.width-65,
+.w-65 {
   width: 65%
 }
 
-.width-60, .w-60 {
+.width-60,
+.w-60 {
   width: 60%
 }
 
-.width-55, .w-55 {
+.width-55,
+.w-55 {
   width: 55%
 }
 
-.width-50, .w-50 {
+.width-50,
+.w-50 {
   width: 50%
 }
 
-.width-45, .w-45 {
+.width-45,
+.w-45 {
   width: 45%
 }
 
-.width-40, .w-40 {
+.width-40,
+.w-40 {
   width: 40%
 }
 
-.width-35, .w-35 {
+.width-35,
+.w-35 {
   width: 35%
 }
 
-.width-30, .w-30 {
+.width-30,
+.w-30 {
   width: 30%
 }
 
-.width-25, .w-25 {
+.width-25,
+.w-25 {
   width: 25%
 }
 
-.width-20, .w-20 {
+.width-20,
+.w-20 {
   width: 20%
 }
 
-.width-15, .w-15 {
+.width-15,
+.w-15 {
   width: 15%
 }
 
-.width-10, .w-10 {
+.width-10,
+.w-10 {
   width: 10%
 }
 
-.width-5, .w-5 {
+.width-5,
+.w-5 {
   width: 5%
 }
 
@@ -2714,19 +2766,23 @@ h6+p.content {
   gap: 15px;
 }
 
-.gap-20px, .gap-20 {
+.gap-20px,
+.gap-20 {
   gap: 20px;
 }
 
-.gap-30px, .gap-30 {
+.gap-30px,
+.gap-30 {
   gap: 30px;
 }
 
-.gap-40px, .gap-40 {
+.gap-40px,
+.gap-40 {
   gap: 40px;
 }
 
-.gap-50px, .gap-50{
+.gap-50px,
+.gap-50 {
   gap: 50px;
 }
 
@@ -3379,7 +3435,7 @@ h6+p.content {
 }
 
 .middle {
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -4078,7 +4134,7 @@ meter.metter-authir::-webkit-meter-optimum-value {
 
 .break-line-1 {
   word-break: break-all;
-  display: -webkit-box;
+  display: -webkit-box !important;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -4088,7 +4144,7 @@ meter.metter-authir::-webkit-meter-optimum-value {
 
 .break-line-2 {
   word-break: break-all;
-  display: -webkit-box;
+  display: -webkit-box !important;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -4098,7 +4154,7 @@ meter.metter-authir::-webkit-meter-optimum-value {
 
 .break-line-3 {
   word-break: break-all;
-  display: -webkit-box;
+  display: -webkit-box !important;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;

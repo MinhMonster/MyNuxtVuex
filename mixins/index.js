@@ -149,9 +149,13 @@ export default {
     },
   },
   methods: {
+
     format_number(number) {
       const result = Intl.NumberFormat().format(number)
-      return result;
+      return result.replace(",", ".");
+    },
+    cash_atm(number) {
+      return this.format_number(Math.round((number * 0.85)/10000).toFixed(0)*10000)
     },
     time_10(time) {
       if (time > 1000) {
@@ -216,25 +220,25 @@ export default {
     serverNinja(type) {
       switch (type) {
         case "1":
-          return "Sv1";
+          return "Bokken";
           break;
         case "2":
-          return "Sv2+3";
+          return "Shuriken + Tessen";
           break;
         case "4":
-          return "Sv4";
+          return "Kuani";
           break;
         case "5":
-          return "Sv5";
+          return "katana";
           break;
         case "6":
-          return "Sv6";
+          return "Tone";
           break;
         case "7":
-          return "Sv7";
+          return "Suzan";
           break;
         case "8":
-          return "Sv8";
+          return "SenSha";
           break;
       }
     },

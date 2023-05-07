@@ -1,52 +1,79 @@
 <template>
-  <div class="rightbar-content">
-    <div class="user-info-wrap">
-      <div class="user-info">
-        <v-btn icon>
-          <v-icon>mdi-account-circle</v-icon>
-        </v-btn>
-        <div class="member">Member</div>
-      </div>
-    </div>
-    <div class="h-line"></div>
-
-    <div class="member-nav">
-      <div class="member-nav-list">
-        <div class="member-nav-item">
+  <client-only>
+    <div class="rightbar-content">
+      <div class="user-info-wrap">
+        <div class="user-info">
           <v-btn icon>
             <v-icon>mdi-account-circle</v-icon>
           </v-btn>
-          <span class="member-nav-name">Lịch sử đặt cược</span>
-        </div>
-        <div class="member-nav-item">
-          <v-btn icon>
-            <v-icon>mdi-account-circle</v-icon>
-          </v-btn>
-          <span class="member-nav-name">Lịch sử đặt cược</span>
-        </div>
-        <div class="member-nav-item">
-          <v-btn icon>
-            <v-icon>mdi-account-circle</v-icon>
-          </v-btn>
-          <span class="member-nav-name">Lịch sử đặt cược</span>
-        </div>
-        <div class="member-nav-item">
-          <v-btn icon>
-            <v-icon>mdi-account-circle</v-icon>
-          </v-btn>
-          <span class="member-nav-name">Lịch sử đặt cược</span>
-        </div>
-        <div class="member-nav-item">
-          <v-btn icon>
-            <v-icon>mdi-account-circle</v-icon>
-          </v-btn>
-          <span class="member-nav-name">Lịch sử đặt cược</span>
+          <div class="member">Member</div>
         </div>
       </div>
       <div class="h-line"></div>
+      <div class="member-nav">
+        <div class="member-nav-list">
+          <div class="member-nav-item">
+            <v-btn icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-btn>
+            <span class="member-nav-name">Lịch sử mua Nick</span>
+          </div>
+          <div class="member-nav-item">
+            <v-btn icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-btn>
+            <span class="member-nav-name">Lịch sử Nạp Tiền</span>
+          </div>
+          <div class="member-nav-item">
+            <v-btn icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-btn>
+            <span class="member-nav-name">Biến động Số dư</span>
+          </div>
+          <div class="member-nav-item">
+            <v-btn icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-btn>
+            <span class="member-nav-name">Lịch sử đặt cược</span>
+          </div>
+          <div class="member-nav-item">
+            <v-btn icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-btn>
+            <span class="member-nav-name">Lịch sử đặt cược</span>
+          </div>
+        </div>
+        <div class="h-line"></div>
+        <div v-if="token" class="sign-out">
+          <v-btn class="bg-danger" @click="logoutUser()">
+            <v-icon>mdi-power</v-icon> Đăng xuất
+          </v-btn>
+        </div>
+      </div>
     </div>
-  </div>
+  </client-only>
 </template>
+<script>
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("home/users");
+import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+
+export default {
+  layout: "clientLayout",
+  components: { FormValidator },
+  computed: {
+    ...mapState(["token"]),
+  },
+  mounted() {},
+  methods: {
+    ...mapActions(["logout"]),
+    async logoutUser() {
+      await this.logout();
+      this.$router.push("/login");
+    },
+  },
+};
+</script>
 <style lang="scss" scoped>
 .rightbar-content {
   margin-top: 0px;
@@ -66,10 +93,14 @@
   background-size: 100% 100%;
 
   .user-info {
-    text-align: center;
-    margin-top: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    button.v-btn .v-btn__content i.v-icon {
+    button.v-btn .v-btn__content i.v-icon,
+    .v-btn--icon.v-size--default {
       height: 70px;
       width: 70px;
       font-size: 70px;
@@ -105,5 +136,14 @@
   margin-left: 0.2rem;
   font-size: 15px;
   color: #fff;
+}
+.sign-out {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  .bg-danger {
+    color: #ffffff;
+    background: #a21d0a !important;
+  }
 }
 </style>

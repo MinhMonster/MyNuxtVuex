@@ -87,4 +87,16 @@ export default {
   font-size: 80%;
   color: #dc3545;
 }
+.container.client-main {
+  form .field {
+    .has-error input.v-input {
+      border: 1px solid #dc3545;
+    }
+    .validation {
+      margin-top: 0px;
+      padding-bottom: 5px;
+      text-align: center;
+    }
+  }
+}
 </style>

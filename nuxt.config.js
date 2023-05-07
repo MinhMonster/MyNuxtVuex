@@ -25,6 +25,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    "@/assets/css/mms-style.css",
     "@/assets/styles/common.scss",
     "@/assets/styles/home/_ckeditor.scss",
   ],
@@ -47,7 +48,7 @@ export default {
 
   ],
   axios: {
-    baseURL: process.env.API_BASE_URL || 'https://quanlychiphidst.com'
+    baseURL: process.env.API_BASE_URL || 'https://dev.minhmonster.com'
   },
   env: {
     // nodeEnv: process.env.NODE_ENV || "development",
