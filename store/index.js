@@ -2,6 +2,8 @@
 import AdminAuth from "./admin/auth"
 import AdminTopics from "./admin/topics"
 import AdminDeverlopers from "./admin/deverlopers"
+import HomeUser from "./home/users"
+
 
 const ADD_REQUEST = "ADD_REQUEST";
 const REMOVE_REQUEST = "REMOVE_REQUEST";
@@ -43,7 +45,9 @@ export default {
   modules: {
     ADAU: AdminAuth,
     ADTP: AdminTopics,
-    ADDV: AdminDeverlopers
+    ADDV: AdminDeverlopers,
+    HOUS: HomeUser,
+
   },
   
 };

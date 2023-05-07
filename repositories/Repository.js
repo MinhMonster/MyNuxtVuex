@@ -19,6 +19,11 @@ import adminGameNinjas from '~/repositories/admin/game/ninjas'
 // import PhotoRepository from '~/repositories/PhotoRepository'
 // import TodoRepository from '~/repositories/TodoRepository'
 
+// Home Page
+import gameNinjas from '~/repositories/home/game/ninjas'
+import homeUsers from '~/repositories/home/users'
+
+
 export default ($api) => ({
   post: PromotionRepository($api),
 
@@ -39,4 +44,10 @@ export default ($api) => ({
   // album: AlbumRepository($axios),
   // photo: PhotoRepository($axios),
   // todo: TodoRepository($axios)
+
+  // Home Page
+  gameNinjas: gameNinjas($api),
+  homeUsers: homeUsers($api),
+
+
 })

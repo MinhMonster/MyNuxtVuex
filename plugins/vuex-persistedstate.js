@@ -9,7 +9,9 @@ export default ({ store, req }) => {
       "admin.auth.token",
       "admin.auth.authenticated",
       "admin.deverlopers.deverlopers",
-      "admin.deverlopers.deverloper"
+      "admin.deverlopers.deverloper",
+      "home.users.token",
+      "home.users.authenticated",
     ],
     storage: {
       getItem: (key) => {

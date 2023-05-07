@@ -1,27 +1,29 @@
 <template>
-  <div class="container-fluid">
-    <div class="p-4 justify-content-center"></div>
-    <h1>okok</h1>
-  </div>
+  <client-only>
+    <div id="home-page">
+      <AccountNinjaSearch></AccountNinjaSearch>
+      <AccountNinjaList></AccountNinjaList>
+      <!-- <Pagination
+      v-if="metaNinjas"
+      :meta="metaNinjas"
+      @change="onPageChange"
+    ></Pagination> -->
+    </div>
+  </client-only>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import AccountNinjaSearch from "@/components/pages/client/game/ninjas/AccountNinjaSearch";
+import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
+// import Pagination from "@/components/global/molecules/common/Pagination";
+
 export default {
   layout: "clientLayout",
-  
-  components: {},
 
-  created() {},
-
-  computed: {
-    ...mapState("admin/topics", ["topics"]),
-  },
-  methods: {
-    ...mapActions("admin/topics", ["get_topics"]),
+  components: {
+    AccountNinjaSearch,
+    AccountNinjaList,
+    // Pagination
   },
 };
 </script>
-
-<style>
-</style>
