@@ -254,6 +254,6 @@ export default {
 .col-3,
 .col-2,
 .col-1 {
-  padding: 3px;
+  padding: 6px;
 }
 </style>

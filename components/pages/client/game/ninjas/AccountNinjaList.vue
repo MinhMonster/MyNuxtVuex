@@ -40,9 +40,9 @@ export default {
     };
   },
   async mounted() {
+    await this.resetQuery();
     await this.resetAccountNinjas();
     await this.fetchAccountNinjas();
-    this.resetQuery();
   },
   computed: {
     ...mapFields("home/game/ninjas", {

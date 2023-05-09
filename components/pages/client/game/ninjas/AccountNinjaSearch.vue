@@ -91,7 +91,7 @@ export default {
 <style lang="scss" scoped>
 .account-search {
   margin-bottom: 20px;
-  margin: -6px -6px 12px -6px;
+  margin: -3px -3px 15px -3px;
   border: 1px solid #663019;
   background: #ffefa3;
   border-radius: 5px;
