@@ -1,35 +1,54 @@
 <template>
-  <div>
-    <div v-b-toggle.sidebar-right class="header-menu">
-      <v-btn icon class="icon-menu">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+  <client-only>
+    <div>
+      <div v-b-toggle.sidebar-right class="header-menu">
+        <v-btn v-if="token" icon class="icon-menu">
+          <v-icon v-if="!isShow">mdi-menu-down</v-icon>
+          <v-icon v-else>mdi-menu-up</v-icon>
+        </v-btn>
+      </div>
+      <b-sidebar
+        v-model="isShow"
+        id="sidebar-right"
+        class="bg-sidebar"
+        right
+        shadow
+        backdrop
+      >
+        <SideBarMenu></SideBarMenu>
+      </b-sidebar>
     </div>
-    <b-sidebar id="sidebar-right" class="bg-sidebar" right shadow>
-      <SideBarMenu></SideBarMenu>
-    </b-sidebar>
-  </div>
+  </client-only>
 </template>
 <script>
 import mixins from "@/mixins/index";
 import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
-
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("home/users");
 export default {
   mixins: [mixins],
   components: {
     SideBarMenu,
   },
   props: {},
-  computed: {},
+  data() {
+    return {
+      isShow: false,
+    };
+  },
+  computed: {
+    ...mapState(["token"]),
+  },
   methods: {},
 };
 </script>
 <style lang="scss" scoped>
 ::v-deep {
+  .b-sidebar-backdrop {
+    top: 50px;
+  }
   .b-sidebar {
     width: 250px;
-    transition: width 0.5s;
-
   }
   .b-sidebar > .b-sidebar-header {
     padding: 0;
@@ -37,6 +56,7 @@ export default {
     display: block;
   }
   .close {
+    display: none;
     color: #663019 !important;
     // margin-top: 5px;
     margin-right: 5px;
@@ -59,6 +79,7 @@ export default {
     border: 2px solid #561d00;
   }
   .bg-sidebar .b-sidebar {
+    top: 50px;
     color: #fff !important;
     background: radial-gradient(
       circle at 50% 100%,

@@ -1,32 +1,42 @@
 <template>
-  <div class="home-header">
-    <div class="header-content">
-      <div class="header-user">
-        <div class="header-logo">
-          <nuxt-link to="/">
-            <img
-            src="https://muabannick.pro/images/logo/lg-muabannick.png"
-            alt=""
-          />
-          </nuxt-link>
-          
-        </div>
-        <div class="header-nav">
-          <nuxt-link to="/login"
-            ><div class="login-btn"><span>Đăng nhập</span></div></nuxt-link
-          >
+  <client-only>
+    <div class="home-header">
+      <div class="header-content">
+        <div class="header-user">
+          <div class="header-logo">
+            <nuxt-link to="/">
+              <img
+                src="https://muabannick.pro/images/logo/lg-muabannick.png"
+                alt=""
+              />
+            </nuxt-link>
+          </div>
+          <div class="header-nav">
+            <div v-if="!token" class="flex">
+              <nuxt-link to="/login">
+                <div class="login-btn"><span>Đăng nhập</span></div>
+              </nuxt-link>
+              <nuxt-link to="/register">
+                <div class="register-btn"><span>Đăng ký</span></div>
+              </nuxt-link>
+            </div>
+            <div v-else>
+              <span class="user-name"> {{ user.name }}</span>
+            </div>
 
-          <div class="register-btn"><span>Đăng ký</span></div>
-          <SideBarHome></SideBarHome>
+            <SideBarHome></SideBarHome>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </client-only>
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import SideBarHome from "@/components/pages/client/layout/SideBarHome";
+import mixins from "@/mixins/index";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("home/users");
 
 export default {
   mixins: [mixins],
@@ -34,11 +44,20 @@ export default {
     SideBarHome,
   },
   props: {},
-  computed: {},
+  computed: {
+    ...mapState(["token", "user"]),
+  },
   methods: {},
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+// ::v-deep {
+//   .icon-account.v-btn--icon.v-size--default .v-icon {
+//     height: 20px;
+//     font-size: 20px;
+//     width: 20px;
+//   }
+// }
 .home-header {
   height: 50px;
   flex-shrink: 0;
@@ -83,6 +102,8 @@ export default {
 .home-header .header-nav {
   display: flex;
   align-items: center;
+  color: #fff;
+  font-weight: 700;
 }
 
 .home-header .header-user .login-btn,

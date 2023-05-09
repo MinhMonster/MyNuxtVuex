@@ -1,5 +1,5 @@
 <template>
-  <div id="menu">
+  <div id="menu-bottom">
     <nuxt-link to="/"
       ><div class="footer_icon service">
         <v-btn icon class="icon-menu">
@@ -59,7 +59,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-#menu {
+#menu-bottom {
   width: 100%;
   bottom: 0;
   position: fixed;
@@ -72,18 +72,18 @@ export default {
   background: linear-gradient(180deg, #e28637, #9f5424 12%, #561d00);
 }
 @media (min-width: 340px) {
-  #menu {
+  #menu-bottom {
     height: 55px;
   }
 }
 
-#menu a,
-#menu a .footer_icon {
+#menu-bottom a,
+#menu-bottom a .footer_icon {
   display: flex;
   align-items: center;
 }
 
-#menu a {
+#menu-bottom a {
   flex-direction: column;
   /* width: 1.1rem; */
   width: 20%;
@@ -93,32 +93,32 @@ export default {
   text-align: center;
 }
 
-#menu a .footer_icon {
+#menu-bottom a .footer_icon {
   position: relative;
   width: 0.46rem;
   height: 0.46rem;
   justify-content: center;
 }
 
-#menu a,
-#menu a .footer_icon {
+#menu-bottom a,
+#menu-bottom a .footer_icon {
   display: flex;
   align-items: center;
 }
 
-#menu a.on {
+#menu-bottom a.on {
   color: #ffefa3;
 }
 
-#menu a .footer_icon button.icon-menu {
+#menu-bottom a .footer_icon button.icon-menu {
   margin-top: 20px;
   color: #ffcf9c;
 }
 
-icon-wrap #menu a.on .footer_icon svg {
+icon-wrap #menu-bottom a.on .footer_icon svg {
   fill: #fefc7f;
 }
-#menu a .footer_icon svg {
+#menu-bottom a .footer_icon svg {
   display: block;
   width: 100%;
   height: 100%;
@@ -131,12 +131,12 @@ icon-wrap #menu a.on .footer_icon svg {
   width: 0.44rem;
   height: 0.44rem;
 }
-#menu .circle-menu .icon-wrap svg {
+#menu-bottom .circle-menu .icon-wrap svg {
   width: 0.48rem;
   height: 0.42rem;
 }
 
-#menu a span {
+#menu-bottom a span {
   width: 100%;
   overflow: hidden;
   margin-top: 22px;
@@ -144,7 +144,7 @@ icon-wrap #menu a.on .footer_icon svg {
   font-weight: 500;
 }
 
-#menu .circle-menu {
+#menu-bottom .circle-menu {
   position: absolute;
   left: -21px;
   top: -20px;
@@ -155,7 +155,7 @@ icon-wrap #menu a.on .footer_icon svg {
   background-color: #9f5424;
 }
 
-#menu .circle-menu .icon-wrap {
+#menu-bottom .circle-menu .icon-wrap {
   margin-top: -5px;
   margin-left: -5px;
   display: flex;
@@ -168,7 +168,7 @@ icon-wrap #menu a.on .footer_icon svg {
   background: radial-gradient(circle at 50% 15%, #e28637, #9f5424 72%);
 }
 
-#menu .mdi.mdi-home {
+#menu-bottom .mdi.mdi-home {
   color: #ffefa3;
 }
 

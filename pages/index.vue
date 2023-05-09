@@ -8,6 +8,7 @@
       :meta="metaNinjas"
       @change="onPageChange"
     ></Pagination> -->
+      <div id="next-bottom"></div>
     </div>
   </client-only>
 </template>

@@ -13,7 +13,7 @@
       <div class="member-nav">
         <div class="member-nav-list">
           <div class="member-nav-item">
-            <v-btn icon>
+            <v-btn icon to="/register">
               <v-icon>mdi-account-circle</v-icon>
             </v-btn>
             <span class="member-nav-name">Lịch sử mua Nick</span>

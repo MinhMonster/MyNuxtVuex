@@ -11,23 +11,37 @@
       <v-icon v-if="isMenuGame">mdi-chevron-double-left</v-icon>
       <v-icon v-else>mdi-chevron-double-right</v-icon>
     </v-btn>
-    <v-main class="bg-website">
+    <v-main id="main" class="bg-website">
       <v-container
-        class="client-main scroll-y animate__backInLeft"
+        class="client-main scroll-y"
+        :class="{ 'menu-game-active': isMenuGame }"
         :style="styleMain"
       >
         <Nuxt />
       </v-container>
     </v-main>
     <MenuBottom></MenuBottom>
+    <div class="next-top">
+      <v-btn icon @click="nextTop()">
+        <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
+      </v-btn>
+    </div>
+    <div class="next-bottom">
+      <v-btn icon @click="nextBottom()">
+        <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
+      </v-btn>
+    </div>
   </v-app>
 </template>
 
 <script>
 import HeaderHome from "@/components/pages/client/layout/HeaderHome";
 import MenuGameHome from "@/components/pages/client/layout/MenuGameHome";
-
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
+
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("home/users");
+
 export default {
   name: "ClientLayout",
   components: {
@@ -60,21 +74,66 @@ export default {
     };
   },
   computed: {
-    // bodyWidth(){
-    //   return document.querySelector("body").clientWidth;
-    // },
+    ...mapState(["token"]),
+
     styleMain() {
       if (!this.isMenuGame) {
         return "width: calc(100% - 10px) !important; margin-left: 5px; transition: margin-left 0.3s";
       }
     },
   },
+  mounted() {
+    if (this.token) {
+      this.fetchUser();
+    }
+  },
+  methods: {
+    ...mapActions(["logout", "fetchUser"]),
+
+    nextTop() {
+      const element = document.getElementById("home-page");
+      element.scrollIntoView();
+    },
+    nextBottom() {
+      const element = document.getElementById("next-bottom");
+      element.scrollIntoView();
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
-// ::v-deep {
-
-// }
+.next-top,
+.next-bottom {
+  position: fixed;
+  right: 30px;
+  height: 30px;
+  width: 30px;
+  z-index: 999;
+  .v-btn--icon.v-size--default {
+    background: radial-gradient(
+      circle at 50% 100%,
+      #e28637,
+      #9f5424 58%,
+      #561d00 127%
+    );
+  }
+}
+.next-top {
+  bottom: 130px;
+}
+.next-bottom {
+  bottom: 90px;
+}
+.theme--dark.v-application {
+  background: radial-gradient(
+    circle at 50% 100%,
+    #e28637,
+    #9f5424 58%,
+    #561d00 127%
+  );
+  color: #ffffff;
+  z-index: 2;
+}
 .btn-drop-menu-game {
   height: 30px;
   width: 30px;
@@ -105,6 +164,7 @@ export default {
     .container.client-main {
       top: 55px;
       bottom: 75px;
+      right: 5px;
       position: fixed;
       width: calc(100% - 55px) !important;
       margin-left: 50px;
@@ -114,20 +174,31 @@ export default {
       transition: margin-left 0.2s;
     }
   }
-  @media (min-width: 340px) {
+  @media (min-width: 340px) and (max-width: 399px) {
+    .container.client-main {
+      padding: 15px;
+    }
     .v-main__wrap {
       .container.client-main {
         top: 55px;
         bottom: 60px;
+        &.menu-game-active {
+          padding: 12px;
+        }
       }
     }
   }
   @media (min-width: 400px) {
+    .container.client-main {
+      padding: 15px;
+    }
     .btn-drop-menu-game.active {
       left: 30px;
     }
     .v-main__wrap {
       .container.client-main {
+        top: 55px;
+        bottom: 60px;
         width: calc(100% - 65px) !important;
         margin-left: 60px;
       }
