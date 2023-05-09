@@ -57,16 +57,22 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
   api.onResponse((response) => {
     const code = response.data.code;
+    const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
+
     store.dispatch("admin/global/setValidationErrors", {});
 
     // store.dispatch("removeRequest", response.config.id);
-    if (code && code === 401) {
-      const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
+    if (code && code === 200) {
       switch (layout) {
         case "clientLayout":
+          $swal.fire(response.data.message, response.data.error_content, "success");
           break;
+      }
+    }
+    if (code && code === 401) {
+      switch (layout) {
         case "adminDev":
-          store.dispatch("admin/auth/logout");ientLayout
+          store.dispatch("admin/auth/logout");
           redirect('/admin/login')
           break;
       }
@@ -78,7 +84,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     }
     if (code && code === 422) {
 
-      const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
       switch (layout) {
         case "clientLayout":
           $swal.fire(response.data.message, response.data.error_content, "error");

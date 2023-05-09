@@ -46,6 +46,7 @@
         </form>
       </div>
     </div>
+    <div id="next-bottom"></div>
   </div>
 </template>
 
@@ -97,8 +98,8 @@ export default {
 .account-box {
   width: 100%;
   max-width: 390px;
-  margin: 7.6% auto;
-  padding: 15px;
+  margin: 0 auto;
+  padding: 0px;
 }
 .wrapper {
   border-radius: 15px;
@@ -108,7 +109,7 @@ export default {
     font-size: 30px;
     font-weight: 600;
     text-align: center;
-    line-height: 55px;
+    line-height: 40px;
     color: #ffcf9c;
     user-select: none;
     border-radius: 15px 15px 0 0;
@@ -122,7 +123,7 @@ export default {
     border-bottom-left-radius: 10px;
 
     .field {
-      height: 55px;
+      height: 40px;
       width: 100%;
       margin-top: 20px;
       position: relative;
@@ -143,11 +144,11 @@ export default {
         font-size: 17px;
         padding-left: 20px;
         border: 1px solid lightgrey;
-        border-radius: 25px;
+        border-radius: 20px;
         transition: all 0.3s ease;
         background: #fff;
         &.v-input {
-          height: 50px;
+          height: 40px;
           border: 1px solid #e28637;
           color: #663019 !important;
         }
@@ -266,5 +267,16 @@ input[type="checkbox"]:checked + label::after {
   line-height: 1.5;
   text-align: center;
   color: #fff;
+}
+
+@media (min-width: 450px) {
+  .account-box {
+    margin: 7% auto;
+  }
+}
+@media (max-width: 380px) {
+  .account-box {
+    padding: 0px;
+  }
 }
 </style>

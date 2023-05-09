@@ -3,7 +3,7 @@ import { getField, updateField } from "vuex-map-fields";
 const AUTH_SUCCESS = "AUTH_SUCCESS";
 const AUTH_ERROR = "AUTH_ERROR";
 const AUTH_LOGOUT = "AUTH_LOGOUT";
-// const SET_USER_INFO = "SET_USER_INFO";
+const SET_USER_INFO = "SET_USER_INFO";
 
 export default {
   namespaced: true,
@@ -24,7 +24,16 @@ export default {
     async login({ commit }, payload) {
       try {
         const response = await this.$repositories.homeUsers.login(payload);
-        console.log(response.data.token);
+        commit(
+          AUTH_SUCCESS,
+          response.data
+        );
+      } catch { }
+    },
+    async register({ commit, dispash }, payload) {
+      try {
+        // await this.$repositories.homeUsers.register(payload);
+        const response = await this.$repositories.homeUsers.register(payload);
         commit(
           AUTH_SUCCESS,
           response.data
