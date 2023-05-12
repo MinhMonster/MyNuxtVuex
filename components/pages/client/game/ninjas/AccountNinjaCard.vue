@@ -54,7 +54,11 @@
             >{{ format_number(accountNinja.giatien) }} Card</span
           ></b-col
         >
-        <b-col cols="6"><span class="account-buy">Xem Nick</span></b-col>
+        <b-col cols="6">
+          <nuxt-link :to="`/teamobi/ninja-school/${accountNinja.ID}`"
+            ><span class="account-buy"> Xem Nick</span>
+          </nuxt-link>
+        </b-col>
       </b-row>
     </div>
   </b-col>
@@ -181,7 +185,7 @@ export default {
 
   img {
     width: 108%;
-    max-height: 200px;
+    // max-height: 200px;
   }
 }
 .col-xl,

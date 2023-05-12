@@ -9,7 +9,7 @@ export default {
     accountNinjas: [],
     metaNinjas: {},
     countNinjas: "",
-    ninja: {},
+    accountNinja: {},
     query: {
       page: 1,
       perPage: 24
@@ -44,13 +44,13 @@ export default {
       state.countNinjas = payload.count
     },
     RESET_NINJAS(state) {
-      state.accountNinjas = [];
+      state.accountNinjas = []; 
       state.metaNinjas = {}
       state.countNinjas = ""
     },
 
     SET_NINJA(state, payload) {
-      state.ninja = payload
+      state.accountNinja = payload
     },
 
   },
@@ -67,7 +67,7 @@ export default {
     },
     async fetchAccountNinja({ commit }, payload) {
       try {
-        const res = await this.$repositories.adminGameNinjas.fetchAccountNinja(payload)
+        const res = await this.$repositories.gameNinjas.fetchAccountNinja(payload)
         commit('SET_NINJA', res.data.acountNinja)
       } catch (error) { }
     },

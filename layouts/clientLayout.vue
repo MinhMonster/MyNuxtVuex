@@ -102,6 +102,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+::v-deep {
+  #home-page {
+    border-radius: 10px;
+    max-width: 1350px;
+    margin: 0 auto;
+  }
+}
 .next-top,
 .next-bottom {
   position: fixed;
@@ -183,7 +190,10 @@ export default {
         top: 55px;
         bottom: 60px;
         &.menu-game-active {
-          padding: 12px;
+          padding: 6px;
+          #home-page {
+            padding: 6px;
+          }
         }
       }
     }
