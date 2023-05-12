@@ -75,7 +75,6 @@
                     v-if="section.attributes.length"
                     class="attributes-info"
                   >
-                    {{ section.attributes }}
                     <div
                       v-for="(attribute, index) in section.attributes"
                       :key="index"
@@ -84,11 +83,40 @@
                       <button class="handle-attribute btn btn-primary">
                         <i class="mdi mdi-cursor-move"></i>
                       </button>
-                      <div class="user-role-apply">
-                        <b-form-input
-                          v-model="attribute.company"
-                          placeholder=" Enter your role apply"
-                        ></b-form-input>
+                      <div class="attribute">
+                        <b-row>
+                          <b-col cols="2">
+                            <b-form-input
+                              v-model="attribute.start_at"
+                              placeholder="Start At"
+                            ></b-form-input>
+                          </b-col>
+                          <b-col cols="2">
+                            <b-form-input
+                              v-model="attribute.end_at"
+                              placeholder="End At"
+                            ></b-form-input>
+                          </b-col>
+                          <b-col cols="8">
+                            <b-form-input
+                              v-model="attribute.role"
+                              placeholder="Role"
+                            ></b-form-input>
+                          </b-col>
+                          <b-col cols="4">
+                            <b-form-input
+                              v-model="attribute.company"
+                              placeholder="Company"
+                            ></b-form-input>
+                          </b-col>
+
+                          <b-col cols="8">
+                            <b-form-input
+                              v-model="attribute.description"
+                              placeholder="Description"
+                            ></b-form-input>
+                          </b-col>
+                        </b-row>
                       </div>
                     </div>
                   </draggable>
@@ -176,7 +204,6 @@ export default {
                     section_id: "",
                     position: "",
                   },
-                  ,
                 ],
               },
             ],
