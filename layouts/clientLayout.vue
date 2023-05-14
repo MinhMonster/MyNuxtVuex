@@ -103,10 +103,24 @@ export default {
 </script>
 <style lang="scss" scoped>
 ::v-deep {
-  #home-page {
+  #home-page,
+  #account-slider {
     border-radius: 10px;
     max-width: 1350px;
     margin: 0 auto;
+  }
+  #home-page.account-detail {
+    color: #000000;
+    border: 1px solid #663019;
+    background: #ffefa3;
+    padding: 9px;
+  }
+  #account-slider {
+    margin-top: 12px;
+    color: #000000;
+    border: 1px solid #663019;
+    background: #ffefa3;
+    padding: 6px;
   }
 }
 .next-top,
@@ -191,7 +205,8 @@ export default {
         bottom: 60px;
         &.menu-game-active {
           padding: 6px;
-          #home-page {
+          #home-page,
+          #account-slider {
             padding: 6px;
           }
         }
@@ -255,4 +270,51 @@ export default {
 //     }
 //   }
 // }
+
+::v-deep {
+  .slick-dots {
+    bottom: 10px;
+  }
+  .slick-slide {
+    padding: 6px;
+    // border: 1px solid #663019;
+    // height: calc(100% - 10px) !important;
+    // border-radius: 3px !important;
+  }
+  @media (max-width: 400px) {
+    .slick-slide {
+      padding: 0px;
+    }
+    #home-page.account-detail {
+      padding: 6px;
+    }
+  }
+
+  .slick-arrow,
+  .slick-arrow:hover {
+    z-index: 2;
+    &.slick-next {
+      right: 15px;
+    }
+    &.slick-prev {
+      left: 15px;
+    }
+
+    &.slick-next,
+    &.slick-prev,
+    &.slick-prev::before,
+    &.slick-next::before {
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 50% 100%,
+        #e28637,
+        #9f5424 58%,
+        #561d00 127%
+      );
+    }
+  }
+}
 </style>

@@ -168,7 +168,7 @@ th.info-nick {
 .btn-buy-account,
 .btn-buy-account-hover,
 .mua-nick {
-  padding: 10px;
+  padding: 6.5px;
   border-radius: 3px !important;
   text-align: center;
 }
