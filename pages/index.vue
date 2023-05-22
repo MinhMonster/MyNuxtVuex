@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import AccountNinjaSearch from "@/components/pages/client/game/ninjas/AccountNinjaSearch";
 import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
 // import Pagination from "@/components/global/molecules/common/Pagination";
@@ -25,6 +26,19 @@ export default {
     AccountNinjaSearch,
     AccountNinjaList,
     // Pagination
+  },
+  async mounted() {
+    await this.resetQuery();
+    await this.resetAccountNinjas();
+    this.fetchAccountNinjas();
+  },
+  methods: {
+    ...mapActions("home/game/ninjas", [
+      "resetQuery",
+      "setQuery",
+      "resetAccountNinjas",
+      "fetchAccountNinjas",
+    ]),
   },
 };
 </script>

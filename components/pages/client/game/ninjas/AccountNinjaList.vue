@@ -33,16 +33,23 @@ export default {
   mixins: [mixins],
 
   components: { AccountNinjaCard, Loading },
+  props: {
+    query: {
+      type: Object,
+      default: () => {},
+    },
+  },
   data() {
     return {
       isShowNext: true,
       isLoading: false,
-    };
+    };  
   },
   async mounted() {
-    await this.resetQuery();
-    await this.resetAccountNinjas();
-    await this.fetchAccountNinjas();
+    // await this.resetQuery();
+    // await this.setQuery(this.query);
+    // await this.resetAccountNinjas();
+    // await this.fetchAccountNinjas();
   },
   computed: {
     ...mapFields("home/game/ninjas", {
@@ -56,7 +63,7 @@ export default {
       "fetchAccountNinjas",
       "setQuery",
       "resetQuery",
-      "resetAccountNinjas"
+      "resetAccountNinjas",
     ]),
     async onChange() {
       this.isLoading = true;

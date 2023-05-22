@@ -1,65 +1,65 @@
 <template>
-    <div class="account-info">
-      <div class="fileItemWrapper">
-        <img
-          v-if="accountNinja.hinhanh[0].includes('muabannick.pro')"
-          :src="accountNinja.hinhanh[0]"
-          alt=""
-          class="image-ninja"
-        />
-        <img
-          v-else
-          :src="`https://muabannick.pro${accountNinja.hinhanh[0]}`"
-          alt=""
-          class="image-ninja"
-        />
-        <span class="account-cash-atm"
-          ><v-btn icon>
-            <v-icon>mdi-cart-variant</v-icon>
-          </v-btn>
-          {{ cash_atm(accountNinja.giatien) }} ATM-MOMO</span
-        >
-        <span class="account-ingame">
-          <v-btn icon>
-            <v-icon>mdi-account</v-icon>
-          </v-btn>
-          {{ accountNinja.ingame }}
-        </span>
-      </div>
-      <b-row class="account-body">
-        <b-col cols="12"
-          ><span class="account-thongtin break-line-1"
-            >Lv: {{ accountNinja.level }}, {{ accountNinja.thongtin }}</span
-          ></b-col
-        >
-        <b-col cols="3"
-          ><span class="account-code"
-            >Mã Số <br />{{ format_number(accountNinja.ID) }}</span
-          ></b-col
-        >
-        <b-col cols="3"
-          ><span class="account-class"
-            >Class<br />
-            {{ classNinja(accountNinja.class) }}</span
-          ></b-col
-        >
-        <b-col cols="6"
-          ><span class="account-server"
-            >Server <br />{{ serverNinja(accountNinja.server) }}</span
-          ></b-col
-        >
-        <b-col cols="6"
-          ><span class="account-cash"
-            >{{ format_number(accountNinja.giatien) }} Card</span
-          ></b-col
-        >
-        <b-col cols="6">
-          <nuxt-link :to="`/teamobi/ninja-school/${accountNinja.ID}`"
-            ><span class="account-buy"> Xem Nick</span>
-          </nuxt-link>
-        </b-col>
-      </b-row>
+  <div class="account-info">
+    <div class="fileItemWrapper">
+      <img
+        v-if="accountNinja.hinhanh[0].includes('muabannick.pro')"
+        :src="accountNinja.hinhanh[0]"
+        alt=""
+        class="image-ninja"
+      />
+      <img
+        v-else
+        :src="`https://muabannick.pro${accountNinja.hinhanh[0]}`"
+        alt=""
+        class="image-ninja"
+      />
+      <span class="account-cash-atm"
+        ><v-btn icon>
+          <v-icon>mdi-cart-variant</v-icon>
+        </v-btn>
+        {{ cash_atm(accountNinja.giatien) }} ATM-MOMO</span
+      >
+      <span class="account-ingame">
+        <v-btn icon>
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+        {{ accountNinja.ingame }}
+      </span>
     </div>
+    <b-row class="account-body">
+      <b-col cols="12"
+        ><span class="account-thongtin break-line-1"
+          >Lv: {{ accountNinja.level }}, {{ accountNinja.thongtin }}</span
+        ></b-col
+      >
+      <b-col cols="3"
+        ><span class="account-code"
+          >Mã Số <br />{{ format_number(accountNinja.ID) }}</span
+        ></b-col
+      >
+      <b-col cols="3"
+        ><span class="account-class"
+          >Class<br />
+          {{ classNinja(accountNinja.class) }}</span
+        ></b-col
+      >
+      <b-col cols="6"
+        ><span class="account-server"
+          >Server <br />{{ serverNinja(accountNinja.server) }}</span
+        ></b-col
+      >
+      <b-col cols="6"
+        ><span class="account-cash"
+          >{{ format_number(accountNinja.giatien) }} Card</span
+        ></b-col
+      >
+      <b-col cols="6">
+        <nuxt-link :to="`/teamobi/ninja-school/${this.accountNinja.ID}`">
+          <span class="account-buy"> Xem Nick</span>
+        </nuxt-link>
+      </b-col>
+    </b-row>
+  </div>
 </template>
 
 <script>
@@ -78,7 +78,11 @@ export default {
   created() {},
 
   computed: {},
-  methods: {},
+  methods: {
+    async viewAaccount() {
+      await this.$router.push(`/teamobi/ninja-school/${this.accountNinja.ID}`);
+    },
+  },
 };
 </script>
 
@@ -135,6 +139,7 @@ export default {
   .account-thongtin,
   .account-cash,
   .account-buy {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -146,6 +151,7 @@ export default {
     font-weight: 500;
     border-radius: 3px;
     padding: 3px;
+    line-height: 25px;
   }
   // .account-cash{
   //   background: #ffcf9c;
@@ -186,5 +192,4 @@ export default {
     // max-height: 200px;
   }
 }
-
 </style>

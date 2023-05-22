@@ -39,8 +39,7 @@ import HeaderHome from "@/components/pages/client/layout/HeaderHome";
 import MenuGameHome from "@/components/pages/client/layout/MenuGameHome";
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
 
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("home/users");
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "ClientLayout",
@@ -81,14 +80,26 @@ export default {
         return "width: calc(100% - 10px) !important; margin-left: 5px; transition: margin-left 0.3s";
       }
     },
+
+    isScreenMobile() {
+      const screenWidth = document.querySelector("body").clientWidth;
+      console.log(screenWidth);
+      if (screenWidth < 600) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   mounted() {
     if (this.token) {
       this.fetchUser();
     }
+    this.setScreenMobile(this.isScreenMobile);
   },
   methods: {
-    ...mapActions(["logout", "fetchUser"]),
+    ...mapActions("home/users", ["logout", "fetchUser"]),
+    ...mapActions("global", ["setScreenMobile"]),
 
     nextTop() {
       const element = document.getElementById("home-page");
@@ -97,6 +108,9 @@ export default {
     nextBottom() {
       const element = document.getElementById("next-bottom");
       element.scrollIntoView();
+    },
+    debounce() {
+      console.log("t");
     },
   },
 };
@@ -120,7 +134,7 @@ export default {
     color: #000000;
     border: 1px solid #663019;
     background: #ffefa3;
-    padding: 6px;
+    padding: 12px;
   }
 }
 .next-top,
@@ -197,7 +211,7 @@ export default {
   }
   @media (min-width: 340px) and (max-width: 399px) {
     .container.client-main {
-      padding: 15px;
+      padding: 12px;
     }
     .v-main__wrap {
       .container.client-main {
@@ -207,7 +221,7 @@ export default {
           padding: 6px;
           #home-page,
           #account-slider {
-            padding: 6px;
+            padding: 9px;
           }
         }
       }
@@ -287,6 +301,14 @@ export default {
     }
     #home-page.account-detail {
       padding: 6px;
+    }
+    #account-slider {
+      padding: 9px;
+    }
+    .title-category {
+      margin: 0 -9px !important;
+      margin-top: -9px !important;
+      margin-bottom: 9px !important;
     }
   }
 

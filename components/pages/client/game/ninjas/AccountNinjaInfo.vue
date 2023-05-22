@@ -11,41 +11,41 @@
           <tr>
             <th class="info-nick">Class</th>
             <td class="mua-nick">
-              <span>Kunai</span>
+              <span>{{ classNinja(accountNinja.class) }}</span>
             </td>
           </tr>
 
           <tr>
             <th class="info-nick" style="">Level</th>
             <td class="mua-nick">
-              <span> 77</span>
+              <span> {{ accountNinja.level }}</span>
             </td>
           </tr>
 
           <tr>
             <th class="info-nick" style="">Vũ Khí</th>
             <td class="mua-nick">
-              <span>10</span>
+              <span>{{ accountNinja.vukhi }}</span>
             </td>
           </tr>
 
           <tr>
             <th class="info-nick" style="">Đồ</th>
             <td class="mua-nick">
-              <span>6đ10 2đ8</span>
+              <span>{{ accountNinja.do }}</span>
             </td>
           </tr>
 
           <tr>
             <th class="info-nick" style="">Server</th>
             <td class="mua-nick">
-              <span>Shuriken + Tessen</span>
+              <span>{{ serverNinja(accountNinja.server) }}</span>
             </td>
           </tr>
           <tr>
             <th class="info-nick" style="">Chi tiết</th>
             <td class="mua-nick">
-              <span>vk10, 6đ10 2đ8, 15m.yên, 1 sách, sv23 </span>
+              <span>{{ accountNinja.thongtin }} </span>
             </td>
           </tr>
           <tr>
@@ -55,7 +55,7 @@
               Giá Bán
             </th>
             <td class="mua-nick">
-              <span>120.000 Card </span>
+              <span>{{ format_number(accountNinja.giatien) }} Card </span>
               <div
                 style="
                   width: 100%;
@@ -65,25 +65,22 @@
                   margin-bottom: 5px;
                 "
               ></div>
-              <span>100.000 ATM - MOMO</span>
+              <span>{{ cash_atm(accountNinja.giatien) }} ATM - MOMO</span>
             </td>
           </tr>
         </tbody>
       </table>
       <b-row>
         <b-col cols="6">
-          <a
-            class="c-font-uppercase btnCheckAccount ajax"
-            href="/purchase/ninja/12155.html"
-          >
+          <div class="c-font-uppercase btnCheckAccount ajax" @click="isShow = true">
             <div class="btn-buy-account">
               <div class="tom-mua-title">Mua ngay</div>
               <div class="tom-mua-giatien"></div>
             </div>
-          </a>
+          </div>
         </b-col>
 
-        <b-col cols="6">
+        <!-- <b-col cols="6">
           <a href="#" data-toggle="modal" data-target=".atm-momoo">
             <div class="btn-buy-account-hover">
               <div class="tom-mua-title">ATM MOMO</div>
@@ -99,17 +96,18 @@
               <div class="tom-mua-giatien"></div>
             </div>
           </a>
-        </b-col>
+        </b-col> -->
 
         <b-col cols="6">
           <a href="https://zalo.me/0961646828">
-            <div class="panel mua-nick">
+            <div class="btn-buy-account-hover">
               <div class="tom-mua-title">Inbox Admin</div>
               <div class="tom-mua-giatien"></div>
             </div>
           </a>
         </b-col>
       </b-row>
+     <ModalBuyAccountNinja v-if="isShow" :account-ninja="accountNinja" @hide="isShow = false"></ModalBuyAccountNinja>
     </div>
   </client-only>
 </template>
@@ -117,23 +115,36 @@
   <script>
 import mixins from "@/mixins/index";
 import AccountNinjaCard from "@/components/pages/client/game/ninjas/AccountNinjaCard";
-import Loading from "@/components/global/molecules/common/Loading";
+import ModalBuyAccountNinja from "@/components/pages/client/game/ninjas/ModalBuyAccountNinja";
+
 export default {
   name: "AccountNinjaList",
   mixins: [mixins],
 
-  components: { AccountNinjaCard, Loading },
+  components: { AccountNinjaCard, ModalBuyAccountNinja },
   props: {
     accountNinja: {
       type: Object,
       default: () => {},
     },
   },
+  data() {
+    return {
+      isBuy: "wallet",
+      isShow: false
+    };
+  },
   async mounted() {
     console.log(this.accountNinja);
   },
   computed: {},
-  methods: {},
+  methods: {
+    buyNow() {
+      // this.$refs.modal.show();
+      console.log('show');
+      this.isShow = true
+    },
+  },
 };
 </script>
   
@@ -154,6 +165,7 @@ th.info-nick {
 }
 .btn-buy-account,
 .mua-nick {
+  cursor: pointer;
   padding: 5px;
   color: #663019;
   border: 1px solid #663019;
@@ -181,5 +193,122 @@ th.info-nick {
   font-size: 14px;
   font-weight: 400;
   color: #663019;
+}
+
+::v-deep {
+  .modal-header {
+    border-left: 2px solid #663019;
+    border-right: 2px solid #663019;
+    background: #e28637 url(https://muabannick.pro/images/header/bg_top.png)
+      repeat-x;
+    border-bottom: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .modal-title {
+      color: #561d00;
+    }
+    .close {
+      display: flex !important;
+      color: #663019;
+      margin-top: -10px;
+      margin-right: -10px;
+      align-items: center !important;
+      justify-content: center !important;
+      -ms-flex-pack: center !important;
+      text-decoration: none;
+      border-radius: 50%;
+      font-size: 20px;
+      height: 20px;
+      width: 20px;
+      right: 0;
+      top: 0;
+      position: absolute;
+      background: #ffcf9c;
+      border: 2px solid #561d00;
+      z-index: 2;
+      opacity: 1 !important;
+      padding: 12px;
+    }
+  }
+
+  .modal-dialog-scrollable .modal-content {
+    overflow: visible;
+  }
+  .modal-body {
+    position: relative;
+    border: 2px solid #561d00;
+    background: #ffcf9c;
+    padding: 10px;
+    .modal-info {
+      border-radius: 4px;
+      position: relative;
+      padding: 5px;
+      color: #663019;
+      border: 1px solid #663019;
+      background: #ffefa3;
+      .tab-content{
+        padding: 5px;
+      }
+      .form-group{
+        padding: 5px;
+        margin-bottom: 0px;
+      }
+      .nav-tabs {
+        .nav-item {
+          width: 50%;
+          .nav-link {
+            border: none;
+            color: #663019;
+            text-align: center;
+
+            &.active {
+              font-weight: bold;
+              border: none;
+              border-bottom: 1px solid #663019;
+              background-color: #ffefa3;
+            }
+          }
+        }
+      }
+      .row {
+        padding: 0;
+        margin: 0px;
+        .col-md-6{
+          margin: 0px;
+          padding: 0px;
+          .info-atm-momo {
+            border: 1px solid #663019;
+            background: #ffcf9c;
+            margin: 5px;
+            padding: 5px;
+            line-height: 25px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  .modal-footer {
+    border: 2px solid #663019;
+    background: #e28637;
+    border-top: none;
+    // .btn-buy.btn-success {
+    //   border: 1px solid #663019;
+    //   background: #663019;
+    // }
+  }
+  .custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #663019;
+    background-color: #663019;
+  }
+  .custom-control-label::before {
+    top: 0;
+  }
+  .custom-control-label::after {
+    top: 0;
+  }
 }
 </style>

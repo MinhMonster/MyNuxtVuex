@@ -104,8 +104,9 @@ export default {
   margin: 0 auto;
 }
 .image-account {
-  width: 110% !important;
+  width: 112% !important;
   overflow: hidden;
+  margin-left: -6px;
 }
 .title {
   color: #1e5b7e;

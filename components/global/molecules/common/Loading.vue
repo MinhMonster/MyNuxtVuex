@@ -2,13 +2,10 @@
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    style="
-      margin: 0 auto;
-      display: block;
-      shape-rendering: auto;
-    "
-    width="200px"
-    height="150px"
+    style="margin: 0 auto; display: block; shape-rendering: auto"
+    :width="button?`80px`:`200px`"
+    :height="button?`70px`:`150px`"
+    :style="button ? `marginTop:-27px` : ``"
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
     class="flex"
@@ -75,3 +72,13 @@
     </g>
   </svg>
 </template>
+<script>
+export default {
+  props: {
+    button: {
+      type: Boolean,
+      default: false,
+    },
+  },
+};
+</script>
