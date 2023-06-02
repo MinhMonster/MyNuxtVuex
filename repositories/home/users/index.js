@@ -14,4 +14,7 @@ export default ($api) => ({
   fetchUser() {
     return $api.get(`${resource}/fetchUser.php`,)
   },
+  historyBuyAccounts() {
+    return $api.get(`${resource}/history/historyBuyAccounts.php`,)
+  },
 })

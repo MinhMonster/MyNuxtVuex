@@ -73,7 +73,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["token"]),
+    ...mapState("home/users", ["token"]),
 
     styleMain() {
       if (!this.isMenuGame) {
@@ -83,7 +83,6 @@ export default {
 
     isScreenMobile() {
       const screenWidth = document.querySelector("body").clientWidth;
-      console.log(screenWidth);
       if (screenWidth < 600) {
         return true;
       } else {
@@ -91,9 +90,9 @@ export default {
       }
     },
   },
-  mounted() {
+  async mounted() {
     if (this.token) {
-      this.fetchUser();
+      await this.fetchUser();
     }
     this.setScreenMobile(this.isScreenMobile);
   },
@@ -123,11 +122,14 @@ export default {
     max-width: 1350px;
     margin: 0 auto;
   }
-  #home-page.account-detail {
-    color: #000000;
-    border: 1px solid #663019;
-    background: #ffefa3;
-    padding: 9px;
+  #home-page {
+    .page-body {
+      color: #000000;
+      border: 1px solid #663019;
+      background: #ffefa3;
+      padding: 9px;
+      border-radius: 10px;
+    }
   }
   #account-slider {
     margin-top: 12px;
@@ -299,7 +301,7 @@ export default {
     .slick-slide {
       padding: 0px;
     }
-    #home-page.account-detail {
+    #home-page.page-body {
       padding: 6px;
     }
     #account-slider {
@@ -336,6 +338,53 @@ export default {
         #9f5424 58%,
         #561d00 127%
       );
+    }
+  }
+}
+::v-deep {
+  #home-page {
+    table.table {
+      &.table-striped > tbody > tr:nth-of-type(odd) {
+        color: #9f5424;
+        border: 1px solid #663019;
+        background: #ffcf9c;
+      }
+      thead {
+        th {
+          padding: 7.5px;
+          &.trading-code {
+            width: 10% !important;
+            min-width: 60px;
+            vertical-align: middle !important;
+            text-align: center;
+          }
+          &.holder-action {
+            width: 15% !important;
+            min-width: 80px;
+            vertical-align: middle !important;
+            text-align: center;
+          }
+          &.info-history {
+            width: 75% !important;
+            min-width: 150px;
+            vertical-align: middle !important;
+            text-align: left;
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            padding: 10px 3px;
+            .col-sm-12,
+            .col-md-6,
+            .col-lg-3 {
+              padding: 3px 15px;
+
+            }
+          }
+        }
+      }
     }
   }
 }

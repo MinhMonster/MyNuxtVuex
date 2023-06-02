@@ -1,19 +1,22 @@
 <template>
   <client-only>
-    <div>
-      <div id="home-page" class="account-detail">
-        <AccountNinjaDetail :account-ninja="accountNinja"></AccountNinjaDetail>
-      </div>
-      <div id="account-slider">
-        <div class="title-category">
-          <div data-v-53350ac5="" class="title">
-            <center data-v-53350ac5="">
-              <h3 data-v-53350ac5="">Danh Sách Nick Gợi Ý</h3>
-            </center>
-          </div>
+    <div id="home-page">
+      <div v-if="accountNinja.ID" >
+        <div class="page-body">
+          <AccountNinjaDetail
+            :account-ninja="accountNinja"
+          ></AccountNinjaDetail>
         </div>
-        <AccountNinjaList></AccountNinjaList>
-        <!-- <div v-if="!screenMobile">
+        <div id="account-slider">
+          <div class="title-category">
+            <div data-v-53350ac5="" class="title">
+              <center data-v-53350ac5="">
+                <h3 data-v-53350ac5="">Danh Sách Nick Gợi Ý</h3>
+              </center>
+            </div>
+          </div>
+          <AccountNinjaList></AccountNinjaList>
+          <!-- <div v-if="!screenMobile">
           <VueSlickCarousel
             v-if="accountNinjas.length"
             :initialSlide="0"
@@ -38,7 +41,9 @@
             ></AccountNinjaCard>
           </b-row>
         </div> -->
+        </div>
       </div>
+
       <div id="next-bottom"></div>
     </div>
   </client-only>
@@ -121,7 +126,6 @@ export default {
       },
     });
     await this.fetchAccountNinjas();
-
   },
   methods: {
     ...mapActions("home/game/ninjas", [

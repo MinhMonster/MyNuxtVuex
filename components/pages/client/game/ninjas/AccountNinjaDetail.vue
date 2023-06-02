@@ -1,48 +1,42 @@
 
 <template>
   <client-only>
-    <div>
-      <div v-if="accountNinja">
+    <b-row>
+      <b-col cols="12" sm="12" md="8" lg="8">
+        <div class="title">
+          <center>
+            <h3>
+              Nick Ninja - Mã Số:
+              <span
+                ><strong>{{ format_number(accountNinja.ID) }}</strong></span
+              >
+            </h3>
+          </center>
+        </div>
+        <VueSlickCarousel
+          v-if="accountNinja.hinhanh"
+          :initialSlide="0"
+          :slidesToShow="1"
+          :arrows="true"
+          :dots="true"
+        >
+          <img
+            v-for="(image, index) in accountNinja.hinhanh"
+            :key="index"
+            :src="image"
+            alt=""
+            class="image-account"
+          />
+        </VueSlickCarousel>
+      </b-col>
+      <b-col cols="12" sm="12" md="4" lg="4">
         <b-row>
-          <b-col cols="12" sm="12" md="8" lg="8">
-            <div class="title">
-              <center>
-                <h3>
-                  Nick Ninja - Mã Số:
-                  <span
-                    ><strong>{{ accountNinja.ID }}</strong></span
-                  >
-                </h3>
-              </center>
-            </div>
-            <VueSlickCarousel
-              v-if="accountNinja.hinhanh"
-              :initialSlide="0"
-              :slidesToShow="1"
-              :arrows="true"
-              :dots="true"
-            >
-              <img
-                v-for="(image, index) in accountNinja.hinhanh"
-                :key="index"
-                :src="image"
-                alt=""
-                class="image-account"
-              />
-            </VueSlickCarousel>
-          </b-col>
-          <b-col cols="12" sm="12" md="4" lg="4">
-            <b-row>
-              <b-col cols="12" sm="12" md="12">
-                <AccountNinjaInfo
-                  :account-ninja="accountNinja"
-                ></AccountNinjaInfo>
-              </b-col>
-            </b-row>
+          <b-col cols="12" sm="12" md="12">
+            <AccountNinjaInfo :account-ninja="accountNinja"></AccountNinjaInfo>
           </b-col>
         </b-row>
-      </div>
-    </div>
+      </b-col>
+    </b-row>
   </client-only>
 </template>
   

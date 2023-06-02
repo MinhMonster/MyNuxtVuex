@@ -1,5 +1,6 @@
 import { getField, updateField } from "vuex-map-fields";
 
+const SET_STATE = "SET_STATE";
 const AUTH_SUCCESS = "AUTH_SUCCESS";
 const AUTH_ERROR = "AUTH_ERROR";
 const AUTH_LOGOUT = "AUTH_LOGOUT";
@@ -12,7 +13,8 @@ export default {
     token: null,
     authenticated: false,
     authErrorMessage: null,
-    user: null
+    user: null,
+    historyBuyAccounts: []
   }),
   getters: {
     getField,
@@ -52,6 +54,14 @@ export default {
         }
       } catch { }
     },
+    async historyBuyAccounts({ commit }) {
+      try {
+        const response = await this.$repositories.homeUsers.historyBuyAccounts();
+        console.log(response.data.historyBuyAccounts);
+
+        commit(SET_STATE, {historyBuyAccounts: response.data.historyBuyAccounts});
+      } catch { }
+    },
     async authRequest({ commit }, authData) {
       // try {
       // const resp = await this.$repositories.globalAuth.agencyLogin(payload);
@@ -72,6 +82,11 @@ export default {
   },
   mutations: {
     updateField,
+    SET_STATE(state, payload) {
+      _.each(payload, (value, key) => {
+        state[key] = value;
+      });
+    },
     SET_USER_INFO(state, payload) {
       state.user = payload;
     },
@@ -88,6 +103,7 @@ export default {
     AUTH_LOGOUT(state) {
       state.authenticated = false;
       state.token = null;
+      state.user = null;
     },
 
   },

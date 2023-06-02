@@ -3,10 +3,19 @@
     <div class="rightbar-content">
       <div class="user-info-wrap">
         <div class="user-info">
-          <v-btn icon>
+          <v-btn icon v-if="!user">
             <v-icon>mdi-account-circle</v-icon>
           </v-btn>
-          <div class="member">Member</div>
+          <div v-else class="circle">
+            <img v-if="user.avatar" :src="user.avatar" />
+            <img
+              v-else
+              :src="`https://graph.facebook.com/${user.uid}/picture?type=normal`"
+            />
+          </div>
+          <div class="member">
+            {{ user ? user.name : "Member" }}
+          </div>
         </div>
       </div>
       <div class="h-line"></div>
@@ -62,7 +71,7 @@ export default {
   layout: "clientLayout",
   components: { FormValidator },
   computed: {
-    ...mapState(["token"]),
+    ...mapState(["token", "user"]),
   },
   mounted() {},
   methods: {
@@ -104,6 +113,11 @@ export default {
       height: 70px;
       width: 70px;
       font-size: 70px;
+    }
+    img {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
     }
   }
 }

@@ -12,7 +12,7 @@
             </nuxt-link>
           </div>
           <div class="header-nav">
-            <div v-if="!token" class="flex">
+            <div v-if="!user" class="flex">
               <nuxt-link to="/login">
                 <div class="login-btn"><span>Đăng nhập</span></div>
               </nuxt-link>

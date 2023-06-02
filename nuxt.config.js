@@ -28,6 +28,7 @@ export default {
     "@/assets/css/mms-style.css",
     "@/assets/styles/common.scss",
     "@/assets/styles/home/_ckeditor.scss",
+    "@/assets/styles/home/account.scss",
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

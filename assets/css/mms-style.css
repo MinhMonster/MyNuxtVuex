@@ -390,6 +390,23 @@ body {
   border-radius: 6px;
 }
 
+.circle,
+.circle img {
+  border-radius: 50%;
+}
+
+.text-middle {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 #header-bottom.active {
   display: block;
   position: fixed;
@@ -2471,51 +2488,51 @@ h6+p.content {
 }
 
 .bdrs-40px {
-  border-radius: 40px
+  border-radius: 40px !important
 }
 
 .bdrs-35px {
-  border-radius: 35px
+  border-radius: 35px !important
 }
 
 .bdrs-30px {
-  border-radius: 30px
+  border-radius: 30px !important
 }
 
 .bdrs-25px {
-  border-radius: 25px
+  border-radius: 25px !important
 }
 
 .bdrs-20px {
-  border-radius: 20px
+  border-radius: 20px !important
 }
 
 .bdrs-15px {
-  border-radius: 15px
+  border-radius: 15px !important
 }
 
 .bdrs-12px {
-  border-radius: 12px
+  border-radius: 12px !important
 }
 
 .bdrs-10px {
-  border-radius: 10px
+  border-radius: 10px !important
 }
 
 .bdrs-5px {
-  border-radius: 5px
+  border-radius: 5px !important
 }
 
 .bdrs-3px {
-  border-radius: 3px
+  border-radius: 3px !important
 }
 
 .bdrs-2px {
-  border-radius: 2px
+  border-radius: 2px !important
 }
 
 .bdrs-1px {
-  border-radius: 1px
+  border-radius: 1px !important
 }
 
 /* end border radius */

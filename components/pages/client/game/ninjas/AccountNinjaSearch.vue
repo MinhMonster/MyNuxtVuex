@@ -29,8 +29,8 @@
     </b-col>
     <b-col cols="6" sm="4" md="2" lg="2">
       <select name="class" class="form-control c-square c-theme">
-        <option value="">Chọn Class</option>
-        <option value="0" selected="">Chưa</option>
+        <option value="" selected="">Chọn Class</option>
+        <option value="0" >Chưa</option>
         <option value="1">Đao</option>
         <option value="2">Kiếm</option>
         <option value="3">Tiêu</option>

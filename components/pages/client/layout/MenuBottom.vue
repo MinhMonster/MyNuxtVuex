@@ -1,61 +1,87 @@
 <template>
-  <div id="menu-bottom">
-    <nuxt-link to="/"
-      ><div class="footer_icon service">
-        <v-btn icon class="icon-menu">
-          <v-icon>mdi-shield-crown-outline</v-icon>
-        </v-btn>
-      </div>
-      <span>Admin</span>
-    </nuxt-link>
-    <nuxt-link to="/"
-      ><div class="footer_icon deposit">
-        <v-btn icon class="icon-menu">
-          <v-icon>mdi-bank</v-icon>
-        </v-btn>
-      </div>
-      <span>Nạp tiền</span>
-    </nuxt-link>
-    <nuxt-link class="on" to="/"
-      ><div class="footer_icon home">
-        <div class="circle-menu">
-          <div class="icon-wrap">
-            <v-btn icon>
-              <v-icon>mdi-home</v-icon>
-            </v-btn>
+  <client-only>
+    <div id="menu-bottom">
+      <nuxt-link to="/"
+        ><div class="footer_icon service">
+          <v-btn icon class="icon-menu">
+            <v-icon>mdi-shield-crown-outline</v-icon>
+          </v-btn>
+        </div>
+        <span>Admin</span>
+      </nuxt-link>
+      <nuxt-link to="/"
+        ><div class="footer_icon deposit">
+          <v-btn icon class="icon-menu">
+            <v-icon>mdi-bank</v-icon>
+          </v-btn>
+        </div>
+        <span>Nạp tiền</span>
+      </nuxt-link>
+      <nuxt-link class="on" to="/"
+        ><div class="footer_icon home">
+          <div class="circle-menu">
+            <div class="icon-wrap">
+              <v-btn icon>
+                <v-icon>mdi-home</v-icon>
+              </v-btn>
+            </div>
           </div>
         </div>
+        <span>Trang chủ</span>
+      </nuxt-link>
+      <div class="sub-menu-buttom" @click="nextHistory()">
+        <div class="footer_icon service">
+          <v-btn icon class="icon-menu">
+            <v-icon>mdi-history</v-icon>
+          </v-btn>
+        </div>
+        <span>Lịch sử</span>
       </div>
-      <span>Trang chủ</span>
-    </nuxt-link>
-    <nuxt-link to="/"
-      ><div class="footer_icon service">
-        <v-btn icon class="icon-menu">
-          <v-icon>mdi-history</v-icon>
-        </v-btn>
+      <div class="sub-menu-buttom" @click="nextProfile()">
+        <div class="footer_icon Member">
+          <v-btn icon class="icon-menu">
+            <v-icon>mdi-account</v-icon>
+          </v-btn>
+        </div>
+        <span>Thành viên</span>
       </div>
-      <span>Lịch sử</span>
-    </nuxt-link>
-    <nuxt-link to="/"
-      ><div class="footer_icon member">
-        <v-btn icon class="icon-menu">
-          <v-icon>mdi-account</v-icon>
-        </v-btn>
-      </div>
-      <span>Thành viên</span>
-    </nuxt-link>
-  </div>
+    </div>
+  </client-only>
 </template>
 
 <script>
 import mixins from "@/mixins/index";
-
+import { createNamespacedHelpers } from "vuex";
+const { mapState } = createNamespacedHelpers("home/users");
 export default {
   mixins: [mixins],
 
   props: {},
-  computed: {},
-  methods: {},
+  computed: {
+    ...mapState(["token", "user"]),
+  },
+  methods: {
+    nextProfile() {
+      if (this.token) {
+        this.$router.push("/account/profile");
+      } else {
+        this.disabledLogin();
+      }
+    },
+    nextHistory() {
+      if (this.token) {
+        this.$router.push("/account/history");
+      } else {
+        this.disabledLogin();
+      }
+    },
+    disabledLogin() {
+      this.$swal.fire(
+        "Bạn chưa đăng nhập",
+        "Hãy đăng nhập để sử dụng dịch vụ. <br/> Xin cảm ơn!"
+      );
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -78,12 +104,16 @@ export default {
 }
 
 #menu-bottom a,
-#menu-bottom a .footer_icon {
+#menu-bottom a .footer_icon,
+#menu-bottom .sub-menu-buttom,
+#menu-bottom .sub-menu-buttom .footer_icon {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
-#menu-bottom a {
+#menu-bottom a,
+#menu-bottom .sub-menu-buttom {
   flex-direction: column;
   /* width: 1.1rem; */
   width: 20%;
@@ -93,7 +123,8 @@ export default {
   text-align: center;
 }
 
-#menu-bottom a .footer_icon {
+#menu-bottom a .footer_icon,
+#menu-bottom .sub-menu-buttom .footer_icon {
   position: relative;
   width: 0.46rem;
   height: 0.46rem;
@@ -101,24 +132,30 @@ export default {
 }
 
 #menu-bottom a,
-#menu-bottom a .footer_icon {
+#menu-bottom a .footer_icon,
+#menu-bottom .sub-menu-buttom,
+#menu-bottom .sub-menu-buttom .footer_icon {
   display: flex;
   align-items: center;
 }
 
-#menu-bottom a.on {
+#menu-bottom a.on,
+#menu-bottom .sub-menu-buttom.on {
   color: #ffefa3;
 }
 
-#menu-bottom a .footer_icon button.icon-menu {
+#menu-bottom a .footer_icon button.icon-menu,
+#menu-bottom .sub-menu-buttom .footer_icon button.icon-menu {
   margin-top: 20px;
   color: #ffcf9c;
 }
 
-icon-wrap #menu-bottom a.on .footer_icon svg {
+#menu-bottom a.on .footer_icon svg,
+#menu-bottom .sub-menu-buttom.on .footer_icon svg {
   fill: #fefc7f;
 }
-#menu-bottom a .footer_icon svg {
+#menu-bottom a .footer_icon svg,
+#menu-bottom .sub-menu-buttom .footer_icon svg {
   display: block;
   width: 100%;
   height: 100%;
@@ -136,7 +173,8 @@ icon-wrap #menu-bottom a.on .footer_icon svg {
   height: 0.42rem;
 }
 
-#menu-bottom a span {
+#menu-bottom a span,
+#menu-bottom .sub-menu-buttom span {
   width: 100%;
   overflow: hidden;
   margin-top: 22px;
