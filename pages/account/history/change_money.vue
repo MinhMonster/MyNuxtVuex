@@ -21,7 +21,7 @@
               >
                 <thead>
                   <tr>
-                    <th class="trading-code">Mã GD</th>
+                    <th class="trading-code">ID</th>
                     <th class="info-history">Mô Tả</th>
                     <th class="holder-action">Thao tác</th>
                   </tr>
@@ -32,17 +32,32 @@
 
                     <td class="text-middle text-left">
                       <b-row>
-                        <b-col :cols="12" :sm="6" :md="3" :lg="3">
-                          Game: {{ history.accountType }}
+                        <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                          {{ history.historyType }}
                         </b-col>
-                        <b-col :cols="12" :sm="6" :md="2" :lg="3">
-                          Mã số: {{ format_number(history.accountId) }}
+                        <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                          Mã GD: {{ format_number(history.historyCode) }}
                         </b-col>
-                        <b-col :cols="12" :sm="6" :md="3" :lg="3">
-                          Giá: {{ format_number(history.accountCash) }} VNĐ
+                        <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                          Trước: {{ format_number(history.moneyFirst) }} đ
                         </b-col>
-                        <b-col :cols="12" :sm="6" :md="4" :lg="3">
-                          Time: {{ history.buyAt }}
+                        <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                          Số tiền:
+                          <span
+                            :class="
+                              increaseMoney(history)
+                                ? 'text-success'
+                                : 'text-danger'
+                            "
+                            >{{ increaseMoney(history) ? "+" : "-"
+                            }}{{ format_number(history.moneyChange) }} đ</span
+                          >
+                        </b-col>
+                        <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                          Sau: {{ format_number(history.moneyLast) }} đ
+                        </b-col>
+                        <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                          {{ history.buyAt }}
                         </b-col>
                       </b-row>
                     </td>
@@ -97,7 +112,7 @@ export default {
   },
   computed: {
     ...mapFields("home/users", {
-      histories: "historyBuyAccounts",
+      histories: "historyChangeMoneys",
       historyMeta: "historyMeta",
     }),
     ...mapFields("home/game/ninjas", {}),
@@ -116,7 +131,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["historyBuyAccounts", "setQuery", "resetQuery"]),
+    ...mapActions(["historyChangeMoneys", "setQuery", "resetQuery"]),
     nextTop() {
       const element = document.getElementById("history");
       element.scrollIntoView();
@@ -124,20 +139,21 @@ export default {
     async onPageChange(page) {
       this.ready = false;
       await this.setQuery({ page });
-      await this.historyBuyAccounts();
-      await this.$router.push(`/account/history?page=${page}`);
+      await this.historyChangeMoneys();
+      await this.$router.push(`/account/history/change_money?page=${page}`);
       this.ready = true;
 
       // this.nextTop();
+    },
+    increaseMoney(history) {
+      return history.moneyFirst < history.moneyLast;
     },
   },
 };
 </script>
 <style lang="scss" scoped>
 #home-page {
-  max-width: 1024px;
-  // .page-info {
-  //   height: calc(100vh - 165px);
-  // }
+  max-width: 1350px;
+  
 }
 </style>

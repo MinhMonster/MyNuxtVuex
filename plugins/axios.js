@@ -65,12 +65,56 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     if (code && code === 200) {
       switch (layout) {
         case "clientLayout":
-          $swal.fire(response.data.message, response.data.error_content, "success");
+          if(response.data.message){
+            $swal.fire(response.data.message, response.data.content, "success");
+          }
+          break;
+      }
+    }
+    if (code && code === 1) {
+      switch (layout) {
+        case "clientLayout":
+          $swal
+            .fire({
+              title: response.data.message,
+              text: response.data.error_content,
+              confirmButtonColor: "#F64E60",
+              cancelButtonColor: "#a4a4a4",
+              showCancelButton: true,
+              cancelButtonText: "Bỏ qua",
+              confirmButtonText: "Nạp tiền",
+              // icon: "error",
+            })
+            .then(async (result) => {
+              if (result.isConfirmed) {
+                redirect('/nap-tien')
+              }
+            });
           break;
       }
     }
     if (code && code === 401) {
       switch (layout) {
+        case "clientLayout":
+          $swal
+            .fire({
+              title: response.data.message,
+              text: response.data.error_content,
+              confirmButtonColor: "#F64E60",
+              cancelButtonColor: "#a4a4a4",
+              showCancelButton: true,
+              cancelButtonText: "Bỏ qua",
+              confirmButtonText: "Đăng nhập",
+              // icon: "error",
+            })
+            .then(async (result) => {
+              store.dispatch("home/users/logout");
+              if (result.isConfirmed) {
+                redirect('/login')
+              }
+            });
+          
+          break;
         case "adminDev":
           store.dispatch("admin/auth/logout");
           redirect('/admin/login')
@@ -81,6 +125,13 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     }
     if (code && code === 404) {
       redirect('/404')
+      switch (layout) {
+        case "clientLayout":
+          if(response.data.message){
+            $swal.fire(response.data.message, response.data.error_content, "error");
+          }
+          break;
+      }
     }
     if (code && code === 422) {
 

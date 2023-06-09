@@ -143,16 +143,46 @@
       </b-row>
     </div>
     <template #modal-footer="{ hide }">
-      <b-button size="sm" variant="success" class="btn-buy" @click="buyNow()">
-        <Loading v-if="isLoading" button></Loading>
-        <span v-else> Thanh Toán </span>
-      </b-button>
-      <b-button size="sm" variant="danger" @click="hide()"> Hủy </b-button>
+      <div class="flex-columns">
+        <div v-if="!user" class="color-main mgb-10px">
+          Bạn chưa Đăng nhập. Hãy Đăng nhập để mua.
+        </div>
+        <div
+          v-if="user && user.cash < accountNinja.giatien"
+          class="color-main mgb-10px"
+        >
+          Số dư không đủ. Hãy nạp thêm tiền để mua.
+        </div>
+        <div class="flex right gap-5px">
+          <b-button v-if="!user" size="sm" variant="success" to="/login"
+            ><span>Đăng nhập</span></b-button
+          >
+          <b-button
+            v-else-if="user.cash < accountNinja.giatien"
+            variant="success"
+            to="/register"
+            ><span>Nap tiền</span></b-button
+          >
+
+          <b-button
+            v-else
+            size="sm"
+            variant="success"
+            class="btn-buy"
+            @click="buyNow()"
+          >
+            <Loading v-if="isLoading" button></Loading>
+            <span v-else> Thanh Toán </span>
+          </b-button>
+          <b-button size="sm" variant="danger" @click="hide()"> Hủy </b-button>
+        </div>
+      </div>
     </template>
   </b-modal>
 </template>
   
-  <script>
+<script>
+import { mapActions, mapState } from "vuex";
 import mixins from "@/mixins/index";
 import Loading from "@/components/global/molecules/common/Loading";
 export default {
@@ -179,13 +209,16 @@ export default {
     this.$refs.modal.show();
     // }
   },
-  computed: {},
+  computed: {
+    ...mapState("home/users", ["token", "user"]),
+  },
   methods: {
-    buyNow() {
+    ...mapActions("home/users", ["buyAccountNinja"]),
+
+    async buyNow() {
       this.isLoading = true;
-      console.log("buy");
-      this.$swal.fire("test", "", "success");
-      // this.$refs.modal.hide();
+      await this.buyAccountNinja(this.accountNinja.ID);
+      this.isLoading = false;
     },
     close() {
       console.log("close");

@@ -7,15 +7,15 @@ export default {
   // mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - MinhMonster',
-    title: 'MinhMonster',
+    titleTemplate: 'MuaBanNick.Pro -  %s',
+    title: 'Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [

@@ -1,13 +1,16 @@
 <template>
   <client-only>
     <div id="home-page">
-      <div v-if="accountNinja.ID" >
+      <div v-if="!ready" class="center mgt--50px mgb--50px">
+        <Loading></Loading>
+      </div>
+      <div v-if="accountNinja.ID && ready">
         <div class="page-body">
           <AccountNinjaDetail
             :account-ninja="accountNinja"
           ></AccountNinjaDetail>
         </div>
-        <div id="account-slider">
+        <div class="page-body mt-4">
           <div class="title-category">
             <div data-v-53350ac5="" class="title">
               <center data-v-53350ac5="">
@@ -50,18 +53,21 @@
 </template>
 
 <script>
+import Loading from "@/components/global/molecules/common/Loading";
+import AccountNinjaDetail from "@/components/pages/client/game/ninjas/AccountNinjaDetail";
+import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
+
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-import AccountNinjaDetail from "@/components/pages/client/game/ninjas/AccountNinjaDetail";
 // import AccountNinjaCard from "@/components/pages/client/game/ninjas/AccountNinjaCard";
 
 // import AccountNinjaCardInfo from "@/components/pages/client/game/ninjas/AccountNinjaCardInfo";
-import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
 
 export default {
   layout: "clientLayout",
 
   components: {
+    Loading,
     AccountNinjaDetail,
     // AccountNinjaCard,
     // AccountNinjaCardInfo,
@@ -69,6 +75,7 @@ export default {
   },
   data() {
     return {
+      ready: false,
       // responsive: [
       //   {
       //     breakpoint: 1264,
@@ -109,23 +116,8 @@ export default {
       return this.$route.params.id;
     },
   },
-  async mounted() {
-    await this.fetchAccountNinja({
-      params: {
-        id: this.accountId,
-      },
-    });
-    await this.nextTop();
-
-    await this.resetQuery();
-    await this.resetAccountNinjas();
-    await this.setQuery({
-      perPage: 8,
-      q: {
-        giatien: this.accountNinja.giatien,
-      },
-    });
-    await this.fetchAccountNinjas();
+  mounted() {
+    this.fetchAccount();
   },
   methods: {
     ...mapActions("home/game/ninjas", [
@@ -135,18 +127,41 @@ export default {
       "resetAccountNinjas",
       "fetchAccountNinjas",
     ]),
+
     nextTop() {
       const element = document.getElementById("home-page");
       element.scrollIntoView();
+    },
+    async fetchAccount() {
+      this.ready = false;
+
+      await this.fetchAccountNinja({
+        params: {
+          id: this.accountId,
+        },
+      });
+      this.ready = true;
+
+      await this.nextTop();
+
+      await this.resetQuery();
+      await this.resetAccountNinjas();
+      await this.setQuery({
+        perPage: 8,
+        q: {
+          giatien: this.accountNinja.giatien,
+        },
+      });
+      await this.fetchAccountNinjas();
     },
   },
 };
 </script>
 <style lang="scss" scoped>
 .title-category {
-  margin: 0 -12px;
-  margin-top: -12px;
-  margin-bottom: 12px;
+  margin: 0 -9px;
+  margin-top: -9px;
+  margin-bottom: 9px;
   height: 30px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;

@@ -43,7 +43,7 @@
             <v-icon>mdi-account</v-icon>
           </v-btn>
         </div>
-        <span>Thành viên</span>
+        <span>Cá nhân</span>
       </div>
     </div>
   </client-only>

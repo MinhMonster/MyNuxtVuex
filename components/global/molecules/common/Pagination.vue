@@ -2,6 +2,7 @@
   <b-row class="container-fluid">
     <b-col lg="12">
       <b-pagination
+        v-if="meta && meta.per_page > 1"
         to="#home-page"
         :value="meta.page"
         pills
@@ -25,7 +26,12 @@ export default {
   methods: {
     onChange(page) {
       this.$emit("change", page);
+      // this.nextTop()
     },
+    // nextTop() {
+    //   const element = document.getElementById("home-page");
+    //   element.scrollIntoView();
+    // },
   },
 };
 </script>

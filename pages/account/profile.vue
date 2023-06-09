@@ -70,7 +70,7 @@
 
                 <tr>
                   <th class="info-nick" style="">Email</th>
-                  <td class="break-all">
+                  <td class="mua-nick break-all">
                     <span
                       ><strong
                         ><strong>{{ user.email }}</strong></strong

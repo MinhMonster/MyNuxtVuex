@@ -101,15 +101,14 @@ export default {
     ...mapActions("global", ["setScreenMobile"]),
 
     nextTop() {
-      const element = document.getElementById("home-page");
+      const element =
+        document.getElementById("next-top") ||
+        document.getElementById("home-page");
       element.scrollIntoView();
     },
     nextBottom() {
       const element = document.getElementById("next-bottom");
       element.scrollIntoView();
-    },
-    debounce() {
-      console.log("t");
     },
   },
 };
@@ -123,12 +122,26 @@ export default {
     margin: 0 auto;
   }
   #home-page {
+    // height: calc(100vh - 145px);
+    // top: 70px;
+    // bottom: 60px;
     .page-body {
       color: #000000;
       border: 1px solid #663019;
       background: #ffefa3;
       padding: 9px;
       border-radius: 10px;
+      &.full-screen {
+        min-height: calc(100vh - 145px);
+        overflow: hidden;
+        .page-info {
+          min-height: calc(100vh - 165px);
+        }
+      }
+      .tab-scroll-hidden::-webkit-scrollbar {
+        width: 0px;
+        direction: ltr;
+      }
     }
   }
   #account-slider {
@@ -138,6 +151,10 @@ export default {
     background: #ffefa3;
     padding: 12px;
   }
+  // .v-btn--icon.v-size--default {
+  //   height: 30px;
+  //   width: 30px;
+  // }
 }
 .next-top,
 .next-bottom {
@@ -147,6 +164,8 @@ export default {
   width: 30px;
   z-index: 999;
   .v-btn--icon.v-size--default {
+    height: 30px;
+    width: 30px;
     background: radial-gradient(
       circle at 50% 100%,
       #e28637,
@@ -211,24 +230,7 @@ export default {
       transition: margin-left 0.2s;
     }
   }
-  @media (min-width: 340px) and (max-width: 399px) {
-    .container.client-main {
-      padding: 12px;
-    }
-    .v-main__wrap {
-      .container.client-main {
-        top: 55px;
-        bottom: 60px;
-        &.menu-game-active {
-          padding: 6px;
-          #home-page,
-          #account-slider {
-            padding: 9px;
-          }
-        }
-      }
-    }
-  }
+
   @media (min-width: 400px) {
     .container.client-main {
       padding: 15px;
@@ -253,6 +255,84 @@ export default {
       .container.client-main {
         width: calc(100% - 75px) !important;
         margin-left: 70px;
+      }
+    }
+  }
+  @media (min-width: 340px) and (max-width: 399px) {
+    .container.client-main {
+      padding: 9px;
+    }
+    .v-main__wrap {
+      .container.client-main {
+        top: 55px;
+        bottom: 60px;
+        &.menu-game-active {
+          padding: 3px;
+          #home-page,
+          #account-slider {
+            padding: 3px;
+            // .col-12 {
+            //   padding: 12px !important;
+            // }
+          }
+          .title-category {
+            margin: 0 -9px !important;
+            margin-top: -9px !important;
+            margin-bottom: 9px !important;
+          }
+          #home-page {
+            .page-body {
+              padding: 6px;
+              &.full-screen {
+                min-height: calc(100vh - 128px);
+                .page-info {
+                  min-height: calc(100vh - 143px);
+                }
+              }
+            }
+          }
+        }
+        #home-page {
+          .page-body {
+            &.full-screen {
+              min-height: calc(100vh - 134px);
+              .page-info {
+                min-height: calc(100vh - 155px);
+                // .col-12 {
+                //   padding: 12px;
+                // }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 300px) and (max-width: 499px) {
+    .v-main__wrap {
+      .container.client-main {
+        &.menu-game-active {
+          #home-page {
+            .page-body {
+              &.full-screen {
+                min-height: calc(100vh - 190px) !important;
+                .page-info {
+                  min-height: calc(100vh - 170px) !important;
+                }
+              }
+            }
+          }
+        }
+        #home-page {
+          .page-body {
+            &.full-screen {
+              min-height: calc(100vh - 200px) !important;
+              .page-info {
+                min-height: calc(100vh - 180px) !important;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -380,7 +460,6 @@ export default {
             .col-md-6,
             .col-lg-3 {
               padding: 3px 15px;
-
             }
           }
         }

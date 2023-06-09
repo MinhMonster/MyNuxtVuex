@@ -1,51 +1,51 @@
 <template>
   <div id="home-page">
-    <div v-if="!token" class="account-box">
-      <div class="wrapper">
-        <div class="title">ĐĂNG NHẬP</div>
-        <form @submit.stop.prevent="loginUser()">
-          <div id="content"></div>
-          <div class="field">
-            <form-validator name="username">
-              <input
-                v-model="username"
-                type="text"
-                class="v-input"
-                placeholder="Tài Khoản"
-              />
-            </form-validator>
+    <div v-if="!token" class="page-body full-screen">
+      <!-- <div class="wrapper"> -->
+      <div class="title text-center">ĐĂNG NHẬP</div>
+      <form @submit.stop.prevent="loginUser()">
+        <div id="content"></div>
+        <div class="field">
+          <form-validator name="username">
+            <input
+              v-model="username"
+              type="text"
+              class="v-input"
+              placeholder="Tài Khoản"
+            />
+          </form-validator>
+        </div>
+        <div id="sign-in-button"></div>
+        <div class="field">
+          <form-validator name="password">
+            <input
+              v-model="password"
+              type="password"
+              class="v-input"
+              placeholder="Mật khẩu"
+            />
+          </form-validator>
+        </div>
+        <div class="content">
+          <div class="checkbox">
+            <input type="checkbox" id="remember" checked />
+            <label for="remember">Lưu đăng nhập</label>
           </div>
-          <div id="sign-in-button"></div>
-          <div class="field">
-            <form-validator name="password">
-              <input
-                v-model="password"
-                type="password"
-                class="v-input"
-                placeholder="Mật khẩu"
-              />
-            </form-validator>
-          </div>
-          <div class="content">
-            <div class="checkbox">
-              <input type="checkbox" id="remember" checked />
-              <label for="remember">Lưu đăng nhập</label>
-            </div>
-            <span>Quên mật khẩu</span>
-          </div>
-          <input type="hidden" id="confirm" name="confirm" />
-          <div class="field submit">
-            <input type="submit" id="submit" value="Đăng nhập" />
-          </div>
-          <div class="signin">----------- Hoặc -----------</div>
-          <div class="signin">
-            <a href="/login?fb" class="btn btn-lg btn-primary text-white"
-              ><i class="fab fa-facebook-f"></i> Đăng nhập bằng Facebook</a
-            >
-          </div>
-        </form>
-      </div>
+          <span>Quên mật khẩu</span>
+        </div>
+        <input type="hidden" id="confirm" name="confirm" />
+        <div class="field submit">
+          <input type="submit" id="submit" value="Đăng nhập" />
+        </div>
+        <div class="signin">----------- Hoặc -----------</div>
+        <div class="signin">
+          <b-button @click="loginFacebook()" class="btn btn-lg btn-primary text-white"
+            ><i class="fab fa-facebook-f"></i> Đăng nhập bằng Facebook</b-button
+          >
+        </div>
+      </form>
     </div>
+    <!-- </div> -->
     <div id="next-bottom"></div>
   </div>
 </template>
@@ -73,7 +73,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["login", "fetchUser"]),
+    ...mapActions(["login", "fetchUser", "loginFb"]),
     async loginUser() {
       const res = await this.login({
         input: {
@@ -86,6 +86,10 @@ export default {
         this.$router.push("/");
       }
     },
+    async loginFacebook(){
+      const res = await this.loginFb();
+      console.log("log", res );
+    }
   },
 };
 </script>
@@ -101,106 +105,106 @@ export default {
   margin: 0 auto;
   padding: 0px;
 }
-.wrapper {
-  border-radius: 15px;
-  box-shadow: 0px 15px 20px rgb(0 0 0 / 10%);
-  user-select: none;
-  .title {
-    font-size: 30px;
-    font-weight: 600;
-    text-align: center;
-    line-height: 40px;
-    color: #ffcf9c;
-    user-select: none;
-    border-radius: 15px 15px 0 0;
-    background: linear-gradient(-135deg, #e28637, #561d00);
-  }
-  form {
-    padding: 10px 30px 30px;
-    background: #ffefa3;
-    border: 1px solid #663019;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+// .wrapper {
+//   border-radius: 15px;
+//   box-shadow: 0px 15px 20px rgb(0 0 0 / 10%);
+//   user-select: none;
+// .title {
+//   font-size: 30px;
+//   font-weight: 600;
+//   text-align: center;
+//   line-height: 40px;
+//   color: #ffcf9c;
+//   user-select: none;
+//   border-radius: 15px 15px 0 0;
+//   background: linear-gradient(-135deg, #e28637, #561d00);
+// }
+form {
+  padding: 10px 30px 30px;
+  background: #ffefa3;
+  // border: 1px solid #663019;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 
-    .field {
-      height: 40px;
-      width: 100%;
-      margin-top: 20px;
-      position: relative;
-      &.submit {
-        margin-top: 0px;
-      }
-      input:valid ~ label {
-        top: 0%;
-        font-size: 16px;
-        color: #4158d0;
-        background: none;
-        transform: translateY(-50%);
-      }
-      input {
-        height: 100%;
-        width: 100%;
-        outline: none;
-        font-size: 17px;
-        padding-left: 20px;
-        border: 1px solid lightgrey;
-        border-radius: 20px;
-        transition: all 0.3s ease;
-        background: #fff;
-        &.v-input {
-          height: 40px;
-          border: 1px solid #e28637;
-          color: #663019 !important;
-        }
-      }
-      label {
-        position: absolute;
-        top: 50%;
-        left: 20px;
-        color: #999999;
-        font-weight: 400;
-        font-size: 17px;
-        pointer-events: none;
-        transform: translateY(-50%);
-        transition: all 0.3s ease;
-      }
-      input[type="submit"] {
-        color: #ffcf9c;
-        border: none;
-        padding-left: 0;
-        font-size: 20px;
-        font-weight: 500;
-        cursor: pointer;
-        background: linear-gradient(-135deg, #e28637, #561d00);
-        transition: all 0.3s ease;
-      }
+  .field {
+    height: 40px;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+    &.submit {
+      margin-top: 0px;
     }
-    .signin {
-      display: flex;
-      justify-content: center;
-      margin-top: 15px;
-      color: #663019;
-    }
-    .content {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
+    input:valid ~ label {
+      top: 0%;
       font-size: 16px;
-      align-items: center;
-      justify-content: space-around;
-      input {
-        width: 15px;
-        height: 15px;
-        background: red;
+      color: #4158d0;
+      background: none;
+      transform: translateY(-50%);
+    }
+    input {
+      height: 100%;
+      width: 100%;
+      outline: none;
+      font-size: 17px;
+      padding-left: 20px;
+      border: 1px solid lightgrey;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      background: #fff;
+      &.v-input {
+        height: 40px;
+        border: 1px solid #e28637;
+        color: #663019 !important;
       }
-      span {
-        white-space: nowrap;
-        color: #4158d0 !important;
-        cursor: pointer;
-      }
+    }
+    label {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      color: #999999;
+      font-weight: 400;
+      font-size: 17px;
+      pointer-events: none;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+    }
+    input[type="submit"] {
+      color: #ffcf9c;
+      border: none;
+      padding-left: 0;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      background: linear-gradient(-135deg, #e28637, #561d00);
+      transition: all 0.3s ease;
+    }
+  }
+  .signin {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    color: #663019;
+  }
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    font-size: 16px;
+    align-items: center;
+    justify-content: space-around;
+    input {
+      width: 15px;
+      height: 15px;
+      background: red;
+    }
+    span {
+      white-space: nowrap;
+      color: #4158d0 !important;
+      cursor: pointer;
     }
   }
 }
+// }
 .checkbox {
   position: relative;
   display: block;
@@ -278,5 +282,8 @@ input[type="checkbox"]:checked + label::after {
   .account-box {
     padding: 0px;
   }
+}
+#home-page {
+  max-width: 400px;
 }
 </style>

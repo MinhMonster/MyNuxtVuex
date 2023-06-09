@@ -1,9 +1,9 @@
 <template>
   <client-only>
     <div id="home-page">
-      <div v-if="!token" class="account-box">
-        <div class="wrapper">
-          <div class="title">ĐĂNG KÝ THÀNH VIÊN</div>
+      <div v-if="!token" class="page-body full-screen">
+        <!-- <div class="wrapper"> -->
+          <div class="title text-center">ĐĂNG KÝ THÀNH VIÊN</div>
           <form @submit.stop.prevent="registerUser()" class="form">
             <div id="content"></div>
             <b-row>
@@ -136,7 +136,7 @@
             </div>
           </form>
         </div>
-      </div>
+      <!-- </div> -->
       <div id="next-bottom"></div>
     </div>
   </client-only>
@@ -196,24 +196,24 @@ export default {
   margin: 0 auto;
   padding: 0px;
 }
-.wrapper {
-  border-radius: 15px;
-  box-shadow: 0px 15px 20px rgb(0 0 0 / 10%);
-  user-select: none;
-  .title {
-    font-size: 30px;
-    font-weight: 600;
-    text-align: center;
-    line-height: 40px;
-    color: #ffcf9c;
-    user-select: none;
-    border-radius: 15px 15px 0 0;
-    background: linear-gradient(-135deg, #e28637, #561d00);
-  }
+// .wrapper {
+//   border-radius: 15px;
+//   box-shadow: 0px 15px 20px rgb(0 0 0 / 10%);
+//   user-select: none;
+//   .title {
+//     font-size: 30px;
+//     font-weight: 600;
+//     text-align: center;
+//     line-height: 40px;
+//     color: #ffcf9c;
+//     user-select: none;
+//     border-radius: 15px 15px 0 0;
+//     background: linear-gradient(-135deg, #e28637, #561d00);
+//   }
   form {
     // padding: 10px 30px 30px;
     background: #ffefa3;
-    border: 1px solid #663019;
+    // border: 1px solid #663019;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 
@@ -296,7 +296,7 @@ export default {
       }
     }
   }
-}
+// }
 .checkbox {
   position: relative;
   display: block;
@@ -367,8 +367,8 @@ input[type="checkbox"]:checked + label::after {
 
 form {
   padding: 30px 20px 20px 20px;
-  border: 1px solid #333;
-  background: #ffffff;
+  // border: 1px solid #333;
+  // background: #ffffff;
 }
 
 // .form-field {
@@ -435,5 +435,8 @@ form {
   .account-box {
     padding: 0px;
   }
+}
+#home-page {
+  max-width: 800px;
 }
 </style>

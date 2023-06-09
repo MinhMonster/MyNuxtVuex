@@ -22,10 +22,12 @@
       <div class="member-nav">
         <div class="member-nav-list">
           <div class="member-nav-item">
-            <v-btn icon to="/register">
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
-            <span class="member-nav-name">Lịch sử mua Nick</span>
+            <nuxt-link to="/account/history">
+              <v-btn icon>
+                <v-icon>mdi-history</v-icon>
+              </v-btn>
+              <span class="member-nav-name">Lịch sử mua Nick</span>
+            </nuxt-link>
           </div>
           <div class="member-nav-item">
             <v-btn icon>
@@ -34,10 +36,12 @@
             <span class="member-nav-name">Lịch sử Nạp Tiền</span>
           </div>
           <div class="member-nav-item">
-            <v-btn icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
-            <span class="member-nav-name">Biến động Số dư</span>
+            <nuxt-link to="/account/history/change_money">
+              <v-btn icon>
+                <v-icon>mdi-history</v-icon>
+              </v-btn>
+              <span class="member-nav-name">Biến động Số dư</span>
+            </nuxt-link>
           </div>
           <div class="member-nav-item">
             <v-btn icon>
