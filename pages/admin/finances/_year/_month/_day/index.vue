@@ -71,7 +71,6 @@ export default {
         day: this.day,
       },
     });
-    // console.log(this.listDay, this.next, this.pre);
   },
   computed: {
     ...mapFields("admin/finances/edit", [

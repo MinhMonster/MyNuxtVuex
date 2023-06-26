@@ -2575,6 +2575,14 @@ h6+p.content {
   padding: 5px;
 }
 
+.pd-4px {
+  padding: 4px;
+}
+
+.pd-3px {
+  padding: 3px;
+}
+
 .pd-2px {
   padding: 2px;
 }

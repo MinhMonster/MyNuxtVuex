@@ -101,7 +101,6 @@ export default {
   methods: {
     showSubMenu(index) {
       this.is_show = !this.is_show;
-      console.log(`active`, index);
       this.menus.active = false;
       if (this.menus[index].active) {
         for (let i = 0; i < this.menus.length; i++) {

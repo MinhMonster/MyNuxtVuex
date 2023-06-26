@@ -12,7 +12,14 @@ export default {
     accountNinja: {},
     query: {
       page: 1,
-      perPage: 24
+      perPage: 24,
+      q: {
+        id: null,
+        level: null,
+        cash: null,
+        class: null,
+        server: null,
+      },
     }
   }),
 
@@ -88,7 +95,13 @@ export default {
       commit(SET_QUERY, {
         page: 1,
         perPage: 24,
-        q: {},
+        q: {
+          id: null,
+          level: null,
+          cash: null,
+          class: null,
+          server: null,
+        },
       });
     },
 

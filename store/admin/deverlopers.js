@@ -75,7 +75,6 @@ export default {
       });
     },
     ADD_ACTION_INDEX(state, payload) {
-      console.log(`payload`, payload);
       state.actions.splice((payload.index + 1), 0, {
         id: Math.random().toString(36).substr(2, 8),
         typeCode: payload.typeCode.type,
@@ -105,7 +104,6 @@ export default {
       commit("SET_Deverloper", payload);
     },
     setAction({ commit }, payload) {
-      console.log(payload);
       commit(UPDATE_ACTION, payload);
     },
 
@@ -179,17 +177,13 @@ export default {
 
     addAction({ commit, state }, payload) {
       commit(ADD_ACTION, payload);
-      console.log(`actions`, state.actions);
     },
 
     addActionIndex({ commit, state }, payload) {
-      console.log(payload);
       commit(ADD_ACTION_INDEX, payload);
-      console.log(`addActionsIndex`, state.actions);
     },
     removeAction({ commit, state }, payload) {
       commit(REMOVE_ACTION, payload);
-      console.log(`remove`, state.actions);
     },
 
   },

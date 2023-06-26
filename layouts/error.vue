@@ -1,23 +1,25 @@
 <template>
   <client-only>
-    <div id="home-page">
-      <div class="page-body full-screen">
-        <h1 v-if="error.statusCode === 404">
-          {{ pageNotFound }}
-        </h1>
-        <h1 v-else>
-          {{ otherError }}
-        </h1>
-        <NuxtLink to="/"> Home page </NuxtLink>
-      </div>
-    </div>
+    <template v-if="error.statusCode === 404">
+      <Error404></Error404>
+    </template>
+    <template v-else>
+      <Error502></Error502>
+    </template>
   </client-only>
 </template>
 
 <script>
+import Error404 from "@/components/pages/home/Error404";
+import Error502 from "@/components/pages/home/Error502";
+
 export default {
   name: "EmptyLayout",
   layout: "clientLayout",
+  components: {
+    Error404,
+    Error502,
+  },
   props: {
     error: {
       type: Object,
@@ -26,8 +28,8 @@ export default {
   },
   data() {
     return {
-      pageNotFound: "404 Not Found",
-      otherError: "An error occurred",
+      pageNotFound: "Trang Không Tồn Tại",
+      otherError: "Có Lỗi Xảy Ra",
     };
   },
   head() {
@@ -40,8 +42,10 @@ export default {
 };
 </script>
 
-<style scoped>
-h1 {
-  font-size: 20px;
+<style lang="scss" scoped>
+::v-deep {
+  #home-page {
+    max-width: 800px !important;
+  }
 }
 </style>

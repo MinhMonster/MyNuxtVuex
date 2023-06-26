@@ -151,11 +151,12 @@ export default {
   methods: {
 
     format_number(number) {
-      const result = Intl.NumberFormat().format(number)
-      return result.replace(",", ".");
+      const number_toFixed = Number(number).toFixed(0);
+      const result = Intl.NumberFormat().format(number_toFixed)
+      return result.replace(",", ".").replace(",", ".").replace(",", ".").replace(",", ".");
     },
     cash_atm(number) {
-      return this.format_number(Math.round((number * 0.85)/10000).toFixed(0)*10000)
+      return this.format_number(Math.round((number * 0.85) / 10000).toFixed(0) * 10000)
     },
     time_10(time) {
       if (time > 1000) {
@@ -253,6 +254,37 @@ export default {
           break;
         case "2":
           return "TTGT";
+          break;
+      }
+    },
+
+    class_status(status) {
+      switch (status) {
+        case "Chờ Duyệt":
+          return "warning";
+          break;
+        case "Thành Công":
+          return "success";
+          break;
+        case "Thất Bại":
+          return "danger";
+          break;
+      }
+    },
+
+    numberWalletAdmin(wallet) {
+      switch (wallet) {
+        case "Ví MOMO":
+          return "0961646828";
+          break;
+        case "MB Bank":
+          return "8330105578888";
+          break;
+        case "VietinBank":
+          return "107006711803";
+          break;
+        case "VietcomBank":
+          return "0541000311219";
           break;
       }
     }

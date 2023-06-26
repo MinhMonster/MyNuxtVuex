@@ -3,10 +3,10 @@
     <div class="rightbar-content">
       <div class="user-info-wrap">
         <div class="user-info">
-          <v-btn icon v-if="!user">
+          <v-btn icon v-if="!user && !token">
             <v-icon>mdi-account-circle</v-icon>
           </v-btn>
-          <div v-else class="circle">
+          <div v-else-if="user && token" class="circle">
             <img v-if="user.avatar" :src="user.avatar" />
             <img
               v-else
@@ -14,75 +14,109 @@
             />
           </div>
           <div class="member">
-            {{ user ? user.name : "Member" }}
+            <div v-if="!user" class="flex mt-4">
+              <div class="login-btn cursor-pointer" @click="nextLogin()">
+                <span>Đăng nhập</span>
+              </div>
+              <div class="register-btn cursor-pointer" @click="nextRegister()">
+                <span>Đăng ký</span>
+              </div>
+            </div>
+            <template v-else>
+              {{ user.name }}
+              <p class="text-main">
+                Số dư:
+                <span class="text-blue bold">
+                  {{ format_number(user.cash) }}
+                  <sup class="text-sup">vnđ</sup></span
+                >
+              </p>
+            </template>
           </div>
         </div>
       </div>
-      <div class="h-line"></div>
-      <div class="member-nav">
-        <div class="member-nav-list">
-          <div class="member-nav-item">
-            <nuxt-link to="/account/history">
-              <v-btn icon>
-                <v-icon>mdi-history</v-icon>
-              </v-btn>
-              <span class="member-nav-name">Lịch sử mua Nick</span>
-            </nuxt-link>
-          </div>
-          <div class="member-nav-item">
-            <v-btn icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
-            <span class="member-nav-name">Lịch sử Nạp Tiền</span>
-          </div>
-          <div class="member-nav-item">
-            <nuxt-link to="/account/history/change_money">
-              <v-btn icon>
-                <v-icon>mdi-history</v-icon>
-              </v-btn>
-              <span class="member-nav-name">Biến động Số dư</span>
-            </nuxt-link>
-          </div>
-          <div class="member-nav-item">
-            <v-btn icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
-            <span class="member-nav-name">Lịch sử đặt cược</span>
-          </div>
-          <div class="member-nav-item">
-            <v-btn icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
-            <span class="member-nav-name">Lịch sử đặt cược</span>
-          </div>
-        </div>
+      <template v-if="token && user">
         <div class="h-line"></div>
-        <div v-if="token" class="sign-out">
-          <v-btn class="bg-danger" @click="logoutUser()">
-            <v-icon>mdi-power</v-icon> Đăng xuất
-          </v-btn>
+        <div class="member-nav">
+          <div class="member-nav-list">
+            <div class="member-nav-item">
+              <nuxt-link to="/account/profile">
+                <v-btn icon>
+                  <v-icon>mdi-account</v-icon>
+                </v-btn>
+                <span class="member-nav-name">Thông tin Cá nhân</span>
+              </nuxt-link>
+            </div>
+            <div class="member-nav-item">
+              <nuxt-link to="/account/history">
+                <v-btn icon>
+                  <v-icon>mdi-history</v-icon>
+                </v-btn>
+                <span class="member-nav-name">Lịch sử mua Nick</span>
+              </nuxt-link>
+            </div>
+            <div class="member-nav-item">
+              <nuxt-link to="/account/history/change_money">
+                <v-btn icon>
+                  <v-icon>mdi-history</v-icon>
+                </v-btn>
+                <span class="member-nav-name">Biến động Số dư</span>
+              </nuxt-link>
+            </div>
+            <template v-if="user.admin">
+              <div class="h-line mt-4"></div>
+              <div class="member-nav-item">
+                <nuxt-link to="/admin/game/ninjas">
+                  <v-btn icon>
+                    <v-icon>mdi-cog-outline</v-icon>
+                  </v-btn>
+                  <span class="member-nav-name">Quản lý: Admin</span>
+                </nuxt-link>
+              </div>
+            </template>
+          </div>
+          <div class="h-line mb-2"></div>
+          <div class="sign-out">
+            <v-btn class="bg-danger" @click="logoutUser()">
+              <v-icon>mdi-power</v-icon> Đăng xuất
+            </v-btn>
+          </div>
         </div>
-      </div>
+      </template>
     </div>
   </client-only>
 </template>
 <script>
+import mixins from "@/mixins/index";
+
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
 
 export default {
+  mixins: [mixins],
+
   layout: "clientLayout",
   components: { FormValidator },
   computed: {
     ...mapState(["token", "user"]),
   },
-  mounted() {},
+  mounted() {
+    this.fetchUser();
+  },
   methods: {
-    ...mapActions(["logout"]),
+    ...mapActions(["logout", "fetchUser"]),
     async logoutUser() {
       await this.logout();
       this.$router.push("/login");
+    },
+    nextLogin() {
+      this.$router.push("/login");
+      this.$emit("close");
+    },
+    nextRegister() {
+      this.$router.push("/register");
+      this.$emit("close");
     },
   },
 };
@@ -99,8 +133,6 @@ export default {
   align-items: center;
   width: 100%;
   height: 200px;
-  // padding-top: 0.62rem;
-  // background: url(https://www.gnbet.org/m/bk.9713599e.png) no-repeat;
   border: 2px solid #561d00;
   background: #e28637;
   background-size: 100% 100%;
@@ -127,7 +159,7 @@ export default {
 }
 .rightbar-content .user-info-wrap .user-info .member {
   font-size: 30px;
-  font-weight: 700;
+  // font-weight: 700;
   color: #fff;
   text-align: center;
 }
@@ -163,5 +195,23 @@ export default {
     color: #ffffff;
     background: #a21d0a !important;
   }
+}
+.register-btn {
+  box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 49%);
+  border: 1px solid #ffeb00;
+  font-weight: 700;
+  color: #000;
+  /* background-image: linear-gradient(180deg,#fdffdb,#d9e254); */
+  background-image: linear-gradient(180deg, #fdffdb, #ffcf9c);
+}
+.register-btn {
+  position: relative;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.235rem;
+  border-radius: 0.32rem;
+  font-size: 12px;
 }
 </style>

@@ -394,59 +394,8 @@ export default {
     async onFileChange({ target }) {
       if (target.files.length === 0) return;
 
-      // if (target.files.length > this.maxFile) {
-      //   return this.$toasted.error(
-      //     "Too Many Files, Max File:" + `${this.maxFile}`
-      //   );
-      // }
-
       const fileArray = Array.from(target.files);
 
-      // if (fileArray.some((file) => !this.isFileTypeValid(file))) {
-      //   return this.$toasted.error("Invalid file format exists.");
-      // }
-      // const videoType = "video/mp4";
-      // const sizeInvalidCondition = fileArray.some((file) => {
-      //   const maxSize =
-      //     file.type === videoType ? this.maxVideoSizeMb : this.maxFileSizeMb;
-      //   return file.size > maxSize * 1024 * 1024;
-      // });
-      // if (sizeInvalidCondition) {
-      //   return fileArray.some((file) => {
-      //     return this.$toasted.error(
-      //       "File Size Too Large" +
-      //         `${
-      //           file.type === videoType
-      //             ? this.maxVideoSizeMb
-      //             : this.maxFileSizeMb
-      //         }`
-      //     );
-      //   });
-      // }
-
-      // const totalSize = _.sumBy(fileArray, (file) => {
-      //   return file.size;
-      // });
-
-      // if (totalSize + this.usedStorage > this.maxStorage) {
-      //   return this.$toasted.error("Total Size Limit");
-      // }
-
-      // const injectResult = await this.inject(target.files);
-      // if (injectResult === false) return;
-
-      // if (this.autoupload) {
-      //   console.log(`path`, this.autoupload);
-      // this.files = Array.from(target.files);
-      // const res = await this.uploadFiles(fileArray);
-
-      // } else {
-      //   console.log(`not path`);
-      //   this.files = this.files.concat(Array.from(target.files));
-      //   console.log(`this.files`, this.files);
-
-      // this.previewFiles();
-      // }
       if (this.autoupload) {
         this.files = Array.from(target.files);
         this.uploadFiles();
@@ -498,14 +447,6 @@ export default {
           );
         }
       });
-
-      // console.log(`file pre`, file);
-
-      // this.preview.push({
-
-      //   url: file.url,
-      //   destroyed: file.destroyed
-      // });
     },
     removeFile(index) {
       this.files[index].destroyed = true;
@@ -550,51 +491,6 @@ export default {
       }
       await this.getFiles();
     },
-    //   async uploadFiles(files) {
-    //     console.log(`uploadFiles 1`, files);
-    //     try {
-    //       if (this.files.length === 0) {
-    //         return;
-    //       }
-
-    //       const formData = new FormData();
-    //       formData.append("upload", files[0]);
-    //       const input = {
-    //         file: formData,
-    //       };
-    //       // console.log(input);
-    //       // const formData = new FormData();
-    //       // formData.append("file", file);
-    //       // const input = {
-    //       //   file: formData,
-    //       // };
-    //       // const res = await api_file.upload(input);
-    //       // const data = new FormData();
-    //       // this.files.forEach((file, index) => {
-    //       // data.append(`file`, file);
-    //       // });
-
-    //       const res = await this.fileUpload(
-    //         input
-    //         // path: this.pathUpload,
-
-    //         // namespace: this.namespace,
-    //       );
-    //       console.log(`2`, res);
-    //       this.previewFiles(res.data);
-
-    //       this.$emit("uploaded", res.data);
-    //       // this.files = [];
-    //       // this.preview = [];
-    //       // this.$refs.file.value = null;
-    //     } catch (error) {
-    //       console.log(`error`, error);
-    //       // if (_.get(error, "response.status", 400) !== 401) {
-    //       //   const message = error.response.data.message;
-    //       //   this.$toasted.error(message);
-    //       // }
-    //     }
-    //   },
     newFolder(value) {
       const input = {
         path: this.path,
@@ -923,12 +819,12 @@ export default {
   }
 }
 .zoom-modal .folder-plugin {
-    width: 100%;
-    min-width: 675px;
-  }
+  width: 100%;
+  min-width: 675px;
+}
 .zoom-modal .folder-show {
   min-width: 675px;
-  
+
   @media (max-width: 675px) {
     .fileItem,
     .dropzone {

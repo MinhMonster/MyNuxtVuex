@@ -18,12 +18,14 @@ export default {
     user: null,
     historyBuyAccount: {},
     historyBuyAccounts: [],
-    historyChangeMoneys:  [],
+    historyChangeMoneys: [],
+    historyWalletDepositVnd: {},
+    historyWalletDepositVnds: [],
     historyMeta: {},
     pageSave: 1,
     query: {
       page: 1,
-      perPage: 24
+      perPage: 10
     }
   }),
   getters: {
@@ -45,7 +47,6 @@ export default {
     async loginFb({ commit }, payload) {
       try {
         const response = await this.$repositories.homeUsers.loginFb();
-        console.log("logfb", response);
       } catch { }
     },
     async register({ commit, dispash }, payload) {
@@ -78,17 +79,35 @@ export default {
             id: payload
           }
         });
-        console.log(response);
+        return response.data.buyAccountNinja
 
-        // commit(SET_STATE, {historyBuyAccounts: response.data.historyBuyAccounts});
-        // commit(SET_STATE, {historyMeta: response.data.pagy});
+      } catch { }
+    },
+    async buyAccountAvatar({ commit, state }, payload) {
+      try {
+        const response = await this.$repositories.homeUsers.buyAccountAvatar({
+          input: {
+            id: payload
+          }
+        });
+        return response.data.buyAccountAvatar
+
+      } catch { }
+    },
+    async buyAccountDragonBall({ commit, state }, payload) {
+      try {
+        const response = await this.$repositories.homeUsers.buyAccountDragonBall({
+          input: {
+            id: payload
+          }
+        });
+        return response.data.buyAccountDragonBall
 
       } catch { }
     },
     async historyBuyAccount({ commit, state }, id) {
       try {
         const response = await this.$repositories.homeUsers.historyBuyAccount(id);
-        console.log(response);
 
         commit(SET_STATE, { historyBuyAccount: response.data.historyBuyAccount });
 
@@ -97,8 +116,6 @@ export default {
     async historyBuyAccounts({ commit, state }) {
       try {
         const response = await this.$repositories.homeUsers.historyBuyAccounts({ input: state.query });
-        console.log(response.data.historyBuyAccounts);
-
         commit(SET_STATE, { historyBuyAccounts: response.data.historyBuyAccounts });
         commit(SET_STATE, { historyMeta: response.data.pagy });
 
@@ -107,9 +124,28 @@ export default {
     async historyChangeMoneys({ commit, state }) {
       try {
         const response = await this.$repositories.homeUsers.historyChangeMoneys({ input: state.query });
-        console.log(response.data.historyChangeMoneys);
-
         commit(SET_STATE, { historyChangeMoneys: response.data.historyChangeMoneys });
+        commit(SET_STATE, { historyMeta: response.data.pagy });
+
+      } catch { }
+    },
+    async depositVnd({ commit }, payload) {
+      try {
+        const response = await this.$repositories.homeUsers.depositVnd(payload);
+        return response
+      } catch { }
+    },
+    async fetchHistoryWalletDepositVnd({ commit, state }, id) {
+      try {
+        const response = await this.$repositories.homeUsers.fetchHistoryWalletDepositVnd(id);
+        commit(SET_STATE, { historyWalletDepositVnd: response.data.historyWalletDepositVnd });
+
+      } catch { }
+    },
+    async historyWalletDepositVnds({ commit, state }) {
+      try {
+        const response = await this.$repositories.homeUsers.historyWalletDepositVnds({ input: state.query });
+        commit(SET_STATE, { historyWalletDepositVnds: response.data.historyWalletDepositVnds });
         commit(SET_STATE, { historyMeta: response.data.pagy });
 
       } catch { }
@@ -139,13 +175,8 @@ export default {
       } else {
         commit(AUTH_ERROR, false);
       }
-      // } catch (err) {
-      // console.log(err);
-      // commit(AUTH_ERROR, err[0].message);
-      // }
     },
     logout({ commit }) {
-      console.log("logout");
       commit(AUTH_LOGOUT);
     },
   },

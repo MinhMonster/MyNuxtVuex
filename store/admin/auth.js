@@ -10,39 +10,24 @@ export default {
   state: () => ({
     sidebarActive: true,
     token: null,
-    authenticated:false,
-    authErrorMessage:null,
-    user:null
+    authenticated: false,
+    authErrorMessage: null,
+    user: null
   }),
   getters: {
     getField,
-    // getErrors: (state) => (name) => {
-    //   // return _.get(state.validationErrors, name, []);
-    // },
+
   },
   actions: {
-    // async fetchAgencyUserInfo({ commit }) {
-    //   try {
-    //     const response = await this.$repositories.agencyUsers.fetchAgencyUserInfo();
-    //     commit(
-    //       SET_AGENCY_USER_INFO,
-    //       response.data.data.agencyConsoleAgencyUserInfo
-    //     );
-    //   } catch {}
-    // },
+
     async authRequest({ commit }, authData) {
-      // try {
-        // const resp = await this.$repositories.globalAuth.agencyLogin(payload);
-        // const authData = resp.data.data.loginAgency;
-        if(authData.status = "success"){
-          commit(AUTH_SUCCESS, authData);
-        }else{
-          commit(AUTH_ERROR, false);
-        }
-      // } catch (err) {
-        // console.log(err);
-        // commit(AUTH_ERROR, err[0].message);
-      // }
+
+      if (authData.status = "success") {
+        commit(AUTH_SUCCESS, authData);
+      } else {
+        commit(AUTH_ERROR, false);
+      }
+
     },
     logout({ commit }) {
       commit(AUTH_LOGOUT);

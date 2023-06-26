@@ -1,16 +1,11 @@
 <template>
   <client-only>
-    <div id="home-page">
-      <div v-if="!ready" class="center mgt--50px mgb--50px">
-        <Loading></Loading>
-      </div>
-      <div v-if="accountNinja.ID && ready">
-        <div class="page-body">
-          <AccountNinjaDetail
-            :account-ninja="accountNinja"
-          ></AccountNinjaDetail>
-        </div>
-        <div class="page-body mt-4">
+    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
+      <template v-if="accountNinja && accountNinja.ID && ready" #body>
+        <AccountNinjaDetail :account-ninja="accountNinja"></AccountNinjaDetail>
+      </template>
+      <template #table>
+        <div class="page-body bg-none mt--2">
           <div class="title-category">
             <div data-v-53350ac5="" class="title">
               <center data-v-53350ac5="">
@@ -19,89 +14,32 @@
             </div>
           </div>
           <AccountNinjaList></AccountNinjaList>
-          <!-- <div v-if="!screenMobile">
-          <VueSlickCarousel
-            v-if="accountNinjas.length"
-            :initialSlide="0"
-            :slidesToShow="4"
-            :arrows="true"
-            :dots="false"
-            :responsive="responsive"
-          >
-            <AccountNinjaCardInfo
-              v-for="(ninja, index) in accountNinjas"
-              :key="index"
-              :account-ninja="ninja"
-            ></AccountNinjaCardInfo>
-          </VueSlickCarousel>
         </div>
-        <div v-else>
-          <b-row class="text-center account">
-            <AccountNinjaCard
-              v-for="(ninja, index) in accountNinjas"
-              :key="index"
-              :account-ninja="ninja"
-            ></AccountNinjaCard>
-          </b-row>
-        </div> -->
-        </div>
-      </div>
-
-      <div id="next-bottom"></div>
-    </div>
+      </template>
+    </HomePage>
   </client-only>
 </template>
 
 <script>
-import Loading from "@/components/global/molecules/common/Loading";
+import HomePage from "@/components/pages/home/HomePage";
+
 import AccountNinjaDetail from "@/components/pages/client/game/ninjas/AccountNinjaDetail";
 import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-// import AccountNinjaCard from "@/components/pages/client/game/ninjas/AccountNinjaCard";
-
-// import AccountNinjaCardInfo from "@/components/pages/client/game/ninjas/AccountNinjaCardInfo";
 
 export default {
   layout: "clientLayout",
 
   components: {
-    Loading,
+    HomePage,
     AccountNinjaDetail,
-    // AccountNinjaCard,
-    // AccountNinjaCardInfo,
     AccountNinjaList,
   },
   data() {
     return {
       ready: false,
-      // responsive: [
-      //   {
-      //     breakpoint: 1264,
-      //     settings: {
-      //       slidesToShow: 3,
-      //       slidesToScroll: 3,
-      //       infinite: true,
-      //       dots: true,
-      //     },
-      //   },
-      //   {
-      //     breakpoint: 960,
-      //     settings: {
-      //       slidesToShow: 2,
-      //       slidesToScroll: 2,
-      //       initialSlide: 2,
-      //     },
-      //   },
-      //   {
-      //     breakpoint: 480,
-      //     settings: {
-      //       slidesToShow: 1,
-      //       slidesToScroll: 1,
-      //     },
-      //   },
-      // ],
     };
   },
   computed: {
@@ -128,10 +66,6 @@ export default {
       "fetchAccountNinjas",
     ]),
 
-    nextTop() {
-      const element = document.getElementById("home-page");
-      element.scrollIntoView();
-    },
     async fetchAccount() {
       this.ready = false;
 
@@ -142,17 +76,17 @@ export default {
       });
       this.ready = true;
 
-      await this.nextTop();
-
       await this.resetQuery();
       await this.resetAccountNinjas();
-      await this.setQuery({
-        perPage: 8,
-        q: {
-          giatien: this.accountNinja.giatien,
-        },
-      });
-      await this.fetchAccountNinjas();
+      if (this.accountNinja) {
+        await this.setQuery({
+          perPage: 8,
+          q: {
+            giatien: this.accountNinja.giatien,
+          },
+        });
+        await this.fetchAccountNinjas();
+      }
     },
   },
 };
@@ -163,8 +97,8 @@ export default {
   margin-top: -9px;
   margin-bottom: 9px;
   height: 30px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   background: radial-gradient(
     circle at 50% 100%,
     #e28637,
@@ -172,7 +106,7 @@ export default {
     #561d00 127%
   );
   .title {
-    color: #ffefa3;
+    color: #ffefa3 !important;
   }
 }
 </style>

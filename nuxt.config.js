@@ -41,6 +41,8 @@ export default {
     { src: "@/plugins/vue-infinite-scroll", ssr: false },
     { src: "@/plugins/vue-codemirror", ssr: false },
     { src: "@/plugins/vue-slick-carousel" },
+    { src: "@/plugins/vue-clipboard2", ssr: false },
+
     // "~/plugins/axios",
     // "~/plugins/vee-validate",  
     // { src: "@/plugins/vee-validate", ssr: false },
@@ -49,7 +51,7 @@ export default {
 
   ],
   axios: {
-    baseURL: process.env.API_BASE_URL || 'https://dev.minhmonster.com'
+    baseURL: process.env.API_BASE_URL || 'https://muabannick.pro'
   },
   env: {
     // nodeEnv: process.env.NODE_ENV || "development",

@@ -2,63 +2,52 @@
   <div class="game-menu">
     <div class="game-menu-bg scroll-y">
       <ul class="game-menu-list">
-        <li class="game-menu-item list-item-hot on">
-          <div class="game-menu-icon">
-            <v-btn icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
+        <li
+          v-for="(menu, index) in menuOptions"
+          :key="index"
+          class="game-menu-item list-item-hot on"
+        >
+          <div class="game-menu-icon" @click="nextPath(menu.path)">
+            <img :src="menu.image" alt="" />
           </div>
-          <span class="game-menu-name">Ninja School</span
-          ><i class="menu-active"></i>
-        </li>
-        <li class="game-menu-item list-item-hot on">
-          <div class="game-menu-icon">
-            <v-btn icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
-          </div>
-          <span class="game-menu-name">Ngọc Rồng</span
-          ><i class="menu-active"></i>
-        </li>
-        <li class="game-menu-item list-item-hot on">
-          <div class="game-menu-icon">
-            <v-btn icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
-          </div>
-          <span class="game-menu-name">Avatar</span><i class="menu-active"></i>
-        </li>
-        <li class="game-menu-item list-item-hot on">
-          <div class="game-menu-icon">
-            <v-btn icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
-          </div>
-          <span class="game-menu-name">Ninja School</span
-          ><i class="menu-active"></i>
-        </li>
-        <li class="game-menu-item list-item-hot on">
-          <div class="game-menu-icon">
-            <v-btn icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
-          </div>
-          <span class="game-menu-name">Ninja School</span
-          ><i class="menu-active"></i>
-        </li>
-        <li class="game-menu-item list-item-hot on">
-          <div class="game-menu-icon">
-            <v-btn icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-btn>
-          </div>
-          <span class="game-menu-name">Ninja School</span
+          <span class="game-menu-name">{{ menu.title }}</span
           ><i class="menu-active"></i>
         </li>
       </ul>
     </div>
   </div>
 </template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      menuOptions: [
+        {
+          title: "Ninja School",
+          path: "/teamobi/ninja-school",
+          image: "/icon/nj.webp",
+        },
+        {
+          title: "Avatar",
+          path: "/teamobi/avatar",
+          image: "/icon/avatar.jpeg",
+        },
+        {
+          title: "Ngọc Rồng",
+          path: "/teamobi/ngoc-rong",
+          image: "/icon/nro.png",
+        },
+      ],
+    };
+  },
+  methods: {
+    nextPath(path) {
+      this.$router.push(`${path}`);
+    },
+  },
+};
+</script>
 <style lang="scss" scoped>
 .game-menu {
   position: fixed;
@@ -77,8 +66,13 @@
   // background: linear-gradient(180deg, #e28637, #9f5424 12%, #561d00);
   background: #9f5424;
 
-
   .game-menu-icon {
+    img {
+      border-radius: 50%;
+      height: 35px;
+      width: 35px;
+    }
+
     .v-btn--icon.v-size--default i {
       height: 30px;
       width: 30px;
@@ -88,6 +82,7 @@
   }
   .game-menu-name {
     font-size: 14px;
+    color: #fff;
   }
   .game-menu-list {
     width: 100%;
@@ -96,6 +91,7 @@
     margin-bottom: 70px;
   }
   .game-menu-item {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;

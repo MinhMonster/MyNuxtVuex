@@ -1,76 +1,61 @@
 <template>
   <b-row class="account-search">
     <b-col cols="6" sm="4" md="2" lg="2">
-      <select name="level" class="form-control c-square c-theme">
-        <option value="">Chọn Level</option>
-        <option value="1">Dưới 5x</option>
-        <option value="2">Level 5x</option>
-        <option value="3">Level 6x</option>
-        <option value="4">Level 7x</option>
-        <option value="5">Level 8x</option>
-        <option value="6">Level 9x</option>
-        <option value="7">Level 10x</option>
-        <option value="8">Level 11x</option>
-        <option value="9">Level 12x</option>
-        <option value="10">Level 13x</option>
-      </select>
+      <b-form-select
+        v-model="queryForm.q.level"
+        :options="levelOptions"
+        @change="setQueryForm()"
+        size="sm"
+      ></b-form-select>
     </b-col>
     <b-col cols="6" sm="4" md="2" lg="2">
-      <select name="locgia" class="form-control c-square c-theme">
-        <option value="">Giá Tiền</option>
-        <option value="1">Giá Từ 0 đến 50k</option>
-        <option value="2">Giá Từ 50k đến 100k</option>
-        <option value="3">Giá 100k đến 300k</option>
-        <option value="4">Giá 300k đến 500k</option>
-        <option value="5">Giá 500k đến 1 Triệu</option>
-        <option value="6">Giá 1tr đến 3 Triệu</option>
-        <option value="7">Giá Trên 3 Triệu</option>
-      </select>
+      <b-form-select
+        v-model="queryForm.q.cash"
+        :options="cashOptions"
+        @change="setQueryForm()"
+        size="sm"
+      ></b-form-select>
     </b-col>
     <b-col cols="6" sm="4" md="2" lg="2">
-      <select name="class" class="form-control c-square c-theme">
-        <option value="" selected="">Chọn Class</option>
-        <option value="0" >Chưa</option>
-        <option value="1">Đao</option>
-        <option value="2">Kiếm</option>
-        <option value="3">Tiêu</option>
-        <option value="4">Cung</option>
-        <option value="5">Quạt</option>
-        <option value="6">Kunai</option>
-      </select>
+      <b-form-select
+        v-model="queryForm.q.class"
+        :options="classOptions"
+        @change="setQueryForm()"
+        size="sm"
+      ></b-form-select>
     </b-col>
     <b-col cols="6" sm="4" md="2" lg="2">
-      <select name="server" class="form-control c-square c-theme">
-        <option value="">Chọn Server</option>
-        <option value="1">Sv1 - Bokken</option>
-        <option value="2">Sv2+3 - Shuriken + Tessen</option>
-        <option value="4">Sv4 - Kunai</option>
-        <option value="5">Sv5 - Katana</option>
-        <option value="6">Sv6 - Tone</option>
-        <option value="7">Sv7 - Sanzu</option>
-        <option value="8">Sv8 - Sensha</option>
-      </select>
+      <b-form-select
+        v-model="queryForm.q.server"
+        :options="serverOptions"
+        @change="setQueryForm()"
+        size="sm"
+      ></b-form-select>
     </b-col>
     <b-col cols="6" sm="4" md="2" lg="2">
-      <input
-        type="text"
-        class="form-control c-square c-theme champ_name"
+      <b-form-input
+        v-model="queryForm.q.id"
         placeholder="Nhập ID nick..."
-        name="id"
-        value=""
-      />
+        @change="setQueryForm()"
+        @keyup.enter="search()"
+      ></b-form-input>
     </b-col>
     <b-col cols="3" sm="2" md="1" lg="1">
       <b-button
         type="submit"
         name="timkiem"
         class="btn btn-info btn-search text-white"
+        @click="search()"
       >
         <i class="fa fa-search"></i> Tìm kiếm
       </b-button>
     </b-col>
     <b-col cols="3" sm="2" md="1" lg="1">
-      <b-button type="" name="" class="btn btn-success btn-search text-white"
+      <b-button
+        type=""
+        name=""
+        class="btn btn-success btn-search text-white"
+        @click="reset()"
         ><i class="fa fa-list"></i> Tất cả</b-button
       >
     </b-col>
@@ -78,13 +63,266 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+import { mapActions } from "vuex";
 export default {
   components: {},
-
+  data() {
+    return {
+      // query: {
+      //   q: {
+      //     id: null,
+      //     level: null,
+      //     cash: null,
+      //     class: null,
+      //     server: null,
+      //   },
+      // },
+      levelOptions: [
+        {
+          text: "Chon Level",
+          value: null,
+        },
+        {
+          text: "Dưới 5x",
+          value: {
+            min: 0,
+            max: 49,
+          },
+        },
+        {
+          text: "Level 5x",
+          value: {
+            min: 50,
+            max: 59,
+          },
+        },
+        {
+          text: "Level 6x",
+          value: {
+            min: 60,
+            max: 69,
+          },
+        },
+        {
+          text: "Level 7x",
+          value: {
+            min: 70,
+            max: 79,
+          },
+        },
+        {
+          text: "Level 8x",
+          value: {
+            min: 80,
+            max: 89,
+          },
+        },
+        {
+          text: "Level 9x",
+          value: {
+            min: 90,
+            max: 99,
+          },
+        },
+        {
+          text: "Level 10x",
+          value: {
+            min: 100,
+            max: 109,
+          },
+        },
+        {
+          text: "Level 11x",
+          value: {
+            min: 110,
+            max: 119,
+          },
+        },
+        {
+          text: "Level 12x",
+          value: {
+            min: 120,
+            max: 129,
+          },
+        },
+        {
+          text: "Level 13x",
+          value: {
+            min: 130,
+          },
+        },
+      ],
+      cashOptions: [
+        {
+          text: "Chon Giá Tiền",
+          value: null,
+        },
+        {
+          text: "Dưới 50k",
+          value: {
+            min: 0,
+            max: 49000,
+          },
+        },
+        {
+          text: "Giá 50k đến 100k",
+          value: {
+            min: 50000,
+            max: 100000,
+          },
+        },
+        {
+          text: "Giá 100k đến 200k",
+          value: {
+            min: 100000,
+            max: 200000,
+          },
+        },
+        {
+          text: "Giá 200k đến 300k",
+          value: {
+            min: 200000,
+            max: 300000,
+          },
+        },
+        {
+          text: "Giá 300k đến 500k",
+          value: {
+            min: 300000,
+            max: 500000,
+          },
+        },
+        {
+          text: "Giá 500k đến 700k",
+          value: {
+            min: 500000,
+            max: 700000,
+          },
+        },
+        {
+          text: "Giá 700k đến 1 Triệu",
+          value: {
+            min: 700000,
+            max: 1000000,
+          },
+        },
+        {
+          text: "Giá 1Tr đến 1,5 Triệu",
+          value: {
+            min: 1000000,
+            max: 1500000,
+          },
+        },
+        {
+          text: "Giá 1,5Tr đến 3 Triệu",
+          value: {
+            min: 1500000,
+            max: 3000000,
+          },
+        },
+        {
+          text: "Giá trên 3 Triệu",
+          value: {
+            min: 3000000,
+          },
+        },
+      ],
+      classOptions: [
+        {
+          text: "Chọn Phái",
+          value: null,
+        },
+        {
+          text: "Chưa vào lớp",
+          value: 0,
+        },
+        {
+          text: "Đao",
+          value: 1,
+        },
+        {
+          text: "Kiếm",
+          value: 2,
+        },
+        {
+          text: "Tiêu",
+          value: 3,
+        },
+        {
+          text: "Cung",
+          value: 4,
+        },
+        {
+          text: "Quạt",
+          value: 5,
+        },
+        {
+          text: "Kuani",
+          value: 6,
+        },
+      ],
+      serverOptions: [
+        {
+          text: "Chọn Server",
+          value: null,
+        },
+        {
+          text: "Sv1 - Bokken",
+          value: 1,
+        },
+        {
+          text: "Sv2+3 - Shuriken + Tessen",
+          value: 2,
+        },
+        {
+          text: "Sv4 - Kunai",
+          value: 4,
+        },
+        {
+          text: "Sv5 - Katana",
+          value: 5,
+        },
+        {
+          text: "Sv6+7 - Tone + Sanzu",
+          value: 6,
+        },
+        {
+          text: "Sv8 - Sensha",
+          value: 8,
+        },
+        {
+          text: "Sv9 - Fukiya",
+          value: 9,
+        },
+      ],
+    };
+  },
   created() {},
 
-  computed: {},
-  methods: {},
+  computed: {
+    ...mapFields("home/game/ninjas", {
+      query: "query",
+    }),
+    queryForm() {
+      return _.cloneDeep(this.query);
+    },
+  },
+  methods: {
+    ...mapActions("home/game/ninjas", ["resetQuery", "setQuery"]),
+    search() {
+      this.setQueryForm();
+      this.$emit("search");
+    },
+    async reset() {
+      this.resetQuery();
+      this.search();
+    },
+    setQueryForm() {
+      this.queryForm.page = 1;
+      this.setQuery(this.queryForm);
+    },
+  },
 };
 </script>
 

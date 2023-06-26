@@ -1,31 +1,6 @@
 <template>
   <div class="account-info">
-    <div class="fileItemWrapper">
-      <img
-        v-if="accountNinja.hinhanh[0].includes('muabannick.pro')"
-        :src="accountNinja.hinhanh[0]"
-        alt=""
-        class="image-ninja"
-      />
-      <img
-        v-else
-        :src="`https://muabannick.pro${accountNinja.hinhanh[0]}`"
-        alt=""
-        class="image-ninja"
-      />
-      <span class="account-cash-atm"
-        ><v-btn icon>
-          <v-icon>mdi-cart-variant</v-icon>
-        </v-btn>
-        {{ cash_atm(accountNinja.giatien) }} ATM-MOMO</span
-      >
-      <span class="account-ingame">
-        <v-btn icon>
-          <v-icon>mdi-account</v-icon>
-        </v-btn>
-        {{ accountNinja.ingame }}
-      </span>
-    </div>
+    <AccountNinjaTL :account-ninja="accountNinja" />
     <b-row class="account-body">
       <b-col cols="12"
         ><span class="account-thongtin break-line-1"
@@ -64,11 +39,12 @@
 
 <script>
 import mixins from "@/mixins/index";
+import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL";
 
 export default {
   mixins: [mixins],
   name: "AccountNinjaCardInfo",
-  components: {},
+  components: { AccountNinjaTL },
   props: {
     accountNinja: {
       type: Object,
@@ -103,38 +79,8 @@ export default {
   border-radius: 5px;
   border: 1px solid #663019;
   text-align: center;
-  .account-ingame,
-  .account-cash-atm {
-    position: absolute;
-    top: 6px;
-    font-size: 13px;
-    font-weight: 450;
-    width: auto !important;
-    text-align: center;
-    border-radius: 3px;
-    padding: 1px 5px 1px 5px;
-    color: #ffffff;
-    background: #a21d0a;
-    .v-btn--icon.v-size--default {
-      height: 20px;
-      width: 20px;
-      margin: 0 -5px;
-      i {
-        height: 15px;
-        width: 15px;
-        line-height: 15px;
-        font-size: 14px;
-      }
-    }
-  }
-  .account-ingame {
-    right: 6px;
-  }
-  .account-cash-atm {
-    left: 6px;
-    font-size: 11px;
-    font-weight: 700;
-  }
+
+
 
   .account-thongtin,
   .account-cash,
@@ -176,20 +122,5 @@ export default {
 // }
 // }
 
-.fileItemWrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  // height: 100%;
-  overflow: hidden;
-  // border-radius: 5px;
 
-  img {
-    width: 108%;
-    // max-height: 200px;
-  }
-}
 </style>

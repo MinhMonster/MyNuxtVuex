@@ -31,6 +31,8 @@ export default {
     notificaitonPages: 1,
     selectedImages: [],
     screenMobile: true,
+    oldPath: "/",
+    nowPath: "/",
   }),
   getters: {
     getField,
@@ -38,12 +40,18 @@ export default {
   },
   actions: {
     setScreenMobile({ commit }, payload) {
-      console.log('st', payload);
       commit(SET_STATE, { screenMobile: payload });
     },
     setSelectedImages({ commit }, payload) {
       commit("SET_SELECTED_IMAGES", payload)
     },
+    setPath({ commit, state }, path) {
+      commit(SET_STATE, { oldPath: state.nowPath || "/" });
+      commit(SET_STATE, { nowPath: path });
+    },
+    // nextOldPath({state}) {
+    //   window.location.href = state.oldPath || "/";
+    // },
 
     async fileUpload({ state, commit, dispatch }, payload) {
       // return new Promise((resolve, reject) => {
@@ -57,7 +65,6 @@ export default {
         const result = await this.$repositories.adminUploads.upload(payload)
         return result;
       } catch (err) {
-        console.log(err);
       };
     },
     async fetchFiles({ commit }, payload) {

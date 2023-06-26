@@ -95,20 +95,26 @@ export default {
       await this.fetchUser();
     }
     this.setScreenMobile(this.isScreenMobile);
+    this.$nextTick(function () {
+      this.nextPath();
+    });
+    window.addEventListener("click", this.nextPath());
   },
   methods: {
     ...mapActions("home/users", ["logout", "fetchUser"]),
-    ...mapActions("global", ["setScreenMobile"]),
+    ...mapActions("global", ["setScreenMobile", "setPath"]),
 
     nextTop() {
-      const element =
-        document.getElementById("next-top") ||
-        document.getElementById("home-page");
+      const element = document.getElementById("home-page");
       element.scrollIntoView();
     },
     nextBottom() {
       const element = document.getElementById("next-bottom");
       element.scrollIntoView();
+    },
+    nextPath() {
+      const path = this.$route.path;
+      this.setPath(path);
     },
   },
 };
@@ -130,7 +136,7 @@ export default {
       border: 1px solid #663019;
       background: #ffefa3;
       padding: 9px;
-      border-radius: 10px;
+      border-radius: 4px;
       &.full-screen {
         min-height: calc(100vh - 145px);
         overflow: hidden;
@@ -225,7 +231,7 @@ export default {
       width: calc(100% - 55px) !important;
       margin-left: 50px;
       max-width: 100% !important;
-      border-radius: 10px;
+      border-radius: 4px;
       background: #ffcf9c;
       transition: margin-left 0.2s;
     }
@@ -439,13 +445,13 @@ export default {
             text-align: center;
           }
           &.holder-action {
-            width: 15% !important;
-            min-width: 80px;
+            width: 10% !important;
+            min-width: 60px;
             vertical-align: middle !important;
             text-align: center;
           }
           &.info-history {
-            width: 75% !important;
+            width: 80% !important;
             min-width: 150px;
             vertical-align: middle !important;
             text-align: left;

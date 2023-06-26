@@ -3,7 +3,7 @@
     <div class="">
       <v-row align="center">
         <v-col>
-          <v-card-title>{{deverloper_view.title}}</v-card-title>
+          <v-card-title>{{ deverloper_view.title }}</v-card-title>
         </v-col>
         <!-- <v-spacer /> -->
         <!-- <v-col
@@ -13,13 +13,16 @@
         > -->
       </v-row>
 
-      <div id="body-admin" >
+      <div id="body-admin">
         <div v-if="!deverloper_view" class="">
           <div class=""></div>
         </div>
-        <div >
+        <div>
           <!-- <h1>{{deverloper_view.title}}</h1> -->
-          <v-card-text v-html="deverloper_view.info" class="bg-view view_html"></v-card-text>
+          <v-card-text
+            v-html="deverloper_view.info"
+            class="bg-view view_html"
+          ></v-card-text>
         </div>
       </div>
       <!-- <div v-if="is_edit" class="popup">
@@ -41,7 +44,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 export default {
   layout: "adminDev",
   head() {
@@ -57,26 +60,14 @@ export default {
     };
   },
   name: "View_Deverloper",
-  //  async mounted() {
-  //   await this.get_deverloper_view({
-  //     // input:{
-  //       id: this.routeId,
-  //       type: this.queryType,
-  //     // }
-  //   });
-  // },
   async mounted() {
-    console.log(this.routeId,);
-    console.log( this.queryType);
     await this.get_deverloper_view({
-      // input:{
-        id: this.routeId,
-        type: this.queryType,
-      // }
+      id: this.routeId,
+      type: this.queryType,
     });
   },
   computed: {
-    ...mapState('admin/deverlopers',["deverloper","deverloper_view"]),
+    ...mapState("admin/deverlopers", ["deverloper", "deverloper_view"]),
     routeId() {
       return this.$route.params.id;
     },
@@ -85,12 +76,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions('admin/deverlopers',["get_deverloper_view"]),
+    ...mapActions("admin/deverlopers", ["get_deverloper_view"]),
   },
 };
 </script>
 <style>
-#admin td ul li{
-padding: 10px 0;
+#admin td ul li {
+  padding: 10px 0;
 }
 </style>

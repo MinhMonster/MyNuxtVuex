@@ -114,7 +114,6 @@ export default {
     },
 
     selected(files) {
-      console.log("selected", files);
       this.selectedImages = files;
       this.setSelectedImages(this.selectedImages);
     },

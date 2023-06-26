@@ -27,7 +27,24 @@ export default ($api) => ({
     return $api.post(`${resource}/buy/buyAccountNinja.php`, payload)
 
   },
+  buyAccountAvatar(payload) {
+    return $api.post(`${resource}/buy/buyAccountAvatar.php`, payload)
+
+  },
+  buyAccountDragonBall(payload) {
+    return $api.post(`${resource}/buy/buyAccountDragonBall.php`, payload)
+
+  },
   historyChangeMoneys(payload) {
     return $api.get(`${resource}/history/historyChangeMoneys.php`, { params: { input: payload.input } },)
+  },
+  depositVnd(payload) {
+    return $api.post(`${resource}/wallet/depositVnd.php`, payload,)
+  },
+  historyWalletDepositVnds(payload) {
+    return $api.get(`${resource}/history/historyWalletDepositVnds.php`, { params: { input: payload.input } },)
+  },
+  fetchHistoryWalletDepositVnd(payload) {
+    return $api.get(`${resource}/wallet/fetchHistoryDepositVnd.php?id=${payload}`)
   },
 })

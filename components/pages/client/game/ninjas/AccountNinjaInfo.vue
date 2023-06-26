@@ -72,32 +72,16 @@
       </table>
       <b-row>
         <b-col cols="6">
-          <div class="c-font-uppercase btnCheckAccount ajax" @click="isShow = true">
+          <div
+            class="c-font-uppercase btnCheckAccount ajax"
+            @click="isShow = true"
+          >
             <div class="btn-buy-account">
               <div class="tom-mua-title">Mua ngay</div>
               <div class="tom-mua-giatien"></div>
             </div>
           </div>
         </b-col>
-
-        <!-- <b-col cols="6">
-          <a href="#" data-toggle="modal" data-target=".atm-momoo">
-            <div class="btn-buy-account-hover">
-              <div class="tom-mua-title">ATM MOMO</div>
-              <div class="tom-mua-giatien"></div>
-            </div>
-          </a>
-        </b-col>
-
-        <b-col cols="6">
-          <a href="#" data-toggle="modal" data-target=".tragop">
-            <div class="btn-buy-account-hover">
-              <div class="tom-mua-title">Mua Trả Góp</div>
-              <div class="tom-mua-giatien"></div>
-            </div>
-          </a>
-        </b-col> -->
-
         <b-col cols="6">
           <a href="https://zalo.me/0961646828">
             <div class="btn-buy-account-hover">
@@ -107,7 +91,11 @@
           </a>
         </b-col>
       </b-row>
-     <ModalBuyAccountNinja v-if="isShow" :account-ninja="accountNinja" @hide="isShow = false"></ModalBuyAccountNinja>
+      <ModalBuyAccountNinja
+        v-if="isShow"
+        :account-ninja="accountNinja"
+        @hide="isShow = false"
+      ></ModalBuyAccountNinja>
     </div>
   </client-only>
 </template>
@@ -131,18 +119,14 @@ export default {
   data() {
     return {
       isBuy: "wallet",
-      isShow: false
+      isShow: false,
     };
   },
-  async mounted() {
-    console.log(this.accountNinja);
-  },
+  async mounted() {},
   computed: {},
   methods: {
     buyNow() {
-      // this.$refs.modal.show();
-      console.log('show');
-      this.isShow = true
+      this.isShow = true;
     },
   },
 };
@@ -248,10 +232,10 @@ th.info-nick {
       color: #663019;
       border: 1px solid #663019;
       background: #ffefa3;
-      .tab-content{
+      .tab-content {
         padding: 5px;
       }
-      .form-group{
+      .form-group {
         padding: 5px;
         margin-bottom: 0px;
       }
@@ -275,7 +259,7 @@ th.info-nick {
       .row {
         padding: 0;
         margin: 0px;
-        .col-md-6{
+        .col-md-6 {
           margin: 0px;
           padding: 0px;
           .info-atm-momo {

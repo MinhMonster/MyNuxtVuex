@@ -1,156 +1,154 @@
 <template>
   <client-only>
-    <div id="home-page">
-      <div v-if="!token" class="page-body full-screen">
-        <!-- <div class="wrapper"> -->
-          <div class="title text-center">ĐĂNG KÝ THÀNH VIÊN</div>
-          <form @submit.stop.prevent="registerUser()" class="form">
-            <div id="content"></div>
-            <b-row>
-              <b-col cols="12" sm="6" class="middle">
-                <div class="field">
-                  <form-validator name="name">
-                    <input
-                      v-model="user.name"
-                      id="name"
-                      type="text"
-                      placeholder=" "
-                      class="v-input form-input"
-                    />
-                    <label for="name" class="form-label"
-                      >Tên hiển thị
-                      <small
-                        >(<span style="color: red">*</span> VD: Nguyễn Văn
-                        An)</small
-                      ></label
-                    >
-                  </form-validator>
-                </div>
-              </b-col>
-              <b-col cols="12" sm="6" class="middle">
-                <div class="field">
-                  <form-validator name="username">
-                    <input
-                      v-model="user.username"
-                      id="username"
-                      type="text"
-                      placeholder=" "
-                      class="v-input form-input"
-                    />
-                    <label for="username" class="form-label"
-                      >Tài Khoản
-                      <small
-                        >(<span style="color: red">*</span> VD:
-                        NguyenVanAn)</small
-                      ></label
-                    >
-                  </form-validator>
-                </div></b-col
-              >
-              <b-col cols="12" sm="6" class="middle">
-                <div class="field">
-                  <form-validator name="password">
-                    <input
-                      v-model="user.password"
-                      type="password"
-                      placeholder=" "
-                      class="v-input form-input"
-                    />
-                    <label class="form-label"
-                      >Mật Khẩu
-                      <small
-                        >(<span style="color: red">*</span> ********)</small
-                      ></label
-                    >
-                  </form-validator>
-                </div>
-              </b-col>
-              <b-col cols="12" sm="6" class="middle">
-                <div class="field">
-                  <form-validator name="re_password">
-                    <input
-                      v-model="user.rePassword"
-                      type="password"
-                      placeholder=" "
-                      class="v-input form-input"
-                    />
-                    <label class="form-label"
-                      >Nhập lại Mật khẩu
-                      <small>(<span style="color: red">*</span>)</small></label
-                    >
-                  </form-validator>
-                </div>
-              </b-col>
-              <b-col cols="12" sm="6" class="middle">
-                <div class="field">
-                  <form-validator name="phone">
-                    <input
-                      v-model="user.phone"
-                      type="text"
-                      placeholder=" "
-                      class="v-input form-input"
-                    />
-                    <label class="form-label"
-                      >Số điện thoại
-                      <small>(<span style="color: red">*</span> )</small></label
-                    >
-                  </form-validator>
-                </div>
-              </b-col>
-              <b-col cols="12" sm="6" class="middle">
-                <div class="field">
-                  <form-validator name="email">
-                    <input
-                      v-model="user.email"
-                      type="text"
-                      placeholder=" "
-                      class="v-input form-input"
-                    />
-                    <label class="form-label"
-                      >Email
-                      <small>(<span style="color: red">*</span> )</small></label
-                    >
-                  </form-validator>
-                </div>
-              </b-col>
-            </b-row>
-
-            <!-- <div id="sign-in-button"></div> -->
-
-            <div class="content">
-              <div class="checkbox">
-                <input type="checkbox" id="remember" checked />
-                <label for="remember">Lưu đăng nhập</label>
+    <HomePage title="ĐĂNG KÝ THÀNH VIÊN" full-screen goBack goHome>
+      <template v-if="!token" #body>
+        <form class="form">
+          <div id="content"></div>
+          <b-row>
+            <b-col cols="12" sm="6" class="middle">
+              <div class="field">
+                <form-validator name="name">
+                  <input
+                    v-model="user.name"
+                    id="name"
+                    type="text"
+                    placeholder=" "
+                    class="v-input form-input"
+                  />
+                  <label for="name" class="form-label"
+                    >Tên hiển thị
+                    <small
+                      >(<span style="color: red">*</span> VD: Nguyễn Văn
+                      An)</small
+                    ></label
+                  >
+                </form-validator>
               </div>
-              <span>Quên mật khẩu</span>
+            </b-col>
+            <b-col cols="12" sm="6" class="middle">
+              <div class="field">
+                <form-validator name="username">
+                  <input
+                    v-model="user.username"
+                    id="username"
+                    type="text"
+                    placeholder=" "
+                    class="v-input form-input"
+                  />
+                  <label for="username" class="form-label"
+                    >Tài Khoản
+                    <small
+                      >(<span style="color: red">*</span> VD:
+                      NguyenVanAn)</small
+                    ></label
+                  >
+                </form-validator>
+              </div></b-col
+            >
+            <b-col cols="12" sm="6" class="middle">
+              <div class="field">
+                <form-validator name="password">
+                  <input
+                    v-model="user.password"
+                    type="password"
+                    placeholder=" "
+                    class="v-input form-input"
+                  />
+                  <label class="form-label"
+                    >Mật Khẩu
+                    <small
+                      >(<span style="color: red">*</span> ********)</small
+                    ></label
+                  >
+                </form-validator>
+              </div>
+            </b-col>
+            <b-col cols="12" sm="6" class="middle">
+              <div class="field">
+                <form-validator name="re_password">
+                  <input
+                    v-model="user.rePassword"
+                    type="password"
+                    placeholder=" "
+                    class="v-input form-input"
+                  />
+                  <label class="form-label"
+                    >Nhập lại Mật khẩu
+                    <small>(<span style="color: red">*</span>)</small></label
+                  >
+                </form-validator>
+              </div>
+            </b-col>
+            <b-col cols="12" sm="6" class="middle">
+              <div class="field">
+                <form-validator name="phone">
+                  <input
+                    v-model="user.phone"
+                    type="text"
+                    placeholder=" "
+                    class="v-input form-input"
+                  />
+                  <label class="form-label"
+                    >Số điện thoại
+                    <small>(<span style="color: red">*</span> )</small></label
+                  >
+                </form-validator>
+              </div>
+            </b-col>
+            <b-col cols="12" sm="6" class="middle">
+              <div class="field">
+                <form-validator name="email">
+                  <input
+                    v-model="user.email"
+                    type="text"
+                    placeholder=" "
+                    class="v-input form-input"
+                  />
+                  <label class="form-label"
+                    >Email
+                    <small>(<span style="color: red">*</span> )</small></label
+                  >
+                </form-validator>
+              </div>
+            </b-col>
+          </b-row>
+
+          <!-- <div id="sign-in-button"></div> -->
+
+          <div class="content">
+            <div class="checkbox">
+              <input type="checkbox" id="remember" checked />
+              <label for="remember">Lưu đăng nhập</label>
             </div>
-            <input type="hidden" id="confirm" name="confirm" />
-            <div class="field submit">
-              <input type="submit" id="submit" value="Đăng ký" />
-            </div>
-            <div class="signin">----------- Hoặc -----------</div>
-            <div class="signin">
-              <a href="/login?fb" class="btn btn-lg btn-primary text-white"
-                ><i class="fab fa-facebook-f"></i> Đăng nhập bằng Facebook</a
-              >
-            </div>
-          </form>
-        </div>
-      <!-- </div> -->
-      <div id="next-bottom"></div>
-    </div>
+            <span>Quên mật khẩu</span>
+          </div>
+          <input type="hidden" id="confirm" name="confirm" />
+          <div class="field submit">
+            <b-button size="sm" class="btn-login" @click="registerUser()">
+              <Loading v-if="isLoading" button></Loading>
+              <span v-else> Đăng Ký </span>
+            </b-button>
+          </div>
+        </form>
+      </template>
+    </HomePage>
   </client-only>
 </template>
 
 <script>
+import HomePage from "@/components/pages/home/HomePage";
+
+import Loading from "@/components/global/molecules/common/Loading";
+import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
 
 export default {
   layout: "clientLayout",
   data() {
     return {
+      isLoading: false,
       user: {
         name: "",
         username: "",
@@ -161,25 +159,26 @@ export default {
       },
     };
   },
-  components: { FormValidator },
+  components: { HomePage, Loading, FormValidator },
   computed: {
     ...mapState(["token"]),
   },
   mounted() {
     if (this.token) {
-      this.$router.push("/");
+      this.$router.push("/account/profile");
     }
   },
   methods: {
-    ...mapActions(["register", "fetchUser"]),
+    ...mapActions(["register"]),
     async registerUser() {
+      this.isLoading = true;
       const res = await this.register({
         input: this.user,
       });
       if (this.token) {
-        this.fetchUser();
-        this.$router.push("/");
+        this.$router.push("/account/profile");
       }
+      this.isLoading = false;
     },
   },
 };
@@ -210,92 +209,95 @@ export default {
 //     border-radius: 15px 15px 0 0;
 //     background: linear-gradient(-135deg, #e28637, #561d00);
 //   }
-  form {
-    // padding: 10px 30px 30px;
-    background: #ffefa3;
-    // border: 1px solid #663019;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+form {
+  // padding: 10px 30px 30px;
+  background: #ffefa3;
+  // border: 1px solid #663019;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 
-    .field {
-      height: 40px;
+  .field {
+    height: 40px;
+    width: 100%;
+    margin-top: 15px;
+    position: relative;
+    &.submit {
+      margin-top: 0px;
+    }
+    // input:valid ~ label {
+    //   top: 0%;
+    //   font-size: 16px;
+    //   color: #4158d0;
+    //   background: none;
+    //   transform: translateY(-50%);
+    // }
+    input {
+      height: 100%;
       width: 100%;
-      margin-top: 15px;
-      position: relative;
-      &.submit {
-        margin-top: 0px;
-      }
-      // input:valid ~ label {
-      //   top: 0%;
-      //   font-size: 16px;
-      //   color: #4158d0;
-      //   background: none;
-      //   transform: translateY(-50%);
-      // }
-      input {
-        height: 100%;
-        width: 100%;
-        outline: none;
-        font-size: 17px;
-        padding-left: 20px;
-        border: 1px solid lightgrey;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-        background: #fff;
-        &.v-input {
-          z-index: 999999999;
-          height: 35px;
-          border: 1px solid #e28637;
-          color: #663019 !important;
-        }
-      }
-      // label {
-      //   position: absolute;
-      //   top: 50%;
-      //   left: 20px;
-      //   color: #999999;
-      //   font-weight: 400;
-      //   font-size: 17px;
-      //   pointer-events: none;
-      //   transform: translateY(-50%);
-      //   transition: all 0.3s ease;
-      // }
-      input[type="submit"] {
-        color: #ffcf9c;
-        border: none;
-        padding-left: 0;
-        font-size: 20px;
-        font-weight: 500;
-        cursor: pointer;
-        background: linear-gradient(-135deg, #e28637, #561d00);
-        transition: all 0.3s ease;
+      outline: none;
+      font-size: 17px;
+      padding-left: 20px;
+      border: 1px solid lightgrey;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      background: #fff;
+      &.v-input {
+        z-index: 999999999;
+        height: 35px;
+        border: 1px solid #e28637;
+        color: #663019 !important;
       }
     }
-    .signin {
-      display: flex;
-      justify-content: center;
-      margin-top: 15px;
-      color: #663019;
-    }
-    .content {
-      display: flex;
-      flex-wrap: wrap;
+    // label {
+    //   position: absolute;
+    //   top: 50%;
+    //   left: 20px;
+    //   color: #999999;
+    //   font-weight: 400;
+    //   font-size: 17px;
+    //   pointer-events: none;
+    //   transform: translateY(-50%);
+    //   transition: all 0.3s ease;
+    // }
+    input[type="submit"],
+    .btn-login {
       width: 100%;
-      font-size: 16px;
-      align-items: center;
-      justify-content: space-around;
-      input {
-        width: 15px;
-        height: 15px;
-        background: red;
-      }
-      span {
-        white-space: nowrap;
-        color: #4158d0 !important;
-        cursor: pointer;
-      }
+      border-radius: 20px;
+      color: #ffcf9c;
+      border: none;
+      padding-left: 0;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      background: linear-gradient(-135deg, #e28637, #561d00);
+      transition: all 0.3s ease;
     }
   }
+  .signin {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    color: #663019;
+  }
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    font-size: 16px;
+    align-items: center;
+    justify-content: space-around;
+    input {
+      width: 15px;
+      height: 15px;
+      background: red;
+    }
+    span {
+      white-space: nowrap;
+      color: #4158d0 !important;
+      cursor: pointer;
+    }
+  }
+}
 // }
 .checkbox {
   position: relative;
@@ -366,7 +368,7 @@ input[type="checkbox"]:checked + label::after {
 }
 
 form {
-  padding: 30px 20px 20px 20px;
+  padding: 30px 10px 10px 10px;
   // border: 1px solid #333;
   // background: #ffffff;
 }

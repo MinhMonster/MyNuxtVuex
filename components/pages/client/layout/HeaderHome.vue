@@ -11,21 +11,7 @@
               />
             </nuxt-link>
           </div>
-          <div class="header-nav">
-            <div v-if="!user" class="flex">
-              <nuxt-link to="/login">
-                <div class="login-btn"><span>Đăng nhập</span></div>
-              </nuxt-link>
-              <nuxt-link to="/register">
-                <div class="register-btn"><span>Đăng ký</span></div>
-              </nuxt-link>
-            </div>
-            <div v-else>
-              <span class="user-name"> {{ user.name }}</span>
-            </div>
-
-            <SideBarHome></SideBarHome>
-          </div>
+          <SideBarHome></SideBarHome>
         </div>
       </div>
     </div>
@@ -90,6 +76,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  // max-width: 1350px;
+  // margin: 0 auto;
 }
 
 .home-header .header-logo img {
@@ -104,6 +92,9 @@ export default {
   align-items: center;
   color: #fff;
   font-weight: 700;
+  .user-name {
+    color: #fff;
+  }
 }
 
 .home-header .header-user .login-btn,

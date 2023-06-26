@@ -123,22 +123,10 @@ export default {
   },
   methods: {
     ...mapActions('admin/finances',["get_finances", "change_positions"]),
-    // add: function() {
-    //   this.list_finances.push({ name: "Juan " + index, index: index++ });
-    // },
-    // replace: function() {
-    //   this.list_finances = [{ name: "Edgard", index: index++ }];
-    // },
-    // checkMove: function(e) {
-    //   // window.console.log("Future index: " + e.draggedContext.futureIndex);
-    //   console.log(e)
-    // },
     changeByDrag(event) {
-      console.log(event);
       this.updatePosition(event.moved.element.ID, event.moved.newIndex);
     },
     updatePosition(id, newIndex) {
-      // console.log(id,newIndex);
       const formData = new FormData();
       formData.append("id", id);
       formData.append("newIndex", newIndex);

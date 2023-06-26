@@ -10,6 +10,11 @@
     <div v-if="isLoading" class="center mgt--50px mgb--50px">
       <Loading></Loading>
     </div>
+    <div v-if="!accountNinjas.length" class="account-empty mt-4">
+      <h1 class="text-center bold text-danger">
+        Không tìm thấy Tài khoản nào!
+      </h1>
+    </div>
     <v-btn
       v-if="isShowNext && accountNinjas.length && !isLoading"
       variant="danger"
@@ -41,22 +46,19 @@ export default {
   },
   data() {
     return {
-      isShowNext: true,
       isLoading: false,
-    };  
+    };
   },
-  async mounted() {
-    // await this.resetQuery();
-    // await this.setQuery(this.query);
-    // await this.resetAccountNinjas();
-    // await this.fetchAccountNinjas();
-  },
+  async mounted() {},
   computed: {
     ...mapFields("home/game/ninjas", {
       accountNinjas: "accountNinjas",
       page: "query.page",
       pages: "metaNinjas.pages",
     }),
+    isShowNext() {
+      return this.page < this.pages;
+    },
   },
   methods: {
     ...mapActions("home/game/ninjas", [
@@ -69,10 +71,6 @@ export default {
       this.isLoading = true;
       await this.setQuery({ page: this.page + 1 });
       await this.fetchAccountNinjas();
-      if (this.page >= this.pages) {
-        this.isShowNext = false;
-        await this.resetQuery();
-      }
       this.isLoading = false;
     },
   },

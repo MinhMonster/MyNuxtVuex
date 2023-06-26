@@ -17,9 +17,7 @@ export default {
   name: "IndexPage",
   computed: mapState(["test"]),
   created() {
-    // console.log(this.test)
-    // this.setTest('ok1')
-    // console.log(this.$store.state.test)
+
   },
   methods: {
     ...mapActions(["setTest"]),

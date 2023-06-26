@@ -2,10 +2,13 @@
   <client-only>
     <div>
       <div v-b-toggle.sidebar-right class="header-menu">
-        <v-btn v-if="token" icon class="icon-menu">
+        <div class="login-btn">
+          <span @click="openMenu()"
+            >{{ user && token ? user.name : "Tài khoản" }}
+          </span>
           <v-icon v-if="!isShow">mdi-menu-down</v-icon>
           <v-icon v-else>mdi-menu-up</v-icon>
-        </v-btn>
+        </div>
       </div>
       <b-sidebar
         v-model="isShow"
@@ -15,7 +18,7 @@
         shadow
         backdrop
       >
-        <SideBarMenu></SideBarMenu>
+        <SideBarMenu @close="isShow = false"></SideBarMenu>
       </b-sidebar>
     </div>
   </client-only>
@@ -37,12 +40,27 @@ export default {
     };
   },
   computed: {
-    ...mapState(["token"]),
+    ...mapState(["token", "user"]),
   },
-  methods: {},
+  mounted() {},
+  methods: {
+    ...mapActions(["fetchUser"]),
+    openMenu() {
+      if (this.token && !this.isShow) {
+        this.fetchUser();
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
+.login-btn span {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 15ch;
+}
 ::v-deep {
   .b-sidebar-backdrop {
     top: 50px;

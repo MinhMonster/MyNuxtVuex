@@ -111,6 +111,8 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
               store.dispatch("home/users/logout");
               if (result.isConfirmed) {
                 redirect('/login')
+              } else {
+                redirect('/')
               }
             });
           

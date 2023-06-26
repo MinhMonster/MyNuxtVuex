@@ -1,80 +1,91 @@
 <template>
-  <div id="home-page">
-    <div v-if="!token" class="page-body full-screen">
-      <!-- <div class="wrapper"> -->
-      <div class="title text-center">ĐĂNG NHẬP</div>
-      <form @submit.stop.prevent="loginUser()">
-        <div id="content"></div>
-        <div class="field">
-          <form-validator name="username">
-            <input
-              v-model="username"
-              type="text"
-              class="v-input"
-              placeholder="Tài Khoản"
-            />
-          </form-validator>
-        </div>
-        <div id="sign-in-button"></div>
-        <div class="field">
-          <form-validator name="password">
-            <input
-              v-model="password"
-              type="password"
-              class="v-input"
-              placeholder="Mật khẩu"
-            />
-          </form-validator>
-        </div>
-        <div class="content">
-          <div class="checkbox">
-            <input type="checkbox" id="remember" checked />
-            <label for="remember">Lưu đăng nhập</label>
+  <client-only>
+    <HomePage title="ĐĂNG NHẬP" full-screen goBack goHome>
+      <template v-if="!token" #body>
+        <form>
+          <div id="content"></div>
+          <div class="field">
+            <form-validator name="username">
+              <input
+                v-model="username"
+                type="text"
+                class="v-input"
+                placeholder="Tài Khoản"
+                @keyup.enter="loginUser()"
+              />
+            </form-validator>
           </div>
-          <span>Quên mật khẩu</span>
-        </div>
-        <input type="hidden" id="confirm" name="confirm" />
-        <div class="field submit">
-          <input type="submit" id="submit" value="Đăng nhập" />
-        </div>
-        <div class="signin">----------- Hoặc -----------</div>
-        <div class="signin">
-          <b-button @click="loginFacebook()" class="btn btn-lg btn-primary text-white"
-            ><i class="fab fa-facebook-f"></i> Đăng nhập bằng Facebook</b-button
-          >
-        </div>
-      </form>
-    </div>
-    <!-- </div> -->
-    <div id="next-bottom"></div>
-  </div>
+          <div id="sign-in-button"></div>
+          <div class="field">
+            <form-validator name="password">
+              <input
+                v-model="password"
+                type="password"
+                class="v-input"
+                placeholder="Mật khẩu"
+                @keyup.enter="loginUser()"
+              />
+            </form-validator>
+          </div>
+          <div class="content">
+            <div class="checkbox">
+              <input type="checkbox" id="remember" checked />
+              <label for="remember">Lưu đăng nhập</label>
+            </div>
+            <span>Quên mật khẩu</span>
+          </div>
+          <input type="hidden" id="confirm" name="confirm" />
+          <div class="field submit">
+            <b-button size="sm" class="btn-login" @click="loginUser()">
+              <Loading v-if="isLoading" button></Loading>
+              <span v-else> Đăng nhập </span>
+            </b-button>
+          </div>
+          <!-- <div class="signin">----------- Hoặc -----------</div>
+          <div class="signin">
+            <b-button
+              class="btn btn-lg btn-primary text-white"
+              ><i class="fab fa-facebook-f"></i> Đăng nhập bằng
+              Facebook</b-button
+            >
+          </div> -->
+        </form>
+      </template>
+    </HomePage>
+  </client-only>
 </template>
 
 <script>
+import HomePage from "@/components/pages/home/HomePage";
+
+import Loading from "@/components/global/molecules/common/Loading";
+import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
 
 export default {
   layout: "clientLayout",
   data() {
     return {
+      isLoading: false,
       username: "",
       password: "",
     };
   },
-  components: { FormValidator },
+  components: { HomePage, Loading, FormValidator },
   computed: {
     ...mapState(["token"]),
   },
   mounted() {
     if (this.token) {
-      this.$router.push("/");
+      this.$router.push("/account/profile");
     }
   },
   methods: {
-    ...mapActions(["login", "fetchUser", "loginFb"]),
+    ...mapActions(["login", "logout", "loginFb"]),
     async loginUser() {
+      this.isLoading = true;
       const res = await this.login({
         input: {
           username: this.username,
@@ -82,14 +93,13 @@ export default {
         },
       });
       if (this.token) {
-        this.fetchUser();
-        this.$router.push("/");
+        this.$router.push("/account/profile");
       }
+      this.isLoading = false;
     },
-    async loginFacebook(){
+    async loginFacebook() {
       const res = await this.loginFb();
-      console.log("log", res );
-    }
+    },
   },
 };
 </script>
@@ -168,7 +178,10 @@ form {
       transform: translateY(-50%);
       transition: all 0.3s ease;
     }
-    input[type="submit"] {
+    input[type="submit"],
+    .btn-login {
+      width: 100%;
+      border-radius: 20px;
       color: #ffcf9c;
       border: none;
       padding-left: 0;

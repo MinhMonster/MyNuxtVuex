@@ -7,16 +7,11 @@
             <v-icon>mdi-shield-crown-outline</v-icon>
           </v-btn>
         </div>
-        <span>Admin</span>
+        <span class="title-menu-buttom">Admin</span>
       </nuxt-link>
-      <nuxt-link to="/"
-        ><div class="footer_icon deposit">
-          <v-btn icon class="icon-menu">
-            <v-icon>mdi-bank</v-icon>
-          </v-btn>
-        </div>
-        <span>Nạp tiền</span>
-      </nuxt-link>
+
+      <ModalGame />
+
       <nuxt-link class="on" to="/"
         ><div class="footer_icon home">
           <div class="circle-menu">
@@ -27,36 +22,49 @@
             </div>
           </div>
         </div>
-        <span>Trang chủ</span>
+        <span class="title-menu-buttom">Trang chủ</span>
       </nuxt-link>
+      <div class="sub-menu-buttom" @click="nextWalletDeposit()">
+        <div class="footer_icon deposit">
+          <v-btn icon class="icon-menu">
+            <v-icon>mdi-bank</v-icon>
+          </v-btn>
+        </div>
+        <span class="title-menu-buttom">Nạp tiền</span>
+      </div>
       <div class="sub-menu-buttom" @click="nextHistory()">
         <div class="footer_icon service">
           <v-btn icon class="icon-menu">
             <v-icon>mdi-history</v-icon>
           </v-btn>
         </div>
-        <span>Lịch sử</span>
+        <span class="title-menu-buttom">Lịch sử</span>
       </div>
-      <div class="sub-menu-buttom" @click="nextProfile()">
-        <div class="footer_icon Member">
-          <v-btn icon class="icon-menu">
-            <v-icon>mdi-account</v-icon>
-          </v-btn>
-        </div>
-        <span>Cá nhân</span>
-      </div>
+
+      <ModalMenuGame v-if="showModalGame" @hide="showModalGame = false" />
     </div>
   </client-only>
 </template>
 
 <script>
+import ModalMenuGame from "@/components/pages/client/layout/ModalMenuGame";
+import ModalGame from "@/components/pages/client/layout/ModalGame";
+
 import mixins from "@/mixins/index";
 import { createNamespacedHelpers } from "vuex";
 const { mapState } = createNamespacedHelpers("home/users");
 export default {
   mixins: [mixins],
-
+  components: {
+    ModalMenuGame,
+    ModalGame,
+  },
   props: {},
+  data() {
+    return {
+      showModalGame: false,
+    };
+  },
   computed: {
     ...mapState(["token", "user"]),
   },
@@ -75,6 +83,13 @@ export default {
         this.disabledLogin();
       }
     },
+    nextWalletDeposit() {
+      if (this.token) {
+        this.$router.push("/account/wallet/deposit/vnd");
+      } else {
+        this.disabledLogin();
+      }
+    },
     disabledLogin() {
       this.$swal.fire(
         "Bạn chưa đăng nhập",
@@ -85,8 +100,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+// #footer {
+//   background: linear-gradient(180deg, #e28637, #9f5424 12%, #561d00);
+// }
 #menu-bottom {
   width: 100%;
+  // max-width: 1350px;
+  // margin: 0 auto;
   bottom: 0;
   position: fixed;
   z-index: 10;
@@ -145,7 +165,8 @@ export default {
 }
 
 #menu-bottom a .footer_icon button.icon-menu,
-#menu-bottom .sub-menu-buttom .footer_icon button.icon-menu {
+#menu-bottom .sub-menu-buttom .footer_icon button.icon-menu,
+.title-menu-buttom {
   margin-top: 20px;
   color: #ffcf9c;
 }
