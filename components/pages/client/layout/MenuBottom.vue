@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div id="menu-bottom">
-      <nuxt-link to="/"
+      <nuxt-link to="/admin-information"
         ><div class="footer_icon service">
           <v-btn icon class="icon-menu">
             <v-icon>mdi-shield-crown-outline</v-icon>
@@ -12,8 +12,8 @@
 
       <ModalGame />
 
-      <nuxt-link class="on" to="/"
-        ><div class="footer_icon home">
+      <div class="sub-menu-buttom" @click="nextHome()">
+        <div class="footer_icon home">
           <div class="circle-menu">
             <div class="icon-wrap">
               <v-btn icon>
@@ -23,7 +23,7 @@
           </div>
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
-      </nuxt-link>
+      </div>
       <div class="sub-menu-buttom" @click="nextWalletDeposit()">
         <div class="footer_icon deposit">
           <v-btn icon class="icon-menu">
@@ -40,23 +40,18 @@
         </div>
         <span class="title-menu-buttom">Lịch sử</span>
       </div>
-
-      <ModalMenuGame v-if="showModalGame" @hide="showModalGame = false" />
     </div>
   </client-only>
 </template>
 
 <script>
-import ModalMenuGame from "@/components/pages/client/layout/ModalMenuGame";
+import { mapFields } from "vuex-map-fields";
 import ModalGame from "@/components/pages/client/layout/ModalGame";
 
 import mixins from "@/mixins/index";
-import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("home/users");
 export default {
   mixins: [mixins],
   components: {
-    ModalMenuGame,
     ModalGame,
   },
   props: {},
@@ -66,7 +61,13 @@ export default {
     };
   },
   computed: {
-    ...mapState(["token", "user"]),
+    ...mapFields("home/users", ["token", "user"]),
+    ...mapFields("global", {
+      ready: "ready",
+    }),
+    isHome() {
+      return this.$route.path == "/";
+    },
   },
   methods: {
     nextProfile() {
@@ -95,6 +96,20 @@ export default {
         "Bạn chưa đăng nhập",
         "Hãy đăng nhập để sử dụng dịch vụ. <br/> Xin cảm ơn!"
       );
+    },
+
+    nextHome() {
+      if (this.isHome) {
+        this.reset();
+      } else {
+        this.$router.push("/");
+      }
+    },
+    async reset() {
+      this.ready = false;
+      setTimeout(() => {
+        this.ready = true;
+      }, 200);
     },
   },
 };

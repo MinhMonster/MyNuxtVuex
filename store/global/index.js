@@ -4,6 +4,7 @@ const SET_STATE = "SET_STATE";
 export default {
   namespaced: true,
   state: () => ({
+    ready: false,
     sidebarActive: true,
     customerDetailsActive: true,
     token: null,

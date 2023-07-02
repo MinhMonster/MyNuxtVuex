@@ -151,11 +151,14 @@ export default {
 .account-ingame,
 .account-cash-atm {
   position: absolute;
+  height: 13% !important;
   top: 4px;
   font-size: 13px;
   font-weight: 450;
   width: auto !important;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 3px;
   padding: 0px 5px;
   color: #ffffff;

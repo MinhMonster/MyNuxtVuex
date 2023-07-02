@@ -5,7 +5,7 @@
       :loading="!ready"
       goBack
       reload
-      @reload="search()"
+      @reload="reload()"
       notBoder
     >
       <template v-if="ready" #body>
@@ -56,6 +56,13 @@ export default {
     ]),
     async search() {
       this.ready = false;
+      await this.resetAccountDragonBalls();
+      await this.fetchAccountDragonBalls();
+      this.ready = true;
+    },
+    async reload() {
+      this.ready = false;
+      await this.resetQuery();
       await this.resetAccountDragonBalls();
       await this.fetchAccountDragonBalls();
       this.ready = true;

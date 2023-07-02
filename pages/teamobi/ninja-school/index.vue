@@ -5,7 +5,7 @@
       :loading="!ready"
       goBack
       reload
-      @reload="search()"
+      @reload="reload()"
       notBoder
     >
       <template v-if="ready" #body>
@@ -40,12 +40,8 @@ export default {
       ready: false,
     };
   },
-  async mounted() {
-    this.ready = false;
-    await this.resetQuery();
-    await this.resetAccountNinjas();
-    await this.fetchAccountNinjas();
-    this.ready = true;
+  mounted() {
+    this.reload();
   },
   methods: {
     ...mapActions("home/game/ninjas", [
@@ -56,6 +52,13 @@ export default {
     ]),
     async search() {
       this.ready = false;
+      await this.resetAccountNinjas();
+      await this.fetchAccountNinjas();
+      this.ready = true;
+    },
+    async reload() {
+      this.ready = false;
+      await this.resetQuery();
       await this.resetAccountNinjas();
       await this.fetchAccountNinjas();
       this.ready = true;

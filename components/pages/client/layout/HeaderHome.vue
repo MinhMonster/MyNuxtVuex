@@ -3,13 +3,11 @@
     <div class="home-header">
       <div class="header-content">
         <div class="header-user">
-          <div class="header-logo">
-            <nuxt-link to="/">
-              <img
-                src="https://muabannick.pro/images/logo/lg-muabannick.png"
-                alt=""
-              />
-            </nuxt-link>
+          <div class="header-logo" @click="nextHome()">
+            <img
+              src="https://muabannick.pro/images/logo/lg-muabannick.png"
+              alt=""
+            />
           </div>
           <SideBarHome></SideBarHome>
         </div>
@@ -19,10 +17,9 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
 import SideBarHome from "@/components/pages/client/layout/SideBarHome";
 import mixins from "@/mixins/index";
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("home/users");
 
 export default {
   mixins: [mixins],
@@ -31,9 +28,28 @@ export default {
   },
   props: {},
   computed: {
-    ...mapState(["token", "user"]),
+    ...mapFields("global", {
+      ready: "ready",
+    }),
+    isHome() {
+      return this.$route.path == "/";
+    },
   },
-  methods: {},
+  methods: {
+    nextHome() {
+      if (this.isHome) {
+        this.reset();
+      } else {
+        this.$router.push("/");
+      }
+    },
+    async reset() {
+      this.ready = false;
+      setTimeout(() => {
+        this.ready = true;
+      }, 200);
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

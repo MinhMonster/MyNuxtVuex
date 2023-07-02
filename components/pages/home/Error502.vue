@@ -5,7 +5,11 @@
         <h1 class="display-2 font-weight-medium">
           5<i class="mdi mdi-lifebuoy mdi-spin text-primary display-2"></i>2
         </h1>
-        <h4 class="text-uppercase">Xin lỗi! Đã có lỗi xảy ra...</h4>
+        <h4 class="text-uppercase">
+          Xin lỗi! Đã có lỗi xảy ra...<br />
+          Hãy kiểm tra lại mạng và tải lại trang. <br />
+          Xin cảm ơn!
+        </h4>
       </div>
 
       <div class="row justify-content-center">

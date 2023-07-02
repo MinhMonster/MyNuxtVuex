@@ -227,7 +227,7 @@ export default {
           return "Shuriken + Tessen";
           break;
         case "4":
-          return "Kuani";
+          return "Kunai";
           break;
         case "5":
           return "katana";

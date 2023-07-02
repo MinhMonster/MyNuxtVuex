@@ -68,7 +68,8 @@
                   </tr>
                   <tr>
                     <th class="info-nick">Server</th>
-                    <td class="mua-nick">AvatarList
+                    <td class="mua-nick">
+                      AvatarList
                       <span>{{ account.server }} Sao</span>
                     </td>
                   </tr>
@@ -100,15 +101,11 @@
           </b-form-group>
           <b-row v-if="isBuy == 'atm-momo'">
             <b-col sm="12" md="6">
-              <AccountNumbeAdmin :user="user" />
+              <AccountNumbeAdmin />
             </b-col>
 
             <b-col sm="12" md="6">
-              <BuyAccountInstructions
-                :user="user"
-                :account="account"
-                account-type="NRO"
-              />
+              <BuyAccountInstructions :account="account" account-type="NRO" />
             </b-col>
           </b-row>
         </div>
@@ -181,9 +178,7 @@ export default {
       isLoading: false,
     };
   },
-  async mounted() {
-
-  },
+  async mounted() {},
   computed: {
     ...mapState("home/users", ["token", "user"]),
   },

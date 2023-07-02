@@ -1,13 +1,13 @@
 <template>
   <client-only>
-    <div v-if="ninjas">
+    <div v-if="avatars">
       <div class="d-flex" align="center">
         <div>
-          <v-card-title class="mgl--15px">Account Ninjas </v-card-title>
+          <v-card-title class="mgl--15px">Account Avatars </v-card-title>
         </div>
         <v-spacer />
         <div class=" right middle">
-          <v-btn icon class="primary right" to="/admin/game/ninjas/new">
+          <v-btn icon class="primary right" to="/admin/game/avatars/new">
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </div>
@@ -15,23 +15,23 @@
       <div class="d-flex" align="center">
         <div>
           <v-card-title class="mgl--15px"
-            >Account: {{ format_number(countNinjas) }}
+            >Account: {{ format_number(countAvatars) }}
           </v-card-title>
         </div>
         <v-spacer />
         <div class="mgr--15px right middle">
           <v-card-title
-            >Total: {{ format_number(sumPriceNinjas) }} Đ
+            >Total: {{ format_number(sumPriceAvatars) }} Đ
           </v-card-title>
         </div>
       </div>
       <!-- <v-row align="center">
         <v-col>
           <v-card-title class="mgl--15px"
-            >Ninjas: {{ format_number(countNinjas) }} Account</v-card-title
+            >Avatars: {{ format_number(countAvatars) }} Account</v-card-title
           >
           <v-card-title class="mgl--15px">
-            Total: {{ format_number(sumPriceNinjas) }} Đ</v-card-title
+            Total: {{ format_number(sumPriceAvatars) }} Đ</v-card-title
           >
         </v-col>
         <v-col class="text-right"> </v-col>
@@ -43,23 +43,22 @@
               <template v-slot:default>
                 <thead>
                   <tr class="w-100">
-                    <th class="w-10">ID</th>
-                    <th class="w-20">Account</th>
-                    <th class="text-center w-10">Price</th>
-                    <th class="text-center w-10">Class</th>
-                    <th class="text-center w-10">Level</th>
-                    <th class="text-center w-10">Server</th>
-                    <th class="text-center w-10">Type</th>
-                    <th class="text-center w-20">Action</th>
+                    <th class="text-left w-10">ID</th>
+                    <th class="text-left w-35">Account</th>
+                    <th class="text-center w-15">Giá</th>
+                    <th class="text-center w-10">Đất</th>
+                    <th class="text-center w-10">Gà</th>
+                    <th class="text-center w-10">Cá</th>
+                    <th class="text-center w-10">Sửa</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <NinjaTableRow
-                    v-for="ninja in ninjas"
-                    :key="ninja.ID"
-                    :ninja="ninja"
+                  <AvatarTableRow
+                    v-for="account in avatars"
+                    :key="account.ID"
+                    :account="account"
                     class="table-center text-middle"
-                  ></NinjaTableRow>
+                  ></AvatarTableRow>
                 </tbody>
               </template>
             </v-simple-table>
@@ -74,44 +73,44 @@
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import mixins from "@/mixins/index";
-import NinjaTableRow from "@/components/pages/admin/game/ninjas/NinjaTableRow.vue";
+import AvatarTableRow from "@/components/pages/admin/game/avatars/AvatarTableRow.vue";
 import UploadImageModal from "@/components/global/plugins/UploadImageModal.vue";
 
 export default {
   mixins: [mixins],
   layout: "adminDev",
   components: {
-    NinjaTableRow,
+    AvatarTableRow,
     UploadImageModal,
   },
   head() {
     return {
-      title: "Admin: Ninjas",
+      title: "Admin: Avatars",
       meta: [
         {
-          hid: "Admin: Ninjas",
-          name: "Admin: Ninjas",
-          content: "Admin: Ninjas",
+          hid: "Admin: Avatars",
+          name: "Admin: Avatars",
+          content: "Admin: Avatars",
         },
       ],
     };
   },
-  name: "Ninjas",
+  name: "Avatars",
   data() {
     return {};
   },
   async mounted() {
-    await this.fetchAccountNinjas();
+    await this.fetchAccountAvatars();
   },
   computed: {
-    ...mapFields("admin/game/ninjas", [
-      "ninjas",
-      "sumPriceNinjas",
-      "countNinjas",
+    ...mapFields("admin/game/avatars", [
+      "avatars",
+      "sumPriceAvatars",
+      "countAvatars",
     ]),
   },
   methods: {
-    ...mapActions("admin/game/ninjas", ["fetchAccountNinjas"]),
+    ...mapActions("admin/game/avatars", ["fetchAccountAvatars"]),
   },
 };
 </script>

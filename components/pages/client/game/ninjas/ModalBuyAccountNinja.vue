@@ -102,12 +102,11 @@
           </b-form-group>
           <b-row v-if="isBuy == 'atm-momo'">
             <b-col sm="12" md="6">
-              <AccountNumbeAdmin :user="user" />
+              <AccountNumbeAdmin />
             </b-col>
 
             <b-col sm="12" md="6">
               <BuyAccountInstructions
-                :user="user"
                 :account="accountNinja"
                 account-type="Ninja"
               />

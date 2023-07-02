@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user && account" class="info-atm-momo">
+  <div v-if="account" class="info-atm-momo">
     <div class="title text-center">HD Mua Nick = ATM - MOMO</div>
     <img src="/icon/icon-next-right.gif" /> Bạn Chuyển tiền cho Admin:<br />
     <img src="/icon/icon-next-right.gif" /> Số tiền:
@@ -32,10 +32,6 @@ export default {
   mixins: [mixins],
   components: { ButtonCoppy },
   props: {
-    user: {
-      type: Object,
-      default: () => {},
-    },
     account: {
       type: Object,
       default: () => {},

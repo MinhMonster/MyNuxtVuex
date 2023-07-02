@@ -160,7 +160,11 @@ export default {
     },
   },
   mounted() {
-    this.fetchHistory();
+    if (!this.token) {
+      this.$router.push("/login");
+    } else {
+      this.fetchHistory();
+    }
   },
   methods: {
     ...mapActions(["fetchHistoryWalletDepositVnd", "setQuery", "resetQuery"]),

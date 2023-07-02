@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <HeaderHome></HeaderHome>
-    <MenuGameHome v-if="isMenuGame"></MenuGameHome>
+    <!-- <MenuGameHome v-if="isMenuGame"></MenuGameHome>
     <v-btn
       icon
       class="fixed btn-drop-menu-game"
@@ -10,7 +10,7 @@
     >
       <v-icon v-if="isMenuGame">mdi-chevron-double-left</v-icon>
       <v-icon v-else>mdi-chevron-double-right</v-icon>
-    </v-btn>
+    </v-btn> -->
     <v-main id="main" class="bg-website">
       <v-container
         class="client-main scroll-y"
@@ -54,18 +54,6 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [
-        {
-          icon: "mdi-apps",
-          title: "Welcome",
-          to: "/",
-        },
-        {
-          icon: "mdi-chart-bubble",
-          title: "Inspire",
-          to: "/inspire",
-        },
-      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
@@ -99,6 +87,7 @@ export default {
       this.nextPath();
     });
     window.addEventListener("click", this.nextPath());
+
   },
   methods: {
     ...mapActions("home/users", ["logout", "fetchUser"]),

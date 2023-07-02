@@ -126,9 +126,9 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       // redirect('/admin/login')
     }
     if (code && code === 404) {
-      redirect('/404')
       switch (layout) {
         case "clientLayout":
+          redirect('/404')
           if(response.data.message){
             $swal.fire(response.data.message, response.data.error_content, "error");
           }

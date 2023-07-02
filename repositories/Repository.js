@@ -12,6 +12,7 @@ import adminFolders from '~/repositories/admin/folders'
 
 //admin Game
 import adminGameNinjas from '~/repositories/admin/game/ninjas'
+import adminGameAvatars from '~/repositories/admin/game/avatars'
 
 // import UserRepository from '~/repositories/UserRepository'
 // import CommentRepository from '~/repositories/CommentRepository'
@@ -39,6 +40,7 @@ export default ($api) => ({
 
   // admin Game
   adminGameNinjas: adminGameNinjas($api),
+  adminGameAvatars: adminGameAvatars($api),
 
 
 

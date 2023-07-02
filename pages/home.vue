@@ -122,7 +122,7 @@ export default {
 .col,
 .col-auto,
 .col-12,
-.col-11,  
+.col-11,
 .col-10,
 .col-9,
 .col-8,

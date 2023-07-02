@@ -1,4 +1,4 @@
-const resource = '/apis/game/ninjas'
+const resource = '/apis/admin/game/ninjas'
 const headers = {
   headers: {
     "Content-Type": "multipart/form-data"

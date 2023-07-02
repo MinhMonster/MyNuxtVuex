@@ -224,6 +224,7 @@ import draggable from "vuedraggable";
 
 const { mapState, mapActions } = createNamespacedHelpers("admin/deverlopers");
 const auth = createNamespacedHelpers("admin/auth");
+const client = createNamespacedHelpers("home/users");
 
 export default {
   name: "Adminlayout",
@@ -306,6 +307,11 @@ export default {
           title: "Ninja",
           to: "/admin/game/ninjas",
         },
+        {
+          icon: "mdi-image",
+          title: "Avatar",
+          to: "/admin/game/avatars",
+        },
       ],
       miniVariant: false,
       right: true,
@@ -314,7 +320,9 @@ export default {
     };
   },
   async mounted() {
-    if (this.authenticated === null || this.authenticated === false) {
+    if (!this.user || !this.user.admin) {
+      this.$router.push("/404");
+    } else if (this.authenticated === null || this.authenticated === false) {
       this.$router.push("/admin/login");
     } else {
       await this.get_deverlopers();
@@ -325,21 +333,26 @@ export default {
       }
     }
 
-    if (this.is_game) {
-      this.drawer = false;
-      this.rightDrawer = false;
-    }
+    this.$nextTick(function () {
+      this.onResize();
+    });
+    window.addEventListener("resize", this.onResize);
   },
 
   computed: {
     ...mapState(["deverlopers", "deverloper"]),
     ...auth.mapState(["authenticated"]),
+    ...client.mapState(["user"]),
     menuLeft() {
       return _.cloneDeep(this.deverloper);
     },
     is_game() {
       const path = this.$route.path;
-      return path.includes("game/ninjas") || path.includes("game/ngocrongs");
+      return (
+        path.includes("game/ninjas") ||
+        path.includes("game/ngocrongs") ||
+        path.includes("game/avatars")
+      );
     },
     styleMain() {
       if (!this.drawer && !this.rightDrawer) {
@@ -394,6 +407,12 @@ export default {
       formData.append("item", level_2);
 
       this.changePositionItemDev(formData);
+    },
+    onResize() {
+      if (this.is_game) {
+        this.drawer = false;
+        this.rightDrawer = false;
+      }
     },
   },
 };

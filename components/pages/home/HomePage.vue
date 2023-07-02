@@ -97,7 +97,7 @@ export default {
   computed: {
     ...mapState("global", ["oldPath", "nowPath"]),
     isGoHome() {
-      return this.goHome || (this.oldPath === this.nowPath && !this.pathGoBack);
+      return this.goHome;
     },
     titleSeo() {
       return this.headTitle || this.title || "Shop ";

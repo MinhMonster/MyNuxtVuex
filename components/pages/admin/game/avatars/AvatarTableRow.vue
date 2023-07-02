@@ -1,27 +1,24 @@
 <template>
   <tr>
-    <td>{{ ninja.ID }}</td>
-    <td class="text-left">{{ ninja.taikhoan }}</td>
+    <td>{{ account.ID }}</td>
+    <td class="text-left">{{ account.username }}</td>
     <td class="text-center">
-      {{ format_number(ninja.giatien) }}
+      {{ format_number(account.giatien) }}
     </td>
     <td class="text-center">
-      {{ classNinja(ninja.class) }}
+      {{ account.dat }}
     </td>
     <td class="text-center">
-      {{ ninja.level }}
+      {{ account.ga }}
     </td>
     <td class="text-center">
-      {{ serverNinja(ninja.server) }}
+      {{ account.ca }}
     </td>
     <td class="text-center">
-      {{ typeNinja(ninja.loainick) }}
-    </td>
-    <td class="text-center">
-      <v-btn light icon :to="`/admin/game/ninjas/${ninja.ID}`">
+      <v-btn light icon :to="`/admin/game/avatars/${account.ID}`">
         <v-icon>mdi-pencil-box-multiple-outline</v-icon>
       </v-btn>
-      <v-btn light color="blue" icon :to="`/teamobi/ninja-school/${ninja.ID}`">
+      <v-btn light color="blue" icon :to="`/teamobi/avatar/${account.ID}`">
         <v-icon>mdi-eye</v-icon>
       </v-btn>
     </td>
@@ -35,7 +32,7 @@ export default {
   mixins: [mixins],
 
   props: {
-    ninja: {
+    account: {
       type: Object,
       default: () => {},
     },

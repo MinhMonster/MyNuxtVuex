@@ -120,7 +120,7 @@
               <input type="checkbox" id="remember" checked />
               <label for="remember">Lưu đăng nhập</label>
             </div>
-            <span>Quên mật khẩu</span>
+            <nuxt-link to="/login">Đăng Nhập</nuxt-link>
           </div>
           <input type="hidden" id="confirm" name="confirm" />
           <div class="field submit">

@@ -262,8 +262,9 @@ export default {
   mounted() {
     if (!this.token) {
       this.$router.push("/login");
+    } else {
+      this.onPageChange(this.queryPage);
     }
-    this.onPageChange(this.queryPage);
   },
   methods: {
     ...mapActions([

@@ -512,3 +512,11 @@ table th {
 .break-all {
   word-break: break-all;
 }
+
+table.table {
+  &.table-small{
+    span, td, th, tr{
+      font-size: 13.5px !important;
+    }
+  }
+}
