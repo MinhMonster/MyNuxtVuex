@@ -1,99 +1,129 @@
-
 <template>
-  <client-only>
-    <div v-if="account">
-      <div class="title">
-        <center><h3>Thông tin chi tiết</h3></center>
+  <b-row>
+    <b-col cols="6">
+      <div class="c-font-uppercase btnCheckAccount ajax" @click="showModal()">
+        <div class="btn-buy-account">
+          <div class="tom-mua-title">
+            <v-btn icon class="text-main">
+              <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Mua Ngay
+            </v-btn>
+          </div>
+          <div class="tom-mua-giatien"></div>
+        </div>
       </div>
+    </b-col>
+    <b-col cols="6">
+      <div class="btn-buy-account-hover" @click="showBank()">
+        <div class="tom-mua-title">
+          <v-btn icon>
+            <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>ATM-MOMO
+          </v-btn>
+        </div>
+        <div class="tom-mua-giatien"></div>
+      </div>
+    </b-col>
 
-      <table class="table text-center">
-        <tbody>
-          <tr>
-            <th class="info-nick">Hành Tinh</th>
-            <td class="mua-nick">
-              <span>{{ account.planet }}</span>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="info-nick" style="">Sức Mạnh</th>
-            <td class="mua-nick">
-              <span> {{ account.power }}</span>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="info-nick" style="">Đệ Tử</th>
-            <td class="mua-nick">
-              <span>{{ account.practitioners }}</span>
-            </td>
-          </tr>
-          <tr>
-            <th class="info-nick" style="">Server</th>
-            <td class="mua-nick">
-              <span>{{ account.server }} Sao</span>
-            </td>
-          </tr>
-          <tr>
-            <th class="info-nick" style="">
-              <div style="margin: 10px"></div>
-
-              Giá Bán
-            </th>
-            <td class="mua-nick">
-              <span>{{ format_number(account.price) }} Card </span>
-              <div
-                style="
-                  width: 100%;
-                  height: 1px;
-                  background-color: #a4a4a4;
-                  margin-top: 5px;
-                  margin-bottom: 5px;
-                "
-              ></div>
-              <span>{{ cash_atm(account.price) }} ATM - MOMO</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <GroupBtnBuyAccount :account="account" account-type="NRO" />
-    </div>
-  </client-only>
+    <b-col cols="6">
+      <a href="https://zalo.me/0961646828">
+        <div class="btn-buy-account-hover">
+          <div class="tom-mua-title">
+            <v-btn icon>
+              <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Inbox Zalo
+            </v-btn>
+          </div>
+          <div class="tom-mua-giatien"></div>
+        </div>
+      </a>
+    </b-col>
+    <b-col cols="6">
+      <div class="c-font-uppercase btnCheckAccount ajax">
+        <a href="https://messenger.com/t/minh.docong.7">
+          <div class="btn-buy-account">
+            <div class="tom-mua-title">
+              <v-btn icon class="text-main">
+                <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Messenger
+              </v-btn>
+            </div>
+            <div class="tom-mua-giatien"></div>
+          </div>
+        </a>
+      </div>
+    </b-col>
+    <ModalBuyAccount
+      v-if="accountType === 'Ninja'"
+      ref="modal"
+      :account-ninja="account"
+    />
+    <!-- <ModalBuyAccountNinja
+      v-if="accountType === 'Ninja'"
+      ref="modal"
+      :account-ninja="account"
+    ></ModalBuyAccountNinja> -->
+    <ModalBuyAccountAvatar
+      v-if="accountType === 'Avatar'"
+      ref="modal"
+      :account="account"
+    ></ModalBuyAccountAvatar>
+    <ModalBuyAccountDragonBall
+      v-if="accountType === 'NRO'"
+      ref="modal"
+      :account="account"
+    />
+    <ModalBuyAccountBank
+      ref="modalBuyAccountBank"
+      :account="account"
+      :account-type="accountType"
+    />
+  </b-row>
 </template>
-  
-  <script>
-import mixins from "@/mixins/index";
-import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
-import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
+
+
+
+<script>
+import ModalBuyAccount from "@/components/pages/client/game/ModalBuyAccount";
+
+import ModalBuyAccountAvatar from "@/components/pages/client/game/avatars/ModalBuyAccountAvatar";
+import ModalBuyAccountDragonBall from "@/components/pages/client/game/dragon_balls/ModalBuyAccountDragonBall";
+import ModalBuyAccountBank from "@/components/pages/client/game/ninjas/ModalBuyAccountBank";
 
 export default {
-  name: "accountAvatarList",
-  mixins: [mixins],
+  name: "GroupBtnBuyAccount",
 
-  components: { AccountAvatarCard, GroupBtnBuyAccount },
+  components: {
+    ModalBuyAccount,
+    ModalBuyAccountAvatar,
+    ModalBuyAccountDragonBall,
+    ModalBuyAccountBank,
+  },
   props: {
     account: {
       type: Object,
       default: () => {},
     },
+    accountType: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
-      isBuy: "wallet",
       isShow: false,
+      isBank: false,
     };
   },
   async mounted() {},
   computed: {},
   methods: {
-    buyNow() {
-      this.isShow = true;
+    showModal() {
+      this.$refs.modal.show();
+    },
+    showBank() {
+      this.$refs.modalBuyAccountBank.show();
     },
   },
 };
 </script>
-  
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
 .title {
   color: #1e5b7e;
   margin-bottom: 10px;
@@ -115,12 +145,18 @@ th.info-nick {
   color: #663019;
   border: 1px solid #663019;
   background: #ffcf9c;
+  .v-btn {
+    font-weight: 400;
+  }
 }
 
 .btn-buy-account-hover {
   color: #ffcf9c;
   border: 1px solid #663019;
   background: #e28637;
+  .v-btn {
+    color: #ffcf9c;
+  }
 }
 .btn-buy-account,
 .btn-buy-account-hover,

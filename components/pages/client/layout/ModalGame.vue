@@ -32,7 +32,7 @@
           </div>
         </div>
       </v-card-text>
-      <v-card-actions class="text-right">
+      <v-card-actions class="text-right right">
         <v-btn color="red" class="text-white" @click="dialog = false">
           Đóng
         </v-btn>
@@ -67,7 +67,7 @@ export default {
   methods: {
     nextPath(path) {
       this.$router.push(`${path}`);
-      this.dialog = false
+      this.dialog = false;
     },
   },
 };
@@ -103,7 +103,10 @@ export default {
   background: #e28637;
   border-top: none;
   display: flex;
+  flex-direction: row;
   justify-content: right;
+  justify-content: end;
+  align-content: flex-end;
 }
 
 #menu-bottom {

@@ -70,32 +70,7 @@
           </tr>
         </tbody>
       </table>
-      <b-row>
-        <b-col cols="6">
-          <div
-            class="c-font-uppercase btnCheckAccount ajax"
-            @click="isShow = true"
-          >
-            <div class="btn-buy-account">
-              <div class="tom-mua-title">Mua ngay</div>
-              <div class="tom-mua-giatien"></div>
-            </div>
-          </div>
-        </b-col>
-        <b-col cols="6">
-          <a href="https://zalo.me/0961646828">
-            <div class="btn-buy-account-hover">
-              <div class="tom-mua-title">Inbox Admin</div>
-              <div class="tom-mua-giatien"></div>
-            </div>
-          </a>
-        </b-col>
-      </b-row>
-      <ModalBuyAccountNinja
-        v-if="isShow"
-        :account-ninja="accountNinja"
-        @hide="isShow = false"
-      ></ModalBuyAccountNinja>
+      <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja" />
     </div>
   </client-only>
 </template>
@@ -103,13 +78,13 @@
   <script>
 import mixins from "@/mixins/index";
 import AccountNinjaCard from "@/components/pages/client/game/ninjas/AccountNinjaCard";
-import ModalBuyAccountNinja from "@/components/pages/client/game/ninjas/ModalBuyAccountNinja";
+import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
   name: "AccountNinjaList",
   mixins: [mixins],
 
-  components: { AccountNinjaCard, ModalBuyAccountNinja },
+  components: { AccountNinjaCard, GroupBtnBuyAccount },
   props: {
     accountNinja: {
       type: Object,
@@ -120,6 +95,7 @@ export default {
     return {
       isBuy: "wallet",
       isShow: false,
+      isBank: false,
     };
   },
   async mounted() {},
@@ -154,12 +130,18 @@ th.info-nick {
   color: #663019;
   border: 1px solid #663019;
   background: #ffcf9c;
+  .v-btn {
+    font-weight: 400;
+  }
 }
 
 .btn-buy-account-hover {
   color: #ffcf9c;
   border: 1px solid #663019;
   background: #e28637;
+  .v-btn {
+    color: #ffcf9c;
+  }
 }
 .btn-buy-account,
 .btn-buy-account-hover,

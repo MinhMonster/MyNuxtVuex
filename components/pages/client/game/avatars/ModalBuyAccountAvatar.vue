@@ -2,8 +2,10 @@
 <template>
   <div>
     <ModalPayload
+      ref="modal"
       :title="`XÁC NHẬN MUA TÀI KHOẢN`"
       :text-close="`Hủy`"
+      size="md"
       @hide="close()"
     >
       <template #content>
@@ -15,7 +17,7 @@
                   <tr>
                     <th class="info-nick">Mã Số:</th>
                     <td class="mua-nick">
-                      <span>{{ format_number(accountAvatar.ID) }}</span>
+                      <span>{{ format_number(account.ID) }}</span>
                     </td>
                   </tr>
                   <tr>
@@ -33,13 +35,13 @@
                   <tr>
                     <th class="info-nick">Giá tiền:</th>
                     <td class="mua-nick">
-                      <span>{{ format_number(accountAvatar.price) }} đ</span>
+                      <span>{{ format_number(account.price) }} đ</span>
                     </td>
                   </tr>
                   <tr>
                     <th class="info-nick">ATM-MOMO:</th>
                     <td class="mua-nick">
-                      <span> {{ cash_atm(accountAvatar.price) }} đ</span>
+                      <span> {{ cash_atm(account.price) }} đ</span>
                     </td>
                   </tr>
                 </tbody>
@@ -51,31 +53,31 @@
                   <tr>
                     <th class="info-nick">Mã Số</th>
                     <td class="mua-nick">
-                      <span>{{ format_number(accountAvatar.ID) }}</span>
+                      <span>{{ format_number(account.ID) }}</span>
                     </td>
                   </tr>
                   <tr>
                     <th class="info-nick">Đất</th>
                     <td class="mua-nick">
-                      <span>{{ accountAvatar.dat }}</span>
+                      <span>{{ account.dat }}</span>
                     </td>
                   </tr>
                   <tr>
                     <th class="info-nick">Gà</th>
                     <td class="mua-nick">
-                      <span>{{ accountAvatar.ga }}</span>
+                      <span>{{ account.ga }}</span>
                     </td>
                   </tr>
                   <tr>
                     <th class="info-nick">Cá</th>
                     <td class="mua-nick">
-                      <span>{{ accountAvatar.ca }}</span>
+                      <span>{{ account.ca }}</span>
                     </td>
                   </tr>
                   <tr>
                     <th class="info-nick">Chi tiết</th>
                     <td class="mua-nick">
-                      <span> {{ accountAvatar.thongtin }} </span>
+                      <span> {{ account.thongtin }} </span>
                     </td>
                   </tr>
                 </tbody>
@@ -101,13 +103,13 @@
             >
           </b-form-group>
           <b-row v-if="isBuy == 'atm-momo'">
-            <b-col sm="12" md="6">
+            <b-col sm="12" md="12">
               <AccountNumbeAdmin />
             </b-col>
 
-            <b-col sm="12" md="6">
+            <b-col sm="12" md="12">
               <BuyAccountInstructions
-                :account="accountAvatar"
+                :account="account"
                 account-type="Avatar"
               />
             </b-col>
@@ -119,7 +121,7 @@
           Bạn chưa Đăng nhập. Hãy Đăng nhập để mua.
         </div>
         <div
-          v-else-if="Number(user.cash) < accountAvatar.price"
+          v-else-if="Number(user.cash) < account.price"
           class="color-main mgb-10px"
         >
           Số dư không đủ. Hãy nạp thêm tiền để mua.
@@ -130,7 +132,7 @@
           ><span>Đăng nhập</span></b-button
         >
         <b-button
-          v-else-if="Number(user.cash) < accountAvatar.price"
+          v-else-if="Number(user.cash) < account.price"
           variant="success"
           to="/account/wallet/deposit/vnd"
           ><span>Nap tiền</span></b-button
@@ -170,7 +172,7 @@ export default {
     BuyAccountInstructions,
   },
   props: {
-    accountAvatar: {
+    account: {
       type: Object,
       default: () => {},
     },
@@ -194,12 +196,15 @@ export default {
 
     async buyNow() {
       this.isLoading = true;
-      const res = await this.buyAccountAvatar(this.accountAvatar.ID);
+      const res = await this.buyAccountAvatar(this.account.ID);
       if (res.historyId) {
         this.$router.push(`/account/history/${res.historyId}`);
       }
 
       this.isLoading = false;
+    },
+    show() {
+      this.$refs.modal.show();
     },
     close() {
       this.$emit("hide");
@@ -288,7 +293,7 @@ th.info-nick {
 .row {
   padding: 0;
   margin: 0px;
-  .col-md-6 {
+  .col-md-12 {
     margin: 0px;
     padding: 0px;
     .info-atm-momo {

@@ -1,6 +1,6 @@
 
 <template>
-  <b-modal ref="modal" :title="title" scrollable size="lg" @hide="close()">
+  <b-modal ref="modal" :title="title" scrollable :size="size" @hide="close()">
     <div class="modal-info">
       <slot name="content"></slot>
     </div>
@@ -31,12 +31,19 @@ export default {
       type: String,
       default: "Đóng",
     },
+    size: {
+      type: String,
+      default: "lg",
+    },
   },
-  async mounted() {
-    this.$refs.modal.show();
+  mounted() {
+    // this.show();
   },
   computed: {},
   methods: {
+    show() {
+      this.$refs.modal.show();
+    },
     close() {
       this.$emit("hide");
     },
@@ -74,17 +81,18 @@ export default {
       -ms-flex-pack: center !important;
       text-decoration: none;
       border-radius: 50%;
-      height: 20px;
-      width: 20px;
-      line-height: 20px;
-      right: 0;
-      top: 0;
+      height: 25px;
+      width: 25px;
+      line-height: 25px;
+      right: 3px;
+      top: 3px;
       position: absolute;
       background: #ffcf9c;
       border: 2px solid #561d00;
       z-index: 2;
       opacity: 1 !important;
-      padding: 10px;
+      font-size: 19px;
+      padding: 3px;
     }
   }
 

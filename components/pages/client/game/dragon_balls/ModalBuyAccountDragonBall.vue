@@ -2,8 +2,10 @@
 <template>
   <div>
     <ModalPayload
+      ref="modal"
       :title="`XÁC NHẬN MUA TÀI KHOẢN`"
       :text-close="`Hủy`"
+      size="md"
       @hide="close()"
     >
       <template #content>
@@ -100,11 +102,11 @@
             >
           </b-form-group>
           <b-row v-if="isBuy == 'atm-momo'">
-            <b-col sm="12" md="6">
+            <b-col sm="12" md="12">
               <AccountNumbeAdmin />
             </b-col>
 
-            <b-col sm="12" md="6">
+            <b-col sm="12" md="12">
               <BuyAccountInstructions :account="account" account-type="NRO" />
             </b-col>
           </b-row>
@@ -194,6 +196,9 @@ export default {
 
       this.isLoading = false;
     },
+    show() {
+      this.$refs.modal.show();
+    },
     close() {
       this.$emit("hide");
     },
@@ -281,7 +286,7 @@ th.info-nick {
 .row {
   padding: 0;
   margin: 0px;
-  .col-md-6 {
+  .col-md-12 {
     margin: 0px;
     padding: 0px;
     .info-atm-momo {

@@ -57,33 +57,7 @@
           </tr>
         </tbody>
       </table>
-      <b-row>
-        <b-col cols="6">
-          <div
-            class="c-font-uppercase btnCheckAccount ajax"
-            @click="isShow = true"
-          >
-            <div class="btn-buy-account">
-              <div class="tom-mua-title">Mua ngay</div>
-              <div class="tom-mua-giatien"></div>
-            </div>
-          </div>
-        </b-col>
-        <b-col cols="6">
-          <a href="https://zalo.me/0961646828">
-            <div class="btn-buy-account-hover">
-              <div class="tom-mua-title">Inbox Admin</div>
-              <div class="tom-mua-giatien"></div>
-            </div>
-          </a>
-        </b-col>
-      </b-row>
-      <ModalBuyAccountAvatar
-        v-if="isShow"
-        :account-avatar="accountAvatar"
-        :showModal="isShow"
-        @hide="isShow = false"
-      ></ModalBuyAccountAvatar>
+      <GroupBtnBuyAccount :account="accountAvatar" account-type="Avatar" />
     </div>
   </client-only>
 </template>
@@ -91,13 +65,13 @@
   <script>
 import mixins from "@/mixins/index";
 import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
-import ModalBuyAccountAvatar from "@/components/pages/client/game/avatars/ModalBuyAccountAvatar";
+import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
   name: "accountAvatarList",
   mixins: [mixins],
 
-  components: { AccountAvatarCard, ModalBuyAccountAvatar },
+  components: { AccountAvatarCard, GroupBtnBuyAccount },
   props: {
     accountAvatar: {
       type: Object,
