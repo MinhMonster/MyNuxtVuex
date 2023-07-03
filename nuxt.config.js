@@ -7,7 +7,7 @@ export default {
   // mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'MuaBanNick.Pro -  %s',
+    titleTemplate: '%s - MuaBanNick.Pro',
     title: 'Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH',
     htmlAttrs: {
       lang: 'en'
@@ -16,7 +16,10 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      { name: 'keywords', content: 'nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja,  shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, ' },
+      { property: 'og:image', content: '/banner.jfif' },
+      { property: 'og:description', content: 'MuaBanNick.Pro - Shop Mua Bán Nick Ninja School Online, Ngọc Rồng Online, Avatar Tự Động' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -56,7 +59,7 @@ export default {
   env: {
     // nodeEnv: process.env.NODE_ENV || "development",
     apiUrl:
-      process.env.API_BASE_URL ,
+      process.env.API_BASE_URL,
   },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -80,7 +83,7 @@ export default {
     'cookie-universal-nuxt',
     // With options
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
-    
+
     // 'vuex-persistedstate'
     '@nuxtjs/dotenv',
     "vue2-editor/nuxt",
@@ -88,7 +91,7 @@ export default {
     "@nuxtjs/toast",
     "vue-sweetalert2/nuxt"
     // 'nuxt-validate'
-     
+
   ],
 
   nuxtValidate: {

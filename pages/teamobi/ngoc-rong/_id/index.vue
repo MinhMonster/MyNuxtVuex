@@ -1,6 +1,13 @@
 <template>
   <client-only>
-    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
+    <HomePage
+      :titleHead="`Mã Số: ${format_number(accountId)} - Nick Ngọc Rồng Online`"
+      :loading="!ready"
+      goBack
+      reload
+      @reload="fetchAccount()"
+      table
+    >
       <template v-if="account && account.ID && ready" #body>
         <AccountDragonBallDetail :account="account" />
       </template>
@@ -21,8 +28,8 @@
 </template>
 
 <script>
+import mixins from "@/mixins/index";
 import HomePage from "@/components/pages/home/HomePage";
-
 import AccountDragonBallDetail from "@/components/pages/client/game/dragon_balls/AccountDragonBallDetail";
 import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/AccountDragonBallList";
 
@@ -31,7 +38,7 @@ import { mapActions } from "vuex";
 
 export default {
   layout: "clientLayout",
-
+  mixins: [mixins],
   components: {
     HomePage,
     AccountDragonBallDetail,

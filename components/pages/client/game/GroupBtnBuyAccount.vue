@@ -24,7 +24,7 @@
     </b-col>
 
     <b-col cols="6">
-      <a href="https://zalo.me/0961646828">
+      <a href="https://zalo.me/0961646828" target="_blank">
         <div class="btn-buy-account-hover">
           <div class="tom-mua-title">
             <v-btn icon>
@@ -37,7 +37,7 @@
     </b-col>
     <b-col cols="6">
       <div class="c-font-uppercase btnCheckAccount ajax">
-        <a href="https://messenger.com/t/minh.docong.7">
+        <a href="https://messenger.com/t/minh.docong.7" target="_blank">
           <div class="btn-buy-account">
             <div class="tom-mua-title">
               <v-btn icon class="text-main">

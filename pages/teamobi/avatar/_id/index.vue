@@ -1,6 +1,15 @@
 <template>
   <client-only>
-    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
+    <HomePage
+      :titleHead="`Mã Số: ${format_number(
+        accountId
+      )} - Nick Avatar Xứ Sở Diệu Kỳ`"
+      :loading="!ready"
+      goBack
+      reload
+      @reload="fetchAccount()"
+      table
+    >
       <template v-if="accountAvatar && accountAvatar.ID && ready" #body>
         <AccountAvatarDetail
           :account-avatar="accountAvatar"
@@ -23,6 +32,7 @@
 </template>
 
 <script>
+import mixins from "@/mixins/index";
 import HomePage from "@/components/pages/home/HomePage";
 
 import AccountAvatarDetail from "@/components/pages/client/game/avatars/AccountAvatarDetail";
@@ -33,6 +43,7 @@ import { mapActions } from "vuex";
 
 export default {
   layout: "clientLayout",
+  mixins: [mixins],
 
   components: {
     HomePage,

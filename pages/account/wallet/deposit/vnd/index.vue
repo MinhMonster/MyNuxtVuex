@@ -24,7 +24,7 @@
               <ButtonCoppy :content="`NAP MBN ${user.id}`"></ButtonCoppy> </span
             ><br />
             <b-button
-              @click="isShow = true"
+              @click="showModal()"
               variant="primary"
               class="btn-show-more"
             >
@@ -124,19 +124,15 @@
             </b-col>
           </b-row>
         </form>
-        <ModalPayload
-          v-if="isShow"
-          title="HD Nạp Tiền = ATM - MOMO"
-          @hide="isShow = false"
-        >
+        <ModalPayload ref="modal" size="md" title="HD Nạp Tiền = ATM - MOMO">
           <template #content>
             <b-row>
-              <b-col cols="12" sm="12" md="6" class="size">
+              <b-col cols="12" class="size">
                 <div class="page-body">
                   <AccountNumbeAdmin />
                 </div>
               </b-col>
-              <b-col cols="12" sm="12" md="6">
+              <b-col cols="12" class="mt--2">
                 <div class="page-body">
                   <RechargeInstructions :user="user" />
                 </div>
@@ -196,7 +192,6 @@ export default {
   data() {
     return {
       ready: false,
-      isShow: false,
       isLoading: false,
       isCheck: false,
       walletOptions: [
@@ -329,6 +324,9 @@ export default {
     },
     reload() {
       this.onPageChange(this.pageSave);
+    },
+    showModal() {
+      this.$refs.modal.show();
     },
   },
 };

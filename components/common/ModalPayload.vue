@@ -36,9 +36,7 @@ export default {
       default: "lg",
     },
   },
-  mounted() {
-    // this.show();
-  },
+  mounted() {},
   computed: {},
   methods: {
     show() {
@@ -91,8 +89,9 @@ export default {
       border: 2px solid #561d00;
       z-index: 2;
       opacity: 1 !important;
-      font-size: 19px;
-      padding: 3px;
+      font-size: 23px;
+      padding: 12px;
+      margin: -12px -12px -12px auto;
     }
   }
 

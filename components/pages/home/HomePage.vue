@@ -56,7 +56,7 @@ export default {
       type: String,
       default: null,
     },
-    headTitle: {
+    titleHead: {
       type: String,
       default: null,
     },
@@ -100,7 +100,11 @@ export default {
       return this.goHome;
     },
     titleSeo() {
-      return this.headTitle || this.title || "Shop ";
+      return (
+        this.titleHead ||
+        this.title ||
+        "Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH"
+      );
     },
   },
   methods: {
