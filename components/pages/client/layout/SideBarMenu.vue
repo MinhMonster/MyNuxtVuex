@@ -101,9 +101,7 @@ export default {
   computed: {
     ...mapState(["token", "user"]),
   },
-  mounted() {
-    this.fetchUser();
-  },
+  mounted() {},
   methods: {
     ...mapActions(["logout", "fetchUser"]),
     async logoutUser() {

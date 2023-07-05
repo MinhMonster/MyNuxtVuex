@@ -90,8 +90,8 @@ export default {
       z-index: 2;
       opacity: 1 !important;
       font-size: 23px;
-      padding: 12px;
-      margin: -12px -12px -12px auto;
+      padding: 0px;
+      margin: -11px -11px -11px auto;
     }
   }
 

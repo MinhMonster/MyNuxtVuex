@@ -44,9 +44,18 @@ export default {
         );
       } catch { }
     },
-    async loginFb({ commit }, payload) {
+    async loginFb({ commit },) {
       try {
-        const response = await this.$repositories.homeUsers.loginFb();
+        window.location.href = "https://muabannick.pro/login.php"
+      } catch { }
+    },
+    async getToken({ commit }, payload) {
+      try {
+        const response = await this.$repositories.homeUsers.getToken();
+        commit(
+          AUTH_SUCCESS,
+          response.data
+        );
       } catch { }
     },
     async register({ commit, dispash }, payload) {
@@ -176,8 +185,10 @@ export default {
         commit(AUTH_ERROR, false);
       }
     },
-    logout({ commit }) {
+    async logout({ commit }) {
+      await this.$repositories.homeUsers.logout();
       commit(AUTH_LOGOUT);
+      window.location.href = "/login";
     },
   },
   mutations: {

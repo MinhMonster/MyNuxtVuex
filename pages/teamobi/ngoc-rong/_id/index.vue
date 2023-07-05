@@ -90,6 +90,7 @@ export default {
           perPage: 8,
           q: {
             giatien: this.account.price,
+            id_other: this.account.ID,
           },
         });
         await this.fetchAccountDragonBalls();

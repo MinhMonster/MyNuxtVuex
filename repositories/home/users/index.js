@@ -11,8 +11,14 @@ export default ($api) => ({
   loginFb() {
     return $api.get(`/login.php`);
   },
+  logout() {
+    return $api.get(`${resource}/logout.php`);
+  },
   register(payload) {
     return $api.post(`${resource}/register.php`, payload);
+  },
+  getToken() {
+    return $api.get(`${resource}/getToken.php`,)
   },
   fetchUser() {
     return $api.get(`${resource}/fetchUser.php`,)

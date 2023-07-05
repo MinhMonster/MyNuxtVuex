@@ -105,6 +105,7 @@ export default {
       #9f5424 58%,
       #561d00 127%
     );
+    height: calc(100vh - 50px);
   }
 }
 </style>

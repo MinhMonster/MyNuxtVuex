@@ -87,7 +87,6 @@ export default {
       this.nextPath();
     });
     window.addEventListener("click", this.nextPath());
-
   },
   methods: {
     ...mapActions("home/users", ["logout", "fetchUser"]),
@@ -208,6 +207,11 @@ export default {
 .bg-website {
   // background: #ffcf9c;
   background: #9f5424;
+  // position: fixed;
+  // top: 50px;
+  // bottom: 55px;
+  // margin: 0 auto;
+  // width: 100%;
 }
 // @media (min-width: 1300px) {
 ::v-deep {
@@ -218,6 +222,7 @@ export default {
       right: 5px;
       position: fixed;
       width: calc(100% - 55px) !important;
+      // height: calc(100vh - 115px);
       margin-left: 50px;
       max-width: 100% !important;
       border-radius: 4px;
@@ -335,16 +340,19 @@ export default {
 
 // }
 
+.bg-website::-webkit-scrollbar-thumb,
 .container.client-main::-webkit-scrollbar-thumb {
   background: #ffcf9c !important;
   border-radius: 10px;
 }
 
+.bg-website::-webkit-scrollbar-track,
 .container.client-main::-webkit-scrollbar-track {
   background: #9f5424 !important;
   border-radius: 10px;
 }
 
+.bg-website::-webkit-scrollbar,
 .container.client-main::-webkit-scrollbar {
   width: 0px;
   direction: ltr;

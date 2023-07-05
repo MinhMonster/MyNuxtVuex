@@ -3,35 +3,26 @@
     <b-col cols="6">
       <div class="c-font-uppercase btnCheckAccount ajax" @click="showModal()">
         <div class="btn-buy-account">
-          <div class="tom-mua-title">
-            <v-btn icon class="text-main">
-              <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Mua Ngay
-            </v-btn>
-          </div>
-          <div class="tom-mua-giatien"></div>
+          <v-btn icon class="text-main">
+            <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Mua Ngay
+          </v-btn>
         </div>
       </div>
     </b-col>
     <b-col cols="6">
       <div class="btn-buy-account-hover" @click="showBank()">
-        <div class="tom-mua-title">
-          <v-btn icon>
-            <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>ATM-MOMO
-          </v-btn>
-        </div>
-        <div class="tom-mua-giatien"></div>
+        <v-btn icon>
+          <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>ATM-MOMO
+        </v-btn>
       </div>
     </b-col>
 
     <b-col cols="6">
       <a href="https://zalo.me/0961646828" target="_blank">
         <div class="btn-buy-account-hover">
-          <div class="tom-mua-title">
-            <v-btn icon>
-              <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Inbox Zalo
-            </v-btn>
-          </div>
-          <div class="tom-mua-giatien"></div>
+          <v-btn icon>
+            <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Inbox Zalo
+          </v-btn>
         </div>
       </a>
     </b-col>
@@ -39,12 +30,9 @@
       <div class="c-font-uppercase btnCheckAccount ajax">
         <a href="https://messenger.com/t/minh.docong.7" target="_blank">
           <div class="btn-buy-account">
-            <div class="tom-mua-title">
-              <v-btn icon class="text-main">
-                <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Messenger
-              </v-btn>
-            </div>
-            <div class="tom-mua-giatien"></div>
+            <v-btn icon class="text-main">
+              <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Messenger
+            </v-btn>
           </div>
         </a>
       </div>
@@ -138,33 +126,7 @@ th.info-nick {
   border: 1px solid #663019;
   background: #e28637;
 }
-.btn-buy-account,
-.mua-nick {
-  cursor: pointer;
-  padding: 5px;
-  color: #663019;
-  border: 1px solid #663019;
-  background: #ffcf9c;
-  .v-btn {
-    font-weight: 400;
-  }
-}
 
-.btn-buy-account-hover {
-  color: #ffcf9c;
-  border: 1px solid #663019;
-  background: #e28637;
-  .v-btn {
-    color: #ffcf9c;
-  }
-}
-.btn-buy-account,
-.btn-buy-account-hover,
-.mua-nick {
-  padding: 6.5px;
-  border-radius: 3px !important;
-  text-align: center;
-}
 .table td {
   padding: 5px;
   vertical-align: top;

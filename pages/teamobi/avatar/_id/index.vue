@@ -96,6 +96,7 @@ export default {
           perPage: 8,
           q: {
             giatien: this.accountAvatar.price,
+            id_other: this.accountAvatar.ID,
           },
         });
         await this.fetchAccountAvatars();

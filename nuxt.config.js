@@ -7,8 +7,8 @@ export default {
   // mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - MuaBanNick.Pro',
-    title: 'Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH',
+    titleTemplate: 'MuaBanNick.Pro - %s',
+    title: 'Hệ thống bán Nick tự động. Shop Game TeaMobile. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH',
     htmlAttrs: {
       lang: 'en'
     },

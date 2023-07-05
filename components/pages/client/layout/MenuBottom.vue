@@ -68,6 +68,10 @@ export default {
     isHome() {
       return this.$route.path == "/";
     },
+    isLogin() {
+      const path = this.$route.path;
+      return path.includes("login") || path.includes("register");
+    },
   },
   methods: {
     nextProfile() {
@@ -92,10 +96,14 @@ export default {
       }
     },
     disabledLogin() {
-      this.$swal.fire(
-        "Bạn chưa đăng nhập",
-        "Hãy đăng nhập để sử dụng dịch vụ. <br/> Xin cảm ơn!"
-      );
+      if (!this.isLogin) {
+        this.$router.push("/login");
+      } else {
+        this.$swal.fire(
+          "Bạn chưa đăng nhập",
+          "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!"
+        );
+      }
     },
 
     nextHome() {

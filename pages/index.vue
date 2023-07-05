@@ -6,7 +6,7 @@
       :loading="!ready"
       goBack
       reload
-      @reload="search()"
+      @reload="reload()"
       notBoder
     >
       <template v-if="ready" #body>
@@ -14,7 +14,7 @@
           <HomeGame></HomeGame>
           <b-row>
             <b-col cols="12" sm="12" md="6"> <HistoryBuyAccount /> </b-col>
-            <b-col cols="12" sm="12" md="6"> <HistoryDeposit /></b-col> 
+            <b-col cols="12" sm="12" md="6"> <HistoryDeposit /></b-col>
           </b-row>
         </div>
       </template>
@@ -49,11 +49,10 @@ export default {
     }),
   },
   async mounted() {
-    this.search();
+    this.reload();
   },
   methods: {
-    
-    async search() {
+    async reload() {
       this.ready = false;
       setTimeout(() => {
         this.ready = true;
@@ -122,7 +121,7 @@ export default {
 .col,
 .col-auto,
 .col-12,
-.col-11,  
+.col-11,
 .col-10,
 .col-9,
 .col-8,

@@ -78,6 +78,7 @@
             </div>
           </b-col>
         </b-row>
+        <GroupBtnBuyAccount :account="account" account-type="NRO" />
       </b-col>
     </b-row>
   </client-only>
@@ -87,12 +88,17 @@
 import mixins from "@/mixins/index";
 import AccountDragonBallInfo from "@/components/pages/client/game/dragon_balls/AccountDragonBallInfo";
 import AccountDragonBallTL from "@/components/pages/client/game/dragon_balls/AccountDragonBallTL";
+import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
   name: "accountAvatarList",
   mixins: [mixins],
 
-  components: { AccountDragonBallInfo, AccountDragonBallTL },
+  components: {
+    AccountDragonBallInfo,
+    AccountDragonBallTL,
+    GroupBtnBuyAccount,
+  },
   props: {
     account: {
       type: Object,

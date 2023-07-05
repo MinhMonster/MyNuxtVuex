@@ -78,6 +78,7 @@
             </div>
           </b-col>
         </b-row>
+        <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja" />
       </b-col>
     </b-row>
   </client-only>
@@ -87,12 +88,13 @@
 import mixins from "@/mixins/index";
 import AccountNinjaInfo from "@/components/pages/client/game/ninjas/AccountNinjaInfo";
 import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL";
+import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
   name: "AccountNinjaList",
   mixins: [mixins],
 
-  components: { AccountNinjaInfo, AccountNinjaTL },
+  components: { AccountNinjaInfo, AccountNinjaTL, GroupBtnBuyAccount },
   props: {
     accountNinja: {
       type: Object,

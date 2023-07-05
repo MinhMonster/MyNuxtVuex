@@ -80,6 +80,16 @@
   padding: 6px;
   border-radius: 4px;
 }
+
+.box-body {
+  position: relative;
+  color: #663019;
+  border: 1px solid #663019;
+  background: #ffcf9c;
+  padding: 6px;
+  border-radius: 4px;
+}
+
 .bg-none {
   background: none !important;
 }
@@ -89,6 +99,38 @@
 //     margin-bottom: -15px;
 //   }
 // }
+
+.btn-buy-account,
+.mua-nick {
+  cursor: pointer;
+  padding: 5px;
+  color: #663019;
+  border: 1px solid #663019;
+  background: #ffcf9c;
+
+  .v-btn {
+    font-weight: 400;
+  }
+}
+
+.btn-buy-account-hover {
+  color: #ffcf9c;
+  border: 1px solid #663019;
+  background: #e28637;
+
+  .v-btn {
+    color: #ffcf9c;
+  }
+}
+
+.btn-buy-account,
+.btn-buy-account-hover,
+.mua-nick {
+  padding: 6.5px;
+  border-radius: 3px !important;
+  text-align: center;
+}
+
 
 .account-empty {
   position: relative;
@@ -141,12 +183,15 @@
 .text-main {
   color: #561d00 !important;
 }
-.text-blue{
+
+.text-blue {
   color: #1E5B7E !important;
 }
+
 .text-sup {
   font-size: 80% !important;
 }
+
 .swal2-popup.swal2-modal.swal2-show {
   min-height: 200px;
 }
@@ -514,8 +559,12 @@ table th {
 }
 
 table.table {
-  &.table-small{
-    span, td, th, tr{
+  &.table-small {
+
+    span,
+    td,
+    th,
+    tr {
       font-size: 13.5px !important;
     }
   }

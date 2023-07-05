@@ -92,6 +92,7 @@ export default {
           perPage: 8,
           q: {
             giatien: this.accountNinja.giatien,
+            id_other: this.accountNinja.ID,
           },
         });
         await this.fetchAccountNinjas();

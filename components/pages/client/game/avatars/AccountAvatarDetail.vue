@@ -45,7 +45,9 @@
       <b-col cols="12" sm="12" md="4" lg="4">
         <b-row>
           <b-col cols="12" sm="12" md="12">
-            <AccountAvatarInfo :account-avatar="accountAvatar"></AccountAvatarInfo>
+            <AccountAvatarInfo
+              :account-avatar="accountAvatar"
+            ></AccountAvatarInfo>
           </b-col>
         </b-row>
       </b-col>
@@ -78,6 +80,7 @@
             </div>
           </b-col>
         </b-row>
+        <GroupBtnBuyAccount :account="accountAvatar" account-type="Avatar" />
       </b-col>
     </b-row>
   </client-only>
@@ -87,12 +90,13 @@
 import mixins from "@/mixins/index";
 import AccountAvatarInfo from "@/components/pages/client/game/avatars/AccountAvatarInfo";
 import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvatarTL";
+import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
   name: "accountAvatarList",
   mixins: [mixins],
 
-  components: { AccountAvatarInfo, AccountAvatarTL },
+  components: { AccountAvatarInfo, AccountAvatarTL, GroupBtnBuyAccount },
   props: {
     accountAvatar: {
       type: Object,

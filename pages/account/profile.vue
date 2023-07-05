@@ -125,15 +125,21 @@ export default {
     ...mapFields("global", {}),
     ...mapState(["token", "user"]),
   },
-  mounted() {
+  async mounted() {
     if (!this.token) {
-      this.logout();
-      this.$router.push("/login");
+      await this.getToken();
+      if (!this.token) {
+        await this.logout();
+        window.location.href = "/login";
+      } else {
+        window.location.href = "/account/profile";
+      }
+    } else {
+      this.fetchAccount();
     }
-    this.fetchAccount();
   },
   methods: {
-    ...mapActions(["logout", "fetchUser"]),
+    ...mapActions(["logout", "fetchUser", "getToken"]),
 
     async fetchAccount() {
       this.ready = false;

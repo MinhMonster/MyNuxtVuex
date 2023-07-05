@@ -1,6 +1,14 @@
 <template>
   <client-only>
-    <HomePage title="ĐĂNG NHẬP" full-screen goBack goHome>
+    <HomePage
+      title="ĐĂNG NHẬP"
+      full-screen
+      goBack
+      goHome
+      :loading="!ready"
+      reload
+      @reload="reload()"
+    >
       <template v-if="!token" #body>
         <form>
           <div id="content"></div>
@@ -41,14 +49,13 @@
               <span v-else> Đăng nhập </span>
             </b-button>
           </div>
-          <!-- <div class="signin">----------- Hoặc -----------</div>
-          <div class="signin">
-            <b-button
-              class="btn btn-lg btn-primary text-white"
+          <div class="signin">----------- Hoặc -----------</div>
+          <div class="signin" @click="loginFb()">
+            <b-button class="btn btn-lg btn-primary text-white"
               ><i class="fab fa-facebook-f"></i> Đăng nhập bằng
               Facebook</b-button
             >
-          </div> -->
+          </div>
         </form>
       </template>
     </HomePage>
@@ -56,6 +63,8 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+
 import HomePage from "@/components/pages/home/HomePage";
 
 import Loading from "@/components/global/molecules/common/Loading";
@@ -76,10 +85,15 @@ export default {
   components: { HomePage, Loading, FormValidator },
   computed: {
     ...mapState(["token"]),
+    ...mapFields("global", {
+      ready: "ready",
+    }),
   },
   mounted() {
     if (this.token) {
       this.$router.push("/account/profile");
+    } else {
+      this.reload();
     }
   },
   methods: {
@@ -97,8 +111,11 @@ export default {
       }
       this.isLoading = false;
     },
-    async loginFacebook() {
-      const res = await this.loginFb();
+    async reload() {
+      this.ready = false;
+      setTimeout(() => {
+        this.ready = true;
+      }, 200);
     },
   },
 };
