@@ -1,44 +1,64 @@
 <template>
   <b-row class="account-search">
     <b-col cols="6" sm="4" md="2" lg="2">
-      <b-form-select
-        v-model="queryForm.q.level"
-        :options="levelOptions"
-        @change="setQueryForm()"
-        size="sm"
-      ></b-form-select>
+      <div class="field">
+        <form-validator name="level">
+          <b-form-select
+            v-model="queryForm.q.level"
+            :options="levelOptions"
+            @change="setQueryForm()"
+            size="sm"
+          ></b-form-select>
+        </form-validator>
+      </div>
     </b-col>
     <b-col cols="6" sm="4" md="2" lg="2">
-      <b-form-select
-        v-model="queryForm.q.cash"
-        :options="cashOptions"
-        @change="setQueryForm()"
-        size="sm"
-      ></b-form-select>
+      <div class="field">
+        <form-validator name="cash">
+          <b-form-select
+            v-model="queryForm.q.cash"
+            :options="cashOptions"
+            @change="setQueryForm()"
+            size="sm"
+          ></b-form-select>
+        </form-validator>
+      </div>
     </b-col>
     <b-col cols="6" sm="4" md="2" lg="2">
-      <b-form-select
-        v-model="queryForm.q.class"
-        :options="classOptions"
-        @change="setQueryForm()"
-        size="sm"
-      ></b-form-select>
+      <div class="field">
+        <form-validator name="class">
+          <b-form-select
+            v-model="queryForm.q.class"
+            :options="classOptions"
+            @change="setQueryForm()"
+            size="sm"
+          ></b-form-select>
+        </form-validator>
+      </div>
     </b-col>
     <b-col cols="6" sm="4" md="2" lg="2">
-      <b-form-select
-        v-model="queryForm.q.server"
-        :options="serverOptions"
-        @change="setQueryForm()"
-        size="sm"
-      ></b-form-select>
+      <div class="field">
+        <form-validator name="server">
+          <b-form-select
+            v-model="queryForm.q.server"
+            :options="serverOptions"
+            @change="setQueryForm()"
+            size="sm"
+          ></b-form-select>
+        </form-validator>
+      </div>
     </b-col>
     <b-col cols="6" sm="4" md="2" lg="2">
-      <b-form-input
-        v-model="queryForm.q.id"
-        placeholder="Nhập ID nick..."
-        @change="setQueryForm()"
-        @keyup.enter="search()"
-      ></b-form-input>
+      <div class="field">
+        <form-validator name="id">
+          <b-form-input
+            v-model="queryForm.q.id"
+            placeholder="Nhập ID nick..."
+            @change="setQueryForm()"
+            @keyup.enter="search()"
+          ></b-form-input>
+        </form-validator>
+      </div>
     </b-col>
     <b-col cols="3" sm="2" md="1" lg="1">
       <b-button
@@ -63,10 +83,11 @@
 </template>
 
 <script>
+import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 export default {
-  components: {},
+  components: { FormValidator },
   data() {
     return {
       // query: {
@@ -356,5 +377,8 @@ export default {
   height: 30px;
   padding: 3px !important;
   border-radius: 5px;
+}
+.form-group {
+  margin-bottom: 0;
 }
 </style>

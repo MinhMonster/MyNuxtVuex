@@ -50,12 +50,7 @@
             </b-button>
           </div>
           <div class="signin">----------- Hoặc -----------</div>
-          <div class="signin" @click="loginFb()">
-            <b-button class="btn btn-lg btn-primary text-white"
-              ><i class="fab fa-facebook-f"></i> Đăng nhập bằng
-              Facebook</b-button
-            >
-          </div>
+          <ButtonLoginFacebook />
         </form>
       </template>
     </HomePage>
@@ -69,6 +64,7 @@ import HomePage from "@/components/pages/home/HomePage";
 
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
@@ -82,7 +78,7 @@ export default {
       password: "",
     };
   },
-  components: { HomePage, Loading, FormValidator },
+  components: { HomePage, Loading, FormValidator, ButtonLoginFacebook },
   computed: {
     ...mapState(["token"]),
     ...mapFields("global", {

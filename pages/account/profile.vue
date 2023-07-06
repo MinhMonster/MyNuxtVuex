@@ -54,13 +54,6 @@
               </tr>
 
               <tr>
-                <th class="info-nick" style="">Số dư (CTV/GDV)</th>
-                <td class="mua-nick">
-                  <span><strong> VNĐ</strong></span>
-                </td>
-              </tr>
-
-              <tr>
                 <th class="info-nick" style="">Số điện thoại</th>
                 <td class="mua-nick">
                   <span
@@ -115,7 +108,10 @@ export default {
   layout: "clientLayout",
   mixins: [mixins],
 
-  components: { Loading, HomePage },
+  components: {
+    Loading,
+    HomePage,
+  },
   data() {
     return {
       ready: false,
@@ -151,21 +147,26 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 #home-page {
   max-width: 800px;
 }
+
 .mua-nick {
   font-weight: 400;
   text-align: center;
   background: none;
 }
+
 .table {
   font-size: 15px;
 }
+
 .title {
   color: #561d00;
 }
+
 // .text-muted{
 //    color: #663019 !important;
 // }

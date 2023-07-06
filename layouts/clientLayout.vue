@@ -120,7 +120,7 @@ export default {
     // top: 70px;
     // bottom: 60px;
     .page-body {
-      color: #000000;
+      // color: #000000;
       border: 1px solid #663019;
       background: #ffefa3;
       padding: 9px;

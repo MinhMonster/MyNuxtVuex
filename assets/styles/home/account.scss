@@ -1,3 +1,9 @@
+$primary: #3699FF;
+$primary-border: #0062cc;
+$primary-bold: #0069d9;
+$blue: #007bff;
+
+
 ::v-depp {
   .has-error .validation {
     margin-top: 15px !important;
@@ -196,6 +202,21 @@
   min-height: 200px;
 }
 
+.btn {
+  position: relative;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.235rem;
+  border-radius: 0.32rem;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  margin-right: 0.2rem;
+  box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 50%);
+}
+
 .login-btn {
   position: relative;
   height: 30px;
@@ -216,6 +237,22 @@
       #561d00 58%,
       #9f5424);
 
+}
+
+.btn-login-fb {
+  background-image: linear-gradient(180deg,
+      $blue,
+      $primary-border 9%,
+      $primary-bold 58%,
+      $primary-border);
+
+  &:hover {
+    background-image: linear-gradient(180deg,
+        $blue,
+        $primary-bold 9%,
+        $primary-border 58%,
+        $primary-bold);
+  }
 }
 
 .btn.login-btn {

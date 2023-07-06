@@ -14,13 +14,20 @@
             />
           </div>
           <div class="member">
-            <div v-if="!user" class="flex mt-4">
-              <div class="login-btn cursor-pointer" @click="nextLogin()">
-                <span>Đăng nhập</span>
+            <div v-if="!user" class="mt-4">
+              <div class="flex justify-center">
+                <div class="login-btn cursor-pointer" @click="nextLogin()">
+                  <span>Đăng nhập</span>
+                </div>
+                <div
+                  class="register-btn cursor-pointer"
+                  @click="nextRegister()"
+                >
+                  <span>Đăng ký</span>
+                </div>
               </div>
-              <div class="register-btn cursor-pointer" @click="nextRegister()">
-                <span>Đăng ký</span>
-              </div>
+
+              <ButtonLoginFacebook />
             </div>
             <template v-else>
               {{ user.name }}
@@ -92,18 +99,19 @@ import mixins from "@/mixins/index";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 export default {
   mixins: [mixins],
 
   layout: "clientLayout",
-  components: { FormValidator },
+  components: { FormValidator, ButtonLoginFacebook },
   computed: {
     ...mapState(["token", "user"]),
   },
   mounted() {},
   methods: {
-    ...mapActions(["logout", "fetchUser"]),
+    ...mapActions(["logout", "fetchUser", "loginFb"]),
     async logoutUser() {
       await this.logout();
       this.$router.push("/login");
