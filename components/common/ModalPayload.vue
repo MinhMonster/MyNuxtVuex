@@ -67,7 +67,9 @@ export default {
     align-items: center;
 
     .modal-title {
+      font-size: 18px;
       color: #561d00;
+      text-transform: uppercase;
     }
     .close {
       display: flex !important;

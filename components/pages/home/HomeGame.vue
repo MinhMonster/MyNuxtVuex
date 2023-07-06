@@ -11,7 +11,7 @@
       ></GameCard>
     </b-row>
 
-    <ModalPayload :title="`Thông Báo`">
+    <ModalPayload ref="modal" :title="`Thông Báo`">
       <template #content>
         <div class="page-body">
           <AdminNotification />
@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
 import mixins from "@/mixins/index";
 import GameCard from "@/components/pages/home/GameCard";
 import ModalPayload from "@/components/common/ModalPayload";
@@ -69,7 +67,9 @@ export default {
       ],
     };
   },
-  async mounted() {},
+  async mounted() {
+    this.$refs.modal.show();
+  },
   computed: {
     nextPath(path) {
       this.$router.push(`${path}`);

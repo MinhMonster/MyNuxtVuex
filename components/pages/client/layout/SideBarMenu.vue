@@ -42,36 +42,50 @@
           </div>
         </div>
       </div>
-      <template v-if="token && user">
+      <template>
+        <template> </template>
         <div class="h-line"></div>
         <div class="member-nav">
           <div class="member-nav-list">
-            <div class="member-nav-item">
-              <nuxt-link to="/account/profile">
-                <v-btn icon>
-                  <v-icon>mdi-account</v-icon>
-                </v-btn>
-                <span class="member-nav-name">Thông tin Cá nhân</span>
-              </nuxt-link>
-            </div>
-            <div class="member-nav-item">
-              <nuxt-link to="/account/history">
-                <v-btn icon>
-                  <v-icon>mdi-history</v-icon>
-                </v-btn>
-                <span class="member-nav-name">Lịch sử mua Nick</span>
-              </nuxt-link>
-            </div>
-            <div class="member-nav-item">
-              <nuxt-link to="/account/history/change_money">
-                <v-btn icon>
-                  <v-icon>mdi-history</v-icon>
-                </v-btn>
-                <span class="member-nav-name">Biến động Số dư</span>
-              </nuxt-link>
-            </div>
-            <template v-if="user.admin">
+            <template v-if="token && user">
+              <div class="member-nav-item">
+                <nuxt-link to="/account/profile">
+                  <v-btn icon>
+                    <v-icon>mdi-account</v-icon>
+                  </v-btn>
+                  <span class="member-nav-name">Thông tin Cá nhân</span>
+                </nuxt-link>
+              </div>
+              <div class="member-nav-item">
+                <nuxt-link to="/account/history">
+                  <v-btn icon>
+                    <v-icon>mdi-history</v-icon>
+                  </v-btn>
+                  <span class="member-nav-name">Lịch sử mua Nick</span>
+                </nuxt-link>
+              </div>
+              <div class="member-nav-item">
+                <nuxt-link to="/account/history/change_money">
+                  <v-btn icon>
+                    <v-icon>mdi-history</v-icon>
+                  </v-btn>
+                  <span class="member-nav-name">Biến động Số dư</span>
+                </nuxt-link>
+              </div>
               <div class="h-line mt-4"></div>
+            </template>
+            <template>
+              <div class="member-nav-item">
+                <nuxt-link to="/dieu-khoan-va-chinh-sach">
+                  <v-btn icon>
+                    <v-icon>mdi-book-open-variant</v-icon>
+                  </v-btn>
+                  <span class="member-nav-name">Điều khoản và Chính sách</span>
+                </nuxt-link>
+              </div>
+            </template>
+            <template v-if="token && user && user.admin">
+              <div class="h-line"></div>
               <div class="member-nav-item">
                 <nuxt-link to="/admin/game/ninjas">
                   <v-btn icon>
@@ -82,12 +96,14 @@
               </div>
             </template>
           </div>
-          <div class="h-line mb-2"></div>
-          <div class="sign-out">
-            <v-btn class="bg-danger" @click="logoutUser()">
-              <v-icon>mdi-power</v-icon> Đăng xuất
-            </v-btn>
-          </div>
+          <template v-if="token && user">
+            <div class="h-line mb-2"></div>
+            <div class="sign-out">
+              <v-btn class="bg-danger" @click="logoutUser()">
+                <v-icon>mdi-power</v-icon> Đăng xuất
+              </v-btn>
+            </div>
+          </template>
         </div>
       </template>
     </div>

@@ -1,0 +1,31 @@
+$fontSize: (
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  20,
+  24,
+  28,
+  20,
+  32,
+  36,
+  48
+);
+$fontWeight: (
+  500,
+  600,
+  700,
+  800
+);
+
+@each $fontSize in $fontSize {
+  @each $fontWeight in $fontWeight {
+    .text-#{$fontSize}-#{$fontWeight} {
+      font-size: #{$fontSize}px !important;
+      font-weight: #{$fontWeight} !important;
+    }
+  }
+}

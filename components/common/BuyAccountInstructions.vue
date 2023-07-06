@@ -3,8 +3,7 @@
     <div class="title text-center">HD Mua Nick = ATM - MOMO</div>
     <img src="/icon/icon-next-right.gif" /> Bạn Chuyển tiền cho Admin:<br />
     <img src="/icon/icon-next-right.gif" /> Số tiền:
-    <span class="sms"
-      >{{ cash_atm(account.giatien || account.price) }} đ </span
+    <span class="sms">{{ cash_atm(account.giatien || account.price) }} đ </span
     ><br />
     <img src="/icon/icon-next-right.gif" /> ND:
     <span class="sms"
@@ -15,22 +14,18 @@
     ><br />
     <img src="/icon/icon-next-right.gif" /> Chuyển xong nhắn tin cho Admin nhận
     Nick:
-    <br />
-
-    <img src="/icon/icon-next-right.gif" />
-    <img src="/icon/icon-next-right.gif" />
-    <img src="/icon/icon-next-right.gif" />
-    <a href="https://zalo.me/0961646828"> Sđt, Zalo: Đỗ Minh - 0961.646.828</a>
-    <br />
+    <AdminInbox />
   </div>
 </template>
 <script>
 import ButtonCoppy from "@/components/common/ButtonCoppy";
+import AdminInbox from "@/components/common/client/AdminInbox";
+
 import mixins from "@/mixins/index";
 
 export default {
   mixins: [mixins],
-  components: { ButtonCoppy },
+  components: { ButtonCoppy, AdminInbox },
   props: {
     account: {
       type: Object,

@@ -2,6 +2,7 @@ $primary: #3699FF;
 $primary-border: #0062cc;
 $primary-bold: #0069d9;
 $blue: #007bff;
+$danger : #dc3545;
 
 
 ::v-depp {
@@ -24,6 +25,12 @@ $blue: #007bff;
 //     }
 //   }
 // }
+.sms {
+  font-weight: 500;
+  color: $danger !important;
+
+}
+
 #home-page {
 
   .content-main,
@@ -66,11 +73,7 @@ $blue: #007bff;
   // }
 
 
-  .sms {
-    font-weight: 500;
-    color: #F64E60;
 
-  }
 
   .title {
     color: #561d00;
@@ -238,6 +241,8 @@ $blue: #007bff;
       #9f5424);
 
 }
+
+
 
 .btn-login-fb {
   background-image: linear-gradient(180deg,

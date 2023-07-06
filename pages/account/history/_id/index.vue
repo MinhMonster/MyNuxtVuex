@@ -101,14 +101,9 @@
                     </template>
                     Lưu ý: Đổi MK ngay sau khi cập nhật. <br />
                     MK: sẽ tự động cập nhật sau 1-5 phút <br />
-                    Sau 5p chưa cập nhật thì lh Admin: <br />
-                    <img src="/icon/icon-next-right.gif" />
-                    <img src="/icon/icon-next-right.gif" />
-                    <img src="/icon/icon-next-right.gif" />
-                    <a href="https://zalo.me/0961646828">
-                      Sđt, Zalo: Đỗ Minh - 0961.646.828</a
-                    ></span
-                  >
+                    Sau 5p chưa cập nhật thì lh Admin:
+                    <AdminInbox />
+                  </span>
                 </td>
               </tr>
             </tbody>
@@ -123,6 +118,7 @@
 import Loading from "@/components/global/molecules/common/Loading";
 import HomePage from "@/components/pages/home/HomePage";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
+import AdminInbox from "@/components/common/client/AdminInbox";
 
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
@@ -137,6 +133,7 @@ export default {
     Loading,
     HomePage,
     ButtonCoppy,
+    AdminInbox,
   },
   data() {
     return {
