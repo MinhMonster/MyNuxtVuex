@@ -1,8 +1,8 @@
 <template>
-  <div class="page-body mt-2" style="min-height: 550px">
+  <div class="page-body mt-2" style="min-height: 450px">
     <center>
       <div class="c-content-title-1">
-        <h3 class="title c-font-bold">Lịch sử Mua Xu Của Thành Viên</h3>
+        <h3 class="title c-font-bold mb-1">Lịch sử Mua Xu Của Thành Viên</h3>
       </div>
     </center>
     <table

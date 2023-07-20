@@ -442,7 +442,7 @@ form {
       color: #ffcf9c !important;
       border: none;
       padding-left: 0;
-      font-size: 20px;
+      // font-size: 20px;
       font-weight: 500;
       cursor: pointer;
       background: linear-gradient(-135deg, #e28637, #561d00);
