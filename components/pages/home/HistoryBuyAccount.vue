@@ -1,7 +1,7 @@
 <template>
-  <div class="page-body fz-13 mt-2" style="min-height: 550px">
+  <div class="page-body fz-13 mt-2" style="min-height: 450px">
     <center>
-      <div class="title">Lịch sử Mua Nick Của Thành Viên</div>
+      <div class="title mb-1">Lịch sử Mua Nick Của Thành Viên</div>
     </center>
     <table
       style="font-size: 12px"

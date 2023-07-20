@@ -5,7 +5,7 @@
       <b-col md="12" :lg="colLeft">
         <div :class="{ 'full-screen': fullScreen, 'page-body': !notBoder }">
           <div :class="{ 'page-info': fullScreen }">
-            <div v-if="title" class="title text-center">{{ title }}</div>
+            <div v-if="title" class="title-page title text-center">{{ title }}</div>
             <small
               v-if="content"
               id="fileHelp"
@@ -44,6 +44,8 @@
 import Loading from "@/components/global/molecules/common/Loading";
 
 import mixins from "@/mixins/index";
+
+import { mapFields } from "vuex-map-fields";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -65,6 +67,10 @@ export default {
       default: null,
     },
     pathGoBack: {
+      type: String,
+      default: null,
+    },
+    queryGoBack: {
       type: String,
       default: null,
     },
@@ -96,6 +102,9 @@ export default {
   },
   computed: {
     ...mapState("global", ["oldPath", "nowPath"]),
+    ...mapFields("global", {
+      ready: "ready",
+    }),
     isGoHome() {
       return this.goHome;
     },
@@ -114,16 +123,19 @@ export default {
       const path = this.$route.path;
       this.setPath(path);
     },
-    onGoBack() {
+    async onGoBack() {
       if (this.isGoHome) {
         this.$router.push("/");
-      } else if (this.pathGoBack) {
-        this.$router.push(this.pathGoBack);
+      } else if (this.pathGoBack && this.queryGoBack) {
+        await this.$router.push(`${this.pathGoBack}?${this.queryGoBack}`);
       } else {
         const { from } = this.$route.query;
         if (from) this.$router.push(from);
-        else this.$router.go(-1);
+        else await this.$router.go(-1);
       }
+      setTimeout(() => {
+        this.onReload();
+      }, 50);
     },
     onReload() {
       this.$emit("reload");
@@ -143,3 +155,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.title-page{
+  padding: 0 30px;
+}
+</style>

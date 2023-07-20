@@ -27,7 +27,7 @@ $danger : #dc3545;
 // }
 .sms {
   font-weight: 500;
-  color: $danger !important;
+  color: $danger  !important;
 
 }
 
@@ -270,6 +270,67 @@ $danger : #dc3545;
         #9f5424 9%,
         #9f5424 58%,
         #561d00);
+  }
+}
+
+.btn.active-btn {
+  color: #fff;
+  width: 100%;
+  border: 1px solid #9f5424;
+  background-image: linear-gradient(180deg,
+      #e28637,
+      #9f5424 9%,
+      #9f5424 58%,
+      #e28637);
+
+  &:hover {
+    color: #fff;
+    background-image: linear-gradient(180deg,
+        #e28637,
+        #9f5424 9%,
+        #9f5424 58%,
+        #561d00);
+  }
+}
+
+.nuxt-link-exact-active {
+  .btn.active-btn {
+    color: #fff;
+    width: 100%;
+    border: 1px solid red;
+    background-image: linear-gradient(180deg,
+        red,
+        #a21d0a 9%,
+        #a21d0a 58%,
+        $danger);
+
+    &:hover {
+      color: #fff;
+      background-image: linear-gradient(180deg,
+          red,
+          $danger 9%,
+          #a21d0a 58%,
+          #a21d0a);
+    }
+  }
+}
+
+.btn.search-btn {
+  width: 100%;
+  border: 1px solid $primary-border;
+  background-image: linear-gradient(180deg,
+      $primary-bold,
+      $blue 9%,
+      $blue 58%,
+      $primary-bold);
+
+  &:hover {
+    color: #fff;
+    background-image: linear-gradient(180deg,
+        $primary-bold,
+        $primary-bold 9%,
+        $blue 58%,
+        $blue);
   }
 }
 

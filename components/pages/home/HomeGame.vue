@@ -11,7 +11,7 @@
       ></GameCard>
     </b-row>
 
-    <ModalPayload ref="modal" :title="`Thông Báo`">
+    <ModalPayload ref="modal" :title="`Thông Báo`" size="md">
       <template #content>
         <div class="page-body">
           <AdminNotification />
@@ -43,12 +43,19 @@ export default {
     return {
       isLoading: false,
       gameList: [
-        {
-          title: "Ninja School Online",
-          path: "/teamobi/ninja-school",
+      {
+          title: "Nick Ninja VIP",
+          path: "/teamobi/ninja-school/nick-vip",
           image: "https://muabannick.pro/images/banner/mua-nick-ninja.gif",
-          numberAccount: "12209",
-          sold: "12034",
+          numberAccount: "5076",
+          sold: "4985",
+        },
+        {
+          title: "Nick Ninja Giá Rẻ",
+          path: "/teamobi/ninja-school/nick-gia-re",
+          image: "https://muabannick.pro/images/banner/mua-nick-ninja.gif",
+          numberAccount: "7219",
+          sold: "6937",
         },
         {
           title: "Avatar XS.DKỳ",

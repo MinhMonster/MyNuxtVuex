@@ -20,7 +20,7 @@
         <div>
           <!-- <h1>{{deverloper_view.title}}</h1> -->
           <v-card-text
-            v-html="deverloper_view.info"
+            :v-html="deverloper_view.info"
             class="bg-view view_html"
           ></v-card-text>
         </div>

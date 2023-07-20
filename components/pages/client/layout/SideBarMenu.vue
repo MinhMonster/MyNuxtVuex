@@ -56,6 +56,26 @@
                   <span class="member-nav-name">Thông tin Cá nhân</span>
                 </nuxt-link>
               </div>
+              <div class="h-line"></div>
+
+              <div class="member-nav-item">
+                <nuxt-link to="/account/wallet/deposit/card">
+                  <v-btn icon>
+                    <v-icon>mdi-card</v-icon>
+                  </v-btn>
+                  <span class="member-nav-name">Nạp Thẻ Cào</span>
+                </nuxt-link>
+              </div>
+              <div class="member-nav-item">
+                <nuxt-link to="/account/wallet/deposit/vnd">
+                  <v-btn icon>
+                    <v-icon>mdi-bank</v-icon>
+                  </v-btn>
+                  <span class="member-nav-name">Nạp Ví, ATM-MOMO</span>
+                </nuxt-link>
+              </div>
+              <div class="h-line"></div>
+
               <div class="member-nav-item">
                 <nuxt-link to="/account/history">
                   <v-btn icon>

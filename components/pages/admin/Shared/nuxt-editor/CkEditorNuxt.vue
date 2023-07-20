@@ -96,7 +96,7 @@ export default {
         },
         
         simpleUpload: {
-          uploadUrl: "https://quanlychiphidst.com/apis/files/upload.php",
+          uploadUrl: "https://muabannick.pro/apis/files/uploadSingleFile.php",
           headers: {
             authorization: `Bearer `,
           },

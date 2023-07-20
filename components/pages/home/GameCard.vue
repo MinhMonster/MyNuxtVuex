@@ -1,5 +1,5 @@
 <template>
-  <b-col cols="6" sm="6" md="4" lg="4" @click="nextPath(game.path)">
+  <b-col cols="6" sm="6" md="3" lg="3" @click="nextPath(game.path)">
     <div class="account-info">
       <ImageCard :game="game" />
       <b-row class="account-body">

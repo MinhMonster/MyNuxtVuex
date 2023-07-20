@@ -82,7 +82,7 @@
                       </p></template
                     >
                     <template v-else>
-                      Hướng dẫn chuyển sim đăng ký:<br /><br />
+                      <div class="bold">Hướng dẫn chuyển sim đăng ký:</div>
                       Dùng Sim Đăng Ký Mới soạn:<br />
 
                       <span class="sms"

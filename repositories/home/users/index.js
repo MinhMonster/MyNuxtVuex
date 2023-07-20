@@ -47,10 +47,19 @@ export default ($api) => ({
   depositVnd(payload) {
     return $api.post(`${resource}/wallet/depositVnd.php`, payload,)
   },
+  depositCard(payload) {
+    return $api.post(`${resource}/wallet/depositCard.php`, payload,)
+  },
   historyWalletDepositVnds(payload) {
     return $api.get(`${resource}/history/historyWalletDepositVnds.php`, { params: { input: payload.input } },)
   },
   fetchHistoryWalletDepositVnd(payload) {
     return $api.get(`${resource}/wallet/fetchHistoryDepositVnd.php?id=${payload}`)
+  },
+  fetchHistoryWalletDepositCards(payload) {
+    return $api.get(`${resource}/wallet/fetchHistoryWalletDepositCards.php`, { params: { input: payload.input } },)
+  },
+  fetchHistoryWalletDepositCard(payload) {
+    return $api.get(`${resource}/wallet/fetchHistoryWalletDepositCard.php?id=${payload}`)
   },
 })

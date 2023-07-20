@@ -119,7 +119,9 @@ export default {
       this.ready = false;
       await this.setQuery({ page });
       await this.historyBuyAccounts();
-      await this.$router.push(`/account/history?page=${page}`);
+      page == 1 || !page
+        ? await this.$router.push(`/account/history`)
+        : await this.$router.push(`/account/history?page=${page}`);
       this.ready = true;
     },
   },

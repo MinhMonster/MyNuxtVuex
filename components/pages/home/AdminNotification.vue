@@ -2,8 +2,25 @@
   <client-only>
     <div class="thongbao">
       <p class="bold text-italic text-13-700">
+        <a
+          href="https://www.facebook.com/groups/ninjaschoolonlineteamobile"
+          target="_blank"
+          class="text-primary"
+        >
+          <span class="text-danger">*</span> Group mới 
+          <img src="/icon/icon-next-right.gif" /> Ninja School Online All Server
+        </a>
+      </p>
+      <p class="bold text-italic text-13-700">
         <nuxt-link to="/admin-information" class="text-success">
-          <span class="text-danger">*</span> Giảm 10% tất cả&nbsp;Nick Trên Shop nhé AE
+          <span class="text-danger">*</span> Giảm 10% tất cả&nbsp;Nick Trên Shop
+          đến 15/07
+        </nuxt-link>
+      </p>
+      <p class="bold text-italic text-13-700 text-danger">
+        <nuxt-link to="/account/wallet/deposit/card">
+          - Nạp Thẻ, Mua Nick tự động 100% <br />
+          - Nạp Thẻ tự động không mất Chiết khâu.
         </nuxt-link>
       </p>
 
@@ -21,15 +38,6 @@
         >
           - Mua&nbsp;Nick qua atm, momo ib zalo&nbsp;Admin
         </a>
-      </p>
-
-      <p class="bold text-italic text-13-700 text-danger">
-        <span>- Shop tạm thời ngừng bán xu nhé AE</span>
-      </p>
-      <p class="bold text-italic text-13-700 text-danger">
-        <nuxt-link to="/admin-information">
-          - Bảo trì nạp thẻ, AE mua nick inbox Admin nhé!
-        </nuxt-link>
       </p>
 
       <AdminInbox />

@@ -3602,7 +3602,7 @@ select.select-time {
 }
 
 .btn {
-  height: 34px;
+  height: 28px;
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
@@ -3614,11 +3614,11 @@ select.select-time {
   -ms-user-select: none;
   user-select: none;
   border: 1px solid transparent;
-  padding: 8px;
+  padding: 4px;
 
   font-size: 12px;
 
-  line-height: 18px;
+  line-height: 20 px;
   border-radius: 2px;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }

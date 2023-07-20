@@ -12,7 +12,7 @@
 
       <ModalGame />
 
-      <div class="sub-menu-buttom" @click="nextHome()">
+      <div class="sub-menu-buttom" @click="nextPath('/')">
         <div class="footer_icon home">
           <div class="circle-menu">
             <div class="icon-wrap">
@@ -24,21 +24,14 @@
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
-      <div class="sub-menu-buttom" @click="nextWalletDeposit()">
-        <div class="footer_icon deposit">
-          <v-btn icon class="icon-menu">
-            <v-icon>mdi-bank</v-icon>
-          </v-btn>
-        </div>
-        <span class="title-menu-buttom">Nạp tiền</span>
-      </div>
-      <div class="sub-menu-buttom" @click="nextHistory()">
+      <ModalDeposit />
+      <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
           <v-btn icon class="icon-menu">
-            <v-icon>mdi-history</v-icon>
+            <v-icon>mdi-book-open-variant</v-icon>
           </v-btn>
         </div>
-        <span class="title-menu-buttom">Lịch sử</span>
+        <span class="title-menu-buttom">Bài Đăng</span>
       </div>
     </div>
   </client-only>
@@ -47,12 +40,14 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import ModalGame from "@/components/pages/client/layout/ModalGame";
+import ModalDeposit from "@/components/pages/client/layout/ModalDeposit";
 
 import mixins from "@/mixins/index";
 export default {
   mixins: [mixins],
   components: {
     ModalGame,
+    ModalDeposit,
   },
   props: {},
   data() {
@@ -86,6 +81,14 @@ export default {
         this.$router.push("/account/history");
       } else {
         this.disabledLogin();
+      }
+    },
+    nextPath(path) {
+      const routePath = this.$route.path;
+      if (routePath === path) {
+        this.reset();
+      } else {
+        this.$router.push(path);
       }
     },
     nextWalletDeposit() {

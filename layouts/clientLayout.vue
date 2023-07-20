@@ -156,7 +156,7 @@ export default {
   right: 30px;
   height: 30px;
   width: 30px;
-  z-index: 999;
+  z-index: 10;
   .v-btn--icon.v-size--default {
     height: 30px;
     width: 30px;
@@ -458,7 +458,7 @@ export default {
       tbody {
         tr {
           td {
-            padding: 10px 3px;
+            padding: 6px 3px;
             .col-sm-12,
             .col-md-6,
             .col-lg-3 {
