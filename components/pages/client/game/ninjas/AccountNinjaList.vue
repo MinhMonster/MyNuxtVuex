@@ -22,7 +22,7 @@
       @click="onChange()"
     >
       <v-icon>mdi-skip-next</v-icon>
-      Xem Thêm Nick Ninja
+      Xem Thêm Nick Ninja {{ type ? type : null }}
     </v-btn>
   </div>
 </template>
@@ -42,6 +42,10 @@ export default {
     query: {
       type: Object,
       default: () => {},
+    },
+    type: {
+      type: String,
+      default: null,
     },
   },
   data() {

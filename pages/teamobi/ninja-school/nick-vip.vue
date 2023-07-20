@@ -1,8 +1,8 @@
 <template>
   <client-only>
     <HomePage
-      title="Nick Ninja School Online"
-      titleHead="Shop Bán Nick Ninja School Giá Rẻ Uy Tín Nhất MXH"
+      title="Nick Ninja School VIP"
+      titleHead="Shop Bán Nick Ninja School VIP Uy Tín Nhất MXH"
       :loading="!ready"
       goBack
       reload
@@ -11,8 +11,11 @@
     >
       <template v-if="ready" #body>
         <div class="mt-4">
-          <AccountNinjaSearch @search="search()"></AccountNinjaSearch>
-          <AccountNinjaList></AccountNinjaList>
+          <AccountNinjaSearch
+            type="VIP"
+            @search="search()"
+          ></AccountNinjaSearch>
+          <AccountNinjaList type="VIP"></AccountNinjaList>
         </div>
       </template>
     </HomePage>
@@ -59,7 +62,7 @@ export default {
     },
     async reload() {
       this.ready = false;
-      await this.resetQuery();
+      await this.resetQuery("VIP");
       await this.resetAccountNinjas();
       await this.fetchAccountNinjas();
       this.ready = true;

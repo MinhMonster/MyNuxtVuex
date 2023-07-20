@@ -19,6 +19,7 @@ export default {
         cash: null,
         class: null,
         server: null,
+        type: null,
       },
     }
   }),
@@ -51,7 +52,7 @@ export default {
       state.countNinjas = payload.count
     },
     RESET_NINJAS(state) {
-      state.accountNinjas = []; 
+      state.accountNinjas = [];
       state.metaNinjas = {}
       state.countNinjas = ""
     },
@@ -91,7 +92,8 @@ export default {
     resetAccountNinjas({ commit }) {
       commit('RESET_NINJAS');
     },
-    resetQuery({ commit }) {
+    resetQuery({ commit }, payload) {
+      const type = payload ? payload : null;
       commit(SET_QUERY, {
         page: 1,
         perPage: 24,
@@ -101,6 +103,7 @@ export default {
           cash: null,
           class: null,
           server: null,
+          type: type,
         },
       });
     },

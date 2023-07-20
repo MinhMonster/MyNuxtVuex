@@ -6,7 +6,7 @@
           <v-card-title class="mgl--15px">Account Ninjas </v-card-title>
         </div>
         <v-spacer />
-        <div class=" right middle">
+        <div class="right middle">
           <v-btn icon class="primary right" to="/admin/game/ninjas/new">
             <v-icon>mdi-plus</v-icon>
           </v-btn>

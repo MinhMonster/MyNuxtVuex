@@ -234,7 +234,7 @@
 
       <b-tab title="Upload Images" class="tab-scroll scroll-y">
         <form-validator name="hinhanh">
-          <v-col cols="6" sm="4" md="3" class="middle">
+          <v-col cols="12" sm="6" md="4" class="middle">
             <UploadImageModal
               @onUploaded="onUploaded"
               :activated="ninjaForm.hinhanh"
@@ -252,9 +252,9 @@
             <v-col
               v-for="(image, index) in ninjaForm.hinhanh"
               :key="index"
-              cols="6"
-              sm="4"
-              md="3"
+              cols="12"
+              sm="6"
+              md="4"
               class="handle"
             >
               <div class="fileItemWrapper">

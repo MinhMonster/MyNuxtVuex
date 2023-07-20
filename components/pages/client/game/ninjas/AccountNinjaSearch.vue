@@ -1,104 +1,54 @@
 <template>
-  <b-row class="account-search">
-    <b-col cols="6" sm="4" md="2" lg="2">
-      <div class="field">
-        <form-validator name="level">
-          <b-form-select
-            v-model="queryForm.q.level"
-            :options="levelOptions"
-            @change="setQueryForm()"
-            size="sm"
-          ></b-form-select>
-        </form-validator>
-      </div>
-    </b-col>
-    <b-col cols="6" sm="4" md="2" lg="2">
-      <div class="field">
-        <form-validator name="cash">
-          <b-form-select
-            v-model="queryForm.q.cash"
-            :options="cashOptions"
-            @change="setQueryForm()"
-            size="sm"
-          ></b-form-select>
-        </form-validator>
-      </div>
-    </b-col>
-    <b-col cols="6" sm="4" md="2" lg="2">
-      <div class="field">
-        <form-validator name="class">
-          <b-form-select
-            v-model="queryForm.q.class"
-            :options="classOptions"
-            @change="setQueryForm()"
-            size="sm"
-          ></b-form-select>
-        </form-validator>
-      </div>
-    </b-col>
-    <b-col cols="6" sm="4" md="2" lg="2">
-      <div class="field">
-        <form-validator name="server">
-          <b-form-select
-            v-model="queryForm.q.server"
-            :options="serverOptions"
-            @change="setQueryForm()"
-            size="sm"
-          ></b-form-select>
-        </form-validator>
-      </div>
-    </b-col>
-    <b-col cols="6" sm="4" md="2" lg="2">
-      <div class="field">
-        <form-validator name="id">
-          <b-form-input
-            v-model="queryForm.q.id"
-            placeholder="Nhập ID nick..."
-            @change="setQueryForm()"
-            @keyup.enter="search()"
-          ></b-form-input>
-        </form-validator>
-      </div>
-    </b-col>
-    <b-col cols="3" sm="2" md="1" lg="1">
-      <b-button
-        type="submit"
-        name="timkiem"
-        class="btn btn-info btn-search text-white"
-        @click="search()"
+  <b-row class="group-btn mt--6">
+    <b-col cols="12" sm="12" md="2"></b-col>
+    <b-col cols="3" sm="3" md="2">
+      <nuxt-link
+        to="/teamobi/ninja-school/nick-vip"
+        :class="{ 'nuxt-link-exact-active': isVip }"
       >
-        <i class="fa fa-search"></i> Tìm kiếm
-      </b-button>
+        <b-button class="active-btn">Nick VIP</b-button>
+      </nuxt-link>
     </b-col>
-    <b-col cols="3" sm="2" md="1" lg="1">
-      <b-button
-        type=""
-        name=""
-        class="btn btn-success btn-search text-white"
-        @click="reset()"
-        ><i class="fa fa-list"></i> Tất cả</b-button
+    <b-col cols="3" sm="3" md="2">
+      <nuxt-link
+        to="/teamobi/ninja-school/nick-gia-re"
+        :class="{ 'nuxt-link-exact-active': isCheap }"
       >
+        <b-button class="active-btn">Giá Rẻ</b-button>
+      </nuxt-link>
+    </b-col>
+    <b-col cols="3" sm="3" md="2">
+      <nuxt-link
+        to="/teamobi/ninja-school"
+        :class="{ 'nuxt-link-exact-active': isAll }"
+      >
+        <b-button class="active-btn" to="/teamobi/ninja-school"
+          >Tất cả</b-button
+        >
+      </nuxt-link>
+    </b-col>
+    <b-col cols="3" sm="3" md="2">
+      <SideBarSearch :type="type" @search="$emit('search')" />
     </b-col>
   </b-row>
 </template>
 
 <script>
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import SideBarSearch from "@/components/pages/client/game/ninjas/SideBarSearch";
+
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 export default {
-  components: { FormValidator },
+  components: { FormValidator, SideBarSearch },
+  props: {
+    type: {
+      type: String,
+      default: null,
+    },
+  },
   data() {
     return {
-      // query: {
-      //   q: {
-      //     id: null,
-      //     level: null,
-      //     cash: null,
-      //     class: null,
-      //     server: null,
-      //   },
-      // },
       levelOptions: [
         {
           text: "Chon Level",
@@ -328,6 +278,18 @@ export default {
     queryForm() {
       return _.cloneDeep(this.query);
     },
+    isCheap() {
+      const path = this.$route.path;
+      return path.includes("/nick-ninja-gia-re") || path.includes("gia-re");
+    },
+    isVip() {
+      const path = this.$route.path;
+      return path.includes("/nick-ninja-vip") || path.includes("vip");
+    },
+    isAll() {
+      const path = this.$route.path;
+      return path.includes("/nick-ninja/") || path.includes("/nick-ninja.");
+    },
   },
   methods: {
     ...mapActions("home/game/ninjas", ["resetQuery", "setQuery"]),
@@ -336,7 +298,7 @@ export default {
       this.$emit("search");
     },
     async reset() {
-      this.resetQuery();
+      this.resetQuery(this.type);
       this.search();
     },
     setQueryForm() {
@@ -380,5 +342,16 @@ export default {
 }
 .form-group {
   margin-bottom: 0;
+}
+
+.group-btn {
+  padding: 3px;
+  margin-bottom: 5px;
+}
+
+.col-3,
+.col-md-2,
+.col-sm-3 {
+  padding: 6px;
 }
 </style>

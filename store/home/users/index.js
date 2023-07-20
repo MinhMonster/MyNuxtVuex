@@ -21,6 +21,8 @@ export default {
     historyChangeMoneys: [],
     historyWalletDepositVnd: {},
     historyWalletDepositVnds: [],
+    historyWalletDepositCard: {},
+    historyWalletDepositCards: [],
     historyMeta: {},
     pageSave: 1,
     query: {
@@ -144,6 +146,14 @@ export default {
         return response
       } catch { }
     },
+
+    async depositCard({ commit }, payload) {
+      try {
+        const response = await this.$repositories.homeUsers.depositCard(payload);
+        return response
+      } catch { }
+    },
+
     async fetchHistoryWalletDepositVnd({ commit, state }, id) {
       try {
         const response = await this.$repositories.homeUsers.fetchHistoryWalletDepositVnd(id);
@@ -151,10 +161,25 @@ export default {
 
       } catch { }
     },
+    async fetchHistoryWalletDepositCard({ commit, state }, id) {
+      try {
+        const response = await this.$repositories.homeUsers.fetchHistoryWalletDepositCard(id);
+        commit(SET_STATE, { historyWalletDepositCard: response.data.historyWalletDepositCard });
+
+      } catch { }
+    },
     async historyWalletDepositVnds({ commit, state }) {
       try {
         const response = await this.$repositories.homeUsers.historyWalletDepositVnds({ input: state.query });
         commit(SET_STATE, { historyWalletDepositVnds: response.data.historyWalletDepositVnds });
+        commit(SET_STATE, { historyMeta: response.data.pagy });
+
+      } catch { }
+    },
+    async fetchHistoryWalletDepositCards({ commit, state }) {
+      try {
+        const response = await this.$repositories.homeUsers.fetchHistoryWalletDepositCards({ input: state.query });
+        commit(SET_STATE, { historyWalletDepositCards: response.data.historyWalletDepositCards });
         commit(SET_STATE, { historyMeta: response.data.pagy });
 
       } catch { }
