@@ -34,7 +34,7 @@
                 <td class="text-left">{{ item.link }}</td>
 
                 <td class="text-center">
-                  <v-btn light icon :to="`/admin/topics/${item.ID}/edit`">
+                  <v-btn light icon :to="`/admin/topics/${item.ID}`">
                     <v-icon>mdi-pencil-box-multiple-outline</v-icon>
                   </v-btn>
                 </td>
@@ -62,13 +62,13 @@
 </template>
 
 <script>
-import API from "@/apis/modules/admin/topics";
+import { mapActions, mapState } from "vuex";
+
 export default {
   layout: "adminDev",
   data() {
     return {
       title: "Admin: topics",
-      topics: false,
     };
   },
   head() {
@@ -84,18 +84,14 @@ export default {
     };
   },
   name: "Index",
-  created() {
-    this.getAll();
+  computed: {
+    ...mapState("admin/topics", ["topics"]),
+  },
+  mounted() {
+    this.fetchTopics();
   },
   methods: {
-    async getAll() {
-      try {
-        const res = await API.getAll();
-        this.topics = res.data.topics;
-      } catch (e) {
-        console.log(e);
-      }
-    },
+    ...mapActions("admin/topics", ["fetchTopics"]),
   },
 };
 </script>

@@ -1,10 +1,10 @@
-const resource = '/apis/admin/topics/'
+const resource = '/apis/topics'
 export default ($api) => ({
-  fetchTopics() {
-    return $api.get(`${resource}/fetchTopics.php`)
+  fetchTopics(payload) {
+    return $api.get(`${resource}/fetchTopics.php`, { params: { input: payload.input } },)
   },
-  fetchTopic(id) {
-    return $api.get(`${resource}/fetchTopic.php?id=${id}`)
+  fetchTopic(link) {
+    return $api.get(`${resource}/fetchTopic.php?link=${link}`)
   },
   show(id) {
     return $api.get(`${resource}/${id}`)

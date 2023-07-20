@@ -1,0 +1,70 @@
+<template>
+  <client-only>
+    <HomePage
+      title="Nội dung Bài Viết"
+      :title-head="titleHead"
+      :loading="!ready"
+      goBack
+      reload
+      @reload="getTopic()"
+    >
+      <template v-if="ready" #body>
+        <div class="topic mt-4">
+          <div class="title text-center">{{ topic.title }}</div>
+          <div v-html="topic.content" class="mt-4"></div>
+        </div>
+      </template>
+    </HomePage>
+  </client-only>
+</template>
+
+<script>
+import { mapFields } from "vuex-map-fields";
+
+import { mapActions, mapState } from "vuex";
+
+import HomePage from "@/components/pages/home/HomePage";
+
+export default {
+  components: { HomePage },
+  layout: "clientLayout",
+  props: {},
+  computed: {
+    ...mapState("home/topics", ["topic"]),
+    ...mapFields("global", {
+      ready: "ready",
+    }),
+    topicLink() {
+      return this.$route.params.link;
+    },
+    topicForm() {
+      if (this.topic) {
+        return cloneDeep(this.topic);
+      } else {
+        this.$router.push("/topics");
+      }
+    },
+    titleHead() {
+      return _.get(this.topic, "title", "");
+    },
+  },
+  async mounted() {
+    await this.getTopic();
+  },
+  methods: {
+    ...mapActions("home/topics", ["fetchTopic"]),
+    async getTopic() {
+      this.ready = false;
+      await this.fetchTopic(this.topicLink);
+      this.ready = true;
+    },
+  },
+};
+</script>
+<style lang="scss" scoped>
+::v-deep {
+  .topic p {
+    margin-bottom: 0px !important;
+  }
+}
+</style>
