@@ -229,6 +229,55 @@
               @change="updateNinja()"
             ></v-text-field>
           </v-col>
+          <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
+            <v-text-field
+              label="Mắt"
+              v-model="ninjaForm.eye"
+              @change="updateNinja()"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" sm="6" md="4" lg="4" class="code-title">
+            <v-text-field
+              label="Phân thân"
+              v-model="ninjaForm.clone"
+              @change="updateNinja()"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" sm="6" md="4" lg="4" class="code-title">
+            <v-text-field
+              label="Thú cưỡi"
+              v-model="ninjaForm.mounts"
+              @change="updateNinja()"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" sm="6" md="4" lg="4" class="code-title">
+            <v-text-field
+              label="cải trang"
+              v-model="ninjaForm.disguise"
+              @change="updateNinja()"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
+            <v-text-field
+              label="Yên"
+              v-model="ninjaForm.yen"
+              @change="updateNinja()"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
+            <v-text-field
+              label="Sách"
+              v-model="ninjaForm.book"
+              @change="updateNinja()"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
+            <v-text-field
+              label="Bánh"
+              v-model="ninjaForm.cake"
+              @change="updateNinja()"
+            ></v-text-field>
+          </v-col>
         </v-row>
       </b-tab>
 
@@ -376,7 +425,7 @@ export default {
 }
 
 .CodeMirror-sizer {
-  min-height: 500px;
+  min-height: 300px;
 }
 
 img.image-ninja {

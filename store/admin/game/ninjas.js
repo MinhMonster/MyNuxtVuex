@@ -117,4 +117,11 @@ export const newAccountNinja = {
   tl9: "",
   tl10: "",
   tl11: "",
+  eye: "",
+  clone: "",
+  mounts: "",
+  yen: "",
+  book: "",
+  cake: "",
+  disguise: "",
 };

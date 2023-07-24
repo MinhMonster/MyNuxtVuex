@@ -139,7 +139,7 @@ export default {
 </script>
 <style >
 .CodeMirror {
-  height: 500px;
+  height: 300px;
   resize: horizontal;
 }
 .CodeMirror-wrap pre {
