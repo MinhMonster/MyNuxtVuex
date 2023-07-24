@@ -44,6 +44,7 @@
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/vuetify": "^1.12.3",
     "@vue/test-utils": "^1.3.0",
     "ava": "^4.3.3",
