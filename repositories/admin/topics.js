@@ -1,7 +1,7 @@
 const resource = '/apis/admin/topics/'
 export default ($api) => ({
-  fetchTopics() {
-    return $api.get(`${resource}/fetchTopics.php`)
+  fetchTopics(payload) {
+    return $api.get(`${resource}/fetchTopics.php`, { params: { input: payload.input } })
   },
   fetchTopic(id) {
     return $api.get(`${resource}/fetchTopic.php?id=${id}`)
@@ -10,8 +10,8 @@ export default ($api) => ({
     return $api.get(`${resource}/${id}`)
   },
 
-  create(payload) {
-    return $api.post(`${resource}`, payload)
+  createTopic(payload) {
+    return $api.post(`${resource}/createTopic.php`, payload)
   },
 
   updateTopic(payload) {

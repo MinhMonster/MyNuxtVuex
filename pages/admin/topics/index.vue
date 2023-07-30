@@ -42,56 +42,50 @@
             </tbody>
           </template>
         </v-simple-table>
+        <Pagination
+          v-if="metaTopics && metaTopics.pages > 1"
+          :meta="metaTopics"
+          @change="onPageChange"
+        ></Pagination>
       </div>
-      <!-- <div v-if="is_edit" class="popup">
-      <div class="body-popup abs">
-        <b @click="closed" class="cancel abs">x</b>
-        <edit :IDProps="IDEdit" @reset="getAll"></edit>
-      </div>
-      <div class="modal-backdrop in"></div>
-    </div>
-    <div v-if="is_create" class="popup">
-      <div class="body-popup abs">
-        <b @click="closed" class="cancel abs">x</b>
-        <create @reset="getAll"></create>
-      </div>
-      <div class="modal-backdrop in"></div>
-    </div> -->
     </div>
   </client-only>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import Pagination from "@/components/global/molecules/common/Pagination";
 
 export default {
   layout: "adminDev",
+  components: {
+    Pagination,
+  },
   data() {
     return {
-      title: "Admin: topics",
+      ready: true,
     };
   },
-  head() {
-    return {
-      title: this.title,
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: "Description de la page d'accueil",
-        },
-      ],
-    };
-  },
-  name: "Index",
   computed: {
-    ...mapState("admin/topics", ["topics"]),
+    ...mapState("admin/topics", ["topics", "metaTopics"]),
+    queryPage() {
+      return _.cloneDeep(this.$route.query.page) || 1;
+    },
   },
   mounted() {
-    this.fetchTopics();
+    this.onPageChange(this.queryPage);
   },
   methods: {
-    ...mapActions("admin/topics", ["fetchTopics"]),
+    ...mapActions("admin/topics", ["fetchTopics", "setQuery", "resetQuery"]),
+    async onPageChange(page) {
+      this.ready = false;
+      await this.setQuery({ page });
+      await this.fetchTopics();
+      page == 1 || !page
+        ? await this.$router.push(`/admin/topics`)
+        : await this.$router.push(`/admin/topics?page=${page}`);
+      this.ready = true;
+    },
   },
 };
 </script>

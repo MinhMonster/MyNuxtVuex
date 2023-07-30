@@ -13,9 +13,23 @@
           <ul class="topics-list">
             <li v-for="(item, index) in topics" :key="index">
               <nuxt-link :to="`/topics/${item.link}`">
-                <span class="text-main text-15-400">
-                  {{ item.title }}
-                </span>
+                <v-row>
+                  <v-col cols="4">
+                    <!-- <img :src="item.image" alt="" /> -->
+                    <div
+                      class="image-topic"
+                      :style="{ backgroundImage: `url(${item.image})` }"
+                    ></div>
+                  </v-col>
+                  <v-col cols="8">
+                    <div class="text-main text-14-700">
+                      {{ item.title }}
+                    </div>
+                    <div class="break-line-2 text-main text-13-400">
+                      {{ item.description }}
+                    </div>
+                  </v-col>
+                </v-row>
               </nuxt-link>
               <!-- <hr /> -->
             </li>
@@ -86,7 +100,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #home-page {
-  max-width: 800px;
+  max-width: 700px;
 }
 ul.topics-list {
   li {
@@ -98,6 +112,35 @@ ul.topics-list {
     // padding: 5px 20px;
     &:nth-of-type(odd) {
       background: #ffcf9c !important;
+    }
+    .image-topic {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 120px;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      z-index: 1;
+      opacity: 1;
+      transition: opacity 0.35s ease, filter 0s ease;
+
+      img {
+        width: 100%;
+        max-height: 120px;
+      }
+    }
+    @media (max-width: 600px) {
+      .image-topic {
+        height: 80px;
+        img {
+        width: 100%;
+        max-height: 80px;
+      }
+      }
+    }
+    pre {
+      white-space: pre;
     }
   }
   hr {

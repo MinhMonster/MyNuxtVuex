@@ -3,6 +3,9 @@
     <HomePage
       title="Nội dung Bài Viết"
       :title-head="titleHead"
+      :description="descriptionHead"
+      :keywords="keywordsHead"
+      :image="imagenHead"
       :loading="!ready"
       goBack
       reload
@@ -45,7 +48,16 @@ export default {
       }
     },
     titleHead() {
-      return _.get(this.topic, "title", "");
+      return _.get(this.topic, "title", null);
+    },
+    descriptionHead() {
+      return _.get(this.topic, "description", null);
+    },
+    keywordsHead() {
+      return _.get(this.topic, "keywords", null);
+    },
+    imagenHead() {
+      return _.get(this.topic, "image", null);
     },
   },
   async mounted() {
@@ -62,9 +74,19 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+#home-page {
+  max-width: 700px;
+}
 ::v-deep {
-  .topic p {
-    margin-bottom: 0px !important;
+  .topic {
+    p {
+      margin-bottom: 0px !important;
+    }
+    ul {
+      padding-left: 24px;
+      // li {
+      // }
+    }
   }
 }
 </style>

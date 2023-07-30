@@ -5,7 +5,9 @@
       <b-col md="12" :lg="colLeft">
         <div :class="{ 'full-screen': fullScreen, 'page-body': !notBoder }">
           <div :class="{ 'page-info': fullScreen }">
-            <div v-if="title" class="title-page title text-center">{{ title }}</div>
+            <div v-if="title" class="title-page title text-center">
+              {{ title }}
+            </div>
             <small
               v-if="content"
               id="fileHelp"
@@ -89,6 +91,18 @@ export default {
       default: null,
     },
     table: Boolean,
+    description: {
+      type: String,
+      default: null,
+    },
+    keywords: {
+      type: String,
+      default: null,
+    },
+    image: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
@@ -146,9 +160,24 @@ export default {
       title: this.titleSeo,
       meta: [
         {
-          hid: this.titleSeo,
-          name: this.titleSeo,
-          content: this.titleSeo,
+          hid: "description",
+          name: "description",
+          content:
+            this.description ||
+            "Hệ thống bán Nick tự động 100%. Giảm 10% tất cả các Nick trên Shop. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín - Giá Rẻ- An Toàn Nhất MXH",
+        },
+        {
+          name: "keywords",
+          content:
+            this.keywords ||
+            "nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja,  shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, ",
+        },
+        { property: "og:image", content: this.image || "/banner.jfif" },
+        {
+          property: "og:description",
+          content:
+            this.description ||
+            "Hệ thống bán Nick tự động 100%. Giảm 10% tất cả các Nick trên Shop. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín - Giá Rẻ- An Toàn Nhất MXH",
         },
       ],
     };
@@ -156,7 +185,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.title-page{
+.title-page {
   padding: 0 30px;
 }
 </style>

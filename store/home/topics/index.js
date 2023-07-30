@@ -14,7 +14,7 @@ export default {
     pageSave: 1,
     query: {
       page: 1,
-      perPage: 24
+      perPage: 10
     }
   }),
 

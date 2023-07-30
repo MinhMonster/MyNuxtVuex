@@ -1,11 +1,18 @@
 import { getField, updateField } from "vuex-map-fields";
+const SET_STATE = "SET_STATE";
+const SET_QUERY = "SET_QUERY";
 
 export default {
   namespaced: true,
   state: () => ({
     topics: [],
     topic: null,
-    post: []
+    post: [],
+    metaTopics: {},
+    query: {
+      page: 1,
+      perPage: 24
+    }
   }),
 
   mutations: {
@@ -22,24 +29,24 @@ export default {
         state[key] = value;
       });
     },
+    SET_QUERY(state, payload) {
+      state.query = {
+        ...state.query,
+        ..._.cloneDeep(payload),
+      };
+    },
   },
   getters: {
     getField,
   },
   actions: {
-    // async get_topics({ commit }) {
-    //   const res = await this.$repositories.adminTopics.all()
-    //   const { status, data } = res
-    //   if (status === 200) {
-    //     commit('SET_TOPICS', data.topics)
-    //   } else {
-    //     // Handle error here
-    //   }
-    // },
-    async fetchTopics({ commit }) {
+    newTopic({ commit }) {
+      commit(SET_STATE, { topic: newTopic });
+    },
+    async fetchTopics({ commit, state }) {
       try {
-        const res = await this.$repositories.adminTopics.fetchTopics()
-        commit('SET_STATE', { topics: res.data.topics })
+        const res = await this.$repositories.adminTopics.fetchTopics({ input: state.query })
+        commit(SET_STATE, { topics: res.data.topics, metaTopics: res.data.pagy })
       } catch (error) {
 
       }
@@ -52,6 +59,13 @@ export default {
 
       }
     },
+    async createTopic({ commit, state }) {
+      try {
+        await this.$repositories.adminTopics.createTopic({
+          input: state.topic
+        });
+      } catch (error) { }
+    },
     async updateTopic({ commit, state }, id) {
       try {
         await this.$repositories.adminTopics.updateTopic({
@@ -60,7 +74,17 @@ export default {
         });
       } catch (error) { }
     },
-
+    setQuery({ commit, state }, payload) {
+      commit(SET_QUERY, payload);
+      commit(SET_STATE, { pageSave: state.query.page });
+    },
+    resetQuery({ commit }) {
+      commit(SET_QUERY, {
+        page: 1,
+        perPage: 24,
+        q: {},
+      });
+    },
   }
 
   // async get_post({ commit }, post) {
@@ -107,33 +131,12 @@ export default {
   // }
 }
 
-export const newAccountNinja = {
-  ID: "",
-  taikhoan: "",
-  ingame: "",
-  level: "",
-  vukhi: "",
-  mcs: "",
-  thongtin: "",
-  loainick: 1,
-  class: 1,
-  server: 1,
-  giatien: "",
-  gianhap: "",
-  sim: "",
-  hinhanh: [],
-  do: "",
-
-  tl1: "",
-  tl2: "",
-  tl3: "",
-  tl4: "",
-  tl5: "",
-  tl6: "",
-  tl7: "",
-  tl8: "",
-  tl9: "",
-  tl10: "",
-  tl11: "",
+export const newTopic = {
+  title: "",
+  content: "",
+  image: null,
+  link: "",
+  status: "yes",
+  description: "",
 };
 

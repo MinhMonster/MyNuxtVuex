@@ -2,17 +2,14 @@
   <client-only>
     <div>
       <div id="body-admin">
-        <v-card-title>Bài viết mới</v-card-title>
         <form @submit.prevent="edit()">
-          <TopicForm v-if="topic"></TopicForm>
+          <TopicForm v-if="topic" label="Sửa bài viết"></TopicForm>
           <br />
           <div class="d-flex">
             <v-btn @click="onDelete()" color="red"> Xóa</v-btn>
             <v-spacer />
             <div class="text-right">
-              <v-btn type="submit" color="" to="/admin/game/ninjas">
-                Trở Về
-              </v-btn>
+              <v-btn type="submit" color="" to="/admin/topics"> Trở Về </v-btn>
               <v-btn type="submit" color="primary"> Sửa </v-btn>
             </div>
           </div>
@@ -38,13 +35,6 @@ export default {
     topicId() {
       return this.$route.params.id;
     },
-    topicForm() {
-      if (this.topic) {
-        return cloneDeep(this.topic);
-      } else {
-        this.$router.push("/admin/topics");
-      }
-    },
   },
   async mounted() {
     await this.fetchTopic(this.topicId);
@@ -53,7 +43,7 @@ export default {
     ...mapActions("admin/topics", ["fetchTopic", "updateTopic"]),
     async edit() {
       try {
-        console.log("edit")
+        console.log("edit");
         await this.updateTopic(this.topicId);
       } catch (e) {
         console.log(e);
@@ -74,8 +64,6 @@ export default {
           confirmButtonText: "Xóa",
           cancelButtonText: "Hủy",
           timer: 5000,
-          // closeOnConfirm: false,
-          // closeOnCancel: false
         })
         .then(async (result) => {
           if (result.isConfirmed) {
@@ -88,7 +76,7 @@ export default {
                 });
               if (res.data.code === 200) {
                 this.$toasted.success(res.data.message);
-                this.$router.push(`/admin/game/ninjas`);
+                this.$router.push(`/admin/topics`);
               }
             } catch (e) {
               console.log(e);
