@@ -39,10 +39,6 @@ export default {
 
   components: { AccountNinjaCard, Loading },
   props: {
-    query: {
-      type: Object,
-      default: () => {},
-    },
     type: {
       type: String,
       default: null,

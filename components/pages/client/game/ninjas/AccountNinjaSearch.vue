@@ -2,45 +2,67 @@
   <b-row class="group-btn mt--6">
     <b-col cols="12" sm="12" md="2"></b-col>
     <b-col cols="3" sm="3" md="2">
-      <nuxt-link
-        to="/teamobi/ninja-school/nick-vip"
-        :class="{ 'nuxt-link-exact-active': isVip }"
-      >
-        <b-button class="active-btn">Nick VIP</b-button>
-      </nuxt-link>
+      <div :class="{ 'nuxt-link-exact-active': isVip }">
+        <b-button
+          class="active-btn"
+          @click="nextPath('VIP', '/teamobi/ninja-school/nick-vip')"
+          >Nick VIP</b-button
+        >
+      </div>
     </b-col>
     <b-col cols="3" sm="3" md="2">
-      <nuxt-link
-        to="/teamobi/ninja-school/nick-gia-re"
-        :class="{ 'nuxt-link-exact-active': isCheap }"
-      >
-        <b-button class="active-btn">Giá Rẻ</b-button>
-      </nuxt-link>
+      <div :class="{ 'nuxt-link-exact-active': isCheap }">
+        <b-button
+          class="active-btn"
+          @click="nextPath('cheap', '/teamobi/ninja-school/nick-gia-re')"
+          >Giá Rẻ</b-button
+        >
+      </div>
     </b-col>
     <b-col cols="3" sm="3" md="2">
-      <nuxt-link
-        to="/teamobi/ninja-school"
-        :class="{ 'nuxt-link-exact-active': isAll }"
-      >
-        <b-button class="active-btn" to="/teamobi/ninja-school"
+      <div :class="{ 'nuxt-link-exact-active': isAll }">
+        <b-button
+          class="active-btn"
+          @click="nextPath(null, '/teamobi/ninja-school')"
           >Tất cả</b-button
         >
-      </nuxt-link>
+      </div>
     </b-col>
     <b-col cols="3" sm="3" md="2">
-      <SideBarSearch :type="type" @search="$emit('search')" />
+      <!-- <SideBarSearch :type="type" @search="$emit('search')" /> -->
+      <b-button
+        class="btn btn-info search-btn text-white"
+        @click="isSearch = !isSearch"
+      >
+        <span> {{ isSearch ? "Ẩn Tìm" : "Tìm Nick" }} </span>
+        <!-- <v-icon>mdi-filter-multiple-outline </v-icon> -->
+      </b-button>
+    </b-col>
+    <b-col v-if="isSearch" cols="12">
+      <FormSearch2
+        :type="type"
+        @close="isShow = false"
+        @search="$emit('search')"
+      ></FormSearch2>
+    </b-col>
+    <b-col v-else-if="isQuery" cols="12">
+      <div class="title text-center text-danger">Kết quả tìm kiếm...</div>
     </b-col>
   </b-row>
 </template>
 
 <script>
+import ninjas_mixins from "@/mixins/ninjas_mixins";
+import { mapFields } from "vuex-map-fields";
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
 import SideBarSearch from "@/components/pages/client/game/ninjas/SideBarSearch";
+import FormSearch2 from "@/components/pages/client/game/ninjas/FormSearch2";
+// import { mapActions } from "vuex";
 
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
 export default {
-  components: { FormValidator, SideBarSearch },
+  mixins: [ninjas_mixins],
+
+  components: { FormValidator, SideBarSearch, FormSearch2 },
   props: {
     type: {
       type: String,
@@ -49,261 +71,49 @@ export default {
   },
   data() {
     return {
-      levelOptions: [
-        {
-          text: "Chon Level",
-          value: null,
-        },
-        {
-          text: "Dưới 5x",
-          value: {
-            min: 0,
-            max: 49,
-          },
-        },
-        {
-          text: "Level 5x",
-          value: {
-            min: 50,
-            max: 59,
-          },
-        },
-        {
-          text: "Level 6x",
-          value: {
-            min: 60,
-            max: 69,
-          },
-        },
-        {
-          text: "Level 7x",
-          value: {
-            min: 70,
-            max: 79,
-          },
-        },
-        {
-          text: "Level 8x",
-          value: {
-            min: 80,
-            max: 89,
-          },
-        },
-        {
-          text: "Level 9x",
-          value: {
-            min: 90,
-            max: 99,
-          },
-        },
-        {
-          text: "Level 10x",
-          value: {
-            min: 100,
-            max: 109,
-          },
-        },
-        {
-          text: "Level 11x",
-          value: {
-            min: 110,
-            max: 119,
-          },
-        },
-        {
-          text: "Level 12x",
-          value: {
-            min: 120,
-            max: 129,
-          },
-        },
-        {
-          text: "Level 13x",
-          value: {
-            min: 130,
-          },
-        },
-      ],
-      cashOptions: [
-        {
-          text: "Chon Giá Tiền",
-          value: null,
-        },
-        {
-          text: "Dưới 50k",
-          value: {
-            min: 0,
-            max: 49000,
-          },
-        },
-        {
-          text: "Giá 50k đến 100k",
-          value: {
-            min: 50000,
-            max: 100000,
-          },
-        },
-        {
-          text: "Giá 100k đến 200k",
-          value: {
-            min: 100000,
-            max: 200000,
-          },
-        },
-        {
-          text: "Giá 200k đến 300k",
-          value: {
-            min: 200000,
-            max: 300000,
-          },
-        },
-        {
-          text: "Giá 300k đến 500k",
-          value: {
-            min: 300000,
-            max: 500000,
-          },
-        },
-        {
-          text: "Giá 500k đến 700k",
-          value: {
-            min: 500000,
-            max: 700000,
-          },
-        },
-        {
-          text: "Giá 700k đến 1 Triệu",
-          value: {
-            min: 700000,
-            max: 1000000,
-          },
-        },
-        {
-          text: "Giá 1Tr đến 1,5 Triệu",
-          value: {
-            min: 1000000,
-            max: 1500000,
-          },
-        },
-        {
-          text: "Giá 1,5Tr đến 3 Triệu",
-          value: {
-            min: 1500000,
-            max: 3000000,
-          },
-        },
-        {
-          text: "Giá trên 3 Triệu",
-          value: {
-            min: 3000000,
-          },
-        },
-      ],
-      classOptions: [
-        {
-          text: "Chọn Phái",
-          value: null,
-        },
-        {
-          text: "Chưa vào lớp",
-          value: 0,
-        },
-        {
-          text: "Đao",
-          value: 1,
-        },
-        {
-          text: "Kiếm",
-          value: 2,
-        },
-        {
-          text: "Tiêu",
-          value: 3,
-        },
-        {
-          text: "Cung",
-          value: 4,
-        },
-        {
-          text: "Quạt",
-          value: 5,
-        },
-        {
-          text: "Kuani",
-          value: 6,
-        },
-      ],
-      serverOptions: [
-        {
-          text: "Chọn Server",
-          value: null,
-        },
-        {
-          text: "Sv1 - Bokken",
-          value: 1,
-        },
-        {
-          text: "Sv2+3 - Shuriken + Tessen",
-          value: 2,
-        },
-        {
-          text: "Sv4 - Kunai",
-          value: 4,
-        },
-        {
-          text: "Sv5 - Katana",
-          value: 5,
-        },
-        {
-          text: "Sv6+7 - Tone + Sanzu",
-          value: 6,
-        },
-        {
-          text: "Sv8 - Sensha",
-          value: 8,
-        },
-        {
-          text: "Sv9 - Fukiya",
-          value: 9,
-        },
-      ],
+      isSearch: false,
     };
   },
   created() {},
 
   computed: {
-    ...mapFields("home/game/ninjas", {
-      query: "query",
+    ...mapFields("global", {
+      ready: "ready",
     }),
+    path() {
+      const path = this.$route.path;
+      return path;
+    },
+    isQuery() {
+      const query = this.$route.query;
+      return !_.isEmpty(query);
+    },
     queryForm() {
       return _.cloneDeep(this.query);
     },
     isCheap() {
-      const path = this.$route.path;
-      return path.includes("/nick-ninja-gia-re") || path.includes("gia-re");
+      return (
+        this.path.includes("/nick-ninja-gia-re") || this.path.includes("gia-re")
+      );
     },
     isVip() {
-      const path = this.$route.path;
-      return path.includes("/nick-ninja-vip") || path.includes("vip");
+      return this.path.includes("/nick-ninja-vip") || this.path.includes("vip");
     },
     isAll() {
-      const path = this.$route.path;
-      return path.includes("/nick-ninja/") || path.includes("/nick-ninja.");
+      return (
+        this.path.includes("/nick-ninja/") ||
+        this.path.includes("/nick-ninja.") ||
+        this.path == "/teamobi/ninja-school" ||
+        this.path == "/teamobi/ninja-school/"
+      );
     },
   },
+  mounted() {},
   methods: {
-    ...mapActions("home/game/ninjas", ["resetQuery", "setQuery"]),
-    search() {
-      this.setQueryForm();
-      this.$emit("search");
-    },
-    async reset() {
-      this.resetQuery(this.type);
-      this.search();
-    },
-    setQueryForm() {
-      this.queryForm.page = 1;
-      this.setQuery(this.queryForm);
+    async nextPath(type, path) {
+      await this.$router.push(path);
+      if (this.type !== type) return;
+      this.reloadNinja(this.type);
     },
   },
 };

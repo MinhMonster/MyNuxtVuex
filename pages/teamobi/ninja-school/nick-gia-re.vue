@@ -6,13 +6,16 @@
       :loading="!ready"
       goBack
       reload
-      @reload="reload()"
+      @reload="reloadNinja('cheap')"
       notBoder
     >
       <template v-if="ready" #body>
         <div class="mt-4">
-          <AccountNinjaSearch type="cheap" @search="search()"></AccountNinjaSearch>
-          <AccountNinjaList type="Giá Rẻ"></AccountNinjaList>
+          <AccountNinjaSearch
+            type="cheap"
+            @search="searchNinjas()"
+          ></AccountNinjaSearch>
+          <AccountNinjaList type="cheap"></AccountNinjaList>
         </div>
       </template>
     </HomePage>
@@ -20,50 +23,25 @@
 </template>
 
 <script>
+import ninjas_mixins from "@/mixins/ninjas_mixins";
 import HomePage from "@/components/pages/home/HomePage";
 
-import { mapActions } from "vuex";
 import AccountNinjaSearch from "@/components/pages/client/game/ninjas/AccountNinjaSearch";
 import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
-import Loading from "@/components/global/molecules/common/Loading";
 
 export default {
   layout: "clientLayout",
+  mixins: [ninjas_mixins],
 
   components: {
     HomePage,
     AccountNinjaSearch,
     AccountNinjaList,
-    Loading,
   },
-  data() {
-    return {
-      ready: false,
-    };
+  computed: {},
+  async mounted() {
+    this.getAccountNinjas("cheap");
   },
-  mounted() {
-    this.reload();
-  },
-  methods: {
-    ...mapActions("home/game/ninjas", [
-      "resetQuery",
-      "setQuery",
-      "resetAccountNinjas",
-      "fetchAccountNinjas",
-    ]),
-    async search() {
-      this.ready = false;
-      await this.resetAccountNinjas();
-      await this.fetchAccountNinjas();
-      this.ready = true;
-    },
-    async reload() {
-      this.ready = false;
-      await this.resetQuery("cheap");
-      await this.resetAccountNinjas();
-      await this.fetchAccountNinjas();
-      this.ready = true;
-    },
-  },
+  methods: {},
 };
 </script>
