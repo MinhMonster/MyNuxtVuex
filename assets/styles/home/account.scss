@@ -2,7 +2,7 @@ $primary: #3699FF;
 $primary-border: #0062cc;
 $primary-bold: #0069d9;
 $blue: #007bff;
-$danger : #dc3545;
+$danger : #a21d0a;
 
 
 ::v-depp {
@@ -414,13 +414,13 @@ $danger : #dc3545;
         margin-top: 0px;
       }
 
-      // input:valid ~ label {
-      //   top: 0%;
-      //   font-size: 16px;
-      //   color: #4158d0;
-      //   background: none;
-      //   transform: translateY(-50%);
-      // }
+      input:valid ~ label {
+        top: 0%;
+        font-size: 16px;
+        color: #4158d0;
+        background: none;
+        transform: translateY(-50%);
+      }
       input {
         height: 100%;
         width: 100%;
@@ -440,17 +440,17 @@ $danger : #dc3545;
         }
       }
 
-      // label {
-      //   position: absolute;
-      //   top: 50%;
-      //   left: 20px;
-      //   color: #999999;
-      //   font-weight: 400;
-      //   font-size: 17px;
-      //   pointer-events: none;
-      //   transform: translateY(-50%);
-      //   transition: all 0.3s ease;
-      // }
+      label {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        color: #999999;
+        font-weight: 400;
+        font-size: 17px;
+        pointer-events: none;
+        transform: translateY(-50%);
+        transition: all 0.3s ease;
+      }
       input[type="submit"] {
         color: #ffcf9c;
         border: none;

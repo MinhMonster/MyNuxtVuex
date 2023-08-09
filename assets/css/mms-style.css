@@ -77,8 +77,9 @@
   --warning-bold-2: #ffc220;
   --warning-border: #ffc720;
 
-  --danger: #dc3545;
-  /* --danger: #F64E60; */
+  /* --danger: #dc3545; */
+  /* --danger: #dc3545; */
+  --danger: #a21d0a;
   --danger-bold-2: #b90000;
   --danger-bold: #c82333;
   --danger-bland: #FFE2E5;

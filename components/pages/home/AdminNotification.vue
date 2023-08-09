@@ -7,14 +7,14 @@
           target="_blank"
           class="text-primary"
         >
-          <span class="text-danger">*</span> Group mới 
+          <span class="text-danger">*</span> Group mới
           <img src="/icon/icon-next-right.gif" /> Ninja School Online All Server
         </a>
       </p>
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/admin-information" class="text-success">
-          <span class="text-danger">*</span> Giảm 10% tất cả&nbsp;Nick Trên Shop
-          đến 30/07
+          <span class="text-danger">*</span> Giảm 10% tất cả Nick Trên Shop đến
+          14/08
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700 text-danger">
@@ -26,7 +26,7 @@
 
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/account/wallet/deposit/vnd" class="text-primary"
-          >- Hãy nạp&nbsp;tiền từ ATM-MOMO để được +20%
+          >- Hãy nạp tiền từ ATM-MOMO để được +20%
         </nuxt-link>
       </p>
 
@@ -36,7 +36,7 @@
           target="_blank"
           class="text-primary"
         >
-          - Mua&nbsp;Nick qua atm, momo ib zalo&nbsp;Admin
+          - Mua Nick qua atm, momo liên hệ Admin
         </a>
       </p>
 
