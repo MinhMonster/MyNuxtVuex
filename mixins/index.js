@@ -41,12 +41,8 @@ export default {
           value: 5,
         },
         {
-          text: "Sv6 - Tone",
+          text: "Sv67 - Tone + Sanzu",
           value: 6,
-        },
-        {
-          text: "Sv7 - Suzan",
-          value: 7,
         },
         {
           text: "Sv8 - Sensha",
@@ -233,10 +229,10 @@ export default {
           return "katana";
           break;
         case "6":
-          return "Tone";
+          return "Tone + Sanzu";
           break;
         case "7":
-          return "Suzan";
+          return "Tone + Sanzu";
           break;
         case "8":
           return "SenSha";
