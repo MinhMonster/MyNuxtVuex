@@ -5,31 +5,7 @@ export default {
   namespaced: true,
   state: () => ({
     ready: false,
-    sidebarActive: true,
-    customerDetailsActive: true,
-    token: null,
-    localesMaster: null,
-    authErrorMessage: null,
-    authErrorKey: null,
-    authenticated: false,
-    breadcrumb: {},
     validationErrors: {},
-    prefectures: [],
-    locale: null,
-    localeTimestamp: null,
-    accountName: null,
-    orderCompletedStates: [],
-    initState: null,
-    agencyToken: null,
-    account: {},
-    accountUser: {},
-    customerTags: [],
-    accountTags: [],
-    notifications: [],
-    noticationUnreads: 0,
-    isLoadingButton: false,
-    notificaitonPage: 0,
-    notificaitonPages: 1,
     selectedImages: [],
     screenMobile: true,
     oldPath: "/",
@@ -50,18 +26,8 @@ export default {
       commit(SET_STATE, { oldPath: state.nowPath || "/" });
       commit(SET_STATE, { nowPath: path });
     },
-    // nextOldPath({state}) {
-    //   window.location.href = state.oldPath || "/";
-    // },
 
     async fileUpload({ state, commit, dispatch }, payload) {
-      // return new Promise((resolve, reject) => {
-      //   const config = {
-      //     header: {
-      //       "Content-Type": "multiple/form-data",
-      //     },
-      //     timeout: 300000,
-      //   };
       try {
         const result = await this.$repositories.adminUploads.upload(payload)
         return result;
@@ -88,13 +54,6 @@ export default {
     },
     SET_SELECTED_IMAGES(state, payload) {
       state.selectedImages = payload;
-    },
-    SET_INIT_STATE(state, payload) {
-      if (state.agencyToken) {
-        state.initState = "completed";
-      } else {
-        state.initState = payload;
-      }
     },
   },
 };

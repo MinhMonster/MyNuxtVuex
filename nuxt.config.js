@@ -43,15 +43,9 @@ export default {
     // "@/plugins/vue-sweetalert",
 
     '~/plugins/repositories.js',
-    { src: "@/plugins/vue-infinite-scroll", ssr: false },
-    { src: "@/plugins/vue-codemirror", ssr: false },
     { src: "@/plugins/vue-slick-carousel" },
     { src: "@/plugins/vue-clipboard2", ssr: false },
 
-    // "~/plugins/axios",
-    // "~/plugins/vee-validate",  
-    // { src: "@/plugins/vee-validate", ssr: false },
-    // "~/apis/modules/admin",
 
 
   ],
