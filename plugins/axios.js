@@ -43,12 +43,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     switch (layout) {
       case "clientLayout":
         break;
-      case "adminDev":
-        if (!store.state.admin.auth.token || !store.state.admin.auth.authenticated) {
-          store.dispatch("admin/auth/logout");
-          redirect('/admin/login')
-        }
-        break;
     }
 
     // return config;
@@ -117,13 +111,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
             });
           
           break;
-        case "adminDev":
-          store.dispatch("admin/auth/logout");
-          redirect('/admin/login')
-          break;
       }
-      // store.dispatch("admin/auth/logout");
-      // redirect('/admin/login')
     }
     if (code && code === 404) {
       switch (layout) {
@@ -140,9 +128,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       switch (layout) {
         case "clientLayout":
           $swal.fire(response.data.message, response.data.error_content, "error");
-          break;
-        case "adminDev":
-          $toast.error(response.data.message);
           break;
       }
 
@@ -197,10 +182,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
     if (code === 400) {
       redirect('/400')
-    }
-    if (code === 401) {
-      store.dispatch("admin/auth/logout");
-      redirect('/admin/login')
     }
     setTimeout(() => {
       store.dispatch("disableLoading");

@@ -14,7 +14,7 @@
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/admin-information" class="text-success">
           <span class="text-danger">*</span> Giảm 10% tất cả Nick Trên Shop đến
-          14/08
+          30/08
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700 text-danger">
