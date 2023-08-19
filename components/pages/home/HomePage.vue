@@ -174,6 +174,12 @@ export default {
         },
         { property: "og:image", content: this.image || "/banner.jfif" },
         {
+          property: "og:title",
+          content:
+            this.titleSeo ||
+            "Hệ thống bán Nick tự động 100%. Giảm 10% tất cả các Nick trên Shop. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín - Giá Rẻ- An Toàn Nhất MXH",
+        },
+        {
           property: "og:description",
           content:
             this.description ||

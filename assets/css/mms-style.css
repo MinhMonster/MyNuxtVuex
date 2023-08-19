@@ -4562,10 +4562,10 @@ meter.metter-authir::-webkit-meter-optimum-value {
   flex-direction: row;
 }
 
-.flex-row-wrap {
+.flex-wrap {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap !important;
 }
 
 .flex-row-wrap-space-between {
