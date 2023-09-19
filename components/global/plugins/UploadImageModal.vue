@@ -18,8 +18,7 @@
         ></i>
       </template>
       <v-card class="modal-upload">
-        <v-card-title>
-        </v-card-title>
+        <v-card-title> </v-card-title>
         <v-card-text>
           <v-container>
             <b-tabs>
@@ -128,11 +127,73 @@ export default {
       this.$emit("onUploaded", this.selectedImages);
       this.setSelectedImages([]);
     },
-
   },
 };
 </script>
 <style lang="scss" scoped>
+::v-deep {
+  .v-dialog {
+    margin: 5px;
+    @media (max-width: 675px) {
+      height: 85vh;
+      max-height: 85vh;
+      .modal-upload {
+        height: 85vh;
+        .fileList,
+        .folderList {
+          max-height: calc(85vh - 250px);
+        }
+        .folderList {
+          width: 170px;
+          .folder-item {
+            padding-left: 20px;
+            .active {
+              margin-left: -20px;
+              padding-left: 20px;
+            }
+            .sub-folder {
+              padding-left: 15px;
+              &.active {
+                padding-left: 30px;
+              }
+            }
+          }
+        }
+        .modal-folder {
+          margin-top: -35px;
+          height: 230px;
+          max-height: 230px;
+          min-height: 230px !important;
+          width: 80%;
+          left: 10%;
+          /* position: fixed; */
+          z-index: 2;
+        }
+      }
+    }
+  }
+  .modal-upload {
+    .card-body {
+      min-height: 50vh;
+      &.v-sheet {
+        min-width: 100%;
+        max-width: 911px;
+      }
+    }
+
+    &.v-card {
+      .v-card__text {
+        padding: 0 !important;
+      }
+    }
+    height: 90vh;
+    .fileList,
+    .folderList {
+      max-height: calc(90vh - 250px);
+    }
+  }
+}
+
 .mdi-playlist-plus {
   cursor: pointer;
 }

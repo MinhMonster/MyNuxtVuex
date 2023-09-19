@@ -1,5 +1,5 @@
 <template>
-  <client-only v-if="ninjaForm">
+  <client-only v-if="ninja">
     <b-tabs class="tab-account">
       <b-tab title="Info Account" class="tab-scroll scroll-y">
         <v-row class="bg-editor bg-ninja row" justify="center">
@@ -7,32 +7,23 @@
             <form-validator name="ID">
               <v-text-field
                 label="Mã Số"
-                v-model="ninjaForm.ID"
+                v-model="ID"
                 :disabled="is_create"
-                @change="updateNinja()"
               ></v-text-field>
             </form-validator>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
             <form-validator name="taikhoan">
-              <v-text-field
-                label="Tài Khoản"
-                v-model="ninjaForm.taikhoan"
-                @change="updateNinja()"
-              ></v-text-field>
+              <v-text-field label="Tài Khoản" v-model="taikhoan"></v-text-field>
             </form-validator>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
             <form-validator name="ingame">
-              <v-text-field
-                label="Nhân Vật"
-                v-model="ninjaForm.ingame"
-                @change="updateNinja()"
-              ></v-text-field>
+              <v-text-field label="Nhân Vật" v-model="ingame"></v-text-field>
             </form-validator>
           </v-col>
           <v-col
-            v-if="activeCash && ninjaForm.giatien"
+            v-if="activeCash && giatien"
             cols="6"
             sm="4"
             md="3"
@@ -60,33 +51,23 @@
               <v-text-field
                 label="Giá bán (card)"
                 type="number"
-                v-model="ninjaForm.giatien"
-                @input="updateNinja()"
+                v-model="giatien"
               ></v-text-field>
             </form-validator>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
             <v-text-field
               label="Giá nhập (ATM)"
-              v-model="ninjaForm.gianhap"
-              @change="updateNinja()"
+              v-model="gianhap"
             ></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Sim"
-              v-model="ninjaForm.sim"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Sim" v-model="sim"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
             <div class="outline-format">
               <form-validator name="loainick">
-                <b-form-select
-                  v-model="ninjaForm.loainick"
-                  :options="optionsNinjaType"
-                  @change="updateNinja()"
-                >
+                <b-form-select v-model="loainick" :options="optionsNinjaType">
                 </b-form-select>
               </form-validator>
             </div>
@@ -94,11 +75,7 @@
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
             <div class="outline-format">
               <form-validator name="server">
-                <b-form-select
-                  v-model="ninjaForm.server"
-                  :options="optionsNinjaServer"
-                  @change="updateNinja()"
-                >
+                <b-form-select v-model="server" :options="optionsNinjaServer">
                 </b-form-select>
               </form-validator>
             </div>
@@ -107,9 +84,8 @@
             <div class="outline-format">
               <form-validator name="class">
                 <b-form-select
-                  v-model="ninjaForm.class"
+                  v-model="ninjaClass"
                   :options="optionsNinjaClass"
-                  @change="updateNinja()"
                 >
                 </b-form-select>
               </form-validator>
@@ -118,209 +94,86 @@
 
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
             <form-validator name="level">
-              <v-text-field
-                label="Level"
-                v-model="ninjaForm.level"
-                @change="updateNinja()"
-              ></v-text-field>
+              <v-text-field label="Level" v-model="level"></v-text-field>
             </form-validator>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
             <form-validator name="vukhi">
-              <v-text-field
-                label="Vũ khí"
-                v-model="ninjaForm.vukhi"
-                @change="updateNinja()"
-              ></v-text-field>
+              <v-text-field label="Vũ khí" v-model="vukhi"></v-text-field>
             </form-validator>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
             <form-validator name="do">
-              <v-text-field
-                label="Set Đồ"
-                v-model="ninjaForm.do"
-                @change="updateNinja()"
-              ></v-text-field>
+              <v-text-field label="Set Đồ" v-model="setDo"></v-text-field>
             </form-validator>
           </v-col>
           <v-col cols="12" sm="12" md="12">
             <b-form-group>
               <ContentEditer
                 label="Chi tiết"
-                v-model="ninjaForm.thongtin"
-                @input="updateNinja()"
+                v-model="thongtin"
               ></ContentEditer>
             </b-form-group>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Vũ khí"
-              v-model="ninjaForm.tl1"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Vũ khí" v-model="tl1"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Dây chuyền"
-              v-model="ninjaForm.tl2"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Dây chuyền" v-model="tl2"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Nhẫn"
-              v-model="ninjaForm.tl3"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Nhẫn" v-model="tl3"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Bội"
-              v-model="ninjaForm.tl4"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Bội" v-model="tl4"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Bùa"
-              v-model="ninjaForm.tl5"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Bùa" v-model="tl5"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Yoroy"
-              v-model="ninjaForm.tl11"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Yoroy" v-model="tl11"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Trâm"
-              v-model="ninjaForm.tl6"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Trâm" v-model="tl6"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Áo"
-              v-model="ninjaForm.tl7"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Áo" v-model="tl7"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Găng"
-              v-model="ninjaForm.tl8"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Găng" v-model="tl8"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Quần"
-              v-model="ninjaForm.tl9"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Quần" v-model="tl9"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Giày"
-              v-model="ninjaForm.tl10"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Giày" v-model="tl10"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Mắt"
-              v-model="ninjaForm.eye"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Mắt" v-model="eye"></v-text-field>
           </v-col>
           <v-col cols="6" sm="6" md="4" lg="4" class="code-title">
-            <v-text-field
-              label="Phân thân"
-              v-model="ninjaForm.clone"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Phân thân" v-model="clone"></v-text-field>
           </v-col>
           <v-col cols="6" sm="6" md="4" lg="4" class="code-title">
-            <v-text-field
-              label="Thú cưỡi"
-              v-model="ninjaForm.mounts"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Thú cưỡi" v-model="mounts"></v-text-field>
           </v-col>
           <v-col cols="6" sm="6" md="4" lg="4" class="code-title">
-            <v-text-field
-              label="cải trang"
-              v-model="ninjaForm.disguise"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="cải trang" v-model="disguise"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Yên"
-              v-model="ninjaForm.yen"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Yên" v-model="yen"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Sách"
-              v-model="ninjaForm.book"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Sách" v-model="book"></v-text-field>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Bánh"
-              v-model="ninjaForm.cake"
-              @change="updateNinja()"
-            ></v-text-field>
+            <v-text-field label="Bánh" v-model="cake"></v-text-field>
           </v-col>
         </v-row>
       </b-tab>
 
       <b-tab title="Upload Images" class="tab-scroll scroll-y">
-        <form-validator name="hinhanh">
-          <v-col cols="12" sm="6" md="4" class="middle">
-            <UploadImageModal
-              @onUploaded="onUploaded"
-              :activated="ninjaForm.hinhanh"
-              :icon="'add-file'"
-            ></UploadImageModal>
-          </v-col>
-          <draggable
-            v-model="ninjaForm.hinhanh"
-            ghost-class="ghost"
-            @change="changeByDrag"
-            handle=".handle"
-            class="row"
-            tag="div"
-          >
-            <v-col
-              v-for="(image, index) in ninjaForm.hinhanh"
-              :key="index"
-              cols="12"
-              sm="6"
-              md="4"
-              class="handle"
-            >
-              <div class="fileItemWrapper">
-                <img :src="image" alt="" class="image-ninja" />
-                <b-button
-                  variant="danger"
-                  size="sm"
-                  class="ml-2"
-                  pill
-                  @click="removeImage(image)"
-                >
-                  <i class="mdi mdi-close-thick"></i>
-                </b-button>
-              </div>
-            </v-col>
-          </draggable>
-        </form-validator>
+        <ImageList v-model="ninjaForm.hinhanh" @updated="updated" />
       </b-tab>
     </b-tabs>
   </client-only>
@@ -328,22 +181,20 @@
 
 <script>
 import mixins from "@/mixins/index";
-import draggable from "vuedraggable";
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import ContentEditer from "@/components/pages/admin/Shared/nuxt-editor/CkEditorNuxt.vue";
-import UploadImageModal from "@/components/global/plugins/UploadImageModal.vue";
+import ImageList from "@/components/global/molecules/common/ImageList";
 
 export default {
   mixins: [mixins],
 
   components: {
     FormValidator,
-    draggable,
     ContentEditer,
-    UploadImageModal,
+    ImageList,
   },
   name: "FormAccountNinja",
   data() {
@@ -352,13 +203,48 @@ export default {
     };
   },
   computed: {
-    ...mapFields("admin/game/ninjas", ["ninja"]),
+    ...mapFields("admin/game/ninjas", {
+      ninja: "ninja",
+      hinhanh: "ninja.hinhanh",
+      thongtin: "ninja.thongtin",
+      loainick: "ninja.loainick",
+      ID: "ninja.ID",
+      taikhoan: "ninja.taikhoan",
+      ingame: "ninja.ingame",
+      giatien: "ninja.giatien",
+      gianhap: "ninja.gianhap",
+      sim: "ninja.sim",
+      server: "ninja.server",
+      ninjaClass: "ninja.class",
+      level: "ninja.level",
+      vukhi: "ninja.vukhi",
+      setDo: "ninja.do",
+      tl1: "ninja.tl1",
+      tl2: "ninja.tl2",
+      tl3: "ninja.tl3",
+      tl4: "ninja.tl4",
+      tl5: "ninja.tl5",
+      tl6: "ninja.tl6",
+      tl7: "ninja.tl7",
+      tl8: "ninja.tl8",
+      tl9: "ninja.tl9",
+      tl10: "ninja.tl10",
+      tl11: "ninja.tl11",
+      tl12: "ninja.tl12",
+      eye: "ninja.eye",
+      clone: "ninja.clone",
+      mounts: "ninja.mounts",
+      disguise: "ninja.disguise",
+      yen: "ninja.yen",
+      book: "ninja.book",
+      cake: "ninja.cake",
+    }),
     ninjaForm() {
       return _.cloneDeep(this.ninja);
     },
     cashFormat: {
       get() {
-        return _.cloneDeep(this.format_number(this.ninjaForm.giatien));
+        return _.cloneDeep(this.format_number(this.giatien));
       },
     },
     is_create() {
@@ -371,66 +257,15 @@ export default {
   },
   methods: {
     ...mapActions("admin/game/ninjas", ["newAccountNinja", "setAccountNinja"]),
-
-    updateNinja() {
-      this.setAccountNinja(this.ninjaForm);
-    },
-
-    onUploaded(files) {
-      this.setImage(files);
-      this.setAccountNinja(this.ninjaForm);
-    },
-
-    setImage(data) {
-      for (const option of data) {
-        if (!this.ninjaForm.hinhanh.includes(option.url)) {
-          this.ninjaForm.hinhanh.push(option.url);
-        }
-      }
-    },
-
-    removeImage(image) {
-      this.ninjaForm.hinhanh = this.ninjaForm.hinhanh.filter(
-        (item) => item != image
-      );
-      this.setAccountNinja(this.ninjaForm);
-    },
-
-    changeByDrag(event) {
+    updated() {
       this.setAccountNinja(this.ninjaForm);
     },
   },
 };
 </script>
 <style lang="scss" scoped>
-.fileItemWrapper {
-  position: relative;
-  display: flex;
-  flex-flow: column;
-  border: 1px solid #eff2f7;
-  border-radius: 5px;
-  padding: 10px;
-  align-items: flex-start;
-  height: 100%;
-
-  button {
-    position: absolute;
-    right: -10px;
-    top: -10px;
-    width: 20px;
-    height: 20px;
-    font-size: 10px;
-    padding: 1px;
-  }
-}
-
 .CodeMirror-sizer {
   min-height: 300px;
-}
-
-img.image-ninja {
-  height: 100%;
-  width: 100%;
 }
 
 .tab-scroll {

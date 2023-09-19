@@ -3,7 +3,10 @@
     class="border border-light shadow-none card-folder"
     :class="{ 'zoom-modal scroll-x': isZoom }"
   >
-    <div class="folder-plugin">
+    <div class="folder-plugin nowrap scroll-x">
+      <v-btn color="white" @click="showFolder = !showFolder">
+        <v-icon>mdi-folder-move</v-icon>
+      </v-btn>
       <v-btn color="white" @click="browseFiles">
         <v-icon>mdi-upload</v-icon>
       </v-btn>
@@ -13,7 +16,7 @@
       <v-btn v-if="!isZoom" color="white" @click="isZoom = true">
         <v-icon>mdi-arrow-expand-all</v-icon>
       </v-btn>
-      <v-btn v-if="isZoom" color="white" @click="isZoom = false">
+      <v-btn v-else color="white" @click="isZoom = false">
         <v-icon>mdi-arrow-collapse-all</v-icon>
       </v-btn>
     </div>
@@ -25,20 +28,27 @@
       @click="clearImgPath"
       @change="onFileChange"
     />
-    <div class="flex-row folder-show">
+    <div class="flex-row folder-show" :class="{ show: showFolder }">
       <div v-if="folders.length" class="folderList scroll-y">
         <div
-          @click="setPath('/images/')"
           class="pointer main-folder"
           :class="{ active: folderUpload == '/images/' }"
         >
-          <v-icon color="blue">mdi-folder-multiple</v-icon> Images
+          <div @click="setPath('/images/')">
+            <v-icon color="blue">mdi-folder-multiple</v-icon>
+            Images
+          </div>
+
+          <v-icon class="btn-show" @click="showFolder = false"
+            >mdi-dots-vertical</v-icon
+          >
         </div>
 
         <div
           v-for="(folder, index) in folders"
           :key="index"
           class="pointer folder-item"
+          :class="{ hidden: !showFolder }"
         >
           <div
             class="folder-item-body flex-row-space-between"
@@ -90,12 +100,13 @@
               :class="{ active: folderUpload == subFolder.folderPath }"
             >
               <div @click="setFolderUpload(subFolder.folderPath)">
-                <span class="folder-name"
-                  ><v-icon
+                <span class="folder-name">
+                  <v-icon
                     v-if="folderUpload == subFolder.folderPath"
                     color="blue"
-                    >mdi-folder-multiple</v-icon
                   >
+                    mdi-folder-multiple
+                  </v-icon>
                   <v-icon v-else color="blue">mdi-folder</v-icon
                   >{{ subFolder.folderName }}
                   <v-icon class="dots-vertical">mdi-dots-vertical</v-icon>
@@ -207,7 +218,7 @@
 import { mapFields } from "vuex-map-fields";
 
 import mixins from "@/mixins/index";
-import { createNamespacedHelpers } from "vuex";
+// import { createNamespacedHelpers } from "vuex";
 // const { mapActions, mapState } = createNamespacedHelpers("global");
 import { mapActions } from "vuex";
 
@@ -280,6 +291,7 @@ export default {
   },
   data() {
     return {
+      showFolder: true,
       path: "/images/",
       folderUpload: "/images/",
       pathActive: "/images/",
@@ -541,6 +553,7 @@ export default {
   min-height: 50vh;
   max-height: calc(100vh - 130px);
   border-right: 1px solid #dee2e6;
+  display: none;
 
   .folder-item {
     border-top: 1px solid #d7dcdf;
@@ -579,7 +592,7 @@ export default {
   padding-left: 10px;
   padding-top: 10px;
 
-  width: calc(100% - 250px);
+  width: 100%;
   min-height: 50vh;
   max-height: 50vh;
   // display: flex;
@@ -706,17 +719,8 @@ export default {
     }
   }
 }
-@media (max-width: 675px) {
-  .fileList {
-    width: calc(100% - 200px);
-  }
-}
 .bg-gray {
   background: #e1e1e1 !important;
-}
-
-.modal-upload .card-body {
-  min-height: 50vh;
 }
 
 .full-zone {
@@ -768,7 +772,13 @@ export default {
 }
 
 .folderList .main-folder {
+  position: relative;
   padding: 10px;
+  .btn-show {
+    position: absolute;
+    right: 0px;
+    top: 12px;
+  }
 }
 .folderList .main-folder.active {
   margin-left: 0px;
@@ -831,5 +841,24 @@ export default {
       width: 50% !important;
     }
   }
+}
+.show {
+  .folderList {
+    display: block;
+  }
+  .fileList {
+    width: calc(100% -250px);
+    @media (max-width: 675px) {
+      width: calc(100% - 170px);
+    }
+  }
+}
+.hidden {
+  display: none;
+}
+.v-btn:not(.v-btn--round).v-size--default {
+  height: 36px;
+  min-width: 36px;
+  padding: 0;
 }
 </style>
