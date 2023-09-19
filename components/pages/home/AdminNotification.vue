@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div class="thongbao">
-      <p class="bold text-italic text-13-700">
+      <!-- <p class="bold text-italic text-13-700">
         <a
           href="https://www.facebook.com/groups/ninjaschoolonlineteamobile"
           target="_blank"
@@ -10,11 +10,11 @@
           <span class="text-danger">*</span> Group mới
           <img src="/icon/icon-next-right.gif" /> Ninja School Online All Server
         </a>
-      </p>
+      </p> -->
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/admin-information" class="text-success">
           <span class="text-danger">*</span> Giảm 10% tất cả Nick Trên Shop đến
-          30/08
+          30/09
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700 text-danger">

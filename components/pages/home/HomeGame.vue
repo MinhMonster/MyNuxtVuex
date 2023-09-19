@@ -61,8 +61,8 @@ export default {
           title: "Avatar XS.DKỳ",
           path: "/teamobi/avatar",
           image: "https://muabannick.pro/images/banner/mua-nick-avatar.jpg",
-          numberAccount: "85",
-          sold: "67",
+          numberAccount: "90",
+          sold: "69",
         },
         {
           title: "Ngọc Rồng Online",

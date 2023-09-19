@@ -13,7 +13,10 @@
             </h3>
           </center>
         </div>
-        <AccountAvatarTL v-if="isMobile" :account-avatar="accountAvatar" />
+        <AccountAvatarTL
+          v-if="isMobile || accountAvatar.full"
+          :account-avatar="accountAvatar"
+        />
         <VueSlickCarousel
           v-else-if="accountAvatar.images"
           :initialSlide="0"
@@ -56,8 +59,26 @@
           <center>Hình Ảnh Của Nick Avatar</center>
         </div>
         <b-row>
+          <b-col cols="12" sm="12" md="6" lg="4">
+            <div class="fileItemWrapper">
+              <img
+                v-if="accountAvatar.images[0].includes('muabannick.pro')"
+                :src="accountAvatar.images[0]"
+                alt=""
+                class="image-ninja"
+                :class="{ full: accountAvatar.full }"
+              />
+              <img
+                v-else
+                :src="`https://muabannick.pro${accountAvatar.images[0]}`"
+                alt=""
+                class="image-ninja"
+                :class="{ full: accountAvatar.full }"
+              />
+            </div>
+          </b-col>
           <b-col
-            v-for="(image, index) in accountAvatar.images"
+            v-for="(image, index) in images"
             :key="index"
             cols="12"
             sm="12"
@@ -114,7 +135,14 @@ export default {
     });
     window.addEventListener("resize", this.onResize);
   },
-  computed: {},
+  computed: {
+    images() {
+      const images = this.accountAvatar.images.filter((image, index) => {
+        return index != 0;
+      });
+      return images;
+    },
+  },
   methods: {
     onResize() {
       const screenWidth = document.querySelector("body").clientWidth;
@@ -129,6 +157,11 @@ export default {
 </script>
   
   <style lang="scss" scoped>
+::v-deep {
+  .fileItemWrapper img.full {
+    height: 100%;
+  }
+}
 .fileItemWrapper {
   position: relative;
   display: flex;
@@ -143,6 +176,11 @@ export default {
   img {
     width: 120%;
     margin-left: -10%;
+    height: 100%;
+    &.full {
+      width: 100%;
+      margin-left: 0px;
+    }
   }
 }
 .account {
