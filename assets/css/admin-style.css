@@ -26,20 +26,25 @@
   min-height: 50vh;
 }
 
-#admin .v-dialog.v-dialog--active.v-dialog--persistent .v-sheet:has(.manager-folder.active) {
+/* #admin .v-dialog.v-dialog--active.v-dialog--persistent .v-sheet:has(.manager-folder.active) {
   min-width: 911px;
-}
+} */
 
 #admin .tab-account .v-text-field__details {
   display: none;
 }
 
 #admin .custom-select+.validation {
-  margin:12px -30px 40px -10px;
+  margin: 12px -30px 40px -10px;
 }
 
 #admin .form-group {
   margin-top: 0px;
+  padding: 10px;
+}
+
+#admin .outline-format .form-group {
+  padding: 0px;
 }
 
 @keyframes menu-left-off {

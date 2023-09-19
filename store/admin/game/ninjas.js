@@ -39,6 +39,9 @@ export default {
     SET_NINJA(state, payload) {
       state.ninja = payload
     },
+    SET_IMAGES(state, payload) {
+      state.ninja.hinhanh = payload
+    },
 
   },
 
@@ -85,7 +88,10 @@ export default {
     setAccountNinja({ commit }, payload) {
       commit('SET_NINJA', payload);
     },
+    setAccountImagesNinja({ commit }, payload) {
+      commit('SET_IMAGES', payload);
 
+    },
   },
 }
 

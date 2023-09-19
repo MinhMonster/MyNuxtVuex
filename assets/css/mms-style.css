@@ -4547,6 +4547,10 @@ meter.metter-authir::-webkit-meter-optimum-value {
   border: 2px solid var(--secondary);
 }
 
+.nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
 
 /* css flex */
 .flex {
