@@ -384,6 +384,10 @@ ol li::before {
 }
 
 
+.v-application p {
+ margin-bottom: 8px;
+}
+
 .v-application ol {
   padding-left: 30px;
 }

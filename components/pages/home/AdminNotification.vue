@@ -12,6 +12,16 @@
         </a>
       </p> -->
       <p class="bold text-italic text-13-700">
+        <nuxt-link to="/teamobi/ninja-school" class="text-primary"
+          >- Shop cập nhật Nick Ninja Mới hằng ngày
+        </nuxt-link>
+      </p>
+      <p class="bold text-italic text-13-700">
+        <nuxt-link to="/teamobi/ninja-school" class="text-primary"
+          >- Admin đã Bổ sung thêm Shop Acc Avatar
+        </nuxt-link>
+      </p>
+      <p class="bold text-italic text-13-700">
         <nuxt-link to="/admin-information" class="text-success">
           <span class="text-danger">*</span> Giảm 10% tất cả Nick Trên Shop đến
           30/09

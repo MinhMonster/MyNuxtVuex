@@ -3,10 +3,14 @@
     <AccountAvatarTL :account-avatar="accountAvatar" />
     <b-row class="account-body">
       <b-col cols="12"
-        ><span class="account-thongtin break-line-1"
-          >Thông tin: {{ accountAvatar.thongtin }}</span
-        ></b-col
-      >
+        ><div class="account-thongtin">
+          <div class="text-thongtin">Thông tin:</div>
+          <div
+            class="full-info break-line-1"
+            v-html="accountAvatar.thongtin"
+          ></div>
+        </div>
+      </b-col>
       <b-col cols="3"
         ><span class="account-code"
           >Mã Số <br />{{ format_number(accountAvatar.ID) }}</span
@@ -89,7 +93,7 @@ export default {
   .account-cash,
   .account-buy {
     cursor: pointer;
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -101,6 +105,13 @@ export default {
     border-radius: 3px;
     padding: 3px;
     line-height: 25px;
+  }
+  .text-thongtin {
+    width: 70px;
+  }
+  .full-info {
+    width: calc(100% - 70px);
+    text-align: left;
   }
   // .account-cash{
   //   background: #ffcf9c;
