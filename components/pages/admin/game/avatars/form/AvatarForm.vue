@@ -110,45 +110,17 @@
       </b-tab>
 
       <b-tab title="Upload Images" class="tab-scroll scroll-y">
-        <form-validator name="hinhanh">
-          <v-col cols="6" sm="4" md="3" class="middle">
-            <UploadImageModal
-              @onUploaded="onUploaded"
-              :activated="accountForm.hinhanh"
-              :icon="'add-file'"
-            ></UploadImageModal>
-          </v-col>
-          <draggable
-            v-model="accountForm.hinhanh"
-            ghost-class="ghost"
-            @change="changeByDrag"
-            handle=".handle"
-            class="row"
-            tag="div"
-          >
-            <v-col
-              v-for="(image, index) in accountForm.hinhanh"
-              :key="index"
-              cols="6"
-              sm="4"
-              md="3"
-              class="handle"
-            >
-              <div class="fileItemWrapper">
-                <img :src="image" alt="" class="image-account" />
-                <b-button
-                  variant="danger"
-                  size="sm"
-                  class="ml-2"
-                  pill
-                  @click="removeImage(image)"
-                >
-                  <i class="mdi mdi-close-thick"></i>
-                </b-button>
-              </div>
-            </v-col>
-          </draggable>
-        </form-validator>
+        <b-form-checkbox
+          v-model="accountForm.full"
+          name="check-button"
+          value="1"
+          unchecked-value="0"
+          switch
+          dark
+          @input="updateAvatar()"
+          >Show Full Avatar
+        </b-form-checkbox>
+        <ImageList v-model="accountForm.hinhanh" @updated="updateAvatar" />
       </b-tab>
     </b-tabs>
   </client-only>
@@ -156,22 +128,20 @@
 
 <script>
 import mixins from "@/mixins/index";
-import draggable from "vuedraggable";
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import ImageList from "@/components/global/molecules/common/ImageList";
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import ContentEditer from "@/components/pages/admin/Shared/nuxt-editor/CkEditorNuxt.vue";
-import UploadImageModal from "@/components/global/plugins/UploadImageModal.vue";
 
 export default {
   mixins: [mixins],
 
   components: {
     FormValidator,
-    draggable,
     ContentEditer,
-    UploadImageModal,
+    ImageList,
   },
   name: "FormAccountAvatar",
   data() {
@@ -198,33 +168,11 @@ export default {
     await this.newAccountAvatar();
   },
   methods: {
-    ...mapActions("admin/game/avatars", ["newAccountAvatar", "setAccountAvatar"]),
-
+    ...mapActions("admin/game/avatars", [
+      "newAccountAvatar",
+      "setAccountAvatar",
+    ]),
     updateAvatar() {
-      this.setAccountAvatar(this.accountForm);
-    },
-
-    onUploaded(files) {
-      this.setImage(files);
-      this.setAccountAvatar(this.accountForm);
-    },
-
-    setImage(data) {
-      for (const option of data) {
-        if (!this.accountForm.hinhanh.includes(option.url)) {
-          this.accountForm.hinhanh.push(option.url);
-        }
-      }
-    },
-
-    removeImage(image) {
-      this.accountForm.hinhanh = this.accountForm.hinhanh.filter(
-        (item) => item != image
-      );
-      this.setAccountAvatar(this.accountForm);
-    },
-
-    changeByDrag(event) {
       this.setAccountAvatar(this.accountForm);
     },
   },

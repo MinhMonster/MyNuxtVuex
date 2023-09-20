@@ -101,4 +101,5 @@ export const newAccountAvatar = {
   gianhap: "",
   sim: "",
   hinhanh: [],
+  full: 0
 };
