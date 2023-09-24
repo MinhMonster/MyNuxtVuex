@@ -2,7 +2,6 @@
   <client-only>
     <HomePage
       title="Nick Ninja School VIP"
-      titleHead="Shop Bán Nick Ninja School VIP Uy Tín Nhất MXH"
       :loading="!ready"
       goBack
       reload
@@ -42,5 +41,21 @@ export default {
     this.getAccountNinjas("VIP");
   },
   methods: {},
+  data() {
+    return {
+      title:
+        "MuaBanNick.Pro - Hệ Thống Mua Bán Nick Ninja School Online VIP Tự Động Game TeaMobile. Shop Mua Bán Nick Ninja School Giá Rẻ, Uy Tín Nhất MXH",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
+  },
 };
 </script>

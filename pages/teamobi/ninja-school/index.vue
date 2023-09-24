@@ -2,7 +2,6 @@
   <client-only>
     <HomePage
       title="Nick Ninja School Online"
-      titleHead="Shop Bán Nick Ninja School Giá Rẻ Uy Tín Nhất MXH"
       :loading="!ready"
       goBack
       reload
@@ -39,5 +38,21 @@ export default {
     this.getAccountNinjas();
   },
   methods: {},
+  data() {
+    return {
+      title:
+        "MuaBanNick.Pro - Hệ Thống Mua Bán Nick Ninja School Online Tự Động Game TeaMobile. Shop Mua Bán Nick Ninja School Giá Rẻ, Uy Tín Nhất MXH",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
+  },
 };
 </script>

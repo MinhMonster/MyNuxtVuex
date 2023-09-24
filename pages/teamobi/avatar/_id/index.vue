@@ -1,15 +1,6 @@
 <template>
   <client-only>
-    <HomePage
-      :titleHead="`Mã Số: ${format_number(
-        accountId
-      )} - Nick Avatar Xứ Sở Diệu Kỳ`"
-      :loading="!ready"
-      goBack
-      reload
-      @reload="fetchAccount()"
-      table
-    >
+    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
       <template v-if="accountAvatar && accountAvatar.ID && ready" #body>
         <AccountAvatarDetail
           :account-avatar="accountAvatar"
@@ -50,14 +41,10 @@ export default {
     AccountAvatarDetail,
     AccountAvatarList,
   },
-  data() {
-    return {
-      ready: false,
-    };
-  },
   computed: {
     ...mapFields("global", {
       screenMobile: "screenMobile",
+      ready: "ready",
     }),
     ...mapFields("home/game/avatars", {
       accountAvatar: "accountAvatar",
@@ -65,6 +52,11 @@ export default {
     }),
     accountId() {
       return this.$route.params.id;
+    },
+    title() {
+      return `Mã Số: ${this.format_number(
+        this.accountId
+      )} - Nick Avatar - MuaBanNick.Pro`;
     },
   },
   mounted() {
@@ -102,6 +94,16 @@ export default {
         await this.fetchAccountAvatars();
       }
     },
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

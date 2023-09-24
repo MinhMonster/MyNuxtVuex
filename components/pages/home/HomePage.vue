@@ -60,10 +60,6 @@ export default {
       type: String,
       default: null,
     },
-    titleHead: {
-      type: String,
-      default: null,
-    },
     content: {
       type: String,
       default: null,
@@ -122,13 +118,6 @@ export default {
     isGoHome() {
       return this.goHome;
     },
-    titleSeo() {
-      return (
-        this.titleHead ||
-        this.title ||
-        "Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH"
-      );
-    },
   },
   methods: {
     ...mapActions("global", ["setPath"]),
@@ -154,39 +143,6 @@ export default {
     onReload() {
       this.$emit("reload");
     },
-  },
-  head() {
-    return {
-      title: this.titleSeo,
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content:
-            this.description ||
-            "Hệ thống bán Nick tự động 100%. Giảm 10% tất cả các Nick trên Shop. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín - Giá Rẻ- An Toàn Nhất MXH",
-        },
-        {
-          name: "keywords",
-          content:
-            this.keywords ||
-            "nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja,  shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, ",
-        },
-        { property: "og:image", content: this.image || "/banner.jfif" },
-        {
-          property: "og:title",
-          content:
-            this.titleSeo ||
-            "Hệ thống bán Nick tự động 100%. Giảm 10% tất cả các Nick trên Shop. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín - Giá Rẻ- An Toàn Nhất MXH",
-        },
-        {
-          property: "og:description",
-          content:
-            this.description ||
-            "Hệ thống bán Nick tự động 100%. Giảm 10% tất cả các Nick trên Shop. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín - Giá Rẻ- An Toàn Nhất MXH",
-        },
-      ],
-    };
   },
 };
 </script>

@@ -20,7 +20,7 @@
 
 <script>
 import HomePage from "@/components/pages/home/HomePage";
-
+import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import AccountAvatarSearch from "@/components/pages/client/game/avatars/AccountAvatarSearch";
 import AccountAvatarList from "@/components/pages/client/game/avatars/AccountAvatarList";
@@ -35,10 +35,10 @@ export default {
     AccountAvatarList,
     Loading,
   },
-  data() {
-    return {
-      ready: false,
-    };
+  computed: {
+    ...mapFields("global", {
+      ready: "ready",
+    }),
   },
   async mounted() {
     this.ready = false;
@@ -67,6 +67,22 @@ export default {
       await this.fetchAccountAvatars();
       this.ready = true;
     },
+  },
+  data() {
+    return {
+      title:
+        "MuaBanNick.Pro - Hệ Thống Mua Bán Nick Avatar Tự động Game TeaMobile. Shop Mua Bán Nick Avatar Sứ Xở Diệu Kỳ Giá Rẻ, Uy Tín Nhất MXH",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

@@ -2,7 +2,6 @@
   <client-only>
     <HomePage
       title="Trang Chủ - Danh Vụ Game"
-      titleHead="Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH"
       :loading="!ready"
       goBack
       reload
@@ -58,6 +57,22 @@ export default {
         this.ready = true;
       }, 200);
     },
+  },
+  data() {
+    return {
+      title:
+        "MuaBanNick.Pro - Hệ Thống Mua Bán Nick Tự Động Game TeaMobile. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Giá Rẻ, Uy Tín Nhất MXH",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

@@ -1,9 +1,6 @@
 <template>
   <client-only>
     <HomePage
-      :titleHead="`Mã Số: ${format_number(
-        accountId
-      )} - Nick Ninja School Online`"
       :loading="!ready"
       goBack
       reload
@@ -46,14 +43,10 @@ export default {
     AccountNinjaDetail,
     AccountNinjaList,
   },
-  data() {
-    return {
-      ready: false,
-    };
-  },
   computed: {
     ...mapFields("global", {
       screenMobile: "screenMobile",
+      ready: "ready",
     }),
     ...mapFields("home/game/ninjas", {
       accountNinja: "accountNinja",
@@ -61,6 +54,11 @@ export default {
     }),
     accountId() {
       return this.$route.params.id;
+    },
+    title() {
+      return `Mã Số: ${this.format_number(
+        this.accountId
+      )} - Nick Ninja School Online - MuaBanNick.Pro`;
     },
   },
   mounted() {
@@ -98,6 +96,16 @@ export default {
         await this.fetchAccountNinjas();
       }
     },
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

@@ -20,7 +20,7 @@
 
 <script>
 import HomePage from "@/components/pages/home/HomePage";
-
+import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import AccountDragonBallSearch from "@/components/pages/client/game/dragon_balls/AccountDragonBallSearch";
 import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/AccountDragonBallList";
@@ -35,10 +35,10 @@ export default {
     AccountDragonBallList,
     Loading,
   },
-  data() {
-    return {
-      ready: false,
-    };
+  computed: {
+    ...mapFields("global", {
+      ready: "ready",
+    }),
   },
   async mounted() {
     this.ready = false;
@@ -67,6 +67,22 @@ export default {
       await this.fetchAccountDragonBalls();
       this.ready = true;
     },
+  },
+  data() {
+    return {
+      title:
+        "MuaBanNick.Pro - Hệ Thống Mua Bán Nick Ngọc Rồng Tự động Game TeaMobile. Shop Mua Bán Nick Ngọc Rồng Giá Rẻ, Uy Tín Nhất MXH",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>
