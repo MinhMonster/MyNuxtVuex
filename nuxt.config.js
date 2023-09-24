@@ -7,25 +7,20 @@ export default {
   // mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'MuaBanNick.Pro - %s',
-    title: 'Hệ thống bán Nick tự động. Shop Game TeaMobile. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Hệ thống bán Nick tự động 100%. Giảm 10% tất cả các Nick trên Shop. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín - Giá Rẻ- An Toàn Nhất MXH' },
       { name: 'format-detection', content: 'telephone=no' },
       { name: 'keywords', content: 'nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja,  shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, ' },
       { property: 'og:image', content: '/banner.jfif' },
-      { property: 'og:description', content: 'MuaBanNick.Pro - Shop Mua Bán Nick Ninja School Online, Ngọc Rồng Online, Avatar Tự Động' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   ,
-  
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

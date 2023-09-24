@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="Nạp Thẻ Tự Động"
+      :title="title"
       :loading="!ready"
       goBack
       reload
@@ -76,7 +76,7 @@
                   />
                 </form-validator>
               </div>
-            </b-col>  
+            </b-col>
 
             <b-col cols="12">
               <div class="field submit mt-6">
@@ -149,7 +149,6 @@ export default {
   layout: "clientLayout",
   data() {
     return {
-      ready: false,
       isLoading: false,
       isCheck: false,
       walletOptions: [
@@ -236,6 +235,7 @@ export default {
       },
       moneyReceived: 0,
       isFailed: false,
+      title: "Nạp Thẻ Tự Động",
     };
   },
   components: {
@@ -249,6 +249,7 @@ export default {
     Pagination,
   },
   computed: {
+    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       histories: "historyWalletDepositCards",
       historyMeta: "historyMeta",
@@ -339,6 +340,16 @@ export default {
     showModal() {
       this.$refs.modal.show();
     },
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

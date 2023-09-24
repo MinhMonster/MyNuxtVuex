@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="Thông tin Nạp tiền"
+      :title="title"
       content="Chi tiết giao dịch nạp tiền qua ATM-MOMO"
       full-screen
       :loading="!ready"
@@ -100,12 +100,8 @@ export default {
     HomePage,
     HistoryInstructionBank,
   },
-  data() {
-    return {
-      ready: false,
-    };
-  },
   computed: {
+    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       history: "historyWalletDepositVnd",
       pageSave: "pageSave",
@@ -134,6 +130,21 @@ export default {
       }
       this.ready = true;
     },
+  },
+  data() {
+    return {
+      title: "Thông tin Nạp tiền",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

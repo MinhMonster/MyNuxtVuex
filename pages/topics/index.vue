@@ -2,7 +2,6 @@
   <client-only>
     <HomePage
       title="Danh Mục Bài Viết"
-      titleHead="Danh Mục Bài Viết, Tổng Hợp và Chia Sẻ Các Kinh Nghiệm Chơi Game"
       :loading="!ready"
       goBack
       reload
@@ -96,6 +95,22 @@ export default {
       this.ready = true;
     },
   },
+  data() {
+    return {
+      title:
+        "Danh Mục Bài Viết, Tổng Hợp và Chia Sẻ Các Kinh Nghiệm Chơi Game TeaMobile",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -134,9 +149,9 @@ ul.topics-list {
       .image-topic {
         height: 80px;
         img {
-        width: 100%;
-        max-height: 80px;
-      }
+          width: 100%;
+          max-height: 80px;
+        }
       }
     }
     pre {

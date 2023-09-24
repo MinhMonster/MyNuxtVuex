@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="Biến động số dư"
+      :title="title"
       content="Xem lại biến động Số dư của bạn tại đây."
       full-screen
       :loading="!ready"
@@ -99,12 +99,8 @@ export default {
   mixins: [mixins],
 
   components: { Loading, Pagination, HomePage },
-  data() {
-    return {
-      ready: false,
-    };
-  },
   computed: {
+    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       histories: "historyChangeMoneys",
       historyMeta: "historyMeta",
@@ -140,6 +136,21 @@ export default {
     increaseMoney(history) {
       return history.moneyFirst < history.moneyLast;
     },
+  },
+  data() {
+    return {
+      title: "Biến Động Số Dư",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

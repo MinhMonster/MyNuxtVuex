@@ -2,7 +2,6 @@
   <client-only>
     <HomePage
       title="Nội dung Bài Viết"
-      :title-head="titleHead"
       :description="descriptionHead"
       :keywords="keywordsHead"
       :image="imagenHead"
@@ -47,7 +46,7 @@ export default {
         this.$router.push("/topics");
       }
     },
-    titleHead() {
+    title() {
       return _.get(this.topic, "title", null);
     },
     descriptionHead() {
@@ -70,6 +69,16 @@ export default {
       await this.fetchTopic(this.topicLink);
       this.ready = true;
     },
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

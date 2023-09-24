@@ -1,8 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="Thông tin Admin"
-      titleHead="Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH"
+      :title="title"
       :loading="!ready"
       full-screen
       goBack
@@ -61,6 +60,21 @@ export default {
         this.ready = true;
       }, 200);
     },
+  },
+  data() {
+    return {
+      title: "Thông tin Admin",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

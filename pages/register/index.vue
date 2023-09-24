@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="ĐĂNG KÝ THÀNH VIÊN"
+      :title="title"
       full-screen
       goBack
       goHome
@@ -169,6 +169,7 @@ export default {
         phone: "",
         email: "",
       },
+      title: "Đăng Ký Thành Viên",
     };
   },
   components: { HomePage, Loading, FormValidator, ButtonLoginFacebook },
@@ -204,6 +205,16 @@ export default {
         this.ready = true;
       }, 200);
     },
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="NẠP VĐT ATM-MOMO"
+      :title="title"
       :loading="!ready"
       goBack
       reload
@@ -191,7 +191,6 @@ export default {
   layout: "clientLayout",
   data() {
     return {
-      ready: false,
       isLoading: false,
       isCheck: false,
       walletOptions: [
@@ -224,6 +223,7 @@ export default {
       },
       moneyReceived: 0,
       isFailed: false,
+      title: "NẠP VĐT ATM-MOMO",
     };
   },
   components: {
@@ -238,6 +238,7 @@ export default {
     Pagination,
   },
   computed: {
+    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       histories: "historyWalletDepositVnds",
       historyMeta: "historyMeta",
@@ -328,6 +329,16 @@ export default {
     showModal() {
       this.$refs.modal.show();
     },
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>
