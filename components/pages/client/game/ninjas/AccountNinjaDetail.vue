@@ -107,21 +107,23 @@ export default {
     };
   },
   async mounted() {
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
+    // this.$nextTick(function () {
+    //   this.onResize();
+    // });
+    // window.addEventListener("resize", this.onResize);
+    // window.removeEventListener("resize", this.onResize);
+
   },
   computed: {},
   methods: {
-    onResize() {
-      const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    },
+    // onResize() {
+    //   const screenWidth = document.querySelector("body").clientWidth;
+    //   if (screenWidth < 600) {
+    //     this.isMobile = true;
+    //   } else {
+    //     this.isMobile = false;
+    //   }
+    // },
   },
 };
 </script>

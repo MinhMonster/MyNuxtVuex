@@ -267,6 +267,14 @@ export default {
           break;
       }
     },
+    statusNinja(status) {
+      switch (status) {
+        case "yes":
+          return "Còn";
+        case "no":
+          return "Đã Bán";
+      }
+    },
 
     numberWalletAdmin(wallet) {
       switch (wallet) {

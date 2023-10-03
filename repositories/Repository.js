@@ -9,16 +9,13 @@ import adminFinances from '~/repositories/admin/finances'
 import adminUploads from '~/repositories/admin/uploads'
 import adminMedias from '~/repositories/admin/medias'
 import adminFolders from '~/repositories/admin/folders'
+import adminUsers from '~/repositories/admin/users'
 
 //admin Game
 import adminGameNinjas from '~/repositories/admin/game/ninjas'
 import adminGameAvatars from '~/repositories/admin/game/avatars'
+import adminGameAccountSold from '~/repositories/admin/histories/game_account_sold'
 
-// import UserRepository from '~/repositories/UserRepository'
-// import CommentRepository from '~/repositories/CommentRepository'
-// import AlbumRepository from '~/repositories/AlbumRepository'
-// import PhotoRepository from '~/repositories/PhotoRepository'
-// import TodoRepository from '~/repositories/TodoRepository'
 
 // Home Page
 import gameNinjas from '~/repositories/home/game/ninjas'
@@ -39,18 +36,14 @@ export default ($api) => ({
   adminUploads: adminUploads($api),
   adminMedias: adminMedias($api),
   adminFolders: adminFolders($api),
+  adminUsers: adminUsers($api),
+
 
   // admin Game
   adminGameNinjas: adminGameNinjas($api),
   adminGameAvatars: adminGameAvatars($api),
+  adminGameAccountSold:adminGameAccountSold($api),
 
-
-
-  // user: UserRepository($axios),
-  // comment: CommentRepository($axios),
-  // album: AlbumRepository($axios),
-  // photo: PhotoRepository($axios),
-  // todo: TodoRepository($axios)
 
   // Home Page
   gameNinjas: gameNinjas($api),

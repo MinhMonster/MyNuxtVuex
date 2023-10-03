@@ -228,6 +228,7 @@ const client = createNamespacedHelpers("home/users");
 
 export default {
   name: "Adminlayout",
+  middleware: ['authentication'],
   components: {
     draggable,
   },
@@ -304,6 +305,16 @@ export default {
         },
         {
           icon: "mdi-image",
+          title: "Users",
+          to: "/admin/users",
+        },
+        {
+          icon: "mdi-image",
+          title: "History",
+          to: "/admin/history/game-account-sold",
+        },
+        {
+          icon: "mdi-image",
           title: "Ninja",
           to: "/admin/game/ninjas",
         },
@@ -338,7 +349,12 @@ export default {
     });
     window.addEventListener("resize", this.onResize);
   },
-
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
+  },
+  unMounted(){
+    window.removeEventListener("resize", this.onResize);
+  },
   computed: {
     ...mapState(["deverlopers", "deverloper"]),
     ...auth.mapState(["authenticated"]),
@@ -409,6 +425,7 @@ export default {
       this.changePositionItemDev(formData);
     },
     onResize() {
+      console.log("resize");
       if (this.is_game) {
         this.drawer = false;
         this.rightDrawer = false;

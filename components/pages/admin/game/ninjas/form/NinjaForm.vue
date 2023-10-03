@@ -56,40 +56,44 @@
             </form-validator>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field
-              label="Giá nhập (ATM)"
-              v-model="gianhap"
-            ></v-text-field>
+            <form-validator name="gianhap">
+              <v-text-field
+                label="Giá nhập (ATM)"
+                v-model="gianhap"
+              ></v-text-field>
+            </form-validator>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <v-text-field label="Sim" v-model="sim"></v-text-field>
+            <form-validator name="sim">
+              <v-text-field label="Sim" v-model="sim"></v-text-field>
+            </form-validator>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <div class="outline-format">
-              <form-validator name="loainick">
+            <form-validator name="loainick">
+              <div class="outline-format">
                 <b-form-select v-model="loainick" :options="optionsNinjaType">
                 </b-form-select>
-              </form-validator>
-            </div>
+              </div>
+            </form-validator>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <div class="outline-format">
-              <form-validator name="server">
+            <form-validator name="server">
+              <div class="outline-format">
                 <b-form-select v-model="server" :options="optionsNinjaServer">
                 </b-form-select>
-              </form-validator>
-            </div>
+              </div>
+            </form-validator>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">
-            <div class="outline-format">
-              <form-validator name="class">
+            <form-validator name="class">
+              <div class="outline-format">
                 <b-form-select
                   v-model="ninjaClass"
                   :options="optionsNinjaClass"
                 >
                 </b-form-select>
-              </form-validator>
-            </div>
+              </div>
+            </form-validator>
           </v-col>
 
           <v-col cols="6" sm="4" md="3" lg="2" class="code-title">

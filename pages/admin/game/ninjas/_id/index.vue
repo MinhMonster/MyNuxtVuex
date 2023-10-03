@@ -1,12 +1,21 @@
 <template>
-  <client-only>
-    <div>
-      <div id="body-admin">
-        <form @submit.prevent="edit()">
+  <NavAdmin
+    title="New Account Ninja School"
+    goBack
+    next-page
+    new-page
+    @newPage="$router.push('/admin/game/ninjas/new')"
+    reload
+    @reload="fetchAccount()"
+  >
+    <template #body>
+      <div id="body-admin" class="mt-2">
+        <form @submit.prevent="edit()"> 
           <NinjaForm></NinjaForm>
           <br />
           <div class="d-flex">
-            <v-btn @click="onDelete()" color="red"> Xóa</v-btn>
+            <v-btn v-if="ninja && status== 'yes'" @click="onDelete()" color="red"> Xóa</v-btn>
+            <v-btn v-if="ninja && status== 'no'" @click="unDelete()" color="red">Đăng</v-btn>
             <v-spacer />
             <div class="text-right">
               <v-btn type="submit" color="" to="/admin/game/ninjas">
@@ -17,8 +26,8 @@
           </div>
         </form>
       </div>
-    </div>
-  </client-only>
+    </template>
+  </NavAdmin>
 </template>
 
 <script>
@@ -28,11 +37,13 @@ import NinjaForm from "@/components/pages/admin/game/ninjas/form/NinjaForm.vue";
 import { mapFields } from "vuex-map-fields";
 import { cloneDeep } from "lodash";
 import mixins from "@/mixins/index";
+import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 
 export default {
   mixins: [mixins],
   components: {
     NinjaForm,
+    NavAdmin,
   },
   layout: "adminDev",
   head() {
@@ -55,23 +66,16 @@ export default {
       titel: `Admin: Edit Account Ninja -  ${this.accountId}`,
     };
   },
-  async mounted() {
-    await this.fetchAccountNinja({
-      params: {
-        id: this.accountId,
-      },
-    });
+  mounted() {
+    this.fetchAccount();
   },
   computed: {
+    ...mapFields("admin/game/ninjas", {
+      ninja: "ninja",
+      status: "ninja.status",
+    }),
     accountId() {
       return this.$route.params.id;
-    },
-    finance_item() {
-      if (this.finance_edit) {
-        return cloneDeep(this.finance_edit);
-      } else {
-        this.$router.push("/admin/finances");
-      }
     },
   },
   methods: {
@@ -87,11 +91,24 @@ export default {
       });
       this.topic = res.data.topic;
     },
+    fetchAccount() {
+      this.fetchAccountNinja({
+        params: {
+          id: this.accountId,
+        },
+      });
+    },
     async edit() {
       try {
         const res = await this.updateAccountNinja(this.accountId);
         if (res.data.code === 200) {
           this.$toasted.success(res.data.message);
+          if (
+            res.data.accountNinja.ID &&
+            this.accountId != res.data.accountNinja.ID
+          ) {
+            this.$router.push(`/admin/game/ninjas/${res.data.accountNinja.ID}`);
+          }
         }
       } catch (e) {
         console.log(e);
@@ -126,7 +143,43 @@ export default {
                 });
               if (res.data.code === 200) {
                 this.$toasted.success(res.data.message);
-                this.$router.push(`/admin/game/ninjas`);
+                this.fetchAccount()
+              }
+            } catch (e) {
+              console.log(e);
+            }
+          }
+        });
+    },
+    async unDelete() {
+      this.$swal
+        .fire({
+          title: `Bạn muốn Đăng bán ID: ${this.accountId}?`,
+          text: "",
+          icon: "question",
+          type: "warning",
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Xác nhận",
+          cancelButtonText: "Hủy",
+          timer: 5000,
+          // closeOnConfirm: false,
+          // closeOnCancel: false
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            try {
+              const res =
+                await this.$repositories.adminGameNinjas.unDestroyAccountNinja({
+                  params: {
+                    id: this.accountId,
+                  },
+                });
+              if (res.data.code === 200) {
+                this.$toasted.success(res.data.message);
+                this.fetchAccount()
               }
             } catch (e) {
               console.log(e);

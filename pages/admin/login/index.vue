@@ -26,6 +26,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("admin/auth");
 
 export default {
+  middleware: ['un_authentication'],
   components: { LoginForm },
   layout: "LoginAdmin",
   head() {

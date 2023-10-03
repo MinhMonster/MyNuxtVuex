@@ -192,13 +192,7 @@ export default {
         // this.rightDrawer = true;
       }
     }
-
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
   },
-
   computed: {
     ...mapState(["deverlopers", "deverloper"]),
     ...auth.mapState(["authenticated"]),
@@ -268,12 +262,13 @@ export default {
 
       this.changePositionItemDev(formData);
     },
-    onResize() {
-      if (this.is_game) {
-        this.drawer = false;
-        // this.rightDrawer = false;
-      }
-    },
+    // onResize() {
+    //   console.log("onresize");
+    //   if (this.is_game) {
+    //     this.drawer = false;
+    //     // this.rightDrawer = false;
+    //   }
+    // },
   },
 };
 </script>

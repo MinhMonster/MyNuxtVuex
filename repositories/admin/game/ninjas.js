@@ -5,19 +5,23 @@ const headers = {
   },
 }
 export default ($api) => ({
-  createAccountNinja(payload){
+  createAccountNinja(payload) {
     return $api.post(`${resource}/createAccountNinja.php`, payload)
   },
-  fetchAccountNinjas() {
-    return $api.get(`${resource}/fetchAccountNinjas.php`)
+  fetchAccountNinjas(payload) {
+    return $api.get(`${resource}/fetchAccountNinjas.php`, { params: { input: payload.input } },
+    )
   },
-  fetchAccountNinja(payload){
+  fetchAccountNinja(payload) {
     return $api.get(`${resource}/fetchAccountNinja.php`, payload)
   },
-  updateAccountNinja(payload){
+  updateAccountNinja(payload) {
     return $api.post(`${resource}/updateAccountNinja.php`, payload)
   },
-  destroyAccountNinja(payload){
+  destroyAccountNinja(payload) {
     return $api.get(`${resource}/destroyAccountNinja.php`, payload)
+  },
+  unDestroyAccountNinja(payload) {
+    return $api.get(`${resource}/unDestroyAccountNinja.php`, payload)
   },
 })

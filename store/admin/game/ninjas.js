@@ -9,7 +9,22 @@ export default {
     ninjas: [],
     sumPriceNinjas: "",
     countNinjas: "",
-    ninja: {},
+    ninja: null,
+    metaNinjas: {},
+    query: {
+      page: 1,
+      perPage: 15,
+      q: {
+        taikhoan: null,
+        id: null,
+        level: null,
+        cash: null,
+        class: null,
+        server: null,
+        type: null,
+        status: "yes"
+      },
+    }
   }),
 
   getters: {
@@ -33,7 +48,7 @@ export default {
       state.ninjas = payload.ninjas
       state.sumPriceNinjas = payload.sumPrice
       state.countNinjas = payload.count
-
+      state.metaNinjas = payload.pagy
     },
 
     SET_NINJA(state, payload) {
@@ -46,13 +61,12 @@ export default {
   },
 
   actions: {
-    newAccountNinja({ commit }) {
-      commit(SET_STATE, { ninja: newAccountNinja });
-    },
+
     async fetchAccountNinjas({ commit, state }) {
       try {
-        const res = await this.$repositories.adminGameNinjas.fetchAccountNinjas()
+        const res = await this.$repositories.adminGameNinjas.fetchAccountNinjas({ input: state.query })
         commit('SET_NINJAS', res.data)
+
       } catch (error) { }
     },
     async fetchAccountNinja({ commit }, payload) {
@@ -92,42 +106,103 @@ export default {
       commit('SET_IMAGES', payload);
 
     },
+    setQuery({ commit, state }, payload) {
+      commit(SET_QUERY, payload);
+      commit(SET_STATE, { pageSave: state.query.page });
+    },
+    resetQuery({ commit }, payload) {
+      const type = payload ? payload : null;
+      commit(SET_QUERY, {
+        page: 1,
+        perPage: 15,
+        q: {
+          taikhoan: null,
+          id: null,
+          level: null,
+          cash: null,
+          class: null,
+          server: null,
+          type: type,
+          status: "yes"
+        },
+      });
+    },
+    newAccountNinja({ commit }) {
+      commit(SET_STATE, {
+        ninja: {
+          ID: "",
+          taikhoan: "",
+          ingame: "",
+          level: "",
+          vukhi: "",
+          mcs: "",
+          thongtin: "",
+          loainick: 1,
+          class: 1,
+          server: 1,
+          giatien: "",
+          gianhap: "",
+          sim: "",
+          hinhanh: [],
+          do: "",
+
+          tl1: "",
+          tl2: "",
+          tl3: "",
+          tl4: "",
+          tl5: "",
+          tl6: "",
+          tl7: "",
+          tl8: "",
+          tl9: "",
+          tl10: "",
+          tl11: "",
+          eye: "",
+          clone: "",
+          mounts: "",
+          yen: "",
+          book: "",
+          cake: "",
+          disguise: "",
+        }
+      });
+    },
   },
 }
 
-export const newAccountNinja = {
-  ID: "",
-  taikhoan: "",
-  ingame: "",
-  level: "",
-  vukhi: "",
-  mcs: "",
-  thongtin: "",
-  loainick: 1,
-  class: 1,
-  server: 1,
-  giatien: "",
-  gianhap: "",
-  sim: "",
-  hinhanh: [],
-  do: "",
+// export const newAccountNinja = {
+//   ID: "",
+//   taikhoan: "",
+//   ingame: "",
+//   level: "",
+//   vukhi: "",
+//   mcs: "",
+//   thongtin: "",
+//   loainick: 1,
+//   class: 1,
+//   server: 1,
+//   giatien: "",
+//   gianhap: "",
+//   sim: "",
+//   hinhanh: [],
+//   do: "",
 
-  tl1: "",
-  tl2: "",
-  tl3: "",
-  tl4: "",
-  tl5: "",
-  tl6: "",
-  tl7: "",
-  tl8: "",
-  tl9: "",
-  tl10: "",
-  tl11: "",
-  eye: "",
-  clone: "",
-  mounts: "",
-  yen: "",
-  book: "",
-  cake: "",
-  disguise: "",
-};
+//   tl1: "",
+//   tl2: "",
+//   tl3: "",
+//   tl4: "",
+//   tl5: "",
+//   tl6: "",
+//   tl7: "",
+//   tl8: "",
+//   tl9: "",
+//   tl10: "",
+//   tl11: "",
+//   eye: "",
+//   clone: "",
+//   mounts: "",
+//   yen: "",
+//   book: "",
+//   cake: "",
+//   disguise: "",
+// };

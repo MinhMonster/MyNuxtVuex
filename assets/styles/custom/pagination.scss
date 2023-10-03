@@ -1,0 +1,57 @@
+  .pagination {
+    .page-item {
+      .page-link {
+        color: #ffffff;
+        border: 1px solid #663019;
+        background: #e28637;
+      }
+
+      &.active {
+        .page-link {
+          background: #663019;
+        }
+      }
+    }
+  }
+
+
+  #admin {
+    .row {
+      margin: 0 -12px;
+    }
+    .container-fluid {
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .pagination {
+        // margin-top: 10px;
+
+        .page-item {
+          button {
+            height: 30px;
+            width: 30px;
+          }
+
+          .page-link {
+            height: 30px;
+            width: 30px;
+            margin-left: -1px;
+            color: #ffffff;
+            border: 1px solid #333;
+            background: var(--admin-master) !important;
+          }
+
+          &.active {
+            .page-link {
+              color: var(--admin-master);
+              background: #ffffff !important;
+            }
+          }
+        }
+
+      }
+    }
+
+  }
