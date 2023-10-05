@@ -1,78 +1,118 @@
+import { defaultPagy } from '@/utils/admin/default'
+import { enableResetStore } from '@/utils/admin/common'
+
 import { getField, updateField } from "vuex-map-fields";
 
 const SET_STATE = "SET_STATE";
-const SET_QUERY = "SET_QUERY";
 
-export default {
-  namespaced: true,
-  state: () => ({
-    ninjas: [],
-    sumPriceNinjas: "",
-    countNinjas: "",
-    ninja: null,
-    metaNinjas: {},
-    query: {
-      page: 1,
-      perPage: 15,
-      q: {
-        taikhoan: null,
-        id: null,
-        level: null,
-        cash: null,
-        class: null,
-        server: null,
-        type: null,
-        status: "yes"
+const queryNinjas = _.cloneDeep({
+  response: {
+    meta: defaultPagy,
+    data: []
+  },
+  page: {
+    type: "text",
+    show: false,
+    value: 1
+  },
+  perPage: {
+    type: "text",
+    show: false,
+    value: 15
+  },
+  id: {
+    // title: "ID",
+    placeholder: "ID",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  taikhoan: {
+    // title: "Tài Khoản",
+    placeholder: "Tài Khoản",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  ingame: {
+    // title: "Tài Khoản",
+    placeholder: "Nhân Vật",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  status: {
+    // title: "Tài Khoản",
+    placeholder: "Trạng Thái",
+    type: "select-options",
+    show: true,
+    value: "yes",
+    options: [
+      {
+        text: "Tất cả",
+        value: null,
       },
+      {
+        text: "Đang bán",
+        value: "yes",
+      },
+      {
+        text: "Đã bán",
+        value: "no",
+      },
+    ],
+  },
+});
+
+export default enableResetStore({
+  namespaced: true,
+  state() {
+    return {
+      stateDefault: {
+        queryNinjas: queryNinjas,
+      },
+      queryNinjas: queryNinjas,
+      sumPriceNinjas: "",
+      countNinjas: "",
+      ninja: null,
     }
-  }),
+
+  },
 
   getters: {
     getField,
-  },
 
+  },
   mutations: {
     updateField,
-    SET_QUERY(state, payload) {
-      state.query = {
-        ...state.query,
-        ..._.cloneDeep(payload),
-      };
-    },
-    SET_STATE(state, payload) {
-      _.each(payload, (value, key) => {
-        state[key] = value;
-      });
-    },
-    SET_NINJAS(state, payload) {
-      state.ninjas = payload.ninjas
-      state.sumPriceNinjas = payload.sumPrice
-      state.countNinjas = payload.count
-      state.metaNinjas = payload.pagy
-    },
-
-    SET_NINJA(state, payload) {
-      state.ninja = payload
-    },
-    SET_IMAGES(state, payload) {
-      state.ninja.hinhanh = payload
-    },
-
   },
 
   actions: {
-
-    async fetchAccountNinjas({ commit, state }) {
+    async fetchAccountNinjas({ commit, state, dispatch }) {
       try {
-        const res = await this.$repositories.adminGameNinjas.fetchAccountNinjas({ input: state.query })
-        commit('SET_NINJAS', res.data)
+        const { dataSearch, dataOrigin, dataRoute } = await dispatch('convertDataSend', 'queryNinjas')
+        const result = await this.$repositories.adminGameNinjas.fetchAccountNinjas({ input: dataSearch })
+
+        dataOrigin.response.data = result.data.ninjas
+        dataOrigin.response.meta = result.data.pagy
+
+        commit(SET_STATE, {
+          stateName: "sumPriceNinjas", data: result.data.sumPrice
+        })
+        commit(SET_STATE, {
+          stateName: "countNinjas", data: result.data.count
+        })
+        commit(SET_STATE, {
+          stateName: "queryNinjas", data: dataOrigin,
+          query: dataRoute
+        })
 
       } catch (error) { }
     },
-    async fetchAccountNinja({ commit }, payload) {
+    async fetchAccountNinja({ commit, dispatch }, payload) {
       try {
         const res = await this.$repositories.adminGameNinjas.fetchAccountNinja(payload)
-        commit('SET_NINJA', res.data.acountNinja)
+        dispatch('setAccountNinja', res.data.acountNinja)
       } catch (error) { }
     },
     async createAccountNinja({ commit, state }) {
@@ -82,127 +122,65 @@ export default {
         const res = await this.$repositories.adminGameNinjas.createAccountNinja({
           input: payload
         });
-        // commit('SET_NINJA', res.data.accountNinja)
         return res
       } catch (error) { }
     },
-    async updateAccountNinja({ commit, state }, id) {
+    async updateAccountNinja({ commit, state, dispatch }, id) {
       try {
         const res = await this.$repositories.adminGameNinjas.updateAccountNinja({
           id,
           input: state.ninja
         });
         if (res.data.accountNinja) {
-          commit('SET_NINJA', res.data.accountNinja)
+          dispatch('setAccountNinja', res.data.accountNinja)
         }
         return res
       } catch (error) { }
     },
 
     setAccountNinja({ commit }, payload) {
-      commit('SET_NINJA', payload);
-    },
-    setAccountImagesNinja({ commit }, payload) {
-      commit('SET_IMAGES', payload);
-
-    },
-    setQuery({ commit, state }, payload) {
-      commit(SET_QUERY, payload);
-      commit(SET_STATE, { pageSave: state.query.page });
-    },
-    resetQuery({ commit }, payload) {
-      const type = payload ? payload : null;
-      commit(SET_QUERY, {
-        page: 1,
-        perPage: 15,
-        q: {
-          taikhoan: null,
-          id: null,
-          level: null,
-          cash: null,
-          class: null,
-          server: null,
-          type: type,
-          status: "yes"
-        },
-      });
-    },
-    newAccountNinja({ commit }) {
       commit(SET_STATE, {
-        ninja: {
-          ID: "",
-          taikhoan: "",
-          ingame: "",
-          level: "",
-          vukhi: "",
-          mcs: "",
-          thongtin: "",
-          loainick: 1,
-          class: 1,
-          server: 1,
-          giatien: "",
-          gianhap: "",
-          sim: "",
-          hinhanh: [],
-          do: "",
-
-          tl1: "",
-          tl2: "",
-          tl3: "",
-          tl4: "",
-          tl5: "",
-          tl6: "",
-          tl7: "",
-          tl8: "",
-          tl9: "",
-          tl10: "",
-          tl11: "",
-          eye: "",
-          clone: "",
-          mounts: "",
-          yen: "",
-          book: "",
-          cake: "",
-          disguise: "",
-        }
+        stateName: "ninja", data: payload
       });
+    },
+    newAccountNinja({ commit, dispatch }) {
+      dispatch("setAccountNinja", {
+        ID: "",
+        taikhoan: "",
+        ingame: "",
+        level: "",
+        vukhi: "",
+        mcs: "",
+        thongtin: "",
+        loainick: 1,
+        class: 1,
+        server: 1,
+        giatien: "",
+        gianhap: "",
+        sim: "",
+        hinhanh: [],
+        do: "",
+
+        tl1: "",
+        tl2: "",
+        tl3: "",
+        tl4: "",
+        tl5: "",
+        tl6: "",
+        tl7: "",
+        tl8: "",
+        tl9: "",
+        tl10: "",
+        tl11: "",
+        eye: "",
+        clone: "",
+        mounts: "",
+        yen: "",
+        book: "",
+        cake: "",
+        disguise: "",
+      }
+      );
     },
   },
-}
-
-// export const newAccountNinja = {
-//   ID: "",
-//   taikhoan: "",
-//   ingame: "",
-//   level: "",
-//   vukhi: "",
-//   mcs: "",
-//   thongtin: "",
-//   loainick: 1,
-//   class: 1,
-//   server: 1,
-//   giatien: "",
-//   gianhap: "",
-//   sim: "",
-//   hinhanh: [],
-//   do: "",
-
-//   tl1: "",
-//   tl2: "",
-//   tl3: "",
-//   tl4: "",
-//   tl5: "",
-//   tl6: "",
-//   tl7: "",
-//   tl8: "",
-//   tl9: "",
-//   tl10: "",
-//   tl11: "",
-//   eye: "",
-//   clone: "",
-//   mounts: "",
-//   yen: "",
-//   book: "",
-//   cake: "",
-//   disguise: "",
-// };
+});

@@ -347,13 +347,13 @@ export default {
     this.$nextTick(function () {
       this.onResize();
     });
-    window.addEventListener("resize", this.onResize);
+    // window.addEventListener("resize", this.onResize);
   },
   destroyed() {
-    window.removeEventListener("resize", this.onResize);
+    // window.removeEventListener("resize", this.onResize);
   },
   unMounted(){
-    window.removeEventListener("resize", this.onResize);
+    // window.removeEventListener("resize", this.onResize);
   },
   computed: {
     ...mapState(["deverlopers", "deverloper"]),

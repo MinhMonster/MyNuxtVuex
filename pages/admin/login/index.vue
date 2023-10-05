@@ -41,7 +41,7 @@ export default {
       ],
     };
   },
-  name: "Login Admin",
+  name: "LoginAdmin",
   data() {
     return {
       input: {},

@@ -7,9 +7,9 @@
     filter
     @newPage="$router.push('/admin/game/ninjas/new')"
     reload
-    @reload="fetchAccountNinjas()"
+    @reload="$refs.table.fetchData()"
   >
-    <template v-if="ninjas" #body>
+    <template #body>
       <div class="d-flex" align="center">
         <div>
           <v-card-title class="mgl--15px"
@@ -24,32 +24,35 @@
         </div>
       </div>
       <v-row>
-        <v-col v-if="isFilter" cols="12">
-          <FormSearch @search="search()"></FormSearch>
-        </v-col>
         <v-col cols="12" md="12" sm="12">
-          <v-card>
-            <BaseTable
-              :columns="columns"
-              :data="ninjas"
-              :meta="metaNinjas"
-              @onChange="onPageChange"
-            >
-              <template #action="props">
-                <v-btn light icon :to="`/admin/game/ninjas/${props.row.ID}`">
-                  <v-icon>mdi-pencil-box-multiple-outline</v-icon>
-                </v-btn>
-                <v-btn
-                  light
-                  color="blue"
-                  icon
-                  :to="`/teamobi/ninja-school/${props.row.ID}`"
-                >
-                  <v-icon>mdi-eye</v-icon>
-                </v-btn>
-              </template>
-            </BaseTable>
-          </v-card>
+          <!-- <v-card> -->
+          <AdminBaseTable
+            ref="table"
+            module="admin/game/ninjas"
+            :columns="columns"
+            :data="ninjas"
+            :meta="metaNinjas"
+            :store="{
+              state: 'queryNinjas',
+              module: 'admin.game.ninjas',
+              action: 'fetchAccountNinjas',
+            }"
+          >
+            <template #actions="props">
+              <v-btn light icon :to="`/admin/game/ninjas/${props.row.ID}`">
+                <v-icon>mdi-pencil-box-multiple-outline</v-icon>
+              </v-btn>
+              <v-btn
+                light
+                color="blue"
+                icon
+                :to="`/teamobi/ninja-school/${props.row.ID}`"
+              >
+                <v-icon>mdi-eye</v-icon>
+              </v-btn>
+            </template>
+          </AdminBaseTable>
+          <!-- </v-card> -->
         </v-col>
       </v-row>
     </template>
@@ -62,14 +65,13 @@ import { mapActions } from "vuex";
 
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import FormSearch from "@/components/pages/admin/Shared/form/FormSearch";
-import BaseTable from "@/components/base/BaseTable";
-
+import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 export default {
   layout: "adminDev",
   components: {
     NavAdmin,
     FormSearch,
-    BaseTable
+    AdminBaseTable,
   },
   head() {
     return {
@@ -94,12 +96,21 @@ export default {
           attributes: {
             align: "center",
 
-            style: { "min-width": 120 },
+            style: {
+              "min-width": 120,
+            },
           },
         },
         {
           key: "taikhoan",
           label: "Account",
+          attributes: {
+            minWidth: "120",
+          },
+        },
+        {
+          key: "ingame",
+          label: "In Game",
           attributes: {
             minWidth: "120",
           },
@@ -140,7 +151,7 @@ export default {
           attributes: {},
         },
         {
-          key: "action",
+          key: "actions",
           label: "Actions",
           type: "actions",
           attributes: {
@@ -150,28 +161,15 @@ export default {
       ],
     };
   },
-  async mounted() {
-    await this.fetchAccountNinjas();
-  },
+  async mounted() {},
   computed: {
     ...mapFields("admin/game/ninjas", {
-      ninjas: "ninjas",
       sumPriceNinjas: "sumPriceNinjas",
       countNinjas: "countNinjas",
       metaNinjas: "metaNinjas",
     }),
   },
-  methods: {
-    ...mapActions("admin/game/ninjas", ["fetchAccountNinjas", "setQuery", "resetQuery"]),
-    async onPageChange(page) {
-      await this.setQuery({ page });
-      await this.fetchAccountNinjas();
-      await this.$router.push(`/admin/game/ninjas?page=${page}`);
-    },
-    search() {
-      this.fetchAccountNinjas();
-    },
-  },
+  methods: {},
 };
 </script>
 
