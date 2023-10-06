@@ -120,13 +120,13 @@ export default {
         return dispatch(this.module + "/resetData", this.store.state);
       },
       handleSearch(dispatch) {
-        console.log("handleSearch");
         this.$store.dispatch(this.module + "/setQuery", {
           stateName: this.store?.state,
           data: this.stateQuery,
         });
         dispatch(this.module + "/resetDataPage", this.store.state);
-        dispatch(this.module + "/" + this.store.action);
+        this.$emit("search")
+        // dispatch(this.module + "/" + this.store.action);
         this.$nextTick(() => {
           this.searched = true;
         });

@@ -13,13 +13,13 @@
       <div class="d-flex" align="center">
         <div>
           <v-card-title class="mgl--15px"
-            >Account: {{ format_number(countNinjas) }}
+            >Account: {{ format_number(count) }}
           </v-card-title>
         </div>
         <v-spacer />
         <div class="mgr--15px right middle">
           <v-card-title
-            >Total: {{ format_number(sumPriceNinjas) }} Đ
+            >Total: {{ format_number(sum_value) }} Đ
           </v-card-title>
         </div>
       </div>
@@ -29,9 +29,8 @@
           <AdminBaseTable
             ref="table"
             module="admin/game/ninjas"
+            repository="adminGameNinjas"
             :columns="columns"
-            :data="ninjas"
-            :meta="metaNinjas"
             :store="{
               state: 'queryNinjas',
               module: 'admin.game.ninjas',
@@ -72,18 +71,6 @@ export default {
     NavAdmin,
     FormSearch,
     AdminBaseTable,
-  },
-  head() {
-    return {
-      title: "Admin: Ninjas",
-      meta: [
-        {
-          hid: "Admin: Ninjas",
-          name: "Admin: Ninjas",
-          content: "Admin: Ninjas",
-        },
-      ],
-    };
   },
   name: "Ninjas",
   data() {
@@ -164,8 +151,8 @@ export default {
   async mounted() {},
   computed: {
     ...mapFields("admin/game/ninjas", {
-      sumPriceNinjas: "sumPriceNinjas",
-      countNinjas: "countNinjas",
+      count: "queryNinjas.response.count",
+      sum_value: "queryNinjas.response.sum_value",
       metaNinjas: "metaNinjas",
     }),
   },

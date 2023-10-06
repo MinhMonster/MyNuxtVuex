@@ -1,41 +1,34 @@
 <template>
   <div class="base-tale">
-    <FormSearchAdmin v-if="haveStore" :store="store" :module="module" />
+    <FormSearchAdmin
+      v-if="haveStore"
+      :store="store"
+      :module="module"
+      @search="fetchData"
+    />
     <BaseTable
       :columns="columns"
       :data="dataSource"
       :meta="pagy"
       @onChange="fetchData"
     >
-      <template #actions="props">
-        <v-btn light icon :to="`${'/' + module + '/' + props.row.ID}`">
-          <v-icon>mdi-pencil-box-multiple-outline</v-icon>
-        </v-btn>
-        <v-btn
-          light
-          color="blue"
-          icon
-          :to="`/teamobi/ninja-school/${props.row.ID}`"
-        >
-          <v-icon>mdi-eye</v-icon>
-        </v-btn>
-      </template>
-    </BaseTable>
+      <template v-for="column in columns" #[column.key]="{ row, value }">
+        <slot :name="column.key" :row="row" :value="value">{{
+          columnsValue(column.type, value)
+        }}</slot>
+      </template></BaseTable
+    >
   </div>
 </template>
 <script>
 import FormSearchAdmin from "@/components/pages/admin/Shared/form/FormSearchAdmin";
 import BaseTable from "@/components/base/BaseTable";
-
-// import Pagination from "@/components/global/molecules/common/Pagination";
-import { mapFields } from "vuex-map-fields";
 import { mapState } from "vuex";
 
 export default {
   components: {
     FormSearchAdmin,
     BaseTable,
-    // Pagination,
   },
   props: {
     store: {
@@ -57,10 +50,11 @@ export default {
       },
       require: false,
     },
-    // data: {
-    //   type: Array,
-    //   default: () => [],
-    // },
+    repository: {
+      type: String,
+      default: "",
+      require: false,
+    },
     meta: {
       type: Object,
       default: () => {},
@@ -107,7 +101,7 @@ export default {
       pagy() {
         if (this.haveStore) {
           return this.$store.getters[this.module + "/metaFilter"](
-            this.store?.state
+            this.store.state
           );
         }
         return get(this.response, "meta", defaultPagy);
@@ -115,7 +109,7 @@ export default {
       dataSource() {
         if (this.haveStore) {
           return this.$store.getters[this.module + "/dataFilter"](
-            this.store?.state
+            this.store.state
           );
         }
         return get(this.response, "data", []);
@@ -129,9 +123,7 @@ export default {
     //   return get(this.response, "data", []);
     // },
   },
-  mounted() {
-    console.log("stateQuery", this.stateQuery);
-  },
+  mounted() {},
   methods: {
     getValue(row, column) {
       const key = column.key;
@@ -150,16 +142,13 @@ export default {
       this.$emit("onChange", page);
     },
     async fetchData(page) {
-      console.log("page", page);
       if (this.haveStore) {
-        console.log("params", this.$route.query);
-
-        // this.stateQuery.per_page.value = per_page
         await this.$store.dispatch(this.module + "/setQueryPage", {
-          stateName: this.store?.state,
+          stateName: this.store.state,
           data: page || this.stateQuery.page.value || 1,
         });
-        this.$store.dispatch(this.module + "/" + this.store.action);
+
+        this.fetchActions();
       } else {
         // try {
         //   console.log(params, 'params')
@@ -185,6 +174,27 @@ export default {
         // this.loading = false
       }
     },
+    async fetchActions() {
+      try {
+        const { dataSearch, dataOrigin, dataRoute } =
+          await this.$store.dispatch(
+            this.module + "/convertDataSend",
+            this.store.state
+          );
+        const result = await this.$repositories[this.repository][
+          this.store.action
+        ]({
+          input: dataSearch,
+        });
+
+        dataOrigin.response = result.data.response;
+        this.$store.dispatch(this.module + "/setState", {
+          stateName: this.store.state,
+          data: dataOrigin,
+          query: dataRoute,
+        });
+      } catch (error) {}
+    },
   },
   created() {
     if (!this.notImmediateFetch && !this.haveStore) {
@@ -192,10 +202,10 @@ export default {
     }
     if (this.haveStore) {
       this.$store.dispatch(this.module + "/passDataFromQuery", {
-        stateName: this.store?.state,
+        stateName: this.store.state,
         query: this.$route.query,
       });
-      this.$store.dispatch(this.module + "/" + this.store.action);
+      this.fetchActions();
     }
   },
 };
@@ -234,6 +244,7 @@ export default {
   td:last-child {
   border-right: none !important;
 }
+
 .v-data-table
   > .v-data-table__wrapper
   > table
@@ -280,6 +291,7 @@ export default {
 #admin .v-data-table > .v-data-table__wrapper > table > tbody > tr td {
   border: none !important;
 }
+
 .theme--dark.v-data-table {
   background: white;
 }
@@ -298,6 +310,7 @@ export default {
 
 element.style {
 }
+
 /* #admin .table td {
   border: 1px solid var(--admin-table-border);
 } */

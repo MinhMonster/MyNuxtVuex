@@ -228,7 +228,7 @@ const client = createNamespacedHelpers("home/users");
 
 export default {
   name: "Adminlayout",
-  middleware: ['authentication'],
+  middleware: ["authentication"],
   components: {
     draggable,
   },
@@ -352,7 +352,7 @@ export default {
   destroyed() {
     // window.removeEventListener("resize", this.onResize);
   },
-  unMounted(){
+  unMounted() {
     // window.removeEventListener("resize", this.onResize);
   },
   computed: {
@@ -431,6 +431,13 @@ export default {
         this.rightDrawer = false;
       }
     },
+  },
+  head() {
+    return {
+      title: "Administrator",
+
+      link: [{ rel: "icon", type: "image/x-icon", href: "/setting.ico" }],
+    };
   },
 };
 </script>

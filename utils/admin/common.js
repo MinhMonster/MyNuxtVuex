@@ -38,6 +38,9 @@ export const enableResetStore = (store) => {
       setQueryPage({ commit }, payload) {
         commit("SET_PAGE", payload);
       },
+      setState({ commit, state }, params = { stateName, data, query }) {
+        commit("SET_STATE", { stateName: params.stateName, data: params.data, query: params.query })
+      },
       convertDataSend({ state }, stateName) {
         const dataOrigin = _.cloneDeep(state[stateName])
         const dataDefault = _.get(state, 'stateDefault.' + stateName, {})

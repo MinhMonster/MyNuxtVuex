@@ -8,7 +8,9 @@ const SET_STATE = "SET_STATE";
 const queryNinjas = _.cloneDeep({
   response: {
     meta: defaultPagy,
-    data: []
+    data: [],
+    count: 0,
+    sum_value: 0
   },
   page: {
     type: "text",
@@ -88,27 +90,6 @@ export default enableResetStore({
   },
 
   actions: {
-    async fetchAccountNinjas({ commit, state, dispatch }) {
-      try {
-        const { dataSearch, dataOrigin, dataRoute } = await dispatch('convertDataSend', 'queryNinjas')
-        const result = await this.$repositories.adminGameNinjas.fetchAccountNinjas({ input: dataSearch })
-
-        dataOrigin.response.data = result.data.ninjas
-        dataOrigin.response.meta = result.data.pagy
-
-        commit(SET_STATE, {
-          stateName: "sumPriceNinjas", data: result.data.sumPrice
-        })
-        commit(SET_STATE, {
-          stateName: "countNinjas", data: result.data.count
-        })
-        commit(SET_STATE, {
-          stateName: "queryNinjas", data: dataOrigin,
-          query: dataRoute
-        })
-
-      } catch (error) { }
-    },
     async fetchAccountNinja({ commit, dispatch }, payload) {
       try {
         const res = await this.$repositories.adminGameNinjas.fetchAccountNinja(payload)

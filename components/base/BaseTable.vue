@@ -1,28 +1,48 @@
 <template>
-<div class="base-tale">
-  <v-simple-table v-bind="$attrs" v-on="$listeners" class="table">
-    <thead>
-      <tr>
-        <th v-for="(column, indexColumn) in columns" :key="indexColumn" v-bind="column.attributes" class="text-left">
-          {{ column.label }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(record, indexRow) in data" :key="indexRow">
-        <td v-for="(column, indexColumn) in columns" :key="indexColumn">
-          <slot :name="column.key" :row="record" :column="column" :value="`${getValue(record, column)}`">
-            {{ valueCustom(record, column) }}
-          </slot>
-          <!-- <template v-for="(slot, name) in $slots" #[slot]="{column, record, index }">
-        <slot :name="name" :record="record" :column="column" :index="index"></slot>
-      </template> -->
-        </td>
-      </tr>
-    </tbody>
-  </v-simple-table>
-  <Pagination v-if="meta && meta.pages > 1" :meta="meta" @change="onChange"></Pagination>
-</div>
+  <div class="base-tale">
+    <v-simple-table v-bind="$attrs" v-on="$listeners" class="table">
+      <thead>
+        <tr>
+          <th
+            v-for="(column, indexColumn) in columns"
+            :key="indexColumn"
+            v-bind="column.attributes"
+            class="text-left"
+          >
+            {{ column.label }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(record, indexRow) in data" :key="indexRow">
+          <td v-for="(column, indexColumn) in columns" :key="indexColumn">
+            <slot
+              :name="column.key"
+              :row="record"
+              :column="column"
+              :value="`${getValue(record, column)}`"
+            >
+              {{ valueCustom(record, column) }}
+            </slot>
+            <!-- <template #[column.key]="{ record }">
+              <slot
+                :name="column.key"
+                :row="record"
+                :value="`${getValue(record, column)}`"
+              >
+                {{ valueCustom(row, column) }}
+              </slot>
+            </template> -->
+          </td>
+        </tr>
+      </tbody>
+    </v-simple-table>
+    <Pagination
+      v-if="meta && meta.pages > 1"
+      :meta="meta"
+      @change="onChange"
+    ></Pagination>
+  </div>
 </template>
 
 <script>
@@ -30,7 +50,7 @@ import Pagination from "@/components/global/molecules/common/Pagination";
 
 export default {
   components: {
-    Pagination
+    Pagination,
   },
   props: {
     data: {
@@ -85,8 +105,8 @@ export default {
   padding: 0px;
 } */
 
-.v-data-table>.v-data-table__wrapper>table>tbody>tr>td.padding-none,
-.v-data-table>.v-data-table__wrapper>table>thead>tr>th.padding-none {
+.v-data-table > .v-data-table__wrapper > table > tbody > tr > td.padding-none,
+.v-data-table > .v-data-table__wrapper > table > thead > tr > th.padding-none {
   padding: 0px !important;
 }
 
@@ -94,27 +114,61 @@ export default {
   border: none !important;
 }
 
-.v-data-table>.v-data-table__wrapper>table>tbody>tr>td.padding-none tr td:last-child {
+.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr
+  > td.padding-none
+  tr
+  td:last-child {
   border-right: none !important;
 }
 
-.v-data-table>.v-data-table__wrapper>table>tbody>tr>td.padding-none tr td:first-child {
+.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr
+  > td.padding-none
+  tr
+  td:first-child {
   border-left: none !important;
 }
 
-.v-data-table>.v-data-table__wrapper>table>tbody>tr>td.padding-none tr:last-child td {
+.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr
+  > td.padding-none
+  tr:last-child
+  td {
   border-bottom: none !important;
 }
 
-.v-data-table>.v-data-table__wrapper>table>tbody>tr>td.padding-none tr:first-child td {
+.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr
+  > td.padding-none
+  tr:first-child
+  td {
   border-top: none !important;
 }
 
-#admin .v-data-table>.v-data-table__wrapper>table>tbody>tr:nth-child(even) td {
+#admin
+  .v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:nth-child(even)
+  td {
   background: white !important;
 }
 
-#admin .v-data-table>.v-data-table__wrapper>table>tbody>tr td {
+#admin .v-data-table > .v-data-table__wrapper > table > tbody > tr td {
   border: none !important;
 }
 
@@ -134,7 +188,8 @@ export default {
   border-right: 2px solid #333 !important;;
 } */
 
-element.style {}
+element.style {
+}
 
 /* #admin .table td {
   border: 1px solid var(--admin-table-border);
@@ -156,12 +211,12 @@ element.style {}
   min-width: 100px;
 }
 
-#admin .v-data-table>.v-data-table__wrapper>table>tbody>tr>td {
+#admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
   height: 25px;
   font-size: 13.5px;
 }
 
-#admin .v-data-table>.v-data-table__wrapper>table>tbody>tr>td {
+#admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
   padding: 0 4px;
 }
 </style>
