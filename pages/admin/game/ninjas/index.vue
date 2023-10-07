@@ -153,7 +153,6 @@ export default {
     ...mapFields("admin/game/ninjas", {
       count: "queryNinjas.response.count",
       sum_value: "queryNinjas.response.sum_value",
-      metaNinjas: "metaNinjas",
     }),
   },
   methods: {},

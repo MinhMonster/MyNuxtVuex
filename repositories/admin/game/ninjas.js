@@ -13,15 +13,15 @@ export default ($api) => ({
     )
   },
   fetchAccountNinja(payload) {
-    return $api.get(`${resource}/fetchAccountNinja.php`, payload)
+    return $api.get(`${resource}/fetchAccountNinja.php`, { params: { id: payload } })
   },
   updateAccountNinja(payload) {
     return $api.post(`${resource}/updateAccountNinja.php`, payload)
   },
   destroyAccountNinja(payload) {
-    return $api.get(`${resource}/destroyAccountNinja.php`, payload)
+    return $api.get(`${resource}/destroyAccountNinja.php`, { params: { id: payload } })
   },
   unDestroyAccountNinja(payload) {
-    return $api.get(`${resource}/unDestroyAccountNinja.php`, payload)
+    return $api.get(`${resource}/unDestroyAccountNinja.php`, { params: { id: payload } })
   },
 })

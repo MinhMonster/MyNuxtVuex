@@ -59,7 +59,9 @@ export default {
   props: {
     value: {
       type: Array,
-      default: [],
+      default: () => {
+        return [];
+      },
     },
   },
   data() {

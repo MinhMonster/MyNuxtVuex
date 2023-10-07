@@ -464,9 +464,7 @@ code {
   margin-left: 0px;
 }
 
-#admin .bg-editor .v-input.v-input--is-label-active .v-select__selections {
-  margin-left: 0px;
-}
+
 
 #admin .bg-editor .v-select__selection.v-select__selection--comma {
   margin-right: -20px;
