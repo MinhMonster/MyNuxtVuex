@@ -247,7 +247,7 @@ export default {
 form {
   // padding: 10px 30px 30px;
   background: #ffefa3;
-  // border: 1px solid #663019;
+  border: none;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 

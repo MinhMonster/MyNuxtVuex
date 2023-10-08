@@ -3667,7 +3667,7 @@ select.select-time {
 }
 
 .btn-danger {
-  color: var(--white);
+  color: var(--white) !important;
   background-color: var(--danger);
   border-color: var(--danger);
 }
@@ -3695,7 +3695,7 @@ select.select-time {
 
 
 .btn-success {
-  color: var(--white);
+  color: var(--white) !important;
   background-color: var(--success);
   border-color: var(--success);
 }

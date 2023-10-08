@@ -1,6 +1,13 @@
 
 <template>
-  <b-modal ref="modal" :title="title" scrollable :size="size" @hide="close()">
+  <b-modal
+    ref="modal"
+    :id="`${isAvatar ? 'theme-avatar' : ''}`"
+    :title="title"
+    scrollable
+    :size="size"
+    @hide="close()"
+  >
     <div class="modal-info">
       <slot name="content"></slot>
     </div>
@@ -37,7 +44,12 @@ export default {
     },
   },
   mounted() {},
-  computed: {},
+  computed: {
+    isAvatar() {
+      const path = this.$route.path;
+      return path.includes("teamobi/avatar");
+    },
+  },
   methods: {
     show() {
       this.$refs.modal.show();

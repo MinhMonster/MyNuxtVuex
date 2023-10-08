@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :class="{ 'theme-avatar': isAvatar }">
     <HeaderHome></HeaderHome>
     <!-- <MenuGameHome v-if="isMenuGame"></MenuGameHome>
     <v-btn
@@ -76,6 +76,10 @@ export default {
       } else {
         return false;
       }
+    },
+    isAvatar() {
+      const path = this.$route.path;
+      return path.includes("teamobi/avatar");
     },
   },
   async mounted() {

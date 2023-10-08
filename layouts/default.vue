@@ -1,15 +1,12 @@
 <template>
   <v-app>
-
-
     <Nuxt />
-
   </v-app>
 </template>
 
 <script>
 export default {
-  name: 'DefaultLayout',
+  name: "DefaultLayout",
   data() {
     return {
       clipped: false,
@@ -18,8 +15,8 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
-    }
-  }
-}
+      title: "Vuetify.js",
+    };
+  },
+};
 </script>
