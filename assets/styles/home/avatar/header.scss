@@ -16,7 +16,7 @@
 
       #home-page {
         .title {
-          color: #17a2b8;
+          color: #17a2b8 !important;
         }
 
         .page-body {
@@ -38,6 +38,11 @@
 
         .icon-wrap {
           background: radial-gradient(circle at 50% 15%, #99FFFF, #17a2b8 72%) !important;
+
+          .mdi.mdi-home {
+            color: #fff !important;
+
+          }
         }
       }
 
@@ -147,6 +152,9 @@
 
   .title-category {
     background: radial-gradient(circle at 50% 100%, #99FFFF, #17a2b8 58%, #17a2b8 127%) !important;
+    .title {
+      color: #17a2b8 !important;
+    }
   }
 
 }
