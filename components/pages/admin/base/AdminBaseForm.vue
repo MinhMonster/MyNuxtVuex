@@ -133,6 +133,8 @@ export default {
 
         if (data) {
           this.updateState(data);
+        } else {
+          this.$router.push(this.path.replace(this.id, ""));
         }
       } catch (error) {}
     },
@@ -147,6 +149,9 @@ export default {
         const data = result.data;
         if (data.code === 200) {
           this.$toasted.success(data.message);
+          if (this.id !== data.response.ID) {
+            this.$router.push(this.path.replace(this.id, data.response.ID));
+          }
         }
       } catch (error) {}
     },
@@ -212,7 +217,7 @@ export default {
     async unDelete() {
       this.$swal
         .fire({
-          title: `Bạn muốn Đăng bán ID: ${this.accountId}?`,
+          title: `Bạn muốn Đăng bán ID: ${this.id}?`,
           text: "",
           icon: "question",
           type: "warning",

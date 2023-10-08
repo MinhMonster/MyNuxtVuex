@@ -157,7 +157,7 @@ const formNinja =
     },
     {
       title: "Sim",
-      type: "number",
+      type: "text",
       value: 'sim'
     },
     {

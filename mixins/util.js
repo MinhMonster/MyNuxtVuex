@@ -12,6 +12,9 @@ export default {
     ...mapFields("global", {
       isFilter: "isFilter",
     }),
+    path() {
+      return this.$route.path
+    }
   },
   methods: {
     columnsValue(type, value) {
@@ -28,8 +31,6 @@ export default {
           return this.typeNinja(value)
         case 'status-ninja':
           return this.statusNinja(value)
-      //   case 'USDT':
-      //     return this.$options.filters.formatUSDT(value)
         default:
           return value
       }

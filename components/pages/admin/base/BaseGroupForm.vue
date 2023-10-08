@@ -9,7 +9,7 @@
       :lg="form.lg ? form.lg : 2"
       class="code-title"
     >
-      <form-validator v-if="form.value">
+      <form-validator v-if="form.value" :name="form.value">
         <BaseInput
           v-if="form.type === 'cash'"
           :name="form.value"
@@ -49,13 +49,11 @@
   </v-row>
 </template>
 <script>
-import mixins from "@/mixins/index";
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
 import ContentEditer from "@/components/pages/admin/Shared/nuxt-editor/CkEditorNuxt.vue";
 import BaseInput from "@/components/pages/admin/base/BaseInput";
 
 export default {
-  mixins: [mixins],
   components: {
     FormValidator,
     ContentEditer,

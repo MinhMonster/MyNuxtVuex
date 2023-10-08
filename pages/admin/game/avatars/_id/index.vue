@@ -20,6 +20,7 @@
             action: 'fetchAccountAvatar',
             update: 'updateAccountAvatar',
             delete: 'destroyAccountAvatar',
+            unDelete: 'unDestroyAccountAvatar',
           }"
         ></AdminBaseForm>
       </div>

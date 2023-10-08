@@ -92,6 +92,7 @@ const queryAvatar = _.cloneDeep({
   ga: "",
   ca: "",
   mcs: "",
+  full: false,
   thongtin: "",
   giatien: "",
   gianhap: "",

@@ -22,4 +22,7 @@ export default ($api) => ({
     return $api.get(`${resource}/destroyAccountAvatar.php`, { params: { id: payload } }
     )
   },
+  unDestroyAccountAvatar(payload) {
+    return $api.get(`${resource}/unDestroyAccountAvatar.php`, { params: { id: payload } })
+  },
 })
