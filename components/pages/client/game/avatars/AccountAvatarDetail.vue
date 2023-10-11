@@ -2,7 +2,7 @@
 <template>
   <client-only>
     <b-row v-if="accountAvatar.ID">
-      <b-col cols="12" sm="12" md="8" lg="8">
+      <b-col cols="12" sm="12" md="6" lg="8">
         <div class="title">
           <center>
             <h3>
@@ -45,7 +45,7 @@
           </div>
         </VueSlickCarousel>
       </b-col>
-      <b-col cols="12" sm="12" md="4" lg="4">
+      <b-col cols="12" sm="12" md="6" lg="4">
         <b-row>
           <b-col cols="12" sm="12" md="12">
             <AccountAvatarInfo

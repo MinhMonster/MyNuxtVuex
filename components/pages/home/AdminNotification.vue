@@ -24,7 +24,7 @@
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/admin-information" class="text-success">
           <span class="text-danger">*</span> Giảm 10% tất cả Nick Trên Shop đến
-          30/09
+          20/10
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700 text-danger">
@@ -67,6 +67,7 @@ export default {
 .thongbao {
   p {
     line-height: 35px;
+    margin-bottom: 0 !important;
   }
 }
 ::v-deep {

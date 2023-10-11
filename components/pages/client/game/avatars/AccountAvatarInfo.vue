@@ -146,6 +146,11 @@ th.info-nick {
   font-size: 14px;
   font-weight: 400;
   color: #663019;
+  ::v-deep {
+    p {
+      margin-bottom: 8px;
+    }
+  }
 }
 
 ::v-deep {

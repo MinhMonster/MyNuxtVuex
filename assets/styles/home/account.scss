@@ -10,8 +10,11 @@ $danger : #a21d0a;
     margin-top: 15px !important;
   }
 
-
+  .v-application p {
+    margin-bottom: 8px !important;
+  }
 }
+
 
 // .full-screen {
 //   .row {
@@ -414,13 +417,14 @@ $danger : #a21d0a;
         margin-top: 0px;
       }
 
-      input:valid ~ label {
+      input:valid~label {
         top: 0%;
         font-size: 16px;
         color: #4158d0;
         background: none;
         transform: translateY(-50%);
       }
+
       input {
         height: 100%;
         width: 100%;
@@ -451,6 +455,7 @@ $danger : #a21d0a;
         transform: translateY(-50%);
         transition: all 0.3s ease;
       }
+
       input[type="submit"] {
         color: #ffcf9c;
         border: none;
@@ -673,10 +678,11 @@ table.table {
   }
 }
 
-figure.image{
-  &.image-style-align-center{
+figure.image {
+  &.image-style-align-center {
     text-align: center;
-    img{
+
+    img {
       max-width: 100%;
       margin: 0 auto;
 

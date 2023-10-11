@@ -1,43 +1,53 @@
 .theme-avatar {
   .home-header {
     .header-content {
-      background: radial-gradient(circle at 50% 100%, #99FFFF, #17a2b8 58%, #17a2b8 127%) !important;
+      background: radial-gradient(circle at 50% 100%, #99FFFF, #009298 58%, #009298 127%) !important;
     }
-
   }
 
   .bg-website {
-    background: #17a2b8 !important;
+    background: #009298 !important;
 
     .v-main__wrap {
       .container.client-main {
-        background: #B0E2FF;
+        background: #fff;
       }
 
       #home-page {
         .title {
-          color: #17a2b8 !important;
+          color: #009298 !important;
         }
 
         .page-body {
           background: #BFEFFF;
           border: 1px solid #a4a4a4 !important;
+
+
+        }
+
+        .account-empty {
+          background: #BFEFFF;
+          border: 1px solid #a4a4a4 !important;
+
+          .text-danger {
+            color: #009298 !important;
+          }
         }
       }
     }
   }
 
   #menu-bottom {
-    background: linear-gradient(180deg, #99FFFF, #17a2b8 12%, #17a2b8) !important;
+    background: linear-gradient(180deg, #99FFFF, #009298 12%, #009298) !important;
 
     .sub-menu-buttom {
       color: #fff !important;
 
       .circle-menu {
-        background-color: #00BFFF !important;
+        background-color: #00B2BF !important;
 
         .icon-wrap {
-          background: radial-gradient(circle at 50% 15%, #99FFFF, #17a2b8 72%) !important;
+          background: radial-gradient(circle at 50% 15%, #99FFFF, #009298 72%) !important;
 
           .mdi.mdi-home {
             color: #fff !important;
@@ -45,12 +55,6 @@
           }
         }
       }
-
-
-
-
-
-
     }
 
     .footer_icon button.icon-menu,
@@ -63,7 +67,7 @@
   }
 
   .login-btn {
-    background-image: linear-gradient(180deg, #99FFFF, #17a2b8 9%, #17a2b8 58%, #17a2b8);
+    background-image: linear-gradient(180deg, #99FFFF, #009298 9%, #009298 58%, #009298);
   }
 
   .go-back,
@@ -71,7 +75,7 @@
   .next-top,
   .next-bottom {
     .v-btn--icon.v-size--default {
-      background: radial-gradient(circle at 50% 100%, #99FFFF, #17a2b8 58%, #17a2b8 127%) !important;
+      background: radial-gradient(circle at 50% 100%, #99FFFF, #009298 58%, #009298 127%) !important;
     }
   }
 
@@ -90,7 +94,7 @@
         .account-thongtin,
         .account-cash,
         .account-buy {
-          background-image: linear-gradient(180deg, #99FFFF, #17a2b8 9%, #17a2b8 58%, #17a2b8);
+          background-image: linear-gradient(180deg, #99FFFF, #009298 9%, #009298 58%, #009298);
           border: none !important;
           color: #fff;
         }
@@ -98,13 +102,13 @@
         .account-code,
         .account-server,
         .account-class {
-          color: #17a2b8;
+          color: #009298;
         }
       }
 
       .account-cash-atm,
       .account-ingame {
-        background-image: linear-gradient(180deg, #99FFFF, #17a2b8 9%, #17a2b8 58%, #17a2b8);
+        background-image: linear-gradient(180deg, #99FFFF, #009298 9%, #009298 58%, #009298);
         // border: 1px solid #a4a4a4 !important;
         color: #fff;
       }
@@ -113,7 +117,7 @@
 
   .table {
     th.info-nick {
-      background: #17a2b8;
+      background: #009298;
       color: #fff;
       border: 1px solid #a4a4a4 !important;
     }
@@ -124,14 +128,14 @@
       border: 1px solid #a4a4a4 !important;
 
       span {
-        color: #17a2b8;
+        color: #009298;
       }
     }
   }
 
   .account-cash-atm,
   .account-ingame {
-    background-image: linear-gradient(180deg, #99FFFF, #17a2b8 9%, #17a2b8 58%, #17a2b8) !important;
+    background-image: linear-gradient(180deg, #99FFFF, #009298 9%, #009298 58%, #009298) !important;
 
   }
 
@@ -146,14 +150,15 @@
   }
 
   .btn-buy-account-hover {
-    background-image: linear-gradient(180deg, #99FFFF, #17a2b8 9%, #17a2b8 58%, #17a2b8) !important;
+    background-image: linear-gradient(180deg, #99FFFF, #009298 9%, #009298 58%, #009298) !important;
     border: none;
   }
 
   .title-category {
-    background: radial-gradient(circle at 50% 100%, #99FFFF, #17a2b8 58%, #17a2b8 127%) !important;
+    background: radial-gradient(circle at 50% 100%, #99FFFF, #009298 58%, #009298 127%) !important;
+
     .title {
-      color: #17a2b8 !important;
+      color: #009298 !important;
     }
   }
 
