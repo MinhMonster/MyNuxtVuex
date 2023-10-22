@@ -29,10 +29,10 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    "@/assets/css/mms-style.css",
+    // "@/assets/css/mms-style.css",
     "@/assets/styles/common.scss",
-    "@/assets/styles/home/_ckeditor.scss",
-    "@/assets/styles/home/account.scss",
+    // "@/assets/styles/home/_ckeditor.scss",
+    // "@/assets/styles/home/account.scss",
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

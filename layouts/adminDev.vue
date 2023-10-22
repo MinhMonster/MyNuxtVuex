@@ -73,9 +73,6 @@ export default {
         return "padding: 94px 0 36px 300px";
       }
     },
-    // path() {
-    //   return this.$route.path;
-    // },
   },
   watch: {
     path: {
@@ -120,8 +117,8 @@ export default {
 };
 </script>
 <style >
-@import "~/assets/css/admin-style.css";
-@import "~/assets/css/mms-style.css";
+
+
 .bg-default {
   background: #f0f2f5;
   color: #333;
