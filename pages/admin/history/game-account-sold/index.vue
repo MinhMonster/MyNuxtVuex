@@ -65,19 +65,7 @@ export default {
     FormSearch,
     BaseTable,
   },
-  head() {
-    return {
-      title: "Admin: Ninjas",
-      meta: [
-        {
-          hid: "Admin: Ninjas",
-          name: "Admin: Ninjas",
-          content: "Admin: Ninjas",
-        },
-      ],
-    };
-  },
-  name: "Ninjas",
+  name: "AdminSoldNinjas",
   data() {
     return {
       columns: [

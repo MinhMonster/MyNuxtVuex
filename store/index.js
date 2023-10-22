@@ -1,8 +1,8 @@
 
-// import AdminAuth from "./admin/auth"
-// import AdminTopics from "./admin/topics"
-// import AdminDeverlopers from "./admin/deverlopers"
-// import HomeUser from "./home/users"
+import AdminAuth from "./admin/auth"
+import AdminTopics from "./admin/topics"
+import AdminDeverlopers from "./admin/deverlopers"
+import HomeUser from "./home/users"
 
 
 const ADD_REQUEST = "ADD_REQUEST";
@@ -40,11 +40,11 @@ export default {
     },
   },
 
-  // modules: {
-  //   ADAU: AdminAuth,
-  //   ADTP: AdminTopics,
-  //   ADDV: AdminDeverlopers,
-  //   HOUS: HomeUser,
+  modules: {
+    ADAU: AdminAuth,
+    ADTP: AdminTopics,
+    ADDV: AdminDeverlopers,
+    HOUS: HomeUser,
 
-  // },
+  },
 };

@@ -1,6 +1,5 @@
-
-
-import PromotionRepository from '~/repositories/PromotionRepository'
+// admin Auths
+import adminAuths from '~/repositories/admin/auths'
 
 //admin
 import adminTopics from '~/repositories/admin/topics'
@@ -15,6 +14,7 @@ import adminUsers from '~/repositories/admin/users'
 import adminGameNinjas from '~/repositories/admin/game/ninjas'
 import adminGameAvatars from '~/repositories/admin/game/avatars'
 import adminGameAccountSold from '~/repositories/admin/histories/game_account_sold'
+import adminBankDeposits from '~/repositories/admin/histories/bank_deposits'
 
 
 // Home Page
@@ -28,8 +28,11 @@ import homeTopics from '~/repositories/home/topics'
 
 
 export default ($api) => ({
-  post: PromotionRepository($api),
 
+  // admin Auths
+  adminAuths: adminAuths($api),
+
+  // admin
   adminTopics: adminTopics($api),
   adminDeverlopers: adminDeverlopers($api),
   adminFinances: adminFinances($api),
@@ -43,6 +46,7 @@ export default ($api) => ({
   adminGameNinjas: adminGameNinjas($api),
   adminGameAvatars: adminGameAvatars($api),
   adminGameAccountSold:adminGameAccountSold($api),
+  adminBankDeposits: adminBankDeposits($api),
 
 
   // Home Page

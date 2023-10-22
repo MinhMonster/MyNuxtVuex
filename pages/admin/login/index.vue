@@ -1,10 +1,9 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="py-4 d-flex justify-center">
-        
+  <v-row justify="center" align="center" class="form-login-admin">
+    <v-col cols="12" sm="8" md="8">
+      <v-card class="py-4 px-4 d-flex justify-center">
         <div id="body-admin">
-          <v-card-title >Đăng nhập Hệ thống</v-card-title>
+          <v-card-title>Đăng nhập Hệ thống</v-card-title>
           <form @submit.prevent="login()">
             <LoginForm :user="user"></LoginForm>
             <div class="text-right">
@@ -21,26 +20,13 @@
 <script>
 import API from "@/apis/modules/admin/auths";
 import LoginForm from "@/components/pages/admin/login/form/LoginForm.vue";
-// import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("admin/auth");
 
 export default {
-  middleware: ['un_authentication'],
+  // middleware: ['un_authentication'],
   components: { LoginForm },
   layout: "LoginAdmin",
-  head() {
-    return {
-      title: "New Topic",
-      meta: [
-        {
-          hid: "New Topic",
-          name: "New Topic",
-          content: "New Topic",
-        },
-      ],
-    };
-  },
   name: "LoginAdmin",
   data() {
     return {
@@ -54,8 +40,7 @@ export default {
   computed: {
     ...mapState(["token"]),
   },
-  created() {
-  },
+  created() {},
   methods: {
     ...mapActions(["authRequest"]),
     async login() {
@@ -65,7 +50,7 @@ export default {
       const res = await API.login(formData);
       if (res.data.status === "success") {
         this.$toasted.success(res.data.message);
-        this.$router.push('/admin')
+        this.$router.push("/admin");
       } else {
         this.$toasted.error(res.data.message);
       }
@@ -74,3 +59,9 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.form-login-admin {
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
+}
+</style>

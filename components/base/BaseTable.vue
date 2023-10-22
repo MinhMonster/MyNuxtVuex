@@ -15,7 +15,10 @@
       </thead>
       <tbody>
         <tr v-for="(record, indexRow) in data" :key="indexRow">
-          <td v-for="(column, indexColumn) in columns" :key="indexColumn">
+          <td
+            v-for="(column, indexColumn) in columns"
+            :key="indexColumn"
+          >
             <slot
               :name="column.key"
               :row="record"
@@ -212,11 +215,12 @@ element.style {
 }
 
 #admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
-  height: 25px;
+  height: 32px;
   font-size: 13.5px;
+  vertical-align: middle;
 }
 
 #admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
-  padding: 0 4px;
+  padding: 0px 10px;
 }
 </style>

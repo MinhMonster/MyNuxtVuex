@@ -9,6 +9,7 @@
 <script>
 export default {
   name: 'DefaultLayout',
+  middleware: ['un_authentication'],
   data () {
     return {
       clipped: false,

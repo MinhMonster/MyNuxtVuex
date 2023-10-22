@@ -4250,8 +4250,9 @@ meter.metter-authir::-webkit-meter-optimum-value {
 }
 
 .success {
-  background: #C9F7F5;
-  color: var(--success);
+  background: var(--success) !important;
+  background-color: var(--success) !important;
+  color: #fff !important;
 }
 
 .success.hover,

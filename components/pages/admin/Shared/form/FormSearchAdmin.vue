@@ -70,7 +70,7 @@
         </a>
       </a-form-item> -->
         <v-col cols="6" sm="3" md="2">
-          <v-btn type="submit" class="btn search-btn" @click="handleSearch()">
+          <v-btn type="submit" class="btn search-btn">
             <i class="fa fa-search"></i> Search
           </v-btn>
         </v-col>

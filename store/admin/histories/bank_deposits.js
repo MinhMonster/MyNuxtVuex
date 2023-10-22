@@ -8,12 +8,11 @@ export default enableResetStore({
   state() {
     return {
       stateDefault: {
-        queryAvatars: queryAvatars,
-        queryAvatar: queryAvatar,
+        queryBankDeposits: queryAvatars,
+        queryBankDeposit: queryAvatar,
       },
-      queryAvatars: queryAvatars,
-      queryAvatar: queryAvatar,
-      formAvatar: formAvatar
+      queryBankDeposits: queryAvatars,
+      queryBankDeposit: queryAvatar,
     }
 
   },
@@ -49,36 +48,40 @@ const queryAvatars = _.cloneDeep({
     show: false,
     value: 15
   },
-  id: {
+  id_nap: {
     // title: "ID",
-    placeholder: "ID",
+    placeholder: "ID User",
     type: "text",
     show: true,
     value: ''
   },
-  username: {
-    placeholder: "Tài Khoản",
+  uid: {
+    placeholder: "UID",
     type: "text",
     show: true,
     value: ''
   },
   status: {
-    placeholder: "Trạng Thái",
+    placeholder: "Status",
     type: "select-options",
     show: true,
-    value: "yes",
+    value: null,
     options: [
       {
-        text: "Tất cả",
+        text: "All",
         value: null,
       },
       {
-        text: "Đang bán",
-        value: "yes",
+        text: "Warning",
+        value: "0",
       },
       {
-        text: "Đã bán",
-        value: "no",
+        text: "Success",
+        value: "1",
+      },
+      {
+        text: "Failed",
+        value: "2",
       },
     ],
   },
@@ -86,7 +89,7 @@ const queryAvatars = _.cloneDeep({
 
 const queryAvatar = _.cloneDeep({
 
-  ID: "",
+  id: "",
   username: "",
   dat: "",
   ga: "",
@@ -106,7 +109,7 @@ const formAvatar =
     {
       title: "ID",
       type: "number",
-      value: 'ID'
+      value: 'id'
     },
     {
       title: "Tài Khoản",

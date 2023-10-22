@@ -165,7 +165,6 @@ export default {
     showModal(row) {
       this.$refs.modal.dialog = true;
       this.user = row;
-      console.log(this.userSelected);
     },
   },
 };

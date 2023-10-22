@@ -196,12 +196,12 @@ export default {
       } catch (error) {}
     },
   },
-  created() {
+  async created() {
     if (!this.notImmediateFetch && !this.haveStore) {
       this.fetchData(this.stateQuery.page.value);
     }
     if (this.haveStore) {
-      this.$store.dispatch(this.module + "/passDataFromQuery", {
+      await this.$store.dispatch(this.module + "/passDataFromQuery", {
         stateName: this.store.state,
         query: this.$route.query,
       });

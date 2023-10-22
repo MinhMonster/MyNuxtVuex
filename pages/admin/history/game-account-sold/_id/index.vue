@@ -42,19 +42,8 @@ export default {
     NavAdmin,
   },
   layout: "adminDev",
-  head() {
-    return {
-      title: this.titel,
-      meta: [
-        {
-          hid: this.titel,
-          name: this.titel,
-          content: this.titel,
-        },
-      ],
-    };
-  },
-  name: "EditAccountNinja",
+  
+  name: "AdminUpdateSoldNinja",
   props: {},
   data() {
     return {

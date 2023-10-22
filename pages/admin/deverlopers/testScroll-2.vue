@@ -91,7 +91,6 @@ export default {
   methods: {
     ...mapActions("admin/deverlopers", [
       "get_deverlopers_scroll",
-      "get_deverlopers",
       "change_positions",
     ]),
     loadMore: function () {
