@@ -88,13 +88,10 @@ export default {
   async mounted() {},
   methods: {
     onChange(name, value) {
-      console.log("onChange", name, value);
-      console.log(name);
       this.dataForm[name] = value;
       this.updateForm();
     },
     updateForm() {
-      console.log("dataForm", this.dataForm);
       this.$emit("updated", this.dataForm);
     },
   },

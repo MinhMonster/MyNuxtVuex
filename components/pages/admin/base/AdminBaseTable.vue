@@ -1,5 +1,16 @@
 <template>
   <div class="base-tale">
+    <div class="d-flex" align="center">
+      <div>
+        <v-card-title class="mgl--15px"
+          >Account: {{ format_number(count) }}
+        </v-card-title>
+      </div>
+      <v-spacer />
+      <div class="mgr--15px right middle">
+        <v-card-title>Total: {{ format_number(sum_value) }} Đ </v-card-title>
+      </div>
+    </div>
     <FormSearchAdmin
       v-if="haveStore"
       :store="store"
@@ -114,6 +125,34 @@ export default {
         }
         return get(this.response, "data", []);
       },
+      count(state) {
+        if (this.haveStore) {
+          // const data
+          return _.get(
+            state,
+            this.store.module + "." + this.store.state + ".response.count",
+            []
+          );
+        }
+        return get(this.response, "count", []);
+      },
+      sum_value(state) {
+        if (this.haveStore) {
+          // const data
+          return _.get(
+            state,
+            this.store.module + "." + this.store.state + ".response.sum_value",
+            []
+          );
+        }
+        return get(this.response, "count", []);
+      },
+      //   computed: {
+      // ...mapFields("admin/histories/game_account_sold", {
+      //   count: "queryGameAccountSolds.response.count",
+      //   sum_value: "queryGameAccountSolds.response.sum_value",
+      // }),
+      // },
     }),
 
     // dataSource() {

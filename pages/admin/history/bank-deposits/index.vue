@@ -10,17 +10,6 @@
     @reload="fetchData()"
   >
     <template #body>
-      <div class="d-flex" align="center">
-        <div>
-          <v-card-title class="mgl--15px"
-            >Account: {{ format_number(count) }}
-          </v-card-title>
-        </div>
-        <v-spacer />
-        <div class="mgr--15px right middle">
-          <v-card-title>Total: {{ format_number(sum_value) }} Đ </v-card-title>
-        </div>
-      </div>
       <v-row>
         <v-col cols="12" md="12" sm="12">
           <!-- <v-card> -->
@@ -53,7 +42,6 @@
 import { mapFields } from "vuex-map-fields";
 
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
-import FormSearch from "@/components/pages/admin/Shared/form/FormSearch";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 import FormConfirm from "@/components/pages/admin/histories/bank-deposits/FormConfirm";
 import StatusDeposit from "@/components/pages/admin/histories/bank-deposits/StatusDeposit";
@@ -62,7 +50,6 @@ export default {
   layout: "adminDev",
   components: {
     NavAdmin,
-    FormSearch,
     AdminBaseTable,
     FormConfirm,
     StatusDeposit,
@@ -169,13 +156,6 @@ export default {
         },
       ],
     };
-  },
-  async mounted() {},
-  computed: {
-    ...mapFields("admin/game/avatars", {
-      count: "queryAvatars.response.count",
-      sum_value: "queryAvatars.response.sum_value",
-    }),
   },
   methods: {
     fetchData() {

@@ -8,11 +8,11 @@ export default enableResetStore({
   state() {
     return {
       stateDefault: {
-        queryBankDeposits: queryAvatars,
-        queryBankDeposit: queryAvatar,
+        queryBankDeposits: queryBankDeposits,
+        queryBankDeposit: queryBankDeposit,
       },
-      queryBankDeposits: queryAvatars,
-      queryBankDeposit: queryAvatar,
+      queryBankDeposits: queryBankDeposits,
+      queryBankDeposit: queryBankDeposit,
     }
 
   },
@@ -31,7 +31,7 @@ export default enableResetStore({
 });
 
 
-const queryAvatars = _.cloneDeep({
+const queryBankDeposits = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [],
@@ -87,7 +87,7 @@ const queryAvatars = _.cloneDeep({
   },
 });
 
-const queryAvatar = _.cloneDeep({
+const queryBankDeposit = _.cloneDeep({
 
   id: "",
   username: "",
@@ -103,58 +103,3 @@ const queryAvatar = _.cloneDeep({
   full: "0"
 
 });
-
-const formAvatar =
-  _.cloneDeep([
-    {
-      title: "ID",
-      type: "number",
-      value: 'id'
-    },
-    {
-      title: "Tài Khoản",
-      type: "text",
-      value: 'username'
-    },
-    {
-      title: "Giá Bán",
-      type: "cash",
-      value: 'giatien'
-    },
-    {
-      title: "Giá Nhập",
-      type: "cash",
-      value: 'gianhap'
-    },
-    {
-      title: "Sim",
-      type: "number",
-      value: 'sim'
-    },
-    {
-      title: "Đất",
-      type: "number",
-      value: 'dat'
-    },
-    {
-      title: "Gà",
-      type: "number",
-      value: 'ga'
-    },
-    {
-      title: "Cá",
-      type: "number",
-      value: 'ca'
-    },
-    {
-      title: "Thông tin",
-      type: "content-editer",
-      value: 'thongtin',
-      cols: 12,
-      sm: 12,
-      md: 12,
-      lg: 12
-    },
-
-  ]);
-

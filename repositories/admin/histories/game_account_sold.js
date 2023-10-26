@@ -10,7 +10,7 @@ export default ($api) => ({
     )
   },
   fetchGameAccountSold(payload) {
-    return $api.get(`${resource}/fetchGameAccountSold.php`, payload)
+    return $api.get(`${resource}/fetchGameAccountSold.php`, { params: { id: payload } })
   },
   updateGameAccountSold(payload) {
     return $api.post(`${resource}/updateGameAccountSold.php`, payload)

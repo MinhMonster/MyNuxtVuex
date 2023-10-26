@@ -5,65 +5,62 @@
     next-page
     filter
     reload
-    @reload="fetchGameAccountSolds()"
+    @reload="fetchData()"
   >
     <template #body>
-      <div class="d-flex" align="center">
-        <div>
-          <v-card-title class="mgl--15px"
-            >Account: {{ format_number(countNinjas) }}
-          </v-card-title>
-        </div>
-        <v-spacer />
-        <div class="mgr--15px right middle">
-          <v-card-title
-            >Total: {{ format_number(sumPriceNinjas) }} Đ
-          </v-card-title>
-        </div>
-      </div>
       <v-row>
-        <v-col v-if="isFilter" cols="12">
-          <FormSearch @search="search()"></FormSearch>
-        </v-col>
         <v-col cols="12" md="12" sm="12">
-          <v-card>
-            <BaseTable
-              :columns="columns"
-              :data="gameAccountSolds"
-              :meta="metaNinjas"
-              @onChange="onPageChange"
-            >
-              <template #action="props">
-                <v-btn
-                  light
-                  icon
-                  :to="`/admin/history/game-account-sold/${props.row.ID}`"
-                >
-                  <v-icon>mdi-pencil-box-multiple-outline</v-icon>
-                </v-btn>
-              </template>
-            </BaseTable>
-          </v-card>
+          <AdminBaseTable
+            ref="table"
+            module="admin/histories/game_account_sold"
+            repository="adminGameAccountSold"
+            :columns="columns"
+            :store="{
+              state: 'queryGameAccountSolds',
+              module: 'admin.histories.game_account_sold',
+              action: 'fetchGameAccountSolds',
+            }"
+          >
+            <template #action="props">
+              <v-btn light icon @click="showModal(props.row)">
+                <v-icon>mdi-pencil-box-multiple-outline</v-icon>
+              </v-btn>
+            </template>
+          </AdminBaseTable>
         </v-col>
       </v-row>
+      <FormModal
+        ref="modal"
+        :title="'ID: ' + format_number(queryGameAccountSold.idnick)"
+        :id="queryGameAccountSold.ID"
+        height="500px"
+        module="admin/histories/game_account_sold"
+        repository="adminGameAccountSold"
+        :store="{
+          state: 'queryGameAccountSold',
+          module: 'admin.histories.game_account_sold',
+          form: 'formAccountSold',
+          // action: 'fetchGameAccountSold',
+          update: 'updateGameAccountSold',
+        }"
+        @updated="fetchData()"
+      />
     </template>
   </NavAdmin>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
-
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
-import FormSearch from "@/components/pages/admin/histories/game_account_sold/FormSearch";
-import BaseTable from "@/components/base/BaseTable";
+import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
+import FormModal from "@/components/pages/admin/base/modal/FormModal";
 
 export default {
   layout: "adminDev",
   components: {
     NavAdmin,
-    FormSearch,
-    BaseTable,
+    AdminBaseTable,
+    FormModal,
   },
   name: "AdminSoldNinjas",
   data() {
@@ -77,35 +74,6 @@ export default {
           },
         },
         {
-          key: "taikhoan",
-          label: "Account",
-          attributes: {
-            minWidth: "120",
-          },
-        },
-        {
-          key: "giatien",
-          label: "Price",
-          type: "number",
-          attributes: {},
-        },
-        {
-          key: "idnick",
-          label: "ID Nick",
-          type: "number",
-          attributes: {},
-        },
-        {
-          key: "type",
-          label: "Game",
-          attributes: {},
-        },
-        {
-          key: "name",
-          label: "User",
-          attributes: {},
-        },
-        {
           key: "action",
           label: "Actions",
           type: "actions",
@@ -113,33 +81,48 @@ export default {
             minWidth: "120",
           },
         },
+        {
+          key: "taikhoan",
+          label: "Account",
+        },
+        {
+          key: "giatien",
+          label: "Price",
+          type: "number",
+        },
+        {
+          key: "idnick",
+          label: "ID Nick",
+          type: "number",
+        },
+        {
+          key: "type",
+          label: "Game",
+        },
+        {
+          key: "name",
+          label: "User",
+        },
+        {
+          key: "uid",
+          label: "UID",
+        },
       ],
     };
   },
-  async mounted() {
-    await this.fetchGameAccountSolds();
-  },
   computed: {
     ...mapFields("admin/histories/game_account_sold", {
-      gameAccountSolds: "gameAccountSolds",
-      sumPriceNinjas: "sumPriceNinjas",
-      countNinjas: "countNinjas",
-      metaNinjas: "metaNinjas",
+      queryGameAccountSold: "queryGameAccountSold",
     }),
   },
+  async mounted() {},
   methods: {
-    ...mapActions("admin/histories/game_account_sold", [
-      "fetchGameAccountSolds",
-      "resetQuery",
-      "setQuery",
-    ]),
-    async onPageChange(page) {
-      await this.setQuery({ page });
-      await this.fetchGameAccountSolds();
-      await this.$router.push(`/admin/history/game-account-sold?page=${page}`);
+    showModal(row) {
+      this.$refs.modal.dialog = true;
+      this.queryGameAccountSold = row;
     },
-    search() {
-      this.fetchGameAccountSolds();
+    fetchData() {
+      this.$refs.table.fetchData();
     },
   },
 };
