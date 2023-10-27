@@ -70,7 +70,9 @@ export default {
           key: "ID",
           label: "ID",
           attributes: {
-            align: "center",
+            style: {
+              width: "50px",
+            },
           },
         },
         {
@@ -78,30 +80,57 @@ export default {
           label: "Actions",
           type: "actions",
           attributes: {
-            minWidth: "120",
+            style: {
+              minWidth: "50px",
+            },
           },
         },
         {
           key: "taikhoan",
           label: "Account",
+          attributes: {
+            style: {
+              minWidth: "150px",
+            },
+          },
         },
         {
           key: "giatien",
           label: "Price",
           type: "number",
+          attributes: {
+            style: {
+              minWidth: "120px",
+            },
+          },
         },
         {
           key: "idnick",
           label: "ID Nick",
           type: "number",
+          attributes: {
+            style: {
+              minWidth: "100px",
+            },
+          },
         },
         {
           key: "type",
           label: "Game",
+          attributes: {
+            style: {
+              minWidth: "150px",
+            },
+          },
         },
         {
           key: "name",
           label: "User",
+          attributes: {
+            style: {
+              minWidth: "150px",
+            },
+          },
         },
         {
           key: "uid",
