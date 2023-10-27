@@ -1,5 +1,12 @@
 @import "~/assets/styles/base-class.scss";
 @import "~/assets/styles/home/avatar/index.scss";
+@import "~/assets/styles/home/page/index.scss";
+
+body {
+  font-size: 13px;
+  font-weight: 400;
+  font-family: "Roboto", "Arial", sans-serif;
+}
 
 html {
   scroll-behavior: smooth;

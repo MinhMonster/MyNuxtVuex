@@ -13,24 +13,23 @@
       </p> -->
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/teamobi/ninja-school" class="text-primary"
-          >- Shop cập nhật Nick Ninja Mới hằng ngày
+          >- Admin cập nhật Nick Mới hằng ngày
         </nuxt-link>
       </p>
-      <p class="bold text-italic text-13-700">
+      <!-- <p class="bold text-italic text-13-700">
         <nuxt-link to="/teamobi/ninja-school" class="text-primary"
           >- Admin đã Bổ sung thêm Shop Acc Avatar
         </nuxt-link>
-      </p>
+      </p> -->
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/admin-information" class="text-success">
           <span class="text-danger">*</span> Giảm 10% tất cả Nick Trên Shop đến
-          20/10
+          11/11
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700 text-danger">
         <nuxt-link to="/account/wallet/deposit/card">
-          - Nạp Thẻ, Mua Nick tự động 100% <br />
-          - Nạp Thẻ tự động không mất Chiết khâu.
+          - Nạp Thẻ, Mua Nick tự động không Chiết khấu.
         </nuxt-link>
       </p>
 
@@ -46,7 +45,7 @@
           target="_blank"
           class="text-primary"
         >
-          - Mua Nick qua atm, momo liên hệ Admin
+          - Mua Nick qua ATM-MOMO liên hệ Admin
         </a>
       </p>
 
