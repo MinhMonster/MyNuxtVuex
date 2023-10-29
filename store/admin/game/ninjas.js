@@ -103,6 +103,7 @@ const queryNinja = _.cloneDeep({
   server: 1,
   giatien: "",
   gianhap: "",
+  sale_off: "",
   sim: "",
   hinhanh: [],
   do: "",
@@ -154,6 +155,11 @@ const formNinja =
       title: "Giá Nhập",
       type: "cash",
       value: 'gianhap'
+    },
+    {
+      title: "Giảm Giá (%)",
+      type: "number",
+      value: 'sale_off'
     },
     {
       title: "Sim",
