@@ -23,7 +23,7 @@
       </p> -->
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/admin-information" class="text-success">
-          <span class="text-danger">*</span> Giảm 10% tất cả Nick Trên Shop đến
+          <span class="text-danger">*</span> Giảm 15% tất cả Nick Trên Shop đến
           11/11
         </nuxt-link>
       </p>

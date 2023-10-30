@@ -108,11 +108,21 @@
       <span v-if="accountNinja.yen" class="account-yen text-13-450">
         {{ accountNinja.yen }}
       </span>
-      <span class="account-cash-atm text-13-450">
-        <!-- <v-btn icon>
-          <v-icon>mdi-cart-variant</v-icon>
-        </v-btn> -->
-        {{ cash_atm(accountNinja.giatien) }} ATM-MOMO</span
+      <span
+        v-if="accountNinja.saleOff"
+        class="account-cash-atm bg-none text-13-450"
+      >
+        <span class="bg-warning"> {{ "-" + accountNinja.saleOff + "% " }}</span>
+        <span class="bg-warning">
+          {{
+            " " +
+            cash_atm(accountNinja.giatien * (1 - accountNinja.saleOff / 100))
+          }}
+          Vnđ</span
+        >
+      </span>
+      <span v-else class="account-cash-atm text-13-450">
+        {{ cash_atm(accountNinja.giatien) }} Vnđ</span
       >
 
       <span class="account-ingame text-13-450">
@@ -163,11 +173,6 @@ export default {
 .account-ingame {
   right: 4px;
 }
-.account-cash-atm {
-  left: 4px;
-  font-size: 11px;
-  font-weight: 700;
-}
 .account-ingame,
 .account-cash-atm {
   position: absolute;
@@ -193,6 +198,23 @@ export default {
     }
   }
 }
+
+.account-cash-atm {
+  &.bg-none {
+    background: none !important;
+    color: #333 !important;
+    padding: 0px !important;
+  }
+  left: 4px;
+  // font-size: 11px;
+  font-weight: 700;
+  span {
+    padding: 1.5% 5px;
+    // height: 100% !important;
+    border-radius: 5px;
+  }
+}
+
 .account-tl {
   position: absolute;
   display: flex;

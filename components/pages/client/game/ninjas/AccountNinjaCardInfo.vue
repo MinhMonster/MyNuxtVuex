@@ -25,7 +25,7 @@
       >
       <b-col cols="6"
         ><span class="account-cash"
-          >{{ format_number(accountNinja.giatien) }} Card</span
+          >{{ cash_atm(accountNinja.giatien) }} Vnđ</span
         ></b-col
       >
       <b-col cols="6">
