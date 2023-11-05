@@ -45,7 +45,7 @@
         @search="$emit('search')"
       ></FormSearch2>
     </b-col>
-    <b-col v-else-if="isQuery" cols="12">
+    <b-col v-if="isQuery" cols="12">
       <div class="title text-center text-danger">Kết quả tìm kiếm...</div>
     </b-col>
   </b-row>
@@ -71,7 +71,7 @@ export default {
   },
   data() {
     return {
-      isSearch: false,
+      isSearch: true,
     };
   },
   created() {},
