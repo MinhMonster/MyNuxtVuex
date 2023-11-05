@@ -3,7 +3,7 @@
     <v-col cols="12" sm="8" md="8">
       <v-card class="py-4 px-4 d-flex justify-center">
         <div id="body-admin">
-          <v-card-title>Đăng nhập Hệ thống</v-card-title>
+          <v-card-title class="text-white">Đăng nhập Hệ thống</v-card-title>
           <form @submit.prevent="login()">
             <LoginForm :user="user"></LoginForm>
             <div class="text-right">
@@ -24,7 +24,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("admin/auth");
 
 export default {
-  // middleware: ['un_authentication'],
+  middleware: ['un_authentication'],
   components: { LoginForm },
   layout: "LoginAdmin",
   name: "LoginAdmin",
@@ -63,5 +63,11 @@ export default {
 .form-login-admin {
   max-width: calc(100% - 40px);
   margin: 0 auto;
+  .v-card__title{
+    justify-content: center;
+  }
+  form {
+    background: #1e1e1e !important;
+  }
 }
 </style>
