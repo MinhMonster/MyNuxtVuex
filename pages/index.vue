@@ -28,7 +28,6 @@ import HistoryDeposit from "@/components/pages/home/HistoryDeposit";
 
 import { mapFields } from "vuex-map-fields";
 
-import { mapActions } from "vuex";
 import HomeGame from "@/components/pages/home/HomeGame";
 import Loading from "@/components/global/molecules/common/Loading";
 
