@@ -62,7 +62,7 @@
             md="6"
             lg="4"
           >
-            <div class="fileItemWrapper">
+            <div class="image-card">
               <img
                 v-if="image.includes('muabannick.pro')"
                 :src="image"
@@ -127,7 +127,7 @@ export default {
 </script>
   
   <style lang="scss" scoped>
-.fileItemWrapper {
+.image-card {
   position: relative;
   display: flex;
   flex-direction: column;
