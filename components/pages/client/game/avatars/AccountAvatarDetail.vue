@@ -114,7 +114,6 @@ import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvata
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  name: "accountAvatarList",
   mixins: [mixins],
 
   components: { AccountAvatarInfo, AccountAvatarTL, GroupBtnBuyAccount },
@@ -125,15 +124,16 @@ export default {
     },
   },
   data() {
-    return {
-      isMobile: false,
-    };
+    return {};
   },
   async mounted() {
     this.$nextTick(function () {
       this.onResize();
     });
     window.addEventListener("resize", this.onResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
   },
   computed: {
     images() {
@@ -143,16 +143,7 @@ export default {
       return images;
     },
   },
-  methods: {
-    onResize() {
-      const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    },
-  },
+  methods: {},
 };
 </script>
   

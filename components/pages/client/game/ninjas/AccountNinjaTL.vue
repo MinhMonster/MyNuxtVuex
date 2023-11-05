@@ -209,9 +209,12 @@ export default {
   // font-size: 11px;
   font-weight: 700;
   span {
-    padding: 1.5% 5px;
-    // height: 100% !important;
+    padding:0 5px;
+    height: 100% !important;
+    line-height: 100%;
     border-radius: 3px;
+    display: flex;
+    align-items: center;
   }
 }
 
