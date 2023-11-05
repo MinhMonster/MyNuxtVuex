@@ -3,7 +3,7 @@
     <div class="d-flex" align="center">
       <div>
         <v-card-title class="mgl--15px"
-          >Account: {{ format_number(count) }}
+          >Record: {{ format_number(count) }}
         </v-card-title>
       </div>
       <v-spacer />
@@ -131,10 +131,10 @@ export default {
           return _.get(
             state,
             this.store.module + "." + this.store.state + ".response.count",
-            []
+            0
           );
         }
-        return get(this.response, "count", []);
+        return get(this.response, "count", 0);
       },
       sum_value(state) {
         if (this.haveStore) {
@@ -142,10 +142,10 @@ export default {
           return _.get(
             state,
             this.store.module + "." + this.store.state + ".response.sum_value",
-            []
+            0
           );
         }
-        return get(this.response, "count", []);
+        return get(this.response, "sum_value", 0);
       },
       //   computed: {
       // ...mapFields("admin/histories/game_account_sold", {
@@ -215,6 +215,7 @@ export default {
     },
     async fetchActions() {
       try {
+        // await this.$store.dispatch(this.module + "/resetData", this.store.state);
         const { dataSearch, dataOrigin, dataRoute } =
           await this.$store.dispatch(
             this.module + "/convertDataSend",

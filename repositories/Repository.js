@@ -15,6 +15,7 @@ import adminGameNinjas from '~/repositories/admin/game/ninjas'
 import adminGameAvatars from '~/repositories/admin/game/avatars'
 import adminGameAccountSold from '~/repositories/admin/histories/game_account_sold'
 import adminBankDeposits from '~/repositories/admin/histories/bank_deposits'
+import adminSaleOffs from '~/repositories/admin/sale_offs'
 
 
 // Home Page
@@ -47,6 +48,7 @@ export default ($api) => ({
   adminGameAvatars: adminGameAvatars($api),
   adminGameAccountSold:adminGameAccountSold($api),
   adminBankDeposits: adminBankDeposits($api),
+  adminSaleOffs: adminSaleOffs($api),
 
 
   // Home Page

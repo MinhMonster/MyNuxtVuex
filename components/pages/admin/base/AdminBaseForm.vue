@@ -2,7 +2,7 @@
   <client-only v-if="dataForm">
     <form @submit.prevent="onUpdate()">
       <b-tabs class="tab-account">
-        <b-tab title="Info Account" class="tab-scroll scroll-y">
+        <b-tab title="Infomations" class="tab-scroll scroll-y">
           <BaseGroupForm
             :data-form="dataForm"
             :forms="stateForms"
@@ -287,7 +287,7 @@ img.image-account {
 }
 
 .tab-scroll {
-  height: calc(100vh - 294px);
+  height: calc(100vh - 385px);
 }
 .bg-account {
   margin: 0px;
