@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div v-if="accountNinja" class="fileItemWrapper">
+    <div v-if="accountNinja" class="image-card">
       <img
         v-if="accountNinja.hinhanh[0].includes('muabannick.pro')"
         :src="accountNinja.hinhanh[0]"
@@ -113,7 +113,7 @@
         class="account-cash-atm bg-none text-13-450"
       >
         <span class="bg-warning"> {{ "-" + accountNinja.saleOff + "% " }}</span>
-        <span class="bg-warning">
+        <span class="bg-danger text-white">
           {{
             " " +
             cash_atm(accountNinja.giatien * (1 - accountNinja.saleOff / 100))
@@ -154,7 +154,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.fileItemWrapper {
+.image-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -211,7 +211,7 @@ export default {
   span {
     padding: 1.5% 5px;
     // height: 100% !important;
-    border-radius: 5px;
+    border-radius: 3px;
   }
 }
 

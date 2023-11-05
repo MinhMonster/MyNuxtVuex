@@ -15,15 +15,17 @@
         Không tìm thấy Tài khoản nào!
       </h1>
     </div>
-    <v-btn
-      v-if="isShowNext && accountNinjas.length && !isLoading"
-      variant="danger"
-      class="btn-next-more flex mt-3 mb-1"
-      @click="onChange()"
-    >
-      <v-icon>mdi-skip-next</v-icon>
-      Xem Thêm Nick Ninja {{ type ? type : null }}
-    </v-btn>
+    <div class="btn-next-more">
+      <v-btn
+        v-if="isShowNext && accountNinjas.length && !isLoading"
+        variant="danger"
+        class="flex mt-3 mb-1"
+        @click="onChange()"
+      >
+        <v-icon>mdi-skip-next</v-icon>
+        Xem Thêm Nick Ninja {{ type ? type : null }}
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -83,8 +85,10 @@ export default {
 }
 .btn-next-more {
   color: #ffffff;
-  background: #a21d0a !important;
   text-align: center;
   margin: 0 auto;
+  button {
+    background: #a21d0a !important;
+  }
 }
 </style>

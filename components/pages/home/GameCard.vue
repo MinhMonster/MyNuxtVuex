@@ -1,5 +1,5 @@
 <template>
-  <b-col cols="6" sm="6" md="3" lg="3" @click="nextPath(game.path)">
+  <b-col cols="6" sm="3" md="3" lg="3" @click="nextPath(game.path)">
     <div class="account-info">
       <ImageCard :game="game" />
       <b-row class="account-body">
@@ -8,7 +8,7 @@
             {{ game.title }}</span
           ></b-col
         >
-        <b-col cols="6"
+        <!-- <b-col cols="6"
           ><span class="account-code"
             >Số Nick <br />{{ format_number(game.numberAccount) }}</span
           ></b-col
@@ -27,7 +27,7 @@
         >
         <b-col cols="6">
           <span class="account-buy"> Xem Nick</span>
-        </b-col>
+        </b-col> -->
       </b-row>
     </div>
   </b-col>
