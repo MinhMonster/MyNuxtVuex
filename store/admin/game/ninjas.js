@@ -162,11 +162,6 @@ const formNinja =
       value: 'sale_off'
     },
     {
-      title: "Sim",
-      type: "text",
-      value: 'sim'
-    },
-    {
       title: "Loại Nick",
       type: "select-options",
       options: typeNinjaOptions,
@@ -298,5 +293,10 @@ const formNinja =
       title: "Bánh",
       type: "text",
       value: 'cake'
-    }
+    },
+    {
+      title: "Sim",
+      type: "text",
+      value: 'sim'
+    },
   ]);

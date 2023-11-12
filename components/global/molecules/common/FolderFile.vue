@@ -81,14 +81,6 @@
               <v-icon class="dots-vertical" @click="editFolder(folder)"
                 >mdi-dots-vertical</v-icon
               >
-              <EditFolderModal
-                v-if="folderUpload == folder.folderPath"
-                :isShow="isShowEdit"
-                :folder="folder"
-                @closeModal="isShowEdit = false"
-                @change="newFolder"
-                @editNameFolder="isEdit = true"
-              ></EditFolderModal>
             </div>
           </div>
 
@@ -205,21 +197,30 @@
         </v-btn>
       </v-card-actions>
     </template>
+    <EditFolderModal
+      v-if="folderUpload == folderEdit.folderPath"
+      :isShow="isShowEdit"
+      :folder="folderEdit"
+      @closeModal="isShowEdit = false"
+      @change="newFolder"
+      @editNameFolder="isEdit = true"
+    ></EditFolderModal>
 
-    <NewFolderModal
+    <UpdateNameFolderModal
       v-if="isShow"
       :isShow="isShow"
       :label="`New Folder`"
       @closeModal="isShow = false"
       @change="newFolder"
-    ></NewFolderModal>
-    <EditNameFolderModal
+    ></UpdateNameFolderModal>
+    <UpdateNameFolderModal
       v-if="isEdit"
       :isShow="isEdit"
-      :folder="folderEdit"
+      :folder-name="folderEdit.folderName"
+      :label="`Update Name: ${folderEdit.folderName}`"
       @closeModal="isEdit = false"
       @change="updateNameFolder"
-    ></EditNameFolderModal>
+    ></UpdateNameFolderModal>
   </b-card>
 </template>
 
@@ -227,21 +228,18 @@
 import { mapFields } from "vuex-map-fields";
 
 import mixins from "@/mixins/index";
-// import { createNamespacedHelpers } from "vuex";
-// const { mapActions, mapState } = createNamespacedHelpers("global");
 import { mapActions } from "vuex";
 
-import NewFolderModal from "@/components/global/molecules/common/NewFolderModal.vue";
 import EditFolderModal from "@/components/global/molecules/common/EditFolderModal.vue";
-import EditNameFolderModal from "@/components/global/molecules/common/EditNameFolderModal.vue";
+
+import UpdateNameFolderModal from "@/components/global/molecules/common/upload/UpdateNameFolderModal";
 
 let WidgetCount = 0;
 export default {
   mixins: [mixins],
   components: {
-    NewFolderModal,
+    UpdateNameFolderModal,
     EditFolderModal,
-    EditNameFolderModal,
   },
   props: {
     activated: {

@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" v-if="isShow">
     <v-card class="modal-folder">
-      <v-card-title>Change Name: {{ folder.folderName }}</v-card-title>
+      <v-card-title>{{ label }}</v-card-title>
       <v-divider></v-divider>
       <v-card-text>
         <form ref="form" @submit.stop.prevent="change()">
@@ -46,16 +46,18 @@ export default {
       type: Boolean,
       default: false,
     },
-    folder: Object,
-    default: {},
+    folderName: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
       name: "",
     };
   },
-  mounted() {
-    this.name = _.cloneDeep(this.folder.folderName);
+  mounted(){
+    this.name = _.cloneDeep(this.folderName);
   },
   methods: {
     closeModal() {
@@ -71,11 +73,12 @@ export default {
 <style scoped>
 .modal-folder {
   top: 30%;
-  height: 270px;
-  max-height: 270px;
+  /* height: 270px; */
+  /* max-height: 270px; */
   min-height: 270px !important;
   width: 500px;
-  max-width: calc(100% - 40px);
+  max-width: calc(100% - 50px); 
+
   position: fixed;
   z-index: 2;
 }

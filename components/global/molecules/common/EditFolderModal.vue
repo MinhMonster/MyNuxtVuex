@@ -63,14 +63,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .modal-folder {
-  position: absolute;
-  margin-top: -35px;
-  height: 230px;
-  max-height: 230px;
-  min-height: 230px !important;
-  width: 200px;
-  left: 250px;
-  /* position: fixed; */
+  top: 30%;
+  /* height: 270px; */
+  /* max-height: 270px; */
+  min-height: 270px !important;
+  width: 300px;
+  max-width: calc(100% - 50px);
+
+  position: fixed;
   z-index: 2;
   .v-card__text {
     font-size: 15px;
@@ -110,5 +110,6 @@ button.btn-delete {
   height: 20px;
   font-size: 10px;
   padding: 1px;
+  color: #fff;
 }
 </style>

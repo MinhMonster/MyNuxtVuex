@@ -163,16 +163,16 @@ export default {
             }
           }
         }
-        .modal-folder {
-          margin-top: -35px;
-          height: 230px;
-          max-height: 230px;
-          min-height: 230px !important;
-          width: 80%;
-          left: 10%;
-          /* position: fixed; */
-          z-index: 2;
-        }
+        // .modal-folder {
+        //   margin-top: -35px;
+        //   height: 230px;
+        //   max-height: 230px;
+        //   min-height: 230px !important;
+        //   width: 80%;
+        //   left: 10%;
+        //   /* position: fixed; */
+        //   z-index: 2;
+        // }
       }
     }
   }
