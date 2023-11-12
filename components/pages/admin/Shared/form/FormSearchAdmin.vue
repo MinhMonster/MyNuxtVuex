@@ -125,7 +125,7 @@ export default {
           data: this.stateQuery,
         });
         dispatch(this.module + "/resetDataPage", this.store.state);
-        this.$emit("search")
+        this.$emit("search");
         // dispatch(this.module + "/" + this.store.action);
         this.$nextTick(() => {
           this.searched = true;
@@ -188,6 +188,7 @@ export default {
 .form-search-admin {
   background: #fff;
   border-radius: 0px;
+  padding: 0;
   // margin: -6px;
   .v-text-field {
     padding-top: 0px;

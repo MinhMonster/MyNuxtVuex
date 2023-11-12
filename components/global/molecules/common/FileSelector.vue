@@ -9,28 +9,25 @@
       @change="onFileChange"
     />
 
-    
-
-    <div  class="fileList">
+    <div class="fileList">
       <div
-      v-if="preview.length == 0 || multiple"
-      ref="upload"
-      class="dropzone middle"
-      :class="{'full-zone' : preview.length == 0}"
+        v-if="preview.length == 0 || multiple"
+        ref="upload"
+        class="dropzone middle"
+        :class="{ 'full-zone': preview.length == 0 }"
+        @click="browseFiles"
+        @dragover="dragover"
+        @dragleave="dragleave"
+        @drop="drop"
+      >
+        <div class="dz-message">
+          <div class="">
+            <i class="display-4 text-muted mdi mdi-playlist-plus"></i>
+          </div>
 
-      @click="browseFiles"
-      @dragover="dragover"
-      @dragleave="dragleave"
-      @drop="drop"
-    >
-      <div class="dz-message">
-        <div class="">
-          <i class="display-4 text-muted mdi mdi-playlist-plus"></i>
+          <!-- <h4>{{ label }}</h4> -->
         </div>
-
-        <!-- <h4>{{ label }}</h4> -->
       </div>
-    </div>
       <div v-for="(file, index) in preview" :key="index" class="fileItem">
         <div class="fileItemWrapper">
           <b-button
@@ -48,7 +45,9 @@
           </div>
           <div class="fileDescription">
             <div class="fileName line-clamp-2">{{ file.fileName }}</div>
-            <div class="fileType">{{ file.type }} - {{ fileSizeFilter(file.byteSize) }}</div>
+            <div class="fileType">
+              {{ file.type }} - {{ fileSizeFilter(file.byteSize) }}
+            </div>
           </div>
         </div>
       </div>
@@ -56,16 +55,13 @@
     </div>
 
     <template v-if="!autoupload" #footer>
-      <div class="text-right">
-        <b-button variant="danger" @click="removeAll">
-          <i class="mdi mdi-close-box-multiple"></i>
-          Clear
-        </b-button>
-        <b-button variant="primary" @click="uploadFiles">
-          <i class="mdi mdi-cloud-upload"></i>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="red" variant="danger" @click="removeAll"> Clear </v-btn>
+        <v-btn color="primary" variant="primary" @click="uploadFiles">
           Upload
-        </b-button>
-      </div>
+        </v-btn>
+      </v-card-actions>
     </template>
   </b-card>
 </template>
@@ -161,7 +157,6 @@ export default {
     async onFileChange({ target }) {
       if (target.files.length === 0) return;
 
-      
       if (this.autoupload) {
         this.files = Array.from(target.files);
         this.uploadFiles();
@@ -201,7 +196,6 @@ export default {
           };
           reader.readAsDataURL(file);
         } else {
-
           this.preview.push({
             byteSize: file.size,
             fileName: file.name,
@@ -261,6 +255,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.group-button {
+  display: flex;
+  gap: 10px;
+}
 .fileList {
   display: flex;
   flex-wrap: wrap;
@@ -345,20 +343,21 @@ export default {
 }
 
 @media (min-width: 400px) {
-  .fileItem, .dropzone {
+  .fileItem,
+  .dropzone {
     width: 100%;
   }
 }
 @media (min-width: 675px) {
-  .fileItem, .dropzone {
+  .fileItem,
+  .dropzone {
     width: 50%;
   }
 }
-@media (min-width:960px) {
-
-.fileItem, .dropzone {
-  width: 33.33%;
+@media (min-width: 960px) {
+  .fileItem,
+  .dropzone {
+    width: 33.33%;
+  }
 }
-}
-
 </style>

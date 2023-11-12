@@ -185,16 +185,25 @@
     </div>
 
     <template v-if="!autoupload && preview.length" #footer>
-      <div class="text-right">
-        <b-button variant="danger" @click="removeAll">
-          <i class="mdi mdi-close-box-multiple"></i>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="red"
+          variant="danger"
+          class="text-white"
+          @click="removeAll"
+        >
           Clear
-        </b-button>
-        <b-button variant="primary" @click="uploadFiles">
-          <i class="mdi mdi-cloud-upload"></i>
+        </v-btn>
+        <v-btn
+          color="primary"
+          variant="primary"
+          class="text-white"
+          @click="uploadFiles"
+        >
           Upload
-        </b-button>
-      </div>
+        </v-btn>
+      </v-card-actions>
     </template>
 
     <NewFolderModal
@@ -639,6 +648,7 @@ export default {
         border-radius: 5px;
         padding: 5px;
         height: 100%;
+        color: #fff;
 
         &.active {
           border: 2px solid #2196f3 !important;
@@ -732,9 +742,10 @@ export default {
   height: 50px;
   padding: 7.5px;
   background: #fafafa;
+  color: #495057 !important;
 }
 .card-folder .theme--light.v-btn {
-  color: #495057 !important;
+  // color: #fff !important;
 }
 
 .v-btn--is-elevated {

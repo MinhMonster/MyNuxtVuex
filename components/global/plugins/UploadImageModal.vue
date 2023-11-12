@@ -134,6 +134,10 @@ export default {
 ::v-deep {
   .v-dialog {
     margin: 5px;
+    background: #fff;
+    .v-sheet.v-card:not(.v-sheet--outlined) {
+      box-shadow: none;
+    }
     @media (max-width: 675px) {
       height: 85vh;
       max-height: 85vh;

@@ -66,8 +66,8 @@ export default {
 <style scoped>
 .modal-folder {
   top: 30%;
-  height: 270px;
-  max-height: 270px;
+  /* height: 270px; */
+  /* max-height: 270px; */
   min-height: 270px !important;
   width: 500px;
   max-width: calc(100% - 20px);
