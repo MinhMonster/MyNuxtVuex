@@ -3,15 +3,18 @@
     <v-card class="modal-folder">
       <v-card-title>{{ folder.folderName }}</v-card-title>
       <v-divider></v-divider>
-      <v-card-text @click="$emit('editNameFolder'), closeModal()">
+      <v-card-text
+        class="pointer"
+        @click="$emit('editNameFolder'), closeModal()"
+      >
         <v-icon color="blue">mdi-lead-pencil</v-icon>
-        Edit
+        Edit Name
       </v-card-text>
-      <v-card-text>
+      <v-card-text class="pointer">
         <v-icon color="red">mdi-delete-sweep</v-icon>
-        Delete
+        Delete  Folder
       </v-card-text>
-      <v-card-text>
+      <v-card-text class="pointer">
         <v-icon color="red">mdi-folder-remove</v-icon>
         Reset All File
       </v-card-text>
