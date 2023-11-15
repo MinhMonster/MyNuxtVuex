@@ -84,9 +84,9 @@ export default {
     "vue2-editor/nuxt",
     // "nuxt-sweetalert2",
     "@nuxtjs/toast",
-    "vue-sweetalert2/nuxt"
+    "vue-sweetalert2/nuxt",
     // 'nuxt-validate'
-
+    '@nuxtjs/sitemap'
   ],
 
   nuxtValidate: {
