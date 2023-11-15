@@ -3,6 +3,7 @@
     <div v-if="game" class="image-card">
       <img
         v-if="game.image"
+        preload
         :src="game.image"
         alt=""
         class="image-ninja"
