@@ -77,6 +77,10 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
+        {
+          property: "og:image",
+          content: this.imagenHead ? this.imagenHead : "/banner.jfif",
+        },
       ],
     };
   },

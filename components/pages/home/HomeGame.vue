@@ -65,6 +65,13 @@ export default {
           sold: "69",
         },
         {
+          title: "Đai Tây Du - G4M",
+          path: "/g4m/dai-tay-du",
+          image: "https://muabannick.pro/images/banner/dai-tay-du-g4m.png",
+          numberAccount: "90",
+          sold: "69",
+        },
+        {
           title: "Ngọc Rồng Online",
           path: "/teamobi/ngoc-rong",
           image: "https://muabannick.pro//images/banner/mua-nick-ngoc-rong.gif",

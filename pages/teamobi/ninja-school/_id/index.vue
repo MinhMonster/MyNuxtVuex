@@ -1,12 +1,6 @@
 <template>
   <client-only>
-    <HomePage
-      :loading="!ready"
-      goBack
-      reload
-      @reload="fetchAccount()"
-      table
-    >
+    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
       <template v-if="accountNinja && accountNinja.ID && ready" #body>
         <AccountNinjaDetail :account-ninja="accountNinja"></AccountNinjaDetail>
       </template>
@@ -60,9 +54,12 @@ export default {
         this.accountId
       )} - Nick Ninja School Online - MuaBanNick.Pro`;
     },
+    imagenHead() {
+      return _.get(this.accountNinja, "hinhanh[0]", "/banner.jfif");
+    },
   },
-  mounted() {
-    this.fetchAccount();
+  async mounted() {
+    await this.fetchAccount();
   },
   methods: {
     ...mapActions("home/game/ninjas", [
@@ -104,6 +101,10 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
+        {
+          property: "og:image",
+          content: this.imagenHead,
+        },
       ],
     };
   },
