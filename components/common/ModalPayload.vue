@@ -55,6 +55,7 @@ export default {
       this.$refs.modal.show();
     },
     close() {
+      this.$refs.modal.hide();
       this.$emit("hide");
     },
   },

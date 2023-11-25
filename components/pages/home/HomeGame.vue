@@ -11,11 +11,25 @@
       ></GameCard>
     </b-row>
 
-    <ModalPayload ref="modal" :title="`Thông Báo`" size="md">
+    <ModalPayload
+      v-if="isNotification"
+      ref="modal"
+      :title="`Thông Báo`"
+      size="md"
+    >
       <template #content>
         <div class="page-body">
           <AdminNotification />
         </div>
+      </template>
+      <template #footer-button>
+        <b-button
+          size="sm"
+          variant="warning"
+          @click="setNotification(), $refs.modal.close()"
+        >
+          <span>Đóng 2 giờ</span>
+        </b-button>
       </template>
     </ModalPayload>
   </div>
@@ -28,6 +42,9 @@ import ModalPayload from "@/components/common/ModalPayload";
 import AdminNotification from "@/components/pages/home/AdminNotification";
 
 import Loading from "@/components/global/molecules/common/Loading";
+
+import { mapFields } from "vuex-map-fields";
+import { mapState, mapActions } from "vuex";
 export default {
   name: "AccountNinjaList",
   mixins: [mixins],
@@ -43,7 +60,7 @@ export default {
     return {
       isLoading: false,
       gameList: [
-      {
+        {
           title: "Nick Ninja VIP",
           path: "/teamobi/ninja-school/nick-vip",
           image: "https://muabannick.pro/images/banner/mua-nick-ninja.gif",
@@ -82,14 +99,22 @@ export default {
     };
   },
   async mounted() {
-    this.$refs.modal.show();
+    await this.getNotification();
+    if (this.isNotification) {
+      this.$refs.modal.show();
+    }
   },
   computed: {
     nextPath(path) {
       this.$router.push(`${path}`);
     },
+    ...mapFields("global", {
+      isNotification: "isNotification",
+    }),
   },
-  methods: {},
+  methods: {
+    ...mapActions("global", ["setNotification", "getNotification"]),
+  },
 };
 </script>
 
