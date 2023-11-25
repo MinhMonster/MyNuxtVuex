@@ -689,3 +689,10 @@ figure.image {
     }
   }
 }
+
+.btn-next-more {
+  .v-btn:not(.v-btn--round).v-size--default {
+    text-align: center;
+    margin: 0 auto;
+  }
+}

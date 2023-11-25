@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div v-if="isLoading" class="center mgt--50px mgb--50px">
-      <Loading></Loading>
-    </div>
     <b-row class="text-center account">
       <GameCard
         v-for="(game, index) in gameList"
@@ -41,15 +38,13 @@ import GameCard from "@/components/pages/home/GameCard";
 import ModalPayload from "@/components/common/ModalPayload";
 import AdminNotification from "@/components/pages/home/AdminNotification";
 
-import Loading from "@/components/global/molecules/common/Loading";
-
 import { mapFields } from "vuex-map-fields";
 import { mapState, mapActions } from "vuex";
 export default {
   name: "AccountNinjaList",
   mixins: [mixins],
 
-  components: { GameCard, Loading, ModalPayload, AdminNotification },
+  components: { GameCard, ModalPayload, AdminNotification },
   props: {
     query: {
       type: Object,
@@ -58,7 +53,6 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
       gameList: [
         {
           title: "Nick Ninja VIP",
