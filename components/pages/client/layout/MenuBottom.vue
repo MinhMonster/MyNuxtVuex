@@ -25,6 +25,7 @@
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
       <ModalDeposit />
+      <!-- <ModalSetting/> -->
       <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
           <v-btn icon class="icon-menu">
@@ -41,6 +42,7 @@
 import { mapFields } from "vuex-map-fields";
 import ModalGame from "@/components/pages/client/layout/ModalGame";
 import ModalDeposit from "@/components/pages/client/layout/ModalDeposit";
+import ModalSetting from "@/components/pages/client/layout/ModalSetting";
 
 import mixins from "@/mixins/index";
 export default {
@@ -48,6 +50,7 @@ export default {
   components: {
     ModalGame,
     ModalDeposit,
+    ModalSetting
   },
   props: {},
   data() {

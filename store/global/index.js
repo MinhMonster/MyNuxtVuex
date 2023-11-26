@@ -46,15 +46,20 @@ export default {
       );
     },
     // save isNotification in 2h
-    setNotification(){
+    setNotification({ commit, dispatch }, payload) {
       const expiresDate = new Date();
       expiresDate.setHours(expiresDate.getHours() + 2);
-      window.localStorage.setItem('isNotification', expiresDate.getTime());
+      if (payload) {
+        window.localStorage.removeItem('isNotification');
+      } else {
+        window.localStorage.setItem('isNotification', expiresDate.getTime());
+      }
+      dispatch("getNotification");
     },
-    getNotification({commit}){
+    getNotification({ commit }) {
       const isNotification = window.localStorage.getItem('isNotification');
       const expiresDate = new Date();
-      if(isNotification && expiresDate.getTime() < isNotification ) {
+      if (isNotification && expiresDate.getTime() < isNotification) {
         commit(SET_STATE, { isNotification: false });
       } else {
         commit(SET_STATE, { isNotification: true });

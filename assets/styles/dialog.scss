@@ -1,0 +1,10 @@
+.v-dialog:not(.v-dialog--fullscreen) {
+  max-height: 80% !important;
+
+  
+}
+.v-dialog__content {
+  &.v-dialog__content--active {
+    z-index: 1000 !important;
+  }
+}
