@@ -1,8 +1,184 @@
+.v-overlay {
+  &.v-overlay--active {
+    .v-overlay__scrim {
+      opacity: 0.7 !important;
+    }
+  }
+
+}
+
+.v-dialog {
+  &.v-dialog--active {
+    overflow: visible;
+  }
+
+  .v-card__title.title-modal {
+    color: #663019;
+    border-left: 2px solid #663019;
+    border-right: 2px solid #663019;
+    // background: #e28637 url(https://muabannick.pro/images/header/bg_top.png)
+    //   repeat-x;
+    background-image: linear-gradient(180deg, #663019, #e28637 9%, #e28637 58%, #e28637);
+
+    border-bottom: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .v-card {
+    .v-card__text {
+      position: relative;
+      border: 2px solid #561d00;
+      background: #ffcf9c;
+      padding: 10px !important;
+    }
+  }
+
+.v-card.v-sheet.theme--dark {
+  border: 1px solid #a4a4a4;
+  /* border: 1px solid rgba(255, 255, 255, 0.12); */
+}
+
+/* .v-card.v-sheet.theme--dark {
+  background: #fff !important;
+} */
+
+
+.v-dialog > .v-card > .v-card__actions {
+  border: 2px solid #663019;
+  background: #e28637;
+  border-top: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  justify-content: end;
+  align-content: flex-end;
+}
+
+.base-dialog {
+  position: relative;
+  // top: 50px;
+  left: 0;
+  // width: 50px;
+  z-index: 10;
+  height: 100%;
+
+  min-height: calc(100% - 120px);
+
+  overflow: hidden;
+  padding: 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  // background: linear-gradient(180deg, #e28637, #9f5424 12%, #561d00);
+  // background: #9f5424;
+
+  .base-dialog-icon {
+    img {
+      border-radius: 50%;
+      height: 35px;
+      width: 35px;
+      margin-right: 10px;
+    }
+
+    .v-btn--icon.v-size--default i {
+      height: 30px;
+      width: 30px;
+      line-height: 30px;
+      font-size: 30px;
+    }
+  }
+  .base-dialog-name {
+    font-size: 14px;
+    color: #663019;
+  }
+  .base-dialog-list {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding-left: 10px !important;
+    // margin-bottom: 70px;
+  }
+  .base-dialog-item {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    // margin-bottom: 20px;
+    height: 50px;
+  }
+}
+.base-dialog .base-dialog-bg {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  min-height: calc(100% - 120px);
+  align-items: center;
+  text-align: center;
+}
+
+.base-dialog .base-dialog-bg::-webkit-scrollbar-thumb {
+  background: #999999 !important;
+  border-radius: 10px !important;
+}
+.base-dialog .base-dialog-bg::-webkit-scrollbar-track {
+  background: #555555;
+  border-radius: 10px;
+}
+.base-dialog .base-dialog-bg::-webkit-scrollbar {
+  width: 0px;
+  direction: ltr;
+}
+}
+
 .v-dialog:not(.v-dialog--fullscreen) {
   max-height: 80% !important;
 
-  
+  .close {
+
+    position: absolute;
+    display: flex !important;
+    color: var(--danger);
+    // margin-top: 10px;
+    // margin-right: 10px;
+    align-items: center !important;
+    justify-content: center !important;
+    -ms-flex-pack: center !important;
+    text-decoration: none;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    right: -7px;
+    top: -7px;
+    position: absolute;
+    background: #ffcf9c;
+    border: 2px solid #561d00;
+    z-index: 2;
+    opacity: 1 !important;
+    font-size: 23px;
+    padding: 0px;
+    // margin: -11px -11px -11px auto;
+    z-index: 1001;
+
+    &.v-btn--icon.v-size--default .v-icon {
+      height: 24px;
+      font-size: 18px;
+      width: 24px;
+      font-weight: 800;
+    }
+  }
+
+  .red--text {
+    color: red !important;
+    caret-color: red !important;
+  }
+
 }
+
 .v-dialog__content {
   &.v-dialog__content--active {
     z-index: 1000 !important;

@@ -1,5 +1,5 @@
 <template>
-  <v-app :class="{ 'theme-avatar': isAvatar }">
+  <v-app :class="{ 'theme-avatar': isAvatar, 'theme-dark': isThemeDark }">
     <HeaderHome></HeaderHome>
     <!-- <MenuGameHome v-if="isMenuGame"></MenuGameHome>
     <v-btn
@@ -38,6 +38,7 @@
 import HeaderHome from "@/components/pages/client/layout/HeaderHome";
 import MenuGameHome from "@/components/pages/client/layout/MenuGameHome";
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
+import { mapFields } from "vuex-map-fields";
 
 import { mapState, mapActions } from "vuex";
 
@@ -62,6 +63,7 @@ export default {
   },
   computed: {
     ...mapState("home/users", ["token"]),
+    ...mapFields("global", { isThemeDark: "isThemeDark" }),
 
     styleMain() {
       if (!this.isMenuGame) {

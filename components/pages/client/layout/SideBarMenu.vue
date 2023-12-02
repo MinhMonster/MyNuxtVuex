@@ -200,7 +200,7 @@ export default {
   }
 }
 .rightbar-content .user-info-wrap .user-info .member {
-  font-size: 30px;
+  font-size: 20px;
   // font-weight: 700;
   color: #fff;
   text-align: center;

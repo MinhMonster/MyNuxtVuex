@@ -10,7 +10,8 @@ export default {
     screenMobile: true,
     oldPath: "/",
     nowPath: "/",
-    isNotification: true
+    isNotification: true,
+    isThemeDark: false
   }),
   getters: {
     getField,
@@ -45,6 +46,10 @@ export default {
         payload
       );
     },
+    // setThemeDark({ commit, dispatch }) {
+    //   const isThemeDark = state.isThemeDark;
+    //   commit(SET_STATE, { isThemeDark: !isThemeDark });
+    // },
     // save isNotification in 2h
     setNotification({ commit, dispatch }, payload) {
       const expiresDate = new Date();

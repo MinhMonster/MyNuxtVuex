@@ -72,7 +72,7 @@ export default {
   padding: 0 0.22rem;
   position: fixed;
   left: 0;
-  top: 0;
+  top: 0; 
   z-index: 1000;
   /* background: radial-gradient(
     circle at 50% 100%,
@@ -86,6 +86,8 @@ export default {
     #9f5424 58%,
     #561d00 127%
   );
+  // background-image: linear-gradient(180deg, #561d00, #9f5424 9%, #e28637 58%, #e28637) !important;
+
 }
 .home-header .header-user {
   width: 100%;

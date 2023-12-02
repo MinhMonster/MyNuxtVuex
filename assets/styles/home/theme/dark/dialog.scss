@@ -1,0 +1,69 @@
+.v-application.theme-dark {
+  .v-dialog {
+    .v-card__title.title-modal {
+      color: #f1f1f1 !important;
+      border-left: 1px solid #a4a4a4;
+      border-right: 1px solid #a4a4a4;
+      background-image: linear-gradient(180deg, #a4a4a4, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+      background: none;
+
+      // &.text-menu-main {
+      //   color: #f1f1f1 !important;
+      // }
+    }
+
+    .v-card {
+      .v-card__actions[data-v-1663a32c] {
+        border: 1px solid #a4a4a4;
+        background: #0F0F0F;
+
+
+      }
+
+      .v-card__text {
+        border: 1px solid #a4a4a4;
+        background: #424040;
+      }
+
+      .close {
+        color: #f1f1f1;
+        background: #424040;
+        border: 1px solid #a4a4a4;
+      }
+
+      .red--text {
+        color: #f1f1f1 !important;
+        caret-color: #f1f1f1 !important;
+      }
+      .base-diglog-item{
+        color: #f1f1f1;
+      }
+    }
+
+    .v-input--selection-controls {
+      margin-top: 0px;
+
+      label {
+        margin-bottom: 0px !important;
+      }
+
+      .main--text {
+        color: #f1f1f1 !important;
+        caret-color: #f1f1f1 !important;
+      }
+    }
+
+    &.main--text {
+      color: #a4a4a4;
+    }
+
+    .text-main {
+      color: #f1f1f1 !important;
+    }
+  }
+
+  
+
+
+
+}

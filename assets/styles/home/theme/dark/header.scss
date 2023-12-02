@@ -1,0 +1,318 @@
+.theme-dark {
+  .home-header {
+    .header-content {
+      background: radial-gradient(circle at 50% 100%, #424040, #0F0F0F 58%, #0F0F0F 127%) !important;
+    }
+  }
+
+  .page-body {
+    color: #f1f1f1;
+    background: #222;
+    border: 1px solid #a4a4a4 !important;
+  }
+
+  .bg-website {
+    .btn-next-more button {
+      background: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+      // background: none !important; 
+      // border: 1px solid #a4a4a4 !important;
+      color: #f1f1f1;
+
+      &:hover {
+        background-image: linear-gradient(180deg,
+            #111,
+            #111 9%,
+            #424040 58%,
+            #424040) !important;
+      }
+    }
+
+    background: #0F0F0F !important;
+
+    .v-main__wrap {
+      .container.client-main {
+        background: #424040;
+      }
+
+      #home-page {
+        .title {
+          color: #f1f1f1 !important;
+        }
+
+        .page-body {
+          background: #222;
+          border: 1px solid #a4a4a4 !important;
+        }
+
+        .form-search {
+
+          background: none;
+
+          form {
+            background: #0F0F0FE6;
+
+            .field {
+              select {
+                border: 1px solid #a4a4a4 !important;
+              }
+
+              input.v-input {
+                border: 1px solid #a4a4a4;
+                color: #333 !important;
+              }
+            }
+
+            .btn-success.btn-search {
+              color: #333 !important;
+              border: 1px solid #f1f1f1 !important;
+              background-image: linear-gradient(180deg, #f1f1f1, #a4a4a4 9%, #f1f1f1 58%, #f1f1f1) !important;
+
+              &:hover {
+                color: #333;
+                background-image: linear-gradient(180deg,
+                    #f1f1f1,
+                    #f1f1f1 9%,
+                    #a4a4a4 58%,
+                    #a4a4a4) !important;
+              }
+            }
+          }
+        }
+
+        .account-empty {
+          background: #0F0F0FE6;
+          border: 1px solid #a4a4a4 !important;
+
+          .text-danger {
+            color: #0F0F0F !important;
+          }
+        }
+      }
+    }
+  }
+
+  #menu-bottom {
+    background: linear-gradient(180deg, #424040, #0F0F0F 12%, #0F0F0F) !important;
+
+    .sub-menu-buttom {
+      color: #f1f1f1 !important;
+
+      .circle-menu {
+        background-color: #0F0F0F !important;
+
+        .icon-wrap {
+          background: radial-gradient(circle at 50% 15%, #424040, #0F0F0F 72%) !important;
+
+          .mdi.mdi-home {
+            color: #f1f1f1 !important;
+
+          }
+        }
+      }
+    }
+
+    .footer_icon button.icon-menu,
+    .title-menu-buttom {
+      color: #f1f1f1 !important;
+    }
+
+    // #menu-bottom a .footer_icon button.icon-menu
+
+  }
+
+  .login-btn {
+    background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F);
+  }
+
+  .go-back,
+  .reload,
+  .next-top,
+  .next-bottom {
+    .v-btn--icon.v-size--default {
+      background: radial-gradient(circle at 50% 100%, #424040, #0F0F0F 58%, #0F0F0F 127%) !important;
+    }
+  }
+
+  .account-search {
+    background: #0F0F0FE6 !important;
+    border: 1px solid #a4a4a4 !important;
+  }
+
+  .account {
+    .account-info {
+      background: #222 !important;
+      border: 1px solid #a4a4a4 !important;
+
+      .account-body {
+
+        .account-thongtin,
+        .account-cash {
+          background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F);
+          border: none !important;
+          color: #f1f1f1;
+        }
+
+        .account-code,
+        .account-server,
+        .account-class {
+          color: #f1f1f1;
+        }
+      }
+
+      .account-buy {
+        border: none !important;
+        color: #f1f1f1;
+        background-image: linear-gradient(180deg, #111, #111 9%, #333 58%, #424040) !important;
+
+        &:hover {
+          background-image: linear-gradient(180deg,
+              #424040,
+              #424040 9%,
+              #0F0F0F 58%,
+              #0F0F0F) !important;
+        }
+      }
+
+    }
+  }
+
+  .account-cash-atm,
+  .account-ingame,
+  .account-tl,
+  .account-clone,
+  .account-book,
+  .account-cake,
+  .account-yen,
+  .mounts-info,
+  .bg-danger {
+    background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+    // border: 1px solid #a4a4a4 !important;
+    color: #f1f1f1;
+  }
+
+  .bg-warning {
+    background-color: #0062cc !important;
+    color: #f1f1f1;
+  }
+
+  .table {
+    th.info-nick {
+      background: #0F0F0F;
+      color: #f1f1f1;
+      border: 1px solid #a4a4a4 !important;
+    }
+
+    td.mua-nick {
+      background: #424040;
+      color: #f1f1f1;
+      border: 1px solid #a4a4a4 !important;
+
+      span {
+        color: #f1f1f1;
+      }
+    }
+  }
+
+  .account-cash-atm,
+  .account-ingame {
+    background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+
+  }
+
+  .btn-buy-account {
+    background-image: linear-gradient(180deg, #111, #111 9%, #333 58%, #424040) !important;
+    color: #f1f1f1 !important;
+    border: none;
+
+    &:hover {
+      background-image: linear-gradient(180deg,
+          #424040,
+          #424040 9%,
+          #0F0F0F 58%,
+          #0F0F0F) !important;
+    }
+
+    .text-main {
+      color: #f1f1f1 !important;
+    }
+  }
+
+  .btn-buy-account-hover {
+    background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+
+    &:hover {
+      background-image: linear-gradient(180deg,
+          #0F0F0F,
+          #424040 9%,
+          #424040 58%,
+          #424040) !important;
+    }
+
+    border: none;
+  }
+
+  .title-category {
+    background: radial-gradient(circle at 50% 100%, #424040, #0F0F0F 58%, #0F0F0F 127%) !important;
+
+    .title {
+      color: #f1f1f1 !important;
+    }
+  }
+
+  .btn.active-btn {
+    color: #f1f1f1;
+    width: 100%;
+    border: 1px solid #0F0F0F;
+    background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+
+    &:hover {
+      color: #f1f1f1;
+      background-image: linear-gradient(180deg,
+          #0F0F0F,
+          #0F0F0F 9%,
+          #424040 58%,
+          #424040) !important;
+    }
+  }
+
+  .nuxt-link-exact-active {
+    .btn.active-btn {
+      color: #333 !important;
+      width: 100%;
+      border: 1px solid #f1f1f1 !important;
+      background-image: linear-gradient(180deg, #f1f1f1, #a4a4a4 9%, #f1f1f1 58%, #f1f1f1) !important;
+
+      &:hover {
+        color: #333;
+        background-image: linear-gradient(180deg,
+            #f1f1f1,
+            #f1f1f1 9%,
+            #a4a4a4 58%,
+            #a4a4a4) !important;
+      }
+    }
+  }
+
+  .sms {
+    color: #dc3545 !important;
+  }
+
+  #home-page .v-btn--icon.v-size--default .v-icon.mdi.mdi-content-copy {
+    color: #dc3545;
+  }
+
+  .text-danger,
+  .text-danger a,
+  .color-danger,
+  .color-danger a {
+    color: #dc3545 !important;
+  }
+  .text-main {
+    color: #f1f1f1 !important;
+}
+  .content-main {
+    color: #f1f1f1 !important;
+
+  }
+
+}

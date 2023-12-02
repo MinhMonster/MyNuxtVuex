@@ -1,0 +1,14 @@
+.theme-dark {
+  #home-page {
+    .topics {
+      .text-main {
+        color: #f1f1f1 !important;
+
+      }
+      ul.topics-list li:nth-of-type(odd) {
+        background: #424040 !important;
+      }
+    }
+
+  }
+}

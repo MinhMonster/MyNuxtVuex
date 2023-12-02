@@ -65,7 +65,8 @@
             <b-button
               type="submit"
               name="timkiem"
-              class="btn search-btn"
+              variant="info"
+              class="search-btn text-white"
               @click="search()"
             >
               <i class="fa fa-search"></i> Tìm kiếm
