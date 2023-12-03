@@ -7,6 +7,8 @@ import gameDragonBalls from '~/repositories/home/game/dragon_balls'
 import homeUsers from '~/repositories/home/users'
 import homeTopics from '~/repositories/home/topics'
 
+import clientDailyEvents from '~/repositories/home/events/daily'
+
 
 
 export default ($api) => ({
@@ -18,6 +20,6 @@ export default ($api) => ({
   homeUsers: homeUsers($api),
   homeTopics: homeTopics($api),
 
-
+  clientDailyEvents: clientDailyEvents($api),
 
 })

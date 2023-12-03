@@ -54,6 +54,14 @@ export default {
   data() {
     return {
       gameList: [
+      
+      {
+          title: "Sự kiện Hằng ngày",
+          path: "/events/daily",
+          image: "https://muabannick.pro/images/banner/minigame-banner-2.jpg",
+          numberAccount: "5245",
+          sold: "5144",
+        },
         {
           title: "Nick Ninja VIP",
           path: "/teamobi/ninja-school/nick-vip",

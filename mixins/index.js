@@ -151,6 +151,14 @@ export default {
     cash_atm(number) {
       return this.format_number(Math.round((number * 0.85) / 10000).toFixed(0) * 10000)
     },
+    formatTwoNumber(number) {
+      number = Number(number);
+      if (number < 10) {
+        return "0" + `${number}`;
+      } else {
+        return `${number}`;
+      }
+    },
     time_10(time) {
       if (time > 1000) {
         return time % 100;

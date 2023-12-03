@@ -11,6 +11,11 @@
       //   color: #f1f1f1 !important;
       // }
     }
+    .v-card__actions{
+      background: #0F0F0F;
+      border: 1px solid #a4a4a4;
+      border-top: none;
+    }
 
     .v-card {
       .v-card__actions[data-v-1663a32c] {
@@ -59,6 +64,18 @@
 
     .text-main {
       color: #f1f1f1 !important;
+    }
+    .list-number {
+      .number {  
+        .v-btn {
+          background: #0F0F0F;
+          color: #f1f1f1;
+          &.active {
+            background: #f1f1f1;
+            color: #0F0F0F;
+          }
+        }
+      }
     }
   }
 

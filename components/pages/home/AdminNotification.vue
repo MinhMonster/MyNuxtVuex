@@ -11,20 +11,20 @@
           <img src="/icon/icon-next-right.gif" /> Ninja School Online All Server
         </a>
       </p> -->
-      <p class="bold text-italic text-13-700">
+      <!-- <p class="bold text-italic text-13-700">
         <nuxt-link to="/teamobi/ninja-school" class="text-primary"
           >- Admin cập nhật Nick Mới hằng ngày
         </nuxt-link>
-      </p>
-      <!-- <p class="bold text-italic text-13-700">
-        <nuxt-link to="/teamobi/ninja-school" class="text-primary"
-          >- Admin đã Bổ sung thêm Shop Acc Avatar
-        </nuxt-link>
       </p> -->
       <p class="bold text-italic text-13-700">
+        <nuxt-link to="/events/daily" class="text-primary"
+          ><span class="text-danger">*</span>Tham gia Sự kiện hằng ngày <span class="text-danger">"Tại Đây"</span>
+        </nuxt-link>
+      </p>
+      <p class="bold text-italic text-13-700">
         <nuxt-link to="/admin-information" class="text-success">
-          <span class="text-danger">*</span> Giảm 10-20% tất cả Nick Trên Shop đến
-          01/12
+          <span class="text-danger">*</span> Giảm 20% tất cả Nick Trên Shop đến
+          09/12
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700 text-danger">

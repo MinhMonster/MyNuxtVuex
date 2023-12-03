@@ -33,6 +33,7 @@ $danger : #a21d0a;
   color: $danger  !important;
 
 }
+
 .text-menu-main {
   color: #ffcf9c !important;
 }
@@ -240,11 +241,7 @@ $danger : #a21d0a;
   margin-right: 0.2rem;
   box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 50%);
   /* background-image: linear-gradient(180deg,#8872c7,#6142bf 9%,#271170 58%,#4e23af); */
-  background-image: linear-gradient(180deg,
-      #e28637,
-      #9f5424 9%,
-      #561d00 58%,
-      #9f5424);
+
 
 }
 
@@ -266,8 +263,12 @@ $danger : #a21d0a;
   }
 }
 
-.btn.login-btn {
-  border: 1px solid #9f5424;
+.login-btn {
+  background-image: linear-gradient(180deg,
+      #e28637,
+      #9f5424 9%,
+      #561d00 58%,
+      #9f5424);
 
   &:hover {
     color: #fff;
@@ -276,6 +277,29 @@ $danger : #a21d0a;
         #9f5424 9%,
         #9f5424 58%,
         #561d00);
+  }
+}
+
+.btn,
+.v-btn {
+
+  &.login-btn,
+  &.btn-main {
+    border: 1px solid #9f5424;
+    background-image: linear-gradient(180deg,
+        #e28637,
+        #9f5424 9%,
+        #561d00 58%,
+        #9f5424);
+
+    &:hover {
+      color: #fff;
+      background-image: linear-gradient(180deg,
+          #e28637,
+          #9f5424 9%,
+          #9f5424 58%,
+          #561d00);
+    }
   }
 }
 
