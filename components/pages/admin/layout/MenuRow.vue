@@ -73,6 +73,11 @@ export default {
         },
         {
           icon: "mdi-image",
+          title: "Events",
+          to: "/admin/events/daily",
+        },
+        {
+          icon: "mdi-image",
           title: "Users",
           to: "/admin/users",
         },

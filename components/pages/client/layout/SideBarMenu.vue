@@ -107,7 +107,7 @@
             <template v-if="token && user && user.admin">
               <div class="h-line"></div>
               <div class="member-nav-item">
-                <a href="/admin/game/ninjas">
+                <a href="/admin/login">
                   <v-btn icon>
                     <v-icon>mdi-cog-outline</v-icon>
                   </v-btn>
