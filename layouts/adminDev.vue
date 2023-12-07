@@ -80,19 +80,18 @@ export default {
         this.onChangePath();
       },
     },
+    authenticated: {
+      handler(newValue, oldValue) {
+        this.checkLogin();
+      },
+    },
   },
   async mounted() {
-    if (!this.user || !this.user.admin) {
-      this.$router.push("/404");
-    } else if (this.authenticated === null || this.authenticated === false) {
-      this.$router.push("/admin/login");
-    } else {
-      const body = document.querySelector("body");
-      if (body.clientWidth > 1000) {
-        this.showMenuLeft = true;
-        this.showMenuRight = true;
-      }
-    }
+    // if (!this.user || !this.user.admin) {
+    //   this.$router.push("/404");
+    // } else
+
+    await this.checkLogin();
 
     this.$nextTick(function () {
       this.onChangePath();
@@ -103,8 +102,18 @@ export default {
   methods: {
     onChangePath() {
       if (this.is_game) {
+        const body = document.querySelector("body");
+        if (body.clientWidth > 1000) {
+          this.showMenuLeft = true;
+          this.showMenuRight = true;
+        }
         this.showMenuLeft = false;
         this.showMenuRight = false;
+      }
+    },
+    checkLogin() {
+      if (!this.authenticated) {
+        this.$router.push("/admin/login");
       }
     },
   },
@@ -117,8 +126,6 @@ export default {
 };
 </script>
 <style >
-
-
 .bg-default {
   background: #f0f2f5;
   color: #333;

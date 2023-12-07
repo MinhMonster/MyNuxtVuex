@@ -16,12 +16,12 @@ export const enableResetStore = (store) => {
       dataFilter: (state) => (queryName) => {
         const stateFilter = state[queryName]
         const dataAccept = stateFilter.response
-        return dataAccept.data
+        return dataAccept ? dataAccept.data : []
       },
       metaFilter: (state) => (queryName) => {
         const stateFilter = state[queryName]
         const dataAccept = stateFilter.response
-        return dataAccept.meta
+        return dataAccept ? dataAccept.meta : {}
       }
     },
     actions: {
@@ -42,19 +42,21 @@ export const enableResetStore = (store) => {
         commit("SET_STATE", { stateName: params.stateName, data: params.data, query: params.query })
       },
       convertDataSend({ state }, stateName) {
-        const dataOrigin = _.cloneDeep(state[stateName])
+        const dataOrigin = _.cloneDeep(state[stateName] ?? [])
         const dataDefault = _.get(state, 'stateDefault.' + stateName, {})
         const dataSearch = {}
         const dataRoute = {}
         for (const dataKey in dataOrigin) {
-          const value = dataOrigin[dataKey].value
-          const valueEncode = dataOrigin[dataKey].value
-          if (valueEncode) {
-            dataSearch[dataKey] = valueEncode
-          }
-          if (!_.isEqual(value, dataDefault[dataKey].value)) {
-            dataRoute[dataKey] = valueEncode
-          }
+          if (dataOrigin[dataKey]) {
+            const value = dataOrigin[dataKey].value
+            const valueEncode = dataOrigin[dataKey].value
+            if (valueEncode) {
+              dataSearch[dataKey] = valueEncode
+            }
+            if (!_.isEqual(value, dataDefault[dataKey].value)) {
+              dataRoute[dataKey] = valueEncode
+            }
+          };
         }
         return Promise.resolve({ dataSearch, dataOrigin, dataRoute })
       },

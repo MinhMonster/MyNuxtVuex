@@ -157,7 +157,7 @@ export default {
       //@ts-ignore
       return (
         Object.values(this.stateQuery).filter((item) => {
-          return item.show;
+          return item ? item.show : false;
         }).length != 0
       );
     },

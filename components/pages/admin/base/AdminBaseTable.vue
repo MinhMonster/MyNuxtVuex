@@ -233,13 +233,15 @@ export default {
           data: dataOrigin,
           query: dataRoute,
         });
-      } catch (error) {}
+      } catch (error) {
+        // console.log("error", error);
+      }
     },
   },
   async created() {
-    if (!this.notImmediateFetch && !this.haveStore) {
-      this.fetchData(this.stateQuery.page.value);
-    }
+    // if (!this.notImmediateFetch && !this.haveStore) {
+    //   this.fetchData(this.stateQuery.page.value);
+    // }
     if (this.haveStore) {
       await this.$store.dispatch(this.module + "/passDataFromQuery", {
         stateName: this.store.state,

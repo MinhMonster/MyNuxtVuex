@@ -47,13 +47,11 @@
 
 <script>
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
-import FormSearch from "@/components/pages/admin/Shared/form/FormSearch";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 export default {
   layout: "adminDev",
   components: {
     NavAdmin,
-    FormSearch,
     AdminBaseTable,
   },
   name: "Ninjas",
