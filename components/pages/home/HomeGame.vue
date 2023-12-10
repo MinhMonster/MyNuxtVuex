@@ -1,12 +1,31 @@
 <template>
   <div>
-    <b-row class="text-center account">
-      <GameCard
-        v-for="(game, index) in gameList"
-        :key="index"
-        :game="game"
-      ></GameCard>
-    </b-row>
+    <v-row>
+      <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8">
+        <v-row style="margin: -15px">
+          <v-col cols="12">
+            <HomeSlider />
+          </v-col>
+        </v-row>
+        <div class="mt-3">
+          <div class="title text-center text-underline">DỊCH VỤ GAME</div>
+          <b-row class="text-center account mb-1">
+            <GameCard
+              v-for="(game, index) in gameList"
+              :key="index"
+              :game="game"
+            ></GameCard>
+          </b-row>
+        </div>
+      </v-col>
+
+      <v-col v-if="!isTablet" cols="12" :sm="isTablet ? 12 : 4" md="4" lg="4">
+        <div class="mt--1 home-user">
+          <template v-if="token"><SideBarMenu /></template>
+          <template v-else><FormLogin /></template>
+        </div>
+      </v-col>
+    </v-row>
 
     <ModalPayload
       v-if="isNotification"
@@ -37,6 +56,9 @@ import mixins from "@/mixins/index";
 import GameCard from "@/components/pages/home/GameCard";
 import ModalPayload from "@/components/common/ModalPayload";
 import AdminNotification from "@/components/pages/home/AdminNotification";
+import FormLogin from "@/components/pages/client/login/FormLogin";
+import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
+import HomeSlider from "@/components/pages/home/HomeSlider";
 
 import { mapFields } from "vuex-map-fields";
 import { mapState, mapActions } from "vuex";
@@ -44,7 +66,14 @@ export default {
   name: "AccountNinjaList",
   mixins: [mixins],
 
-  components: { GameCard, ModalPayload, AdminNotification },
+  components: {
+    GameCard,
+    ModalPayload,
+    AdminNotification,
+    FormLogin,
+    SideBarMenu,
+    HomeSlider,
+  },
   props: {
     query: {
       type: Object,
@@ -54,46 +83,45 @@ export default {
   data() {
     return {
       gameList: [
-      
-      {
+        {
           title: "Sự kiện Hằng ngày",
           path: "/events/daily",
-          image: "https://muabannick.pro/images/banner/minigame-banner-2.jpg",
+          image: "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
           numberAccount: "5245",
           sold: "5144",
         },
         {
           title: "Nick Ninja VIP",
           path: "/teamobi/ninja-school/nick-vip",
-          image: "https://muabannick.pro/images/banner/mua-nick-ninja.gif",
+          image: "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
           numberAccount: "5245",
           sold: "5144",
         },
         {
           title: "Nick Ninja Giá Rẻ",
           path: "/teamobi/ninja-school/nick-gia-re",
-          image: "https://muabannick.pro/images/banner/mua-nick-ninja.gif",
+          image: "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
           numberAccount: "7481",
           sold: "7185",
         },
         {
           title: "Avatar XS.DKỳ",
           path: "/teamobi/avatar",
-          image: "https://muabannick.pro/images/banner/mua-nick-avatar.jpg",
+          image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
           numberAccount: "90",
           sold: "69",
         },
         {
           title: "Đai Tây Du - G4M",
           path: "/g4m/dai-tay-du",
-          image: "https://muabannick.pro/images/banner/dai-tay-du-g4m.png",
+          image: "https://muabannick.pro/images/banners/banner_dai_tay_du_g4m_min.jpg",
           numberAccount: "90",
           sold: "69",
         },
         {
           title: "Ngọc Rồng Online",
           path: "/teamobi/ngoc-rong",
-          image: "https://muabannick.pro//images/banner/mua-nick-ngoc-rong.gif",
+          image: "https://muabannick.pro//images/banners/banner_nro_min.jpg",
           numberAccount: "515",
           sold: "438",
         },
@@ -105,8 +133,17 @@ export default {
     if (this.isNotification) {
       this.$refs.modal.show();
     }
+    this.$nextTick(function () {
+      this.onResize();
+    });
+    window.addEventListener("resize", this.onResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
   },
   computed: {
+    ...mapState("home/users", ["token", "user"]),
+
     nextPath(path) {
       this.$router.push(`${path}`);
     },

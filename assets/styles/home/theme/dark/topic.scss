@@ -1,10 +1,23 @@
 .theme-dark {
   #home-page {
+    .text-shadow {
+      text-shadow: #833cf7 0px 0px 2px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
+    }
+    .topic {
+      text-shadow: #833cf7 0px 0px 3px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
+
+      .title {
+        text-shadow: #833cf7 0px 0px 3px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
+      }
+    }
+
     .topics {
+      text-shadow: #833cf7 0px 0px 3px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
       .text-main {
-        color: #f1f1f1 !important;
+        color: #fff !important;
 
       }
+
       ul.topics-list li:nth-of-type(odd) {
         background: #424040 !important;
       }

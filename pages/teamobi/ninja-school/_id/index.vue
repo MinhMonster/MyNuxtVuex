@@ -55,7 +55,7 @@ export default {
       )} - Nick Ninja School Online - MuaBanNick.Pro`;
     },
     imagenHead() {
-      return _.get(this.accountNinja, "hinhanh[0]", "/banner.jfif");
+      return _.get(this.accountNinja, "hinhanh[0]", "/banner.jpg");
     },
   },
   async mounted() {

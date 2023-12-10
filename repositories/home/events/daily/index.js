@@ -9,7 +9,6 @@ export default ($api) => ({
     return $api.post(`${resource}/dailyVoted.php`, payload,)
   },
   fetchVotedDailyEventHistories(payload) {
-    console.log("api");
     return $api.get(`${resource}/fetchVotedDailyEventHistories.php`, { params: { input: payload.input } },)
   },
 })

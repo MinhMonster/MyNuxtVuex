@@ -51,7 +51,7 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
-        { property: 'og:image', content: '/banner.jfif' },
+        { property: 'og:image', content: '/banner.jpg' },
       ],
     };
   },

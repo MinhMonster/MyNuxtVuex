@@ -9,7 +9,7 @@
       @reload="reload()"
     >
       <template v-if="ready" #body>
-        <div class="container">
+        <div class="container text-shadow">
           <div class="c-content-title-1">
             <h2 class="c-font-uppercase c-font-bold text-center">
               Điều khoản sử dụng

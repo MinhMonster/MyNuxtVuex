@@ -1,21 +1,22 @@
 .theme-dark {
   button {
+
     &.btn-main {
       color: #f1f1f1 !important;
-      border: 1px solid #0F0F0F;
-      background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+      border: 1px solid #b549cc;
+      box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 1px 2px;
+      background-image: linear-gradient(139.4deg, #0F0F0F 25.38%, #a937ed 55.2%, #ac3be4 58.96%, #b549cc 54.97%, #a937ed 35.49%, #0F0F0F 81.5%, #0F0F0F 90.52%) !important;
+
+
+
       span {
         color: #f1f1f1 !important;
-
       }
 
       &:hover {
         color: #f1f1f1;
-        background-image: linear-gradient(180deg,
-            #0F0F0F,
-            #0F0F0F 9%,
-            #424040 58%,
-            #424040) !important;
+        opacity: 1 !important;
+        background-image: linear-gradient(219.4deg, #0F0F0F 25.38%, #a937ed 55.2%, #ac3be4 58.96%, #b549cc 54.97%, #a937ed 35.49%, #0F0F0F 81.5%, #0F0F0F 90.52%) !important;
       }
     }
   }

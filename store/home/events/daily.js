@@ -27,7 +27,6 @@ export default {
       } catch { }
     },
     async fetchVotedDailyEventHistories({ commit, state }) {
-      console.log("okok");
       try {
         const response = await this.$repositories.clientDailyEvents.fetchVotedDailyEventHistories({ input: state.query });
         commit(SET_STATE, { historyVotedDailyEvents: response.data.historyVotedDailyEvents, votedDaylyEvent:  response.data.voted});

@@ -110,10 +110,10 @@ export default {
       if (!this.isLogin) {
         this.$router.push("/login");
       } else {
-        this.$swal.fire(
-          "Bạn chưa đăng nhập",
-          "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!"
-        );
+        this.showSwal({
+          title: "Bạn chưa đăng nhập",
+          html: "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!"
+        });
       }
     },
     ...mapActions("global", [

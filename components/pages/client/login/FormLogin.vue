@@ -1,66 +1,50 @@
 <template>
-  <client-only>
-    <HomePage
-      :title="title"
-      full-screen
-      goBack
-      goHome
-      :loading="!ready"
-      reload
-      @reload="reload()"
-    >
-      <template v-if="!token" #body>
-        <form>
-          <div id="content"></div>
-          <div class="field">
-            <form-validator name="username">
-              <input
-                v-model="username"
-                type="text"
-                class="v-input"
-                placeholder="Tài Khoản"
-                @keyup.enter="loginUser()"
-              />
-            </form-validator>
-          </div>
-          <div id="sign-in-button"></div>
-          <div class="field">
-            <form-validator name="password">
-              <input
-                v-model="password"
-                type="password"
-                class="v-input"
-                placeholder="Mật khẩu"
-                @keyup.enter="loginUser()"
-              />
-            </form-validator>
-          </div>
-          <div class="content">
-            <div class="checkbox">
-              <input type="checkbox" id="remember" checked />
-              <label for="remember">Lưu đăng nhập</label>
-            </div>
-            <nuxt-link to="/register">Đăng Ký</nuxt-link>
-          </div>
-          <input type="hidden" id="confirm" name="confirm" />
-          <div class="field submit">
-            <b-button size="sm" class="btn-login" @click="loginUser()">
-              <Loading v-if="isLoading" button></Loading>
-              <span v-else> Đăng nhập </span>
-            </b-button>
-          </div>
-          <div class="signin">----------- Hoặc -----------</div>
-          <ButtonLoginFacebook />
-        </form>
-      </template>
-    </HomePage>
-  </client-only>
+  <form class="form-login">
+    <div id="content"></div>
+    <div class="field">
+      <form-validator name="username">
+        <input
+          v-model="username"
+          type="text"
+          class="v-input"
+          placeholder="Tài Khoản"
+          @keyup.enter="loginUser()"
+        />
+      </form-validator>
+    </div>
+    <div id="sign-in-button"></div>
+    <div class="field">
+      <form-validator name="password">
+        <input
+          v-model="password"
+          type="password"
+          class="v-input"
+          placeholder="Mật khẩu"
+          @keyup.enter="loginUser()"
+        />
+      </form-validator>
+    </div>
+    <div class="content">
+      <div class="checkbox">
+        <input type="checkbox" id="remember" checked />
+        <label for="remember">Lưu đăng nhập</label>
+      </div>
+      <nuxt-link to="/register">Đăng Ký</nuxt-link>
+    </div>
+    <input type="hidden" id="confirm" name="confirm" />
+    <div class="field submit">
+      <b-button size="sm" class="btn-login" @click="loginUser()">
+        <Loading v-if="isLoading" button></Loading>
+        <span v-else> Đăng nhập </span>
+      </b-button>
+    </div>
+    <div class="signin">----------- Hoặc -----------</div>
+    <ButtonLoginFacebook />
+  </form>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
-
-import HomePage from "@/components/pages/home/HomePage";
 
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
@@ -70,31 +54,23 @@ import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 
 export default {
-  layout: "clientLayout",
   data() {
     return {
       isLoading: false,
       username: "",
       password: "",
-      title: "Đăng Nhập",
     };
   },
-  components: { HomePage, Loading, FormValidator, ButtonLoginFacebook },
+  components: { Loading, FormValidator, ButtonLoginFacebook },
   computed: {
     ...mapState(["token"]),
     ...mapFields("global", {
       ready: "ready",
     }),
   },
-  mounted() {
-    if (this.token) {
-      this.$router.push("/account/profile");
-    } else {
-      this.reload();
-    }
-  },
+  mounted() {},
   methods: {
-    ...mapActions(["login", "logout", "loginFb"]),
+    ...mapActions(["login", "logout", "fetchUser", "loginFb"]),
     async loginUser() {
       this.isLoading = true;
       const res = await this.login({
@@ -104,31 +80,17 @@ export default {
         },
       });
       if (this.token) {
-        this.$router.push("/account/profile");
+        this.fetchUser();
       }
       this.isLoading = false;
     },
-    async reload() {
-      this.ready = false;
-      setTimeout(() => {
-        this.ready = true;
-      }, 200);
-    },
-  },
-  head() {
-    return {
-      title: this.title,
-      meta: [
-        { hid: "description", name: "description", content: this.title },
-        { property: "og:title", content: this.title },
-        { property: "og:description", content: this.title },
-        { property: 'og:image', content: '/banner.jpg' },
-      ],
-    };
   },
 };
 </script>
 <style lang="scss" scoped>
+.form-login {
+  height: calc(100vh - 140px);
+}
 ::v-depp {
   .has-error .validation {
     margin-top: 10px !important;
@@ -183,7 +145,7 @@ form {
       font-size: 17px;
       padding-left: 20px;
       border: 1px solid lightgrey;
-      border-radius: 20px;
+      border-radius: 4px;
       transition: all 0.3s ease;
       background: #fff;
       &.v-input {

@@ -9,13 +9,15 @@
       @reload="reload()"
     >
       <template v-if="ready" #body>
-        <div class="page-body no-border mt-4">
-          <AdminInformations />
+        <div class="admin-info">
+          <div class="page-body no-border mt-4">
+            <AdminInformations />
+          </div>
+          <div class="page-body no-border mt-4">
+            <AccountNumbeAdmin />
+          </div>
+          <GroupBtnInbox />
         </div>
-        <div class="page-body no-border mt-4">
-          <AccountNumbeAdmin />
-        </div>
-        <GroupBtnInbox />
       </template>
     </HomePage>
   </client-only>
@@ -71,7 +73,7 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
-        { property: 'og:image', content: '/banner.jfif' },
+        { property: "og:image", content: "/banner.jpg" },
       ],
     };
   },

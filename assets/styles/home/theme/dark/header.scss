@@ -1,29 +1,44 @@
 .theme-dark {
   .home-header {
+    background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+
     .header-content {
-      background: radial-gradient(circle at 50% 100%, #424040, #0F0F0F 58%, #0F0F0F 127%) !important;
+      background: none !important;
+      // background: radial-gradient(circle at 50% 100%, #424040, #0F0F0F 58%, #0F0F0F 127%) !important;
+      // max-width: 1350px;
+      // margin: 0 auto;
+
+      .header-logo {
+        // box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 2px 5px;
+        // background-image: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F);
+
+      }
     }
   }
 
   .page-body {
     color: #f1f1f1;
     background: #222;
-    border: 1px solid #a4a4a4 !important;
+    border: 1px solid #b549cc !important;
   }
 
   .bg-website {
     .btn-next-more button {
-      background: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+      // background: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+      background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+
       // background: none !important; 
       // border: 1px solid #a4a4a4 !important;
       color: #f1f1f1;
 
       &:hover {
-        background-image: linear-gradient(180deg,
-            #111,
-            #111 9%,
-            #424040 58%,
-            #424040) !important;
+        // background-image: linear-gradient(180deg,
+        //     #111,
+        //     #111 9%,
+        //     #424040 58%,
+        //     #424040) !important;
+        background-image: linear-gradient(139.4deg, #0F0F0F 15.38%, #a937ed 55.2%, #ac3be4 58.96%, #b549cc 54.97%, #a937ed 35.49%, #ac3be4 81.5%, #0F0F0F 90.52%) !important;
+
       }
     }
 
@@ -31,17 +46,24 @@
 
     .v-main__wrap {
       .container.client-main {
-        background: #424040;
+        background: #3f474c;
+        background-size: cover;
+        background-image: url(https://muabannick.pro/images/bg/bg-mbn-violet.png) !important;
       }
 
       #home-page {
         .title {
+          text-shadow: rgb(131 60 247) 0px 0px 5px,
+            rgb(131 60 247) 0px 0px 5px,
+            rgb(131 60 247) 0px 0px 5px,
+            rgb(131 60 247) 0px 0px 5px,
+            rgb(131 60 247) 0px 0px 10px;
           color: #f1f1f1 !important;
         }
 
         .page-body {
           background: #222;
-          border: 1px solid #a4a4a4 !important;
+          border: 1px solid #b549cc !important;
         }
 
         .form-search {
@@ -53,7 +75,7 @@
 
             .field {
               select {
-                border: 1px solid #a4a4a4 !important;
+                border: 1px solid #b549cc !important;
               }
 
               input.v-input {
@@ -63,9 +85,9 @@
             }
 
             .btn-success.btn-search {
-              color: #333 !important;
+              color: #f1f1f1 !important;
               border: 1px solid #f1f1f1 !important;
-              background-image: linear-gradient(180deg, #f1f1f1, #a4a4a4 9%, #f1f1f1 58%, #f1f1f1) !important;
+              background-image: radial-gradient(circle at 50% 100%, #424040, #a4a4a4 58%, #424040 127%) !important;
 
               &:hover {
                 color: #333;
@@ -81,7 +103,7 @@
 
         .account-empty {
           background: #0F0F0FE6;
-          border: 1px solid #a4a4a4 !important;
+          border: 1px solid #b549cc !important;
 
           .text-danger {
             color: #0F0F0F !important;
@@ -92,7 +114,11 @@
   }
 
   #menu-bottom {
-    background: linear-gradient(180deg, #424040, #0F0F0F 12%, #0F0F0F) !important;
+
+    // background: linear-gradient(180deg, #424040, #0F0F0F 12%, #0F0F0F) !important;
+    background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+    // text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+
 
     .sub-menu-buttom {
       color: #f1f1f1 !important;
@@ -101,7 +127,7 @@
         background-color: #0F0F0F !important;
 
         .icon-wrap {
-          background: radial-gradient(circle at 50% 15%, #424040, #0F0F0F 72%) !important;
+          background: radial-gradient(circle at 50% 15%, #a937ed, #0F0F0F 72%) !important;
 
           .mdi.mdi-home {
             color: #f1f1f1 !important;
@@ -114,6 +140,7 @@
     .footer_icon button.icon-menu,
     .title-menu-buttom {
       color: #f1f1f1 !important;
+      text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
     }
 
     // #menu-bottom a .footer_icon button.icon-menu
@@ -121,7 +148,8 @@
   }
 
   .login-btn {
-    background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F);
+    // background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F);
+    background-image: linear-gradient(139.4deg, #0F0F0F 15.38%, #a937ed 55.2%, #ac3be4 58.96%, #b549cc 54.97%, #a937ed 35.49%, #ac3be4 81.5%, #0F0F0F 90.52%) !important;
   }
 
   .go-back,
@@ -129,28 +157,43 @@
   .next-top,
   .next-bottom {
     .v-btn--icon.v-size--default {
-      background: radial-gradient(circle at 50% 100%, #424040, #0F0F0F 58%, #0F0F0F 127%) !important;
+
+      // background: radial-gradient(circle at 50% 100%, #424040, #0F0F0F 58%, #ac3be4 127%) !important;
+      background: radial-gradient(circle at 50% 15%, #a937ed, #0F0F0F 72%) !important;
+
+      border: 1px solid #ac3be4 !important;
+      box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 1px 2px;
     }
   }
 
   .account-search {
     background: #0F0F0FE6 !important;
-    border: 1px solid #a4a4a4 !important;
+    border: 1px solid #b549cc !important;
   }
 
   .account {
     .account-info {
       background: #222 !important;
-      border: 1px solid #a4a4a4 !important;
+      border: 1px solid #ac3be4 !important;
+      // border: 3px solid rgb(131, 60, 247);
+
+      box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 2px 5px;
 
       .account-body {
 
-        .account-thongtin,
         .account-cash {
-          background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F);
+          // background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F);
+          background-image: linear-gradient(219.4deg, #0F0F0F 17.38%, #a937ed 55.2%, #ac3be4 58.96%, #b549cc 54.97%, #a937ed 35.49%, #0F0F0F 81.5%, #0F0F0F 90.52%) !important;
           border: none !important;
           color: #f1f1f1;
         }
+
+        .account-thongtin {
+          background-image: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F);
+          border: none !important;
+          color: #f1f1f1;
+        }
+
 
         .account-code,
         .account-server,
@@ -162,7 +205,9 @@
       .account-buy {
         border: none !important;
         color: #f1f1f1;
-        background-image: linear-gradient(180deg, #111, #111 9%, #333 58%, #424040) !important;
+        // background-image: linear-gradient(180deg, #111, #111 9%, #333 58%, #424040) !important;
+        // background-image: linear-gradient(139.4deg,#b549cc 5.38%,#0F0F0F 25.2%,#0F0F0F 58.96%,#0F0F0F 54.97%,#0F0F0F 35.49%,#222 81.5%,#b549cc 90.52%) !important; 
+        background-image: linear-gradient(139.4deg, #0F0F0F 17.38%, #a937ed 55.2%, #ac3be4 58.96%, #b549cc 54.97%, #a937ed 35.49%, #0F0F0F 81.5%, #0F0F0F 90.52%) !important;
 
         &:hover {
           background-image: linear-gradient(180deg,
@@ -170,6 +215,8 @@
               #424040 9%,
               #0F0F0F 58%,
               #0F0F0F) !important;
+          background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+
         }
       }
 
@@ -184,14 +231,18 @@
   .account-cake,
   .account-yen,
   .mounts-info,
-  .bg-danger {
-    background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+  .bg-danger,
+  .account-disguise {
+
+    // background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+    background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+
     // border: 1px solid #a4a4a4 !important;
     color: #f1f1f1;
   }
 
   .bg-warning {
-    background-color: #0062cc !important;
+    background-color: #dc3545 !important;
     color: #f1f1f1;
   }
 
@@ -215,21 +266,25 @@
 
   .account-cash-atm,
   .account-ingame {
-    background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+    // background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+    background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
 
   }
 
   .btn-buy-account {
-    background-image: linear-gradient(180deg, #111, #111 9%, #333 58%, #424040) !important;
+    // background-image: linear-gradient(180deg, #111, #111 9%, #333 58%, #424040) !important;
+    background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
     color: #f1f1f1 !important;
     border: none;
 
     &:hover {
-      background-image: linear-gradient(180deg,
-          #424040,
-          #424040 9%,
-          #0F0F0F 58%,
-          #0F0F0F) !important;
+      // background-image: linear-gradient(180deg,
+      //     #424040,
+      //     #424040 9%,
+      //     #0F0F0F 58%,
+      //     #0F0F0F) !important;
+      background-image: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+
     }
 
     .text-main {
@@ -238,14 +293,18 @@
   }
 
   .btn-buy-account-hover {
-    background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+    // background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+
+    background-image: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
 
     &:hover {
-      background-image: linear-gradient(180deg,
-          #0F0F0F,
-          #424040 9%,
-          #424040 58%,
-          #424040) !important;
+      // background-image: linear-gradient(180deg,
+      //     #0F0F0F,
+      //     #424040 9%,
+      //     #424040 58%,
+      //     #424040) !important;
+      background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+
     }
 
     border: none;
@@ -263,7 +322,7 @@
     color: #f1f1f1;
     width: 100%;
     border: 1px solid #0F0F0F;
-    background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
+    background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
 
     &:hover {
       color: #f1f1f1;
@@ -277,10 +336,10 @@
 
   .nuxt-link-exact-active {
     .btn.active-btn {
-      color: #333 !important;
+      color: #f1f1f1 !important;
       width: 100%;
-      border: 1px solid #f1f1f1 !important;
-      background-image: linear-gradient(180deg, #f1f1f1, #a4a4a4 9%, #f1f1f1 58%, #f1f1f1) !important;
+      border: 1px solid #b549cc !important;
+      background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
 
       &:hover {
         color: #333;
@@ -294,11 +353,11 @@
   }
 
   .sms {
-    color: #dc3545 !important;
+    color: #b549cc !important;
   }
 
   #home-page .v-btn--icon.v-size--default .v-icon.mdi.mdi-content-copy {
-    color: #dc3545;
+    color: #b549cc;
   }
 
   .text-danger,
@@ -307,9 +366,11 @@
   .color-danger a {
     color: #dc3545 !important;
   }
+
   .text-main {
     color: #f1f1f1 !important;
-}
+  }
+
   .content-main {
     color: #f1f1f1 !important;
 

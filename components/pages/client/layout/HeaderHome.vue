@@ -58,11 +58,12 @@ export default {
 //     height: 20px;
 //     font-size: 20px;
 //     width: 20px;
-//   }
+//   }o
 // }
 .home-header {
   height: 50px;
   flex-shrink: 0;
+  // padding: 0 0.22rem;
 }
 .home-header .header-content {
   display: flex;

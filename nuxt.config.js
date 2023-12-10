@@ -39,8 +39,7 @@ export default {
     '~/plugins/repositories.js',
     { src: "@/plugins/vue-slick-carousel" },
     { src: "@/plugins/vue-clipboard2", ssr: false },
-
-
+    { src: "@/plugins/mixins", ssr: false },
 
   ],
   axios: {

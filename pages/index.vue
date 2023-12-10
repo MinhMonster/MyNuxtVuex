@@ -1,22 +1,20 @@
 <template>
   <client-only>
     <HomePage
-      title="Trang Chủ - Danh Vụ Game"
       :loading="!ready"
-      goBack
-      reload
       @reload="reload()"
       notBoder
     >
       <template v-if="ready" #body>
-        <div class="mt-4">
+        <div class="mt-1">
           <HomeGame></HomeGame>
-          <b-row>
+          <!-- <b-row>
             <b-col cols="12" sm="12" md="6"> <HistoryBuyAccount /> </b-col>
             <b-col cols="12" sm="12" md="6"> <HistoryDeposit /></b-col>
-          </b-row>
+          </b-row> -->
         </div>
       </template>
+      
     </HomePage>
   </client-only>
 </template>
@@ -70,7 +68,7 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
-        { property: 'og:image', content: '/banner.jfif' },
+        { property: 'og:image', content: '/banner.jpg' },
       ],
     };
   },

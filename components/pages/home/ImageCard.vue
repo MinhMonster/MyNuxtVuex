@@ -43,7 +43,7 @@ export default {
 
   img {
     width: 100%;
-    height: 240px;
+    height: 190px;
     aspect-ratio: 4/3 !important;
   }
 }

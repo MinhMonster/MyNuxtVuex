@@ -1,22 +1,22 @@
 <template>
   <client-only>
-    <div class="rightbar-content">
+    <div class="rightbar-content scroll-y">
       <div class="user-info-wrap">
         <div class="user-info">
-          <v-btn icon v-if="!user && !token">
+          <v-btn icon class="circle">
             <v-icon>mdi-account-circle</v-icon>
           </v-btn>
-          <div v-else-if="user && token" class="circle">
+          <!-- <div v-else-if="user && token" class="circle">
             <img v-if="user.avatar" :src="user.avatar" />
             <img
               v-else
               :src="`https://graph.facebook.com/${user.uid}/picture?type=normal`"
             />
-          </div>
+          </div> -->
           <div class="member">
             <div v-if="!user" class="mt-4">
               <div class="flex justify-center">
-                <div class="login-btn cursor-pointer" @click="nextLogin()">
+                <div class="login-btn cursor-pointer mr-1" @click="nextLogin()">
                   <span>Đăng nhập</span>
                 </div>
                 <div

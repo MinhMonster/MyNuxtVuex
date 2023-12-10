@@ -74,31 +74,46 @@
             <b-row>
               <b-col cols="12" class="size">
                 <div class="page-body">
-                  Thời gian Sự kiện diễn ra: 0h -> 18h (hằng ngày)<br/><br/>
-                  <b>Giải thưởng:</b><br/>
-                  - Ngày thường: 20k (Không giới hạn số người trúng).<br/>
-                  - T7, CN: Bạn đoán trúng đầu tiên: 50k. Những bạn đoán trúng sau đó: 20k (Không giới hạn).<br/>
-                  - Nếu bạn trúng giải hãy liên hệ với Admin để nhận giải.<br/>
-                  - Giải thưởng: ATM-MOMO, Card, Xu, Nick (Tùy bạn chọn)<br/><br/>
-                  <b>Thể lệ:</b><br/>
-                  - Chọn 1 số từ 00->99 (Bấm <span style="color: red">Chọn Số</span> để chọn -> <span style="color: red">Lưu</span>)<br/>
-                  - Bấm <span style="color: red">Tham Gia</span> (Số bạn đã chọn sẽ được lưu lại bên dưới).<br/>
-                  - Số trúng giải dựa vào kết quả <span style="color: red">XSMB</span> của ngày hôm đó.<br/>
-                  - Sẽ lấy 2 số cuối của giải Đặc biệt <span style="color: red">XSMB</span><br/>
+                  Thời gian Sự kiện diễn ra: 0h -> 18h (hằng ngày)<br /><br />
+                  <b>Giải thưởng:</b><br />
+                  - Ngày thường: 20k (Không giới hạn số người trúng).<br />
+                  - T7, CN: Bạn đoán trúng đầu tiên: 50k. Những bạn đoán trúng
+                  sau đó: 20k (Không giới hạn).<br />
+                  - Nếu bạn trúng giải hãy liên hệ với Admin để nhận giải.<br />
+                  - Giải thưởng: ATM-MOMO, Card, Xu, Nick (Tùy bạn chọn)<br /><br />
+                  <b>Thể lệ:</b><br />
+                  - Chọn 1 số từ 00->99 (Bấm
+                  <span style="color: red">Chọn Số</span> để chọn ->
+                  <span style="color: red">Lưu</span>)<br />
+                  - Bấm <span style="color: red">Tham Gia</span> (Số bạn đã chọn
+                  sẽ được lưu lại bên dưới).<br />
+                  - Số trúng giải dựa vào kết quả
+                  <span style="color: red">XSMB</span> của ngày hôm đó.<br />
+                  - Sẽ lấy 2 số cuối của giải Đặc biệt
+                  <span style="color: red">XSMB</span><br />
 
-                  <b>Ví dụ:</b><br/>
-                  - Kết quả giải Đặc biệt <span style="color: red">XSMB</span> là: <span style="color: red">56789</span><br/>
-                  - Thì số trúng giải sẽ là 2 số cuối: <span style="color: red">89</span><br/><br/>
+                  <b>Ví dụ:</b><br />
+                  - Kết quả giải Đặc biệt
+                  <span style="color: red">XSMB</span> là:
+                  <span style="color: red">56789</span><br />
+                  - Thì số trúng giải sẽ là 2 số cuối:
+                  <span style="color: red">89</span><br /><br />
 
-                  <b>Điều kiện tham gia:</b><br/>
-                  - Trước hết bạn cần <span style="color: red">Đăng nhập</span> trên website<br/>
-                  - Mỗi tài khoản chỉ được tham gia: <span style="color: red">1 Lần/Ngày</span><br/>
-                  - Mỗi Số điện thoại chỉ được tham gia: <span style="color: red">1 Lần/Ngày</span><br/>
-                  - Nếu ghi sai SĐT => <span style="color: red">Không thể nhận giải</span><br/>
-                  => Hãy đăng ký tài khoản khác và tham gia lại với số điện thoại đúng.<br/><br/>
+                  <b>Điều kiện tham gia:</b><br />
+                  - Trước hết bạn cần
+                  <span style="color: red">Đăng nhập</span> trên website<br />
+                  - Mỗi tài khoản chỉ được tham gia:
+                  <span style="color: red">1 Lần/Ngày</span><br />
+                  - Mỗi Số điện thoại chỉ được tham gia:
+                  <span style="color: red">1 Lần/Ngày</span><br /><br />
 
-                  <b>Chúc các bạn may mắn! Thanks!</b><br/>
+                  <b>Lưu ý:</b><br />
+                  - Nếu ghi sai SĐT =>
+                  <span style="color: red">Không thể nhận giải</span><br />
+                  => Hãy đăng ký tài khoản khác và tham gia lại với số điện
+                  thoại đúng.<br /><br />
 
+                  <b>Chúc các bạn may mắn! Thanks!</b><br />
                 </div>
               </b-col>
             </b-row>
@@ -191,15 +206,15 @@ export default {
     },
     async submit() {
       if (!this.token) {
-        this.$swal.fire(
-          "Bạn chưa đăng nhập",
-          "Hãy đăng nhập để tham gia Sự kiện này. <br/> Xin cảm ơn!"
-        );
+        this.showSwal({
+          title: "Bạn chưa đăng nhập",
+          html: "Hãy đăng nhập để tham gia Sự kiện này. <br/> Xin cảm ơn!",
+        });
       } else if (this.number == null || this.number > 99 || this.number < 0) {
-        this.$swal.fire(
-          "Bạn chưa chọn số",
-          "Hãy chọn số để tham gia Sự kiện này!"
-        );
+        this.showSwal({
+          title: "Bạn chưa chọn số",
+          text: "Hãy chọn số để tham gia Sự kiện này!",
+        });
       } else {
         this.isLoading = true;
         const res = await this.voted({
@@ -209,9 +224,8 @@ export default {
           },
         });
         this.isLoading = false;
-        if(res.data.code == 200){
-        this.onPageChange(this.pageSave);
-
+        if (res.data.code == 200) {
+          this.onPageChange(this.pageSave);
         }
       }
     },
@@ -220,7 +234,7 @@ export default {
       if (this.token) {
         await this.setQuery({ page });
         await this.fetchVotedDailyEventHistories();
-        if(this.votedDaylyEvent) {
+        if (this.votedDaylyEvent) {
           this.number = this.votedDaylyEvent.number;
         } else {
           this.number = null;

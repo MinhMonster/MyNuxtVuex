@@ -79,7 +79,7 @@ export default {
         { property: "og:description", content: this.title },
         {
           property: "og:image",
-          content: this.imagenHead ? this.imagenHead : "/banner.jfif",
+          content: this.imagenHead ? this.imagenHead : "/banner.jpg",
         },
       ],
     };

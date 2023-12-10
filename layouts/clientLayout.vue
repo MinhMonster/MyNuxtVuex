@@ -121,7 +121,7 @@ export default {
   #home-page,
   #account-slider {
     border-radius: 10px;
-    max-width: 1350px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   #home-page {

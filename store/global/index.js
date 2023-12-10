@@ -11,7 +11,7 @@ export default {
     oldPath: "/",
     nowPath: "/",
     isNotification: true,
-    isThemeDark: false
+    isThemeDark: true
   }),
   getters: {
     getField,

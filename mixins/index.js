@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       isMobile: false,
+      isTablet: false,
       currentYear: new Date().getFullYear(),
       optionsNinjaType: [
         {
@@ -141,6 +142,11 @@ export default {
         this.isMobile = true;
       } else {
         this.isMobile = false;
+      }
+      if (screenWidth < 768) {
+        this.isTablet = true;
+      } else {
+        this.isTablet = false;
       }
     },
     format_number(number) {
