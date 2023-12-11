@@ -89,7 +89,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .form-login {
-  height: calc(100vh - 140px);
+  height: 100%;
+  max-height: calc(100vh - 140px);
 }
 ::v-depp {
   .has-error .validation {

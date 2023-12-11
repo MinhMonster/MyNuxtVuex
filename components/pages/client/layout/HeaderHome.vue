@@ -70,7 +70,7 @@ export default {
   align-items: center;
   width: 100%;
   height: 50px;
-  padding: 0 0.22rem;
+  padding: 0 0.5rem;
   position: fixed;
   left: 0;
   top: 0; 

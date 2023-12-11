@@ -9,6 +9,7 @@ export default {
       isMobile: false,
       isTablet: false,
       currentYear: new Date().getFullYear(),
+      heightHomeLeft: 810,
       optionsNinjaType: [
         {
           text: "Thường",
@@ -82,6 +83,9 @@ export default {
     }
   },
   computed: {
+    path() {
+      return this.$route.path;
+    },
     nowYear() {
       var year = this.currentYear
       return year;
@@ -147,6 +151,17 @@ export default {
         this.isTablet = true;
       } else {
         this.isTablet = false;
+      }
+      if (!this.isTablet && this.path == "/") {
+        setTimeout(() => {
+          const heightHomeLeft = document.querySelector("#home-left").clientHeight;
+          const heightDichVuGame = document.querySelector("#dich-vu-game").clientHeight;
+          if (heightHomeLeft / heightDichVuGame <= 7 / 5) {
+            this.heightHomeLeft = (heightDichVuGame / (515 / 836)) - 30;
+          } else {
+            this.heightHomeLeft = heightHomeLeft - 30;
+          }
+        }, 50);
       }
     },
     format_number(number) {

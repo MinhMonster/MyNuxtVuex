@@ -1,13 +1,13 @@
 <template>
   <div>
-    <v-row>
-      <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8">
+    <v-row class="hom-page">
+      <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8" id="home-left">
         <v-row style="margin: -15px">
           <v-col cols="12">
             <HomeSlider />
           </v-col>
         </v-row>
-        <div class="mt-3">
+        <div class="mt-3" id="dich-vu-game">
           <div class="title text-center text-underline">DỊCH VỤ GAME</div>
           <b-row class="text-center account mb-1">
             <GameCard
@@ -19,8 +19,15 @@
         </div>
       </v-col>
 
-      <v-col v-if="!isTablet" cols="12" :sm="isTablet ? 12 : 4" md="4" lg="4">
-        <div class="mt--1 home-user">
+      <v-col
+        v-if="!isTablet"
+        cols="12"
+        :sm="isTablet ? 12 : 4"
+        md="4"
+        lg="4"
+        id="home-right"
+      >
+        <div class="mt--1 home-user" :style="{ height: heightHomeLeft + 'px' }">
           <template v-if="token"><SideBarMenu /></template>
           <template v-else><FormLogin /></template>
         </div>
@@ -86,21 +93,24 @@ export default {
         {
           title: "Sự kiện Hằng ngày",
           path: "/events/daily",
-          image: "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
+          image:
+            "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
           numberAccount: "5245",
           sold: "5144",
         },
         {
           title: "Nick Ninja VIP",
           path: "/teamobi/ninja-school/nick-vip",
-          image: "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
+          image:
+            "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
           numberAccount: "5245",
           sold: "5144",
         },
         {
           title: "Nick Ninja Giá Rẻ",
           path: "/teamobi/ninja-school/nick-gia-re",
-          image: "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
+          image:
+            "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
           numberAccount: "7481",
           sold: "7185",
         },
@@ -114,7 +124,8 @@ export default {
         {
           title: "Đai Tây Du - G4M",
           path: "/g4m/dai-tay-du",
-          image: "https://muabannick.pro/images/banners/banner_dai_tay_du_g4m_min.jpg",
+          image:
+            "https://muabannick.pro/images/banners/banner_dai_tay_du_g4m_min.jpg",
           numberAccount: "90",
           sold: "69",
         },
@@ -133,10 +144,10 @@ export default {
     if (this.isNotification) {
       this.$refs.modal.show();
     }
+    window.addEventListener("resize", this.onResize);
     this.$nextTick(function () {
       this.onResize();
     });
-    window.addEventListener("resize", this.onResize);
   },
   destroyed() {
     window.removeEventListener("resize", this.onResize);
@@ -158,6 +169,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (min-width: 768px) {
+  .hom-page {
+    margin-left: 3%;
+  }
+}
+
 .account {
   margin: -9px;
   cursor: pointer;
