@@ -1,6 +1,8 @@
 #theme-dark {
   .modal-content {
     box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 2px 5px;
+    border-bottom: 1px solid #b549cc;
+
     margin: 5px;
 
     .modal-header {
@@ -12,10 +14,10 @@
       .modal-title {
         color: #fff;
         text-shadow: rgb(131 60 247) 0px 0px 5px,
-          rgb(131 60 247) 0px 0px 5px,
-          rgb(131 60 247) 0px 0px 5px,
-          rgb(131 60 247) 0px 0px 5px,
-          rgb(131 60 247) 0px 0px 10px;
+            rgb(131 60 247) 0px 0px 5px,
+            rgb(131 60 247) 0px 0px 0px,
+            rgb(131 60 247) 0px 0px 0px,
+            rgb(131 60 247) 0px 0px 0px;
       }
 
       .close {
@@ -27,6 +29,8 @@
 
     .modal-body {
       border: 1px solid #b549cc;
+      border-top: none;
+      border-bottom: none;
       background: #171e28;
       text-shadow: #833cf7 0px 0px 2px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
 
@@ -114,6 +118,8 @@
 
     .modal-footer {
       border: 1px solid #b549cc;
+      border-top: none;
+      border-bottom: none;
       background: #0f0f0f;
 
       .color-main {

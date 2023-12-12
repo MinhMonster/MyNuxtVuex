@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on, attrs }">
       <div v-bind="attrs" v-on="on" class="">
         <div class="">
-          <v-btn class="btn-main">
+          <v-btn class="btn-main" style="width: 105px">
             <span>Chọn Số</span>
           </v-btn>
         </div>
