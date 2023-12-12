@@ -18,7 +18,7 @@
 
   .page-body {
     color: #f1f1f1;
-    background: #222;
+    background: #031019;
     border: 1px solid #b549cc !important;
   }
 
@@ -62,7 +62,7 @@
         }
 
         .page-body {
-          background: #222;
+          background: #031019;
           border: 1px solid #b549cc !important;
         }
 
@@ -173,7 +173,7 @@
 
   .account {
     .account-info {
-      background: #222 !important;
+      background: #171e28 !important;
       border: 1px solid #ac3be4 !important;
       // border: 3px solid rgb(131, 60, 247);
 
@@ -184,7 +184,7 @@
         .account-cash {
           // background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F);
           background-image: linear-gradient(219.4deg, #0F0F0F 17.38%, #a937ed 55.2%, #ac3be4 58.96%, #b549cc 54.97%, #a937ed 35.49%, #0F0F0F 81.5%, #0F0F0F 90.52%) !important;
-          border: none !important;
+          border: 1px solid #333 !important;
           color: #f1f1f1;
         }
 
@@ -203,7 +203,7 @@
       }
 
       .account-buy {
-        border: none !important;
+        border: 1px solid #333 !important;
         color: #f1f1f1;
         // background-image: linear-gradient(180deg, #111, #111 9%, #333 58%, #424040) !important;
         // background-image: linear-gradient(139.4deg,#b549cc 5.38%,#0F0F0F 25.2%,#0F0F0F 58.96%,#0F0F0F 54.97%,#0F0F0F 35.49%,#222 81.5%,#b549cc 90.52%) !important; 
@@ -247,19 +247,30 @@
   }
 
   .table {
+    &.text-center {
+    text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+
+    }
+
     th.info-nick {
-      background: #0F0F0F;
+      background: #171e28 !important;
       color: #f1f1f1;
-      border: 1px solid #a4a4a4 !important;
+      border: 1px solid #031019 !important;
     }
 
     td.mua-nick {
-      background: #424040;
+      background: #031019;
       color: #f1f1f1;
-      border: 1px solid #a4a4a4 !important;
-
+      border: 1px solid #171e28 !important;
+      div {
+        background-color: #171e28 !important;
+      }
       span {
         color: #f1f1f1;
+      }
+
+      .btn {
+        text-shadow: none;
       }
     }
   }

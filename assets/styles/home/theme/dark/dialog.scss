@@ -1,6 +1,9 @@
 .v-application.theme-dark {
   .v-dialog {
     box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 2px 5px;
+    .page-body {
+      border: none !important;
+    }
 
     .v-card__title.title-modal {
       color: #f1f1f1 !important;

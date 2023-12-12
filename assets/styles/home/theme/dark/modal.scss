@@ -27,27 +27,27 @@
 
     .modal-body {
       border: 1px solid #b549cc;
-      background: #424040;
+      background: #171e28;
       text-shadow: #833cf7 0px 0px 2px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
 
       .thongbao {
         text-shadow: none;
       }
       .page-body {
-        background: #222;
-        border: 1px solid #b549cc;
+        background: #031019;
+        border: none;
         color: #f1f1f1;
 
         .info-atm-momo {
-          background: #424040;
-          border: 1px solid #a4a4a4;
+          background: #171e28;
+          border: 1px solid #031019;
 
           .title {
             color: #f1f1f1;
           }
 
           .sms {
-            color: #f1f1f1 !important;
+            color: #f64e60 !important;
           }
 
           .text-danger,
@@ -64,30 +64,41 @@
           .nav-item {
             .nav-link {
               color: #f1f1f1;
+              border-bottom: 1px solid #171e28;
 
               &.active {
-                background-color: #424040;
+                background-color: #171e28;
                 color: #fff;
-                border-bottom: 1px solid #fff;
               }
             }
           }
         }
 
         .table {
-          th.info-nick {
-            background: #0f0f0f;
-            color: #fff;
-            border: 1px solid #a4a4a4 !important;
+          &.text-center {
+          text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+      
           }
-
+      
+          th.info-nick {
+            background: #171e28 !important;
+            color: #f1f1f1;
+            border: 1px solid #031019 !important;
+          }
+      
           td.mua-nick {
-            background: #424040;
-            color: #fff;
-            border: 1px solid #a4a4a4 !important;
-
+            background: #031019;
+            color: #f1f1f1;
+            border: 1px solid #171e28 !important;
+            div {
+              background-color: #171e28 !important;
+            }
             span {
               color: #f1f1f1;
+            }
+      
+            .btn {
+              text-shadow: none;
             }
           }
         }

@@ -1,25 +1,34 @@
 .theme-dark {
+  // #home-page {
+
+
 
   form {
-    background: #222 !important;
+    background: #031019 !important;
 
     .field {
-      input.v-input {
-        border: 1px solid #0F0F0F !important;
-        color: #a4a4a4 !important;
-      }
-
       .form-group {
-        select {
+        input.v-input {
           border: 1px solid #0F0F0F !important;
-          color: #a4a4a4 !important;
+          color: #0F0F0F !important;
         }
+
+        .form-group {
+          select {
+            border: 1px solid #0F0F0F !important;
+            color: #a4a4a4 !important;
+          }
+        }
+
+
+
       }
 
       button.btn-login {
         color: #f1f1f1 !important;
-        border: 1px solid #0F0F0F;
-        background-image: linear-gradient(139.4deg,#b549cc 5.38%,#0F0F0F 55.2%,#0F0F0F 58.96%,#0F0F0F 54.97%,#0F0F0F 55.49%,#333 81.5%,#b549cc 90.52%) !important; 
+        border: 1px solid #b549cc !important;
+        background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+
         span {
           color: #f1f1f1 !important;
 
@@ -31,7 +40,6 @@
 
         }
       }
-
 
 
 
@@ -74,6 +82,7 @@
     .form-input:focus+.form-label {
       color: #f1f1f1 !important;
     }
+
     &.form-login {
       border: 1px solid #b549cc !important;
       // height: 100vh;
@@ -82,10 +91,10 @@
 
   .register-btn {
     color: #f1f1f1 !important;
-    border: 1px solid #f1f1f1 !important;
+    border: 1px solid #333 !important;
 
-              background-image: radial-gradient(circle at 50% 100%, #424040, #a4a4a4 58%, #424040 127%) !important;
-
+    background-image: linear-gradient(219.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+    width : 70px;
     &:hover {
       color: #333;
       background-image: linear-gradient(180deg,
@@ -98,8 +107,8 @@
 
   .login-btn {
     color: #f1f1f1 !important;
-    border: 1px solid #0F0F0F;
-    background-image: linear-gradient(139.4deg,#b549cc 5.38%,#0F0F0F 55.2%,#0F0F0F 58.96%,#0F0F0F 54.97%,#0F0F0F 55.49%,#333 81.5%,#b549cc 90.52%) !important; 
+    border: 1px solid #333 !important;
+    background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
 
     &:hover {
       color: #f1f1f1 !important;
@@ -127,4 +136,6 @@
           #424040) !important;
     }
   }
+
+  // }
 }

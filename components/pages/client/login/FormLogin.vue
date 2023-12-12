@@ -1,6 +1,6 @@
 <template>
   <form class="form-login">
-    <div id="content"></div>
+    <div id="content" class="title text-main text-center bold">Đăng Nhập</div>
     <div class="field">
       <form-validator name="username">
         <input
