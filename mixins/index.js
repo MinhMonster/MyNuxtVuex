@@ -154,12 +154,15 @@ export default {
       }
       if (!this.isTablet && this.path == "/") {
         setTimeout(() => {
-          const heightHomeLeft = document.querySelector("#home-left").clientHeight;
-          const heightDichVuGame = document.querySelector("#dich-vu-game").clientHeight;
-          if (heightHomeLeft / heightDichVuGame <= 7 / 5) {
-            this.heightHomeLeft = (heightDichVuGame / (515 / 836)) - 30;
-          } else {
-            this.heightHomeLeft = heightHomeLeft - 30;
+          const homeLeft = document.querySelector("#home-left");
+          if (homeLeft) {
+            const heightHomeLeft = homeLeft.clientHeight;
+            const heightDichVuGame = document.querySelector("#dich-vu-game").clientHeight;
+            if (heightHomeLeft / heightDichVuGame <= 7 / 5) {
+              this.heightHomeLeft = (heightDichVuGame / (515 / 836)) - 30;
+            } else {
+              this.heightHomeLeft = heightHomeLeft - 30;
+            }
           }
         }, 50);
       }

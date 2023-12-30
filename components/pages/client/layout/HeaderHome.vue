@@ -9,6 +9,7 @@
               alt=""
             />
           </div>
+          <RunText v-if="!isTablet" />
           <SideBarHome></SideBarHome>
         </div>
       </div>
@@ -19,12 +20,15 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import SideBarHome from "@/components/pages/client/layout/SideBarHome";
+import RunText from "@/components/global/molecules/common/template/RunText";
+
 import mixins from "@/mixins/index";
 
 export default {
   mixins: [mixins],
   components: {
     SideBarHome,
+    RunText,
   },
   props: {},
   computed: {
@@ -34,6 +38,15 @@ export default {
     isHome() {
       return this.$route.path == "/";
     },
+  },
+  mounted() {
+    this.$nextTick(function () {
+      this.onResize();
+    });
+    window.addEventListener("resize", this.onResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
   },
   methods: {
     nextHome() {
@@ -73,7 +86,7 @@ export default {
   padding: 0 0.5rem;
   position: fixed;
   left: 0;
-  top: 0; 
+  top: 0;
   z-index: 1000;
   /* background: radial-gradient(
     circle at 50% 100%,
@@ -88,7 +101,6 @@ export default {
     #561d00 127%
   );
   // background-image: linear-gradient(180deg, #561d00, #9f5424 9%, #e28637 58%, #e28637) !important;
-
 }
 .home-header .header-user {
   width: 100%;
