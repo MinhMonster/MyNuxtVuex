@@ -6,7 +6,7 @@
           <span class="bold text-italic text-13-700">
             <nuxt-link to="/admin-information" class="text-success">
               <span class="text-danger">*</span> Giảm 20% tất cả Nick Trên Shop
-              đến hết Tết Dương Lịch
+              đến hết 11/01/2024
             </nuxt-link>
           </span>
           <span class="bold text-italic text-13-700 text-danger">

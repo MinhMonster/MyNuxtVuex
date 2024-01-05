@@ -1,5 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 import webpack from "webpack";
+import axios from "axios";
 
 
 export default {
@@ -87,7 +88,11 @@ export default {
     '@nuxtjs/sitemap'
   ],
   sitemap: {
-    hostname: 'https://muabannick.pro'
+    hostname: 'https://muabannick.pro',
+    routes: async () => {
+      const { data } = await axios.get('https://muabannick.pro/apis/sitemap/index.php');
+      return data.sitemap.map((item) => `${item.link}`)
+    }
   },
 
   nuxtValidate: {
