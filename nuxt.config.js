@@ -19,8 +19,21 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
-    ,
+    ],
+    script: [
+      {
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-EYXLZ4SE11',
+      },
+      {
+        src: 'https://www.googleadservices.com/pagead/conversion.js',
+      },
+    ],
+  },
+  mounted() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'AW-11265837402');
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
