@@ -21,6 +21,11 @@
       </v-container>
     </v-main>
     <MenuBottom></MenuBottom>
+    <div class="change-theme">
+      <v-btn icon @click="changeTheme()">
+        <v-icon>mdi-theme-light-dark</v-icon>
+      </v-btn>
+    </div>
     <div class="next-top">
       <v-btn icon @click="nextTop()">
         <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
@@ -100,6 +105,9 @@ export default {
   methods: {
     ...mapActions("home/users", ["logout", "fetchUser"]),
     ...mapActions("global", ["setScreenMobile", "setPath"]),
+    changeTheme() {
+      this.isThemeDark = !this.isThemeDark;
+    },
 
     nextTop() {
       const element = document.getElementById("home-page");
@@ -159,6 +167,7 @@ export default {
   //   width: 30px;
   // }
 }
+.change-theme,
 .next-top,
 .next-bottom {
   position: fixed;
@@ -176,6 +185,9 @@ export default {
       #561d00 127%
     );
   }
+}
+.change-theme {
+  bottom: 170px;
 }
 .next-top {
   bottom: 130px;
