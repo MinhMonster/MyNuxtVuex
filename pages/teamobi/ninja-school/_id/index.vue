@@ -111,6 +111,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+#home-page {
+  max-width: 1400px !important;
+}
 .title-category {
   margin: 0 -9px;
   margin-top: -9px;

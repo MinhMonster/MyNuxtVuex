@@ -164,9 +164,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.rightbar-content {
-  margin-top: 0px;
-}
+
 .rightbar-content .user-info-wrap {
   top: 0px;
   position: relative;
@@ -175,7 +173,6 @@ export default {
   align-items: center;
   width: 100%;
   height: 200px;
-  border: 2px solid #561d00;
   background: #e28637;
   background-size: 100% 100%;
 

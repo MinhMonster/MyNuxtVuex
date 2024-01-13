@@ -82,7 +82,7 @@ export default {
     FormLogin,
     SideBarMenu,
     HomeSlider,
-    RunText
+    RunText,
   },
   props: {
     query: {
@@ -172,6 +172,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home-user {
+  position: fixed;
+  width: calc(25% + 5px);
+  max-width: 300px;
+
+  @media (min-width: 876px) {
+    width: calc(25% + 10px);
+  }
+
+  @media (min-width: 978px) {
+    width: calc(25% + 15px);
+  }
+}
 @media (min-width: 768px) {
   .hom-page {
     margin-left: 3%;

@@ -17,10 +17,12 @@
         <VueSlickCarousel
           v-else-if="accountNinja.hinhanh"
           :initialSlide="0"
-          :slidesToShow="1"
+          :slidesToShow="2"
           :arrows="true"
+          :rows="2"
           :dots="true"
         >
+          <AccountNinjaTL :account-ninja="accountNinja" />
           <div
             v-for="(image, index) in accountNinja.hinhanh"
             :key="index"
@@ -118,6 +120,19 @@ export default {
 </script>
   
   <style lang="scss" scoped>
+::v-deep {
+  .slick-slide {
+    overflow: hidden !important;
+    .image-card {
+      width: 101.5% !important;
+      img {
+        // width: 112% !important;
+        margin-left: 0px;
+      }
+    }
+  }
+}
+
 .image-card {
   position: relative;
   display: flex;
@@ -144,9 +159,9 @@ export default {
   margin: 0 auto;
 }
 .image-account {
-  width: 112% !important;
+  width: 110% !important;
   overflow: hidden;
-  margin-left: -6px;
+  margin-left: 0px;
 }
 .title {
   color: #1e5b7e;
