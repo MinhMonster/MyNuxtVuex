@@ -34,6 +34,7 @@ export default {
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'AW-11265837402');
+    gtag('event', 'conversion', { 'send_to': 'AW-11265837402/7E7zCI2d4YYZENqS_Psp' });
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -102,10 +103,22 @@ export default {
   ],
   sitemap: {
     hostname: 'https://muabannick.pro',
-    routes: async () => {
-      const { data } = await axios.get('https://muabannick.pro/apis/sitemap/index.php');
-      return data.sitemap.map((item) => `${item.link}`)
-    }
+    // routes: async () => {
+    //   const { data } = await axios.get('https://muabannick.pro/apis/sitemap/index.php');
+    //   return data.sitemap.map((item) => `${item.link}`)
+    // },
+    sitemaps: [
+      {
+        path: '/sitemap.xml',
+      },
+      {
+        path: '/sitemap/topics.xml',
+        routes: async () => {
+          const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
+          return data.sitemap_topics.map((item) => `${item.link}`)
+        },
+      },
+    ]
   },
 
   nuxtValidate: {
