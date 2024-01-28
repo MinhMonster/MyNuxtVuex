@@ -207,11 +207,11 @@ element.style {
 .table.text-center th,
 .table.text-center td {
   text-align: center !important;
-  min-width: 100px;
+  // min-width: 100px;
 }
 
 .table th {
-  min-width: 100px;
+  // min-width: 100px;
 }
 
 #admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {

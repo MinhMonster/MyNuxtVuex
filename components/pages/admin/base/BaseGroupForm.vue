@@ -36,14 +36,18 @@
           :items="form.options"
           @change="updateForm()"
         ></v-select>
-        <ContentEditer
-          v-if="form.type === 'content-editer'"
+        <div v-if="form.type === 'content-editer'">
+          <label for="">{{form.title}}</label>
+          <ContentEditer
+          
           :name="form.value"
           v-model="dataForm[form.value]"
           :label="form.title"
           :disabled="form.disabled"
           @input="updateForm()"
         ></ContentEditer>
+        </div>
+        
       </form-validator>
     </v-col>
   </v-row>

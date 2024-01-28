@@ -1,6 +1,7 @@
 <template>
   <v-switch
     v-model="selected"
+    color="primary"
     :name="name"
     :label="label"
     :placeholder="placeholder"
