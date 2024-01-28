@@ -29,12 +29,24 @@ export const enableResetStore = (store) => {
       resetData({ commit }, stateName) {
         commit("RESET_STATE", stateName)
       },
+      resetDataForm({ commit }, stateName){
+        commit("RESET_DATA_FORM", stateName)
+      },
       resetDataPage({ commit }, stateName) {
         commit("RESET_DATA_PAGE_STATE", stateName)
       },
       setQuery({ commit, state }, params = { stateName, data }) {
         commit("SET_STATE", { stateName: params.stateName, data: params.data })
       },
+      setParamQuery({ commit, state }, params = { stateName, query, data }) {
+        commit("SET_PARAM_QUERY", { stateName: params.stateName, query: params.query, data: params.data })
+      },
+      setParamDefault({ commit, state }, params = { query, data }) {
+        console.log("params", params);
+        commit("SET_PARAM_DEFAULT", { query: params.query, data: params.data })
+      },
+      
+      // SET_PARAM_QUERY
       setQueryPage({ commit }, payload) {
         commit("SET_PAGE", payload);
       },
@@ -92,6 +104,9 @@ export const enableResetStore = (store) => {
           }
         }
       },
+      RESET_DATA_FORM: (state, payload) => {
+        state[payload] = _.cloneDeep(_.get(state, 'stateDefault.' + payload))
+      },
       RESET_DATA_PAGE_STATE: (state, payload) => {
         const valueDefault = _.cloneDeep(_.get(state, 'stateDefault.' + payload))
         state[payload].page = valueDefault.page
@@ -99,6 +114,14 @@ export const enableResetStore = (store) => {
       SET_PAGE(state, params = { stateName, data }) {
         state[params.stateName].page.value = params.data
       },
+      SET_PARAM_QUERY(state, params = { stateName, query, data }) {
+        state[params.stateName][params.query].value = params.data
+      },
+      SET_PARAM_DEFAULT(state, params = { query, data }) {
+        console.log("params2", params);
+        state.paramDefaults[params.query] = params.data
+      },
+      
     },
   };
 };

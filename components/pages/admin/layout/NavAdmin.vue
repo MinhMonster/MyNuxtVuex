@@ -31,9 +31,15 @@
             </div>
 
             <div class="group-right">
+              
               <div v-if="filter" class="reload-page" @click="onFilter()">
                 <v-btn icon>
                   <v-icon>mdi-filter</v-icon>
+                </v-btn>
+              </div>
+              <div v-if="btnEdit" class="reload-page" @click="onEdit()">
+                <v-btn icon>
+                  <v-icon>mdi-pen</v-icon>
                 </v-btn>
               </div>
               <div v-if="newPage" class="new-page" @click="onNewPage()">
@@ -103,6 +109,7 @@ export default {
     filter: Boolean,
     reload: Boolean,
     newPage: Boolean,
+    btnEdit:  Boolean,
     loading: Boolean,
     fullScreen: Boolean,
     notBoder: Boolean,
@@ -192,6 +199,9 @@ export default {
     onFilter() {
       this.isFilter = !this.isFilter;
       this.$emit("filter");
+    },
+    onEdit() {
+      this.$emit("edit");
     },
   },
 };

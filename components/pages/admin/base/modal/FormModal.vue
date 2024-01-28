@@ -1,12 +1,15 @@
 <template>
-  <v-dialog v-model="dialog" scrollable max-width="300px" light>
+  <v-dialog v-model="dialog" scrollable :max-width="width" light>
     <v-card v-if="stateQuery">
-      <v-card-title class="title-modal"> {{ title }}</v-card-title>
+      <v-card-title class="title-modal center">
+        {{ title }} <br />
+        {{ subTitle }}
+      </v-card-title>
       <v-card-text
         :style="{ 'min-height': minHeight, 'max-height': maxHeight }"
       >
         <div class="modal-body">
-          <form @submit.prevent="onUpdate()">
+          <form v-if="isForm" @submit.prevent="onUpdate()">
             <BaseGroupForm
               :data-form="dataForm"
               :forms="stateForms"
@@ -20,6 +23,7 @@
             >
             </v-btn>
           </form>
+          <slot v-else name="show"></slot>
         </div>
       </v-card-text>
       <v-card-actions class="text-right right gap-10">
@@ -27,12 +31,19 @@
           Close
         </v-btn>
         <v-btn
+          v-if="isForm"
           type="submit"
           color="primary"
           class="text-white"
           @click="onUpdate()"
         >
-          Update
+          Submit
+        </v-btn>
+        <v-btn v-if="isShow" color="light" class="text-white left">
+          <BaseCheckBox
+            :value="isForm"
+            @change="(value) => (isForm = value)"
+          ></BaseCheckBox>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -40,14 +51,21 @@
 </template>
 <script>
 import BaseGroupForm from "@/components/pages/admin/base/BaseGroupForm.vue";
+import BaseCheckBox from "@/components/pages/admin/base/form/BaseCheckBox";
+
 import { mapState } from "vuex";
 
 export default {
-  components: { BaseGroupForm },
+  components: { BaseGroupForm, BaseCheckBox },
   props: {
     title: {
       type: String,
       default: "Title",
+      require: false,
+    },
+    subTitle: {
+      type: String,
+      default: "",
       require: false,
     },
     id: {
@@ -82,11 +100,19 @@ export default {
       default: "500px",
       require: false,
     },
+    width: {
+      type: String,
+      default: "300px",
+      require: false,
+    },
+    reset: Boolean,
+    isShow: Boolean,
   },
   data() {
     return {
       dialog: false,
       cash: 0,
+      isForm: true,
     };
   },
   computed: {
@@ -105,13 +131,27 @@ export default {
       return _.cloneDeep(this.stateQuery);
     },
   },
+  mounted() {},
   methods: {
+    show() {
+      this.dialog = true;
+      if (this.isShow) {
+        this.isForm = false;
+      }
+      if (this.reset) {
+        this.resetDataForm();
+      }
+    },
     updateForm() {
       this.updateState(this.dataForm);
     },
     resetForm() {
       this.$store.dispatch(this.module + "/resetData", this.store.state);
     },
+    resetDataForm() {
+      this.$store.dispatch(this.module + "/resetDataForm", this.store.state);
+    },
+
     updateState(data) {
       this.$store.dispatch(this.module + "/setState", {
         stateName: this.store.state,
@@ -216,5 +256,6 @@ form {
   justify-content: right;
   justify-content: end;
   align-content: flex-end;
+  padding: 16px;
 }
 </style>
