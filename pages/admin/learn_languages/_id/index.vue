@@ -2,6 +2,7 @@
   <NavAdmin
     :title="languageInfo ? languageInfo.title : null"
     goBack
+    :pathGoBack="`/admin/learn_languages`"
     next-page
     new-page
     filter
@@ -145,7 +146,6 @@ export default {
     };
   },
   async mounted() {
-    console.log("this.queryLearnLanguage", this.queryLearnLanguage);
   },
   computed: {
     ...mapFields("admin/learn_languages", [

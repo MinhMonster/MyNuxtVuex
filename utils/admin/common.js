@@ -42,7 +42,6 @@ export const enableResetStore = (store) => {
         commit("SET_PARAM_QUERY", { stateName: params.stateName, query: params.query, data: params.data })
       },
       setParamDefault({ commit, state }, params = { query, data }) {
-        console.log("params", params);
         commit("SET_PARAM_DEFAULT", { query: params.query, data: params.data })
       },
       
@@ -85,7 +84,6 @@ export const enableResetStore = (store) => {
 
     mutations: {
       ...store.mutations,
-      // $reset: () => { },
       SET_STATE(state, payload = { stateName: "", data: "", query: {} }) {
         state[payload.stateName] = payload.data
         if ('query' in payload) {
@@ -118,7 +116,6 @@ export const enableResetStore = (store) => {
         state[params.stateName][params.query].value = params.data
       },
       SET_PARAM_DEFAULT(state, params = { query, data }) {
-        console.log("params2", params);
         state.paramDefaults[params.query] = params.data
       },
       

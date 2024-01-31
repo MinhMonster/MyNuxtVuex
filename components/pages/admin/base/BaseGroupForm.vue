@@ -37,7 +37,7 @@
           @change="updateForm()"
         ></v-select>
         <div v-if="form.type === 'content-editer'">
-          <label for="">{{form.title}}</label>
+          <label for="" class="content-editer">{{form.title}}</label>
           <ContentEditer
           
           :name="form.value"

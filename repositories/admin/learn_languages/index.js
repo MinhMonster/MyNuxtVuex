@@ -16,6 +16,10 @@ export default ($api) => ({
   fetchLanguageWords(payload) {
     return $api.get(`${resource}/fetchLanguageWords.php`, { params: { input: payload.input } })
   },
+
+  fetchLanguageExamples(payload) {
+    return $api.get(`${resource}/fetchLanguageExamples.php`, { params: { input: payload.input } })
+  },
   
   view(payload) {
     return $api.get(`${resource}/view.php`, payload)
@@ -51,6 +55,12 @@ export default ($api) => ({
   },
   updateLanguageWord(payload) {
     return $api.post(`${resource}/updateLanguageWord.php`, payload)
+  },
+  createLanguageExample(payload) {
+    return $api.post(`${resource}/createLanguageExample.php`, payload)
+  },
+  updateLanguageExample(payload) {
+    return $api.post(`${resource}/updateLanguageExample.php`, payload)
   },
   
   updateLanguageItem(payload) {

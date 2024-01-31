@@ -2,6 +2,7 @@
   <NavAdmin
     :title="languageWordsInfo ? languageWordsInfo.title : null"
     goBack
+    :path-go-back="`/admin/learn_languages/${languageWordsInfo.level_1}`"
     next-page
     new-page
     btn-edit
@@ -49,7 +50,7 @@
         :title="wordName"
         :id="languageWord.ID"
         width="800px"
-        minHeight="75vh"
+        minHeight="65vh"
         module="admin/learn_languages"
         repository="adminLearnLanguages"
         isShow
@@ -61,22 +62,68 @@
         }"
         @updated="$refs.table.fetchData()"
       >
-      <template #show>
-        <div>
-          <p><span  class="title">Word:</span> {{languageWord.word}}</p>
-          <p><span  class="title">Spell:</span> {{languageWord.spell}}</p>
-          <p><span  class="title">Translate:</span> {{languageWord.translate}}</p>
-          <p><span  class="title">Description:</span> <span v-html="languageWord.description"> </span> </p>
+        <template #show>
+          <div class="language-word">
+            <p><span class="title">Word:</span> {{ languageWord.word }}</p>
+            <p><span class="title">Spell:</span> {{ languageWord.spell }}</p>
+            <p>
+              <span class="title">Translate:</span> {{ languageWord.translate }}
+            </p>
+            <p>
+              <span class="title">Description:</span>
+              <span v-html="languageWord.description"> </span>
+            </p>
 
-        </div>
-      </template>
+            <BaseTable
+              v-if="languageExamples.data.length"
+              :columns="exampleColumns"
+              :data="languageExamples.data"
+              :meta="{}"
+            >
+              <template #example="props">
+                <div class="mb-2">
+                  <div>
+                    <span class="title">Ex:</span> {{ props.row.example }}
+                  </div>
+                  <div v-if="props.row.translate">
+                    <span class="title">Translate:</span>
+                    {{ props.row.translate }}
+                  </div>
+                  <div v-if="props.row.spell">
+                    <span class="title">Translate:</span>
+                    {{ props.row.translate }}
+                  </div>
+                  <div v-if="props.row.description">
+                    <!-- <span class="title">Description:</span> -->
+                    <span v-html="props.row.description"> </span>
+                  </div>
+                </div>
+              </template>
+              <template #actions="props">
+              <v-btn light icon @click="showModalUpdateExample(props.row)">
+                <v-icon>mdi-pen</v-icon>
+              </v-btn>
+            </template>
+            </BaseTable>
+          </div>
+        </template>
+        <template #btn-footer>
+          <div
+            @click="$refs.modalCreateExample.show()"
+            class="text-right left ml-1"
+          >
+            <v-btn color="primary">
+              <v-icon> mdi-plus </v-icon>
+            </v-btn>
+          </div>
+        </template>
       </FormModal>
       <FormModal
         ref="modalCreateNewWord"
         title="Create New Word"
         :id="languageWordsInfo.ID"
         width="800px"
-        minHeight="75vh"
+        minHeight="65vh"
         module="admin/learn_languages"
         repository="adminLearnLanguages"
         reset
@@ -105,6 +152,40 @@
         }"
         @updated="$refs.table.fetchData()"
       />
+      <FormModal
+        ref="modalCreateExample"
+        title="Create Example"
+        :id="languageWord.ID"
+        reset
+        width="600px"
+        minHeight="150px"
+        module="admin/learn_languages"
+        repository="adminLearnLanguages"
+        :store="{
+          state: 'languageExample',
+          module: 'admin.learn_languages',
+          form: 'formLanguageExample',
+          update: 'createLanguageExample',
+        }"
+        @updated="fetchLanguageExamples(languageWord.ID)"
+      />
+      <FormModal
+        ref="modalUpdateExample"
+        title="Update Example"
+        :id="languageExample.ID"
+        reset
+        width="600px"
+        minHeight="150px"
+        module="admin/learn_languages"
+        repository="adminLearnLanguages"
+        :store="{
+          state: 'languageExample',
+          module: 'admin.learn_languages',
+          form: 'formLanguageExample',
+          update: 'updateLanguageExample',
+        }"
+        @updated="fetchLanguageExamples(languageWord.ID)"
+      />
     </template>
   </NavAdmin>
 </template>
@@ -116,11 +197,11 @@ import { mapActions, mapState } from "vuex";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 import FormModal from "@/components/pages/admin/base/modal/FormModal";
+import BaseTable from "@/components/base/BaseTable";
 
 import LearnLanguageForm from "@/components/pages/admin/learn_languages/form/LearnLanguageForm.vue";
 import CodeForm from "@/components/pages/admin/deverlopers/form/CodeForm.vue";
 import AddActionBtnGroups from "@/components/pages/admin/deverlopers/AddActionBtnGroups.vue";
-
 import { mapFields } from "vuex-map-fields";
 import { cloneDeep } from "lodash";
 
@@ -132,6 +213,7 @@ export default {
     NavAdmin,
     AdminBaseTable,
     FormModal,
+    BaseTable,
   },
   layout: "adminDev",
   name: "EditDeverloper",
@@ -141,6 +223,10 @@ export default {
       wordName: "",
       ID: "",
       titel: "Admin: Edit Deverloper - ",
+      languageExamples: {
+        data: [],
+        meta: {},
+      },
       columns: [
         {
           key: "word",
@@ -148,6 +234,7 @@ export default {
           attributes: {
             style: {
               width: "auto",
+              "min-width": "150px",
             },
           },
         },
@@ -157,6 +244,7 @@ export default {
           attributes: {
             style: {
               width: "auto",
+              "min-width": "200px",
             },
           },
         },
@@ -166,6 +254,31 @@ export default {
           attributes: {
             style: {
               width: "auto",
+              "min-width": "200px",
+            },
+          },
+        },
+        {
+          key: "actions",
+          label: "Actions",
+          type: "actions",
+          attributes: {
+            align: "center",
+            style: {
+              width: "70px",
+              "max-width": "70px",
+            },
+          },
+        },
+      ],
+      exampleColumns: [
+        {
+          key: "example",
+          label: "Example",
+          attributes: {
+            style: {
+              width: "auto",
+              "min-width": "150px",
             },
           },
         },
@@ -191,6 +304,7 @@ export default {
       "deverloper_edit",
       "actions",
       "languageWord",
+      'languageExample',
       "languageTopic",
       "queryLanguageWords",
     ]),
@@ -210,10 +324,29 @@ export default {
       "get_deverloper_edit",
       "removeAction",
     ]),
-    showModal(row) {
+    async showModal(row) {
       this.$refs.modal.show();
       this.wordName = row.word;
       this.languageWord = row;
+      this.fetchLanguageExamples(row.ID);
+    },
+    async fetchLanguageExamples(ID) {
+      const res =
+        await this.$repositories.adminLearnLanguages.fetchLanguageExamples({
+          input: {
+            id: ID,
+          },
+        });
+      this.languageExamples = _.get(res, "data.response", {
+        data: [],
+        meta: {},
+      });
+    },
+    
+    showModalUpdateExample(row) {
+      this.$refs.modalUpdateExample.show();
+      this.languageExample = row;
+
     },
     showModalCreateNewWord() {
       this.$refs.modalCreateNewWord.show();
@@ -301,15 +434,18 @@ export default {
   },
 };
 </script>
-<style >
+
+<style lang="scss" scoped>
 .CodeMirror {
   height: auto;
   min-height: 50px;
   resize: horizontal;
 }
+
 .CodeMirror-wrap pre {
   word-break: break-word;
 }
+
 /* #body-admin {
   position: relative;
 } */

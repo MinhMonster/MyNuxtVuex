@@ -27,8 +27,8 @@
         <slot :name="column.key" :row="row" :value="value">{{
           columnsValue(column.type, value)
         }}</slot>
-      </template></BaseTable
-    >
+      </template>
+    </BaseTable>
   </div>
 </template>
 <script>
@@ -93,7 +93,9 @@ export default {
       },
       stateParamDefault(state) {
         // console.log("this.params", this.params);
-        return this.params.length > 0 ? _.get(state, this.store.module + "." + 'paramDefaults', {}) : {};
+        return this.params.length > 0
+          ? _.get(state, this.store.module + "." + "paramDefaults", {})
+          : {};
       },
       haveStore() {
         return !_.isEmpty(this.store);
@@ -228,7 +230,7 @@ export default {
         this.params.forEach((param, index) => {
           this.$store.dispatch(this.module + "/setParamDefault", {
             query: param.query,
-            data: param.value
+            data: param.value,
           });
           // console.log("default", this.store.state + "." + param.query + ".value", index, this.params);
         });
@@ -242,7 +244,7 @@ export default {
         const result = await this.$repositories[this.repository][
           this.store.action
         ]({
-          input: Object.assign(dataSearch,  this.stateParamDefault),
+          input: Object.assign(dataSearch, this.stateParamDefault),
         });
 
         dataOrigin.response = result.data.response;

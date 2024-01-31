@@ -24,12 +24,14 @@ export default enableResetStore({
         language: language,
         languageTopic:languageTopic,
         languageWord: languageWord,
+        languageExample: languageExample,
         languageItem:languageItem,
         formUpdateLanguage: formUpdateLanguage,
         formLanguageCategory: formLanguageCategory,
         formLanguageTopic: formLanguageTopic,
         formUpdateLanguageItem: formUpdateLanguageItem,
         formLanguageWord: formLanguageWord,
+        formLanguageExample: formLanguageExample
 
       },
       queryLearnLanguages: queryLearnLanguages,
@@ -39,12 +41,14 @@ export default enableResetStore({
       language: language,
       languageTopic:languageTopic,
       languageWord: languageWord,
+      languageExample: languageExample,
       languageItem: languageItem,
       formUpdateLanguage: formUpdateLanguage,
       formLanguageCategory: formLanguageCategory,
       formLanguageTopic: formLanguageTopic,
       formUpdateLanguageItem: formUpdateLanguageItem,
       formLanguageWord: formLanguageWord,
+      formLanguageExample: formLanguageExample,
 
       // formNinja: formNinja,
 
@@ -356,9 +360,17 @@ const languageTopic =
 });
 
 
+
+
 const languageWord =
   _.cloneDeep({
     word: "",
+    ID: null
+  });
+
+  const languageExample =
+  _.cloneDeep({
+    example: "",
     ID: null
   });
 
@@ -474,6 +486,41 @@ const formLanguageWord =
     },
   ]);
 
+
+  
+  const formLanguageExample =
+  _.cloneDeep([
+    {
+      title: "Example",
+      type: "text",
+      value: 'example',
+      cols: 12,
+      sm: 12,
+      md: 12,
+      lg: 12
+    },
+    {
+      title: "Translate",
+      type: "text",
+      value: 'translate',
+      cols: 12,
+      sm: 12,
+      md: 12,
+      lg: 12
+    },
+    {
+      title: "Description",
+      type: "content-editer",
+      value: 'description',
+      cols: 12,
+      sm: 12,
+      md: 12,
+      lg: 12
+    },
+  ]);
+
+
+  
 
 
 

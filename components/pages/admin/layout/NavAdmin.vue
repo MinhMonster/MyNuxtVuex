@@ -97,12 +97,12 @@ export default {
     },
     pathGoBack: {
       type: String,
-      default: null,
+      default: "",
     },
-    queryGoBack: {
-      type: String,
-      default: null,
-    },
+    // queryGoBack: {
+    //   type: String,
+    //   default: null,
+    // },
     goBack: Boolean,
     nextPage: Boolean,
     goHome: Boolean,
@@ -165,8 +165,8 @@ export default {
     async onGoBack() {
       if (this.isGoHome) {
         this.$router.push("/");
-      } else if (this.pathGoBack && this.queryGoBack) {
-        await this.$router.push(`${this.pathGoBack}?${this.queryGoBack}`);
+      } else if (this.pathGoBack) {
+        this.$router.push(`${this.pathGoBack}`);
       } else {
         const { from } = this.$route.query;
         if (from) this.$router.push(from);

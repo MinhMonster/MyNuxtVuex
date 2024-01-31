@@ -27,24 +27,25 @@
         </div>
       </v-card-text>
       <v-card-actions class="text-right right gap-10">
-        <v-btn color="red" class="text-white" @click="dialog = false">
-          Close
-        </v-btn>
-        <v-btn
-          v-if="isForm"
-          type="submit"
-          color="primary"
-          class="text-white"
-          @click="onUpdate()"
-        >
-          Submit
-        </v-btn>
-        <v-btn v-if="isShow" color="light" class="text-white left">
-          <BaseCheckBox
-            :value="isForm"
-            @change="(value) => (isForm = value)"
-          ></BaseCheckBox>
-        </v-btn>
+        <div class="text-right right w-100">
+          <v-btn color="red" class="text-white" @click="dialog = false">
+            Close
+          </v-btn>
+          <v-btn
+            v-if="isForm"
+            type="submit"
+            color="primary"
+            class="text-white"
+            @click="onUpdate()"
+          >
+            Submit
+          </v-btn>
+          <v-btn v-if="isShow" color="primary" class="text-white left">
+            <v-icon v-if="isForm" @click="isForm = false"> mdi-eye </v-icon>
+            <v-icon v-else @click="isForm = true"> mdi-pen </v-icon>
+          </v-btn>
+          <slot name="btn-footer"></slot>
+        </div>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -254,8 +255,10 @@ form {
   display: flex;
   flex-direction: row;
   justify-content: right;
-  justify-content: end;
   align-content: flex-end;
-  padding: 16px;
+  padding: 6px 16px;
+  button {
+    // margin-left: 5px;
+  }
 }
 </style>
