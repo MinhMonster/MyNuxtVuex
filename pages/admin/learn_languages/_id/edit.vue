@@ -27,20 +27,10 @@
               action: 'fetchLanguageWords',
             }"
           >
-            <template #words="props">
-              <ul>
-                <li class="bold">{{ props.row.title }}</li>
-                <li v-for="info in props.row.items" :key="info.ID">
-                  <nuxt-link :to="`/admin/learn_languages/${info.ID}/edit`">{{
-                    info.title
-                  }}</nuxt-link>
-                </li>
-              </ul>
-            </template>
-            <template #actions="props">
-              <v-btn light icon @click="showModal(props.row)">
-                <v-icon>mdi-open-in-new</v-icon>
-              </v-btn>
+            <template #word="props">
+              <div class="text-primary pointer" @click="showModal(props.row)">
+                {{ props.row.word }}
+              </div>
             </template>
           </AdminBaseTable>
         </v-col>
@@ -64,7 +54,10 @@
       >
         <template #show>
           <div class="language-word">
-            <p><span class="title">Word:</span> {{ languageWord.word }}</p>
+            <p>
+              <span class="title">Word:</span> {{ languageWord.word }}
+              <ButtonCoppy :content="languageWord.word"></ButtonCoppy>
+            </p>
             <p><span class="title">Spell:</span> {{ languageWord.spell }}</p>
             <p>
               <span class="title">Translate:</span> {{ languageWord.translate }}
@@ -100,10 +93,10 @@
                 </div>
               </template>
               <template #actions="props">
-              <v-btn light icon @click="showModalUpdateExample(props.row)">
-                <v-icon>mdi-pen</v-icon>
-              </v-btn>
-            </template>
+                <v-btn light icon @click="showModalUpdateExample(props.row)">
+                  <v-icon>mdi-pen</v-icon>
+                </v-btn>
+              </template>
             </BaseTable>
           </div>
         </template>
@@ -154,11 +147,12 @@
       />
       <FormModal
         ref="modalCreateExample"
-        title="Create Example"
+        :title="languageWord.word"
+        subTitle="Create Example"
         :id="languageWord.ID"
         reset
-        width="600px"
-        minHeight="150px"
+        width="800px"
+        minHeight="65vh"
         module="admin/learn_languages"
         repository="adminLearnLanguages"
         :store="{
@@ -171,11 +165,12 @@
       />
       <FormModal
         ref="modalUpdateExample"
-        title="Update Example"
+        :title="languageWord.word"
+        subTitle="Update Example"
         :id="languageExample.ID"
         reset
-        width="600px"
-        minHeight="150px"
+        width="800px"
+        minHeight="65vh"
         module="admin/learn_languages"
         repository="adminLearnLanguages"
         :store="{
@@ -198,6 +193,7 @@ import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 import FormModal from "@/components/pages/admin/base/modal/FormModal";
 import BaseTable from "@/components/base/BaseTable";
+import ButtonCoppy from "@/components/common/ButtonCoppy";
 
 import LearnLanguageForm from "@/components/pages/admin/learn_languages/form/LearnLanguageForm.vue";
 import CodeForm from "@/components/pages/admin/deverlopers/form/CodeForm.vue";
@@ -214,6 +210,7 @@ export default {
     AdminBaseTable,
     FormModal,
     BaseTable,
+    ButtonCoppy,
   },
   layout: "adminDev",
   name: "EditDeverloper",
@@ -258,18 +255,6 @@ export default {
             },
           },
         },
-        {
-          key: "actions",
-          label: "Actions",
-          type: "actions",
-          attributes: {
-            align: "center",
-            style: {
-              width: "70px",
-              "max-width": "70px",
-            },
-          },
-        },
       ],
       exampleColumns: [
         {
@@ -304,7 +289,7 @@ export default {
       "deverloper_edit",
       "actions",
       "languageWord",
-      'languageExample',
+      "languageExample",
       "languageTopic",
       "queryLanguageWords",
     ]),
@@ -342,11 +327,10 @@ export default {
         meta: {},
       });
     },
-    
+
     showModalUpdateExample(row) {
       this.$refs.modalUpdateExample.show();
       this.languageExample = row;
-
     },
     showModalCreateNewWord() {
       this.$refs.modalCreateNewWord.show();
@@ -445,17 +429,11 @@ export default {
 .CodeMirror-wrap pre {
   word-break: break-word;
 }
-
-/* #body-admin {
-  position: relative;
-} */
-/* .btn-groups {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 9;
-  height: 50px;
-
-} */
+::v-deep {
+  .v-btn--icon.v-size--default .v-icon.mdi.mdi-content-copy {
+    color: #333 !important;
+    font-size: 15px !important;
+    margin-top: 3px;
+  }
+}
 </style>
