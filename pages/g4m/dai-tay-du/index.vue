@@ -59,14 +59,16 @@ export default {
   data() {
     return {
       title:
-        "MuaBanNick.Pro - Hệ Thống Mua Bán Nick Đại Tây Du - G4M. Shop Mua Bán Nick  Đại Tây Du - G4M Giá Rẻ, Uy Tín Nhất MXH",
+        "MuaBanNick.Pro - Shop Nick Đại Tây Du G4M Tự Động - Shop Mua Bán Nick Đại Tây Du G4M VIP Giá Rẻ, Uy Tín Nhất MXH",
+      description:
+        "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
     };
   },
   head() {
     return {
       title: this.title,
       meta: [
-        { hid: "description", name: "description", content: this.title },
+        { hid: "description", name: "description", content: this.description },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
         {
@@ -77,6 +79,10 @@ export default {
         {
           property: "og:image",
           content: "https://muabannick.pro/images/banner/dai-tay-du-g4m.png",
+        },
+        {
+          property: "og:image:alt",
+          content: "MuaBanNick.Pro - Shop Nick Tự Động",
         },
       ],
     };

@@ -17,14 +17,15 @@
         </nuxt-link>
       </p> -->
       <p class="bold text-italic text-13-700">
-        <nuxt-link to="/events/daily" class="text-primary"
-          ><span class="text-danger">*</span>Tham gia Sự kiện hằng ngày <span class="text-danger">"Tại Đây"</span>
+        <nuxt-link to="/events/daily" class="text-primary">
+          <span class="text-danger">*</span>Tham gia Sự kiện hằng ngày
+          <span class="text-danger">"Tại Đây"</span>
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/admin-information" class="text-success">
           <span class="text-danger">*</span> Giảm 20% tất cả Nick Trên Shop đến
-          09/12
+          10/02
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700 text-danger">

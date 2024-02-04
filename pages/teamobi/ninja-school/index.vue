@@ -41,17 +41,23 @@ export default {
   data() {
     return {
       title:
-        "MuaBanNick.Pro - Hệ Thống Mua Bán Nick Ninja School Online Tự Động Game TeaMobile. Shop Mua Bán Nick Ninja School Giá Rẻ, Uy Tín Nhất MXH",
+        "MuaBanNick.Pro - Shop Nick Ninja School Online Tự Động - Shop Mua Bán Nick Ninja School Online VIP Giá Rẻ, Uy Tín Nhất MXH",
+      description:
+        "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
     };
   },
   head() {
     return {
       title: this.title,
       meta: [
-        { hid: "description", name: "description", content: this.title },
+        { hid: "description", name: "description", content: this.description },
         { property: "og:title", content: this.title },
-        { property: "og:description", content: this.title },
+        { property: "og:description", content: this.description },
         { property: "og:image", content: "/banner.jpg" },
+        {
+          property: "og:image:alt",
+          content: "Shop Nick Ninja School Online VIP  Giá Rẻ - NSO",
+        },
       ],
     };
   },

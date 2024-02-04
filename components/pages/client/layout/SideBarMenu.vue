@@ -27,7 +27,7 @@
                 </div>
               </div>
 
-              <ButtonLoginFacebook />
+              <!-- <ButtonLoginFacebook /> -->
             </div>
             <template v-else>
               {{ user.name }}
@@ -164,7 +164,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 .rightbar-content .user-info-wrap {
   top: 0px;
   position: relative;

@@ -137,8 +137,8 @@
               <span v-else> Đăng Ký </span>
             </b-button>
           </div>
-          <div class="signin">----------- Hoặc -----------</div>
-          <ButtonLoginFacebook />
+          <!-- <div class="signin">----------- Hoặc -----------</div>
+          <ButtonLoginFacebook /> -->
         </form>
       </template>
     </HomePage>

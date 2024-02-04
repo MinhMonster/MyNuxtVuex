@@ -94,14 +94,6 @@ export default {
     return {
       gameList: [
         {
-          title: "Sự kiện Hằng ngày",
-          path: "/events/daily",
-          image:
-            "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
-          numberAccount: "5245",
-          sold: "5144",
-        },
-        {
           title: "Nick Ninja VIP",
           path: "/teamobi/ninja-school/nick-vip",
           image:
@@ -118,17 +110,17 @@ export default {
           sold: "7185",
         },
         {
+          title: "Sự kiện Hằng ngày",
+          path: "/events/daily",
+          image:
+            "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
+          numberAccount: "5245",
+          sold: "5144",
+        },
+        {
           title: "Avatar XS.DKỳ",
           path: "/teamobi/avatar",
           image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
-          numberAccount: "90",
-          sold: "69",
-        },
-        {
-          title: "Đai Tây Du - G4M",
-          path: "/g4m/dai-tay-du",
-          image:
-            "https://muabannick.pro/images/banners/banner_dai_tay_du_g4m_min.jpg",
           numberAccount: "90",
           sold: "69",
         },
@@ -138,6 +130,14 @@ export default {
           image: "https://muabannick.pro//images/banners/banner_nro_min.jpg",
           numberAccount: "515",
           sold: "438",
+        },
+        {
+          title: "Đai Tây Du - G4M",
+          path: "/g4m/dai-tay-du",
+          image:
+            "https://muabannick.pro/images/banners/banner_dai_tay_du_g4m_min.jpg",
+          numberAccount: "90",
+          sold: "69",
         },
       ],
     };
