@@ -226,39 +226,39 @@ form {
 /* .v-card.v-sheet.theme--dark {
   background: #fff !important;
 } */
-.v-card__title.title-modal {
-  color: #fff;
-  border-left: 2px solid #272727;
-  border-right: 2px solid #272727;
-  background: #333;
-  border-bottom: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.v-dialog--scrollable > .v-card > .v-card__text {
-  position: relative;
-  border: 2px solid #272727;
-  background: #f2f2f2;
-  padding: 10px;
-  .modal-body {
-    background: #fff;
-    height: auto;
-    min-height: 100%;
-    padding: 5px 1rem;
-  }
-}
-.v-dialog > .v-card > .v-card__actions {
-  border: 2px solid #272727;
-  background: #333;
-  border-top: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  align-content: flex-end;
-  padding: 6px 16px;
-  button {
-    // margin-left: 5px;
-  }
-}
+// .v-card__title.title-modal {
+//   color: #fff;
+//   border-left: 2px solid #272727;
+//   border-right: 2px solid #272727;
+//   background: #333;
+//   border-bottom: none;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+// .v-dialog--scrollable > .v-card > .v-card__text {
+//   position: relative;
+//   border: 2px solid #272727;
+//   background: #f2f2f2;
+//   padding: 10px;
+//   .modal-body {
+//     background: #fff;
+//     height: auto;
+//     min-height: 100%;
+//     padding: 5px 1rem;
+//   }
+// }
+// .v-dialog > .v-card > .v-card__actions {
+//   border: 2px solid #272727 !important;
+//   background: #333;
+//   border-top: none;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: right;
+//   align-content: flex-end;
+//   padding: 6px 16px;
+//   button {
+//     // margin-left: 5px;
+//   }
+// }
 </style>

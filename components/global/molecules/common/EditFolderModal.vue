@@ -12,7 +12,7 @@
       </v-card-text>
       <v-card-text class="pointer">
         <v-icon color="red">mdi-delete-sweep</v-icon>
-        Delete  Folder
+        Delete Folder
       </v-card-text>
       <v-card-text class="pointer">
         <v-icon color="red">mdi-folder-remove</v-icon>
@@ -25,7 +25,7 @@
         pill
         @click="closeModal()"
       >
-        <i class="mdi mdi-close-thick"></i>
+        <i class="mdi mdi-close-thick text-white"></i>
       </b-button>
     </v-card>
     <div class="bg-modal"></div>

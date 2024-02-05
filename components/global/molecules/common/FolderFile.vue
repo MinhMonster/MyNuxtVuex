@@ -119,7 +119,7 @@
                 pill
                 @click="removeFile(index)"
               >
-                <i class="mdi mdi-close-thick"></i>
+              <i class="mdi mdi-close-thick text-white"></i>
               </b-button>
               <div class="fileIcon">
                 <img v-if="file.url" :src="file.url" />
@@ -151,7 +151,7 @@
                 pill
                 @click="onDeleteFile(image)"
               >
-                <i class="mdi mdi-close-thick"></i>
+              <i class="mdi mdi-close-thick text-white"></i>
               </b-button>
               <div class="fileIcon">
                 <img
@@ -299,7 +299,7 @@ export default {
   data() {
     return {
       showFolder: true,
-      path: "/images/",
+      pathFolder: "/images/",
       folderUpload: "/images/",
       pathActive: "/images/",
       images: [],
@@ -361,7 +361,7 @@ export default {
       } else {
         this.pathActive = "/images/";
       }
-      this.path = value;
+      this.pathFolder = value;
       this.folderUpload = value;
       await this.getFiles();
     },
@@ -512,7 +512,7 @@ export default {
     },
     newFolder(value) {
       const input = {
-        path: this.path,
+        path: this.pathFolder,
         folder: value,
       };
       this.$emit("newFolder", input);
@@ -561,6 +561,7 @@ export default {
   max-height: calc(100vh - 130px);
   border-right: 1px solid #dee2e6;
   display: none;
+  // background: #333;
 
   .folder-item {
     border-top: 1px solid #d7dcdf;
@@ -646,7 +647,7 @@ export default {
         border-radius: 5px;
         padding: 5px;
         height: 100%;
-        color: #fff;
+        // color: #fff;
 
         &.active {
           border: 2px solid #2196f3 !important;

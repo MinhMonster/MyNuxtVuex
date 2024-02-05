@@ -32,7 +32,7 @@
             pill
             @click="removeImage(image)"
           >
-            <i class="mdi mdi-close-thick"></i>
+            <i class="mdi mdi-close-thick text-white"></i>
           </b-button>
         </div>
       </v-col>
@@ -61,9 +61,9 @@ export default {
     imagesProps: {
       type: Array,
       default: () => {
-        return []
-      }
-    }
+        return [];
+      },
+    },
   },
   data() {
     return {
