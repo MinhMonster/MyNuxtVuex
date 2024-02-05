@@ -5,7 +5,7 @@
         <div class="header-user">
           <div class="header-logo" @click="nextHome()">
             <img
-              src="https://muabannick.pro/images/logo/lg-muabannick.png"
+              src="https://muabannick.pro/files/uploads/images/logo/logo_muabannick-1707151253.png"
               alt=""
             />
           </div>

@@ -23,7 +23,7 @@ export default {
           src: "https://muabannick.pro/images/banners/banner_home-min.png",
         },
         {
-          src: "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif",
+          src: "https://muabannick.pro/files/uploads/images/logo/banner-new-year-1707150249.jpeg",
         },
       ],
     };
@@ -31,18 +31,18 @@ export default {
   methods: {
     onLoadAvatar(item) {
       if (
-        item == "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif"
+        item == "https://muabannick.pro/files/uploads/images/logo/banner-new-year-1707150249.jpeg"
       ) {
         this.items = [
           {
-            src: "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif",
+            src: "https://muabannick.pro/files/uploads/images/logo/banner-new-year-1707150249.jpeg",
           },
         ];
       }
     },
     onErrorAvatar(item) {
       if (
-        item == "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif"
+        item == "https://muabannick.pro/files/uploads/images/logo/banner-new-year-1707150249.jpeg"
       ) {
         this.items = [
           {
