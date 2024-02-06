@@ -133,7 +133,7 @@ export default {
 <style lang="scss" scoped>
 ::v-deep {
   .v-dialog {
-    margin: 5px;
+    margin: 12px;
     background: #fff;
     .v-sheet.v-card:not(.v-sheet--outlined) {
       box-shadow: none;
@@ -180,7 +180,7 @@ export default {
     position: relative;
     min-height: 75vh;
     .card-body {
-      min-height: calc(75vh - 140px);
+      min-height: calc(75vh - 130px);
       &.v-sheet {
         min-width: 100%;
         max-width: 911px;
@@ -194,7 +194,7 @@ export default {
     }
     .fileList,
     .folderList {
-      min-height: calc(75vh - 140px);
+      min-height: calc(75vh - 130px);
       max-height: calc(85vh - 230px);
     }
   }
