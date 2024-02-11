@@ -1,6 +1,6 @@
 <template>
   <div class="home-slider">
-    <v-carousel hide-delimiters>
+    <v-carousel hide-delimiters cycle :interval="5000">
       <v-carousel-item v-for="(item, i) in items" :key="i" cover eager>
         <v-img
           :src="item.src"
@@ -20,36 +20,35 @@ export default {
     return {
       items: [
         {
-          src: "https://muabannick.pro/images/banners/banner_home-min.png",
+          src: "https://muabannick.pro/images/banners/muabannick_banner_min.png",
         },
         {
-          src: "https://muabannick.pro/files/uploads/images/logo/banner-new-year-1707150249.jpeg",
+          src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
         },
+        // {
+        //   src: "https://muabannick.pro/images/banners/banner_ny_min.gif",
+        // },
       ],
     };
   },
   methods: {
     onLoadAvatar(item) {
-      if (
-        item == "https://muabannick.pro/files/uploads/images/logo/banner-new-year-1707150249.jpeg"
-      ) {
-        this.items = [
-          {
-            src: "https://muabannick.pro/files/uploads/images/logo/banner-new-year-1707150249.jpeg",
-          },
-        ];
-      }
+      // if (item == "https://muabannick.pro/images/banners/banner_ny_min.gif") {
+      //   this.items = [
+      //     {
+      //       src: "https://muabannick.pro/images/banners/banner_ny_min.gif",
+      //     },
+      //   ];
+      // }
     },
     onErrorAvatar(item) {
-      if (
-        item == "https://muabannick.pro/files/uploads/images/logo/banner-new-year-1707150249.jpeg"
-      ) {
-        this.items = [
-          {
-            src: "https://muabannick.pro/images/banners/banner_home-min.png",
-          },
-        ];
-      }
+      // if (item == "https://muabannick.pro/images/banners/banner_ny_min.gif") {
+      //   this.items = [
+      //     {
+      //       src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
+      //     },
+      //   ];
+      // }
     },
   },
 };

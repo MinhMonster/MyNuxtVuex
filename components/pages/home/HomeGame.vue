@@ -4,7 +4,7 @@
       <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8" id="home-left">
         <v-row style="margin: -15px">
           <v-col cols="12">
-            <RunText v-if="isTablet" />
+            <!-- <RunText v-if="isTablet" /> -->
             <HomeSlider />
           </v-col>
         </v-row>
@@ -67,7 +67,7 @@ import AdminNotification from "@/components/pages/home/AdminNotification";
 import FormLogin from "@/components/pages/client/login/FormLogin";
 import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import HomeSlider from "@/components/pages/home/HomeSlider";
-import RunText from "@/components/global/molecules/common/template/RunText";
+// import RunText from "@/components/global/molecules/common/template/RunText";
 
 import { mapFields } from "vuex-map-fields";
 import { mapState, mapActions } from "vuex";
@@ -82,7 +82,7 @@ export default {
     FormLogin,
     SideBarMenu,
     HomeSlider,
-    RunText,
+    // RunText,
   },
   props: {
     query: {

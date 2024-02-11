@@ -5,11 +5,15 @@
         <div class="header-user">
           <div class="header-logo" @click="nextHome()">
             <img
-              src="https://muabannick.pro/files/uploads/images/logo/logo_muabannick-1707151253.png"
+              :src="
+                isThemeDark
+                  ? 'https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png'
+                  : 'https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200029.png'
+              "
               alt=""
             />
           </div>
-          <RunText v-if="!isTablet" />
+          <!-- <RunText v-if="!isTablet" /> -->
           <SideBarHome></SideBarHome>
         </div>
       </div>
@@ -20,7 +24,7 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import SideBarHome from "@/components/pages/client/layout/SideBarHome";
-import RunText from "@/components/global/molecules/common/template/RunText";
+// import RunText from "@/components/global/molecules/common/template/RunText";
 
 import mixins from "@/mixins/index";
 
@@ -28,12 +32,13 @@ export default {
   mixins: [mixins],
   components: {
     SideBarHome,
-    RunText,
+    // RunText,
   },
   props: {},
   computed: {
     ...mapFields("global", {
       ready: "ready",
+      isThemeDark: "isThemeDark",
     }),
     isHome() {
       return this.$route.path == "/";
