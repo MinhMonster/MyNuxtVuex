@@ -15,12 +15,11 @@
 </template>
 
 <script>
-import HomePage from "@/components/pages/home/HomePage";
-import HistoryBuyAccount from "@/components/pages/home/HistoryBuyAccount";
-import HistoryDeposit from "@/components/pages/home/HistoryDeposit";
-
 import { mapFields } from "vuex-map-fields";
 
+import HomePage from "@/components/pages/home/HomePage";
+// import HistoryBuyAccount from "@/components/pages/home/HistoryBuyAccount";
+// import HistoryDeposit from "@/components/pages/home/HistoryDeposit";
 import HomeGame from "@/components/pages/home/HomeGame";
 import Loading from "@/components/global/molecules/common/Loading";
 
@@ -31,23 +30,23 @@ export default {
     HomePage,
     HomeGame,
     Loading,
-    HistoryBuyAccount,
-    HistoryDeposit,
+    // HistoryBuyAccount,
+    // HistoryDeposit,
   },
   computed: {
     ...mapFields("global", {
       ready: "ready",
     }),
   },
-  async mounted() {
+  mounted() {
     this.reload();
   },
   methods: {
-    async reload() {
+    reload() {
       this.ready = false;
       setTimeout(() => {
         this.ready = true;
-      }, 200);
+      }, 50);
     },
   },
   data() {

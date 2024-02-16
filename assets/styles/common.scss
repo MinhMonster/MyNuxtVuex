@@ -47,6 +47,33 @@ html {
   justify-content: center;
 }
 
+// .hidden-sm {
+//   display: block;
+
+//   @media (max-width: 575px) {
+//     display: none;
+//   }
+// }
+
+
+
+// @media (min-width: 960px) {
+//   .hidden-md {
+//     display: block;
+//   }
+// }
+// @media (max-width: 960px) {
+//   .hidden-md {
+//     display: none;
+
+//   }
+//   .hidden-md-12 {
+//     width: 100% !important;
+//     max-width: 100% !important;
+//   }
+// }
+
+
 .loading {
   position: fixed;
   z-index: 99999999;

@@ -1,8 +1,8 @@
 <template>
   <div id="home-page">
     <Loading v-if="loading" />
-    <b-row v-else>
-      <b-col md="12" :lg="colLeft">
+    <v-row v-else>
+      <v-col cols="12" md="12" :lg="colLeft">
         <div :class="{ 'full-screen': fullScreen, 'page-body': !notBoder }">
           <div :class="{ 'page-info': fullScreen }">
             <div v-if="title" class="title-page title text-center">
@@ -30,21 +30,20 @@
             <slot name="body"></slot>
           </div>
         </div>
-      </b-col>
-      <b-col v-if="colRight" md="12" :lg="colRight">
+      </v-col>
+      <v-col v-if="colRight" cols="12" md="12" :lg="colRight">
         <slot name="col-right"></slot>
-      </b-col>
-      <b-col v-if="table" md="12" lg="12">
+      </v-col>
+      <v-col v-if="table" cols="12" md="12" lg="12">
         <slot name="table"></slot>
-      </b-col>
-    </b-row>
+      </v-col>
+    </v-row>
     <div id="next-bottom"></div>
   </div>
 </template>
   
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
-
 import mixins from "@/mixins/index";
 
 import { mapFields } from "vuex-map-fields";
@@ -100,16 +99,16 @@ export default {
       default: null,
     },
   },
-  data() {
-    return {
-      isMobile: false,
-    };
-  },
-  async mounted() {
-    this.$nextTick(function () {
-      this.nextPath();
-    });
-  },
+  // data() {
+  //   return {
+  //     isMobile: false,
+  //   };
+  // },
+  // async mounted() {
+  //   this.$nextTick(function () {
+  //     this.nextPath();
+  //   });
+  // },
   computed: {
     ...mapState("global", ["oldPath", "nowPath"]),
     ...mapFields("global", {
@@ -120,12 +119,11 @@ export default {
     },
   },
   methods: {
-    ...mapActions("global", ["setPath"]),
-
-    nextPath() {
-      const path = this.$route.path;
-      this.setPath(path);
-    },
+    // ...mapActions("global", ["setPath"]),
+    // nextPath() {
+    //   const path = this.$route.path;
+    //   this.setPath(path);
+    // },
     async onGoBack() {
       if (this.isGoHome) {
         this.$router.push("/");

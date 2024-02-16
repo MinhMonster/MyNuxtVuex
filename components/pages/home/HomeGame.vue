@@ -35,7 +35,7 @@
       </v-col>
     </v-row>
 
-    <ModalPayload
+    <!-- <ModalPayload
       v-if="isNotification"
       ref="modal"
       :title="`Thông Báo`"
@@ -55,30 +55,30 @@
           <span>Đóng 2 giờ</span>
         </b-button>
       </template>
-    </ModalPayload>
+    </ModalPayload> -->
   </div>
 </template>
 
 <script>
 import mixins from "@/mixins/index";
 import GameCard from "@/components/pages/home/GameCard";
-import ModalPayload from "@/components/common/ModalPayload";
-import AdminNotification from "@/components/pages/home/AdminNotification";
+// import ModalPayload from "@/components/common/ModalPayload";
+// import AdminNotification from "@/components/pages/home/AdminNotification";
 import FormLogin from "@/components/pages/client/login/FormLogin";
 import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import HomeSlider from "@/components/pages/home/HomeSlider";
 // import RunText from "@/components/global/molecules/common/template/RunText";
 
-import { mapFields } from "vuex-map-fields";
+// import { mapFields } from "vuex-map-fields";
 import { mapState, mapActions } from "vuex";
 export default {
-  name: "AccountNinjaList",
+  name: "HomeGame",
   mixins: [mixins],
 
   components: {
     GameCard,
-    ModalPayload,
-    AdminNotification,
+    // ModalPayload,
+    // AdminNotification,
     FormLogin,
     SideBarMenu,
     HomeSlider,
@@ -143,10 +143,10 @@ export default {
     };
   },
   async mounted() {
-    await this.getNotification();
-    if (this.isNotification) {
-      // this.$refs.modal.show();
-    }
+    // await this.getNotification();
+    // if (this.isNotification) {
+    //   // this.$refs.modal.show();
+    // }
     window.addEventListener("resize", this.onResize);
     this.$nextTick(function () {
       this.onResize();
@@ -158,16 +158,16 @@ export default {
   computed: {
     ...mapState("home/users", ["token", "user"]),
 
-    nextPath(path) {
-      this.$router.push(`${path}`);
-    },
-    ...mapFields("global", {
-      isNotification: "isNotification",
-    }),
+    // nextPath(path) {
+    //   this.$router.push(`${path}`);
+    // },
+    // ...mapFields("global", {
+    //   isNotification: "isNotification",
+    // }),
   },
-  methods: {
-    ...mapActions("global", ["setNotification", "getNotification"]),
-  },
+  // methods: {
+  //   ...mapActions("global", ["setNotification", "getNotification"]),
+  // },
 };
 </script>
 

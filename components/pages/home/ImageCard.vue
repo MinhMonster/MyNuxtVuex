@@ -3,9 +3,9 @@
     <div v-if="game" class="image-card">
       <img
         v-if="game.image"
-        preload
+        eager
         :src="game.image"
-        alt=""
+        :alt="game.title"
         class="image-ninja"
       />
     </div>
@@ -22,10 +22,6 @@ export default {
       default: () => {},
     },
   },
-  mounted() {},
-
-  computed: {},
-  methods: {},
 };
 </script>
 <style lang="scss" scoped>

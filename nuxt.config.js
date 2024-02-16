@@ -41,7 +41,7 @@ export default {
   css: [
     "@/assets/css/mms-style.css",
     "@/assets/styles/common.scss",
-    "@/assets/styles/home/_ckeditor.scss",
+    // "@/assets/styles/home/_ckeditor.scss",
     "@/assets/styles/home/account.scss",
   ],
 
@@ -94,9 +94,9 @@ export default {
 
     // 'vuex-persistedstate'
     '@nuxtjs/dotenv',
-    "vue2-editor/nuxt",
+    // "vue2-editor/nuxt",
     // "nuxt-sweetalert2",
-    "@nuxtjs/toast",
+    // "@nuxtjs/toast",
     "vue-sweetalert2/nuxt",
     // 'nuxt-validate'
     '@nuxtjs/sitemap'
@@ -130,12 +130,12 @@ export default {
     }
   },
   // @nuxtjs/toast configurations
-  toast: {
-    position: "top-right",
-    duration: 3000, // ms
-    theme: "bubble",
-    iconPack: "material",
-  },
+  // toast: {
+  //   position: "top-right",
+  //   duration: 3000, // ms
+  //   theme: "bubble",
+  //   iconPack: "material",
+  // },
   // toast: {
   //   position: 'top-center',
   //   register: [ // Register custom toasts
@@ -185,6 +185,6 @@ export default {
     // extend(config, ctx) {},
 
   },
-  loading: "@/components/Loading.vue",
+  // loading: "@/components/Loading.vue",
 
 }

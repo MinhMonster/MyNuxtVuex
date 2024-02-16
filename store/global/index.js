@@ -24,10 +24,10 @@ export default {
     setSelectedImages({ commit }, payload) {
       commit("SET_SELECTED_IMAGES", payload)
     },
-    setPath({ commit, state }, path) {
-      commit(SET_STATE, { oldPath: state.nowPath || "/" });
-      commit(SET_STATE, { nowPath: path });
-    },
+    // setPath({ commit, state }, path) {
+    //   commit(SET_STATE, { oldPath: state.nowPath || "/" });
+    //   commit(SET_STATE, { nowPath: path });
+    // },
 
     async fileUpload({ state, commit, dispatch }, payload) {
       try {
