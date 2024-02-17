@@ -130,7 +130,7 @@
 
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
-import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import FormValidator from "@/components/global/form/FormValidator";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
 import mixins from "@/mixins/index";
 import DepositCardInstructions from "@/components/common/DepositCardInstructions";

@@ -16,26 +16,29 @@
         class="client-main scroll-y"
         :class="{ 'menu-game-active': isMenuGame }"
         :style="styleMain"
+        v-on:wheel="scroll()"
       >
         <Nuxt />
       </v-container>
     </v-main>
     <MenuBottom></MenuBottom>
-    <div class="change-theme">
-      <v-btn icon @click="changeTheme()">
-        <v-icon>mdi-theme-light-dark</v-icon>
-      </v-btn>
-    </div>
-    <div class="next-top">
-      <v-btn icon @click="nextTop()">
-        <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
-      </v-btn>
-    </div>
-    <div class="next-bottom">
-      <v-btn icon @click="nextBottom()">
-        <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
-      </v-btn>
-    </div>
+    <template v-if="isShowButton">
+      <div class="change-theme">
+        <v-btn icon @click="changeTheme()">
+          <v-icon>mdi-theme-light-dark</v-icon>
+        </v-btn>
+      </div>
+      <div class="next-top">
+        <v-btn icon @click="nextTop()">
+          <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
+        </v-btn>
+      </div>
+      <div class="next-bottom">
+        <v-btn icon @click="nextBottom()">
+          <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
+        </v-btn>
+      </div>
+    </template>
   </v-app>
 </template>
 
@@ -64,8 +67,10 @@ export default {
       right: true,
       rightDrawer: false,
       title: "Vuetify.js",
+      isShowButton: false,
     };
   },
+
   computed: {
     ...mapState("home/users", ["token"]),
     ...mapFields("global", { isThemeDark: "isThemeDark" }),
@@ -108,7 +113,12 @@ export default {
     changeTheme() {
       this.isThemeDark = !this.isThemeDark;
     },
-
+    scroll() {
+      if (!this.isShowButton) {
+        this.isShowButton = true;
+      }
+      console.log("scroll");
+    },
     nextTop() {
       const element = document.getElementById("home-page");
       element.scrollIntoView();

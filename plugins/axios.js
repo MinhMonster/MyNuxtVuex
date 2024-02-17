@@ -58,7 +58,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     const code = response.data.code;
     const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
 
-    store.dispatch("admin/global/setValidationErrors", {});
+    store.dispatch("global/setValidationErrors", {});
 
     // store.dispatch("removeRequest", response.config.id);
     if (code && code === 200) {
@@ -157,11 +157,11 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       const errors = response.data.errors;
 
       if (response.data.errors) {
-        store.dispatch("admin/global/setValidationErrors", errors ? errors || {} : {});
+        store.dispatch("global/setValidationErrors", errors ? errors || {} : {});
 
       }
       if (!response.data.errors) {
-        store.dispatch("admin/global/setValidationErrors", {});
+        store.dispatch("global/setValidationErrors", {});
       }
 
       // const errors = response.data.errors;
@@ -184,7 +184,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       //     (item) => item.error_messages && item.code === 422
       //   );
       //   store.dispatch(
-      //     "admin/global/setValidationErrors",
+      //     "global/setValidationErrors",
       //     findError ? findError.error_messages || {} : {}
       //   );
       // }

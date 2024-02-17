@@ -89,7 +89,7 @@ export default {
       this.ready = false;
       await this.setQuery({ page });
       await this.fetchTopics();
-      page == 1 || !page
+      page && page == 1
         ? await this.$router.push(`/topics`)
         : await this.$router.push(`/topics?page=${page}`);
       this.ready = true;
@@ -108,8 +108,7 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
-        { property: 'og:image', content: '/banner.jpg' },
-
+        { property: "og:image", content: "/banner.jpg" },
       ],
     };
   },
@@ -119,5 +118,4 @@ export default {
 #home-page {
   max-width: 700px;
 }
-
 </style>

@@ -15,16 +15,17 @@
 </template>
 
 <script>
+// import mixins from "@/mixins/index";
 export default {
   data() {
     return {
       items: [
         {
-          src: "https://muabannick.pro/images/banners/muabannick_banner_min.png",
+          src: this.isMobile ?  "https://muabannick.pro/images/banners/banner_mobile.png":  "https://muabannick.pro/images/banners/muabannick_banner_min.png",
         },
-        {
-          src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
-        },
+        // {
+        //   src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
+        // },
         // {
         //   src: "https://muabannick.pro/images/banners/banner_ny_min.gif",
         // },
@@ -63,6 +64,7 @@ export default {
 
       .v-carousel__item {
         height: auto !important;
+        min-height: 146.33px;
         max-height: 300px;
       }
     }

@@ -117,6 +117,7 @@ export default {
 }
 
 .home-header .header-logo img {
+  width: 191.78px;
   height: 35px;
 }
 .home-header img {

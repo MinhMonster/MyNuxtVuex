@@ -47,7 +47,7 @@
 import { mapFields } from "vuex-map-fields";
 
 import Loading from "@/components/global/molecules/common/Loading";
-import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import FormValidator from "@/components/global/form/FormValidator";
 import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 import { createNamespacedHelpers } from "vuex";

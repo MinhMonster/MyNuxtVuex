@@ -54,7 +54,7 @@
 <script>
 import ninjas_mixins from "@/mixins/ninjas_mixins";
 import { mapFields } from "vuex-map-fields";
-import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import FormValidator from "@/components/global/form/FormValidator";
 import SideBarSearch from "@/components/pages/client/game/ninjas/SideBarSearch";
 import FormSearch2 from "@/components/pages/client/game/ninjas/FormSearch2";
 // import { mapActions } from "vuex";

@@ -41,7 +41,6 @@ export default {
 
   modules: {
     HOUS: HomeUser,
-
   },
   
 };

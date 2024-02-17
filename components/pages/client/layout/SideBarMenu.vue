@@ -134,7 +134,7 @@ import mixins from "@/mixins/index";
 
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import FormValidator from "@/components/global/form/FormValidator";
 import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 export default {

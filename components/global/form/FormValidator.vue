@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import ErrorAlert from "@/components/pages/admin/Shared/common/ErrorAlert";
+import ErrorAlert from "@/components/global/molecules/common/ErrorAlert";
 import { createNamespacedHelpers } from "vuex";
-const { mapGetters } = createNamespacedHelpers("admin/global");
+const { mapGetters } = createNamespacedHelpers("global");
 export default {
   components: {
     ErrorAlert,
@@ -58,6 +58,7 @@ export default {
       default: true,
     },
   },
+
   computed: {
     errors() {
       const errorsFoundByAlts = this.alts.map((name) => this.getErrors()(name));

@@ -83,7 +83,7 @@
 </template>
 <script>
 import { mapFields } from "vuex-map-fields";
-import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import FormValidator from "@/components/global/form/FormValidator";
 
 export default {
   components: {

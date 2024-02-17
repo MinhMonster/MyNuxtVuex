@@ -1,7 +1,7 @@
 <template>
   <div id="home-page">
     <Loading v-if="loading" />
-    <v-row v-else>
+    <v-row v-else  >
       <v-col cols="12" md="12" :lg="colLeft">
         <div :class="{ 'full-screen': fullScreen, 'page-body': !notBoder }">
           <div :class="{ 'page-info': fullScreen }">
@@ -118,12 +118,17 @@ export default {
       return this.goHome;
     },
   },
+  mounted(){
+    // window.addEventListener("wheel", this.scroll());
+
+  },
   methods: {
     // ...mapActions("global", ["setPath"]),
     // nextPath() {
     //   const path = this.$route.path;
     //   this.setPath(path);
     // },
+   
     async onGoBack() {
       if (this.isGoHome) {
         this.$router.push("/");

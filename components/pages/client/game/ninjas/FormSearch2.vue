@@ -91,7 +91,7 @@ import mixins from "@/mixins/index";
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import FormValidator from "@/components/global/form/FormValidator";
 
 export default {
   mixins: [mixins],

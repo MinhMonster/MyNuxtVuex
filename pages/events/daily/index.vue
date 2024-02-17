@@ -134,7 +134,7 @@
 
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
-import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+import FormValidator from "@/components/global/form/FormValidator";
 import mixins from "@/mixins/index";
 import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
 import ModalPayload from "@/components/common/ModalPayload";
