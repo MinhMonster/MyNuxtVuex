@@ -20,6 +20,7 @@
     color: #f1f1f1;
     background: #031019;
     border: 1px solid #b549cc !important;
+    // border: none !important;
   }
 
   .bg-website {
@@ -46,9 +47,10 @@
 
     .v-main__wrap {
       .container.client-main {
-        background: #3f474c;
-        background-size: cover;
-        background-image: url(https://muabannick.pro/images/bg/bg-mbn-violet.png) !important;
+        background: #3F474C;
+        background-color: #031019;
+        // background-size: cover;
+        // background-image: url(https://muabannick.pro/images/bg/bg-mbn-violet.png) !important;
       }
 
       #home-page {
@@ -62,44 +64,14 @@
         }
 
         .page-body {
-          background: #031019;
-          border: 1px solid #b549cc !important;
+          background: #171e28;
+          // border: 1px solid #b549cc !important;
+          border: 1px solid #171e28 !important;
+          // box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 2px 5px;
+
+          // border: none !important;
         }
 
-        .form-search {
-
-          background: none;
-
-          form {
-            background: #0F0F0FE6;
-
-            .field {
-              select {
-                border: 1px solid #b549cc !important;
-              }
-
-              input.v-input {
-                border: 1px solid #a4a4a4;
-                color: #333 !important;
-              }
-            }
-
-            .btn-success.btn-search {
-              color: #f1f1f1 !important;
-              border: 1px solid #f1f1f1 !important;
-              background-image: radial-gradient(circle at 50% 100%, #424040, #a4a4a4 58%, #424040 127%) !important;
-
-              &:hover {
-                color: #333;
-                background-image: linear-gradient(180deg,
-                    #f1f1f1,
-                    #f1f1f1 9%,
-                    #a4a4a4 58%,
-                    #a4a4a4) !important;
-              }
-            }
-          }
-        }
 
         .account-empty {
           background: #0F0F0FE6;
@@ -151,6 +123,7 @@
     // background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F);
     background-image: linear-gradient(139.4deg, #0F0F0F 15.38%, #a937ed 55.2%, #ac3be4 58.96%, #b549cc 54.97%, #a937ed 35.49%, #ac3be4 81.5%, #0F0F0F 90.52%) !important;
   }
+
   .change-theme,
   .go-back,
   .reload,
@@ -174,10 +147,12 @@
   .account {
     .account-info {
       background: #171e28 !important;
-      border: 1px solid #ac3be4 !important;
+      // border: 1px solid #ac3be4 !important;
+      border: 1px solid #171e28 !important;
+
       // border: 3px solid rgb(131, 60, 247);
 
-      box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 2px 5px;
+      // box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 2px 5px;
 
       .account-body {
 
@@ -248,7 +223,7 @@
 
   .table {
     &.text-center {
-    text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+      text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
 
     }
 
@@ -262,9 +237,11 @@
       background: #031019;
       color: #f1f1f1;
       border: 1px solid #171e28 !important;
+
       div {
         background-color: #171e28 !important;
       }
+
       span {
         color: #f1f1f1;
       }
@@ -332,8 +309,10 @@
   .btn.active-btn {
     color: #f1f1f1;
     width: 100%;
-    border: 1px solid #0F0F0F;
-    background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+    // border: 1px solid #0F0F0F;
+    // background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+    border: 1px solid #171e28 !important;
+    background: #171e28 !important;
 
     &:hover {
       color: #f1f1f1;
@@ -351,6 +330,8 @@
       width: 100%;
       border: 1px solid #b549cc !important;
       background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+      // border: 1px solid #171e28 !important;
+      // background: #171e28 !important;
 
       &:hover {
         color: #333;

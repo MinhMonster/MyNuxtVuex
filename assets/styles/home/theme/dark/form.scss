@@ -1,24 +1,80 @@
 .theme-dark {
+
   // #home-page {
+  .form-search {
+
+    background: none !important;
+
+    form {
+      background: #0F0F0FE6;
+
+      .field {
+        // select {
+        //   // border: 1px solid #b549cc !important;
+        //   border: none !important;
+        // }
+
+        select,
+        input.v-input {
+          background: #031019 !important;
+          border: none !important;
+          color: #848E9C !important;
+
+          &::placeholder {
+            color: #848E9C !important;
+          }
+        }
+
+        // input.input-search::placeholder {
+        //   color: #A1A5B7;
+        //   font-weight: 400;
+        //   font-size: 13px;
+        //   line-height: 20px;
+        // }
+      }
+
+      .btn-success.btn-search {
+        color: #f1f1f1 !important;
+        border: 1px solid #f1f1f1 !important;
+        background-image: radial-gradient(circle at 50% 100%, #424040, #a4a4a4 58%, #424040 127%) !important;
+
+        &:hover {
+          color: #333;
+          background-image: linear-gradient(180deg,
+              #f1f1f1,
+              #f1f1f1 9%,
+              #a4a4a4 58%,
+              #a4a4a4) !important;
+        }
+      }
+    }
+  }
 
 
 
   form {
-    background: #031019 !important;
+    background: #171e28 !important;
 
     .field {
+      .custom-select {
+        background: #031019;
+      }
+
       .form-group {
-        input.v-input {
+        // input.v-input {
+        //   border: 1px solid #0F0F0F !important;
+        //   color: #0F0F0F !important;
+        // }
+
+        // .form-group {
+        input.v-input,
+        select {
+          background: #031019 !important;
           border: 1px solid #0F0F0F !important;
-          color: #0F0F0F !important;
+          color: #a4a4a4 !important;
         }
 
-        .form-group {
-          select {
-            border: 1px solid #0F0F0F !important;
-            color: #a4a4a4 !important;
-          }
-        }
+        // }
 
 
 
@@ -94,7 +150,8 @@
     border: 1px solid #333 !important;
 
     background-image: linear-gradient(219.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
-    width : 70px;
+    width: 70px;
+
     &:hover {
       color: #333;
       background-image: linear-gradient(180deg,
