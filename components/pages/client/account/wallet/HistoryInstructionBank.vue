@@ -5,19 +5,18 @@
     </div>
     <small id="fileHelp" class="form-text text-muted"
       >Hãy chuyển tiền cho Admin để
-      <b-badge variant="success" class="text-white pd-5px">Hoàn thành</b-badge>
+      <v-btn color="success" class="text-white pd-5px">Hoàn thành</v-btn>
       giao dịch nạp tiền này.</small
     >
     <div class="info-atm-momo">
       <img src="/icon/icon-next-right.gif" /> Bạn Chuyển tiền cho Admin:<br />
       <img src="/icon/icon-next-right.gif" />
       {{ history.walletType }}:
-      <span class="sms"
-        >{{ numberWalletAdmin(history.walletType) }}
-        <ButtonCoppy
-          :content="numberWalletAdmin(history.walletType)"
-        ></ButtonCoppy> </span
-      ><br />
+      <span class="sms">
+        {{ numberWalletAdmin(history.walletType) }}
+        <ButtonCoppy :content="numberWalletAdmin(history.walletType)" />
+      </span>
+      <br />
       <img src="/icon/icon-next-right.gif" /> Người nhận:
       <span class="sms">Đỗ Công Minh</span> <br />
       <img src="/icon/icon-next-right.gif" /> Nội dung:

@@ -5,22 +5,23 @@
       :title="`HD Mua Nick = ATM-MOMO`"
       ref="modal"
       size="md"
+      hiddenFooter
       @hide="close()"
     >
       <template #content>
         <div class="page-body">
-          <b-row>
-            <b-col sm="12" md="12">
+          <v-row>
+            <v-col cols=12 sm="12" md="12">
               <AccountNumbeAdmin />
-            </b-col>
+            </v-col>
 
-            <b-col sm="12" md="12">
+            <v-col cols="12" sm="12" md="12">
               <BuyAccountInstructions
                 :account="account"
                 :account-type="accountType"
               />
-            </b-col>
-          </b-row>
+            </v-col>
+          </v-row>
         </div>
       </template>
     </ModalPayload>

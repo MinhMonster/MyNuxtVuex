@@ -14,7 +14,9 @@
         }
 
         .form-group {
-          select {
+
+          select,
+          .v-select__slot {
             border: 1px solid #0F0F0F !important;
             color: #a4a4a4 !important;
           }
@@ -94,7 +96,8 @@
     border: 1px solid #333 !important;
 
     background-image: linear-gradient(219.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
-    width : 70px;
+    width: 70px;
+
     &:hover {
       color: #333;
       background-image: linear-gradient(180deg,
@@ -138,4 +141,38 @@
   }
 
   // }
+  &.theme--dark {
+    .v-input {
+      .v-input__slot {
+        border: 1px solid #b549cc !important;
+      }
+    }
+  }
+
+  .v-menu__content {
+    border: 1px solid #b549cc !important;
+
+    .v-list {
+      .v-list-item {
+        background: #171e28;
+        color: #f1f1f1 !important;
+      }
+
+      .v-list-item--active {
+        border: 1px solid #333 !important;
+        color: #f1f1f1;
+        background: #0F0F0F !important;
+      }
+
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #171e28;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #b549cc !important;
+    }
+  }
+
 }

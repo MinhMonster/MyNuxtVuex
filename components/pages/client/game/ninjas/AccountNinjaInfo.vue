@@ -96,7 +96,7 @@
           </tr>
         </tbody>
       </table>
-      <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja" />
+      <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja School Online" />
     </div>
   </client-only>
 </template>
@@ -291,11 +291,11 @@ th.info-nick {
     //   background: #663019;
     // }
   }
-  .custom-control-input:checked ~ .custom-control-label::before {
-    color: #fff;
-    border-color: #663019;
-    background-color: #663019;
-  }
+  // .custom-control-input:checked ~ .custom-control-label::before {
+  //   color: #fff;
+  //   border-color: #663019;
+  //   background-color: #663019;
+  // }
   .custom-control-label::before {
     top: 0;
   }

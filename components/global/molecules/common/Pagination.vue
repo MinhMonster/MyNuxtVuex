@@ -1,6 +1,6 @@
 <template>
-  <b-row class="container-fluid">
-    <b-col lg="12">
+  <v-row class="container-fluid">
+    <v-col lg="12">
       <b-pagination
         v-if="meta && meta.per_page > 1"
         to="#home-page"
@@ -11,8 +11,8 @@
         class="pagination-rounded justify-content-center"
         @change="onChange"
       ></b-pagination>
-    </b-col>
-  </b-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

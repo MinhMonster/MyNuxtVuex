@@ -13,15 +13,15 @@
           <div class="content-main text-center mb-2">
             Đoạn đúng chắc chắc có thưởng!
           </div>
-          <b-button
+          <v-btn
             @click="showModal()"
-            variant="primary"
+            color="primary"
             class="btn-show-more"
           >
             Xem Hướng Dẫn Tham Gia
-          </b-button>
-          <b-row>
-            <b-col v-if="!votedDaylyEvent" cols="12" class="middle">
+          </v-btn>
+          <v-row>
+            <v-col v-if="!votedDaylyEvent" cols="12" class="middle">
               <div class="field center">
                 <form-validator name="phone">
                   <input
@@ -33,8 +33,8 @@
                   />
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12" class="middle">
+            </v-col>
+            <v-col cols="12" class="middle">
               <div class="field center">
                 <form-validator name="number">
                   <label v-if="votedDaylyEvent" for="amount" class="form-label"
@@ -51,9 +51,9 @@
                   />
                 </form-validator>
               </div>
-            </b-col>
+            </v-col>
 
-            <b-col v-if="!votedDaylyEvent" cols="12" sm="12" class="middle">
+            <v-col v-if="!votedDaylyEvent" cols="12" sm="12" class="middle">
               <ModalChoseNumberEvent
                 :value="number"
                 @change="change"
@@ -66,13 +66,13 @@
                   </v-btn>
                 </template>
               </ModalChoseNumberEvent>
-            </b-col>
-          </b-row>
+            </v-col>
+          </v-row>
         </form>
-        <ModalPayload ref="modal" size="md" title="Hướng dẫn tham gia Sự kiện">
+        <ModalPayload ref="modal" size="md" title="Hướng dẫn tham gia Sự kiện" hiddenFooter >
           <template #content>
-            <b-row>
-              <b-col cols="12" class="size">
+            <v-row>
+              <v-col cols="12" class="size">
                 <div class="page-body">
                   Thời gian Sự kiện diễn ra: 0h -> 18h (hằng ngày)<br /><br />
                   <b>Giải thưởng:</b><br />
@@ -115,8 +115,8 @@
 
                   <b>Chúc các bạn may mắn! Thanks!</b><br />
                 </div>
-              </b-col>
-            </b-row>
+              </v-col>
+            </v-row>
           </template>
         </ModalPayload>
       </template>

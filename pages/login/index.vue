@@ -44,10 +44,10 @@
           </div>
           <input type="hidden" id="confirm" name="confirm" />
           <div class="field submit">
-            <b-button size="sm" class="btn-login" @click="loginUser()">
+            <v-btn size="sm" class="btn-login" @click="loginUser()">
               <Loading v-if="isLoading" button></Loading>
               <span v-else> Đăng nhập </span>
-            </b-button>
+            </v-btn>
           </div>
           <!-- <div class="signin">----------- Hoặc -----------</div>
           <ButtonLoginFacebook /> -->

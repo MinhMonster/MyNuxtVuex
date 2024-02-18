@@ -1,6 +1,6 @@
 <template>
-  <b-row>
-    <b-col cols="6">
+  <v-row>
+    <v-col cols="6">
       <div class="c-font-uppercase btnCheckAccount ajax" @click="showModal()">
         <div class="btn-buy-account">
           <v-btn icon class="text-main">
@@ -8,16 +8,16 @@
           </v-btn>
         </div>
       </div>
-    </b-col>
-    <b-col cols="6">
+    </v-col>
+    <v-col cols="6">
       <div class="btn-buy-account-hover" @click="showBank()">
         <v-btn icon>
           <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>ATM-MOMO
         </v-btn>
       </div>
-    </b-col>
+    </v-col>
 
-    <b-col cols="6">
+    <v-col cols="6">
       <a href="https://zalo.me/0961646828" target="_blank">
         <div class="btn-buy-account-hover">
           <v-btn icon>
@@ -25,8 +25,8 @@
           </v-btn>
         </div>
       </a>
-    </b-col>
-    <b-col cols="6">
+    </v-col>
+    <v-col cols="6">
       <div class="c-font-uppercase btnCheckAccount ajax">
         <a href="https://messenger.com/t/minh.docong.7" target="_blank">
           <div class="btn-buy-account">
@@ -36,52 +36,49 @@
           </div>
         </a>
       </div>
-    </b-col>
-    <ModalBuyAccount
-      v-if="accountType === 'Ninja'"
-      ref="modal"
-      :account-ninja="account"
-    />
-    <!-- <ModalBuyAccountNinja
-      v-if="accountType === 'Ninja'"
-      ref="modal"
-      :account-ninja="account"
-    ></ModalBuyAccountNinja> -->
-    <ModalBuyAccountAvatar
-      v-if="accountType === 'Avatar'"
-      ref="modal"
-      :account="account"
-    ></ModalBuyAccountAvatar>
-    <ModalBuyAccountDragonBall
-      v-if="accountType === 'NRO'"
-      ref="modal"
-      :account="account"
-    />
+    </v-col>
+    <ModalBuyAccount ref="modal" :account="account" :game="accountType">
+      <template #account-info>
+        <TableAccountNinja
+          v-if="accountType === 'Ninja School Online'"
+          :account="account"
+        />
+        <TableAccountAvatar
+          v-if="accountType === 'Avatar'"
+          :account="account"
+        />
+        <TableAccountDragonBall
+          v-if="accountType === 'Ngọc Rồng Online'"
+          :account="account"
+        />
+      </template>
+    </ModalBuyAccount>
     <ModalBuyAccountBank
       ref="modalBuyAccountBank"
       :account="account"
       :account-type="accountType"
     />
-  </b-row>
+  </v-row>
 </template>
 
 
 
 <script>
 import ModalBuyAccount from "@/components/pages/client/game/ModalBuyAccount";
-
-import ModalBuyAccountAvatar from "@/components/pages/client/game/avatars/ModalBuyAccountAvatar";
-import ModalBuyAccountDragonBall from "@/components/pages/client/game/dragon_balls/ModalBuyAccountDragonBall";
-import ModalBuyAccountBank from "@/components/pages/client/game/ninjas/ModalBuyAccountBank";
+import ModalBuyAccountBank from "@/components/pages/client/game/ModalBuyAccountBank";
+import TableAccountNinja from "@/components/pages/client/game/ninjas/TableAccountNinja";
+import TableAccountAvatar from "@/components/pages/client/game/avatars/TableAccountAvatar";
+import TableAccountDragonBall from "@/components/pages/client/game/dragon_balls/TableAccountDragonBall";
 
 export default {
   name: "GroupBtnBuyAccount",
 
   components: {
     ModalBuyAccount,
-    ModalBuyAccountAvatar,
-    ModalBuyAccountDragonBall,
     ModalBuyAccountBank,
+    TableAccountNinja,
+    TableAccountAvatar,
+    TableAccountDragonBall,
   },
   props: {
     account: {
@@ -129,7 +126,7 @@ th.info-nick {
 
 .table td {
   padding: 5px;
-  vertical-align: top;
+  vertical-align: middle !important;
   border: 1px solid #e28637;
 }
 .mua-nick span {
@@ -198,23 +195,7 @@ th.info-nick {
         padding: 5px;
         margin-bottom: 0px;
       }
-      .nav-tabs {
-        .nav-item {
-          width: 50%;
-          .nav-link {
-            border: none;
-            color: #663019;
-            text-align: center;
 
-            &.active {
-              font-weight: bold;
-              border: none;
-              border-bottom: 1px solid #663019;
-              background-color: #ffefa3;
-            }
-          }
-        }
-      }
       .row {
         padding: 0;
         margin: 0px;
@@ -242,11 +223,11 @@ th.info-nick {
     //   background: #663019;
     // }
   }
-  .custom-control-input:checked ~ .custom-control-label::before {
-    color: #fff;
-    border-color: #663019;
-    background-color: #663019;
-  }
+  // .custom-control-input:checked ~ .custom-control-label::before {
+  //   color: #fff;
+  //   border-color: #663019;
+  //   background-color: #663019;
+  // }
   .custom-control-label::before {
     top: 0;
   }

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-row class="text-center account">
+    <v-row class="text-center account">
       <AccountNinjaCard
         v-for="(ninja, index) in accountNinjas"
         :key="index"
         :account-ninja="ninja"
       ></AccountNinjaCard>
-    </b-row>
+    </v-row>
     <div v-if="isLoading" class="center mgt--50px mgb--50px">
       <Loading></Loading>
     </div>

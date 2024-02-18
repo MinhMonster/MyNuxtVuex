@@ -1,42 +1,48 @@
 <template>
-  <b-row class="account-search">
-    <b-col cols="6" sm="4" md="3" lg="3">
-      <b-form-select
-        v-model="queryForm.q.cash"
-        :options="cashOptions"
-        @change="setQueryForm()"
-        size="sm"
-      ></b-form-select>
-    </b-col>
-    <b-col cols="6" sm="4" md="3" lg="3">
-      <b-form-input
-        v-model="queryForm.q.id"
-        type="number"
-        placeholder="Nhập ID nick..."
-        @change="setQueryForm()"
-        @keyup.enter="search()"
-      ></b-form-input>
-    </b-col>
-    <b-col cols="6" sm="2" md="3" lg="3">
-      <b-button
-        type="submit"
-        name="timkiem"
-        class="btn btn-info btn-search text-white"
-        @click="search()"
-      >
-        <i class="fa fa-search"></i> Tìm kiếm
-      </b-button>
-    </b-col>
-    <b-col cols="6" sm="2" md="3" lg="3">
-      <b-button
-        type=""
-        name=""
-        class="btn btn-success btn-search text-white"
-        @click="reset()"
-        ><i class="fa fa-list"></i> Tất cả</b-button
-      >
-    </b-col>
-  </b-row>
+  <div class="form-search mb-3">
+    <div class="page-body">
+      <form class="form">
+        <v-row>
+          <v-col cols="6" sm="4" md="3" lg="3">
+            <v-select
+              v-model="queryForm.q.cash"
+              :items="cashOptions"
+              @change="setQueryForm()"
+              size="sm"
+            ></v-select>
+          </v-col>
+          <v-col cols="6" sm="4" md="3" lg="3">
+            <v-text-field
+              v-model="queryForm.q.id"
+              type="number"
+              placeholder="Nhập ID nick..."
+              @change="setQueryForm()"
+              @keyup.enter="search()"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6" sm="2" md="3" lg="3">
+            <v-btn
+              type="submit"
+              color="primary"
+              class="btn btn-info btn-search text-white w-100"
+              @click="search()"
+            >
+              <i class="fa fa-search"></i> Tìm kiếm
+            </v-btn>
+          </v-col>
+          <v-col cols="6" sm="2" md="3" lg="3">
+            <v-btn
+              type=""
+              color="error"
+              class="btn btn-danger btn-search text-white w-100"
+              @click="reset()"
+              ><i class="fa fa-list"></i>Xóa
+            </v-btn>
+          </v-col>
+        </v-row>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -150,36 +156,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.account-search {
-  margin-bottom: 20px;
-  margin: -3px -3px 15px -3px;
-  border: 1px solid #663019;
-  background: #ffefa3;
-  border-radius: 5px;
-  padding: 3px;
-  .col-6,
-  .col-3,
-  .col-2,
-  .col-1 {
-    padding: 3px;
-    border-radius: 3px;
-    width: 100%;
-  }
-  .form-control {
-    height: 30px !important;
-    padding: 3px 6px;
-    font-size: 15px;
-    font-weight: 400;
-    /* line-height: 1.5; */
-    border: 1px solid #ced4da;
-  }
-}
-.btn-search {
-  width: 100%;
-  height: 30px;
-  padding: 3px !important;
-  border-radius: 5px;
-}
-</style>

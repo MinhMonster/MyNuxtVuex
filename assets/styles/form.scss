@@ -1,0 +1,133 @@
+.form-search {
+  background: #ffcf9c;
+  margin: -6px;
+
+  form {
+    padding: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .page-body {
+      padding: 6px;
+
+      .col-12,
+      .col-6,
+      .col-3 {
+        padding: 3px;
+      }
+    }
+  }
+}
+
+.v-text-field {
+  padding: 0 !important;
+  margin-top: 0 !important;
+
+  .v-text-field__details {
+    display: none;
+  }
+}
+
+.theme--dark {
+  .v-input {
+    background: none;
+    border-radius: 3px;
+    border: none;
+    height: 36px;
+
+    input {
+      color: #495057 !important;
+      padding: 8px 5px;
+
+      &::placeholder {
+        color: #495057 !important;
+      }
+    }
+
+    .v-input__slot {
+      background: #fff;
+      border-radius: 3px;
+      border: 1px solid #e28637;
+    }
+  }
+
+  .v-select {
+    .v-select__slot {
+      .v-select__selections {
+        color: #495057;
+        padding: 0 5px;
+        max-height: 36px;
+
+        .v-select__selection--comma {
+          margin: 10px 0px;
+        }
+      }
+
+      .primary--text {
+        color: #495057 !important;
+        caret-color: #495057 !important;
+      }
+    }
+  }
+
+  .v-text-field {
+    .v-input__control {
+      .v-input__slot {
+        margin-bottom: 0;
+        max-height: 36px;
+
+        &:after,
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+
+
+
+  // .theme--dark
+
+  .v-menu__content {
+    border-radius: 3px;
+    border: 1px solid #663019;
+
+    .v-list {
+      padding: 0;
+
+      .v-list-item {
+        background: #ffefa3;
+        color: #663019 !important;
+
+        min-height: 30px;
+
+        &.v-list-item--highlighted::before {
+          opacity: 0;
+        }
+      }
+
+
+      .v-list-item--active {
+        background: #e28637;
+        color: #ffcf9c !important;
+        border-top: 1px solid #663019;
+        border-bottom: 1px solid #663019;
+      }
+    }
+
+
+    &::-webkit-scrollbar {
+      width: 2px !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #ffcf9c;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #e28637 !important;
+      border-radius: 10px !important;
+    }
+  }
+}

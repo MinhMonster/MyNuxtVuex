@@ -23,7 +23,7 @@
       </v-card-title>
       <v-card-text style="height: 300px">
         <div class="base-dialog page-body">
-          <div class="base-dialog-bg scroll-y list-number">
+          <div class="base-dialog-bg list-number">
             <div
               v-for="n in range(100)"
               :key="n"
@@ -133,6 +133,7 @@ export default {
 .list-number {
   display: flex;
   flex-wrap: wrap;
+  text-align: center;
 
   .number {
     width: 20%;

@@ -12,38 +12,38 @@
     >
       <template v-if="token && user && ready" #body>
         <form class="form">
-          <b-row>
-            <b-col cols="12" sm="6" class="middle">
+          <v-row>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="telco">
                   <label for="telco" class="form-label"
                     >Chọn loại thẻ
                     <small>(<span style="color: red">*</span>)</small></label
                   >
-                  <b-form-select
+                  <v-select
                     v-model="card.telco"
-                    :options="walletOptions"
+                    :items="walletOptions"
                     size="sm"
-                  ></b-form-select>
+                  ></v-select>
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12" sm="6" class="middle">
+            </v-col>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="amount">
                   <label for="amount" class="form-label"
                     >Chọn Mệnh giá
                     <small>(<span style="color: red">*</span>)</small></label
                   >
-                  <b-form-select
+                  <v-select
                     v-model="card.amount"
-                    :options="amountOptions"
+                    :items="amountOptions"
                     size="sm"
-                  ></b-form-select>
+                  ></v-select>
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12" sm="6" class="middle">
+            </v-col>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="code">
                   <label class="form-label"
@@ -59,8 +59,8 @@
                   />
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12" sm="6" class="middle">
+            </v-col>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="serial">
                   <label class="form-label"
@@ -76,45 +76,29 @@
                   />
                 </form-validator>
               </div>
-            </b-col>
+            </v-col>
 
-            <b-col cols="12">
+            <v-col cols="12">
               <div class="field submit mt-6">
-                <b-button size="sm" class="btn-login" @click="submit()">
+                <v-btn size="sm" class="btn-login" @click="submit()">
                   <Loading v-if="isLoading" button></Loading>
                   <span v-else>Nạp Thẻ </span>
-                </b-button>
+                </v-btn>
               </div>
-            </b-col>
-          </b-row>
+            </v-col>
+          </v-row>
         </form>
-        <ModalPayload ref="modal" size="md" title="HD Nạp Tiền = ATM - MOMO">
-          <template #content>
-            <b-row>
-              <b-col cols="12" class="size">
-                <div class="page-body">
-                  <AccountNumbeAdmin />
-                </div>
-              </b-col>
-              <b-col cols="12" class="mt--2">
-                <div class="page-body">
-                  <RechargeInstructions :user="user" />
-                </div>
-              </b-col>
-            </b-row>
-          </template>
-        </ModalPayload>
         <!-- <div class="wrapper"> -->
         <!-- </div> -->
       </template>
       <template #col-right>
-        <b-row>
-          <b-col cols="12" sm="12" md="12" lg="12" class="size">
+        <v-row>
+          <v-col cols="12" sm="12" md="12" lg="12" class="size">
             <div class="page-body">
               <DepositCardInstructions />
             </div>
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
       </template>
       <template #table>
         <HistoryDepositCardTable :histories="histories" :user="user" />
@@ -134,7 +118,6 @@ import FormValidator from "@/components/global/form/FormValidator";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
 import mixins from "@/mixins/index";
 import DepositCardInstructions from "@/components/common/DepositCardInstructions";
-import ModalPayload from "@/components/common/ModalPayload";
 import HistoryDepositCardTable from "@/components/pages/client/account/wallet/HistoryDepositCardTable";
 import Pagination from "@/components/global/molecules/common/Pagination";
 import HomePage from "@/components/pages/home/HomePage";
@@ -244,7 +227,6 @@ export default {
     FormValidator,
     ButtonCoppy,
     DepositCardInstructions,
-    ModalPayload,
     HistoryDepositCardTable,
     Pagination,
   },
@@ -336,9 +318,6 @@ export default {
     },
     reload() {
       this.onPageChange(this.pageSave);
-    },
-    showModal() {
-      this.$refs.modal.show();
     },
   },
   head() {

@@ -1,36 +1,36 @@
 <template>
-  <b-col cols="6" :sm="isTablet ? 3 : 4" md="4" @click="nextPath(game.path)">
+  <v-col cols="6" :sm="isTablet ? 3 : 4" md="4" @click="nextPath(game.path)">
     <div class="account-info">
       <ImageCard :game="game" />
-      <b-row class="account-body">
-        <b-col cols="12"
+      <v-row class="account-body">
+        <v-col cols="12"
           ><v-btn class="account-thongtin break-line-1 btn-main" :title="game.title">
             {{ game.title }}</v-btn
-          ></b-col
+          ></v-col
         >
-        <!-- <b-col cols="6"
+        <!-- <v-col cols="6"
           ><span class="account-code"
             >Số Nick <br />{{ format_number(game.numberAccount) }}</span
-          ></b-col
+          ></v-col
         >
-        <b-col cols="6"
+        <v-col cols="6"
           ><span class="account-class"
             >Đã Bán<br />
             {{ format_number(game.sold) }}</span
-          ></b-col
+          ></v-col
         >
 
-        <b-col cols="6"
+        <v-col cols="6"
           ><span class="account-cash"
             >Mua Ngay</span
-          ></b-col
+          ></v-col
         >
-        <b-col cols="6">
+        <v-col cols="6">
           <span class="account-buy"> Xem Nick</span>
-        </b-col> -->
-      </b-row>
+        </v-col> -->
+      </v-row>
     </div>
-  </b-col>
+  </v-col>
 </template>
 
 <script>

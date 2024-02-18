@@ -1,8 +1,8 @@
 
 <template>
   <client-only>
-    <b-row v-if="accountNinja.ID">
-      <b-col cols="12" sm="12" md="8" lg="8">
+    <v-row v-if="accountNinja.ID">
+      <v-col cols="12" sm="12" md="8" lg="8">
         <div class="title">
           <center>
             <h3>
@@ -43,20 +43,20 @@
             />
           </div>
         </VueSlickCarousel>
-      </b-col>
-      <b-col cols="12" sm="12" md="4" lg="4">
-        <b-row>
-          <b-col cols="12" sm="12" md="12">
+      </v-col>
+      <v-col cols="12" sm="12" md="4" lg="4">
+        <v-row>
+          <v-col cols="12" sm="12" md="12">
             <AccountNinjaInfo :account-ninja="accountNinja"></AccountNinjaInfo>
-          </b-col>
-        </b-row>
-      </b-col>
-      <b-col v-if="isMobile" cols="12">
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col v-if="isMobile" cols="12">
         <div class="title">
           <center>Hình Ảnh Của Nick Ninja</center>
         </div>
-        <b-row>
-          <b-col
+        <v-row>
+          <v-col
             v-for="(image, index) in accountNinja.hinhanh"
             :key="index"
             cols="12"
@@ -78,11 +78,11 @@
                 class="image-ninja"
               />
             </div>
-          </b-col>
-        </b-row>
-        <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja" />
-      </b-col>
-    </b-row>
+          </v-col>
+        </v-row>
+        <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja School Online" />
+      </v-col>
+    </v-row>
   </client-only>
 </template>
   

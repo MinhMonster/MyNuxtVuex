@@ -27,29 +27,30 @@
                 <td class="text-middle">{{ history.ID }}</td>
 
                 <td class="text-middle text-left">
-                  <b-row>
-                    <b-col :cols="12" :sm="6" :md="3" :lg="3">
+                  <v-row>
+                    <v-col :cols="12" :sm="6" :md="3" :lg="3">
                       Game: {{ history.accountType }}
-                    </b-col>
-                    <b-col :cols="12" :sm="6" :md="2" :lg="3">
+                    </v-col>
+                    <v-col :cols="12" :sm="6" :md="2" :lg="3">
                       Mã số: {{ format_number(history.accountId) }}
-                    </b-col>
-                    <b-col :cols="12" :sm="6" :md="3" :lg="3">
+                    </v-col>
+                    <v-col :cols="12" :sm="6" :md="3" :lg="3">
                       Giá: {{ format_number(history.accountCash) }} VNĐ
-                    </b-col>
-                    <b-col :cols="12" :sm="6" :md="4" :lg="3">
+                    </v-col>
+                    <v-col :cols="12" :sm="6" :md="4" :lg="3">
                       Time: {{ history.buyAt }}
-                    </b-col>
-                  </b-row>
+                    </v-col>
+                  </v-row>
                 </td>
 
                 <td class="text-middle">
-                  <b-button
+                  <v-btn
                     size="sx"
+                    color="success"
                     class="btn btn-success text-white bdrs-5px"
                     :to="`/account/history/${history.ID}`"
-                    >Xem</b-button
-                  >
+                    >Xem
+                  </v-btn>
                 </td>
               </tr>
             </tbody>

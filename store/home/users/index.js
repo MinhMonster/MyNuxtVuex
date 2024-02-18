@@ -82,40 +82,67 @@ export default {
         }
       } catch { }
     },
-
-    async buyAccountNinja({ commit, state }, payload) {
+    async buyAccount({ commit, state }, payload) {
       try {
-        const response = await this.$repositories.homeUsers.buyAccountNinja({
-          input: {
-            id: payload
-          }
-        });
-        return response.data.buyAccountNinja
+        if (payload.game === "Ninja School Online") {
+          const response = await this.$repositories.homeUsers.buyAccountNinja({
+            input: {
+              id: payload.id
+            }
+          });
+          return response.data.buyAccountNinja
+
+        } else if (payload.game === "Avatar") {
+          const response = await this.$repositories.homeUsers.buyAccountAvatar({
+            input: {
+              id: payload.id
+            }
+          });
+          return response.data.buyAccountAvatar
+        } else if (payload.game === "Ngọc Rồng Online") {
+          const response = await this.$repositories.homeUsers.buyAccountDragonBall({
+            input: {
+              id: payload.id
+            }
+          });
+          return response.data.buyAccountDragonBall
+        }
 
       } catch { }
     },
-    async buyAccountAvatar({ commit, state }, payload) {
-      try {
-        const response = await this.$repositories.homeUsers.buyAccountAvatar({
-          input: {
-            id: payload
-          }
-        });
-        return response.data.buyAccountAvatar
+    // async buyAccountNinja({ commit, state }, payload) {
+    //   try {
+    //     const response = await this.$repositories.homeUsers.buyAccountNinja({
+    //       input: {
+    //         id: payload
+    //       }
+    //     });
+    //     return response.data.buyAccountNinja
 
-      } catch { }
-    },
-    async buyAccountDragonBall({ commit, state }, payload) {
-      try {
-        const response = await this.$repositories.homeUsers.buyAccountDragonBall({
-          input: {
-            id: payload
-          }
-        });
-        return response.data.buyAccountDragonBall
+    //   } catch { }
+    // },
+    // async buyAccountAvatar({ commit, state }, payload) {
+    //   try {
+    //     const response = await this.$repositories.homeUsers.buyAccountAvatar({
+    //       input: {
+    //         id: payload
+    //       }
+    //     });
+    //     return response.data.buyAccountAvatar
 
-      } catch { }
-    },
+    //   } catch { }
+    // },
+    // async buyAccountDragonBall({ commit, state }, payload) {
+    //   try {
+    //     const response = await this.$repositories.homeUsers.buyAccountDragonBall({
+    //       input: {
+    //         id: payload
+    //       }
+    //     });
+    //     return response.data.buyAccountDragonBall
+
+    //   } catch { }
+    // },
     async historyBuyAccount({ commit, state }, id) {
       try {
         const response = await this.$repositories.homeUsers.historyBuyAccount(id);

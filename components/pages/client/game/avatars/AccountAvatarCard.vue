@@ -1,7 +1,7 @@
 <template>
-  <b-col v-if="accountAvatar" cols="12" sm="6" md="4" lg="3">
+  <v-col v-if="accountAvatar" cols="12" sm="6" md="4" lg="3">
     <AccountAvatarCardInfo :account-avatar="accountAvatar"></AccountAvatarCardInfo>
-  </b-col>
+  </v-col>
 </template>
 
 <script>

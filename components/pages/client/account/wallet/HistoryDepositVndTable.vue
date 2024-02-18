@@ -21,40 +21,43 @@
             <td class="text-middle">{{ history.ID }}</td>
 
             <td class="text-middle text-left">
-              <b-row>
-                
-                <b-col :cols="12" :sm="6" :md="2" :lg="2">
-                  <i class="mdi mdi-google-circles-group"></i>: {{ format_number(history.moneyAmount) }} đ
-                </b-col>
-                <b-col :cols="12" :sm="6" :md="2" :lg="2">
-                  <i class="mdi mdi-cart-plus"></i>: {{ format_number(history.moneyReceived) }} đ
-                </b-col>
-                <b-col :cols="12" :sm="6" :md="2" :lg="2">
+              <v-row>
+                <v-col :cols="12" :sm="6" :md="2" :lg="2">
+                  <i class="mdi mdi-google-circles-group"></i>:
+                  {{ format_number(history.moneyAmount) }} đ
+                </v-col>
+                <v-col :cols="12" :sm="6" :md="2" :lg="2">
+                  <i class="mdi mdi-cart-plus"></i>:
+                  {{ format_number(history.moneyReceived) }} đ
+                </v-col>
+                <v-col :cols="12" :sm="6" :md="2" :lg="2">
                   <i class="mdi mdi-bank"></i>: {{ history.walletType }}
-                </b-col>
-                <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                </v-col>
+                <v-col :cols="12" :sm="6" :md="2" :lg="2">
                   <i class="mdi mdi-account"></i>: {{ history.bankAccountName }}
-                </b-col>
-                <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                </v-col>
+                <v-col :cols="12" :sm="6" :md="2" :lg="2">
                   <i class="mdi mdi-credit-card"></i>:
                   {{ history.bankAccountNumber }}
-                </b-col>
-                <b-col :cols="12" :sm="6" :md="2" :lg="2">
-                  <b-badge
-                    :variant="class_status(history.depositState)"
+                </v-col>
+                <v-col :cols="12" :sm="6" :md="2" :lg="2">
+                  <v-btn
+                    :color="class_status(history.depositState)"
                     class="text-white pd-5px"
-                    >{{ history.depositState }}</b-badge
                   >
-                </b-col>
-              </b-row>
+                    {{ history.depositState }}
+                  </v-btn>
+                </v-col>
+              </v-row>
             </td>
             <td class="text-middle">
-              <b-badge
-                variant="info"
+              <v-btn
+                color="info"
                 class="text-white pd-10px"
                 :to="`/account/wallet/deposit/vnd/${history.ID}`"
-                >Xem</b-badge
               >
+                Xem
+              </v-btn>
             </td>
           </tr>
         </tbody>

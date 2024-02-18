@@ -1,8 +1,8 @@
 
 <template>
   <client-only>
-    <b-row v-if="accountAvatar.ID">
-      <b-col cols="12" sm="12" md="6" lg="8">
+    <v-row v-if="accountAvatar.ID">
+      <v-col cols="12" sm="12" md="6" lg="8">
         <div class="title">
           <center>
             <h3>
@@ -44,22 +44,22 @@
             />
           </div>
         </VueSlickCarousel>
-      </b-col>
-      <b-col cols="12" sm="12" md="6" lg="4">
-        <b-row>
-          <b-col cols="12" sm="12" md="12">
+      </v-col>
+      <v-col cols="12" sm="12" md="6" lg="4">
+        <v-row>
+          <v-col cols="12" sm="12" md="12">
             <AccountAvatarInfo
               :account-avatar="accountAvatar"
             ></AccountAvatarInfo>
-          </b-col>
-        </b-row>
-      </b-col>
-      <b-col v-if="isMobile" cols="12">
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col v-if="isMobile" cols="12">
         <div class="title">
           <center>Hình Ảnh Của Nick Avatar</center>
         </div>
-        <b-row>
-          <b-col cols="12" sm="12" md="6" lg="4">
+        <v-row>
+          <v-col cols="12" sm="12" md="6" lg="4">
             <div class="fileItemWrapper">
               <img
                 v-if="accountAvatar.images[0].includes('muabannick.pro')"
@@ -76,8 +76,8 @@
                 :class="{ full: accountAvatar.full }"
               />
             </div>
-          </b-col>
-          <b-col
+          </v-col>
+          <v-col
             v-for="(image, index) in images"
             :key="index"
             cols="12"
@@ -99,11 +99,11 @@
                 class="image-ninja"
               />
             </div>
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
         <GroupBtnBuyAccount :account="accountAvatar" account-type="Avatar" />
-      </b-col>
-    </b-row>
+      </v-col>
+    </v-row>
   </client-only>
 </template>
   

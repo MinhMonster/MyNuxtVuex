@@ -19,7 +19,7 @@
               <tr>
                 <th class="trading-code">ID</th>
                 <th class="info-history">Mô Tả</th>
-                <th class="holder-action">Chi tiết</th>
+                <!-- <th class="holder-action">Chi tiết</th> -->
               </tr>
             </thead>
             <tbody>
@@ -27,17 +27,17 @@
                 <td class="text-middle">{{ history.ID }}</td>
 
                 <td class="text-middle text-left">
-                  <b-row>
-                    <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                  <v-row>
+                    <v-col :cols="12" :sm="6" :md="2" :lg="2">
                       {{ history.historyType }}
-                    </b-col>
-                    <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                    </v-col>
+                    <v-col :cols="12" :sm="6" :md="2" :lg="2">
                       Mã GD: {{ format_number(history.historyCode) }}
-                    </b-col>
-                    <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                    </v-col>
+                    <v-col :cols="12" :sm="6" :md="2" :lg="2">
                       Trước: {{ format_number(history.moneyFirst) }} đ
-                    </b-col>
-                    <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                    </v-col>
+                    <v-col :cols="12" :sm="6" :md="2" :lg="2">
                       Số tiền:
                       <span
                         :class="
@@ -48,23 +48,24 @@
                         >{{ increaseMoney(history) ? "+" : "-"
                         }}{{ format_number(history.moneyChange) }} đ</span
                       >
-                    </b-col>
-                    <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                    </v-col>
+                    <v-col :cols="12" :sm="6" :md="2" :lg="2">
                       Sau: {{ format_number(history.moneyLast) }} đ
-                    </b-col>
-                    <b-col :cols="12" :sm="6" :md="2" :lg="2">
+                    </v-col>
+                    <v-col :cols="12" :sm="6" :md="2" :lg="2">
                       {{ history.buyAt }}
-                    </b-col>
-                  </b-row>
+                    </v-col>
+                  </v-row>
                 </td>
 
-                <td class="text-middle">
-                  <b-button
+                <!-- <td class="text-middle">
+                  <v-btn
                     size="sx"
+                    color="success"
                     class="btn btn-success text-white bdrs-5px"
-                    >Xem</b-button
+                    >Xem</v-btn
                   >
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>

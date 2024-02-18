@@ -1,3 +1,4 @@
+@import "~/assets/styles/index.scss";
 @import "~/assets/styles/base-class.scss";
 @import "~/assets/styles/home/avatar/index.scss";
 @import "~/assets/styles/home/page/index.scss";
@@ -38,10 +39,26 @@ html {
   text-decoration: line-through;
 }
 
+.v-btn:not(.v-btn--round).v-size--default {
+  height: 34px !important;
+  padding: 0 5px !important;
+}
+
+
+.danger {
+  background-color: #a21d0a;
+
+  &.theme--dark.v-btn.v-btn--has-bg {
+    background-color: #a21d0a;
+
+  }
+}
+
 
 .text-underline {
   text-decoration: underline;
 }
+
 .flex-center {
   align-items: center;
   justify-content: center;

@@ -54,11 +54,12 @@
               <tr>
                 <th class="info-nick" style="">Trạng Thái</th>
                 <td class="mua-nick">
-                  <b-badge
-                    :variant="history.status.value"
+                  <v-btn
+                    :color="history.status.value"
                     class="text-white pd-5px"
-                    >{{ history.status.text }}
-                  </b-badge>
+                  >
+                    {{ history.status.text }}
+                  </v-btn>
                   <div v-if="history.status.value === 'warning'" class="mt-1">
                     Thẻ sẽ duyệt tự động sau 3s-1p
                   </div>

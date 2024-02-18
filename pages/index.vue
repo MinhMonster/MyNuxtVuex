@@ -4,10 +4,10 @@
       <template v-if="ready" #body>
         <div class="mt-1">
           <HomeGame></HomeGame>
-          <!-- <b-row>
-            <b-col cols="12" sm="12" md="6"> <HistoryBuyAccount /> </b-col>
-            <b-col cols="12" sm="12" md="6"> <HistoryDeposit /></b-col>
-          </b-row> -->
+          <!-- <v-row>
+            <v-col cols="12" sm="12" md="6"> <HistoryBuyAccount /> </v-col>
+            <v-col cols="12" sm="12" md="6"> <HistoryDeposit /></v-col>
+          </v-row> -->
         </div>
       </template>
     </HomePage>

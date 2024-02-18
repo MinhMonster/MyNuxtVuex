@@ -23,32 +23,28 @@
               NAP MBN {{ user.id }}
               <ButtonCoppy :content="`NAP MBN ${user.id}`"></ButtonCoppy> </span
             ><br />
-            <b-button
-              @click="showModal()"
-              variant="primary"
-              class="btn-show-more"
-            >
+            <v-btn @click="showModal()" color="primary" class="btn-show-more">
               Xem Hướng Dẫn Nạp Tiền Từ ATM,MOMO
-            </b-button>
+            </v-btn>
           </div>
-          <b-row>
-            <b-col cols="12" sm="6" class="middle mb-2">
+          <v-row>
+            <v-col cols="12" sm="6" class="middle mb-2">
               <div class="field">
                 <form-validator name="wallet">
                   <label for="wallet" class="form-label"
                     >Hình thức nạp
                     <small>(<span style="color: red">*</span>)</small></label
                   >
-                  <b-form-select
+                  <v-select
                     v-model="money.walletType"
-                    :options="walletOptions"
+                    :items="walletOptions"
                     size="sm"
-                  ></b-form-select>
+                  ></v-select>
                 </form-validator>
               </div>
-            </b-col>
+            </v-col>
 
-            <b-col cols="12" sm="3" class="middle mb-2">
+            <v-col cols="12" sm="3" class="middle mb-2">
               <div class="field">
                 <form-validator name="amount">
                   <label for="amount" class="form-label"
@@ -61,8 +57,8 @@
                     class="v-input form-input"
                   />
                 </form-validator></div
-            ></b-col>
-            <b-col cols="12" sm="3" class="middle mb-2">
+            ></v-col>
+            <v-col cols="12" sm="3" class="middle mb-2">
               <div class="field">
                 <form-validator name="out">
                   <label for="out" class="form-label">Thực nhận +20%</label>
@@ -76,8 +72,8 @@
                   />
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12" sm="6" class="middle">
+            </v-col>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="bank_account_name">
                   <label class="form-label"
@@ -93,8 +89,8 @@
                   />
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12" sm="6" class="middle">
+            </v-col>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="bank_account_number">
                   <label class="form-label"
@@ -110,49 +106,54 @@
                   />
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12">
+            </v-col>
+            <v-col cols="12">
               <div class="field submit mt-8">
-                <b-button size="sm" class="btn-login" @click="submit()">
+                <v-btn size="sm" class="btn-login" @click="submit()">
                   <Loading v-if="isLoading" button></Loading>
                   <span v-else> Tạo giao dịch nạp tiền </span>
-                </b-button>
+                </v-btn>
               </div>
-            </b-col>
-          </b-row>
+            </v-col>
+          </v-row>
         </form>
-        <ModalPayload ref="modal" size="md" title="HD Nạp Tiền = ATM - MOMO">
+        <ModalPayload
+          ref="modal"
+          size="md"
+          title="HD Nạp Tiền = ATM - MOMO"
+          hiddenFooter
+        >
           <template #content>
-            <b-row>
-              <b-col cols="12" class="size">
+            <v-row>
+              <v-col cols="12" class="size">
                 <div class="page-body">
                   <AccountNumbeAdmin />
                 </div>
-              </b-col>
-              <b-col cols="12" class="mt--2">
+              </v-col>
+              <v-col cols="12" class="mt--2">
                 <div class="page-body">
                   <RechargeInstructions :user="user" />
                 </div>
-              </b-col>
-            </b-row>
+              </v-col>
+            </v-row>
           </template>
         </ModalPayload>
         <!-- <div class="wrapper"> -->
         <!-- </div> -->
       </template>
       <template #col-right>
-        <b-row>
-          <b-col cols="12" sm="6" md="6" lg="12" class="size">
+        <v-row>
+          <v-col cols="12" sm="6" md="6" lg="12" class="size">
             <div class="page-body">
               <AccountNumbeAdmin />
             </div>
-          </b-col>
-          <b-col cols="12" sm="6" md="6" lg="12">
+          </v-col>
+          <v-col cols="12" sm="6" md="6" lg="12">
             <div class="page-body">
               <RechargeInstructions :user="user" />
             </div>
-          </b-col>
-        </b-row>
+          </v-col>
+        </v-row>
       </template>
       <template #table>
         <HistoryDepositVndTable :histories="histories" :user="user" />

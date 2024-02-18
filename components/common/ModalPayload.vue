@@ -1,30 +1,59 @@
 
 <template>
-  <b-modal
-    ref="modal"
-    :id="`${
-      (isAvatar ? 'theme-avatar' : '', isThemeDark ? 'theme-dark' : '')
-    }`"
+  <v-dialog
+    v-model="dialog"
+    :id="`${(isAvatar ? 'theme-avatar' : '', isThemeDark ? 'theme-dark' : '')}`"
     :title="title"
     scrollable
     :size="size"
+    max-width="500px"
     @hide="close()"
+    class="modal-content"
   >
-    <div class="modal-info">
-      <slot name="content"></slot>
-    </div>
-    <template #modal-footer="{ hide }">
+    <v-card>
+      <v-btn class="close" color="red" icon @click="dialog = false">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+      <v-card-title class="title-modal text-menu-main">
+        {{ title }}
+      </v-card-title>
+      <v-card-text class="modal-body">
+        <div class="base-dialog">
+          <div class="base-dialog-bg">
+            <slot name="content"></slot>
+          </div>
+        </div>
+      </v-card-text>
+      <v-card-actions v-if="!hiddenFooter">
+        <div class="text-right right w-100">
+          <div class="flex-columns">
+            <slot name="footer-content"></slot>
+            <div class="flex right gap-5px">
+              <div class="text-right right w-100">
+                <slot name="footer-button"></slot>
+              </div>
+              <div class="text-right right w-100">
+                <v-btn color="red" class="text-white" @click="dialog = false">
+                  {{ textClose }}
+                </v-btn>
+              </div>
+            </div>
+          </div>
+        </div>
+      </v-card-actions>
+    </v-card>
+    <!-- <template #modal-footer="{ hide }">
       <div class="flex-columns">
         <slot name="footer-content"></slot>
         <div class="flex right gap-5px">
           <slot name="footer-button"></slot>
-          <b-button size="sm" variant="danger" @click="hide()">
+          <v-btn size="sm" color="danger" @click="hide()">
             {{ textClose }}
-          </b-button>
+          </v-btn>
         </div>
       </div>
-    </template>
-  </b-modal>
+    </template> -->
+  </v-dialog>
 </template>
   
 <script>
@@ -32,7 +61,11 @@ import { mapFields } from "vuex-map-fields";
 
 export default {
   name: "ModalPayload",
-
+  data() {
+    return {
+      dialog: false,
+    };
+  },
   props: {
     title: {
       type: String,
@@ -46,6 +79,7 @@ export default {
       type: String,
       default: "lg",
     },
+    hiddenFooter: Boolean,
   },
   mounted() {},
   computed: {
@@ -57,10 +91,12 @@ export default {
   },
   methods: {
     show() {
-      this.$refs.modal.show();
+      this.dialog = true;
+      // this.$refs.modal.show();
     },
     close() {
-      this.$refs.modal.hide();
+      this.dialog = false;
+      // this.$refs.modal.hide();
       this.$emit("hide");
     },
   },
@@ -79,7 +115,13 @@ export default {
     border-right: 2px solid #663019;
     // background: #e28637 url(https://muabannick.pro/images/header/bg_top.png)
     //   repeat-x;
-    background-image: linear-gradient(180deg, #561d00, #e28637 9%, #e28637 58%, #e28637) ;
+    background-image: linear-gradient(
+      180deg,
+      #561d00,
+      #e28637 9%,
+      #e28637 58%,
+      #e28637
+    );
 
     border-bottom: none;
     display: flex;

@@ -12,8 +12,8 @@
       <template v-if="!token" #body>
         <form class="form">
           <div id="content"></div>
-          <b-row>
-            <b-col cols="12" sm="6" class="middle">
+          <v-row>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="name">
                   <input
@@ -32,8 +32,8 @@
                   >
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12" sm="6" class="middle">
+            </v-col>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="username">
                   <input
@@ -51,9 +51,9 @@
                     ></label
                   >
                 </form-validator>
-              </div></b-col
+              </div></v-col
             >
-            <b-col cols="12" sm="6" class="middle">
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="password">
                   <input
@@ -70,8 +70,8 @@
                   >
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12" sm="6" class="middle">
+            </v-col>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="re_password">
                   <input
@@ -86,8 +86,8 @@
                   >
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12" sm="6" class="middle">
+            </v-col>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="phone">
                   <input
@@ -102,8 +102,8 @@
                   >
                 </form-validator>
               </div>
-            </b-col>
-            <b-col cols="12" sm="6" class="middle">
+            </v-col>
+            <v-col cols="12" sm="6" class="middle">
               <div class="field">
                 <form-validator name="email">
                   <input
@@ -118,8 +118,8 @@
                   >
                 </form-validator>
               </div>
-            </b-col>
-          </b-row>
+            </v-col>
+          </v-row>
 
           <!-- <div id="sign-in-button"></div> -->
 
@@ -132,10 +132,10 @@
           </div>
           <input type="hidden" id="confirm" name="confirm" />
           <div class="field submit">
-            <b-button size="sm" class="btn-login" @click="registerUser()">
+            <v-btn size="sm" class="btn-login" @click="registerUser()">
               <Loading v-if="isLoading" button></Loading>
               <span v-else> Đăng Ký </span>
-            </b-button>
+            </v-btn>
           </div>
           <!-- <div class="signin">----------- Hoặc -----------</div>
           <ButtonLoginFacebook /> -->

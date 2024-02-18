@@ -1,45 +1,45 @@
 <template>
   <div class="account-info">
     <AccountAvatarTL :account-avatar="accountAvatar" />
-    <b-row class="account-body">
-      <b-col cols="12"
+    <v-row class="account-body">
+      <v-col cols="12"
         ><span class="account-thongtin break-line-1">
           Thông tin:
           {{ accountAvatar.thongtin }}
         </span>
-      </b-col>
-      <b-col cols="3"
+      </v-col>
+      <v-col cols="3"
         ><span class="account-code"
           >Mã Số <br />{{ format_number(accountAvatar.ID) }}</span
-        ></b-col
+        ></v-col
       >
-      <b-col cols="3"
+      <v-col cols="3"
         ><span class="account-class"
           >Đất<br />
           {{ accountAvatar.dat }}</span
-        ></b-col
+        ></v-col
       >
-      <b-col cols="3"
+      <v-col cols="3"
         ><span class="account-server"
           >Gà <br />{{ accountAvatar.ga }}</span
-        ></b-col
+        ></v-col
       >
-      <b-col cols="3"
+      <v-col cols="3"
         ><span class="account-server"
           >Cá <br />{{ accountAvatar.ca }}</span
-        ></b-col
+        ></v-col
       >
-      <b-col cols="6"
+      <v-col cols="6"
         ><span class="account-cash"
           >{{ format_number(accountAvatar.price) }} Card</span
-        ></b-col
+        ></v-col
       >
-      <b-col cols="6">
+      <v-col cols="6">
         <nuxt-link :to="`/teamobi/avatar/${this.accountAvatar.ID}`">
           <span class="account-buy"> Xem Nick</span>
         </nuxt-link>
-      </b-col>
-    </b-row>
+      </v-col>
+    </v-row>
   </div>
 </template>
 

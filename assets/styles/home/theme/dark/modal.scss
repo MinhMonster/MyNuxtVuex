@@ -1,4 +1,4 @@
-#theme-dark {
+.theme-dark {
   .modal-content {
     box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 2px 5px;
     border-bottom: 1px solid #b549cc;
@@ -14,10 +14,10 @@
       .modal-title {
         color: #fff;
         text-shadow: rgb(131 60 247) 0px 0px 5px,
-            rgb(131 60 247) 0px 0px 5px,
-            rgb(131 60 247) 0px 0px 0px,
-            rgb(131 60 247) 0px 0px 0px,
-            rgb(131 60 247) 0px 0px 0px;
+          rgb(131 60 247) 0px 0px 5px,
+          rgb(131 60 247) 0px 0px 0px,
+          rgb(131 60 247) 0px 0px 0px,
+          rgb(131 60 247) 0px 0px 0px;
       }
 
       .close {
@@ -37,82 +37,48 @@
       .thongbao {
         text-shadow: none;
       }
+
       .page-body {
         background: #031019;
         border: none;
         color: #f1f1f1;
 
-        .info-atm-momo {
-          background: #171e28;
-          border: 1px solid #031019;
-
-          .title {
-            color: #f1f1f1;
-          }
-
-          .sms {
-            color: #f64e60 !important;
-          }
-
-          .text-danger,
-          .text-primary {
-            color: #f1f1f1 !important;
-          }
 
 
-        }
 
-        .nav-tabs {
-          margin: 0 5px;
-
-          .nav-item {
-            .nav-link {
-              color: #f1f1f1;
-              border-bottom: 1px solid #171e28;
-
-              &.active {
-                background-color: #171e28;
-                color: #fff;
-              }
-            }
-          }
-        }
 
         .table {
           &.text-center {
-          text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
-      
+            text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+
           }
-      
+
           th.info-nick {
             background: #171e28 !important;
             color: #f1f1f1;
             border: 1px solid #031019 !important;
           }
-      
+
           td.mua-nick {
             background: #031019;
             color: #f1f1f1;
             border: 1px solid #171e28 !important;
+
             div {
               background-color: #171e28 !important;
             }
+
             span {
               color: #f1f1f1;
             }
-      
+
             .btn {
               text-shadow: none;
             }
           }
         }
 
-        .v-btn--icon.v-size--default .v-icon.mdi.mdi-content-copy {
-          color: #f1f1f1 !important;
-          text-shadow: #833cf7 0px 0px 2px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
 
-
-        }
       }
     }
 
@@ -122,15 +88,47 @@
       border-bottom: none;
       background: #0f0f0f;
 
-      .color-main {
-        color: #fff;
-      }
+
     }
 
-    .custom-control-input:checked~.custom-control-label::before {
-      color: #333;
-      border: 1px solid #b549cc;
-      background-color: #0F0F0F;
+
+  }
+
+
+
+  .custom-control-input:checked~.custom-control-label::before {
+    color: #333;
+    border: 1px solid #b549cc !important;
+    background-color: #0F0F0F !important;
+  }
+
+  .info-atm-momo {
+    background: #171e28 !important;
+    border: 1px solid #031019 !important;
+
+    .title {
+      color: #f1f1f1 !important;
     }
+
+    .sms {
+      color: #f64e60 !important;
+    }
+
+    .text-danger,
+    .text-primary {
+      color: #f1f1f1 !important;
+    }
+
+
+  }
+
+  .v-btn--icon.v-size--default .v-icon.mdi.mdi-content-copy {
+    color: #f1f1f1 !important;
+    text-shadow: #833cf7 0px 0px 2px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
+
+  }
+
+  .color-main {
+    color: #fff;
   }
 }

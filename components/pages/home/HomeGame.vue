@@ -10,13 +10,13 @@
         </v-row>
         <div class="mt-3" id="dich-vu-game">
           <div class="title text-center text-underline">DỊCH VỤ GAME</div>
-          <b-row class="text-center account mb-1">
+          <v-row class="text-center account mb-1">
             <GameCard
               v-for="(game, index) in gameList"
               :key="index"
               :game="game"
             ></GameCard>
-          </b-row>
+          </v-row>
         </div>
       </v-col>
 
@@ -47,13 +47,13 @@
         </div>
       </template>
       <template #footer-button>
-        <b-button
+        <v-btn
           size="sm"
-          variant="warning"
+          color="warning"
           @click="setNotification(), $refs.modal.close()"
         >
           <span>Đóng 2 giờ</span>
-        </b-button>
+        </v-btn>
       </template>
     </ModalPayload> -->
   </div>

@@ -62,11 +62,12 @@
               <tr>
                 <th class="info-nick" style="">Trạng Thái</th>
                 <td class="mua-nick">
-                  <b-badge
-                    :variant="class_status(history.depositState)"
+                  <v-btn
+                    :color="class_status(history.depositState)"
                     class="text-white pd-5px"
-                    >{{ history.depositState }}</b-badge
                   >
+                    {{ history.depositState }}
+                  </v-btn>
                 </td>
               </tr>
 

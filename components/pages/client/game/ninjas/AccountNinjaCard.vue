@@ -1,7 +1,7 @@
 <template>
-  <b-col v-if="accountNinja" cols="12" sm="6" md="4" lg="3">
+  <v-col v-if="accountNinja" cols="12" sm="6" md="4" lg="3">
     <AccountNinjaCardInfo :account-ninja="accountNinja"></AccountNinjaCardInfo>
-  </b-col>
+  </v-col>
 </template>
 
 <script>

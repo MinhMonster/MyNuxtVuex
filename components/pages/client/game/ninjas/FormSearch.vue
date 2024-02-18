@@ -1,89 +1,87 @@
 <template>
-  <div class="form-search scroll-y">
-    <div class="title center">Tìm Kiếm Nick</div>
-    <!-- <div class="close">Đóng</div> -->
+  <div class="form-search">
     <div class="page-body">
-      <b-row>
-        <b-col cols="12">
-          <!-- <div class="field">
-            <form-validator name="level"> -->
-          <b-form-select
-            v-model="queryForm.q.level"
-            :options="levelOptions"
-            @change="setQueryForm()"
-            size="sm"
-          ></b-form-select>
-          <!-- </form-validator>
-          </div> -->
-        </b-col>
-        <b-col cols="12">
-          <!-- <div class="field">
-            <form-validator name="cash"> -->
-          <b-form-select
-            v-model="queryForm.q.cash"
-            :options="cashOptions"
-            @change="setQueryForm()"
-            size="sm"
-          ></b-form-select>
-          <!-- </form-validator>
-          </div> -->
-        </b-col>
-        <b-col cols="12">
-          <!-- <div class="field">
-            <form-validator name="class"> -->
-          <b-form-select
-            v-model="queryForm.q.class"
-            :options="classOptions"
-            @change="setQueryForm()"
-            size="sm"
-          ></b-form-select>
-          <!-- </form-validator>
-          </div> -->
-        </b-col>
-        <b-col cols="12">
-          <!-- <div class="field">
-            <form-validator name="server"> -->
-          <b-form-select
-            v-model="queryForm.q.server"
-            :options="serverOptions"
-            @change="setQueryForm()"
-            size="sm"
-          ></b-form-select>
-          <!-- </form-validator>
-          </div> -->
-        </b-col>
-        <b-col cols="12">
-          <!-- <div class="field">
-            <form-validator name="id"> -->
-          <b-form-input
-            v-model="queryForm.q.id"
-            placeholder="Nhập ID nick..."
-            @change="setQueryForm()"
-            @keyup.enter="search()"
-          ></b-form-input>
-          <!-- </form-validator>
-          </div> -->
-        </b-col>
-        <b-col cols="6">
-          <b-button
-            type="submit"
-            name="timkiem"
-            class="btn search-btn"
-            @click="search()"
-          >
-            <i class="fa fa-search"></i> Tìm kiếm
-          </b-button>
-        </b-col>
-        <b-col cols="6">
-          <b-button
-            type=""
-            name=""
-            class="btn btn-success btn-search text-white w-100"
-            @click="reset()"
-            ><i class="fa fa-list"></i> Làm mới</b-button
-          >
-        </b-col>
-      </b-row>
+      <form class="form">
+        <v-row>
+          <v-col cols="6" sm="3" md="2">
+            <div class="field">
+              <!-- <form-validator name="level"> -->
+              <v-select
+                v-model="level"
+                :items="levelOptions"
+                size="sm"
+              ></v-select>
+              <!-- </form-validator> -->
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="2">
+            <div class="field">
+              <!-- <form-validator name="cash"> -->
+              <v-select
+                v-model="cash"
+                :items="cashOptions"
+                size="sm"
+              ></v-select>
+              <!-- </form-validator> -->
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="2">
+            <div class="field">
+              <!-- <form-validator name="class"> -->
+              <v-select
+                v-model="classNinjas"
+                :items="classOptions"
+                size="sm"
+              ></v-select>
+              <!-- </form-validator> -->
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="2">
+            <div class="field">
+              <!-- <form-validator name="server"> -->
+              <v-select
+                v-model="server"
+                :items="serverOptions"
+                size="sm"
+              ></v-select>
+              <!-- </form-validator> -->
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="2">
+            <div class="field">
+              <!-- <form-validator name="id"> -->
+              <v-text-field
+                v-model="id"
+                placeholder="Nhập mã số nick..."
+                @keyup.enter="search()"
+                class="v-input form-input"
+              ></v-text-field>
+              <!-- </form-validator> -->
+            </div>
+          </v-col>
+          <v-col cols="3" sm="3" md="1">
+            <v-btn
+              type="submit"
+              name="timkiem"
+              color="primary"
+              class="search-btn text-white w-100"
+              @click="search()"
+            >
+              <i class="fa fa-search"></i> Tìm
+            </v-btn>
+          </v-col>
+          <v-col cols="3" sm="3" md="1">
+            <v-btn
+              type=""
+              color="error"
+              class="btn btn-danger btn-search text-white w-100"
+              @click="reset()"
+            >
+              <i class="fa fa-list"></i> Xóa
+            </v-btn>
+          </v-col>
+        </v-row>
+      </form>
     </div>
   </div>
 </template>
@@ -104,7 +102,18 @@ export default {
       type: String,
       default: null,
     },
+    isReset: Boolean,
   },
+  // watch: {
+  //   isReset: {
+  //     handler(newValue, oldValue) {
+  //       console.log(newValue, oldValue);
+  //       if (oldValue) {
+  //         this.reset();
+  //       }
+  //     },
+  //   },
+  // },
   data() {
     return {
       levelOptions: [
@@ -190,7 +199,7 @@ export default {
         {
           text: "Dưới 50k",
           value: {
-            min: 0,
+            min: 10000,
             max: 49000,
           },
         },
@@ -262,10 +271,10 @@ export default {
           text: "Chọn Phái",
           value: null,
         },
-        {
-          text: "Chưa vào lớp",
-          value: 0,
-        },
+        // {
+        //   text: "Chưa vào lớp",
+        //   value: 0,
+        // },
         {
           text: "Đao",
           value: 1,
@@ -287,7 +296,7 @@ export default {
           value: 5,
         },
         {
-          text: "Kuani",
+          text: "Kunai",
           value: 6,
         },
       ],
@@ -330,11 +339,45 @@ export default {
   computed: {
     ...mapFields("home/game/ninjas", {
       query: "query",
+      classNinjas: "query.q.class",
+      server: "query.q.server",
+      level: "query.q.level",
+      cash: "query.q.cash",
+      id: "query.q.id",
     }),
     queryForm() {
       return _.cloneDeep(this.query);
     },
+    path() {
+      const path = this.$route.path;
+      return path;
+    },
+    whereId() {
+      const Id = Number(this.id);
+      return Id ? "id=" + Id : "";
+    },
+    whereClass() {
+      return this.classNinjas ? "class=" + this.classNinjas : "";
+    },
+    whereServer() {
+      return this.server ? "&server=" + this.server : "";
+    },
+    whereLevel() {
+      return this.level
+        ? "&levelMin=" +
+            this.level.min +
+            (this.level.max ? "&levelMax=" + this.level.max : "")
+        : "";
+    },
+    whereCash() {
+      return this.cash
+        ? "&cashMin=" +
+            this.cash.min +
+            (this.cash.max ? "&cashMax=" + this.cash.max : "")
+        : "";
+    },
   },
+  async mounted() {},
   methods: {
     ...mapActions("home/game/ninjas", ["resetQuery", "setQuery"]),
     search() {
@@ -347,117 +390,19 @@ export default {
     },
     setQueryForm() {
       this.queryForm.page = 1;
-      this.setQuery(this.queryForm);
+      // this.setQuery(this.queryForm);
+      this.$router.push(
+        `${
+          this.path +
+          "?" +
+          this.whereClass +
+          this.whereServer +
+          this.whereLevel +
+          this.whereCash +
+          this.whereId
+        }`
+      );
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-.form-search {
-  position: relative;
-  height: calc(100% - 55px);
-  border: 2px solid #561d00;
-  background: #ffcf9c;
-  padding: 10px;
-  .modal-info {
-    border-radius: 4px;
-    position: relative;
-    padding: 5px;
-    color: #663019;
-    // border: 1px solid #663019;
-    // background: #ffefa3;
-  }
-}
-.rightbar-content {
-  margin-top: 0px;
-}
-.rightbar-content .user-info-wrap {
-  top: 0px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 200px;
-  border: 2px solid #561d00;
-  background: #e28637;
-  background-size: 100% 100%;
-
-  .user-info {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    button.v-btn .v-btn__content i.v-icon,
-    .v-btn--icon.v-size--default {
-      height: 70px;
-      width: 70px;
-      font-size: 70px;
-    }
-    img {
-      height: 80px;
-      width: 80px;
-      border-radius: 50%;
-    }
-  }
-}
-.rightbar-content .user-info-wrap .user-info .member {
-  font-size: 20px;
-  // font-weight: 700;
-  color: #fff;
-  text-align: center;
-}
-
-.rightbar-content .member-nav {
-  padding: 0 0.36rem;
-}
-.rightbar-content .member-nav .h-line {
-  width: 100%;
-  height: 1px;
-  background-color: #561d00;
-}
-.rightbar-content .member-nav .member-nav-list {
-  padding-top: 0.2rem;
-}
-.rightbar-content .member-nav .member-nav-item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 40px;
-  padding-left: 0.08rem;
-}
-.rightbar-content .member-nav .member-nav-name {
-  margin-left: 0.2rem;
-  font-size: 15px;
-  color: #fff;
-}
-.sign-out {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  .bg-danger {
-    color: #ffffff;
-    background: #a21d0a !important;
-  }
-}
-.register-btn {
-  box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 49%);
-  border: 1px solid #ffeb00;
-  font-weight: 700;
-  color: #000;
-  /* background-image: linear-gradient(180deg,#fdffdb,#d9e254); */
-  background-image: linear-gradient(180deg, #fdffdb, #ffcf9c);
-}
-.register-btn {
-  position: relative;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0.235rem;
-  border-radius: 0.32rem;
-  font-size: 12px;
-}
-</style>

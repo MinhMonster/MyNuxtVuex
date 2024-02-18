@@ -10,111 +10,18 @@
     >
       <template #content>
         <div class="page-body">
-          <b-tabs>
-            <b-tab title="Thanh Toán">
-              <table class="table">
-                <tbody class="panel">
-                  <tr>
-                    <th class="info-nick">Mã Số:</th>
-                    <td class="mua-nick">
-                      <span>{{ format_number(accountNinja.ID) }}</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="info-nick">Nhà phát hành:</th>
-                    <td class="mua-nick">
-                      <span>TeaMobi</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="info-nick">Tên game:</th>
-                    <td class="mua-nick">
-                      <span>Ninja School Online</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="info-nick">Giá tiền:</th>
-                    <td class="mua-nick">
-                      <span>{{ format_number(accountNinja.giatien) }} Card</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="info-nick">
-                      ATM-MOMO: <br v-if="accountNinja.saleOff" />
-                      {{
-                        accountNinja.saleOff
-                          ? "(Giảm giá: " + accountNinja.saleOff + "%)"
-                          : ""
-                      }}
-                    </th>
-                    <td class="mua-nick">
-                      <span
-                        :class="{ 'text-line-middel': accountNinja.saleOff }"
-                        >{{ cash_atm(accountNinja.giatien) }} ATM - MOMO</span
-                      >
-                      <div
-                        v-if="accountNinja.saleOff"
-                        style="
-                          width: 100%;
-                          height: 1px;
-                          background-color: #a4a4a4;
-                          margin-top: 5px;
-                          margin-bottom: 5px;
-                        "
-                      ></div>
-                      <span v-if="accountNinja.saleOff"
-                        >{{
-                          cash_atm(
-                            accountNinja.giatien *
-                              (1 - accountNinja.saleOff / 100)
-                          )
-                        }}
-                        ATM - MOMO</span
-                      >
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </b-tab>
-            <b-tab title="Tài Khoản">
-              <table class="table">
-                <tbody class="panel">
-                  <tr>
-                    <th class="info-nick">Mã Số:</th>
-                    <td class="mua-nick">
-                      <span>{{ format_number(accountNinja.ID) }}</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="info-nick">Class:</th>
-                    <td class="mua-nick">
-                      <span>{{ classNinja(accountNinja.class) }}</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="info-nick">Level:</th>
-                    <td class="mua-nick">
-                      <span>{{ accountNinja.level }}</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="info-nick">Server:</th>
-                    <td class="mua-nick">
-                      <span>{{ serverNinja(accountNinja.server) }}</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="info-nick">Chi tiết:</th>
-                    <td class="mua-nick">
-                      <span> {{ accountNinja.thongtin }} </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </b-tab>
-          </b-tabs>
-          <!-- </div>
-      <div class="modal-info mgt-10px"> -->
+          <v-tabs v-model="tab" align-tabs="center">
+            <v-tab :value="1">Thanh Toán</v-tab>
+            <v-tab :value="2">Tài Khoản</v-tab>
+          </v-tabs>
+          <v-window v-model="tab">
+            <v-window-item :value="0">
+              <TablePayAccount :account="account" :game="game" />
+            </v-window-item>
+            <v-window-item :value="1">
+              <slot name="account-info"></slot>
+            </v-window-item>
+          </v-window>
           <b-form-group v-slot="{ ariaDescribedby }">
             <b-form-radio
               v-model="isBuy"
@@ -131,52 +38,40 @@
               >Thanh toán bằng Atm - Momo</b-form-radio
             >
           </b-form-group>
-          <b-row v-if="isBuy == 'atm-momo'">
-            <b-col sm="12" md="12">
+          <v-row v-if="isBuy == 'atm-momo'">
+            <v-col cols="12" sm="12" md="12">
               <AccountNumbeAdmin />
-            </b-col>
+            </v-col>
 
-            <b-col sm="12" md="12">
-              <BuyAccountInstructions
-                :account="accountNinja"
-                account-type="Ninja"
-              />
-            </b-col>
-          </b-row>
+            <v-col cols="12" sm="12" md="12">
+              <BuyAccountInstructions :account="account" :account-type="game" />
+            </v-col>
+          </v-row>
         </div>
       </template>
       <template #footer-content>
         <div v-if="!user" class="color-main mgb-10px">
           Bạn chưa Đăng nhập. Hãy Đăng nhập để mua.
         </div>
-        <div
-          v-else-if="Number(user.cash) < accountNinja.giatien"
-          class="color-main mgb-10px"
-        >
+        <div v-else-if="Number(user.cash) < price" class="color-main mgb-10px">
           Số dư không đủ. Hãy nạp thêm tiền để mua.
         </div>
       </template>
       <template #footer-button>
-        <b-button v-if="!user" size="sm" variant="success" to="/login"
-          ><span>Đăng nhập</span></b-button
+        <v-btn v-if="!user" size="sm" color="success" to="/login"
+          ><span>Đăng nhập</span></v-btn
         >
-        <b-button
-          v-else-if="Number(user.cash) < accountNinja.giatien"
-          variant="success"
+        <v-btn
+          v-else-if="Number(user.cash) < price"
+          color="success"
           to="/account/wallet/deposit/vnd"
-          ><span>Nap tiền</span></b-button
+          ><span>Nap tiền</span></v-btn
         >
 
-        <b-button
-          v-else
-          size="sm"
-          variant="success"
-          class="btn-buy"
-          @click="buyNow()"
-        >
+        <v-btn v-else color="success" class="btn-buy" @click="buyNow()">
           <Loading v-if="isLoading" button></Loading>
           <span v-else> Thanh Toán </span>
-        </b-button>
+        </v-btn>
       </template>
     </ModalPayload>
   </div>
@@ -189,9 +84,9 @@ import Loading from "@/components/global/molecules/common/Loading";
 import ModalPayload from "@/components/common/ModalPayload";
 import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
 import BuyAccountInstructions from "@/components/common/BuyAccountInstructions";
+import TablePayAccount from "@/components/pages/client/game/TablePayAccount";
 
 export default {
-  name: "AccountNinjaList",
   mixins: [mixins],
 
   components: {
@@ -199,15 +94,21 @@ export default {
     ModalPayload,
     AccountNumbeAdmin,
     BuyAccountInstructions,
+    TablePayAccount,
   },
   props: {
-    accountNinja: {
+    account: {
       type: Object,
       default: () => {},
+    },
+    game: {
+      type: String,
+      default: "Ninja School Online",
     },
   },
   data() {
     return {
+      tab: null,
       isBuy: "wallet",
       isLoading: false,
     };
@@ -215,13 +116,20 @@ export default {
   async mounted() {},
   computed: {
     ...mapState("home/users", ["token", "user"]),
+    price() {
+      return this.account.giatien || this.account.price;
+    },
   },
   methods: {
-    ...mapActions("home/users", ["buyAccountNinja"]),
+    ...mapActions("home/users", ["buyAccount"]),
 
     async buyNow() {
       this.isLoading = true;
-      const res = await this.buyAccountNinja(this.accountNinja.ID);
+
+      const res = await this.buyAccount({
+        id: this.account.ID,
+        game: this.game,
+      });
       if (res.historyId) {
         this.$router.push(`/account/history/${res.historyId}`);
       }
@@ -284,29 +192,7 @@ th.info-nick {
     padding: 5px;
     margin-bottom: 0px;
   }
-  .nav-tabs {
-    .nav-item {
-      width: 50%;
-      .nav-link {
-        border: none;
-        color: #663019;
-        text-align: center;
 
-        &.active {
-          font-weight: bold;
-          border: none;
-          border-bottom: 1px solid #663019;
-          background-color: #ffefa3;
-        }
-      }
-    }
-  }
-
-  .custom-control-input:checked ~ .custom-control-label::before {
-    color: #fff;
-    border-color: #663019;
-    background-color: #663019;
-  }
   .custom-control-label::before {
     top: 0;
   }

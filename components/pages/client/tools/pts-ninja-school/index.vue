@@ -36,15 +36,15 @@
           <div id="myCanvas"></div>
           <div v-for="(file, index) in preview" :key="index" class="fileItem">
             <div class="fileItemWrapper">
-              <b-button
-                variant="danger"
+              <v-btn
+                color="danger"
                 size="sm"
                 class="ml-2"
                 pill
                 @click="removeFile(index)"
               >
                 <i class="mdi mdi-close-thick"></i>
-              </b-button>
+              </v-btn>
               <div class="fileIcon">
                 <img v-if="file.url" :src="file.url" />
                 <i v-else class="mdi mdi-file-document-outline"></i>
@@ -62,7 +62,7 @@
             </div>
           </div>
 
-          <b-button
+          <v-btn
             class="primary-btn-2 text-14-500 text-uppercase"
             @click="
               downloadImage(
@@ -73,8 +73,8 @@
             "
           >
             Xem trước
-          </b-button>
-          <b-button
+          </v-btn>
+          <v-btn
             class="primary-btn-2 text-14-500 text-uppercase"
             @click="
               downloadImage(
@@ -85,7 +85,7 @@
             "
           >
             Tải Xuống
-          </b-button>
+          </v-btn>
         </div>
       </template>
     </HomePage> -->

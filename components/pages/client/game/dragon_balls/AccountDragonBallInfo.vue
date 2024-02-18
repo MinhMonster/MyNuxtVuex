@@ -56,7 +56,7 @@
           </tr>
         </tbody>
       </table>
-      <GroupBtnBuyAccount :account="account" account-type="NRO" />
+      <GroupBtnBuyAccount :account="account" account-type="Ngọc Rồng Online" />
     </div>
   </client-only>
 </template>
@@ -244,11 +244,11 @@ th.info-nick {
     //   background: #663019;
     // }
   }
-  .custom-control-input:checked ~ .custom-control-label::before {
-    color: #fff;
-    border-color: #663019;
-    background-color: #663019;
-  }
+  // .custom-control-input:checked ~ .custom-control-label::before {
+  //   color: #fff;
+  //   border-color: #663019;
+  //   background-color: #663019;
+  // }
   .custom-control-label::before {
     top: 0;
   }

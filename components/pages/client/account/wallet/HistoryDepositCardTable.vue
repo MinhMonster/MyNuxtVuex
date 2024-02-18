@@ -18,39 +18,40 @@
         <tbody v-if="histories.length">
           <tr v-for="(history, index) in histories" :key="index">
             <td class="text-middle text-left">
-              <b-row>
-                <b-col :cols="12" :sm="6" :md="4" :lg="2">
+              <v-row>
+                <v-col :cols="12" :sm="6" :md="4" :lg="2">
                   {{ history.telco }}
-                </b-col>
-                <b-col :cols="12" :sm="6" :md="4" :lg="2">
+                </v-col>
+                <v-col :cols="12" :sm="6" :md="4" :lg="2">
                   {{ format_number(history.amount) }} đ
-                </b-col>
-                <b-col :cols="12" :sm="6" :md="4" :lg="2">
+                </v-col>
+                <v-col :cols="12" :sm="6" :md="4" :lg="2">
                   Mã: {{ history.code }}
-                </b-col>
-                <b-col :cols="12" :sm="6" :md="4" :lg="2">
+                </v-col>
+                <v-col :cols="12" :sm="6" :md="4" :lg="2">
                   Serial: {{ history.serial }}
-                </b-col>
+                </v-col>
 
-                <b-col :cols="12" :sm="6" :md="4" :lg="2">
-                  <b-badge
-                    :variant="history.status.value"
+                <v-col :cols="12" :sm="6" :md="4" :lg="2">
+                  <v-btn
+                    :color="history.status.value"
+                    size="sm"
                     class="text-white pd-5px"
-                    >{{ history.status.text }}</b-badge
-                  >
-                </b-col>
-                <b-col :cols="12" :sm="6" :md="4" :lg="2">
+                    >{{ history.status.text }}
+                  </v-btn>
+                </v-col>
+                <v-col :cols="12" :sm="6" :md="4" :lg="2">
                   {{ history.createAt }}
-                </b-col>
-              </b-row>
+                </v-col>
+              </v-row>
             </td>
             <td class="text-middle">
-              <b-badge
-                variant="info"
+              <v-btn
+                color="info"
                 class="text-white pd-10px"
                 :to="`/account/wallet/deposit/card/${history.ID}`"
-                >Xem</b-badge
-              >
+                >Xem
+              </v-btn>
             </td>
           </tr>
         </tbody>
