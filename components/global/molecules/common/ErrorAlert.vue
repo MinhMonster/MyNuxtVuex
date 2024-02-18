@@ -1,11 +1,11 @@
 <template>
-  <b-alert show variant="danger" :class="{ showArrow: table }" class="mt-2">
+  <v-alert show color="danger" :class="{ showArrow: table }" class="mt-2">
     <ul class="mb-0 pl-2">
       <li v-for="(error, index) in errors" :key="index">
         {{ error }}
       </li>
     </ul>
-  </b-alert>
+  </v-alert>
 </template>
 
 <script>

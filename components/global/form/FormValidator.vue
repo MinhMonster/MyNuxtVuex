@@ -1,5 +1,5 @@
 <template>
-  <b-form-group
+  <div
     :class="{
       required: required,
       optional: !required && optional,
@@ -21,7 +21,7 @@
       </div>
       <ErrorAlert v-if="errors.length && alert" :errors="errors"></ErrorAlert>
     </div>
-  </b-form-group>
+  </div>
 </template>
 
 <script>

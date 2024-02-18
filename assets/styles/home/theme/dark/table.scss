@@ -5,7 +5,7 @@
     th {
       color: #f1f1f1;
       border: 1px solid #0F0F0F !important;
-      border-top:  none !important;
+      border-top: none !important;
       background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
     }
 
@@ -19,33 +19,27 @@
     }
   }
 
-  .pagination {
-    .page-item {
-      &.active {
-        .page-link {
+  &.theme--dark {
+    .v-pagination {
+
+      .v-pagination__navigation,
+      .v-pagination__item {
+        color: #f1f1f1 !important;
+        border: 1px solid #a4a4a4 !important;
+        background: radial-gradient(circle at 50% 100%, #424040, #a4a4a4 58%, #424040 127%) !important;
+
+        &:hover,
+        &.v-pagination__item--active.primary {
           color: #f1f1f1 !important;
           background: radial-gradient(circle at 50% 15%, #a937ed, #0F0F0F 72%) !important;
           border: 1px solid #a937ed !important;
-          // &:hover {
-          //   color: #333;
-          //   background: radial-gradient(circle at 50% 15%, #a937ed, #0F0F0F 72%) !important;
-          // }
         }
-      }
 
-      .page-link {
-        color: #f1f1f1 !important;
-        border: 1px solid #a4a4a4 !important;
-          background: radial-gradient(circle at 50% 100%, #424040, #a4a4a4 58%, #424040 127%) !important;
 
-        &:hover {
-          border: 1px solid #a937ed !important;
-          background: radial-gradient(circle at 50% 15%, #a937ed, #0F0F0F 72%) !important;
-
-        }
       }
     }
   }
+
 
 
 }

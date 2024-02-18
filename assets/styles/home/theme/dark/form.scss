@@ -1,5 +1,5 @@
 .theme-dark {
-  // #home-page {
+
 
 
 
@@ -146,7 +146,43 @@
       .v-input__slot {
         border: 1px solid #b549cc !important;
       }
+
+
+      &.v-input--radio-group--column {
+        background: none;
+        border-radius: 3px;
+        border: none;
+        height: auto;
+
+        .v-input__slot {
+          border: none !important;
+        }
+
+        .v-radio {
+          .v-icon {
+            color: #b549cc !important;
+
+          }
+
+          .primary--text {
+            color: #b549cc !important;
+            caret-color: #b549cc !important;
+
+          }
+
+          .v-label {
+            color: #f1f1f1 !important;
+
+          }
+        }
+
+        .v-input__slot {
+          border: none !important;
+        }
+      }
     }
+
+
   }
 
   .v-menu__content {

@@ -22,22 +22,19 @@
               <slot name="account-info"></slot>
             </v-window-item>
           </v-window>
-          <b-form-group v-slot="{ ariaDescribedby }">
-            <b-form-radio
-              v-model="isBuy"
-              :aria-describedby="ariaDescribedby"
+          <v-radio-group v-model="isBuy"> 
+            <v-radio
               name="some-radios"
               value="wallet"
-              >Thanh toán bằng số dư</b-form-radio
-            >
-            <b-form-radio
-              v-model="isBuy"
-              :aria-describedby="ariaDescribedby"
+              label="Thanh toán bằng số dư"
+            ></v-radio>
+            <v-radio
               name="some-radios"
               value="atm-momo"
-              >Thanh toán bằng Atm - Momo</b-form-radio
-            >
-          </b-form-group>
+              label="Thanh toán bằng Atm - Momo"
+            ></v-radio>
+          </v-radio-group>
+
           <v-row v-if="isBuy == 'atm-momo'">
             <v-col cols="12" sm="12" md="12">
               <AccountNumbeAdmin />

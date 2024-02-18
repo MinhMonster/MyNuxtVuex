@@ -1,0 +1,22 @@
+.v-pagination {
+  .v-pagination__navigation {
+    border-radius: 50%;
+    margin: 1px;
+    color: #ffffff;
+    border: 1px solid #663019;
+    background: #e28637;
+  }
+
+  .v-pagination__item {
+    color: #ffffff;
+    border: 1px solid #663019;
+    background: #e28637;
+    border-radius: 50%;
+    margin: 1px;
+
+    &.v-pagination__item--active.primary {
+      background-color: #663019 !important;
+      border: 1px solid #663019 !important;
+    }
+  }
+}
