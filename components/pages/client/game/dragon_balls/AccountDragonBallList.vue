@@ -30,13 +30,9 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-import mixins from "@/mixins/index";
 import AccountDragonBallCard from "@/components/pages/client/game/dragon_balls/AccountDragonBallCard";
 import Loading from "@/components/global/molecules/common/Loading";
 export default {
-  name: "AccountAvatarList",
-  mixins: [mixins],
-
   components: { AccountDragonBallCard, Loading },
   props: {
     query: {

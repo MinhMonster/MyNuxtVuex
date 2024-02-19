@@ -44,15 +44,11 @@
   
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
-import mixins from "@/mixins/index";
 
 import { mapFields } from "vuex-map-fields";
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 
 export default {
-  name: "HomePage",
-  mixins: [mixins],
-
   components: { Loading },
   props: {
     title: {
@@ -99,16 +95,6 @@ export default {
       default: null,
     },
   },
-  // data() {
-  //   return {
-  //     isMobile: false,
-  //   };
-  // },
-  // async mounted() {
-  //   this.$nextTick(function () {
-  //     this.nextPath();
-  //   });
-  // },
   computed: {
     ...mapState("global", ["oldPath", "nowPath"]),
     ...mapFields("global", {

@@ -30,13 +30,9 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-import mixins from "@/mixins/index";
 import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
 import Loading from "@/components/global/molecules/common/Loading";
 export default {
-  name: "AccountAvatarList",
-  mixins: [mixins],
-
   components: { AccountAvatarCard, Loading },
   props: {
     query: {

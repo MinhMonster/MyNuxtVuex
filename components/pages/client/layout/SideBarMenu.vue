@@ -130,22 +130,16 @@
   </client-only>
 </template>
 <script>
-import mixins from "@/mixins/index";
-
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 import FormValidator from "@/components/global/form/FormValidator";
 import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 export default {
-  mixins: [mixins],
-
-  layout: "clientLayout",
   components: { FormValidator, ButtonLoginFacebook },
   computed: {
     ...mapState(["token", "user"]),
   },
-  mounted() {},
   methods: {
     ...mapActions(["logout", "fetchUser", "loginFb"]),
     async logoutUser() {

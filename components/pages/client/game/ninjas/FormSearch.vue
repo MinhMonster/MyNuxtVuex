@@ -86,16 +86,11 @@
   </div>
 </template>
 <script>
-import mixins from "@/mixins/index";
-
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import FormValidator from "@/components/global/form/FormValidator";
 
 export default {
-  mixins: [mixins],
-
-  layout: "clientLayout",
   components: { FormValidator },
   props: {
     type: {
@@ -104,16 +99,6 @@ export default {
     },
     isReset: Boolean,
   },
-  // watch: {
-  //   isReset: {
-  //     handler(newValue, oldValue) {
-  //       console.log(newValue, oldValue);
-  //       if (oldValue) {
-  //         this.reset();
-  //       }
-  //     },
-  //   },
-  // },
   data() {
     return {
       levelOptions: [

@@ -60,7 +60,6 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import GameCard from "@/components/pages/home/GameCard";
 // import ModalPayload from "@/components/common/ModalPayload";
 // import AdminNotification from "@/components/pages/home/AdminNotification";
@@ -73,7 +72,6 @@ import HomeSlider from "@/components/pages/home/HomeSlider";
 import { mapState, mapActions } from "vuex";
 export default {
   name: "HomeGame",
-  mixins: [mixins],
 
   components: {
     GameCard,
@@ -142,32 +140,10 @@ export default {
       ],
     };
   },
-  async mounted() {
-    // await this.getNotification();
-    // if (this.isNotification) {
-    //   // this.$refs.modal.show();
-    // }
-    window.addEventListener("resize", this.onResize);
-    this.$nextTick(function () {
-      this.onResize();
-    });
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
-  },
   computed: {
     ...mapState("home/users", ["token", "user"]),
-
-    // nextPath(path) {
-    //   this.$router.push(`${path}`);
-    // },
-    // ...mapFields("global", {
-    //   isNotification: "isNotification",
-    // }),
   },
-  // methods: {
-  //   ...mapActions("global", ["setNotification", "getNotification"]),
-  // },
+
 };
 </script>
 

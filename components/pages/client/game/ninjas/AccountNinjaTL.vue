@@ -126,19 +126,13 @@
       >
 
       <span class="account-ingame text-13-450">
-        <!-- <v-btn icon>
-          <v-icon>mdi-account</v-icon>
-        </v-btn> -->
         @{{ accountNinja.ingame }}
       </span>
     </div>
   </client-only>
 </template>
 <script>
-import mixins from "@/mixins/index";
-
 export default {
-  mixins: [mixins],
   name: "AccountNinjaCardInfo",
   components: {},
   props: {
@@ -147,10 +141,6 @@ export default {
       default: () => {},
     },
   },
-  mounted() {},
-
-  computed: {},
-  methods: {},
 };
 </script>
 <style lang="scss" scoped>
@@ -209,7 +199,7 @@ export default {
   // font-size: 11px;
   font-weight: 700;
   span {
-    padding:0 5px;
+    padding: 0 5px;
     height: 100% !important;
     line-height: 100%;
     border-radius: 3px;

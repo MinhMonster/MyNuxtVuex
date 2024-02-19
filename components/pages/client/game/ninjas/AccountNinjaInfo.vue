@@ -96,20 +96,19 @@
           </tr>
         </tbody>
       </table>
-      <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja School Online" />
+      <GroupBtnBuyAccount
+        :account="accountNinja"
+        account-type="Ninja School Online"
+      />
     </div>
   </client-only>
 </template>
   
   <script>
-import mixins from "@/mixins/index";
 import AccountNinjaCard from "@/components/pages/client/game/ninjas/AccountNinjaCard";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  name: "AccountNinjaList",
-  mixins: [mixins],
-
   components: { AccountNinjaCard, GroupBtnBuyAccount },
   props: {
     accountNinja: {
@@ -124,8 +123,6 @@ export default {
       isBank: false,
     };
   },
-  async mounted() {},
-  computed: {},
   methods: {
     buyNow() {
       this.isShow = true;

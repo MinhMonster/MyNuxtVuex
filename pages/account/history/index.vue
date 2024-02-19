@@ -78,11 +78,9 @@ import Pagination from "@/components/global/molecules/common/Pagination";
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import mixins from "@/mixins/index";
 
 export default {
   layout: "clientLayout",
-  mixins: [mixins],
 
   components: { Pagination, HomePage },
   computed: {

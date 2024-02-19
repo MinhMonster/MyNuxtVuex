@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import HomePage from "@/components/pages/home/HomePage";
 import AccountNinjaDetail from "@/components/pages/client/game/ninjas/AccountNinjaDetail";
 import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
@@ -31,7 +30,6 @@ import { mapActions } from "vuex";
 
 export default {
   layout: "clientLayout",
-  mixins: [mixins],
   components: {
     HomePage,
     AccountNinjaDetail,

@@ -64,14 +64,10 @@
 </template>
   
 <script>
-import mixins from "@/mixins/index";
 import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  name: "accountAvatarList",
-  mixins: [mixins],
-
   components: {
     AccountAvatarCard,
     GroupBtnBuyAccount,

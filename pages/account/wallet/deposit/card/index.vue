@@ -116,7 +116,6 @@
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
-import mixins from "@/mixins/index";
 import DepositCardInstructions from "@/components/common/DepositCardInstructions";
 import HistoryDepositCardTable from "@/components/pages/client/account/wallet/HistoryDepositCardTable";
 import Pagination from "@/components/global/molecules/common/Pagination";
@@ -128,7 +127,6 @@ const { mapState, mapActions } = createNamespacedHelpers("home/users");
 const global = createNamespacedHelpers("global");
 
 export default {
-  mixins: [mixins],
   layout: "clientLayout",
   data() {
     return {
@@ -237,11 +235,7 @@ export default {
       historyMeta: "historyMeta",
       pageSave: "pageSave",
     }),
-    // ...mapFields("home/users", {
-    //   histories: "historyWalletDepositVnds",
-    //   historyMeta: "historyMeta",
-    //   pageSave: "pageSave",
-    // }),
+
     ...mapFields("home/game/ninjas", {}),
     ...mapState(["token", "user"]),
     queryPage() {

@@ -38,12 +38,9 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL";
 
 export default {
-  mixins: [mixins],
-  name: "AccountNinjaCardInfo",
   components: { AccountNinjaTL },
   props: {
     accountNinja: {
@@ -51,9 +48,6 @@ export default {
       default: () => {},
     },
   },
-  created() {},
-
-  computed: {},
   methods: {
     async viewAaccount() {
       await this.$router.push(`/teamobi/ninja-school/${this.accountNinja.ID}`);

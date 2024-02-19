@@ -80,21 +80,21 @@
             </div>
           </v-col>
         </v-row>
-        <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja School Online" />
+        <GroupBtnBuyAccount
+          :account="accountNinja"
+          account-type="Ninja School Online"
+        />
       </v-col>
     </v-row>
   </client-only>
 </template>
   
   <script>
-import mixins from "@/mixins/index";
 import AccountNinjaInfo from "@/components/pages/client/game/ninjas/AccountNinjaInfo";
 import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  mixins: [mixins],
-
   components: { AccountNinjaInfo, AccountNinjaTL, GroupBtnBuyAccount },
   props: {
     accountNinja: {
@@ -102,20 +102,6 @@ export default {
       default: () => {},
     },
   },
-  data() {
-    return {};
-  },
-  async mounted() {
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
-  },
-  computed: {},
-  methods: {},
 };
 </script>
   

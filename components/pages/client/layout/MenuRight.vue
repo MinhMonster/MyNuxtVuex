@@ -18,10 +18,8 @@
 import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import { mapFields } from "vuex-map-fields";
 import { mapState } from "vuex";
-import mixins from "@/mixins/index";
 
 export default {
-  mixins: [mixins],
   components: {
     SideBarMenu,
   },
@@ -33,18 +31,6 @@ export default {
       right: true,
     };
   },
-  async mounted() {
-    this.$nextTick(function () {
-      this.showMenuRight = false;
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
-
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
-  },
-  unMounted() {},
   computed: {
     ...mapState("home/users", ["token", "user"]),
     ...mapFields("global", {

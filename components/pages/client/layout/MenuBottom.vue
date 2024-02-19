@@ -44,9 +44,7 @@ import ModalGame from "@/components/pages/client/layout/ModalGame";
 import ModalDeposit from "@/components/pages/client/layout/ModalDeposit";
 import ModalSetting from "@/components/pages/client/layout/ModalSetting";
 
-import mixins from "@/mixins/index";
 export default {
-  mixins: [mixins],
   components: {
     ModalGame,
     ModalDeposit,

@@ -1,5 +1,6 @@
 <template>
   <div class="home-slider">
+    {{ isMobile }}
     <v-carousel hide-delimiters cycle :interval="5000">
       <v-carousel-item v-for="(item, i) in items" :key="i" cover eager>
         <v-img
@@ -15,13 +16,14 @@
 </template>
 
 <script>
-// import mixins from "@/mixins/index";
 export default {
-  data() {
-    return {
-      items: [
+  computed: {
+    items() {
+      return [
         {
-          src: this.isMobile ?  "https://muabannick.pro/images/banners/banner_mobile.png":  "https://muabannick.pro/images/banners/muabannick_banner_min.png",
+          src: this.isMobile
+            ? "https://muabannick.pro/images/banners/banner_mobile.png"
+            : "https://muabannick.pro/images/banners/muabannick_banner_min.png",
         },
         // {
         //   src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
@@ -29,8 +31,8 @@ export default {
         // {
         //   src: "https://muabannick.pro/images/banners/banner_ny_min.gif",
         // },
-      ],
-    };
+      ];
+    },
   },
   methods: {
     onLoadAvatar(item) {

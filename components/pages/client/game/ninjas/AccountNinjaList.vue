@@ -32,13 +32,9 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-import mixins from "@/mixins/index";
 import AccountNinjaCard from "@/components/pages/client/game/ninjas/AccountNinjaCard";
 import Loading from "@/components/global/molecules/common/Loading";
 export default {
-  name: "AccountNinjaList",
-  mixins: [mixins],
-
   components: { AccountNinjaCard, Loading },
   props: {
     type: {
@@ -51,7 +47,6 @@ export default {
       isLoading: false,
     };
   },
-  async mounted() {},
   computed: {
     ...mapFields("home/game/ninjas", {
       accountNinjas: "accountNinjas",

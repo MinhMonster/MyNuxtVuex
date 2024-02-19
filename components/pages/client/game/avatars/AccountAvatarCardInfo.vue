@@ -44,12 +44,9 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvatarTL";
 
 export default {
-  mixins: [mixins],
-  name: "accountAvatarCardInfo",
   components: { AccountAvatarTL },
   props: {
     accountAvatar: {

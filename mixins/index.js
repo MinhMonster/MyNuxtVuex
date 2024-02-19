@@ -2,11 +2,11 @@
 
 
 import { createNamespacedHelpers } from "vuex";
+import { mapFields } from "vuex-map-fields";
 
 export default {
   data() {
     return {
-      isMobile: false,
       isTablet: false,
       currentYear: new Date().getFullYear(),
       heightHomeLeft: 810,
@@ -83,6 +83,12 @@ export default {
     }
   },
   computed: {
+    ...mapFields("global", {
+      isMb: "isMb",
+    }),
+    isMobile(){
+      return this.isMb
+    },
     path() {
       return this.$route.path;
     },
@@ -143,9 +149,9 @@ export default {
     onResize() {
       const screenWidth = document.querySelector("body").clientWidth;
       if (screenWidth < 600) {
-        this.isMobile = true;
+        this.isMb = true;
       } else {
-        this.isMobile = false;
+        this.isMb = false;
       }
       if (screenWidth < 768) {
         this.isTablet = true;

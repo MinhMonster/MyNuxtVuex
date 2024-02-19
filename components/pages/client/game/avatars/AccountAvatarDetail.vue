@@ -108,32 +108,17 @@
 </template>
   
   <script>
-import mixins from "@/mixins/index";
 import AccountAvatarInfo from "@/components/pages/client/game/avatars/AccountAvatarInfo";
 import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvatarTL";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  mixins: [mixins],
-
   components: { AccountAvatarInfo, AccountAvatarTL, GroupBtnBuyAccount },
   props: {
     accountAvatar: {
       type: Object,
       default: () => {},
     },
-  },
-  data() {
-    return {};
-  },
-  async mounted() {
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
   },
   computed: {
     images() {
@@ -143,7 +128,6 @@ export default {
       return images;
     },
   },
-  methods: {},
 };
 </script>
   

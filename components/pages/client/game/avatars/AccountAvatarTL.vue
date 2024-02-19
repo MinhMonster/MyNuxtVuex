@@ -32,11 +32,7 @@
   </client-only>
 </template>
 <script>
-import mixins from "@/mixins/index";
-
 export default {
-  mixins: [mixins],
-  name: "accountAvatarCardInfo",
   components: {},
   props: {
     accountAvatar: {

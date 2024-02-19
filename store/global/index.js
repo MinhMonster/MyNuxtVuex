@@ -15,6 +15,7 @@ export default {
     isThemeDark: true,
     showMenuRight: false,
     fixed: false,
+    isMb: true
   }),
   getters: {
     getField,

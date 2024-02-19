@@ -72,15 +72,9 @@
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
-import mixins from "@/mixins/index";
 import ModalPayload from "@/components/common/ModalPayload";
 
-import { mapFields } from "vuex-map-fields";
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("home/users");
-
 export default {
-  mixins: [mixins],
   layout: "clientLayout",
   components: {
     Loading,

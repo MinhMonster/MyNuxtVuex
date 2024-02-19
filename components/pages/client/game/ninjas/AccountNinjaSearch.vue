@@ -72,8 +72,6 @@ export default {
       isSearch: true,
     };
   },
-  created() {},
-
   computed: {
     ...mapFields("global", {
       ready: "ready",
