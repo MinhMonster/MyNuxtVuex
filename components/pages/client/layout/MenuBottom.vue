@@ -3,7 +3,7 @@
     <div id="menu-bottom">
       <nuxt-link to="/admin-information"
         ><div class="footer_icon service">
-          <v-btn icon class="icon-menu">
+          <v-btn id="btn-admin" icon class="icon-menu" title="Admin" aria-label="Admin">
             <v-icon>mdi-shield-crown-outline</v-icon>
           </v-btn>
         </div>
@@ -16,7 +16,7 @@
         <div class="footer_icon home">
           <div class="circle-menu">
             <div class="icon-wrap">
-              <v-btn icon>
+              <v-btn icon id="btn-home" title="Trang Chủ" aria-label="Trang Chủ">
                 <v-icon>mdi-home</v-icon>
               </v-btn>
             </div>
@@ -28,7 +28,7 @@
       <ModalSetting/>
       <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
-          <v-btn icon class="icon-menu">
+          <v-btn icon class="icon-menu" id="btn-topics" title="Bài Đăng" aria-label="Bài Đăng">
             <v-icon>mdi-book-open-variant</v-icon>
           </v-btn>
         </div>

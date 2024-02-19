@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on, attrs }">
       <div v-bind="attrs" v-on="on" class="sub-menu-buttom">
         <div class="footer_icon Member">
-          <v-btn icon class="icon-menu">
+          <v-btn icon class="icon-menu" id="btn-games" title="Nick Game" aria-label="Nick Game">
             <v-icon>mdi-controller</v-icon>
           </v-btn>
         </div>

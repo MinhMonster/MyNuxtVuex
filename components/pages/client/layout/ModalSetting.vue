@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on, attrs }">
       <div v-bind="attrs" v-on="on" class="sub-menu-buttom">
         <div class="footer_icon Member">
-          <v-btn icon class="icon-menu">
+          <v-btn icon class="icon-menu" id="btn-settings" title="Cài Đặt" aria-label="Cài Đặt">
             <v-icon>mdi-cog-outline</v-icon>
           </v-btn>
         </div>

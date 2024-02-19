@@ -15,7 +15,8 @@ export default {
     isThemeDark: true,
     showMenuRight: false,
     fixed: false,
-    isMb: true
+    isMb: true,
+    heightHomeRight: 810
   }),
   getters: {
     getField,

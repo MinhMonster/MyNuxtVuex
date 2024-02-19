@@ -1,6 +1,5 @@
 <template>
   <div class="home-slider">
-    {{ isMobile }}
     <v-carousel hide-delimiters cycle :interval="5000">
       <v-carousel-item v-for="(item, i) in items" :key="i" cover eager>
         <v-img

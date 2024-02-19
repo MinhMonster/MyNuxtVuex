@@ -1,6 +1,11 @@
 <template>
   <v-navigation-drawer
-    style="top: 50px; width: 250px; text-align: left; max-height: calc(100% - 50px);"
+    style="
+      top: 50px;
+      width: 250px;
+      text-align: left;
+      max-height: calc(100% - 50px);
+    "
     :style="{
       minHeight: heightMenu,
     }"
@@ -30,6 +35,11 @@ export default {
       fixed: false,
       right: true,
     };
+  },
+  async mounted() {
+    this.$nextTick(function () {
+      this.showMenuRight = false;
+    });
   },
   computed: {
     ...mapState("home/users", ["token", "user"]),
