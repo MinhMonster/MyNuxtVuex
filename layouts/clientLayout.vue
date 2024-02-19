@@ -1,6 +1,6 @@
 <template>
   <v-app :class="{ 'theme-avatar': isAvatar, 'theme-dark': isThemeDark }">
-    <HeaderHome></HeaderHome>
+    <HeaderHome/>
     <!-- <MenuGameHome v-if="isMenuGame"></MenuGameHome>
     <v-btn
       icon
@@ -21,7 +21,9 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <MenuBottom></MenuBottom>
+    <MenuBottom/>
+    <MenuRight />
+
     <template v-if="isShowButton">
       <div class="change-theme">
         <v-btn icon @click="changeTheme()">
@@ -46,6 +48,7 @@
 import HeaderHome from "@/components/pages/client/layout/HeaderHome";
 import MenuGameHome from "@/components/pages/client/layout/MenuGameHome";
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
+import MenuRight from "@/components/pages/client/layout/MenuRight";
 import { mapFields } from "vuex-map-fields";
 
 import { mapState, mapActions } from "vuex";
@@ -56,6 +59,7 @@ export default {
     HeaderHome,
     MenuGameHome,
     MenuBottom,
+    MenuRight
   },
   data() {
     return {
