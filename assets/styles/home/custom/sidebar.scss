@@ -1,34 +1,20 @@
-.bg-sidebar {
-  #sidebar-right {
-    &.b-sidebar {
-      border: 2px solid #561d00 !important;
+.rightbar-content {
+  border: 2px solid #561d00 !important;
+  background: radial-gradient(circle at 50% 100%,
+      #e28637,
+      #9f5424 58%,
+      #561d00 127%);
+  max-height: calc(100vh - 50px - 55px);
+  height: 100%;
+  margin-top: 0px;
+  border-radius: 4px;
 
-      .rightbar-content {
-
-        .user-info-wrap {
-          border: none !important;
-          border-bottom: 2px solid #561d00 !important;
-        }
-      }
-    }
+  .user-info-wrap {
+    border: none !important;
+    border-bottom: 2px solid #561d00 !important;
   }
-}
 
-.home-user {
-  .rightbar-content {
-    border: 2px solid #561d00 !important;
-    background: radial-gradient(circle at 50% 100%,
-        #e28637,
-        #9f5424 58%,
-        #561d00 127%);
-    max-height: calc(100vh - 140px);
-    height: 100%;
-    margin-top: 0px;
-    border-radius: 4px;
-
-    .user-info-wrap {
-      border: none !important;
-      border-bottom: 2px solid #561d00 !important;
-    }
+  @media (max-width: 1265px) {
+    max-height: calc(100vh - 50px);
   }
 }

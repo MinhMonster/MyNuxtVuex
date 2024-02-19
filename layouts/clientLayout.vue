@@ -1,6 +1,6 @@
 <template>
   <v-app :class="{ 'theme-avatar': isAvatar, 'theme-dark': isThemeDark }">
-    <HeaderHome/>
+    <AppBar/>
     <!-- <MenuGameHome v-if="isMenuGame"></MenuGameHome>
     <v-btn
       icon
@@ -45,7 +45,8 @@
 </template>
 
 <script>
-import HeaderHome from "@/components/pages/client/layout/HeaderHome";
+import AppBar from "@/components/pages/client/layout/AppBar";
+
 import MenuGameHome from "@/components/pages/client/layout/MenuGameHome";
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
 import MenuRight from "@/components/pages/client/layout/MenuRight";
@@ -56,7 +57,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   name: "ClientLayout",
   components: {
-    HeaderHome,
+    AppBar,
     MenuGameHome,
     MenuBottom,
     MenuRight

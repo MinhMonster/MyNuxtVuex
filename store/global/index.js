@@ -12,7 +12,9 @@ export default {
     oldPath: "/",
     nowPath: "/",
     isNotification: true,
-    isThemeDark: true
+    isThemeDark: true,
+    showMenuRight: false,
+    fixed: false,
   }),
   getters: {
     getField,

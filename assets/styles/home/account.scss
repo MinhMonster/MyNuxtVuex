@@ -4,7 +4,6 @@ $primary-bold: #0069d9;
 $blue: #007bff;
 $danger : #a21d0a;
 
-
 ::v-depp {
   .has-error .validation {
     margin-top: 15px !important;
@@ -228,6 +227,7 @@ $danger : #a21d0a;
 }
 
 .login-btn {
+  cursor: pointer;
   position: relative;
   height: 30px;
   display: flex;
@@ -238,10 +238,21 @@ $danger : #a21d0a;
   font-size: 12px;
   font-weight: 500;
   color: #fff;
-  // margin-right: 0.2rem;
   box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 50%);
-  /* background-image: linear-gradient(180deg,#8872c7,#6142bf 9%,#271170 58%,#4e23af); */
+  background-image: linear-gradient(180deg,
+      #e28637,
+      #9f5424 9%,
+      #561d00 58%,
+      #9f5424);
 
+  &:hover {
+    color: #fff;
+    background-image: linear-gradient(180deg,
+        #e28637,
+        #9f5424 9%,
+        #9f5424 58%,
+        #561d00);
+  }
 
 }
 
@@ -260,23 +271,6 @@ $danger : #a21d0a;
         $primary-bold 9%,
         $primary-border 58%,
         $primary-bold);
-  }
-}
-
-.login-btn {
-  background-image: linear-gradient(180deg,
-      #e28637,
-      #9f5424 9%,
-      #561d00 58%,
-      #9f5424);
-
-  &:hover {
-    color: #fff;
-    background-image: linear-gradient(180deg,
-        #e28637,
-        #9f5424 9%,
-        #9f5424 58%,
-        #561d00);
   }
 }
 
