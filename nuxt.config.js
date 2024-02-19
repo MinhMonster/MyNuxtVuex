@@ -40,6 +40,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     "@/assets/css/mms-style.css",
+    "@/assets/css/reset.css",
     "@/assets/styles/common.scss",
     // "@/assets/styles/home/_ckeditor.scss",
     "@/assets/styles/home/account.scss",
@@ -87,7 +88,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    "bootstrap-vue/nuxt",
+    // "bootstrap-vue/nuxt",
     'cookie-universal-nuxt',
     // With options
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
