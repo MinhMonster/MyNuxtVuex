@@ -226,10 +226,7 @@ export default {
   width: 0.44rem;
   height: 0.44rem;
 }
-#menu-bottom .circle-menu .icon-wrap svg {
-  width: 0.48rem;
-  height: 0.42rem;
-}
+
 
 #menu-bottom a span,
 #menu-bottom .sub-menu-buttom span {

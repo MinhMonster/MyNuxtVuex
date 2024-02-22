@@ -19,7 +19,7 @@
             >
             <div v-if="goBack" class="go-back" @click="onGoBack()">
               <v-btn v-if="!isGoHome" icon>
-                <v-icon>mdi-arrow-left-bold-circle-outline</v-icon>
+                <BaseSvg name="next-left" />
               </v-btn>
               <v-btn v-else icon>
                 <v-icon>mdi-home</v-icon>
@@ -27,7 +27,7 @@
             </div>
             <div v-if="reload" class="reload" @click="onReload()">
               <v-btn icon>
-                <v-icon>mdi-reload</v-icon>
+                <BaseSvg name="reload" />
               </v-btn>
             </div>
             <slot name="body"></slot>

@@ -27,17 +27,17 @@
     <template v-if="isShowButton">
       <div class="change-theme">
         <v-btn icon @click="changeTheme()">
-          <v-icon>mdi-theme-light-dark</v-icon>
+          <BaseSvg name="theme-light-dark" />
         </v-btn>
       </div>
       <div class="next-top">
         <v-btn icon @click="nextTop()">
-          <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
+          <BaseSvg name="next-top" />
         </v-btn>
       </div>
       <div class="next-bottom">
         <v-btn icon @click="nextBottom()">
-          <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
+          <BaseSvg name="next-bottom" />
         </v-btn>
       </div>
     </template>
@@ -71,7 +71,6 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "Vuetify.js",
       isShowButton: false,
     };
   },
@@ -201,6 +200,14 @@ export default {
   height: 30px;
   width: 30px;
   z-index: 10;
+  svg {
+    height: 26px;
+      width: 26px;
+    path {
+      height: 26px;
+      width: 26px;
+    }
+  }
   .v-btn--icon.v-size--default {
     height: 30px;
     width: 30px;

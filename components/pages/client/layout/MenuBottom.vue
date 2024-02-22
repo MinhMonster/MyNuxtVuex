@@ -3,8 +3,14 @@
     <div id="menu-bottom">
       <nuxt-link to="/admin-information"
         ><div class="footer_icon service">
-          <v-btn id="btn-admin" icon class="icon-menu" title="Admin" aria-label="Admin">
-            <v-icon>mdi-shield-crown-outline</v-icon>
+          <v-btn
+            id="btn-admin"
+            icon
+            class="icon-menu"
+            title="Admin"
+            aria-label="Admin"
+          >
+            <BaseSvg name="support" />
           </v-btn>
         </div>
         <span class="title-menu-buttom">Admin</span>
@@ -16,8 +22,13 @@
         <div class="footer_icon home">
           <div class="circle-menu">
             <div class="icon-wrap">
-              <v-btn icon id="btn-home" title="Trang Chủ" aria-label="Trang Chủ">
-                <v-icon>mdi-home</v-icon>
+              <v-btn
+                icon
+                id="btn-home"
+                title="Trang Chủ"
+                aria-label="Trang Chủ"
+              >
+                <BaseSvg name="home" />
               </v-btn>
             </div>
           </div>
@@ -25,11 +36,18 @@
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
       <!-- <ModalDeposit /> -->
-      <ModalSetting/>
+      <ModalSetting />
       <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
-          <v-btn icon class="icon-menu" id="btn-topics" title="Bài Đăng" aria-label="Bài Đăng">
-            <v-icon>mdi-book-open-variant</v-icon>
+          <v-btn
+            icon
+            class="icon-menu"
+            id="btn-topics"
+            title="Bài Đăng"
+            aria-label="Bài Đăng"
+          >
+          <BaseSvg name="book" />
+
           </v-btn>
         </div>
         <span class="title-menu-buttom">Bài Đăng</span>
@@ -48,7 +66,7 @@ export default {
   components: {
     ModalGame,
     ModalDeposit,
-    ModalSetting
+    ModalSetting,
   },
   props: {},
   data() {
@@ -105,7 +123,7 @@ export default {
       } else {
         this.showSwal({
           title: "Bạn chưa đăng nhập",
-          html: "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!"
+          html: "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!",
         });
       }
     },
@@ -127,5 +145,4 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 </style>

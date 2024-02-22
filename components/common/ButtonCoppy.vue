@@ -7,10 +7,8 @@
     v-clipboard:error="onCopy(false)"
     class="mb-1"
   >
-    <v-icon v-if="!isCheck">mdi-content-copy</v-icon>
-    <v-icon v-else :class="{ 'v-icon-success': isCheck }"
-      >mdi-check-circle-outline</v-icon
-    >
+    <BaseSvg v-if="!isCheck" name="content-copy" />
+    <BaseSvg v-else :class="{ 'v-icon-success': isCheck }" name="check" />
   </v-btn>
 </template>
 <script>

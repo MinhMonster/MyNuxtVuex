@@ -1,6 +1,7 @@
 
 <template>
   <v-dialog
+    v-if="dialog"
     v-model="dialog"
     :id="`${(isAvatar ? 'theme-avatar' : '', isThemeDark ? 'theme-dark' : '')}`"
     :title="title"
