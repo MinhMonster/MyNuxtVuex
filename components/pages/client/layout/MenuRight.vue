@@ -50,5 +50,10 @@ export default {
       return this.isMobile ? `calc(100% - 50px)` : `calc(100% - 105px)`;
     },
   },
+  methods:{
+    closeMenuRight() {
+      this.showMenuRight = false;
+    }
+  }
 };
 </script>

@@ -5,6 +5,7 @@
         <v-row style="margin: -15px">
           <v-col cols="12">
             <!-- <RunText v-if="isTablet" /> -->
+
             <HomeSlider />
           </v-col>
         </v-row>

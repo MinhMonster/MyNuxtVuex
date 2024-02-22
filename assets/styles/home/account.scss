@@ -86,15 +86,27 @@ $danger : #a21d0a;
   }
 }
 
-
 .page-body {
   position: relative;
   color: #663019;
-  border: 1px solid #663019;
-  background: #ffefa3;
   padding: 6px;
   border-radius: 4px;
 }
+
+.bg-website .v-main__wrap #home-page {
+  .page-body {
+    border: 1px solid #663019;
+    background: #ffefa3;
+
+    &.not-border {
+      border: none !important;
+      background: none !important;
+    }
+  }
+
+}
+
+
 
 .box-body {
   position: relative;

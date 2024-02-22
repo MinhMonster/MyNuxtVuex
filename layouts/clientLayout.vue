@@ -1,6 +1,6 @@
 <template>
   <v-app :class="{ 'theme-avatar': isAvatar, 'theme-dark': isThemeDark }">
-    <AppBar/>
+    <AppBar />
     <!-- <MenuGameHome v-if="isMenuGame"></MenuGameHome>
     <v-btn
       icon
@@ -21,7 +21,7 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <MenuBottom/>
+    <MenuBottom />
     <MenuRight />
 
     <template v-if="isShowButton">
@@ -60,7 +60,7 @@ export default {
     AppBar,
     MenuGameHome,
     MenuBottom,
-    MenuRight
+    MenuRight,
   },
   data() {
     return {
@@ -78,9 +78,15 @@ export default {
 
   computed: {
     ...mapState("home/users", ["token"]),
-    ...mapFields("global", { isThemeDark: "isThemeDark" }),
+    ...mapFields("global", {
+      isThemeDark: "isThemeDark",
+      showMenuRight: "showMenuRight",
+    }),
 
     styleMain() {
+      if (this.showMenuRight && !this.isMobile) {
+        return "width: calc(100% - 260px) !important; margin-right: 250px; transition: margin-left 0.3s";
+      }
       if (!this.isMenuGame) {
         return "width: calc(100% - 10px) !important; margin-left: 5px; transition: margin-left 0.3s";
       }
@@ -99,7 +105,7 @@ export default {
       return path.includes("teamobi/avatar");
     },
   },
-  
+
   async mounted() {
     if (this.token) {
       await this.fetchUser();
@@ -113,6 +119,9 @@ export default {
     //   this.nextPath();
     // });
     // window.addEventListener("click", this.nextPath());
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
   },
   methods: {
     ...mapActions("home/users", ["logout", "fetchUser"]),

@@ -30,8 +30,10 @@ import AccountAvatarList from "@/components/pages/client/game/avatars/AccountAva
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
+import mixins from "@/mixins/index";
 
 export default {
+  mixins: [mixins],
   layout: "clientLayout",
 
   components: {

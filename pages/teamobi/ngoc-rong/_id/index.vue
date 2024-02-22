@@ -27,8 +27,10 @@ import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/A
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
+import mixins from "@/mixins/index";
 
 export default {
+  mixins: [mixins],
   layout: "clientLayout",
   components: {
     HomePage,

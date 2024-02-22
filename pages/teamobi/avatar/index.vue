@@ -96,3 +96,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+#home-page {
+  max-width: 1400px !important;
+}
+</style>

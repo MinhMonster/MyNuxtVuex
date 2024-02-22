@@ -51,7 +51,7 @@ export default {
     { src: "@/plugins/vuex-persistedstate", ssr: false },
     "@/plugins/axios",
     // "@/plugins/vue-sweetalert",
-
+    // '@/plugins/filters.js',
     '~/plugins/repositories.js',
     { src: "@/plugins/vue-slick-carousel" },
     { src: "@/plugins/vue-clipboard2", ssr: false },

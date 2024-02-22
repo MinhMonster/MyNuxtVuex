@@ -27,8 +27,10 @@ import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinja
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
+import mixins from "@/mixins/index";
 
 export default {
+  mixins: [mixins],
   layout: "clientLayout",
   components: {
     HomePage,

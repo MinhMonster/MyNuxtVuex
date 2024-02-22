@@ -1,9 +1,12 @@
 <template>
   <div id="home-page">
     <Loading v-if="loading" />
-    <v-row v-else  >
+    <v-row v-else>
       <v-col cols="12" md="12" :lg="colLeft">
-        <div :class="{ 'full-screen': fullScreen, 'page-body': !notBoder }">
+        <div
+          class="page-body"
+          :class="{ 'full-screen': fullScreen, 'not-border': notBoder }"
+        >
           <div :class="{ 'page-info': fullScreen }">
             <div v-if="title" class="title-page title text-center">
               {{ title }}
@@ -104,9 +107,8 @@ export default {
       return this.goHome;
     },
   },
-  mounted(){
+  mounted() {
     // window.addEventListener("wheel", this.scroll());
-
   },
   methods: {
     // ...mapActions("global", ["setPath"]),
@@ -114,7 +116,7 @@ export default {
     //   const path = this.$route.path;
     //   this.setPath(path);
     // },
-   
+
     async onGoBack() {
       if (this.isGoHome) {
         this.$router.push("/");

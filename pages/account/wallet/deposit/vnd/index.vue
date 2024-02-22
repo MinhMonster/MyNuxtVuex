@@ -183,8 +183,10 @@ import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 const global = createNamespacedHelpers("global");
+import mixins from "@/mixins/index";
 
 export default {
+  mixins: [mixins],
   layout: "clientLayout",
   components: {
     HomePage,
