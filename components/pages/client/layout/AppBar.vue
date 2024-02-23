@@ -3,14 +3,7 @@
     <div class="header-content">
       <div class="header-user">
         <div class="header-logo" @click="nextHome()">
-          <img
-            :src="
-              isThemeDark
-                ? 'https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png'
-                : 'https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200029.png'
-            "
-            alt=""
-          />
+          <img :src="logo" alt="Logo" />
         </div>
       </div>
     </div>
@@ -37,9 +30,17 @@ export default {
   name: "AppBar",
   data() {
     return {
+      logo: "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png",
       clipped: true,
       miniVariant: false,
     };
+  },
+  watch: {
+    isThemeDark: {
+      async handler(newValue, oldValue) {
+        this.getLogo();
+      },
+    },
   },
   computed: {
     ...mapState("home/users", ["token", "user"]),
@@ -55,6 +56,9 @@ export default {
     isHome() {
       return this.$route.path == "/";
     },
+  },
+  mounted() {
+    this.getLogo();
   },
   methods: {
     nextHome() {
@@ -75,6 +79,11 @@ export default {
       if (this.token && !this.isShow) {
         this.fetchUser();
       }
+    },
+    getLogo() {
+      this.logo = this.isThemeDark
+        ? "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png"
+        : "https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200029.png";
     },
   },
 };

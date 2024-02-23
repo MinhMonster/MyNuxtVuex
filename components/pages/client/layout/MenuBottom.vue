@@ -3,15 +3,13 @@
     <div id="menu-bottom">
       <nuxt-link to="/admin-information"
         ><div class="footer_icon service">
-          <v-btn
+          <BaseSvg
             id="btn-admin"
-            icon
             class="icon-menu"
             title="Admin"
             aria-label="Admin"
-          >
-            <BaseSvg name="support" />
-          </v-btn>
+            name="support"
+          />
         </div>
         <span class="title-menu-buttom">Admin</span>
       </nuxt-link>
@@ -22,33 +20,27 @@
         <div class="footer_icon home">
           <div class="circle-menu">
             <div class="icon-wrap">
-              <v-btn
-                icon
+              <BaseSvg
                 id="btn-home"
                 title="Trang Chủ"
                 aria-label="Trang Chủ"
-              >
-                <BaseSvg name="home" />
-              </v-btn>
+                name="home"
+              />
             </div>
           </div>
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
-      <!-- <ModalDeposit /> -->
       <ModalSetting />
       <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
-          <v-btn
-            icon
+          <BaseSvg
             class="icon-menu"
             id="btn-topics"
             title="Bài Đăng"
             aria-label="Bài Đăng"
-          >
-          <BaseSvg name="book" />
-
-          </v-btn>
+            name="book"
+          />
         </div>
         <span class="title-menu-buttom">Bài Đăng</span>
       </div>
@@ -59,13 +51,11 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import ModalGame from "@/components/pages/client/layout/ModalGame";
-import ModalDeposit from "@/components/pages/client/layout/ModalDeposit";
 import ModalSetting from "@/components/pages/client/layout/ModalSetting";
 
 export default {
   components: {
     ModalGame,
-    ModalDeposit,
     ModalSetting,
   },
   props: {},

@@ -49,6 +49,7 @@ $danger : #a21d0a;
   .v-btn--icon.v-size--default {
     height: 26px !important;
     width: 26px !important;
+
     svg {
       height: 18px !important;
       width: 18px !important;
@@ -729,6 +730,14 @@ figure.image {
 }
 
 .btn-next-more {
+  color: #ffffff;
+  text-align: center;
+  margin: 0 auto;
+
+  button {
+    background: #a21d0a !important;
+  }
+
   .v-btn:not(.v-btn--round).v-size--default {
     text-align: center;
     margin: 0 auto;

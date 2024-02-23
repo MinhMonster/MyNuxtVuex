@@ -1,7 +1,6 @@
 <template>
-  <v-btn
+  <span
     v-if="content"
-    icon
     v-clipboard:copy="content"
     v-clipboard:success="onCopy(true)"
     v-clipboard:error="onCopy(false)"
@@ -9,7 +8,7 @@
   >
     <BaseSvg v-if="!isCheck" name="content-copy" />
     <BaseSvg v-else :class="{ 'v-icon-success': isCheck }" name="check" />
-  </v-btn>
+  </span>
 </template>
 <script>
 export default {

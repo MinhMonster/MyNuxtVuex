@@ -15,15 +15,17 @@
         Không tìm thấy Tài khoản nào!
       </h1>
     </div>
-    <v-btn
-      v-if="isShowNext && accountDragonBalls.length && !isLoading"
-      variant="danger"
-      class="btn-next-more flex mt-3 mb-1"
-      @click="onChange()"
-    >
-      <v-icon>mdi-skip-next</v-icon>
-      Xem Thêm Nick Ngọc Rồng
-    </v-btn>
+    <div class="btn-next-more">
+      <BaseSvg
+        v-if="isShowNext && accountDragonBalls.length && !isLoading"
+        button
+        name="skip"
+        content="Xem Thêm Nick Ngọc Rồng"
+        variant="danger"
+        class="flex mt-3 mb-1"
+        @click="onChange()"
+      />
+    </div>
   </div>
 </template>
 
@@ -76,11 +78,5 @@ export default {
 <style lang="scss" scoped>
 .account {
   margin: -9px;
-}
-.btn-next-more {
-  color: #ffffff;
-  background: #a21d0a !important;
-  text-align: center;
-  margin: 0 auto;
 }
 </style>

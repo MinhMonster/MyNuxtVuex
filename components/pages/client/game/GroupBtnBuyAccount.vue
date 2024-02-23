@@ -3,26 +3,20 @@
     <v-col cols="6">
       <div class="c-font-uppercase btnCheckAccount ajax" @click="showModal()">
         <div class="btn-buy-account">
-          <v-btn icon class="text-main">
-            <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Mua Ngay
-          </v-btn>
+          <BaseSvg content="Mua Ngay" class="text-main" name="next-right" />
         </div>
       </div>
     </v-col>
     <v-col cols="6">
       <div class="btn-buy-account-hover" @click="showBank()">
-        <v-btn icon>
-          <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>ATM-MOMO
-        </v-btn>
+        <BaseSvg content="ATM-MOMO" name="next-right" />
       </div>
     </v-col>
 
     <v-col cols="6">
       <a href="https://zalo.me/0961646828" target="_blank">
         <div class="btn-buy-account-hover">
-          <v-btn icon>
-            <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Inbox Zalo
-          </v-btn>
+          <BaseSvg content="Inbox Zalo" name="next-right" />
         </div>
       </a>
     </v-col>
@@ -30,9 +24,7 @@
       <div class="c-font-uppercase btnCheckAccount ajax">
         <a href="https://messenger.com/t/minh.docong.7" target="_blank">
           <div class="btn-buy-account">
-            <v-btn icon class="text-main">
-              <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Messenger
-            </v-btn>
+            <BaseSvg content="Messenger" class="text-main" name="next-right" />
           </div>
         </a>
       </div>

@@ -16,15 +16,15 @@
       </h1>
     </div>
     <div class="btn-next-more">
-      <v-btn
+      <BaseSvg
         v-if="isShowNext && accountNinjas.length && !isLoading"
+        button
+        name="skip"
+        :content="` Xem Thêm Nick Ninja ${type ? type : null}`"
         variant="danger"
         class="flex mt-3 mb-1"
         @click="onChange()"
-      >
-        <v-icon>mdi-skip-next</v-icon>
-        Xem Thêm Nick Ninja {{ type ? type : null }}
-      </v-btn>
+      />
     </div>
   </div>
 </template>

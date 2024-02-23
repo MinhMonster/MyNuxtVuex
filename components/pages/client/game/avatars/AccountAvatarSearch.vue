@@ -24,7 +24,7 @@
             <v-btn
               type="submit"
               color="primary"
-              class="btn btn-info btn-search text-white w-100"
+              class="btn btn-info btn-search text-not-shadow text-white w-100"
               @click="search()"
             >
               <i class="fa fa-search"></i> Tìm kiếm
@@ -34,9 +34,9 @@
             <v-btn
               type=""
               color="error"
-              class="btn btn-danger btn-search text-white w-100"
+              class="btn btn-danger btn-search text-not-shadow text-white w-100"
               @click="reset()"
-              ><i class="fa fa-list"></i>Xóa
+              >Xóa
             </v-btn>
           </v-col>
         </v-row>

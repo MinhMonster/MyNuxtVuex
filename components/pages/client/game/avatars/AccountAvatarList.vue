@@ -15,15 +15,15 @@
         Không tìm thấy Tài khoản nào!
       </h1>
     </div>
-    <v-btn
+    <BaseSvg
       v-if="isShowNext && accountAvatars.length && !isLoading"
+      name="skip"
+      button
+      content="Xem Thêm Nick Avatar"
       variant="danger"
       class="btn-next-more flex mt-3 mb-1"
       @click="onChange()"
-    >
-      <v-icon>mdi-skip-next</v-icon>
-      Xem Thêm Nick Avatar
-    </v-btn>
+    />
   </div>
 </template>
 
@@ -74,13 +74,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.account {
-  margin: -9px;
-}
-.btn-next-more {
-  color: #ffffff;
-  background: #a21d0a !important;
-  text-align: center;
-  margin: 0 auto;
-}
 </style>

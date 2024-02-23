@@ -9,6 +9,30 @@
   margin-top: 0px;
   border-radius: 4px;
 
+  .base-svg {
+    margin: 0;
+
+    svg {
+      height: 26px;
+      width: 26px;
+
+      path {
+        height: 26px;
+        width: 26px;
+      }
+    }
+  }
+
+  .user-info-wrap {
+    .base-svg {
+
+      svg {
+        height: 70px;
+        width: 70px;
+      }
+    }
+  }
+
   .user-info-wrap {
     border: none !important;
     border-bottom: 2px solid #561d00 !important;

@@ -1,15 +1,13 @@
 <template>
   <div class="sub-menu-buttom" @click="$refs.modal.show()">
     <div class="footer_icon Member">
-      <v-btn
-        icon
+      <BaseSvg
         class="icon-menu"
         id="btn-settings"
         title="Cài Đặt"
         aria-label="Cài Đặt"
-      >
-        <BaseSvg name="setting" />
-      </v-btn>
+        name="setting"
+      />
     </div>
     <span class="title-menu-buttom">Cài Đặt</span>
     <ModalPayload ref="modal" :title="`Cài Đặt`" size="md" hiddenFooter>

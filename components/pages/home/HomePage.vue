@@ -18,17 +18,11 @@
               >{{ content }}</small
             >
             <div v-if="goBack" class="go-back" @click="onGoBack()">
-              <v-btn v-if="!isGoHome" icon>
-                <BaseSvg name="next-left" />
-              </v-btn>
-              <v-btn v-else icon>
-                <v-icon>mdi-home</v-icon>
-              </v-btn>
+              <BaseSvg v-if="!isGoHome" name="next-left" />
+              <BaseSvg v-else name="home" />
             </div>
             <div v-if="reload" class="reload" @click="onReload()">
-              <v-btn icon>
-                <BaseSvg name="reload" />
-              </v-btn>
+              <BaseSvg name="reload" />
             </div>
             <slot name="body"></slot>
           </div>

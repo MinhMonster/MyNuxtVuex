@@ -1,16 +1,6 @@
 <template>
   <v-app :class="{ 'theme-avatar': isAvatar, 'theme-dark': isThemeDark }">
     <AppBar />
-    <!-- <MenuGameHome v-if="isMenuGame"></MenuGameHome>
-    <v-btn
-      icon
-      class="fixed btn-drop-menu-game"
-      :class="{ active: isMenuGame }"
-      @click="isMenuGame = !isMenuGame"
-    >
-      <v-icon v-if="isMenuGame">mdi-chevron-double-left</v-icon>
-      <v-icon v-else>mdi-chevron-double-right</v-icon>
-    </v-btn> -->
     <v-main id="main" class="bg-website">
       <v-container
         class="client-main scroll-y"
@@ -26,19 +16,13 @@
 
     <template v-if="isShowButton">
       <div class="change-theme">
-        <v-btn icon @click="changeTheme()">
-          <BaseSvg name="theme-light-dark" />
-        </v-btn>
+        <BaseSvg name="theme-light-dark" @click="changeTheme()" />
       </div>
       <div class="next-top">
-        <v-btn icon @click="nextTop()">
-          <BaseSvg name="next-top" />
-        </v-btn>
+        <BaseSvg name="next-top" @click="nextTop()" />
       </div>
       <div class="next-bottom">
-        <v-btn icon @click="nextBottom()">
-          <BaseSvg name="next-bottom" />
-        </v-btn>
+        <BaseSvg name="next-bottom" @click="nextBottom()" />
       </div>
     </template>
   </v-app>
@@ -202,7 +186,7 @@ export default {
   z-index: 10;
   svg {
     height: 26px;
-      width: 26px;
+    width: 26px;
     path {
       height: 26px;
       width: 26px;
@@ -237,26 +221,6 @@ export default {
   );
   color: #ffffff;
   z-index: 2;
-}
-.btn-drop-menu-game {
-  height: 30px;
-  width: 30px;
-  z-index: 2;
-  top: 45%;
-  left: -30px;
-  width: 50px;
-  height: 50px;
-  padding: 10px;
-  border-radius: 50%;
-  background-color: #333;
-  opacity: 0.65;
-  .v-icon {
-    padding-left: 25px;
-    font-size: 30px;
-  }
-  &.active {
-    left: 20px;
-  }
 }
 .bg-website {
   // background: #ffcf9c;

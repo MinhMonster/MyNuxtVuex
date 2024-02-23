@@ -1,5 +1,30 @@
 .theme-dark {
+
+
   button {
+
+    .v-btn__content {
+      text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+    }
+
+    .base-svg {
+      svg {
+        filter: drop-shadow(0px 0px 2px #833cf7);
+      }
+    }
+
+    &.text-not-shadow {
+      .v-btn__content {
+        text-shadow: none;
+      }
+
+      .base-svg {
+        svg {
+          filter: none;
+        }
+      }
+    }
+
 
     &.btn-main {
       color: #f1f1f1 !important;

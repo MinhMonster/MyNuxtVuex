@@ -172,10 +172,5 @@ export default {
   margin: -9px;
   cursor: pointer;
 }
-.btn-next-more {
-  color: #ffffff;
-  background: #a21d0a !important;
-  text-align: center;
-  margin: 0 auto;
-}
+
 </style>
