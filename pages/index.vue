@@ -1,13 +1,9 @@
 <template>
   <client-only>
-    <HomePage :loading="!ready" @reload="reload()" notBoder>
+    <HomePage :loading="!ready" notBoder>
       <template v-if="ready" #body>
         <div class="mt-1">
           <HomeGame></HomeGame>
-          <!-- <v-row>
-            <v-col cols="12" sm="12" md="6"> <HistoryBuyAccount /> </v-col>
-            <v-col cols="12" sm="12" md="6"> <HistoryDeposit /></v-col>
-          </v-row> -->
         </div>
       </template>
     </HomePage>
@@ -18,10 +14,7 @@
 import { mapFields } from "vuex-map-fields";
 
 import HomePage from "@/components/pages/home/HomePage";
-// import HistoryBuyAccount from "@/components/pages/home/HistoryBuyAccount";
-// import HistoryDeposit from "@/components/pages/home/HistoryDeposit";
 import HomeGame from "@/components/pages/home/HomeGame";
-import Loading from "@/components/global/molecules/common/Loading";
 
 export default {
   layout: "clientLayout",
@@ -29,9 +22,6 @@ export default {
   components: {
     HomePage,
     HomeGame,
-    Loading,
-    // HistoryBuyAccount,
-    // HistoryDeposit,
   },
   computed: {
     ...mapFields("global", {

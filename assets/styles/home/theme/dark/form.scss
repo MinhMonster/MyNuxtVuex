@@ -32,7 +32,7 @@
 
       button.btn-login {
         color: #f1f1f1 !important;
-        border: 1px solid #b549cc !important;
+        border: $border-theme-dark  !important;
         background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
 
         span {
@@ -90,7 +90,7 @@
     }
 
     &.form-login {
-      border: 1px solid #b549cc !important;
+      border: $border-theme-dark  !important;
       // height: 100vh;
     }
   }
@@ -130,25 +130,30 @@
   }
 
   #home-page .btn-show-more {
-    color: #f1f1f1 !important;
-    border: 1px solid #0F0F0F;
-    background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
 
-    &:hover {
+    button {
       color: #f1f1f1 !important;
-      background-image: linear-gradient(180deg,
-          #0F0F0F,
-          #0F0F0F 9%,
-          #424040 58%,
-          #424040) !important;
+      border: 1px solid #0F0F0F;
+      background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+
+      &:hover {
+        color: #f1f1f1 !important;
+        background-image: linear-gradient(180deg,
+            #0F0F0F,
+            #0F0F0F 9%,
+            #424040 58%,
+            #424040) !important;
+      }
     }
+
+
   }
 
   // }
   &.theme--dark {
     .v-input {
       .v-input__slot {
-        border: 1px solid #b549cc !important;
+        border: $border-theme-dark  !important;
       }
 
 
@@ -190,7 +195,7 @@
   }
 
   .v-menu__content {
-    border: 1px solid #b549cc !important;
+    border: $border-theme-dark  !important;
 
     .v-list {
       .v-list-item {

@@ -19,7 +19,7 @@
         {{ cash_atm(accountAvatar.price) }} ATM-MOMO</span
       >
       <span class="account-ingame">
-        @ {{ accountAvatar.inGame }}
+        @{{ accountAvatar.inGame }}
       </span>
     </div>
   </client-only>

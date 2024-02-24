@@ -1,18 +1,11 @@
-// #footer {
-//   background: linear-gradient(180deg, #e28637, #9f5424 12%, #561d00);
-// }
 #menu-bottom {
   width: 100%;
-  // max-width: 1350px;
-  // margin: 0 auto;
   bottom: 0;
   position: fixed;
   z-index: 10;
   display: flex;
   justify-content: space-evenly;
-  /* height: 1.2rem; */
   height: 70px;
-  /* background: linear-gradient(180deg, #3f058d, #30046b 12%, #200347); */
   background: linear-gradient(180deg, #e28637, #9f5424 12%, #561d00);
 }
 
@@ -80,14 +73,14 @@
   display: block;
   width: 26px;
   height: 26px;
-  text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+  text-shadow: $text-shadow-theme-dark;
 
 
   path {
     fill: #f1f1f1;
 
     color: #f1f1f1 !important;
-    text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+    text-shadow: $text-shadow-theme-dark;
 
 
   }

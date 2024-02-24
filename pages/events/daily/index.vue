@@ -13,9 +13,11 @@
           <div class="content-main text-center mb-2">
             Đoạn đúng chắc chắc có thưởng!
           </div>
-          <v-btn @click="showModal()" color="primary" class="btn-show-more">
-            Xem Hướng Dẫn Tham Gia
-          </v-btn>
+          <div class="btn-show-more">
+            <v-btn @click="showModal()" variant="danger" class="flex mt-3 mb-1">
+              Xem Hướng Dẫn Tham Gia
+            </v-btn>
+          </div>
           <v-row>
             <v-col v-if="!votedDaylyEvent" cols="12" class="middle">
               <div class="field center">

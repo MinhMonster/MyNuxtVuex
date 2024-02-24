@@ -15,15 +15,17 @@
         Không tìm thấy Tài khoản nào!
       </h1>
     </div>
-    <BaseSvg
-      v-if="isShowNext && accountAvatars.length && !isLoading"
-      name="skip"
-      button
-      content="Xem Thêm Nick Avatar"
-      variant="danger"
-      class="btn-next-more flex mt-3 mb-1"
-      @click="onChange()"
-    />
+    <div class="btn-next-more">
+      <BaseSvg
+        v-if="isShowNext && accountAvatars.length && !isLoading"
+        name="skip"
+        button
+        content="Xem Thêm Nick Avatar"
+        variant="danger"
+        class="flex mt-3 mb-1"
+        @click="onChange()"
+      />
+    </div>
   </div>
 </template>
 

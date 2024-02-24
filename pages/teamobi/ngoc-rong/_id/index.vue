@@ -40,7 +40,6 @@ export default {
 
   computed: {
     ...mapFields("global", {
-      screenMobile: "screenMobile",
       ready: "ready",
     }),
     ...mapFields("home/game/dragon_balls", {

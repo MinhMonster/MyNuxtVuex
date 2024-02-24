@@ -6,8 +6,6 @@
     padding: 10px;
   }
 
-
-
   @media (max-width: 600px) {
     .page-body {
       padding: 6px;
@@ -29,6 +27,19 @@
   }
 }
 
+.btn-show-more {
+  text-align: center;
+  margin: 0 auto;
+
+  button {
+    width: auto;
+    color: #ffffff;
+    background: linear-gradient(-135deg, #e28637, #561d00);
+
+    border: none !important;
+    border-radius: 4px !important;
+  }
+}
 
 .v-text-field {
   padding: 0 !important;

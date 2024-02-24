@@ -93,7 +93,6 @@ export default {
     },
   },
   computed: {
-    ...mapState("global", ["oldPath", "nowPath"]),
     ...mapFields("global", {
       ready: "ready",
     }),
@@ -101,16 +100,8 @@ export default {
       return this.goHome;
     },
   },
-  mounted() {
-    // window.addEventListener("wheel", this.scroll());
-  },
+  mounted() {},
   methods: {
-    // ...mapActions("global", ["setPath"]),
-    // nextPath() {
-    //   const path = this.$route.path;
-    //   this.setPath(path);
-    // },
-
     async onGoBack() {
       if (this.isGoHome) {
         this.$router.push("/");

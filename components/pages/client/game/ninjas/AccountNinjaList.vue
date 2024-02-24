@@ -20,7 +20,9 @@
         v-if="isShowNext && accountNinjas.length && !isLoading"
         button
         name="skip"
-        :content="` Xem Thêm Nick Ninja ${type ? type : null}`"
+        :content="` Xem Thêm Nick Ninja ${
+          type == 'cheap' ? 'Giá Rẻ' : type ?? ''
+        }`"
         variant="danger"
         class="flex mt-3 mb-1"
         @click="onChange()"

@@ -1,10 +1,9 @@
 <template>
-  <v-app :class="{ 'theme-avatar': isAvatar, 'theme-dark': isThemeDark }">
+  <v-app :class="{ 'theme-dark': isThemeDark }">
     <AppBar />
     <v-main id="main" class="bg-website">
       <v-container
         class="client-main scroll-y"
-        :class="{ 'menu-game-active': isMenuGame }"
         :style="styleMain"
         v-on:wheel="scroll()"
       >
@@ -30,8 +29,6 @@
 
 <script>
 import AppBar from "@/components/pages/client/layout/AppBar";
-
-import MenuGameHome from "@/components/pages/client/layout/MenuGameHome";
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
 import MenuRight from "@/components/pages/client/layout/MenuRight";
 import { mapFields } from "vuex-map-fields";
@@ -42,19 +39,11 @@ export default {
   name: "ClientLayout",
   components: {
     AppBar,
-    MenuGameHome,
     MenuBottom,
     MenuRight,
   },
   data() {
     return {
-      isMenuGame: false,
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
       isShowButton: false,
     };
   },
@@ -70,23 +59,12 @@ export default {
       if (this.showMenuRight && !this.isMobile) {
         return "width: calc(100% - 260px) !important; margin-right: 250px; transition: margin-left 0.3s";
       }
-      if (!this.isMenuGame) {
-        return "width: calc(100% - 10px) !important; margin-left: 5px; transition: margin-left 0.3s";
-      }
+      return "width: calc(100% - 10px) !important; margin-left: 5px; transition: margin-left 0.3s";
     },
-
-    isScreenMobile() {
-      const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    isAvatar() {
-      const path = this.$route.path;
-      return path.includes("teamobi/avatar");
-    },
+    // isAvatar() {
+    //   const path = this.$route.path;
+    //   return path.includes("teamobi/avatar");
+    // },
   },
 
   async mounted() {
@@ -97,18 +75,12 @@ export default {
       this.onResize();
     });
     window.addEventListener("resize", this.onResize);
-    // this.setScreenMobile(this.isScreenMobile);
-    // this.$nextTick(function () {
-    //   this.nextPath();
-    // });
-    // window.addEventListener("click", this.nextPath());
   },
   destroyed() {
     window.removeEventListener("resize", this.onResize);
   },
   methods: {
-    ...mapActions("home/users", ["logout", "fetchUser"]),
-    ...mapActions("global", ["setScreenMobile", "setPath"]),
+    ...mapActions("home/users", ["fetchUser"]),
     changeTheme() {
       this.isThemeDark = !this.isThemeDark;
     },
@@ -116,7 +88,6 @@ export default {
       if (!this.isShowButton) {
         this.isShowButton = true;
       }
-      console.log("scroll");
     },
     nextTop() {
       const element = document.getElementById("home-page");
@@ -126,10 +97,6 @@ export default {
       const element = document.getElementById("next-bottom");
       element.scrollIntoView();
     },
-    // nextPath() {
-    //   const path = this.$route.path;
-    //   this.setPath(path);
-    // },
   },
 };
 </script>
@@ -164,17 +131,6 @@ export default {
       }
     }
   }
-  #account-slider {
-    margin-top: 12px;
-    color: #000000;
-    border: 1px solid #663019;
-    background: #ffefa3;
-    padding: 12px;
-  }
-  // .v-btn--icon.v-size--default {
-  //   height: 30px;
-  //   width: 30px;
-  // }
 }
 .change-theme,
 .next-top,
@@ -284,32 +240,7 @@ export default {
       .container.client-main {
         top: 55px;
         bottom: 60px;
-        &.menu-game-active {
-          padding: 3px;
-          #home-page,
-          #account-slider {
-            padding: 3px;
-            // .col-12 {
-            //   padding: 12px !important;
-            // }
-          }
-          .title-category {
-            margin: 0 -9px !important;
-            margin-top: -9px !important;
-            margin-bottom: 9px !important;
-          }
-          #home-page {
-            .page-body {
-              padding: 6px;
-              &.full-screen {
-                min-height: calc(100vh - 128px);
-                .page-info {
-                  min-height: calc(100vh - 143px);
-                }
-              }
-            }
-          }
-        }
+
         #home-page {
           .page-body {
             &.full-screen {
@@ -329,18 +260,18 @@ export default {
   @media (min-width: 300px) and (max-width: 499px) {
     .v-main__wrap {
       .container.client-main {
-        &.menu-game-active {
-          #home-page {
-            .page-body {
-              &.full-screen {
-                min-height: calc(100vh - 190px) !important;
-                .page-info {
-                  min-height: calc(100vh - 170px) !important;
-                }
-              }
-            }
-          }
-        }
+        // &.menu-game-active {
+        //   #home-page {
+        //     .page-body {
+        //       &.full-screen {
+        //         min-height: calc(100vh - 190px) !important;
+        //         .page-info {
+        //           min-height: calc(100vh - 170px) !important;
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
         #home-page {
           .page-body {
             &.full-screen {

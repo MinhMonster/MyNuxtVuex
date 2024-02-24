@@ -1,7 +1,7 @@
 .theme-dark {
 
   .rightbar-content {
-    border: 1px solid #b549cc !important;
+    border: $border-theme-dark !important;
     background: none !important;
     background-image: linear-gradient(129.4deg, #0F0F0F 25.38%, #0F0F0F 45.2%, #ac3be4 58.96%, #b549cc 44.97%, #a937ed 25.49%, #0F0F0F 75.5%, #0F0F0F 90.52%) !important;
     // max-height: 810px;
@@ -9,15 +9,15 @@
 
     .user-info-wrap {
       border: none !important;
-      border-bottom: 1px solid #b549cc !important;
+      border-bottom: $border-theme-dark !important;
       background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
-      text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+      text-shadow: $text-shadow-theme-dark;
 
       .user-info button.v-btn--icon.v-size--default .v-icon {
         height: 70px;
         width: 70px;
         font-size: 70px !important;
-        text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+        text-shadow: $text-shadow-theme-dark;
         color: #fff;
       }
 
@@ -47,7 +47,7 @@
 
       .member-nav-name,
       button {
-        text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+        text-shadow: $text-shadow-theme-dark;
       }
 
       .h-line {
