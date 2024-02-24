@@ -7,7 +7,6 @@ import { mapFields } from "vuex-map-fields";
 export default {
   data() {
     return {
-      isTablet: false,
       currentYear: new Date().getFullYear(),
       optionsNinjaType: [
         {
@@ -84,10 +83,14 @@ export default {
   computed: {
     ...mapFields("global", {
       isMb: "isMb",
+      is_tablet: "is_tablet",
       heightHomeRight: "heightHomeRight"
     }),
     isMobile(){
       return this.isMb
+    },
+    isTablet(){
+      return this.is_tablet
     },
     heightHomeLeft(){
       return this.heightHomeRight
@@ -157,11 +160,11 @@ export default {
         this.isMb = false;
       }
       if (screenWidth < 768) {
-        this.isTablet = true;
+        this.is_tablet = true;
       } else {
-        this.isTablet = false;
+        this.is_tablet = false;
       }
-      if (!this.isTablet && this.path == "/") {
+      if (!this.is_tablet && this.path == "/") {
         setTimeout(() => {
           const homeLeft = document.querySelector("#home-left");
           if (homeLeft) {

@@ -29,7 +29,7 @@
             </td>
           </tr>
           <tr>
-            <th class="info-nick" style="">Server</th>
+            <th class="info-nick" style="">Máy Chủ</th>
             <td class="mua-nick">
               <span>{{ account.server }} Sao</span>
             </td>

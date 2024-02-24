@@ -15,8 +15,20 @@
         <span @click="openMenu()"
           >{{ user && token ? user.name : "Tài khoản" }}
         </span>
-        <BaseSvg v-if="!showMenuRight" name="down" />
-        <BaseSvg v-else name="up" />
+        <BaseSvg
+          v-if="!showMenuRight"
+          name="down"
+          id="btn-down"
+          title="Open"
+          aria-label="Open"
+        />
+        <BaseSvg
+          v-else
+          name="up"
+          id="btn-up"
+          title="Close"
+          aria-label="Close"
+        />
       </div>
     </div>
   </v-app-bar>
@@ -30,7 +42,7 @@ export default {
   name: "AppBar",
   data() {
     return {
-      logo: require(`@/assets/images/png/logo_violet.png`),
+      logo: "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png",
       clipped: true,
       miniVariant: false,
     };
@@ -82,8 +94,8 @@ export default {
     },
     getLogo() {
       this.logo = this.isThemeDark
-        ? require(`@/assets/images/png/logo_violet.png`)
-        : require(`@/assets/images/png/logo_warning.png`);
+        ? "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png"
+        : "https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200029.png";
     },
   },
 };

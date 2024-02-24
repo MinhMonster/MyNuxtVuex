@@ -8,19 +8,19 @@
         </td>
       </tr>
       <tr>
-        <th class="info-nick">Class:</th>
+        <th class="info-nick">Lớp:</th>
         <td class="mua-nick">
           <span>{{ classNinja(account.class) }}</span>
         </td>
       </tr>
       <tr>
-        <th class="info-nick">Level:</th>
+        <th class="info-nick">Cấp độ:</th>
         <td class="mua-nick">
           <span>{{ account.level }}</span>
         </td>
       </tr>
       <tr>
-        <th class="info-nick">Server:</th>
+        <th class="info-nick">Máy chủ:</th>
         <td class="mua-nick">
           <span>{{ serverNinja(account.server) }}</span>
         </td>

@@ -16,7 +16,7 @@
           </tr>
 
           <tr>
-            <th class="info-nick" style="">Level</th>
+            <th class="info-nick" style="">Cấp độ</th>
             <td class="mua-nick">
               <span> {{ accountNinja.level }}</span>
             </td>
@@ -37,7 +37,7 @@
           </tr>
 
           <tr>
-            <th class="info-nick" style="">Server</th>
+            <th class="info-nick" style="">Máy Chủ</th>
             <td class="mua-nick">
               <span>{{ serverNinja(accountNinja.server) }}</span>
             </td>

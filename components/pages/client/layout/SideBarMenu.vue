@@ -134,15 +134,15 @@ export default {
     ...mapActions(["logout", "fetchUser", "loginFb"]),
     async logoutUser() {
       await this.logout();
-      this.$router.push("/login");
+      // this.$router.push("/login");
     },
     nextLogin() {
       this.$router.push("/login");
-      this.$emit("close");
+      // this.$emit("close");
     },
     nextRegister() {
       this.$router.push("/register");
-      this.$emit("close");
+      // this.$emit("close");
     },
   },
 };

@@ -37,9 +37,13 @@ export default {
     };
   },
   async mounted() {
-    this.$nextTick(function () {
+    // this.$nextTick(function () {
+    if (this.isMobile) {
       this.showMenuRight = false;
-    });
+    } else {
+      this.showMenuRight = true;
+    }
+    // });
   },
   computed: {
     ...mapState("home/users", ["token", "user"]),
@@ -50,10 +54,10 @@ export default {
       return this.isMobile ? `calc(100% - 50px)` : `calc(100% - 105px)`;
     },
   },
-  methods:{
+  methods: {
     closeMenuRight() {
       this.showMenuRight = false;
-    }
-  }
+    },
+  },
 };
 </script>

@@ -21,8 +21,8 @@ export default {
       return [
         {
           src: this.isMobile
-            ? require(`@/assets/images/png/banner_mobile.png`)
-            : require(`@/assets/images/png/muabannick_banner_min.png`),
+            ? "https://muabannick.pro/images/banners/banner_mobile.png"
+            : "https://muabannick.pro/images/banners/muabannick_banner_min.png",
         },
         // {
         //   src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",

@@ -29,9 +29,8 @@
         lg="4"
         id="home-right"
       >
-        <div class="mt--1 home-user" :style="{ height: heightHomeLeft + 'px' }">
-          <template v-if="token"><SideBarMenu /></template>
-          <template v-else><FormLogin /></template>
+        <div class="mt--1 form-deposit-card" :style="{ height: heightHomeLeft + 'px' }">
+          <template><DepositCardForm /></template>
         </div>
       </v-col>
     </v-row>
@@ -64,9 +63,11 @@
 import GameCard from "@/components/pages/home/GameCard";
 // import ModalPayload from "@/components/common/ModalPayload";
 // import AdminNotification from "@/components/pages/home/AdminNotification";
-import FormLogin from "@/components/pages/client/login/FormLogin";
-import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
+// import FormLogin from "@/components/pages/client/login/FormLogin";
+// import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import HomeSlider from "@/components/pages/home/HomeSlider";
+import DepositCardForm from "@/components/pages/client/account/wallet/DepositCardForm";
+
 // import RunText from "@/components/global/molecules/common/template/RunText";
 
 // import { mapFields } from "vuex-map-fields";
@@ -78,9 +79,10 @@ export default {
     GameCard,
     // ModalPayload,
     // AdminNotification,
-    FormLogin,
-    SideBarMenu,
+    // FormLogin,
+    // SideBarMenu,
     HomeSlider,
+    DepositCardForm
     // RunText,
   },
   props: {
@@ -95,42 +97,46 @@ export default {
         {
           title: "Nick Ninja VIP",
           path: "/teamobi/ninja-school/nick-vip",
-          image: require(`@/assets/images/png/banner_ninja_vip_min.jpg`),
+          image:
+            "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
           numberAccount: "5245",
           sold: "5144",
         },
         {
           title: "Nick Ninja Giá Rẻ",
           path: "/teamobi/ninja-school/nick-gia-re",
-          image: require(`@/assets/images/png/banner_ninja_cheap_min.jpg`),
+          image:
+            "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
           numberAccount: "7481",
           sold: "7185",
         },
         {
           title: "Sự kiện Hằng ngày",
           path: "/events/daily",
-          image: require(`@/assets/images/png/banner_daily_events_min.jpg`),
+          image:
+            "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
           numberAccount: "5245",
           sold: "5144",
         },
         {
           title: "Avatar XS.DKỳ",
           path: "/teamobi/avatar",
-          image: require(`@/assets/images/png/banner_avatar_min.jpg`),
+          image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
           numberAccount: "90",
           sold: "69",
         },
         {
           title: "Ngọc Rồng Online",
           path: "/teamobi/ngoc-rong",
-          image: require(`@/assets/images/png/banner_nro_min.jpg`),
+          image: "https://muabannick.pro//images/banners/banner_nro_min.jpg",
           numberAccount: "515",
           sold: "438",
         },
         {
           title: "Đai Tây Du - G4M",
           path: "/g4m/dai-tay-du",
-          image: require(`@/assets/images/png//banner_dai_tay_du_g4m_min.jpg`),
+          image:
+            "https://muabannick.pro/images/banners/banner_dai_tay_du_g4m_min.jpg",
           numberAccount: "90",
           sold: "69",
         },
@@ -144,24 +150,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home-user {
-  position: fixed;
-  width: calc(25% + 5px);
-  max-width: 300px;
+// .form-deposit-card {
+//   position: fixed;
+//   width: calc(24% + 5px);
+//   max-width: 300px;
 
-  @media (min-width: 876px) {
-    width: calc(25% + 10px);
-  }
+//   @media (min-width: 876px) {
+//     width: calc(25% + 10px);
+//   }
 
-  @media (min-width: 978px) {
-    width: calc(25% + 15px);
-  }
-}
-@media (min-width: 768px) {
-  .hom-page {
-    margin-left: 3%;
-  }
-}
+//   @media (min-width: 978px) {
+//     width: calc(25% + 15px);
+//   }
+// }
+// @media (min-width: 768px) {
+//   .form-deposit-card {
+//     margin-left: 3%;
+//   }
+// }
 
 .account {
   margin: -9px;

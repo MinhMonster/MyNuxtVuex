@@ -14,6 +14,7 @@ export default {
     showMenuRight: false,
     fixed: false,
     isMb: true,
+    is_tablet: false,
     heightHomeRight: 810
   }),
   getters: {

@@ -1,4 +1,27 @@
 .theme-dark {
+  .form-deposit-card {
+    border: $border-theme-dark  !important;
+    max-height: calc(100vh - 120px);
+    form {
+      height: 100%;
+
+      &::-webkit-scrollbar-thumb {
+        background: #031019 !important;
+        border-radius: 10px !important;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #171e28;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar {
+        width: 2px !important;
+        direction: ltr;
+      }
+    }
+
+  }
 
 
 
@@ -96,11 +119,14 @@
   }
 
   .register-btn {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #f1f1f1 !important;
     border: 1px solid #333 !important;
-
+    border-radius: 0.32rem;
     background-image: linear-gradient(219.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
-    width: 70px;
 
     &:hover {
       color: #333;

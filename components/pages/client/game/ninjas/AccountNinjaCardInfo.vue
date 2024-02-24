@@ -14,13 +14,13 @@
       >
       <v-col cols="3"
         ><span class="account-class"
-          >Class<br />
+          >Lớp<br />
           {{ classNinja(accountNinja.class) }}</span
         ></v-col
       >
       <v-col cols="6"
         ><span class="account-server"
-          >Server <br />{{ serverNinja(accountNinja.server) }}</span
+          >Máy chủ <br />{{ serverNinja(accountNinja.server) }}</span
         ></v-col
       >
       <v-col cols="6"
