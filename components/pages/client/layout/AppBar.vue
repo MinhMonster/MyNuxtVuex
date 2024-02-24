@@ -15,8 +15,8 @@
         <span @click="openMenu()"
           >{{ user && token ? user.name : "Tài khoản" }}
         </span>
-        <v-icon v-if="!showMenuRight">mdi-menu-down</v-icon>
-        <v-icon v-else>mdi-menu-up</v-icon>
+        <BaseSvg v-if="!showMenuRight" name="down" />
+        <BaseSvg v-else name="up" />
       </div>
     </div>
   </v-app-bar>

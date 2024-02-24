@@ -23,9 +23,11 @@
               NAP MBN {{ user.id }}
               <ButtonCoppy :content="`NAP MBN ${user.id}`"></ButtonCoppy> </span
             ><br />
-            <v-btn @click="showModal()" color="primary" class="btn-show-more">
-              Xem Hướng Dẫn Nạp Tiền Từ ATM,MOMO
-            </v-btn>
+            <div class="btn-show-more">
+              <v-btn @click="showModal()" color="primary">
+                Xem Hướng Dẫn Nạp Tiền Từ ATM,MOMO
+              </v-btn>
+            </div>
           </div>
           <v-row>
             <v-col cols="12" sm="6" class="middle mb-2">

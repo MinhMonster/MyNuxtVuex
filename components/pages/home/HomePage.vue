@@ -11,12 +11,12 @@
             <div v-if="title" class="title-page title text-center">
               {{ title }}
             </div>
-            <small
-              v-if="content"
-              id="fileHelp"
-              class="form-text text-muted text-center"
-              >{{ content }}</small
-            >
+            <div v-if="content" class="text-center">
+              <small id="fileHelp" class="form-text text-muted">
+                {{ content }}
+              </small>
+            </div>
+
             <div v-if="goBack" class="go-back" @click="onGoBack()">
               <BaseSvg v-if="!isGoHome" name="next-left" />
               <BaseSvg v-else name="home" />
