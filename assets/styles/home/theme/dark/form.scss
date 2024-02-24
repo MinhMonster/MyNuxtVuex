@@ -1,23 +1,13 @@
 .theme-dark {
   .form-deposit-card {
     border: $border-theme-dark  !important;
-    max-height: calc(100vh - 120px);
     form {
-      height: 100%;
-
       &::-webkit-scrollbar-thumb {
         background: #031019 !important;
-        border-radius: 10px !important;
       }
 
       &::-webkit-scrollbar-track {
         background: #171e28;
-        border-radius: 10px;
-      }
-
-      &::-webkit-scrollbar {
-        width: 2px !important;
-        direction: ltr;
       }
     }
 

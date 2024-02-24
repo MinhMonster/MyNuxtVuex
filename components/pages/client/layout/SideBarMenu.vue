@@ -3,7 +3,13 @@
     <div class="rightbar-content scroll-y">
       <div class="user-info-wrap">
         <div class="user-info">
-          <BaseSvg class="avatar circle" name="avatar" />
+          <BaseSvg
+            class="avatar circle"
+            name="avatar"
+            id="btn-avatar"
+            title="Ảnh đại diện"
+            aria-label="Ảnh đại diện"
+          />
 
           <!-- <div v-else-if="user && token" class="circle">
             <img v-if="user.avatar" :src="user.avatar" />
@@ -86,7 +92,12 @@
             <template>
               <div class="member-nav-item">
                 <nuxt-link to="/dieu-khoan-va-chinh-sach">
-                  <BaseSvg name="book" />
+                  <BaseSvg
+                    name="book"
+                    id="btn-book"
+                    title="Điều khoản và Chính sách"
+                    aria-label="Điều khoản và Chính sách"
+                  />
                   <span class="member-nav-name">Điều khoản và Chính sách</span>
                 </nuxt-link>
               </div>

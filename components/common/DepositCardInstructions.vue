@@ -3,35 +3,32 @@
     <p>
       <span class="text-main text-18-700"><u>Ghi chú:</u></span>
     </p>
-    <p>
-      <span style="font-size: 16px"
-        >Nạp thẻ tự động không trừ chiết khấu.<br />
-        <span class="bold text-danger"
-          >Ví dụ: nạp 100k Card = 100k Shop.</span
-        ></span
-      >
-    </p>
-    <p>
-      <span style="font-size: 16px"
-        >Thẻ nạp tự động
-        <span class="bold text-danger"><u>SAI MỆNH GIÁ</u></span
-        ><strong>&nbsp;</strong>mất 100%&nbsp;giá trị vui lòng xem xét kĩ trước
-        khi nạp</span
-      >
-    </p>
+    <div class="text-13-500">
+      <p>
+        <span
+          >Nạp thẻ tự động không trừ chiết khấu.<br />
+          <span class="title text-13-500">Ví dụ: nạp 100k Card = 100k Shop.</span></span
+        >
+      </p>
+      <p>
+        <span
+          >Thẻ nạp tự động <span class=" title"><u>SAI MỆNH GIÁ</u></span
+          ><strong>&nbsp;</strong>mất 100%&nbsp;giá trị vui lòng xem xét kĩ
+          trước khi nạp</span
+        >
+      </p>
 
-    <p>
-      <span style="font-size: 16px"
-        >Nếu Thẻ&nbsp;đúng nạp báo&nbsp;sai nhưng thẻ chưa sử dụng.
-      </span>
-    </p>
+      <p>
+        <span>Nếu Thẻ&nbsp;đúng nạp báo&nbsp;sai nhưng thẻ chưa sử dụng. </span>
+      </p>
 
-    <p>
-      <span style="font-size: 16px"
-        >=> Quý khách nạp lại bằng cách sửa số seri phía cuối cùng thành x hoặc
-        y,z,...Rồi nạp lại</span
-      >
-    </p>
+      <p>
+        <span
+          >=> Quý khách nạp lại bằng cách sửa số seri phía cuối cùng thành x
+          hoặc y,z,...Rồi nạp lại</span
+        >
+      </p>
+    </div>
   </div>
 </template>
 <script>
@@ -49,6 +46,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.v-application .title {
+  font-size: 14px !important;
+}
+
 .info-content {
   min-height: 270px;
 }

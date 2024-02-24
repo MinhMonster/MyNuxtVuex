@@ -2,7 +2,7 @@
   <form class="form scroll-y">
     <div class="title text-center mb-2">NẠP THẺ TỰ ĐỘNG</div>
     <v-row>
-      <v-col cols="12" sm="12" class="middle">
+      <v-col cols="12" sm="12">
         <div class="field">
           <FormValidator name="telco">
             <label for="telco" class="form-label"
@@ -13,11 +13,12 @@
               v-model="card.telco"
               :items="walletOptions"
               size="sm"
+              id="telco"
             ></v-select>
           </FormValidator>
         </div>
       </v-col>
-      <v-col cols="12" sm="12" class="middle">
+      <v-col cols="12" sm="12">
         <div class="field">
           <FormValidator name="amount">
             <label for="amount" class="form-label"
@@ -28,6 +29,7 @@
               v-model="card.amount"
               :items="amountOptions"
               size="sm"
+              id="amount"
             ></v-select>
           </FormValidator>
         </div>
@@ -35,7 +37,7 @@
       <v-col cols="12" sm="12">
         <div class="field">
           <FormValidator name="code">
-            <label class="form-label"
+            <label for="code" class="form-label"
               >Mã thẻ cào
               <small>(<span style="color: red">*</span>)</small></label
             >
@@ -43,6 +45,7 @@
               v-model="card.code"
               type="text"
               placeholder="Nhập mã thẻ cào"
+              id="code"
             ></v-text-field>
           </FormValidator>
         </div>
@@ -50,7 +53,7 @@
       <v-col cols="12" sm="12">
         <div class="field">
           <FormValidator name="serial">
-            <label class="form-label"
+            <label for="serial" class="form-label"
               >Số Serial thẻ cào
               <small>(<span style="color: red">*</span>)</small></label
             >
@@ -58,12 +61,13 @@
               v-model="card.serial"
               type="text"
               placeholder="Nhập serial thẻ cào"
+              id="serial"
             ></v-text-field>
           </FormValidator>
         </div>
       </v-col>
       <v-col v-if="!token" cols="12" sm="12">
-        <div class="text-center text-danger">
+        <div class="text-center title">
           <span>Đăng nhập để nạp thẻ</span>
         </div>
       </v-col>

@@ -1,4 +1,31 @@
-.form-search {
+.form-deposit-card {
+  max-height: calc(100vh - 120px);
+  form {
+    height: 100%;
+    background: #ffefa3;
+    &::-webkit-scrollbar-thumb {
+      background: #561d00 !important;
+      border-radius: 10px !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #ffefa3;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 0px !important;
+      direction: ltr;
+    }
+
+  }
+
+  background: #ffefa3;
+  border: 1px solid #561d00;
+
+}
+
+b .form-search {
   background: #ffcf9c;
   margin: -6px;
 
