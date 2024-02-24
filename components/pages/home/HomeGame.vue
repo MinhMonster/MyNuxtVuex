@@ -95,46 +95,42 @@ export default {
         {
           title: "Nick Ninja VIP",
           path: "/teamobi/ninja-school/nick-vip",
-          image:
-            "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
+          image: require(`@/assets/images/png/banner_ninja_vip_min.jpg`),
           numberAccount: "5245",
           sold: "5144",
         },
         {
           title: "Nick Ninja Giá Rẻ",
           path: "/teamobi/ninja-school/nick-gia-re",
-          image:
-            "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
+          image: require(`@/assets/images/png/banner_ninja_cheap_min.jpg`),
           numberAccount: "7481",
           sold: "7185",
         },
         {
           title: "Sự kiện Hằng ngày",
           path: "/events/daily",
-          image:
-            "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
+          image: require(`@/assets/images/png/banner_daily_events_min.jpg`),
           numberAccount: "5245",
           sold: "5144",
         },
         {
           title: "Avatar XS.DKỳ",
           path: "/teamobi/avatar",
-          image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
+          image: require(`@/assets/images/png/banner_avatar_min.jpg`),
           numberAccount: "90",
           sold: "69",
         },
         {
           title: "Ngọc Rồng Online",
           path: "/teamobi/ngoc-rong",
-          image: "https://muabannick.pro//images/banners/banner_nro_min.jpg",
+          image: require(`@/assets/images/png/banner_nro_min.jpg`),
           numberAccount: "515",
           sold: "438",
         },
         {
           title: "Đai Tây Du - G4M",
           path: "/g4m/dai-tay-du",
-          image:
-            "https://muabannick.pro/images/banners/banner_dai_tay_du_g4m_min.jpg",
+          image: require(`@/assets/images/png//banner_dai_tay_du_g4m_min.jpg`),
           numberAccount: "90",
           sold: "69",
         },
@@ -144,7 +140,6 @@ export default {
   computed: {
     ...mapState("home/users", ["token", "user"]),
   },
-
 };
 </script>
 
@@ -172,5 +167,4 @@ export default {
   margin: -9px;
   cursor: pointer;
 }
-
 </style>
