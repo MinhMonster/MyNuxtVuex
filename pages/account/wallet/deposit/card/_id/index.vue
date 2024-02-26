@@ -85,11 +85,9 @@ import DepositCardInstructions from "@/components/common/DepositCardInstructions
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import mixins from "@/mixins/index";
 
 export default {
   layout: "clientLayout",
-  mixins: [mixins],
 
   components: {
     HomePage,

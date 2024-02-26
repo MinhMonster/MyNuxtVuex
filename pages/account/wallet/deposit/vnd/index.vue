@@ -23,9 +23,11 @@
               NAP MBN {{ user.id }}
               <ButtonCoppy :content="`NAP MBN ${user.id}`"></ButtonCoppy> </span
             ><br />
-            <v-btn @click="showModal()" color="primary" class="btn-show-more">
-              Xem Hướng Dẫn Nạp Tiền Từ ATM,MOMO
-            </v-btn>
+            <div class="btn-show-more">
+              <v-btn @click="showModal()" color="primary">
+                Xem Hướng Dẫn Nạp Tiền Từ ATM,MOMO
+              </v-btn>
+            </div>
           </div>
           <v-row>
             <v-col cols="12" sm="6" class="middle mb-2">
@@ -171,7 +173,6 @@
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
-import mixins from "@/mixins/index";
 import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
 import RechargeInstructions from "@/components/common/RechargeInstructions";
 import ModalPayload from "@/components/common/ModalPayload";
@@ -184,6 +185,7 @@ import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 const global = createNamespacedHelpers("global");
+import mixins from "@/mixins/index";
 
 export default {
   mixins: [mixins],
@@ -245,11 +247,6 @@ export default {
       historyMeta: "historyMeta",
       pageSave: "pageSave",
     }),
-    // ...mapFields("home/users", {
-    //   histories: "historyWalletDepositVnds",
-    //   historyMeta: "historyMeta",
-    //   pageSave: "pageSave",
-    // }),
     ...mapFields("home/game/ninjas", {}),
     ...mapState(["token", "user"]),
     queryPage() {

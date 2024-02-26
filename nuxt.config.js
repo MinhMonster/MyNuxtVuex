@@ -1,7 +1,15 @@
 import colors from 'vuetify/es5/util/colors'
 import webpack from "webpack";
 import axios from "axios";
+// import Vuetify from 'vuetify/lib';
+// import Vue from 'vue';
 
+// // Remove MDI icons
+// Vue.use(Vuetify, {
+//   icons: {
+//     iconfont: 'fa', // Sử dụng FontAwesome thay vì MDI
+//   },
+// });
 
 export default {
   // target: 'static', // default is 'server'
@@ -36,10 +44,12 @@ export default {
     gtag('config', 'AW-11265837402');
     gtag('event', 'conversion', { 'send_to': 'AW-11265837402/7E7zCI2d4YYZENqS_Psp' });
   },
+  components: true,
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     "@/assets/css/mms-style.css",
+    "@/assets/css/reset.css",
     "@/assets/styles/common.scss",
     // "@/assets/styles/home/_ckeditor.scss",
     "@/assets/styles/home/account.scss",
@@ -50,7 +60,7 @@ export default {
     { src: "@/plugins/vuex-persistedstate", ssr: false },
     "@/plugins/axios",
     // "@/plugins/vue-sweetalert",
-
+    // '@/plugins/filters.js',
     '~/plugins/repositories.js',
     { src: "@/plugins/vue-slick-carousel" },
     { src: "@/plugins/vue-clipboard2", ssr: false },
@@ -75,7 +85,8 @@ export default {
     '@nuxtjs/axios',
     "lodash",
     "@nuxt/content",
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-analytics',
+    '@nuxtjs/svg',
 
   ],
   googleAnalytics: {
@@ -87,7 +98,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    "bootstrap-vue/nuxt",
+    // "bootstrap-vue/nuxt",
     'cookie-universal-nuxt',
     // With options
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
@@ -121,6 +132,9 @@ export default {
     ]
   },
 
+  // svgSprite: {
+  //   input: '@/assets/images/svg/',
+  // },
   nuxtValidate: {
     lang: 'es',
     nuxti18n: {

@@ -1,6 +1,7 @@
 
 <template>
   <v-dialog
+    v-if="dialog"
     v-model="dialog"
     :id="`${(isAvatar ? 'theme-avatar' : '', isThemeDark ? 'theme-dark' : '')}`"
     :title="title"
@@ -11,9 +12,7 @@
     class="modal-content"
   >
     <v-card>
-      <v-btn class="close" color="red" icon @click="dialog = false">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
+      <BaseSvg class="close" color="red" @click="dialog = false" name="close" />
       <v-card-title class="title-modal text-menu-main">
         {{ title }}
       </v-card-title>

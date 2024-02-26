@@ -14,13 +14,13 @@
       >
       <v-col cols="3"
         ><span class="account-class"
-          >Class<br />
+          >Lớp<br />
           {{ classNinja(accountNinja.class) }}</span
         ></v-col
       >
       <v-col cols="6"
         ><span class="account-server"
-          >Server <br />{{ serverNinja(accountNinja.server) }}</span
+          >Máy chủ <br />{{ serverNinja(accountNinja.server) }}</span
         ></v-col
       >
       <v-col cols="6"
@@ -38,12 +38,9 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL";
 
 export default {
-  mixins: [mixins],
-  name: "AccountNinjaCardInfo",
   components: { AccountNinjaTL },
   props: {
     accountNinja: {
@@ -51,9 +48,6 @@ export default {
       default: () => {},
     },
   },
-  created() {},
-
-  computed: {},
   methods: {
     async viewAaccount() {
       await this.$router.push(`/teamobi/ninja-school/${this.accountNinja.ID}`);

@@ -91,11 +91,9 @@ import HistoryInstructionBank from "@/components/pages/client/account/wallet/His
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import mixins from "@/mixins/index";
 
 export default {
   layout: "clientLayout",
-  mixins: [mixins],
 
   components: {
     HomePage,

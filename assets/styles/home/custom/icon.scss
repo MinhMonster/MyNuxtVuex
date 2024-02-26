@@ -1,0 +1,18 @@
+.base-svg {
+  margin: 0;
+
+  svg {
+    height: 20px;
+    width: 20px;
+    padding-top: 2px;
+    padding-right: 2px;
+    filter: drop-shadow(0px 0px 2px #e28637);
+
+    path {
+      height: 18px;
+      width: 18px;
+
+    }
+  }
+  
+}

@@ -3,9 +3,14 @@
     <div class="rightbar-content scroll-y">
       <div class="user-info-wrap">
         <div class="user-info">
-          <v-btn icon class="circle">
-            <v-icon>mdi-account-circle</v-icon>
-          </v-btn>
+          <BaseSvg
+            class="avatar circle"
+            name="avatar"
+            id="btn-avatar"
+            title="Ảnh đại diện"
+            aria-label="Ảnh đại diện"
+          />
+
           <!-- <div v-else-if="user && token" class="circle">
             <img v-if="user.avatar" :src="user.avatar" />
             <img
@@ -50,9 +55,7 @@
             <template v-if="token && user">
               <div class="member-nav-item">
                 <nuxt-link to="/account/profile">
-                  <v-btn icon>
-                    <v-icon>mdi-account</v-icon>
-                  </v-btn>
+                  <BaseSvg name="user" />
                   <span class="member-nav-name">Thông tin Cá nhân</span>
                 </nuxt-link>
               </div>
@@ -60,17 +63,13 @@
 
               <div class="member-nav-item">
                 <nuxt-link to="/account/wallet/deposit/card">
-                  <v-btn icon>
-                    <v-icon>mdi-card</v-icon>
-                  </v-btn>
+                  <BaseSvg name="card" />
                   <span class="member-nav-name">Nạp Thẻ Cào</span>
                 </nuxt-link>
               </div>
               <div class="member-nav-item">
                 <nuxt-link to="/account/wallet/deposit/vnd">
-                  <v-btn icon>
-                    <v-icon>mdi-bank</v-icon>
-                  </v-btn>
+                  <BaseSvg name="bank" />
                   <span class="member-nav-name">Nạp Ví, ATM-MOMO</span>
                 </nuxt-link>
               </div>
@@ -78,17 +77,13 @@
 
               <div class="member-nav-item">
                 <nuxt-link to="/account/history">
-                  <v-btn icon>
-                    <v-icon>mdi-history</v-icon>
-                  </v-btn>
+                  <BaseSvg name="history" />
                   <span class="member-nav-name">Lịch sử mua Nick</span>
                 </nuxt-link>
               </div>
               <div class="member-nav-item">
                 <nuxt-link to="/account/history/change_money">
-                  <v-btn icon>
-                    <v-icon>mdi-history</v-icon>
-                  </v-btn>
+                  <BaseSvg name="history" />
                   <span class="member-nav-name">Biến động Số dư</span>
                 </nuxt-link>
               </div>
@@ -97,9 +92,12 @@
             <template>
               <div class="member-nav-item">
                 <nuxt-link to="/dieu-khoan-va-chinh-sach">
-                  <v-btn icon>
-                    <v-icon>mdi-book-open-variant</v-icon>
-                  </v-btn>
+                  <BaseSvg
+                    name="book"
+                    id="btn-book"
+                    title="Điều khoản và Chính sách"
+                    aria-label="Điều khoản và Chính sách"
+                  />
                   <span class="member-nav-name">Điều khoản và Chính sách</span>
                 </nuxt-link>
               </div>
@@ -108,9 +106,7 @@
               <div class="h-line"></div>
               <div class="member-nav-item">
                 <nuxt-link to="/admin/game/ninjas">
-                  <v-btn icon>
-                    <v-icon>mdi-cog-outline</v-icon>
-                  </v-btn>
+                  <BaseSvg name="setting" />
                   <span class="member-nav-name">Quản lý: Admin</span>
                 </nuxt-link>
               </div>
@@ -119,9 +115,14 @@
           <template v-if="token && user">
             <div class="h-line mb-2"></div>
             <div class="sign-out">
-              <v-btn class="bg-danger" @click="logoutUser()">
-                <v-icon>mdi-power</v-icon> Đăng xuất
-              </v-btn>
+              <BaseSvg
+                name="power"
+                button
+                variant="danger"
+                class="bg-danger text-not-shadow"
+                content=" Đăng xuất"
+                @click="logoutUser()"
+              />
             </div>
           </template>
         </div>
@@ -130,35 +131,29 @@
   </client-only>
 </template>
 <script>
-import mixins from "@/mixins/index";
-
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 import FormValidator from "@/components/global/form/FormValidator";
 import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 export default {
-  mixins: [mixins],
-
-  layout: "clientLayout",
   components: { FormValidator, ButtonLoginFacebook },
   computed: {
     ...mapState(["token", "user"]),
   },
-  mounted() {},
   methods: {
     ...mapActions(["logout", "fetchUser", "loginFb"]),
     async logoutUser() {
       await this.logout();
-      this.$router.push("/login");
+      // this.$router.push("/login");
     },
     nextLogin() {
       this.$router.push("/login");
-      this.$emit("close");
+      // this.$emit("close");
     },
     nextRegister() {
       this.$router.push("/register");
-      this.$emit("close");
+      // this.$emit("close");
     },
   },
 };
@@ -174,6 +169,12 @@ export default {
   height: 200px;
   background: #e28637;
   background-size: 100% 100%;
+  .base-svg {
+    svg {
+      height: 70px;
+      width: 70px;
+    }
+  }
 
   .user-info {
     height: 100%;
@@ -182,10 +183,10 @@ export default {
     justify-content: center;
     align-items: center;
 
-    button.v-btn .v-btn__content i.v-icon,
+    button.v-btn .v-btn__content,
     .v-btn--icon.v-size--default {
-      height: 70px;
-      width: 70px;
+      height: 70px !important;
+      width: 70px !important;
       font-size: 70px;
     }
     img {

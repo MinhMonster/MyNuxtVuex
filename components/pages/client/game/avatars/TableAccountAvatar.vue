@@ -35,11 +35,8 @@
   </table>
 </template>
 <script>
-import mixins from "@/mixins/index";
 
 export default {
-  mixins: [mixins],
-
   props: {
     account: {
       type: Object,

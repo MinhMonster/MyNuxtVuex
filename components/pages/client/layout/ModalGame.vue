@@ -1,21 +1,17 @@
 <template>
-  <v-dialog v-model="dialog" scrollable max-width="500px" light>
-    <template v-slot:activator="{ on, attrs }">
-      <div v-bind="attrs" v-on="on" class="sub-menu-buttom">
-        <div class="footer_icon Member">
-          <v-btn icon class="icon-menu">
-            <v-icon>mdi-controller</v-icon>
-          </v-btn>
-        </div>
-        <span class="title-menu-buttom">Game</span>
-      </div>
-    </template>
-    <v-card>
-      <v-btn class="close" color="red" icon @click="dialog = false">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-      <v-card-title class="title-modal"> Menu Nick Game</v-card-title>
-      <v-card-text style="height: 200px">
+  <div class="sub-menu-buttom" @click="$refs.modal.show()">
+    <div class="footer_icon Member">
+      <BaseSvg
+        class="icon-menu"
+        id="btn-games"
+        title="Nick Game"
+        aria-label="Nick Game"
+        name="game"
+      />
+    </div>
+    <span class="title-menu-buttom">Game</span>
+    <ModalPayload ref="modal" :title="`Menu Nick Game`" size="md" hiddenFooter>
+      <template #content>
         <div class="base-diglog page-body">
           <div class="base-diglog-bg scroll-y">
             <ul class="base-diglog-list">
@@ -34,15 +30,19 @@
             </ul>
           </div>
         </div>
-      </v-card-text>
-    </v-card>
-  </v-dialog>
+      </template>
+    </ModalPayload>
+  </div>
 </template>
 <script>
+import ModalPayload from "@/components/common/ModalPayload";
+
 export default {
+  components: {
+    ModalPayload,
+  },
   data() {
     return {
-      dialog: false,
       menuOptions: [
         {
           title: "Ninja School",
@@ -65,7 +65,7 @@ export default {
   methods: {
     nextPath(path) {
       this.$router.push(`${path}`);
-      this.dialog = false;
+      this.$refs.modal.dialog = false;
     },
   },
 };
@@ -75,12 +75,8 @@ export default {
   border: 1px solid #a4a4a4;
 }
 
-
-
-
 .base-diglog {
-   padding: 5px;
-
+  padding: 5px;
 
   .base-diglog-icon {
     img {
@@ -91,7 +87,6 @@ export default {
     }
   }
 
-  
   .base-diglog-item {
     cursor: pointer;
     display: flex;
@@ -103,7 +98,4 @@ export default {
     margin-bottom: 20px;
   }
 }
-
-
-
 </style>

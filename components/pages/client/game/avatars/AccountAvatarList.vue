@@ -15,28 +15,26 @@
         Không tìm thấy Tài khoản nào!
       </h1>
     </div>
-    <v-btn
-      v-if="isShowNext && accountAvatars.length && !isLoading"
-      variant="danger"
-      class="btn-next-more flex mt-3 mb-1"
-      @click="onChange()"
-    >
-      <v-icon>mdi-skip-next</v-icon>
-      Xem Thêm Nick Avatar
-    </v-btn>
+    <div class="btn-next-more">
+      <BaseSvg
+        v-if="isShowNext && accountAvatars.length && !isLoading"
+        name="skip"
+        button
+        content="Xem Thêm Nick Avatar"
+        variant="danger"
+        class="flex mt-3 mb-1"
+        @click="onChange()"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-import mixins from "@/mixins/index";
 import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
 import Loading from "@/components/global/molecules/common/Loading";
 export default {
-  name: "AccountAvatarList",
-  mixins: [mixins],
-
   components: { AccountAvatarCard, Loading },
   props: {
     query: {
@@ -78,13 +76,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.account {
-  margin: -9px;
-}
-.btn-next-more {
-  color: #ffffff;
-  background: #a21d0a !important;
-  text-align: center;
-  margin: 0 auto;
-}
 </style>

@@ -9,10 +9,13 @@ export default {
     validationErrors: {},
     selectedImages: [],
     screenMobile: true,
-    oldPath: "/",
-    nowPath: "/",
     isNotification: true,
-    isThemeDark: true
+    isThemeDark: true,
+    showMenuRight: false,
+    fixed: false,
+    isMb: true,
+    is_tablet: false,
+    heightHomeRight: 810
   }),
   getters: {
     getField,
@@ -29,34 +32,7 @@ export default {
     setValidationErrors({ commit }, payload) {
       commit(SET_VALIDATION_ERRORS, payload);
     },
-    setScreenMobile({ commit }, payload) {
-      commit(SET_STATE, { screenMobile: payload });
-    },
-    // setSelectedImages({ commit }, payload) {
-    //   commit("SET_SELECTED_IMAGES", payload)
-    // },
-    // setPath({ commit, state }, path) {
-    //   commit(SET_STATE, { oldPath: state.nowPath || "/" });
-    //   commit(SET_STATE, { nowPath: path });
-    // },
 
-    // async fileUpload({ state, commit, dispatch }, payload) {
-    //   try {
-    //     const result = await this.$repositories.adminUploads.upload(payload)
-    //     return result;
-    //   } catch (err) {
-    //   };
-    // },
-    // async fetchFiles({ commit }, payload) {
-    //   return await this.$repositories.adminUploads.fetchFiles(
-    //     payload
-    //   );
-    // },
-    // async deleteFile({ commit }, payload) {
-    //   return await this.$repositories.adminUploads.deleteFile(
-    //     payload
-    //   );
-    // },
     // setThemeDark({ commit, dispatch }) {
     //   const isThemeDark = state.isThemeDark;
     //   commit(SET_STATE, { isThemeDark: !isThemeDark });

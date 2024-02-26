@@ -2,14 +2,12 @@
 
 
 import { createNamespacedHelpers } from "vuex";
+import { mapFields } from "vuex-map-fields";
 
 export default {
   data() {
     return {
-      isMobile: false,
-      isTablet: false,
       currentYear: new Date().getFullYear(),
-      heightHomeLeft: 810,
       optionsNinjaType: [
         {
           text: "Thường",
@@ -83,6 +81,20 @@ export default {
     }
   },
   computed: {
+    ...mapFields("global", {
+      isMb: "isMb",
+      is_tablet: "is_tablet",
+      heightHomeRight: "heightHomeRight"
+    }),
+    isMobile(){
+      return this.isMb
+    },
+    isTablet(){
+      return this.is_tablet
+    },
+    heightHomeLeft(){
+      return this.heightHomeRight
+    },
     path() {
       return this.$route.path;
     },
@@ -143,25 +155,25 @@ export default {
     onResize() {
       const screenWidth = document.querySelector("body").clientWidth;
       if (screenWidth < 600) {
-        this.isMobile = true;
+        this.isMb = true;
       } else {
-        this.isMobile = false;
+        this.isMb = false;
       }
       if (screenWidth < 768) {
-        this.isTablet = true;
+        this.is_tablet = true;
       } else {
-        this.isTablet = false;
+        this.is_tablet = false;
       }
-      if (!this.isTablet && this.path == "/") {
+      if (!this.is_tablet && this.path == "/") {
         setTimeout(() => {
           const homeLeft = document.querySelector("#home-left");
           if (homeLeft) {
-            const heightHomeLeft = homeLeft.clientHeight;
+            const heightHomeRight = homeLeft.clientHeight;
             const heightDichVuGame = document.querySelector("#dich-vu-game").clientHeight;
-            if (heightHomeLeft / heightDichVuGame <= 7 / 5) {
-              this.heightHomeLeft = (heightDichVuGame / (515 / 836)) - 30;
+            if (heightHomeRight / heightDichVuGame <= 7 / 5) {
+              this.heightHomeRight = (heightDichVuGame / (515 / 836)) - 30;
             } else {
-              this.heightHomeLeft = heightHomeLeft - 30;
+              this.heightHomeRight = heightHomeRight - 30;
             }
           }
         }, 50);

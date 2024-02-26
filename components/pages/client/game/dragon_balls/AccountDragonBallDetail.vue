@@ -78,21 +78,21 @@
             </div>
           </v-col>
         </v-row>
-        <GroupBtnBuyAccount :account="account" account-type="Ngọc Rồng Online" />
+        <GroupBtnBuyAccount
+          :account="account"
+          account-type="Ngọc Rồng Online"
+        />
       </v-col>
     </v-row>
   </client-only>
 </template>
   
   <script>
-import mixins from "@/mixins/index";
 import AccountDragonBallInfo from "@/components/pages/client/game/dragon_balls/AccountDragonBallInfo";
 import AccountDragonBallTL from "@/components/pages/client/game/dragon_balls/AccountDragonBallTL";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  mixins: [mixins],
-
   components: {
     AccountDragonBallInfo,
     AccountDragonBallTL,
@@ -104,20 +104,6 @@ export default {
       default: () => {},
     },
   },
-  data() {
-    return {};
-  },
-  async mounted() {
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
-  },
-  computed: {},
-  methods: {},
 };
 </script>
   

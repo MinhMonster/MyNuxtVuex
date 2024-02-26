@@ -8,7 +8,7 @@
           </v-btn>
         </div>
       </div>
-     <slot name="button"></slot>
+      <slot name="button"></slot>
     </template>
 
     <v-card>
@@ -57,11 +57,7 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
-
 export default {
-  mixins: [mixins],
-
   data() {
     return {
       number: null,
@@ -77,10 +73,10 @@ export default {
   watch: {
     value: {
       async handler(newValue, oldValue) {
-        if(this.value !== null && this.value.length > 2){
+        if (this.value !== null && this.value.length > 2) {
           this.number = null;
           this.$emit("change", this.number);
-        } else  if (this.value !== null && this.value >= 0 && this.value <= 99) {
+        } else if (this.value !== null && this.value >= 0 && this.value <= 99) {
           this.number = this.value;
         } else {
           this.number = null;
@@ -89,8 +85,7 @@ export default {
       },
     },
   },
-  computed: {
-  },
+  computed: {},
 
   methods: {
     range(n) {

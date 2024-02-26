@@ -27,10 +27,7 @@
 import ButtonCoppy from "@/components/common/ButtonCoppy";
 import AdminInbox from "@/components/common/client/AdminInbox";
 
-import mixins from "@/mixins/index";
-
 export default {
-  mixins: [mixins],
   components: { ButtonCoppy, AdminInbox },
   props: {
     account: {

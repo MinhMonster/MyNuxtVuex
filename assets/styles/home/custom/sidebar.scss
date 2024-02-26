@@ -1,34 +1,44 @@
-.bg-sidebar {
-  #sidebar-right {
-    &.b-sidebar {
-      border: 2px solid #561d00 !important;
+.rightbar-content {
+  border: 2px solid #561d00 !important;
+  background: radial-gradient(circle at 50% 100%,
+      #e28637,
+      #9f5424 58%,
+      #561d00 127%);
+  max-height: calc(100vh - 50px - 55px);
+  height: 100%;
+  margin-top: 0px;
+  border-radius: 4px;
 
-      .rightbar-content {
+  .base-svg {
+    margin: 0;
 
-        .user-info-wrap {
-          border: none !important;
-          border-bottom: 2px solid #561d00 !important;
-        }
+    svg {
+      height: 26px;
+      width: 26px;
+
+      path {
+        height: 26px;
+        width: 26px;
       }
     }
   }
-}
 
-.home-user {
-  .rightbar-content {
-    border: 2px solid #561d00 !important;
-    background: radial-gradient(circle at 50% 100%,
-        #e28637,
-        #9f5424 58%,
-        #561d00 127%);
-    max-height: calc(100vh - 140px);
-    height: 100%;
-    margin-top: 0px;
-    border-radius: 4px;
+  .user-info-wrap {
+    .base-svg {
 
-    .user-info-wrap {
-      border: none !important;
-      border-bottom: 2px solid #561d00 !important;
+      svg {
+        height: 70px;
+        width: 70px;
+      }
     }
+  }
+
+  .user-info-wrap {
+    border: none !important;
+    border-bottom: 2px solid #561d00 !important;
+  }
+
+  @media (max-width: 1265px) {
+    max-height: calc(100vh - 50px);
   }
 }

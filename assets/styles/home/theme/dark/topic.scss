@@ -1,18 +1,18 @@
 .theme-dark {
   #home-page {
     .text-shadow {
-      text-shadow: #833cf7 0px 0px 2px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
+      text-shadow: $text-shadow-topic-theme-dark !important;
     }
     .topic {
-      text-shadow: #833cf7 0px 0px 3px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
+      text-shadow: $text-shadow-topic-theme-dark !important;
 
       .title {
-        text-shadow: #833cf7 0px 0px 3px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
+        text-shadow: $text-shadow-topic-theme-dark !important;
       }
     }
 
     .topics {
-      text-shadow: #833cf7 0px 0px 3px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
+      text-shadow: $text-shadow-topic-theme-dark !important;
       .text-main {
         color: #fff !important;
 

@@ -5,12 +5,9 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import AccountNinjaCardInfo from "@/components/pages/client/game/ninjas/AccountNinjaCardInfo";
 
 export default {
-  mixins: [mixins],
-  name: "AccountNinjaCard",
   components: { AccountNinjaCardInfo },
   props: {
     accountNinja: {
@@ -18,10 +15,6 @@ export default {
       default: () => {},
     },
   },
-  created() {},
-
-  computed: {},
-  methods: {},
 };
 </script>
 

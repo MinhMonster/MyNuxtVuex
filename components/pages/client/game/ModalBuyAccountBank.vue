@@ -29,16 +29,11 @@
 </template>
   
 <script>
-import { mapActions, mapState } from "vuex";
-import mixins from "@/mixins/index";
 import ModalPayload from "@/components/common/ModalPayload";
 import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
 import BuyAccountInstructions from "@/components/common/BuyAccountInstructions";
 
 export default {
-  name: "ModalBuyAccountBank",
-  mixins: [mixins],
-
   components: {
     ModalPayload,
     AccountNumbeAdmin,
@@ -54,11 +49,6 @@ export default {
       default: "",
     },
   },
-  data() {
-    return {};
-  },
-  async mounted() {},
-  computed: {},
   methods: {
     show() {
       this.$refs.modal.show();

@@ -39,12 +39,9 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import AccountDragonBallTL from "@/components/pages/client/game/dragon_balls/AccountDragonBallTL";
 
 export default {
-  mixins: [mixins],
-  name: "AccountDragonBallCardInfo",
   components: { AccountDragonBallTL },
   props: {
     account: {
@@ -52,9 +49,6 @@ export default {
       default: () => {},
     },
   },
-  created() {},
-
-  computed: {},
   methods: {
     async viewAaccount() {
       await this.$router.push(`/teamobi/avatar/${this.account.ID}`);

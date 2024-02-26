@@ -76,7 +76,6 @@
   
 <script>
 import { mapActions, mapState } from "vuex";
-import mixins from "@/mixins/index";
 import Loading from "@/components/global/molecules/common/Loading";
 import ModalPayload from "@/components/common/ModalPayload";
 import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
@@ -84,8 +83,6 @@ import BuyAccountInstructions from "@/components/common/BuyAccountInstructions";
 import TablePayAccount from "@/components/pages/client/game/TablePayAccount";
 
 export default {
-  mixins: [mixins],
-
   components: {
     Loading,
     ModalPayload,

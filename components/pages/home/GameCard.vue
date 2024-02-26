@@ -8,37 +8,15 @@
             {{ game.title }}</v-btn
           ></v-col
         >
-        <!-- <v-col cols="6"
-          ><span class="account-code"
-            >Số Nick <br />{{ format_number(game.numberAccount) }}</span
-          ></v-col
-        >
-        <v-col cols="6"
-          ><span class="account-class"
-            >Đã Bán<br />
-            {{ format_number(game.sold) }}</span
-          ></v-col
-        >
-
-        <v-col cols="6"
-          ><span class="account-cash"
-            >Mua Ngay</span
-          ></v-col
-        >
-        <v-col cols="6">
-          <span class="account-buy"> Xem Nick</span>
-        </v-col> -->
       </v-row>
     </div>
   </v-col>
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import ImageCard from "@/components/pages/home/ImageCard";
 
 export default {
-  mixins: [mixins],
   name: "GameCard",
   components: { ImageCard },
   props: {
@@ -46,16 +24,6 @@ export default {
       type: Object,
       default: () => {},
     },
-  },
-  created() {},
-  mounted() {
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
   },
   methods: {
     nextPath(path) {

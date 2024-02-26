@@ -21,17 +21,17 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import HomePage from "@/components/pages/home/HomePage";
 import AccountNinjaDetail from "@/components/pages/client/game/ninjas/AccountNinjaDetail";
 import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
+import mixins from "@/mixins/index";
 
 export default {
-  layout: "clientLayout",
   mixins: [mixins],
+  layout: "clientLayout",
   components: {
     HomePage,
     AccountNinjaDetail,
@@ -39,7 +39,6 @@ export default {
   },
   computed: {
     ...mapFields("global", {
-      screenMobile: "screenMobile",
       ready: "ready",
     }),
     ...mapFields("home/game/ninjas", {

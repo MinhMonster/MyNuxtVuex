@@ -13,13 +13,11 @@
           <div class="content-main text-center mb-2">
             Đoạn đúng chắc chắc có thưởng!
           </div>
-          <v-btn
-            @click="showModal()"
-            color="primary"
-            class="btn-show-more"
-          >
-            Xem Hướng Dẫn Tham Gia
-          </v-btn>
+          <div class="btn-show-more">
+            <v-btn @click="showModal()" variant="danger" class="flex mt-3 mb-1">
+              Xem Hướng Dẫn Tham Gia
+            </v-btn>
+          </div>
           <v-row>
             <v-col v-if="!votedDaylyEvent" cols="12" class="middle">
               <div class="field center">
@@ -69,7 +67,12 @@
             </v-col>
           </v-row>
         </form>
-        <ModalPayload ref="modal" size="md" title="Hướng dẫn tham gia Sự kiện" hiddenFooter >
+        <ModalPayload
+          ref="modal"
+          size="md"
+          title="Hướng dẫn tham gia Sự kiện"
+          hiddenFooter
+        >
           <template #content>
             <v-row>
               <v-col cols="12" class="size">
@@ -135,7 +138,6 @@
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
-import mixins from "@/mixins/index";
 import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
 import ModalPayload from "@/components/common/ModalPayload";
 import HistoryDailyEventTable from "@/components/pages/events/daily/HistoryDailyEventTable";
@@ -148,11 +150,10 @@ import ModalChoseNumberEvent from "@/components/pages/events/daily/ModalChoseNum
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 
-const { mapState, mapActions } = createNamespacedHelpers("home/events/daily");
+const { mapActions } = createNamespacedHelpers("home/events/daily");
 const global = createNamespacedHelpers("global");
 
 export default {
-  mixins: [mixins],
   layout: "clientLayout",
   components: {
     HomePage,

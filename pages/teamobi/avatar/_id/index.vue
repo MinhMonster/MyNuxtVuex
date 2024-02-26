@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import HomePage from "@/components/pages/home/HomePage";
 
 import AccountAvatarDetail from "@/components/pages/client/game/avatars/AccountAvatarDetail";
@@ -31,10 +30,11 @@ import AccountAvatarList from "@/components/pages/client/game/avatars/AccountAva
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
+import mixins from "@/mixins/index";
 
 export default {
-  layout: "clientLayout",
   mixins: [mixins],
+  layout: "clientLayout",
 
   components: {
     HomePage,
@@ -43,7 +43,6 @@ export default {
   },
   computed: {
     ...mapFields("global", {
-      screenMobile: "screenMobile",
       ready: "ready",
     }),
     ...mapFields("home/game/avatars", {

@@ -64,7 +64,7 @@
               type="submit"
               name="timkiem"
               color="primary"
-              class="search-btn text-white w-100"
+              class="search-btn text-white text-not-shadow w-100"
               @click="search()"
             >
               <i class="fa fa-search"></i> Tìm
@@ -74,7 +74,7 @@
             <v-btn
               type=""
               color="error"
-              class="btn btn-danger btn-search text-white w-100"
+              class="btn btn-danger btn-search text-not-shadow text-white w-100"
               @click="reset()"
             >
               <i class="fa fa-list"></i> Xóa
@@ -86,16 +86,11 @@
   </div>
 </template>
 <script>
-import mixins from "@/mixins/index";
-
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import FormValidator from "@/components/global/form/FormValidator";
 
 export default {
-  mixins: [mixins],
-
-  layout: "clientLayout",
   components: { FormValidator },
   props: {
     type: {
@@ -104,16 +99,6 @@ export default {
     },
     isReset: Boolean,
   },
-  // watch: {
-  //   isReset: {
-  //     handler(newValue, oldValue) {
-  //       console.log(newValue, oldValue);
-  //       if (oldValue) {
-  //         this.reset();
-  //       }
-  //     },
-  //   },
-  // },
   data() {
     return {
       levelOptions: [

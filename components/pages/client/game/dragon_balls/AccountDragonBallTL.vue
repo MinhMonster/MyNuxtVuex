@@ -13,28 +13,18 @@
         alt=""
         class="image-ninja"
       />
-      <span class="account-cash-atm"
-        ><v-btn icon>
-          <v-icon>mdi-cart-variant</v-icon>
-        </v-btn>
+      <span class="account-cash-atm">
         {{ cash_atm(account.price) }} ATM-MOMO</span
       >
 
       <span class="account-ingame">
-        <v-btn icon>
-          <v-icon>mdi-account</v-icon>
-        </v-btn>
-        {{ account.inGame }}
+        @ {{ account.inGame }}
       </span>
     </div>
   </client-only>
 </template>
 <script>
-import mixins from "@/mixins/index";
-
 export default {
-  mixins: [mixins],
-  name: "accountCardInfo",
   components: {},
   props: {
     account: {
@@ -42,10 +32,6 @@ export default {
       default: () => {},
     },
   },
-  mounted() {},
-
-  computed: {},
-  methods: {},
 };
 </script>
 <style lang="scss" scoped>

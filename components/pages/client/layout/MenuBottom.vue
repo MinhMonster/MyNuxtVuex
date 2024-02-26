@@ -3,9 +3,13 @@
     <div id="menu-bottom">
       <nuxt-link to="/admin-information"
         ><div class="footer_icon service">
-          <v-btn icon class="icon-menu">
-            <v-icon>mdi-shield-crown-outline</v-icon>
-          </v-btn>
+          <BaseSvg
+            id="btn-admin"
+            class="icon-menu"
+            title="Admin"
+            aria-label="Admin"
+            name="support"
+          />
         </div>
         <span class="title-menu-buttom">Admin</span>
       </nuxt-link>
@@ -16,21 +20,27 @@
         <div class="footer_icon home">
           <div class="circle-menu">
             <div class="icon-wrap">
-              <v-btn icon>
-                <v-icon>mdi-home</v-icon>
-              </v-btn>
+              <BaseSvg
+                id="btn-home"
+                title="Trang Chủ"
+                aria-label="Trang Chủ"
+                name="home"
+              />
             </div>
           </div>
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
-      <!-- <ModalDeposit /> -->
-      <ModalSetting/>
+      <ModalSetting />
       <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
-          <v-btn icon class="icon-menu">
-            <v-icon>mdi-book-open-variant</v-icon>
-          </v-btn>
+          <BaseSvg
+            class="icon-menu"
+            id="btn-topics"
+            title="Bài Đăng"
+            aria-label="Bài Đăng"
+            name="book"
+          />
         </div>
         <span class="title-menu-buttom">Bài Đăng</span>
       </div>
@@ -41,16 +51,12 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import ModalGame from "@/components/pages/client/layout/ModalGame";
-import ModalDeposit from "@/components/pages/client/layout/ModalDeposit";
 import ModalSetting from "@/components/pages/client/layout/ModalSetting";
 
-import mixins from "@/mixins/index";
 export default {
-  mixins: [mixins],
   components: {
     ModalGame,
-    ModalDeposit,
-    ModalSetting
+    ModalSetting,
   },
   props: {},
   data() {
@@ -107,7 +113,7 @@ export default {
       } else {
         this.showSwal({
           title: "Bạn chưa đăng nhập",
-          html: "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!"
+          html: "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!",
         });
       }
     },
@@ -129,5 +135,4 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 </style>

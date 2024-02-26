@@ -5,6 +5,7 @@
         <v-row style="margin: -15px">
           <v-col cols="12">
             <!-- <RunText v-if="isTablet" /> -->
+
             <HomeSlider />
           </v-col>
         </v-row>
@@ -28,9 +29,8 @@
         lg="4"
         id="home-right"
       >
-        <div class="mt--1 home-user" :style="{ height: heightHomeLeft + 'px' }">
-          <template v-if="token"><SideBarMenu /></template>
-          <template v-else><FormLogin /></template>
+        <div class="mt--1 form-deposit-card" :style="{ height: heightHomeLeft + 'px' }">
+          <template><DepositCardForm /></template>
         </div>
       </v-col>
     </v-row>
@@ -60,28 +60,29 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import GameCard from "@/components/pages/home/GameCard";
 // import ModalPayload from "@/components/common/ModalPayload";
 // import AdminNotification from "@/components/pages/home/AdminNotification";
-import FormLogin from "@/components/pages/client/login/FormLogin";
-import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
+// import FormLogin from "@/components/pages/client/login/FormLogin";
+// import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import HomeSlider from "@/components/pages/home/HomeSlider";
+import DepositCardForm from "@/components/pages/client/account/wallet/DepositCardForm";
+
 // import RunText from "@/components/global/molecules/common/template/RunText";
 
 // import { mapFields } from "vuex-map-fields";
 import { mapState, mapActions } from "vuex";
 export default {
   name: "HomeGame",
-  mixins: [mixins],
 
   components: {
     GameCard,
     // ModalPayload,
     // AdminNotification,
-    FormLogin,
-    SideBarMenu,
+    // FormLogin,
+    // SideBarMenu,
     HomeSlider,
+    DepositCardForm
     // RunText,
   },
   props: {
@@ -142,63 +143,34 @@ export default {
       ],
     };
   },
-  async mounted() {
-    // await this.getNotification();
-    // if (this.isNotification) {
-    //   // this.$refs.modal.show();
-    // }
-    window.addEventListener("resize", this.onResize);
-    this.$nextTick(function () {
-      this.onResize();
-    });
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
-  },
   computed: {
     ...mapState("home/users", ["token", "user"]),
-
-    // nextPath(path) {
-    //   this.$router.push(`${path}`);
-    // },
-    // ...mapFields("global", {
-    //   isNotification: "isNotification",
-    // }),
   },
-  // methods: {
-  //   ...mapActions("global", ["setNotification", "getNotification"]),
-  // },
 };
 </script>
 
 <style lang="scss" scoped>
-.home-user {
-  position: fixed;
-  width: calc(25% + 5px);
-  max-width: 300px;
+// .form-deposit-card {
+//   position: fixed;
+//   width: calc(24% + 5px);
+//   max-width: 300px;
 
-  @media (min-width: 876px) {
-    width: calc(25% + 10px);
-  }
+//   @media (min-width: 876px) {
+//     width: calc(25% + 10px);
+//   }
 
-  @media (min-width: 978px) {
-    width: calc(25% + 15px);
-  }
-}
-@media (min-width: 768px) {
-  .hom-page {
-    margin-left: 3%;
-  }
-}
+//   @media (min-width: 978px) {
+//     width: calc(25% + 15px);
+//   }
+// }
+// @media (min-width: 768px) {
+//   .form-deposit-card {
+//     margin-left: 3%;
+//   }
+// }
 
 .account {
   margin: -9px;
   cursor: pointer;
-}
-.btn-next-more {
-  color: #ffffff;
-  background: #a21d0a !important;
-  text-align: center;
-  margin: 0 auto;
 }
 </style>
