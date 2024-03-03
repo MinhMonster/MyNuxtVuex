@@ -207,7 +207,7 @@ export default {
 
   @media (min-width: 400px) {
     .container.client-main {
-      padding: 15px;
+      padding: 5px;
     }
     .btn-drop-menu-game.active {
       left: 30px;

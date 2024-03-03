@@ -65,8 +65,8 @@ export default {
 
       .v-carousel__item {
         height: auto !important;
-        min-height: 146.33px;
-        max-height: 300px;
+        min-height: 150px;
+        max-height: 320px;
       }
     }
   }

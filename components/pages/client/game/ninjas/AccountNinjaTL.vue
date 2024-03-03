@@ -108,7 +108,17 @@
       <span v-if="accountNinja.yen" class="account-yen text-13-450">
         {{ accountNinja.yen }}
       </span>
-      <span
+      <span class="account-cash-atm text-13-450">
+        Lv: {{ accountNinja.level }}</span
+      >
+      <span class="account-server-number">
+          Sv: {{ serverNinjaNumber(accountNinja.server) }}
+      </span>
+
+      <span class="account-ingame text-13-450">
+        @{{ accountNinja.ingame }}
+      </span> 
+      <!-- <span
         v-if="accountNinja.saleOff"
         class="account-cash-atm bg-none text-13-450"
       >
@@ -127,7 +137,7 @@
 
       <span class="account-ingame text-13-450">
         @{{ accountNinja.ingame }}
-      </span>
+      </span> -->
     </div>
   </client-only>
 </template>
@@ -163,6 +173,7 @@ export default {
 .account-ingame {
   right: 4px;
 }
+.account-server-number,
 .account-ingame,
 .account-cash-atm {
   position: absolute;
@@ -187,6 +198,11 @@ export default {
       font-size: 14px;
     }
   }
+}
+
+.account-server-number {
+  left: calc(50% - 24px);
+  min-width: 50px !important;
 }
 
 .account-cash-atm {
@@ -246,6 +262,7 @@ export default {
   }
 }
 
+
 .account-book {
   right: 4px;
   top: 53%;
@@ -269,6 +286,8 @@ export default {
   left: 4px;
   top: 65%;
 }
+
+
 
 .account-yen,
 .account-book,

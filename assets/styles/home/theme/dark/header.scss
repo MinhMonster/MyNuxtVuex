@@ -196,6 +196,7 @@
 
   .account-cash-atm,
   .account-ingame,
+  .account-server-number,
   .account-tl,
   .account-clone,
   .account-book,
@@ -206,9 +207,10 @@
   .account-disguise {
 
     // background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
-    background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
-
-    // border: 1px solid #a4a4a4 !important;
+    // background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+    background: #171e28 !important;
+    border: $border-theme-dark  !important;
+    // text-shadow: $text-shadow-theme-dark;
     color: #f1f1f1;
   }
 
@@ -250,9 +252,10 @@
 
   .account-cash-atm,
   .account-ingame {
-    // background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
-    background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+    background: #171e28 !important;
 
+    border: $border-theme-dark  !important;
+    // text-shadow: $text-shadow-theme-dark;
   }
 
   .btn-buy-account {

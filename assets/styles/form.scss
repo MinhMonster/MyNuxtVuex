@@ -25,9 +25,19 @@
 
 }
 
-b .form-search {
+.form-search {
   background: #ffcf9c;
   margin: -6px;
+  // @media (max-width: 768px) {
+  //   input,
+  //   select {
+  //     -webkit-user-select: auto;
+  //     overflow: auto;
+  //     appearance: none;
+  //     outline: none;
+  //     transition: all .3s ease;
+  //   }
+  // }
 
   form {
     padding: 10px;

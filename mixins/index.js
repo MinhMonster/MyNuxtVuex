@@ -256,11 +256,28 @@ export default {
         case "5":
           return "katana";
         case "6":
-          return "Tone + Sanzu";
         case "7":
           return "Tone + Sanzu";
         case "8":
           return "SenSha";
+      }
+    },
+
+    serverNinjaNumber(type) {
+      switch (type) {
+        case "1":
+          return "1";
+        case "2":
+          return "23";
+        case "4":
+          return "4";
+        case "5":
+          return "5";
+        case "6":
+        case "7":
+          return "67";
+        case "8":
+          return "8";
       }
     },
 

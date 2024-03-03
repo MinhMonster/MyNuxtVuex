@@ -1,78 +1,102 @@
 <template>
   <div class="form-search">
     <div class="page-body">
-      <form class="form">
+      <form class="form" @submit.prevent="search()">
         <v-row>
-          <v-col cols="6" sm="3" md="2">
+          <v-col cols="12" sm="3" md="2">
             <div class="field">
               <!-- <form-validator name="level"> -->
-              <v-select
+              <select v-model="level" class="v-input form-input">
+                <option
+                  v-for="(option, index) in levelOptions"
+                  :key="index"
+                  :value="option.value"
+                >
+                  {{ option.text }}
+                </option>
+              </select>
+              <!-- <v-select
                 v-model="level"
                 :items="levelOptions"
                 size="sm"
-              ></v-select>
+              ></v-select> -->
               <!-- </form-validator> -->
             </div>
           </v-col>
-          <v-col cols="6" sm="3" md="2">
+          <v-col cols="12" sm="3" md="2">
             <div class="field">
               <!-- <form-validator name="cash"> -->
-              <v-select
+              <select v-model="cash" class="v-input form-input">
+                <option
+                  v-for="(option, index) in cashOptions"
+                  :key="index"
+                  :value="option.value"
+                >
+                  {{ option.text }}
+                </option>
+              </select>
+              <!-- <v-select
                 v-model="cash"
                 :items="cashOptions"
                 size="sm"
-              ></v-select>
+              ></v-select> -->
               <!-- </form-validator> -->
             </div>
           </v-col>
-          <v-col cols="6" sm="3" md="2">
+          <v-col cols="12" sm="3" md="2">
             <div class="field">
               <!-- <form-validator name="class"> -->
-              <v-select
+              <select v-model="classNinjas" class="v-input form-input">
+                <option
+                  v-for="(option, index) in classOptions"
+                  :key="index"
+                  :value="option.value"
+                >
+                  {{ option.text }}
+                </option>
+              </select>
+              <!-- <v-select
                 v-model="classNinjas"
                 :items="classOptions"
                 size="sm"
-              ></v-select>
+              ></v-select> -->
               <!-- </form-validator> -->
+            </div>
+          </v-col>
+          <v-col cols="12" sm="3" md="2">
+            <div class="field">
+              <!-- <base-select v-model="server" :options="serverOptions" /> -->
+              <select v-model="server" class="v-input form-input">
+                <option
+                  v-for="(server, sv) in serverOptions"
+                  :key="sv"
+                  :value="server.value"
+                >
+                  {{ server.text }}
+                </option>
+              </select>
             </div>
           </v-col>
           <v-col cols="6" sm="3" md="2">
             <div class="field">
-              <!-- <form-validator name="server"> -->
-              <v-select
-                v-model="server"
-                :items="serverOptions"
-                size="sm"
-              ></v-select>
-              <!-- </form-validator> -->
-            </div>
-          </v-col>
-          <v-col cols="6" sm="3" md="2">
-            <div class="field">
-              <!-- <form-validator name="id"> -->
-              <v-text-field
+              <input
                 v-model="id"
                 placeholder="Nhập mã số nick..."
-                @keyup.enter="search()"
                 class="v-input form-input"
-              ></v-text-field>
-              <!-- </form-validator> -->
+              />
             </div>
           </v-col>
           <v-col cols="3" sm="3" md="1">
             <v-btn
               type="submit"
-              name="timkiem"
               color="primary"
               class="search-btn text-white text-not-shadow w-100"
-              @click="search()"
             >
               <i class="fa fa-search"></i> Tìm
             </v-btn>
           </v-col>
           <v-col cols="3" sm="3" md="1">
             <v-btn
-              type=""
               color="error"
               class="btn btn-danger btn-search text-not-shadow text-white w-100"
               @click="reset()"
@@ -262,27 +286,27 @@ export default {
         // },
         {
           text: "Đao",
-          value: 1,
+          value: "1",
         },
         {
           text: "Kiếm",
-          value: 2,
+          value: " 2",
         },
         {
           text: "Tiêu",
-          value: 3,
+          value: "3",
         },
         {
           text: "Cung",
-          value: 4,
+          value: "4",
         },
         {
           text: "Quạt",
-          value: 5,
+          value: " 5",
         },
         {
           text: "Kunai",
-          value: 6,
+          value: "6",
         },
       ],
       serverOptions: [
@@ -292,31 +316,31 @@ export default {
         },
         {
           text: "Sv1 - Bokken",
-          value: 1,
+          value: "1",
         },
         {
           text: "Sv2+3 - Shuriken + Tessen",
-          value: 2,
+          value: "2",
         },
         {
           text: "Sv4 - Kunai",
-          value: 4,
+          value: "4",
         },
         {
           text: "Sv5 - Katana",
-          value: 5,
+          value: "5",
         },
         {
           text: "Sv6+7 - Tone + Sanzu",
-          value: 6,
+          value: "6",
         },
         {
           text: "Sv8 - Sensha",
-          value: 8,
+          value: "8",
         },
         {
           text: "Sv9 - Fukiya",
-          value: 9,
+          value: "9",
         },
       ],
     };
