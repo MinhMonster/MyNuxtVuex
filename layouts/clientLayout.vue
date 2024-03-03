@@ -12,6 +12,7 @@
     </v-main>
     <MenuBottom />
     <MenuRight />
+    <ModalLogin />
 
     <template v-if="isShowButton">
       <div class="change-theme">
@@ -31,6 +32,7 @@
 import AppBar from "@/components/pages/client/layout/AppBar";
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
 import MenuRight from "@/components/pages/client/layout/MenuRight";
+import ModalLogin from "@/components/pages/client/account/wallet/ModalLogin";
 import { mapFields } from "vuex-map-fields";
 
 import { mapState, mapActions } from "vuex";
@@ -41,6 +43,7 @@ export default {
     AppBar,
     MenuBottom,
     MenuRight,
+    ModalLogin,
   },
   data() {
     return {

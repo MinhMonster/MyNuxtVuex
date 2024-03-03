@@ -21,12 +21,12 @@
           <div class="member">
             <div v-if="!user" class="mt-4">
               <div class="flex justify-center">
-                <div class="login-btn cursor-pointer mr-1" @click="nextLogin()">
+                <div class="login-btn cursor-pointer mr-1" @click="nextLoginRegister('login')">
                   <span>Đăng nhập</span>
                 </div>
                 <div
                   class="register-btn cursor-pointer"
-                  @click="nextRegister()"
+                  @click="nextLoginRegister('register')"
                 >
                   <span>Đăng ký</span>
                 </div>
@@ -130,14 +130,14 @@
     </div>
   </client-only>
 </template>
+
 <script>
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import FormValidator from "@/components/global/form/FormValidator";
-import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
+// import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 export default {
-  components: { FormValidator, ButtonLoginFacebook },
+  // components: { ButtonLoginFacebook },
   computed: {
     ...mapState(["token", "user"]),
   },
@@ -147,17 +147,24 @@ export default {
       await this.logout();
       // this.$router.push("/login");
     },
-    nextLogin() {
-      this.$router.push("/login");
-      // this.$emit("close");
+    nextLoginRegister(value) {
+      // this.$router.push("/login");
+      if (this.isMobile) {
+        this.$emit("close");
+      }
+        this.showModalLoginRegister(value);
     },
-    nextRegister() {
-      this.$router.push("/register");
-      // this.$emit("close");
-    },
+    // nextRegister() {
+    //   // this.$router.push("/register");
+    //   if (this.isMobile) {
+    //     this.$emit("close");
+    //   }
+    //   this.showModalRegister();
+    // },
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .rightbar-content .user-info-wrap {
   top: 0px;
@@ -169,6 +176,7 @@ export default {
   height: 200px;
   background: #e28637;
   background-size: 100% 100%;
+
   .base-svg {
     svg {
       height: 70px;
@@ -189,6 +197,7 @@ export default {
       width: 70px !important;
       font-size: 70px;
     }
+
     img {
       height: 80px;
       width: 80px;
@@ -196,6 +205,7 @@ export default {
     }
   }
 }
+
 .rightbar-content .user-info-wrap .user-info .member {
   font-size: 20px;
   // font-weight: 700;
@@ -206,14 +216,17 @@ export default {
 .rightbar-content .member-nav {
   padding: 0 0.36rem;
 }
+
 .rightbar-content .member-nav .h-line {
   width: 100%;
   height: 1px;
   background-color: #561d00;
 }
+
 .rightbar-content .member-nav .member-nav-list {
   padding-top: 0.2rem;
 }
+
 .rightbar-content .member-nav .member-nav-item {
   display: flex;
   align-items: center;
@@ -221,20 +234,24 @@ export default {
   height: 40px;
   padding-left: 0.08rem;
 }
+
 .rightbar-content .member-nav .member-nav-name {
   margin-left: 0.2rem;
   font-size: 15px;
   color: #fff;
 }
+
 .sign-out {
   display: flex;
   justify-content: center;
   padding: 20px;
+
   .bg-danger {
     color: #ffffff;
     background: #a21d0a !important;
   }
 }
+
 .register-btn {
   box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 49%);
   border: 1px solid #ffeb00;
@@ -243,6 +260,7 @@ export default {
   /* background-image: linear-gradient(180deg,#fdffdb,#d9e254); */
   background-image: linear-gradient(180deg, #fdffdb, #ffcf9c);
 }
+
 .register-btn {
   position: relative;
   height: 30px;

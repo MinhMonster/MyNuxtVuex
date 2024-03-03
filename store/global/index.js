@@ -15,7 +15,9 @@ export default {
     fixed: false,
     isMb: true,
     is_tablet: false,
-    heightHomeRight: 810
+    heightHomeRight: 810,
+    showLoginRegister: false,
+    isFormLoginRegister: 'login',
   }),
   getters: {
     getField,

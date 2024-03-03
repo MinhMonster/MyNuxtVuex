@@ -85,11 +85,17 @@
           </v-btn>
           <div v-else>
             <div v-if="!user" class="flex group-btn">
-              <div class="login-btn cursor-pointer mr-1 w-50">
-                <nuxt-link to="/login"> Đăng nhập </nuxt-link>
+              <div
+                class="login-btn cursor-pointer mr-1 w-50"
+                @click="showModalLoginRegister('login')"
+              >
+                Đăng nhập
               </div>
-              <div class="register-btn cursor-pointer w-50">
-                <nuxt-link to="/register"> Đăng ký </nuxt-link>
+              <div
+                class="register-btn cursor-pointer w-50"
+                @click="showModalLoginRegister('register')"
+              >
+                Đăng ký
               </div>
 
               <!-- <ButtonLoginFacebook /> -->

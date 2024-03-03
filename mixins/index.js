@@ -84,15 +84,18 @@ export default {
     ...mapFields("global", {
       isMb: "isMb",
       is_tablet: "is_tablet",
-      heightHomeRight: "heightHomeRight"
+      heightHomeRight: "heightHomeRight",
+      showLoginRegister: "showLoginRegister",
+      showRegister: "showRegister",
+      isFormLoginRegister: "isFormLoginRegister"
     }),
-    isMobile(){
+    isMobile() {
       return this.isMb
     },
-    isTablet(){
+    isTablet() {
       return this.is_tablet
     },
-    heightHomeLeft(){
+    heightHomeLeft() {
       return this.heightHomeRight
     },
     path() {
@@ -152,6 +155,12 @@ export default {
     },
   },
   methods: {
+    showModalLoginRegister(value) {
+      if (!this.showLoginRegister) {
+        this.showLoginRegister = true;
+      }
+      this.isFormLoginRegister = value;
+    },
     onResize() {
       const screenWidth = document.querySelector("body").clientWidth;
       if (screenWidth < 600) {

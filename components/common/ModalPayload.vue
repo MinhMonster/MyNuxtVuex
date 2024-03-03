@@ -12,7 +12,7 @@
     class="modal-content"
   >
     <v-card>
-      <BaseSvg class="close" color="red" @click="dialog = false" name="close" />
+      <BaseSvg class="close" color="red" @click="close()" name="close" />
       <v-card-title class="title-modal text-menu-main">
         {{ title }}
       </v-card-title>

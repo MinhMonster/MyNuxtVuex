@@ -1,163 +1,141 @@
 <template>
-  <client-only>
-    <HomePage
-      :title="title"
-      full-screen
-      goBack
-      goHome
-      :loading="!ready"
-      reload
-      @reload="reload()"
-    >
-      <template v-if="!token" #body>
-        <form class="form">
-          <div id="content"></div>
-          <v-row>
-            <v-col cols="12" sm="6" class="middle">
-              <div class="field">
-                <form-validator name="name">
-                  <input
-                    v-model="user.name"
-                    id="name"
-                    type="text"
-                    placeholder=" "
-                    class="v-input form-input"
-                  />
-                  <label for="name" class="form-label"
-                    >Tên hiển thị
-                    <small
-                      >(<span style="color: red">*</span> VD: Nguyễn Văn
-                      An)</small
-                    ></label
-                  >
-                </form-validator>
-              </div>
-            </v-col>
-            <v-col cols="12" sm="6" class="middle">
-              <div class="field">
-                <form-validator name="username">
-                  <input
-                    v-model="user.username"
-                    id="username"
-                    type="text"
-                    placeholder=" "
-                    class="v-input form-input"
-                  />
-                  <label for="username" class="form-label"
-                    >Tài Khoản
-                    <small
-                      >(<span style="color: red">*</span> VD:
-                      NguyenVanAn)</small
-                    ></label
-                  >
-                </form-validator>
-              </div></v-col
+  <form class="form">
+    <div id="content"></div>
+    <v-row>
+      <v-col cols="12" sm="12" class="middle">
+        <div class="field">
+          <form-validator name="name">
+            <input
+              v-model="user.name"
+              id="name"
+              type="text"
+              placeholder=" "
+              class="v-input form-input"
+            />
+            <label for="name" class="form-label"
+              >Tên hiển thị
+              <small
+                >(<span style="color: red">*</span> VD: Nguyễn Văn An)</small
+              ></label
             >
-            <v-col cols="12" sm="6" class="middle">
-              <div class="field">
-                <form-validator name="password">
-                  <input
-                    v-model="user.password"
-                    type="password"
-                    placeholder=" "
-                    class="v-input form-input"
-                  />
-                  <label class="form-label"
-                    >Mật Khẩu
-                    <small
-                      >(<span style="color: red">*</span> ********)</small
-                    ></label
-                  >
-                </form-validator>
-              </div>
-            </v-col>
-            <v-col cols="12" sm="6" class="middle">
-              <div class="field">
-                <form-validator name="re_password">
-                  <input
-                    v-model="user.rePassword"
-                    type="password"
-                    placeholder=" "
-                    class="v-input form-input"
-                  />
-                  <label class="form-label"
-                    >Nhập lại Mật khẩu
-                    <small>(<span style="color: red">*</span>)</small></label
-                  >
-                </form-validator>
-              </div>
-            </v-col>
-            <v-col cols="12" sm="6" class="middle">
-              <div class="field">
-                <form-validator name="phone">
-                  <input
-                    v-model="user.phone"
-                    type="text"
-                    placeholder=" "
-                    class="v-input form-input"
-                  />
-                  <label class="form-label"
-                    >Số điện thoại
-                    <small>(<span style="color: red">*</span> )</small></label
-                  >
-                </form-validator>
-              </div>
-            </v-col>
-            <v-col cols="12" sm="6" class="middle">
-              <div class="field">
-                <form-validator name="email">
-                  <input
-                    v-model="user.email"
-                    type="text"
-                    placeholder=" "
-                    class="v-input form-input"
-                  />
-                  <label class="form-label"
-                    >Email
-                    <small>(<span style="color: red">*</span> )</small></label
-                  >
-                </form-validator>
-              </div>
-            </v-col>
-          </v-row>
+          </form-validator>
+        </div>
+      </v-col>
+      <v-col cols="12" sm="12" class="middle">
+        <div class="field">
+          <form-validator name="username">
+            <input
+              v-model="user.username"
+              id="username"
+              type="text"
+              placeholder=" "
+              class="v-input form-input"
+            />
+            <label for="username" class="form-label"
+              >Tài Khoản
+              <small
+                >(<span style="color: red">*</span> VD: NguyenVanAn)</small
+              ></label
+            >
+          </form-validator>
+        </div></v-col
+      >
+      <v-col cols="12" sm="12" class="middle">
+        <div class="field">
+          <form-validator name="password">
+            <input
+              v-model="user.password"
+              type="password"
+              placeholder=" "
+              class="v-input form-input"
+            />
+            <label class="form-label"
+              >Mật Khẩu
+              <small>(<span style="color: red">*</span> ********)</small></label
+            >
+          </form-validator>
+        </div>
+      </v-col>
+      <v-col cols="12" sm="12" class="middle">
+        <div class="field">
+          <form-validator name="re_password">
+            <input
+              v-model="user.rePassword"
+              type="password"
+              placeholder=" "
+              class="v-input form-input"
+            />
+            <label class="form-label"
+              >Nhập lại Mật khẩu
+              <small>(<span style="color: red">*</span>)</small></label
+            >
+          </form-validator>
+        </div>
+      </v-col>
+      <v-col cols="12" sm="12" class="middle">
+        <div class="field">
+          <form-validator name="phone">
+            <input
+              v-model="user.phone"
+              type="text"
+              placeholder=" "
+              class="v-input form-input"
+            />
+            <label class="form-label"
+              >Số điện thoại
+              <small>(<span style="color: red">*</span> )</small></label
+            >
+          </form-validator>
+        </div>
+      </v-col>
+      <v-col cols="12" sm="12" class="middle">
+        <div class="field">
+          <form-validator name="email">
+            <input
+              v-model="user.email"
+              type="text"
+              placeholder=" "
+              class="v-input form-input"
+            />
+            <label class="form-label"
+              >Email <small>(<span style="color: red">*</span> )</small></label
+            >
+          </form-validator>
+        </div>
+      </v-col>
+    </v-row>
 
-          <!-- <div id="sign-in-button"></div> -->
+    <!-- <div id="sign-in-button"></div> -->
 
-          <div class="content">
-            <div class="checkbox">
-              <input type="checkbox" id="remember" checked />
-              <label for="remember">Lưu đăng nhập</label>
-            </div>
-            <nuxt-link to="/login">Đăng Nhập</nuxt-link>
-          </div>
-          <input type="hidden" id="confirm" name="confirm" />
-          <div class="field submit">
-            <v-btn size="sm" class="btn-login" @click="registerUser()">
-              <Loading v-if="isLoading" button></Loading>
-              <span v-else> Đăng Ký </span>
-            </v-btn>
-          </div>
-          <!-- <div class="signin">----------- Hoặc -----------</div>
+    <div class="content">
+      <div class="checkbox">
+        <input type="checkbox" id="remember" checked />
+        <label for="remember">Lưu đăng nhập</label>
+      </div>
+      <span @click="showModalLoginRegister('login')">Đăng Nhập</span>
+    </div>
+    <input type="hidden" id="confirm" name="confirm" />
+    <div class="field submit">
+      <v-btn size="sm" class="btn-login" @click="registerUser()">
+        <Loading v-if="isLoading" button></Loading>
+        <span v-else> Đăng Ký </span>
+      </v-btn>
+    </div>
+    <!-- <div class="signin">----------- Hoặc -----------</div>
           <ButtonLoginFacebook /> -->
-        </form>
-      </template>
-    </HomePage>
-  </client-only>
+  </form>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
-import HomePage from "@/components/pages/home/HomePage";
 
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
-import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 
 export default {
-  layout: "clientLayout",
   data() {
     return {
       isLoading: false,
@@ -172,19 +150,12 @@ export default {
       title: "Đăng Ký Thành Viên",
     };
   },
-  components: { HomePage, Loading, FormValidator, ButtonLoginFacebook },
+  components: { Loading, FormValidator },
   computed: {
     ...mapState(["token"]),
     ...mapFields("global", {
       ready: "ready",
     }),
-  },
-  mounted() {
-    if (this.token) {
-      this.$router.push("/account/profile");
-    } else {
-      this.reload();
-    }
   },
   methods: {
     ...mapActions(["register", "loginFb"]),
@@ -213,7 +184,7 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
-        { property: 'og:image', content: '/banner.jpg' },
+        { property: "og:image", content: "/banner.jpg" },
       ],
     };
   },

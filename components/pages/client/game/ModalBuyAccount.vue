@@ -22,7 +22,7 @@
               <slot name="account-info"></slot>
             </v-window-item>
           </v-window>
-          <v-radio-group v-model="isBuy"> 
+          <v-radio-group v-model="isBuy">
             <v-radio
               name="some-radios"
               value="wallet"
@@ -55,7 +55,7 @@
         </div>
       </template>
       <template #footer-button>
-        <v-btn v-if="!user" size="sm" color="success" to="/login"
+        <v-btn v-if="!user" size="sm" color="success" @click="openModalLogin()"
           ><span>Đăng nhập</span></v-btn
         >
         <v-btn
@@ -116,6 +116,12 @@ export default {
   },
   methods: {
     ...mapActions("home/users", ["buyAccount"]),
+    openModalLogin() {
+      this.$refs.modal.close();
+      setTimeout(() => {
+        this.showModalLoginRegister('login');
+      }, 200);
+    },
 
     async buyNow() {
       this.isLoading = true;
