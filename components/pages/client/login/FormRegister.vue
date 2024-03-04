@@ -218,6 +218,7 @@ export default {
 //   }
 form {
   // padding: 10px 30px 30px;
+  text-align: center;
   background: #ffefa3;
   border: none;
   border-bottom-right-radius: 10px;

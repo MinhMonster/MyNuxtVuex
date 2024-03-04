@@ -6,6 +6,7 @@
         class="client-main scroll-y"
         :style="styleMain"
         v-on:wheel="scroll()"
+        v-on:scroll="scroll()"
       >
         <Nuxt />
       </v-container>
