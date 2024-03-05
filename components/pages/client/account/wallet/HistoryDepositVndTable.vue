@@ -65,7 +65,6 @@
       <div v-if="!histories.length" class="text-center">
         <span>Bạn chưa có giao dịch nào!</span>
       </div>
-      <ModalDetaiVnd ref="modal" :history="history" />
     </div>
   </client-only>
 </template>
@@ -73,14 +72,12 @@
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
-import ModalDetaiVnd from "@/components/pages/client/account/wallet/ModalDetaiVnd";
 
 export default {
   layout: "clientLayout",
   components: {
     Loading,
     ButtonCoppy,
-    ModalDetaiVnd,
   },
   props: {
     histories: {
@@ -106,10 +103,9 @@ export default {
   computed: {},
   mounted() {},
   methods: {
-    showModal(history){
-      this.history = history;
-      this.$refs.modal.show();
-    }
+    showModal(history) {
+      this.$emit("show", history);
+    },
   },
 };
 </script>

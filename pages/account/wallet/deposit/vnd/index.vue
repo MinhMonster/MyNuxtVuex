@@ -158,7 +158,12 @@
         </v-row>
       </template>
       <template v-if="token" #table>
-        <HistoryDepositVndTable :histories="histories" :user="user" />
+        <HistoryDepositVndTable
+          :histories="histories"
+          :user="user"
+          @show="showModalDetail"
+        />
+        <ModalDetaiVnd ref="modalDetail" :history="history" />
         <Pagination
           v-if="historyMeta && historyMeta.pages > 1"
           :meta="historyMeta"
@@ -181,6 +186,7 @@ import HistoryDepositVndTable from "@/components/pages/client/account/wallet/His
 import Pagination from "@/components/global/molecules/common/Pagination";
 import HomePage from "@/components/pages/home/HomePage";
 import BaseInputCash from "@/components/base/BaseInputCash";
+import ModalDetaiVnd from "@/components/pages/client/account/wallet/ModalDetaiVnd";
 
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
@@ -203,9 +209,11 @@ export default {
     HistoryDepositVndTable,
     Pagination,
     BaseInputCash,
+    ModalDetaiVnd,
   },
   data() {
     return {
+      history: null,
       isLoading: false,
       isCheck: false,
       walletOptions: [
@@ -276,10 +284,10 @@ export default {
       const history = res.data.depositVnd;
 
       if (history) {
+        await this.showModalDetail(history);
         await this.resetInput();
         await this.setQuery({ page: 1 });
         this.historyWalletDepositVnds();
-        this.$router.push(`/account/wallet/deposit/vnd/${history.ID}`);
       }
     },
     setMoneyOut(name, value) {
@@ -310,7 +318,7 @@ export default {
     resetInput() {
       this.money = {
         walletType: null,
-        amount: null,
+        amount: "",
         bankAccountName: "",
         bankAccountNumber: "",
       };
@@ -325,6 +333,12 @@ export default {
     },
     showModal() {
       this.$refs.modal.show();
+    },
+    showModalDetail(history) {
+      this.history = history;
+      setTimeout(() => {
+        this.$refs.modalDetail.show();
+      }, 200);
     },
   },
   head() {
