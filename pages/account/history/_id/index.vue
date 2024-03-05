@@ -125,6 +125,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 
 export default {
+  middleware: ["authentication"],
   layout: "clientLayout",
 
   components: {
@@ -156,11 +157,7 @@ export default {
     },
     async fetchHistory() {
       this.ready = false;
-      if (!this.token) {
-        this.$router.push("/login");
-      } else {
-        await this.historyBuyAccount(this.historyId);
-      }
+      await this.historyBuyAccount(this.historyId);
       this.ready = true;
     },
     goBack() {

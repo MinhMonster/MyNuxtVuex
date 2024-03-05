@@ -104,6 +104,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 
 export default {
+  middleware: ["authentication"],
   layout: "clientLayout",
 
   components: {
@@ -115,17 +116,7 @@ export default {
     ...mapState(["token", "user"]),
   },
   async mounted() {
-    if (!this.token) {
-      await this.getToken();
-      if (!this.token) {
-        await this.logout();
-        window.location.href = "/login";
-      } else {
-        window.location.href = "/account/profile";
-      }
-    } else {
-      this.fetchAccount();
-    }
+    this.fetchAccount();
   },
   methods: {
     ...mapActions(["logout", "fetchUser", "getToken"]),
@@ -150,7 +141,7 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
-        { property: 'og:image', content: '/banner.jpg' },
+        { property: "og:image", content: "/banner.jpg" },
       ],
     };
   },

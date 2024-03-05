@@ -94,6 +94,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 
 export default {
+  middleware: ["authentication"],
   layout: "clientLayout",
 
   components: { Loading, Pagination, HomePage },
@@ -110,13 +111,9 @@ export default {
     },
   },
   async mounted() {
-    if (!this.token) {
-      this.$router.push("/login");
-    } else {
-      await this.resetQuery();
-      await this.setQuery({ page: this.queryPage });
-      this.onPageChange(this.queryPage);
-    }
+    await this.resetQuery();
+    await this.setQuery({ page: this.queryPage });
+    this.onPageChange(this.queryPage);
   },
   methods: {
     ...mapActions(["historyChangeMoneys", "setQuery", "resetQuery"]),

@@ -91,7 +91,7 @@
         <!-- <div class="wrapper"> -->
         <!-- </div> -->
       </template>
-      <template #col-right>
+      <template v-if="token" #col-right>
         <v-row>
           <v-col cols="12" sm="12" md="12" lg="12" class="size">
             <div class="page-body">
@@ -100,7 +100,7 @@
           </v-col>
         </v-row>
       </template>
-      <template #table>
+      <template v-if="token" #table>
         <HistoryDepositCardTable :histories="histories" :user="user" />
         <Pagination
           v-if="historyMeta && historyMeta.pages > 1"
@@ -128,6 +128,7 @@ const global = createNamespacedHelpers("global");
 import mixins from "@/mixins/index";
 
 export default {
+  middleware: ["authentication"],
   mixins: [mixins],
   layout: "clientLayout",
   data() {
@@ -245,11 +246,7 @@ export default {
     },
   },
   mounted() {
-    if (!this.token) {
-      this.$router.push("/login");
-    } else {
-      this.onPageChange(this.queryPage);
-    }
+    this.onPageChange(this.queryPage);
   },
   methods: {
     ...mapActions([
