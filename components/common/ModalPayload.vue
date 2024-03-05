@@ -11,7 +11,7 @@
     @hide="close()"
     class="modal-content"
   >
-    <v-card>
+    <v-card :max-height="height">
       <BaseSvg class="close" color="red" @click="close()" name="close" />
       <v-card-title class="title-modal text-menu-main">
         {{ title }}
@@ -77,6 +77,10 @@ export default {
     size: {
       type: String,
       default: "lg",
+    },
+    height: {
+      type: String,
+      default: "auto",
     },
     hiddenFooter: Boolean,
   },

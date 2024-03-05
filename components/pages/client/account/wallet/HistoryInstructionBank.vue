@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pd-5px">
     <div id="next-top" class="title text-center">
       Hướng dẫn nạp tiền qua {{ history.walletType }}
     </div>
@@ -52,3 +52,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+div.info-atm-momo {
+  border: none !important;
+}
+</style>

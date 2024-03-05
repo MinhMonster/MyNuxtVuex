@@ -54,7 +54,7 @@
               <v-btn
                 color="info"
                 class="text-white pd-10px"
-                :to="`/account/wallet/deposit/vnd/${history.ID}`"
+                @click="showModal(history)"
               >
                 Xem
               </v-btn>
@@ -65,6 +65,7 @@
       <div v-if="!histories.length" class="text-center">
         <span>Bạn chưa có giao dịch nào!</span>
       </div>
+      <ModalDetaiVnd ref="modal" :history="history" />
     </div>
   </client-only>
 </template>
@@ -72,14 +73,14 @@
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
-import ModalPayload from "@/components/common/ModalPayload";
+import ModalDetaiVnd from "@/components/pages/client/account/wallet/ModalDetaiVnd";
 
 export default {
   layout: "clientLayout",
   components: {
     Loading,
     ButtonCoppy,
-    ModalPayload,
+    ModalDetaiVnd,
   },
   props: {
     histories: {
@@ -98,11 +99,18 @@ export default {
       isCheck: false,
       moneyReceived: 0,
       isFailed: false,
+      history: null,
     };
   },
 
   computed: {},
   mounted() {},
-  methods: {},
+  methods: {
+    showModal(history){
+      this.history = history;
+      this.$refs.modal.show();
+    }
+  },
 };
 </script>
+

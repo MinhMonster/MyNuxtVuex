@@ -6,12 +6,12 @@
           <BaseSvg
             id="btn-admin"
             class="icon-menu"
-            title="Admin"
-            aria-label="Admin"
+            title="Hỗ trợ"
+            aria-label="Hỗ trợ"
             name="support"
           />
         </div>
-        <span class="title-menu-buttom">Admin</span>
+        <span class="title-menu-buttom">Hỗ trợ</span>
       </nuxt-link>
 
       <ModalGame />

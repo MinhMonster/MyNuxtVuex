@@ -169,6 +169,7 @@
   </client-only>
 </template>
 
+
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
