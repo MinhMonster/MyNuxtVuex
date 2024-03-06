@@ -357,10 +357,6 @@ export default {
     queryForm() {
       return _.cloneDeep(this.query);
     },
-    path() {
-      const path = this.$route.path;
-      return path;
-    },
     whereId() {
       const Id = Number(this.id);
       return Id ? "id=" + Id : "";

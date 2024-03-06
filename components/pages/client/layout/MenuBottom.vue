@@ -66,8 +66,7 @@ export default {
   },
   methods: {
     nextPath(path) {
-      const routePath = this.$route.path;
-      if (routePath === path) {
+      if (this.path === path) {
         this.reset();
       } else {
         this.$router.push(path);

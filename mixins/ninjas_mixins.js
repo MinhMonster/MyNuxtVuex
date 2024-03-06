@@ -20,10 +20,6 @@ export default {
       cash: "query.q.cash",
       id: "query.q.id",
     }),
-    path() {
-      const path = this.$route.path;
-      return path;
-    },
     queryId() {
       return Number(this.$route.query.id) || null;
     },

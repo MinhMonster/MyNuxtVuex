@@ -76,10 +76,7 @@ export default {
     ...mapFields("global", {
       ready: "ready",
     }),
-    path() {
-      const path = this.$route.path;
-      return path;
-    },
+
     isQuery() {
       const query = this.$route.query;
       return !_.isEmpty(query);
