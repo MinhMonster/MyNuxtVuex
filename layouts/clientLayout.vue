@@ -54,19 +54,15 @@ export default {
   watch: {
     token: {
       async handler(newValue, oldValue) {
-        if (!this.token) {
-          if (this.path.includes("/account/")) {
-            this.$router.push("/");
-          }
+        if (!this.token && this.path.includes("/account/")) {
+          this.$router.push("/");
         }
       },
     },
     path: {
       async handler(newValue, oldValue) {
-        if (!this.token) {
-          if (this.path.includes("/account/")) {
-            this.$router.push("/");
-          }
+        if (!this.token && this.path.includes("/account/")) {
+          this.$router.push("/");
         }
       },
     },
