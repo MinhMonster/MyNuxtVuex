@@ -49,8 +49,9 @@
               <v-btn
                 color="info"
                 class="text-white pd-10px"
-                :to="`/account/wallet/deposit/card/${history.ID}`"
-                >Xem
+                @click="$emit('show', history)"
+              >
+                Xem
               </v-btn>
             </td>
           </tr>
@@ -64,17 +65,7 @@
 </template>
 
 <script>
-import Loading from "@/components/global/molecules/common/Loading";
-import ButtonCoppy from "@/components/common/ButtonCoppy";
-import ModalPayload from "@/components/common/ModalPayload";
-
 export default {
-  layout: "clientLayout",
-  components: {
-    Loading,
-    ButtonCoppy,
-    ModalPayload,
-  },
   props: {
     histories: {
       type: Array,
@@ -85,19 +76,6 @@ export default {
       default: () => {},
     },
   },
-  data() {
-    return {
-      isShow: false,
-      isLoading: false,
-      isCheck: false,
-      moneyReceived: 0,
-      isFailed: false,
-    };
-  },
-
-  computed: {},
-  mounted() {},
-  methods: {},
 };
 </script>
 <style lang="scss" scoped>

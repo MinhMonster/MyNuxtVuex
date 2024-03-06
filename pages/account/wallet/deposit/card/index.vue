@@ -101,25 +101,30 @@
         </v-row>
       </template>
       <template v-if="token" #table>
-        <HistoryDepositCardTable :histories="histories" :user="user" />
+        <HistoryDepositCardTable
+          :histories="histories"
+          :user="user"
+          @show="showModalDetail"
+        />
         <Pagination
           v-if="historyMeta && historyMeta.pages > 1"
           :meta="historyMeta"
           @change="onPageChange"
         ></Pagination>
+        <ModalDetaiCard ref="modalDetail" :history="history" />
       </template>
     </HomePage>
   </client-only>
 </template>
 
 <script>
+import HomePage from "@/components/pages/home/HomePage";
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
-import ButtonCoppy from "@/components/common/ButtonCoppy";
 import DepositCardInstructions from "@/components/common/DepositCardInstructions";
 import HistoryDepositCardTable from "@/components/pages/client/account/wallet/HistoryDepositCardTable";
 import Pagination from "@/components/global/molecules/common/Pagination";
-import HomePage from "@/components/pages/home/HomePage";
+import ModalDetaiCard from "@/components/pages/client/account/wallet/ModalDetaiCard";
 
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
@@ -131,10 +136,19 @@ export default {
   middleware: ["authentication"],
   mixins: [mixins],
   layout: "clientLayout",
+  components: {
+    HomePage,
+    Loading,
+    FormValidator,
+    DepositCardInstructions,
+    HistoryDepositCardTable,
+    Pagination,
+    ModalDetaiCard,
+  },
   data() {
     return {
+      history: null,
       isLoading: false,
-      isCheck: false,
       walletOptions: [
         {
           text: "Chọn loại thẻ",
@@ -222,15 +236,7 @@ export default {
       title: "Nạp Thẻ Tự Động",
     };
   },
-  components: {
-    HomePage,
-    Loading,
-    FormValidator,
-    ButtonCoppy,
-    DepositCardInstructions,
-    HistoryDepositCardTable,
-    Pagination,
-  },
+
   computed: {
     ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
@@ -263,13 +269,13 @@ export default {
         input: this.card,
       });
       this.isLoading = false;
-      const depositCardId = res.data.depositCardId;
+      const history = res.data.depositCard;
 
-      if (depositCardId) {
+      if (history) {
+        await this.showModalDetail(history);
         await this.resetInput();
         await this.setQuery({ page: 1 });
         this.fetchHistoryWalletDepositCards();
-        this.$router.push(`/account/wallet/deposit/card/${depositCardId}`);
       }
     },
     setMoneyOut() {
@@ -311,6 +317,12 @@ export default {
     },
     reload() {
       this.onPageChange(this.pageSave);
+    },
+    showModalDetail(history) {
+      this.history = history;
+      setTimeout(() => {
+        this.$refs.modalDetail.show();
+      }, 200);
     },
   },
   head() {

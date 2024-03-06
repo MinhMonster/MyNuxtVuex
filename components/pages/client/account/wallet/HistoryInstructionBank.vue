@@ -32,6 +32,8 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 import ButtonCoppy from "@/components/common/ButtonCoppy";
 import AdminInbox from "@/components/common/client/AdminInbox";
 
@@ -45,10 +47,9 @@ export default {
       type: Object,
       default: () => {},
     },
-    user: {
-      type: Object,
-      default: () => {},
-    },
+  },
+  computed: {
+    ...mapState("home/users", ["user"]),
   },
 };
 </script>

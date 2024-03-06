@@ -215,7 +215,6 @@ export default {
     return {
       history: null,
       isLoading: false,
-      isCheck: false,
       walletOptions: [
         {
           text: "Chọn hình thức nạp tiền",

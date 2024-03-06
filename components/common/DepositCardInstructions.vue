@@ -1,33 +1,25 @@
 <template>
-  <div class="info-content">
-    <p>
-      <span class="text-main text-18-700"><u>Ghi chú:</u></span>
-    </p>
+  <div class="info-content pd-5px">
+    <div class="text-main text-18-700"><u>Ghi chú:</u></div>
     <div class="text-13-500">
-      <p>
-        <span
-          >Nạp thẻ tự động không trừ chiết khấu.<br />
-          <span class="title text-13-500">Ví dụ: nạp 100k Card = 100k Shop.</span></span
-        >
-      </p>
-      <p>
-        <span
-          >Thẻ nạp tự động <span class=" title"><u>SAI MỆNH GIÁ</u></span
-          ><strong>&nbsp;</strong>mất 100%&nbsp;giá trị vui lòng xem xét kĩ
-          trước khi nạp</span
-        >
-      </p>
+      <div>
+        - Nạp thẻ tự động không trừ chiết khấu.<br />
+        <span class="title text-13-500">
+          - Ví dụ: nạp 100k Card = 100k Shop.
+        </span>
+      </div>
+      <div>
+        - Thẻ nạp tự động <span class="title"><u>SAI MỆNH GIÁ</u></span
+        ><strong>&nbsp;</strong>mất 100%&nbsp;giá trị vui lòng xem xét kĩ trước
+        khi nạp
+      </div>
 
-      <p>
-        <span>Nếu Thẻ&nbsp;đúng nạp báo&nbsp;sai nhưng thẻ chưa sử dụng. </span>
-      </p>
+      <div>- Nếu Thẻ&nbsp;đúng nạp báo&nbsp;sai nhưng thẻ chưa sử dụng.</div>
 
-      <p>
-        <span
-          >=> Quý khách nạp lại bằng cách sửa số seri phía cuối cùng thành x
-          hoặc y,z,...Rồi nạp lại</span
-        >
-      </p>
+      <div>
+        => Quý khách nạp lại bằng cách sửa số seri phía cuối cùng thành x hoặc
+        y,z,...Rồi nạp lại
+      </div>
     </div>
   </div>
 </template>
@@ -49,7 +41,9 @@ export default {
 .v-application .title {
   font-size: 14px !important;
 }
-
+.v-application p {
+  margin-bottom: 8px !important;
+}
 .info-content {
   min-height: 270px;
 }
