@@ -51,7 +51,26 @@ export default {
       isShowButton: false,
     };
   },
-
+  watch: {
+    token: {
+      async handler(newValue, oldValue) {
+        if (!this.token) {
+          if (this.path.includes("/account/")) {
+            this.$router.push("/");
+          }
+        }
+      },
+    },
+    path: {
+      async handler(newValue, oldValue) {
+        if (!this.token) {
+          if (this.path.includes("/account/")) {
+            this.$router.push("/");
+          }
+        }
+      },
+    },
+  },
   computed: {
     ...mapState("home/users", ["token"]),
     ...mapFields("global", {
