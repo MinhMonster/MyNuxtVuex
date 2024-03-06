@@ -3,7 +3,7 @@
   <v-dialog
     v-if="dialog"
     v-model="dialog"
-    :id="`${(isAvatar ? 'theme-avatar' : '', isThemeDark ? 'theme-dark' : '')}`"
+    :id="`${isThemeDark ? 'theme-dark' : ''}`"
     :title="title"
     scrollable
     :size="size"
@@ -87,10 +87,6 @@ export default {
   mounted() {},
   computed: {
     ...mapFields("global", { isThemeDark: "isThemeDark" }),
-    isAvatar() {
-      const path = this.$route.path;
-      return path.includes("teamobi/avatar");
-    },
   },
   methods: {
     show() {

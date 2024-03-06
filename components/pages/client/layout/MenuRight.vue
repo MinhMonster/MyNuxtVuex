@@ -37,13 +37,11 @@ export default {
     };
   },
   async mounted() {
-    // this.$nextTick(function () {
     if (this.isMobile) {
       this.showMenuRight = false;
     } else {
       this.showMenuRight = true;
     }
-    // });
   },
   computed: {
     ...mapState("home/users", ["token", "user"]),

@@ -241,13 +241,10 @@ export default {
         input: this.card,
       });
       this.isLoading = false;
-      const depositCardId = res.data.depositCardId;
+      const depositCard = res.data.depositCard;
 
-      if (depositCardId) {
-        await this.resetInput();
-        await this.setQuery({ page: 1 });
-        this.fetchHistoryWalletDepositCards();
-        this.$router.push(`/account/wallet/deposit/card/${depositCardId}`);
+      if (depositCard) {
+        this.$router.push(`/account/wallet/deposit/card`);
       }
     },
 

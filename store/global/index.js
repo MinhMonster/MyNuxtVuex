@@ -31,6 +31,9 @@ export default {
     },
   },
   actions: {
+    openModalLogin({ commit }) {
+      commit(SET_STATE, { showLoginRegister: true, isFormLoginRegister: 'login', });
+    },
     setValidationErrors({ commit }, payload) {
       commit(SET_VALIDATION_ERRORS, payload);
     },

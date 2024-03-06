@@ -107,7 +107,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
             .then(async (result) => {
               store.dispatch("home/users/logout");
               if (result.isConfirmed) {
-                redirect('/login')
+                store.dispatch("global/openModalLogin");
               } else {
                 redirect('/')
               }
@@ -192,7 +192,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     if (code === 400) {
       redirect('/400')
     }
-  
+
   })
   inject("api", api);
 }

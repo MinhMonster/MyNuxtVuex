@@ -21,7 +21,10 @@
           <div class="member">
             <div v-if="!user" class="mt-4">
               <div class="flex justify-center">
-                <div class="login-btn cursor-pointer mr-1" @click="nextLoginRegister('login')">
+                <div
+                  class="login-btn cursor-pointer mr-1"
+                  @click="nextLoginRegister('login')"
+                >
                   <span>Đăng nhập</span>
                 </div>
                 <div
@@ -145,22 +148,13 @@ export default {
     ...mapActions(["logout", "fetchUser", "loginFb"]),
     async logoutUser() {
       await this.logout();
-      // this.$router.push("/login");
     },
     nextLoginRegister(value) {
-      // this.$router.push("/login");
       if (this.isMobile) {
         this.$emit("close");
       }
-        this.showModalLoginRegister(value);
+      this.showModalLoginRegister(value);
     },
-    // nextRegister() {
-    //   // this.$router.push("/register");
-    //   if (this.isMobile) {
-    //     this.$emit("close");
-    //   }
-    //   this.showModalRegister();
-    // },
   },
 };
 </script>

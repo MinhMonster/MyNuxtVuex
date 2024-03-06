@@ -54,7 +54,7 @@
               <v-btn
                 color="info"
                 class="text-white pd-10px"
-                @click="showModal(history)"
+                @click="$emit('show', history)"
               >
                 Xem
               </v-btn>
@@ -70,15 +70,7 @@
 </template>
 
 <script>
-import Loading from "@/components/global/molecules/common/Loading";
-import ButtonCoppy from "@/components/common/ButtonCoppy";
-
 export default {
-  layout: "clientLayout",
-  components: {
-    Loading,
-    ButtonCoppy,
-  },
   props: {
     histories: {
       type: Array,
@@ -87,24 +79,6 @@ export default {
     user: {
       type: Object,
       default: () => {},
-    },
-  },
-  data() {
-    return {
-      isShow: false,
-      isLoading: false,
-      isCheck: false,
-      moneyReceived: 0,
-      isFailed: false,
-      history: null,
-    };
-  },
-
-  computed: {},
-  mounted() {},
-  methods: {
-    showModal(history) {
-      this.$emit("show", history);
     },
   },
 };

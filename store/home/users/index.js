@@ -198,7 +198,6 @@ export default {
     async logout({ commit }) {
       await this.$repositories.homeUsers.logout();
       commit(AUTH_LOGOUT);
-      // window.location.href = "/login";
     },
   },
   mutations: {

@@ -58,71 +58,19 @@ export default {
     ModalGame,
     ModalSetting,
   },
-  props: {},
-  data() {
-    return {
-      showModalGame: false,
-    };
-  },
+
   computed: {
-    ...mapFields("home/users", ["token", "user"]),
     ...mapFields("global", {
       ready: "ready",
     }),
-    isHome() {
-      return this.$route.path == "/";
-    },
-    isLogin() {
-      const path = this.$route.path;
-      return path.includes("login") || path.includes("register");
-    },
   },
   methods: {
-    nextProfile() {
-      if (this.token) {
-        this.$router.push("/account/profile");
-      } else {
-        this.disabledLogin();
-      }
-    },
-    nextHistory() {
-      if (this.token) {
-        this.$router.push("/account/history");
-      } else {
-        this.disabledLogin();
-      }
-    },
     nextPath(path) {
       const routePath = this.$route.path;
       if (routePath === path) {
         this.reset();
       } else {
         this.$router.push(path);
-      }
-    },
-    nextWalletDeposit() {
-      if (this.token) {
-        this.$router.push("/account/wallet/deposit/vnd");
-      } else {
-        this.disabledLogin();
-      }
-    },
-    disabledLogin() {
-      if (!this.isLogin) {
-        this.$router.push("/login");
-      } else {
-        this.showSwal({
-          title: "Bạn chưa đăng nhập",
-          html: "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!",
-        });
-      }
-    },
-
-    nextHome() {
-      if (this.isHome) {
-        this.reset();
-      } else {
-        this.$router.push("/");
       }
     },
     async reset() {
