@@ -96,7 +96,6 @@
 
 <script>
 import HomePage from "@/components/pages/home/HomePage";
-
 import Loading from "@/components/global/molecules/common/Loading";
 
 import { mapFields } from "vuex-map-fields";

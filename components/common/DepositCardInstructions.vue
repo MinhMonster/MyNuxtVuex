@@ -24,18 +24,6 @@
   </div>
 </template>
 <script>
-import ButtonCoppy from "@/components/common/ButtonCoppy";
-import AdminInbox from "@/components/common/client/AdminInbox";
-
-export default {
-  components: { ButtonCoppy, AdminInbox },
-  props: {
-    history: {
-      type: Object,
-      default: () => {},
-    },
-  },
-};
 </script>
 <style lang="scss" scoped>
 .v-application .title {

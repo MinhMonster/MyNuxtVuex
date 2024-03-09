@@ -3,7 +3,9 @@
   <div>
     <ModalPayload
       ref="modal"
-      :title="`${isFormLoginRegister == 'login' ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'} TÀI KHOẢN`"
+      :title="`${
+        isFormLoginRegister == 'login' ? 'ĐĂNG NHẬP' : 'ĐĂNG KÝ'
+      } TÀI KHOẢN`"
       size="md"
       hiddenFooter
       @hide="close"
@@ -50,7 +52,6 @@ export default {
       isLoading: false,
     };
   },
-  async mounted() {},
   computed: {
     ...mapState("home/users", ["token", "user"]),
     ...mapFields("global", {

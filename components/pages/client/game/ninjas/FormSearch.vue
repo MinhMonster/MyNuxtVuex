@@ -382,7 +382,6 @@ export default {
         : "";
     },
   },
-  async mounted() {},
   methods: {
     ...mapActions("home/game/ninjas", ["resetQuery", "setQuery"]),
     search() {

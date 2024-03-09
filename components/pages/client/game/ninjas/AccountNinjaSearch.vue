@@ -101,7 +101,6 @@ export default {
       );
     },
   },
-  mounted() {},
   methods: {
     async nextPath(type, path) {
       await this.$router.push(path);

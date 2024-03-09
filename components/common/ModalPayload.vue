@@ -84,7 +84,6 @@ export default {
     },
     hiddenFooter: Boolean,
   },
-  mounted() {},
   computed: {
     ...mapFields("global", { isThemeDark: "isThemeDark" }),
   },

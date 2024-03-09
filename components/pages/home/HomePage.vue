@@ -41,9 +41,7 @@
   
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
-
 import { mapFields } from "vuex-map-fields";
-import { mapState } from "vuex";
 
 export default {
   components: { Loading },
@@ -100,7 +98,6 @@ export default {
       return this.goHome;
     },
   },
-  mounted() {},
   methods: {
     async onGoBack() {
       if (this.isGoHome) {

@@ -1,7 +1,6 @@
 
 
 
-import { createNamespacedHelpers } from "vuex";
 import { mapFields } from "vuex-map-fields";
 
 export default {

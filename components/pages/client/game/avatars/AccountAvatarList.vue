@@ -47,7 +47,6 @@ export default {
       isLoading: false,
     };
   },
-  async mounted() {},
   computed: {
     ...mapFields("home/game/avatars", {
       accountAvatars: "accountAvatars",

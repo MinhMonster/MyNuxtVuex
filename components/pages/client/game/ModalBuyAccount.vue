@@ -107,7 +107,6 @@ export default {
       isLoading: false,
     };
   },
-  async mounted() {},
   computed: {
     ...mapState("home/users", ["token", "user"]),
     price() {
@@ -119,7 +118,7 @@ export default {
     openModalLogin() {
       this.$refs.modal.close();
       setTimeout(() => {
-        this.showModalLoginRegister('login');
+        this.showModalLoginRegister("login");
       }, 200);
     },
 

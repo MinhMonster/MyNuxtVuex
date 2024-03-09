@@ -82,14 +82,6 @@ export default {
       default: "",
     },
   },
-  data() {
-    return {
-      isShow: false,
-      isBank: false,
-    };
-  },
-  async mounted() {},
-  computed: {},
   methods: {
     showModal() {
       this.$refs.modal.show();

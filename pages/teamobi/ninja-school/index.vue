@@ -33,11 +33,9 @@ export default {
     AccountNinjaSearch,
     AccountNinjaList,
   },
-  computed: {},
   async mounted() {
     this.getAccountNinjas();
   },
-  methods: {},
   data() {
     return {
       title:

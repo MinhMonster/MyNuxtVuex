@@ -40,7 +40,6 @@ export default {
   async mounted() {
     this.getAccountNinjas("VIP");
   },
-  methods: {},
   data() {
     return {
       title:

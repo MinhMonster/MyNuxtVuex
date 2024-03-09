@@ -18,25 +18,18 @@
       <span class="account-cash-atm">
         {{ cash_atm(accountAvatar.price) }} ATM-MOMO</span
       >
-      <span class="account-ingame">
-        @{{ accountAvatar.inGame }}
-      </span>
+      <span class="account-ingame"> @{{ accountAvatar.inGame }} </span>
     </div>
   </client-only>
 </template>
 <script>
 export default {
-  components: {},
   props: {
     accountAvatar: {
       type: Object,
       default: () => {},
     },
   },
-  mounted() {},
-
-  computed: {},
-  methods: {},
 };
 </script>
 <style lang="scss" scoped>
@@ -58,6 +51,11 @@ export default {
     &.full {
       width: 100%;
       margin-left: 0px;
+    }
+    @media (max-width: 600px) {
+      &.image-account {
+        height: 100%;
+      }
     }
     // max-height: 200px;
   }

@@ -23,9 +23,6 @@ export default {
       isCheck: false,
     };
   },
-  components: {},
-  computed: {},
-  mounted() {},
   methods: {
     onCopy(result) {
       const self = this;

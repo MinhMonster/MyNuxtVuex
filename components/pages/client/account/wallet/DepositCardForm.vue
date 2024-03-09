@@ -226,7 +226,6 @@ export default {
 
     ...mapState(["token", "user"]),
   },
-  mounted() {},
   methods: {
     ...mapActions([
       "depositCard",
@@ -260,11 +259,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-form {
-  &.form {
-    // background: #171e28 !important;
-  }
-}
 .group-btn {
   justify-content: space-between;
 }

@@ -48,7 +48,7 @@ import { mapFields } from "vuex-map-fields";
 
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
-import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
+// import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
@@ -64,7 +64,7 @@ export default {
   components: {
     Loading,
     FormValidator,
-    ButtonLoginFacebook,
+    // ButtonLoginFacebook,
   },
   computed: {
     ...mapState(["token"]),
@@ -72,7 +72,6 @@ export default {
       ready: "ready",
     }),
   },
-  mounted() {},
   methods: {
     ...mapActions(["login", "logout", "fetchUser", "loginFb"]),
     async loginUser() {
