@@ -1,18 +1,7 @@
 <template>
   <client-only>
     <div id="menu-bottom">
-      <nuxt-link to="/admin-information"
-        ><div class="footer_icon service">
-          <BaseSvg
-            id="btn-admin"
-            class="icon-menu"
-            title="Hỗ trợ"
-            aria-label="Hỗ trợ"
-            name="support"
-          />
-        </div>
-        <span class="title-menu-buttom">Hỗ trợ</span>
-      </nuxt-link>
+      <ModalSupport />
 
       <ModalGame />
 
@@ -52,11 +41,13 @@
 import { mapFields } from "vuex-map-fields";
 import ModalGame from "@/components/pages/client/layout/ModalGame";
 import ModalSetting from "@/components/pages/client/layout/ModalSetting";
+import ModalSupport from "@/components/pages/client/layout/ModalSupport";
 
 export default {
   components: {
     ModalGame,
     ModalSetting,
+    ModalSupport,
   },
 
   computed: {

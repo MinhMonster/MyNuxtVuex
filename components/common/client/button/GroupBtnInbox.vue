@@ -1,5 +1,5 @@
 <template>
-  <v-row class="mt-2">
+  <v-row class="pd-7px">
     <v-col cols="6">
       <a href="https://zalo.me/0961646828" target="_blank">
         <div class="btn-buy-account-hover">
