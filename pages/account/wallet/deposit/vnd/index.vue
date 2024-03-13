@@ -10,7 +10,7 @@
       :col-right="4"
       table
     >
-      <template v-if="token && user && ready" #body>
+      <template v-if="ready" #body>
         <form class="form">
           <div class="content-main">
             Chuyển tiền cho Admin xong bạn vào đây để tạo thông báo nạp tiền
@@ -143,7 +143,7 @@
         <!-- <div class="wrapper"> -->
         <!-- </div> -->
       </template>
-      <template v-if="token" #col-right>
+      <template #col-right>
         <v-row>
           <v-col cols="12" sm="6" md="6" lg="12" class="size">
             <div class="page-body">
@@ -157,7 +157,7 @@
           </v-col>
         </v-row>
       </template>
-      <template v-if="token" #table>
+      <template #table>
         <HistoryDepositVndTable
           :histories="histories"
           :user="user"
@@ -322,10 +322,6 @@ export default {
         bankAccountNumber: "",
       };
       this.moneyReceived = 0;
-    },
-    goBack() {
-      // this.$router.push(`/`);
-      // this.nextOldPath();
     },
     reload() {
       this.onPageChange(this.pageSave);

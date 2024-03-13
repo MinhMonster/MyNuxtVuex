@@ -13,8 +13,6 @@
 </template>
 <script>
 export default {
-  name: "ImageCard",
-  components: {},
   props: {
     game: {
       type: Object,

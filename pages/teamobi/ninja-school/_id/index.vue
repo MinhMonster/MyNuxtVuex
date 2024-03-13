@@ -7,9 +7,9 @@
       <template #table>
         <div class="page-body bg-none mt--2">
           <div class="title-category">
-            <div data-v-53350ac5="" class="title">
-              <center data-v-53350ac5="">
-                <h3 data-v-53350ac5="">Danh Sách Nick Gợi Ý</h3>
+            <div class="title">
+              <center>
+                <h3>Danh Sách Nick Gợi Ý</h3>
               </center>
             </div>
           </div>

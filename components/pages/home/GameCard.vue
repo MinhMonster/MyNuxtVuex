@@ -4,7 +4,10 @@
       <ImageCard :game="game" />
       <v-row class="account-body">
         <v-col cols="12"
-          ><v-btn class="account-thongtin break-line-1 btn-main" :title="game.title">
+          ><v-btn
+            class="account-thongtin break-line-1 btn-main"
+            :title="game.title"
+          >
             {{ game.title }}</v-btn
           ></v-col
         >
@@ -17,7 +20,6 @@
 import ImageCard from "@/components/pages/home/ImageCard";
 
 export default {
-  name: "GameCard",
   components: { ImageCard },
   props: {
     game: {

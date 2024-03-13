@@ -24,7 +24,6 @@ import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import AccountAvatarSearch from "@/components/pages/client/game/avatars/AccountAvatarSearch";
 import AccountAvatarList from "@/components/pages/client/game/avatars/AccountAvatarList";
-import Loading from "@/components/global/molecules/common/Loading";
 
 export default {
   layout: "clientLayout",
@@ -33,7 +32,6 @@ export default {
     HomePage,
     AccountAvatarSearch,
     AccountAvatarList,
-    Loading,
   },
   computed: {
     ...mapFields("global", {

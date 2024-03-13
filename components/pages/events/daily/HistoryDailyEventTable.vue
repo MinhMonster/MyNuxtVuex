@@ -34,7 +34,6 @@
 
 <script>
 export default {
-  components: {},
   props: {
     histories: {
       type: Array,

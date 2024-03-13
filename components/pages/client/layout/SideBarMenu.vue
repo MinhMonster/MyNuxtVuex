@@ -58,7 +58,7 @@
             <template v-if="token && user">
               <div class="member-nav-item">
                 <nuxt-link to="/account/profile">
-                  <BaseSvg name="user" />
+                  <BaseSvg name="user-card" />
                   <span class="member-nav-name">Thông tin Cá nhân</span>
                 </nuxt-link>
               </div>

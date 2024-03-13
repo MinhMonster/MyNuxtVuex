@@ -10,7 +10,7 @@
       :col-right="4"
       table
     >
-      <template v-if="token && user && ready" #body>
+      <template v-if="ready" #body>
         <form class="form">
           <v-row>
             <v-col cols="12" sm="6" class="middle">
@@ -91,7 +91,7 @@
         <!-- <div class="wrapper"> -->
         <!-- </div> -->
       </template>
-      <template v-if="token" #col-right>
+      <template #col-right>
         <v-row>
           <v-col cols="12" sm="12" md="12" lg="12" class="size">
             <div class="page-body">
@@ -100,7 +100,7 @@
           </v-col>
         </v-row>
       </template>
-      <template v-if="token" #table>
+      <template #table>
         <HistoryDepositCardTable
           :histories="histories"
           :user="user"
@@ -259,7 +259,6 @@ export default {
       "depositCard",
       "fetchHistoryWalletDepositCards",
       "setQuery",
-      "resetQuery",
     ]),
     ...global.mapActions(["nextOldPath"]),
 
@@ -278,18 +277,6 @@ export default {
         this.fetchHistoryWalletDepositCards();
       }
     },
-    setMoneyOut() {
-      if (this.card.amount < 10000) {
-        this.isFailed = true;
-        this.moneyReceived = "Ít nhất 10.000đ";
-      } else if (this.card.amount > 10000000) {
-        this.isFailed = true;
-        this.moneyReceived = "Tối đa 10 Triệu";
-      } else {
-        this.isFailed = false;
-        this.moneyReceived = this.format_number(this.card.amount * 1.2) + " đ";
-      }
-    },
     async onPageChange(page) {
       this.ready = false;
       await this.setQuery({ page });
@@ -299,9 +286,6 @@ export default {
         : this.$router.push(`/account/wallet/deposit/card?page=${page}`);
       this.ready = true;
     },
-    increaseMoney(history) {
-      return history.moneyFirst < history.moneyLast;
-    },
     resetInput() {
       this.card = {
         telco: null,
@@ -310,10 +294,6 @@ export default {
         amount: null,
       };
       this.moneyReceived = 0;
-    },
-    goBack() {
-      // this.$router.push(`/`);
-      // this.nextOldPath();
     },
     reload() {
       this.onPageChange(this.pageSave);
