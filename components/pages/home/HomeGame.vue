@@ -111,6 +111,13 @@ export default {
           sold: "7185",
         },
         {
+          title: "Avatar XS.DKỳ",
+          path: "/teamobi/avatar",
+          image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
+          numberAccount: "90",
+          sold: "69",
+        },
+        {
           title: "Sự kiện Hằng ngày",
           path: "/events/daily",
           image:
@@ -118,13 +125,7 @@ export default {
           numberAccount: "5245",
           sold: "5144",
         },
-        {
-          title: "Avatar XS.DKỳ",
-          path: "/teamobi/avatar",
-          image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
-          numberAccount: "90",
-          sold: "69",
-        },
+        
         {
           title: "Ngọc Rồng Online",
           path: "/teamobi/ngoc-rong",

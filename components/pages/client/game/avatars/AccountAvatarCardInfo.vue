@@ -31,11 +31,11 @@
       >
       <v-col cols="6"
         ><span class="account-cash"
-          >{{ format_number(accountAvatar.price) }} Card</span
+          >{{ cash_atm(accountAvatar.price) }} Vnđ</span
         ></v-col
       >
       <v-col cols="6">
-        <nuxt-link :to="`/teamobi/avatar/${this.accountAvatar.ID}`">
+        <nuxt-link :to="`/teamobi/avatar/${accountAvatar.ID}`">
           <span class="account-buy"> Xem Nick</span>
         </nuxt-link>
       </v-col>
@@ -79,9 +79,10 @@ export default {
 .account-info {
   width: 100%;
   background: #ffefa3;
-  border-radius: 5px;
+  border-radius: 12px;
   border: 1px solid #663019;
   text-align: center;
+  overflow: hidden;
 
   .account-thongtin,
   .account-cash,

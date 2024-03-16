@@ -15,10 +15,10 @@
         class="image-account"
         :class="{ full: accountAvatar.full }"
       />
-      <span class="account-cash-atm">
+      <!-- <span class="account-cash-atm">
         {{ cash_atm(accountAvatar.price) }} ATM-MOMO</span
       >
-      <span class="account-ingame"> @{{ accountAvatar.inGame }} </span>
+      <span class="account-ingame"> @{{ accountAvatar.inGame }} </span> -->
     </div>
   </client-only>
 </template>
@@ -42,7 +42,7 @@ export default {
   align-items: flex-start;
   // height: 100%;
   overflow: hidden;
-  // border-radius: 5px;
+  border-radius: 12px;
 
   img {
     width: 120%;
