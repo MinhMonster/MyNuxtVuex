@@ -241,3 +241,29 @@ input.v-input {
   background-color: #fff !important;
   color: #0F0F0F !important;
 }
+
+button.btn-login {
+  background: radial-gradient(circle at 50% 100%, #e28637, #9f5424 58%, #561d00 127%) !important; 
+}
+
+.register-btn {
+  position: relative;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // padding: 0 0.235rem;
+  border-radius: 0.32rem;
+  font-size: 12px;
+  box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 49%);
+  border: 1px solid #ffcf9c;
+  font-weight: 700;
+  font-weight: 500;
+  color: #000;
+  /* background-image: linear-gradient(180deg,#fdffdb,#d9e254); */
+  background-image: linear-gradient(180deg, #fdffdb, #ffcf9c);
+
+  &:hover {
+    background-image: linear-gradient(180deg, #ffcf9c, #fdffdb);
+
+  }}

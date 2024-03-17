@@ -1,6 +1,7 @@
 .theme-dark {
   .form-deposit-card {
     border: $border-theme-dark  !important;
+
     form {
       &::-webkit-scrollbar-thumb {
         background: #031019 !important;
@@ -134,12 +135,9 @@
     background-image: linear-gradient(219.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
 
     &:hover {
-      color: #333;
-      background-image: linear-gradient(180deg,
-          #f1f1f1,
-          #f1f1f1 9%,
-          #a4a4a4 58%,
-          #a4a4a4) !important;
+      color: #f1f1f1 !important;
+      background-image: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+
     }
   }
 
