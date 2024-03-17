@@ -1,24 +1,43 @@
 <template>
   <div class="form-search mb-3">
+    <div class="page-body mb-2">
+      <div>
+        ⭐ Tất cả
+        <span class="bold text-13-500">Nick Avatar</span> trên Website đều có
+        Sim đăng ký. Khi các bạn mua thành công sẽ có hướng dẫn chuyển sim cụ
+        thể từng tài khoản.
+      </div>
+      <div>
+        ⭐ Sở hữu <span class="bold text-13-500">Nick Avatar</span> chỉ sau
+        30s-5p thanh toán. Cam kết Acc sạch 100% và có xác nhận từ NPH TeaMobi
+        gửi về.
+      </div>
+    </div>
     <div class="page-body">
       <form class="form">
         <v-row>
           <v-col cols="6" sm="4" md="3" lg="3">
-            <v-select
-              v-model="queryForm.q.cash"
-              :items="cashOptions"
-              @change="setQueryForm()"
-              size="sm"
-            ></v-select>
+            <div class="field v-input form-input">
+              <select v-model="queryForm.q.cash" class="">
+                <option
+                  v-for="(option, index) in cashOptions"
+                  :key="index"
+                  :value="option.value"
+                >
+                  {{ option.text }}
+                </option>
+              </select>
+            </div>
           </v-col>
           <v-col cols="6" sm="4" md="3" lg="3">
-            <v-text-field
-              v-model="queryForm.q.id"
-              type="number"
-              placeholder="Nhập ID nick..."
-              @change="setQueryForm()"
-              @keyup.enter="search()"
-            ></v-text-field>
+            <div class="field">
+              <input
+                v-model="queryForm.q.id"
+                type="number"
+                placeholder="Nhập mã số nick..."
+                class="v-input form-input"
+              />
+            </div>
           </v-col>
           <v-col cols="6" sm="2" md="3" lg="3">
             <v-btn

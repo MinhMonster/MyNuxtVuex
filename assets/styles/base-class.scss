@@ -1,4 +1,3 @@
-
 $fontSize: (
   12,
   13,
@@ -27,6 +26,16 @@ $fontWeight: (
   800
 );
 
+$margins: (
+  -1,
+  -2,
+  -3,
+  -4,
+  -5,
+  -6,
+  -10
+);
+
 @each $fontSize in $fontSize {
   @each $fontWeight in $fontWeight {
     .text-#{$fontSize}-#{$fontWeight} {
@@ -34,4 +43,14 @@ $fontWeight: (
       font-weight: #{$fontWeight} !important;
     }
   }
+}
+
+@each $margins in $margins {
+  .mg-#{$margins}px {
+    margin: #{$margins}px;
+  }
+}
+
+.bold {
+  font-weight: bold;
 }

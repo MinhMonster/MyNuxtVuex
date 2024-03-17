@@ -3,10 +3,9 @@
     <div class="page-body">
       <form class="form" @submit.prevent="search()">
         <v-row>
-          <v-col cols="12" sm="3" md="2">
-            <div class="field">
-              <!-- <form-validator name="level"> -->
-              <select v-model="level" class="v-input form-input">
+          <v-col cols="6" sm="3" md="2">
+            <div class="field v-input form-input">
+              <select v-model="level" class="">
                 <option
                   v-for="(option, index) in levelOptions"
                   :key="index"
@@ -15,18 +14,11 @@
                   {{ option.text }}
                 </option>
               </select>
-              <!-- <v-select
-                v-model="level"
-                :items="levelOptions"
-                size="sm"
-              ></v-select> -->
-              <!-- </form-validator> -->
             </div>
           </v-col>
-          <v-col cols="12" sm="3" md="2">
-            <div class="field">
-              <!-- <form-validator name="cash"> -->
-              <select v-model="cash" class="v-input form-input">
+          <v-col cols="6" sm="3" md="2">
+            <div class="field v-input form-input">
+              <select v-model="cash" class="">
                 <option
                   v-for="(option, index) in cashOptions"
                   :key="index"
@@ -35,18 +27,11 @@
                   {{ option.text }}
                 </option>
               </select>
-              <!-- <v-select
-                v-model="cash"
-                :items="cashOptions"
-                size="sm"
-              ></v-select> -->
-              <!-- </form-validator> -->
             </div>
           </v-col>
-          <v-col cols="12" sm="3" md="2">
-            <div class="field">
-              <!-- <form-validator name="class"> -->
-              <select v-model="classNinjas" class="v-input form-input">
+          <v-col cols="6" sm="3" md="2">
+            <div class="field v-input form-input">
+              <select v-model="classNinjas" class="">
                 <option
                   v-for="(option, index) in classOptions"
                   :key="index"
@@ -55,18 +40,12 @@
                   {{ option.text }}
                 </option>
               </select>
-              <!-- <v-select
-                v-model="classNinjas"
-                :items="classOptions"
-                size="sm"
-              ></v-select> -->
-              <!-- </form-validator> -->
             </div>
           </v-col>
-          <v-col cols="12" sm="3" md="2">
-            <div class="field">
+          <v-col cols="6" sm="3" md="2">
+            <div class="field v-input form-input">
               <!-- <base-select v-model="server" :options="serverOptions" /> -->
-              <select v-model="server" class="v-input form-input">
+              <select v-model="server" class="">
                 <option
                   v-for="(server, sv) in serverOptions"
                   :key="sv"
@@ -81,6 +60,7 @@
             <div class="field">
               <input
                 v-model="id"
+                type="number"
                 placeholder="Nhập mã số nick..."
                 class="v-input form-input"
               />

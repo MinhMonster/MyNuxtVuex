@@ -37,6 +37,19 @@
         <!-- <v-icon>mdi-filter-multiple-outline </v-icon> -->
       </v-btn>
     </v-col>
+    <v-col cols="12">
+      <div class="page-body mg--6px">
+        <div>
+          ⭐ Tất cả <span class="bold text-13-500">Nick Ninja School</span> trên
+          Website đều có Sim đăng ký. Khi các bạn mua thành công sẽ có hướng dẫn
+          chuyển sim cụ thể từng tài khoản.
+        </div>
+        <div>
+          ⭐ Sở hữu <span class="bold text-13-500">Acc Nso</span> chỉ sau 30s-5p thanh toán. Cam kết Acc sạch 100% và có
+          xác nhận từ NPH TeaMobi gửi về.
+        </div>
+      </div>
+    </v-col>
     <v-col v-if="isSearch" cols="12">
       <FormSearch
         :type="type"
