@@ -286,7 +286,7 @@ form.daily-event {
           opacity: 1;
         }
         &.number {
-          height: 80px;
+          height: 80px !important;
           text-shadow: 2px 2px 2px #e28637;
           ::v-deep {
             + .validation {

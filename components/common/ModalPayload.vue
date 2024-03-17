@@ -3,7 +3,7 @@
   <v-dialog
     v-if="dialog"
     v-model="dialog"
-    :id="`${isThemeDark ? 'theme-dark' : ''}`"
+    :id="`${isDark ? 'theme-dark' : ''}`"
     :title="title"
     scrollable
     :size="size"
@@ -56,8 +56,6 @@
 </template>
   
 <script>
-import { mapFields } from "vuex-map-fields";
-
 export default {
   name: "ModalPayload",
   data() {
@@ -83,9 +81,6 @@ export default {
       default: "auto",
     },
     hiddenFooter: Boolean,
-  },
-  computed: {
-    ...mapFields("global", { isThemeDark: "isThemeDark" }),
   },
   methods: {
     show() {

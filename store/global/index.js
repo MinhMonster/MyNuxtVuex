@@ -24,11 +24,6 @@ export default {
     getErrors: (state) => (name) => {
       return _.get(state.validationErrors, name, []);
     },
-
-    hasErrors: (state) => (name) => {
-      const errors = _.get(state.validationErrors, name, []);
-      return !!(errors && (errors.length || Object.keys(errors).length));
-    },
   },
   actions: {
     openModalLogin({ commit }) {

@@ -86,13 +86,17 @@ export default {
       heightHomeRight: "heightHomeRight",
       showLoginRegister: "showLoginRegister",
       showRegister: "showRegister",
-      isFormLoginRegister: "isFormLoginRegister"
+      isFormLoginRegister: "isFormLoginRegister",
+      isThemeDark: "isThemeDark"
     }),
     isMobile() {
       return this.isMb
     },
     isTablet() {
       return this.is_tablet
+    },
+    isDark() {
+      return this.isThemeDark
     },
     heightHomeLeft() {
       return this.heightHomeRight

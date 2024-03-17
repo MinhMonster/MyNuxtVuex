@@ -1,8 +1,10 @@
 .form-deposit-card {
   max-height: calc(100vh - 120px);
+
   form {
     height: 100%;
     background: #ffefa3;
+
     &::-webkit-scrollbar-thumb {
       background: #561d00 !important;
       border-radius: 10px !important;
@@ -41,6 +43,8 @@
 
   form {
     padding: 10px;
+    background: #ffefa3;
+
   }
 
   @media (max-width: 600px) {
@@ -221,7 +225,19 @@
     }
   }
 }
+
 select {
   width: 1%;
   flex: 1 1 auto;
+}
+
+select,
+input.v-input {
+  height: 34px !important;
+  min-height: 34px !important;
+  padding: 5px 10px !important;
+  border-radius: 4px;
+  border: 1px solid #e28637 !important;
+  background-color: #fff !important;
+  color: #0F0F0F !important;
 }

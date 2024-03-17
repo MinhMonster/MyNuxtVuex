@@ -1,9 +1,6 @@
 export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
-  const isThemeDark = store.state.global.isThemeDark;
-  const customClassSwal = {
-    container: isThemeDark ? "swal-dark" : "",
-  }
+
 
   const axiosConfig = { timeout: 60000 };
   axiosConfig.baseURL = process.env.apiUrl;
@@ -51,6 +48,12 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
 
     store.dispatch("global/setValidationErrors", {});
+
+    //check theme dark
+    const isThemeDark = store.state.global.isThemeDark;
+    const customClassSwal = {
+      container: isThemeDark ? "swal-dark" : "",
+    }
 
     // store.dispatch("removeRequest", response.config.id);
     if (code && code === 200) {
