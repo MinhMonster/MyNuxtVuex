@@ -41,7 +41,7 @@
           </v-col>
           <v-col cols="6" sm="2" md="3" lg="3">
             <v-btn
-              type="submit"
+              type="button"
               color="primary"
               class="btn btn-info btn-search text-not-shadow text-white w-100"
               @click="search()"
@@ -51,7 +51,7 @@
           </v-col>
           <v-col cols="6" sm="2" md="3" lg="3">
             <v-btn
-              type=""
+              type="button"
               color="error"
               class="btn btn-danger btn-search text-not-shadow text-white w-100"
               @click="reset()"

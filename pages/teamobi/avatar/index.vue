@@ -36,6 +36,7 @@ export default {
   computed: {
     ...mapFields("global", {
       ready: "ready",
+      isLoadingSearch: "isLoadingSearch",
     }),
   },
   async mounted() {
@@ -53,10 +54,12 @@ export default {
       "fetchAccountAvatars",
     ]),
     async search() {
-      this.ready = false;
+      this.isLoadingSearch = true;
       await this.resetAccountAvatars();
       await this.fetchAccountAvatars();
-      this.ready = true;
+      setTimeout(() => {
+        this.isLoadingSearch = false;
+      }, 300);
     },
     async reload() {
       this.ready = false;

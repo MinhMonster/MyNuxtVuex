@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div v-if="isLoadingSearch" class="center mgt--50px mgb--50px">
+    <Loading></Loading>
+  </div>
+  <div v-else>
     <v-row class="text-center account">
       <AccountNinjaCard
         v-for="(ninja, index) in accountNinjas"
@@ -54,6 +57,9 @@ export default {
       accountNinjas: "accountNinjas",
       page: "query.page",
       pages: "metaNinjas.pages",
+    }),
+    ...mapFields("global", {
+      isLoadingSearch: "isLoadingSearch",
     }),
     isShowNext() {
       return this.page < this.pages;

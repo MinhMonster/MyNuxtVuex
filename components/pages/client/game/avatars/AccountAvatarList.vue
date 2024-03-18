@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div v-if="isLoadingSearch" class="center mgt--50px mgb--50px">
+    <Loading></Loading>
+  </div>
+  <div v-else>
     <v-row class="text-center account">
       <AccountAvatarCard
         v-for="(avatar, index) in accountAvatars"
@@ -52,6 +55,9 @@ export default {
       accountAvatars: "accountAvatars",
       page: "query.page",
       pages: "metaAvatars.pages",
+    }),
+    ...mapFields("global", {
+      isLoadingSearch: "isLoadingSearch",
     }),
     isShowNext() {
       return this.page < this.pages;

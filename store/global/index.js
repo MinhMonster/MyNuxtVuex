@@ -6,6 +6,7 @@ export default {
   namespaced: true,
   state: () => ({
     ready: false,
+    isLoadingSearch: false,
     validationErrors: {},
     selectedImages: [],
     screenMobile: true,

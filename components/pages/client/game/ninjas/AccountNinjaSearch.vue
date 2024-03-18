@@ -57,7 +57,7 @@
         @search="$emit('search')"
       ></FormSearch>
     </v-col>
-    <v-col v-if="isQuery" cols="12">
+    <v-col v-if="isQuery && !isLoadingSearch" cols="12">
       <div class="title text-center text-danger">Kết quả tìm kiếm...</div>
     </v-col>
   </v-row>
@@ -88,6 +88,7 @@ export default {
   computed: {
     ...mapFields("global", {
       ready: "ready",
+      isLoadingSearch: "isLoadingSearch"
     }),
 
     isQuery() {

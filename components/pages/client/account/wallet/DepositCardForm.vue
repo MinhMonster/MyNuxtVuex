@@ -77,7 +77,7 @@
           <v-btn
             v-if="token"
             size="sm"
-            class="btn-login w-100"
+            class="btn-login w-100 mt-2"
             @click="submit()"
           >
             <Loading v-if="isLoading" button></Loading>

@@ -5,12 +5,13 @@ export default {
 
   data() {
     return {
-      // ready: false,
+      // isLoadingSearch: false,
     };
   },
   computed: {
     ...mapFields("global", {
       ready: "ready",
+      isLoadingSearch: "isLoadingSearch"
     }),
     ...mapFields("home/game/ninjas", {
       query: "query",
@@ -101,10 +102,12 @@ export default {
       "fetchAccountNinjas",
     ]),
     async searchNinjas() {
-      this.ready = false;
+      this.isLoadingSearch = true;
       await this.resetAccountNinjas();
       await this.fetchAccountNinjas();
-      this.ready = true;
+      setTimeout(() => {
+        this.isLoadingSearch = false;
+      }, 300);
     },
     async reloadNinja(type) {
       this.ready = false;
