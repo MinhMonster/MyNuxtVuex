@@ -1,7 +1,7 @@
 <template>
   <div class="form-search">
     <div class="page-body">
-      <form class="form" @submit.prevent="search()">
+      <form @submit.prevent="search()">
         <v-row>
           <v-col cols="6" sm="3" md="2">
             <div class="field v-input form-input">

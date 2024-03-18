@@ -20,11 +20,15 @@
                     >Chọn loại thẻ
                     <small>(<span style="color: red">*</span>)</small></label
                   >
-                  <v-select
-                    v-model="card.telco"
-                    :items="walletOptions"
-                    size="sm"
-                  ></v-select>
+                  <select v-model="card.telco">
+                    <option
+                      v-for="(option, index) in walletOptions"
+                      :key="index"
+                      :value="option.value"
+                    >
+                      {{ option.text }}
+                    </option>
+                  </select>
                 </form-validator>
               </div>
             </v-col>
@@ -35,11 +39,15 @@
                     >Chọn Mệnh giá
                     <small>(<span style="color: red">*</span>)</small></label
                   >
-                  <v-select
-                    v-model="card.amount"
-                    :items="amountOptions"
-                    size="sm"
-                  ></v-select>
+                  <select v-model="card.amount">
+                    <option
+                      v-for="(option, index) in amountOptions"
+                      :key="index"
+                      :value="option.value"
+                    >
+                      {{ option.text }}
+                    </option>
+                  </select>
                 </form-validator>
               </div>
             </v-col>
@@ -350,119 +358,6 @@ export default {
 //     border-radius: 15px 15px 0 0;
 //     background: linear-gradient(-135deg, #e28637, #561d00);
 //   }
-form {
-  // padding: 10px 30px 30px;
-  background: #ffefa3;
-  // border: 1px solid #663019;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-
-  .field {
-    height: 40px;
-    width: 100%;
-    margin-top: 15px;
-    position: relative;
-    &.submit {
-      margin-top: 0px;
-    }
-    // input:valid ~ label {
-    //   top: 0%;
-    //   font-size: 16px;
-    //   color: #4158d0;
-    //   background: none;
-    //   transform: translateY(-50%);
-    // }
-    input {
-      height: 100%;
-      width: 100%;
-      outline: none;
-      font-size: 17px;
-      padding-left: 5px;
-      border: 1px solid lightgrey;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      background: #fff;
-      &.v-input {
-        z-index: 999999999;
-        height: 35px;
-        border: 1px solid #e28637;
-        color: #663019 !important;
-        &.text-danger {
-          color: red !important;
-          font-size: 15px;
-        }
-      }
-    }
-    select {
-      height: 100%;
-      width: 100%;
-      outline: none;
-      font-size: 17px;
-      padding-left: 5px;
-      border: 1px solid #e28637 !important;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      // background: #fff;
-      .custom-select {
-        z-index: 999999999;
-        height: 35px;
-        border: 1px solid #e28637 !important;
-        color: #663019 !important;
-      }
-    }
-    // label {
-    //   position: absolute;
-    //   top: 50%;
-    //   left: 20px;
-    //   color: #999999;
-    //   font-weight: 400;
-    //   font-size: 17px;
-    //   pointer-events: none;
-    //   transform: translateY(-50%);
-    //   transition: all 0.3s ease;
-    // }
-    input[type="submit"],
-    .btn-login {
-      width: 100%;
-      border-radius: 20px;
-      color: #ffcf9c !important;
-      border: none;
-      padding-left: 0;
-      // font-size: 20px;
-      font-weight: 500;
-      cursor: pointer;
-      background: linear-gradient(-135deg, #e28637, #561d00);
-      transition: all 0.3s ease;
-      span {
-        color: #ffcf9c !important;
-      }
-    }
-  }
-  .signin {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    color: #663019;
-  }
-  .content {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    font-size: 16px;
-    align-items: center;
-    justify-content: space-around;
-    input {
-      width: 15px;
-      height: 15px;
-      background: red;
-    }
-    span {
-      white-space: nowrap;
-      color: #4158d0 !important;
-      cursor: pointer;
-    }
-  }
-}
 // }
 .checkbox {
   position: relative;
@@ -542,13 +437,13 @@ form {
 //  margin: 20px;
 // }
 
-.form-input {
-  border: 1px solid #333;
-  width: 100%;
-  height: 50px;
-  padding: 0 0px;
-  transform: 0.25s ease;
-}
+// .form-input {
+//   border: 1px solid #333;
+//   width: 100%;
+//   height: 50px;
+//   padding: 0 0px;
+//   transform: 0.25s ease;
+// }
 
 .form-input:focus {
   border-color: blue;

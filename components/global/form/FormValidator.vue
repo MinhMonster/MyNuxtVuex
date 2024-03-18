@@ -1,5 +1,6 @@
 <template>
   <div
+    class="w-100"
     :class="{
       required: required,
       optional: !required && optional,

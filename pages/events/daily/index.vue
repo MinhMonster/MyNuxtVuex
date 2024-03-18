@@ -530,13 +530,13 @@ form {
 //  margin: 20px;
 // }
 
-.form-input {
-  border: 1px solid #333;
-  width: 100%;
-  height: 50px;
-  padding: 0 0px;
-  transform: 0.25s ease;
-}
+// .form-input {
+//   border: 1px solid #333;
+//   width: 100%;
+//   height: 50px;
+//   padding: 0 0px;
+//   transform: 0.25s ease;
+// }
 
 .form-input:focus {
   border-color: blue;

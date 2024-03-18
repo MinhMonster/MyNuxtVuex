@@ -1,7 +1,7 @@
 <template>
   <div class="form-search mb-3">
     <div class="page-body">
-      <form class="form">
+      <form>
         <v-row>
           <v-col cols="6" sm="4" md="2" lg="2">
             <v-select

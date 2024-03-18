@@ -243,7 +243,7 @@ input.v-input {
 }
 
 button.btn-login {
-  background: radial-gradient(circle at 50% 100%, #e28637, #9f5424 58%, #561d00 127%) !important; 
+  background: radial-gradient(circle at 50% 100%, #e28637, #9f5424 58%, #561d00 127%) !important;
 }
 
 .register-btn {
@@ -266,4 +266,103 @@ button.btn-login {
   &:hover {
     background-image: linear-gradient(180deg, #ffcf9c, #fdffdb);
 
-  }}
+  }
+}
+
+form.form {
+  // padding: 10px 30px 30px;
+  background: #ffefa3;
+  // border: 1px solid #663019;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+  .field {
+    height: 40px;
+    width: 100%;
+    margin-top: 15px;
+    position: relative;
+
+    &.submit {
+      margin-top: 0px;
+    }
+
+    input {
+      height: 100%;
+      width: 100%;
+      outline: none;
+      font-size: 17px;
+      padding-left: 5px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      background: #fff;
+
+      &.v-input {
+        z-index: 999999999;
+        height: 35px;
+        border: 1px solid #e28637;
+        color: #663019 !important;
+
+        &.text-danger {
+          color: red !important;
+          font-size: 15px;
+        }
+      }
+    }
+
+    select {
+      height: 100%;
+      width: 100%;
+      outline: none;
+      font-size: 17px;
+      padding-left: 5px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    input[type="submit"],
+    .btn-login {
+      width: 100%;
+      border-radius: 20px;
+      color: #ffcf9c !important;
+      border: none;
+      padding-left: 0;
+      // font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      background: linear-gradient(-135deg, #e28637, #561d00);
+      transition: all 0.3s ease;
+
+      span {
+        color: #ffcf9c !important;
+      }
+    }
+  }
+
+  .signin {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    color: #663019;
+  }
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    font-size: 16px;
+    align-items: center;
+    justify-content: space-around;
+
+    input {
+      width: 15px;
+      height: 15px;
+      background: red;
+    }
+
+    span {
+      white-space: nowrap;
+      color: #4158d0 !important;
+      cursor: pointer;
+    }
+  }
+}

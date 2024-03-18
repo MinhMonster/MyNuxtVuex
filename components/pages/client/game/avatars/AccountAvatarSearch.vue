@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="page-body">
-      <form class="form">
+      <form>
         <v-row>
           <v-col cols="6" sm="4" md="3" lg="3">
             <div class="field v-input form-input">
