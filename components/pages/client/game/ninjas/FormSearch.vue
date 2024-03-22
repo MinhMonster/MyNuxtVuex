@@ -66,24 +66,7 @@
               />
             </div>
           </v-col>
-          <v-col cols="3" sm="3" md="1">
-            <v-btn
-              type="submit"
-              color="primary"
-              class="search-btn text-white text-not-shadow w-100"
-            >
-              <i class="fa fa-search"></i> Tìm
-            </v-btn>
-          </v-col>
-          <v-col cols="3" sm="3" md="1">
-            <v-btn
-              color="error"
-              class="btn btn-danger btn-search text-not-shadow text-white w-100"
-              @click="reset()"
-            >
-              <i class="fa fa-list"></i> Xóa
-            </v-btn>
-          </v-col>
+          <GroupBtnSearch @search="search" @reset="reset" />
         </v-row>
       </form>
     </div>
@@ -92,16 +75,16 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-import FormValidator from "@/components/global/form/FormValidator";
+import Loading from "@/components/global/molecules/common/Loading";
+import GroupBtnSearch from "@/components/common/client/button/GroupBtnSearch";
 
 export default {
-  components: { FormValidator },
+  components: { Loading, GroupBtnSearch },
   props: {
     type: {
       type: String,
       default: null,
     },
-    isReset: Boolean,
   },
   data() {
     return {
@@ -334,6 +317,9 @@ export default {
       cash: "query.q.cash",
       id: "query.q.id",
     }),
+    ...mapFields("global", {
+      isLoadingSearch: "isLoadingSearch",
+    }),
     queryForm() {
       return _.cloneDeep(this.query);
     },
@@ -364,13 +350,13 @@ export default {
   },
   methods: {
     ...mapActions("home/game/ninjas", ["resetQuery", "setQuery"]),
-    search() {
-      this.setQueryForm();
+    async search() {
+      await this.setQueryForm();
       this.$emit("search");
     },
     async reset() {
-      this.resetQuery(this.type);
-      this.search();
+      await this.resetQuery(this.type);
+      await this.search();
     },
     setQueryForm() {
       this.queryForm.page = 1;

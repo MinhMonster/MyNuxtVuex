@@ -16,6 +16,7 @@ export default {
       q: {
         id: null,
         cash: null,
+        username: null
       },
     }
   }),
@@ -95,6 +96,7 @@ export default {
         q: {
           id: null,
           cash: null,
+          username: null
         },
       });
     },

@@ -14,9 +14,30 @@
       </div>
     </div>
     <div class="page-body">
-      <form>
+      <form @submit.prevent="search()">
         <v-row>
-          <v-col cols="6" sm="4" md="3" lg="3">
+          <v-col cols="6" sm="3" md="2">
+            <div class="field">
+              <input
+                v-model="queryForm.q.username"
+                type="text"
+                placeholder="Tìm tên Nick..."
+                class="v-input form-input"
+              />
+            </div>
+          </v-col>
+
+          <v-col cols="6" sm="3" md="2">
+            <div class="field">
+              <input
+                v-model="queryForm.q.id"
+                type="number"
+                placeholder="Nhập mã số nick..."
+                class="v-input form-input"
+              />
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="2">
             <div class="field v-input form-input">
               <select v-model="queryForm.q.cash" class="">
                 <option
@@ -29,46 +50,23 @@
               </select>
             </div>
           </v-col>
-          <v-col cols="6" sm="4" md="3" lg="3">
-            <div class="field">
-              <input
-                v-model="queryForm.q.id"
-                type="number"
-                placeholder="Nhập mã số nick..."
-                class="v-input form-input"
-              />
-            </div>
-          </v-col>
-          <v-col cols="6" sm="2" md="3" lg="3">
-            <v-btn
-              type="button"
-              color="primary"
-              class="btn btn-info btn-search text-not-shadow text-white w-100"
-              @click="search()"
-            >
-              <i class="fa fa-search"></i> Tìm kiếm
-            </v-btn>
-          </v-col>
-          <v-col cols="6" sm="2" md="3" lg="3">
-            <v-btn
-              type="button"
-              color="error"
-              class="btn btn-danger btn-search text-not-shadow text-white w-100"
-              @click="reset()"
-              >Xóa
-            </v-btn>
-          </v-col>
+          <GroupBtnSearch @search="search" @reset="reset" />
         </v-row>
       </form>
     </div>
+    <v-col v-if="isQuery && !isLoadingSearch" cols="12">
+      <div class="title text-center text-danger">Kết quả tìm kiếm...</div>
+    </v-col>
   </div>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
+import GroupBtnSearch from "@/components/common/client/button/GroupBtnSearch";
+
 export default {
-  components: {},
+  components: { GroupBtnSearch },
   data() {
     return {
       cashOptions: [
@@ -154,8 +152,18 @@ export default {
     ...mapFields("home/game/avatars", {
       query: "query",
     }),
+    ...mapFields("global", {
+      isLoadingSearch: "isLoadingSearch",
+    }),
     queryForm() {
       return _.cloneDeep(this.query);
+    },
+    isQuery() {
+      return (
+        this.queryForm.q.username ||
+        this.queryForm.q.id ||
+        this.queryForm.q.cash
+      );
     },
   },
   methods: {
