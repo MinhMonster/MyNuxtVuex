@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoadingSearch" class="center mgt--50px mgb--50px">
+  <div v-if="isLoadingSearch" class="center mgt--50px mgb--50px loading-resoult">
     <Loading></Loading>
   </div>
   <div v-else>
@@ -52,6 +52,15 @@ export default {
       isLoading: false,
     };
   },
+  // watch: {
+  //   isLoadingSearch: {
+  //     async handler(newValue, oldValue) {
+  //       if (this.isMobile) {
+  //         this.nextFormSearch();
+  //       }
+  //     },
+  //   },
+  // },
   computed: {
     ...mapFields("home/game/ninjas", {
       accountNinjas: "accountNinjas",
@@ -78,6 +87,14 @@ export default {
       await this.fetchAccountNinjas();
       this.isLoading = false;
     },
+    // nextFormSearch() {
+    //   const element = document.getElementById("resoults");
+    //   if (element) {
+    //     setTimeout(() => {
+    //       element.scrollIntoView();
+    //     }, 100);
+    //   }
+    // },
   },
 };
 </script>

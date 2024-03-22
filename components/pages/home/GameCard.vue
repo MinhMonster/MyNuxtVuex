@@ -1,18 +1,20 @@
 <template>
-  <v-col cols="6" :sm="isTablet ? 3 : 4" md="4" @click="nextPath(game.path)">
-    <div class="account-info">
-      <ImageCard :game="game" />
-      <v-row class="account-body">
-        <v-col cols="12"
-          ><v-btn
-            class="account-thongtin break-line-1 btn-main"
-            :title="game.title"
+  <v-col cols="6" :sm="isTablet ? 3 : 4" md="4">
+    <nuxt-link :to="game.path">
+      <div class="account-info">
+        <ImageCard :game="game" />
+        <v-row class="account-body">
+          <v-col cols="12"
+            ><v-btn
+              class="account-thongtin break-line-1 btn-main"
+              :title="game.title"
+            >
+              {{ game.title }}</v-btn
+            ></v-col
           >
-            {{ game.title }}</v-btn
-          ></v-col
-        >
-      </v-row>
-    </div>
+        </v-row>
+      </div>
+    </nuxt-link>
   </v-col>
 </template>
 
@@ -27,11 +29,11 @@ export default {
       default: () => {},
     },
   },
-  methods: {
-    nextPath(path) {
-      this.$router.push(`${path}`);
-    },
-  },
+  // methods: {
+  //   nextPath(path) {
+  //     this.$router.push(`${path}`);
+  //   },
+  // },
 };
 </script>
 

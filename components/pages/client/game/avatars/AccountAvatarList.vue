@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoadingSearch" class="center mgt--50px mgb--50px">
+  <div v-if="isLoadingSearch" class="center mgt--50px mgb--50px loading-resoult">
     <Loading></Loading>
   </div>
   <div v-else>
