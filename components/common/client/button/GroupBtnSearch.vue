@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="6" sm="6" md="2" class="flex">
+  <v-col cols="6" sm="6" md="2" class="d-flex">
     <div class="is-search">
       <v-btn
         v-if="isLoadingSearch && !isReset"

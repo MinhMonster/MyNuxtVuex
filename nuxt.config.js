@@ -118,7 +118,8 @@ export default {
     // "@nuxtjs/toast",
     "vue-sweetalert2/nuxt",
     // 'nuxt-validate'
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
   ],
   sitemap: {
     hostname: 'https://muabannick.pro',
@@ -138,6 +139,12 @@ export default {
         },
       },
     ]
+  },
+  robots: {
+    UserAgent: '*', // Default user agent
+    Disallow: ['/account',], // Disallow specific paths
+    Allow: '/', // Allow all other paths
+    // ... other configuration options
   },
 
   // svgSprite: {
