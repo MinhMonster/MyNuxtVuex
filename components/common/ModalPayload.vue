@@ -32,7 +32,7 @@
                 <slot name="footer-button"></slot>
               </div>
               <div class="text-right right w-100">
-                <v-btn color="red" class="text-white" @click="dialog = false">
+                <v-btn color="red" class="btn-sm" @click="dialog = false">
                   {{ textClose }}
                 </v-btn>
               </div>

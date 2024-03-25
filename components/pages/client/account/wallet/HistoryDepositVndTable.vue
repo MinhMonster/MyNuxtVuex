@@ -43,7 +43,7 @@
                 <v-col :cols="12" :sm="6" :md="2" :lg="2">
                   <v-btn
                     :color="class_status(history.depositState)"
-                    class="text-white pd-5px"
+                    class="btn-sm pd-5px"
                   >
                     {{ history.depositState }}
                   </v-btn>
@@ -53,7 +53,7 @@
             <td class="text-middle">
               <v-btn
                 color="info"
-                class="text-white pd-10px"
+                class="btn-sm pd-10px"
                 @click="$emit('show', history)"
               >
                 Xem

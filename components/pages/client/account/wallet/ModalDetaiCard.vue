@@ -57,7 +57,7 @@
                   <td class="mua-nick">
                     <v-btn
                       :color="history.status.value"
-                      class="text-white pd-5px"
+                      class="btn-sm pd-5px"
                     >
                       {{ history.status.text }}
                     </v-btn>

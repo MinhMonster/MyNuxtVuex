@@ -5,7 +5,7 @@
     </div>
     <small id="fileHelp" class="form-text text-muted"
       >Hãy chuyển tiền cho Admin để
-      <v-btn color="success" class="text-white pd-5px">Hoàn thành</v-btn>
+      <v-btn color="success" class="pd-5px btn-sm">Hoàn thành</v-btn>
       giao dịch nạp tiền này.</small
     >
     <div class="info-atm-momo">

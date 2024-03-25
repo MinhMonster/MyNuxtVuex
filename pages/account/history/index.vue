@@ -47,7 +47,7 @@
                   <v-btn
                     size="sx"
                     color="success"
-                    class="btn btn-success text-white bdrs-5px"
+                    class="btn btn-success btn-sm text-white bdrs-5px"
                     :to="`/account/history/${history.ID}`"
                     >Xem
                   </v-btn>

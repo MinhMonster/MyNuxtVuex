@@ -30,7 +30,7 @@
             </div>
           </div>
           <v-row>
-            <v-col cols="12" sm="6" class="middle mb-2">
+            <v-col cols="12" sm="6" class="middle custom-field-input mb-2">
               <div class="field">
                 <form-validator name="walletType">
                   <label for="walletType" class="form-label"
@@ -50,7 +50,7 @@
               </div>
             </v-col>
 
-            <v-col cols="12" sm="3" class="middle mb-2">
+            <v-col cols="12" sm="3" class="middle custom-field-input mb-2">
               <div class="field">
                 <form-validator name="amount">
                   <label for="amount" class="form-label"
@@ -64,7 +64,7 @@
                   />
                 </form-validator></div
             ></v-col>
-            <v-col cols="12" sm="3" class="middle mb-2">
+            <v-col cols="12" sm="3" class="middle custom-field-input mb-2">
               <div class="field">
                 <form-validator name="out">
                   <label for="out" class="form-label">Thực nhận +20%</label>
@@ -79,7 +79,7 @@
                 </form-validator>
               </div>
             </v-col>
-            <v-col cols="12" sm="6" class="middle">
+            <v-col cols="12" sm="6" class="middle custom-form-input">
               <div class="field">
                 <form-validator name="bank_account_name">
                   <label class="form-label"

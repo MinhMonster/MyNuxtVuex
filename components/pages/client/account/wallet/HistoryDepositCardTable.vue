@@ -36,7 +36,7 @@
                   <v-btn
                     :color="history.status.value"
                     size="sm"
-                    class="text-white pd-5px"
+                    class="btn-sm pd-5px"
                     >{{ history.status.text }}
                   </v-btn>
                 </v-col>
@@ -48,7 +48,7 @@
             <td class="text-middle">
               <v-btn
                 color="info"
-                class="text-white pd-10px"
+                class="btn-sm pd-10px"
                 @click="$emit('show', history)"
               >
                 Xem

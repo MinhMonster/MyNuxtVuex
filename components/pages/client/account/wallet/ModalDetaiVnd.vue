@@ -65,7 +65,7 @@
                   <td class="mua-nick">
                     <v-btn
                       :color="class_status(history.depositState)"
-                      class="text-white pd-5px"
+                      class="btn-sm pd-5px"
                     >
                       {{ history.depositState }}
                     </v-btn>

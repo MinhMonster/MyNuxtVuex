@@ -55,17 +55,23 @@
         </div>
       </template>
       <template #footer-button>
-        <v-btn v-if="!user" size="sm" color="success" @click="openModalLogin()"
+        <v-btn
+          v-if="!user"
+          size="sm"
+          color="success"
+          class="btn-sm"
+          @click="openModalLogin()"
           ><span>Đăng nhập</span></v-btn
         >
         <v-btn
           v-else-if="Number(user.cash) < price"
           color="success"
+          class="btn-sm"
           to="/account/wallet/deposit/vnd"
           ><span>Nap tiền</span></v-btn
         >
 
-        <v-btn v-else color="success" class="btn-buy" @click="buyNow()">
+        <v-btn v-else color="success" class="btn-buy btn-sm" @click="buyNow()">
           <Loading v-if="isLoading" button></Loading>
           <span v-else> Thanh Toán </span>
         </v-btn>
