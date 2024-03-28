@@ -122,7 +122,7 @@ export default {
     '@nuxtjs/robots',
   ],
   sitemap: {
-    hostname: 'https://muabannick.pro',
+    hostname: 'https://shopnick.online',
     // routes: async () => {
     //   const { data } = await axios.get('https://muabannick.pro/apis/sitemap/index.php');
     //   return data.sitemap.map((item) => `${item.link}`)

@@ -72,7 +72,7 @@ export default {
   data() {
     return {
       title:
-        "MuaBanNick.Pro - Shop Nick Avatar SX Diệu Kỳ Tự Động - Shop Mua Bán Nick Avatar SX Diệu Kỳ VIP Giá Rẻ, Uy Tín Nhất MXH",
+        "ShopNick.Online - Shop Nick Avatar SX Diệu Kỳ Tự Động - Shop Mua Bán Nick Avatar SX Diệu Kỳ VIP Giá Rẻ, Uy Tín Nhất MXH",
       description:
         "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
     };

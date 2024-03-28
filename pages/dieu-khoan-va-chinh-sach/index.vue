@@ -19,9 +19,9 @@
           <p><strong>1 Nguyên tắc chung&nbsp;</strong></p>
 
           <p>
-            Thành viên tham gia giao dịch trên MuaBanNick.Pro tự do lựa chọn mua
+            Thành viên tham gia giao dịch trên ShopNick.Online tự do lựa chọn mua
             bán account, và lựa chọn thanh toán theo các hình thức trên
-            MuaBanNick.Pro.
+            ShopNick.Online.
           </p>
 
           <p>&nbsp;</p>
@@ -29,17 +29,17 @@
           <p><strong>2 Thu thập và sử dụng thông tin</strong></p>
 
           <p>
-            Hiện tại MuaBanNick.Pro liên kết tài khoản với Facebook nên việc bạn
+            Hiện tại ShopNick.Online liên kết tài khoản với Facebook nên việc bạn
             đăng ký tài khoản bạn sẽ nhận được 1 yêu cầu cho phép liên kết tài
-            khoản Facebook của bạn với MuaBanNick.Pro hay không. Khi đó
-            MuaBanNick.Pro sẽ ghi nhận thông tin tài khoản Facebook của bạn và 1
+            khoản Facebook của bạn với ShopNick.Online hay không. Khi đó
+            ShopNick.Online sẽ ghi nhận thông tin tài khoản Facebook của bạn và 1
             số thông tin công khai tạm thời của bạn.
           </p>
 
           <p>
-            Trên MuaBanNick.Pro có cơ chế bảo mật bằng mã ODP và địa chỉ email
-            nhận thông báo từ MuaBanNick.Pro. Do đó, có phát sinh thêm 2 thông
-            tin là số điện thoại và địa chỉ email của bạn. MuaBanNick.Pro thu
+            Trên ShopNick.Online có cơ chế bảo mật bằng mã ODP và địa chỉ email
+            nhận thông báo từ ShopNick.Online. Do đó, có phát sinh thêm 2 thông
+            tin là số điện thoại và địa chỉ email của bạn. ShopNick.Online thu
             thập 2 thông tin này để đảm bảo cho chức năng bảo mật và thông báo
             hoạt động đúng. Số điện thoại và email của bạn ngoài để nhận mã ODP,
             chúng tôi sẽ liên hệ khi có việc quan trọng liên quan tới tài khoản
@@ -49,7 +49,7 @@
           <p>
             Các thông tin cá nhân bạn cung cấp ngoài việc hỗ trợ và đảm bảo chức
             năng hoạt động đúng thì còn giải quyết các vấn đề tranh chấp, khiếu
-            nại, gian lận. MuaBanNick.Pro không chịu trách nhiệm cũng như giải
+            nại, gian lận. ShopNick.Online không chịu trách nhiệm cũng như giải
             quyết khiếu nại khi bạn cung cấp thông tin cá nhân bị sai lệch,
             thiếu chính xác.
           </p>
@@ -61,9 +61,9 @@
           <p>Bạn chỉ có 1 ID duy nhất, ID không thể thay đổi.</p>
 
           <p>
-            Bạn là người duy nhất truy cập tài khoản MuaBanNick.Pro của bạn. Khi
+            Bạn là người duy nhất truy cập tài khoản ShopNick.Online của bạn. Khi
             cập nhật, xóa bỏ hay sửa đổi thông tin trên Facebook của bạn thì
-            thông tin cá nhân trên MuaBanNick.Pro cũng sẽ thay đổi.
+            thông tin cá nhân trên ShopNick.Online cũng sẽ thay đổi.
           </p>
 
           <p>&nbsp;</p>
@@ -72,8 +72,8 @@
 
           <p>
             Sự riêng tư và bảo mật thông tin cá nhân rất quan trọng với người
-            dùng, vì vậy MuaBanNick.Pro sẽ bảo đảm tối đa sự riêng tư của bạn.
-            MuaBanNick.Pro lưu trữ và xử lý thông tin cá nhân của bạn trên máy
+            dùng, vì vậy ShopNick.Online sẽ bảo đảm tối đa sự riêng tư của bạn.
+            ShopNick.Online lưu trữ và xử lý thông tin cá nhân của bạn trên máy
             chủ, mọi dữ liệu quan trọng được mã hóa để tránh việc đánh cắp thông
             tin.
           </p>
@@ -86,12 +86,12 @@
           </p>
 
           <p>
-            MuaBanNick.Pro cam kết không tiết lộ thông tin cá nhân và số điện
+            ShopNick.Online cam kết không tiết lộ thông tin cá nhân và số điện
             thoại cho đơn vị thứ 3.
           </p>
 
           <p>
-            MuaBanNick.Pro sẽ cung cấp thông tin khi có yêu cầu của cơ quan chức
+            ShopNick.Online sẽ cung cấp thông tin khi có yêu cầu của cơ quan chức
             năng nhà nước có thẩm quyền.
           </p>
 
@@ -105,7 +105,7 @@
           </p>
 
           <p>
-            Thành viên cam kết đồng ý không sử dụng MuaBanNick.Pro vào những mục
+            Thành viên cam kết đồng ý không sử dụng ShopNick.Online vào những mục
             đích không hợp pháp như lừa đảo, đe dọa, thăm dò thông tin bất hợp
             pháp...
           </p>
@@ -119,7 +119,7 @@
           </p>
 
           <p>
-            Khi đăng kí thành thành viên MuaBanNick.Pro bạn sẽ được quyền truy
+            Khi đăng kí thành thành viên ShopNick.Online bạn sẽ được quyền truy
             cập website dễ dàng mua account, theo dõi biến động số dư, nhật kí
             hoạt động...
           </p>
@@ -127,9 +127,9 @@
           <p>
             Các bạn được quyền khiếu nại khi gặp các sự cố về tài khoản như nạp
             thẻ, mua account, chuyển tiền, rút tiền, hay mua trả góp...
-            MuaBanNick.Pro sẽ xử lý khiếu nại trong thời gian sớm nhất. Trường
+            ShopNick.Online sẽ xử lý khiếu nại trong thời gian sớm nhất. Trường
             hợp thẻ lỗi không nạp được bạn phải cung cấp số seri cho
-            MuaBanNick.Pro kiểm tra và sẽ được cộng số dư ngay nếu do lỗi từ nhà
+            ShopNick.Online kiểm tra và sẽ được cộng số dư ngay nếu do lỗi từ nhà
             cung cấp.
           </p>
 
@@ -149,24 +149,24 @@
           <p>
             Tôi cam kết chịu trách nhiệm hoàn toàn trước pháp luật về việc sử
             dụng, hoạt động kinh doanh, giao dịch trực tuyến của mình trên
-            MuaBanNick.Pro.
+            ShopNick.Online.
           </p>
 
           <p>
             Tôi cam kết toàn bộ hoạt động sử dụng, hoạt động kinh doanh, giao
-            dịch trực tuyến của mình trên MuaBanNick.Pro được thực hiện theo
+            dịch trực tuyến của mình trên ShopNick.Online được thực hiện theo
             đúng quy định của pháp luật và không vi phạm pháp luật nước CHXHCN
             Việt Nam.
           </p>
 
           <p>
             Tôi cam kết toàn bộ thông tin đăng kí tài khoản và giao dịch trên
-            MuaBanNick.Pro là chính xác và tôi hoàn toàn chịu trách nhiệm về
+            ShopNick.Online là chính xác và tôi hoàn toàn chịu trách nhiệm về
             tính xác thực thông tin tôi cung cấp.
           </p>
 
           <p>
-            Tôi cam kết phối hợp với MuaBanNick.Pro và cơ quan đều tra trong mọi
+            Tôi cam kết phối hợp với ShopNick.Online và cơ quan đều tra trong mọi
             trường hợp xác minh có dấu hiệu lừa đảo, kinh doanh vi phạm pháp
             luật, vi phạm pháp luật nước CHXHCN Việt Nam.
           </p>

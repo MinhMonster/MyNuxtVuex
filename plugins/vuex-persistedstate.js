@@ -4,7 +4,7 @@ import cookie from "cookie";
 
 export default ({ store, req }) => {
   createPersistedState({
-    key: "MuaBanNickPro",
+    key: "ShopNickOnline",
     paths: [
       "home.users.token",
       "home.users.user",

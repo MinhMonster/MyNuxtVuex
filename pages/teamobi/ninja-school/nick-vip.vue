@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       title:
-        "MuaBanNick.Pro - Shop Nick Ninja School Online Tự Động - Shop Mua Bán Nick Ninja School Online VIP Giá Rẻ, Uy Tín Nhất MXH",
+        "ShopNick.Online - Shop Nick Ninja School Online Tự Động - Shop Mua Bán Nick Ninja School Online VIP Giá Rẻ, Uy Tín Nhất MXH",
       description:
         "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
     };

@@ -52,7 +52,7 @@ export default {
     title() {
       return `Mã Số: ${this.format_number(
         this.accountId
-      )} - Nick Ngọc Rồng Online - MuaBanNick.Pro`;
+      )} - Nick Ngọc Rồng Online - ShopNick.Online`;
     },
   },
   mounted() {
