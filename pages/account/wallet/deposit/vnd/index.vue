@@ -32,8 +32,8 @@
           <v-row>
             <v-col cols="12" sm="6" class="middle custom-field-input mb-2">
               <div class="field">
-                <form-validator name="walletType">
-                  <label for="walletType" class="form-label"
+                <form-validator name="wallet_type">
+                  <label for="wallet_type" class="form-label"
                     >Hình thức nạp
                     <small>(<span style="color: red">*</span>)</small></label
                   >
