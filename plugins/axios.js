@@ -1,7 +1,5 @@
 export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
-
-
   const axiosConfig = { timeout: 60000 };
   axiosConfig.baseURL = process.env.apiUrl;
 
@@ -13,6 +11,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     if (!hideLoading) {
       config.id =
         new Date().getTime() + Math.random().toString(36).substring(2, 15);
+      store.dispatch("addRequest", config.id);
     }
 
     try {
@@ -22,6 +21,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       // if (!config.noRequireToken) {
       switch (namespace) {
         case "clientLayout":
+          store.dispatch("disableLoading");
           authToken = store.state.home.users.token;
           break;
         default:
@@ -185,6 +185,9 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       // }
 
     }
+    setTimeout(() => {
+      store.dispatch("disableLoading");
+    }, 50);
 
   });
 
@@ -196,6 +199,9 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       redirect('/400')
     }
 
+    setTimeout(() => {
+      store.dispatch("disableLoading");
+    }, 50);
   })
   inject("api", api);
 }

@@ -214,6 +214,6 @@ export default {
     // extend(config, ctx) {},
 
   },
-  // loading: "@/components/Loading.vue",
+  loading: "@/components/Loading.vue",
 
 }
