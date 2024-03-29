@@ -20,9 +20,12 @@
 
     .v-main__wrap {
       .container.client-main {
-        background: #000;
+        background: #3f474c;
         background-size: cover;
-        // background-image: url(https://muabannick.pro/images/bg/bg-mbn-violet.png) !important;
+        background-image: url(https://muabannick.pro/images/bg/bg-mbn-violet.png) !important;
+        @media (max-width: 599px) {
+          background-image: url(https://muabannick.pro/images/bg/bg-mbn-violet-mb-min.png) !important;
+        }
       }
 
       #home-page {
