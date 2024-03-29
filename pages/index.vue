@@ -36,7 +36,7 @@ export default {
       this.ready = false;
       setTimeout(() => {
         this.ready = true;
-      }, 50);
+      }, 30);
     },
   },
   data() {
