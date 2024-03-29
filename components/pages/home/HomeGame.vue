@@ -4,6 +4,16 @@
       <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8" id="home-left">
         <v-row style="margin: -15px">
           <v-col cols="12">
+            <div class="page-body">
+              <a href="https://muabannick.pro" class="text-white" target="_blank" title="MuaBanNick.Pro">
+                 <b class="">Thông Báo:</b> <br/>
+                ⭐ Đây là Website thuộc MuaBanNick.Pro <br/>
+                ⭐ Đồng bộ tất cả Nick Game, Lịch Sử Giao Dịch...<br/>
+                ⭐ Các bạn có thể giao dịch thay cho: MuaBanNick.Pro<br/>
+              </a>
+            </div>
+          </v-col>
+          <v-col cols="12">
             <!-- <RunText v-if="isTablet" /> -->
 
             <HomeSlider />

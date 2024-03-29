@@ -1,5 +1,9 @@
-.theme-dark {
+.theme-dark.v-application {
   .bold {
     text-shadow: $text-shadow-theme-dark  !important;
+  }
+
+  a {
+    color: #fff !important;
   }
 }
