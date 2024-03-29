@@ -1,7 +1,7 @@
 <template>
   <client-only>
-    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
-      <template v-if="accountNinja && accountNinja.ID && ready" #body>
+    <HomePage goBack reload @reload="fetchAccount()" table>
+      <template v-if="accountNinja && accountNinja.ID" #body>
         <AccountNinjaDetail :account-ninja="accountNinja"></AccountNinjaDetail>
       </template>
       <template #table>
@@ -38,9 +38,6 @@ export default {
     AccountNinjaList,
   },
   computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
     ...mapFields("home/game/ninjas", {
       accountNinja: "accountNinja",
       accountNinjas: "accountNinjas",
@@ -70,14 +67,11 @@ export default {
     ]),
 
     async fetchAccount() {
-      this.ready = false;
-
       await this.fetchAccountNinja({
         params: {
           id: this.accountId,
         },
       });
-      this.ready = true;
 
       await this.resetQuery();
       await this.resetAccountNinjas();

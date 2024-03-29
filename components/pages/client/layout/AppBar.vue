@@ -56,10 +56,6 @@ export default {
   },
   computed: {
     ...mapState("home/users", ["token", "user"]),
-
-    ...mapFields("global", {
-      ready: "ready",
-    }),
     ...mapFields("global", {
       showMenuRight: "showMenuRight",
       fixed: "fixed",
@@ -73,17 +69,9 @@ export default {
   },
   methods: {
     nextHome() {
-      if (this.isHome) {
-        this.reset();
-      } else {
+      if (!this.isHome) {
         this.$router.push("/");
       }
-    },
-    async reset() {
-      this.ready = false;
-      setTimeout(() => {
-        this.ready = true;
-      }, 200);
     },
     ...mapActions("home/users", ["logout", "fetchUser"]),
     openMenu() {

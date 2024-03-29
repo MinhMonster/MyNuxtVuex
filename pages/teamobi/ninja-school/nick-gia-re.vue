@@ -2,13 +2,12 @@
   <client-only>
     <HomePage
       title="Nick Ninja School Giá Rẻ"
-      :loading="!ready"
       goBack
       reload
       @reload="reloadNinja('cheap')"
       notBoder
     >
-      <template v-if="ready" #body>
+      <template #body>
         <div class="mt-4">
           <AccountNinjaSearch
             type="cheap"

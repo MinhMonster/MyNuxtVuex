@@ -1,13 +1,7 @@
 <template>
   <client-only>
-    <HomePage
-      title="Danh Mục Bài Viết"
-      :loading="!ready"
-      goBack
-      reload
-      @reload="getTopics()"
-    >
-      <template v-if="ready" #body>
+    <HomePage title="Danh Mục Bài Viết" goBack reload @reload="getTopics()">
+      <template #body>
         <div class="mt-4 topics">
           <ul class="topics-list">
             <li v-for="(item, index) in topics" :key="index">
@@ -52,7 +46,6 @@
 import HomePage from "@/components/pages/home/HomePage";
 import Pagination from "@/components/global/molecules/common/Pagination";
 
-import { mapFields } from "vuex-map-fields";
 import { mapActions, mapState } from "vuex";
 
 export default {
@@ -63,9 +56,6 @@ export default {
   },
   computed: {
     ...mapState("home/topics", ["topics", "metaTopics"]),
-    ...mapFields("global", {
-      ready: "ready",
-    }),
     queryPage() {
       return _.cloneDeep(this.$route.query.page) || 1;
     },
@@ -86,13 +76,11 @@ export default {
       this.onPageChange(this.queryPage);
     },
     async onPageChange(page) {
-      this.ready = false;
       await this.setQuery({ page });
       await this.fetchTopics();
       page && page == 1
         ? await this.$router.push(`/topics`)
         : await this.$router.push(`/topics?page=${page}`);
-      this.ready = true;
     },
   },
   data() {

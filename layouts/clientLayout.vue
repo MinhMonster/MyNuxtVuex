@@ -61,6 +61,7 @@ export default {
     },
     path: {
       async handler(newValue, oldValue) {
+        this.nextTop();
         if (!this.token && this.path.includes("/account/")) {
           this.$router.push("/");
         }

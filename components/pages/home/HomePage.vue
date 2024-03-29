@@ -1,7 +1,7 @@
 <template>
   <div id="home-page">
-    <Loading v-if="loading" />
-    <v-row v-else>
+    <!-- <Loading v-if="loading" /> -->
+    <v-row>
       <v-col cols="12" md="12" :lg="colLeft">
         <div
           class="page-body"
@@ -40,11 +40,11 @@
 </template>
   
 <script>
-import Loading from "@/components/global/molecules/common/Loading";
+// import Loading from "@/components/global/molecules/common/Loading";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  components: { Loading },
+  // components: { Loading },
   props: {
     title: {
       type: String,
@@ -91,9 +91,6 @@ export default {
     },
   },
   computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
     isGoHome() {
       return this.goHome;
     },

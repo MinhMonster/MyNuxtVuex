@@ -4,12 +4,11 @@
       :title="title"
       content="Xem lại biến động Số dư của bạn tại đây."
       full-screen
-      :loading="!ready"
       goBack
       reload
       @reload="onPageChange(queryPage)"
     >
-      <template v-if="token && user && ready && histories" #body>
+      <template v-if="token && user && histories" #body>
         <div class="table-responsive">
           <table
             style="font-size: 14px"
@@ -99,7 +98,6 @@ export default {
 
   components: { Loading, Pagination, HomePage },
   computed: {
-    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       histories: "historyChangeMoneys",
       historyMeta: "historyMeta",
@@ -122,11 +120,9 @@ export default {
       element.scrollIntoView();
     },
     async onPageChange(page) {
-      this.ready = false;
       await this.setQuery({ page });
       await this.historyChangeMoneys();
       await this.$router.push(`/account/history/change_money?page=${page}`);
-      this.ready = true;
     },
     increaseMoney(history) {
       return history.moneyFirst < history.moneyLast;

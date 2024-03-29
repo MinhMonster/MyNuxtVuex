@@ -2,7 +2,6 @@
   <client-only>
     <HomePage
       :title="title"
-      :loading="!ready"
       goBack
       reload
       @reload="reload()"
@@ -10,7 +9,7 @@
       :col-right="4"
       table
     >
-      <template v-if="ready" #body>
+      <template #body>
         <form class="form">
           <v-row>
             <v-col cols="12" sm="6" class="middle">
@@ -246,7 +245,6 @@ export default {
   },
 
   computed: {
-    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       histories: "historyWalletDepositCards",
       historyMeta: "historyMeta",
@@ -286,13 +284,11 @@ export default {
       }
     },
     async onPageChange(page) {
-      this.ready = false;
       await this.setQuery({ page });
       await this.fetchHistoryWalletDepositCards();
       page == 1 || !page
         ? this.$router.push(`/account/wallet/deposit/card`)
         : this.$router.push(`/account/wallet/deposit/card?page=${page}`);
-      this.ready = true;
     },
     resetInput() {
       this.card = {

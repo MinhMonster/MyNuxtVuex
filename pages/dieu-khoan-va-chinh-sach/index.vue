@@ -1,14 +1,7 @@
 <template>
   <client-only>
-    <HomePage
-      :title="title"
-      :loading="!ready"
-      full-screen
-      goBack
-      reload
-      @reload="reload()"
-    >
-      <template v-if="ready" #body>
+    <HomePage :title="title" full-screen goBack>
+      <template #body>
         <div class="container text-shadow">
           <div class="c-content-title-1">
             <h2 class="c-font-uppercase c-font-bold text-center">
@@ -19,8 +12,8 @@
           <p><strong>1 Nguyên tắc chung&nbsp;</strong></p>
 
           <p>
-            Thành viên tham gia giao dịch trên ShopNick.Online tự do lựa chọn mua
-            bán account, và lựa chọn thanh toán theo các hình thức trên
+            Thành viên tham gia giao dịch trên ShopNick.Online tự do lựa chọn
+            mua bán account, và lựa chọn thanh toán theo các hình thức trên
             ShopNick.Online.
           </p>
 
@@ -29,11 +22,11 @@
           <p><strong>2 Thu thập và sử dụng thông tin</strong></p>
 
           <p>
-            Hiện tại ShopNick.Online liên kết tài khoản với Facebook nên việc bạn
-            đăng ký tài khoản bạn sẽ nhận được 1 yêu cầu cho phép liên kết tài
-            khoản Facebook của bạn với ShopNick.Online hay không. Khi đó
-            ShopNick.Online sẽ ghi nhận thông tin tài khoản Facebook của bạn và 1
-            số thông tin công khai tạm thời của bạn.
+            Hiện tại ShopNick.Online liên kết tài khoản với Facebook nên việc
+            bạn đăng ký tài khoản bạn sẽ nhận được 1 yêu cầu cho phép liên kết
+            tài khoản Facebook của bạn với ShopNick.Online hay không. Khi đó
+            ShopNick.Online sẽ ghi nhận thông tin tài khoản Facebook của bạn và
+            1 số thông tin công khai tạm thời của bạn.
           </p>
 
           <p>
@@ -61,8 +54,8 @@
           <p>Bạn chỉ có 1 ID duy nhất, ID không thể thay đổi.</p>
 
           <p>
-            Bạn là người duy nhất truy cập tài khoản ShopNick.Online của bạn. Khi
-            cập nhật, xóa bỏ hay sửa đổi thông tin trên Facebook của bạn thì
+            Bạn là người duy nhất truy cập tài khoản ShopNick.Online của bạn.
+            Khi cập nhật, xóa bỏ hay sửa đổi thông tin trên Facebook của bạn thì
             thông tin cá nhân trên ShopNick.Online cũng sẽ thay đổi.
           </p>
 
@@ -91,8 +84,8 @@
           </p>
 
           <p>
-            ShopNick.Online sẽ cung cấp thông tin khi có yêu cầu của cơ quan chức
-            năng nhà nước có thẩm quyền.
+            ShopNick.Online sẽ cung cấp thông tin khi có yêu cầu của cơ quan
+            chức năng nhà nước có thẩm quyền.
           </p>
 
           <p>&nbsp;</p>
@@ -105,9 +98,9 @@
           </p>
 
           <p>
-            Thành viên cam kết đồng ý không sử dụng ShopNick.Online vào những mục
-            đích không hợp pháp như lừa đảo, đe dọa, thăm dò thông tin bất hợp
-            pháp...
+            Thành viên cam kết đồng ý không sử dụng ShopNick.Online vào những
+            mục đích không hợp pháp như lừa đảo, đe dọa, thăm dò thông tin bất
+            hợp pháp...
           </p>
 
           <p>
@@ -129,8 +122,8 @@
             thẻ, mua account, chuyển tiền, rút tiền, hay mua trả góp...
             ShopNick.Online sẽ xử lý khiếu nại trong thời gian sớm nhất. Trường
             hợp thẻ lỗi không nạp được bạn phải cung cấp số seri cho
-            ShopNick.Online kiểm tra và sẽ được cộng số dư ngay nếu do lỗi từ nhà
-            cung cấp.
+            ShopNick.Online kiểm tra và sẽ được cộng số dư ngay nếu do lỗi từ
+            nhà cung cấp.
           </p>
 
           <p>
@@ -166,8 +159,8 @@
           </p>
 
           <p>
-            Tôi cam kết phối hợp với ShopNick.Online và cơ quan đều tra trong mọi
-            trường hợp xác minh có dấu hiệu lừa đảo, kinh doanh vi phạm pháp
+            Tôi cam kết phối hợp với ShopNick.Online và cơ quan đều tra trong
+            mọi trường hợp xác minh có dấu hiệu lừa đảo, kinh doanh vi phạm pháp
             luật, vi phạm pháp luật nước CHXHCN Việt Nam.
           </p>
 
@@ -522,22 +515,7 @@ export default {
   components: {
     HomePage,
   },
-  computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
-  },
-  async mounted() {
-    this.reload();
-  },
-  methods: {
-    async reload() {
-      this.ready = false;
-      setTimeout(() => {
-        this.ready = true;
-      }, 200);
-    },
-  },
+
   data() {
     return {
       title: "Điều Khoản & Chính Sách",

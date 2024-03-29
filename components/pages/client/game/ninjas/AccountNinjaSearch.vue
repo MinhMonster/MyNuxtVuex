@@ -87,7 +87,6 @@ export default {
   },
   computed: {
     ...mapFields("global", {
-      ready: "ready",
       isLoadingSearch: "isLoadingSearch"
     }),
 

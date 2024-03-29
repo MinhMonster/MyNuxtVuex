@@ -5,12 +5,11 @@
       :description="descriptionHead"
       :keywords="keywordsHead"
       :image="imagenHead"
-      :loading="!ready"
       goBack
       reload
       @reload="getTopic()"
     >
-      <template v-if="ready" #body>
+      <template #body>
         <div class="topic mt-4">
           <h1 class="title text-center">{{ topic.title }}</h1>
           <div v-html="topic.content" class="mt-4"></div>
@@ -21,8 +20,6 @@
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
-
 import { mapActions, mapState } from "vuex";
 
 import HomePage from "@/components/pages/home/HomePage";
@@ -35,9 +32,6 @@ export default {
   },
   computed: {
     ...mapState("home/topics", ["topic"]),
-    ...mapFields("global", {
-      ready: "ready",
-    }),
     topicLink() {
       return this.$route.params.link;
     },
@@ -64,9 +58,7 @@ export default {
   methods: {
     ...mapActions("home/topics", ["fetchTopic"]),
     async getTopic() {
-      this.ready = false;
       await this.fetchTopic(this.topicLink);
-      this.ready = true;
     },
   },
   head() {

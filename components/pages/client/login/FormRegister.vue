@@ -127,8 +127,6 @@
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
-
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
 
@@ -153,9 +151,6 @@ export default {
   components: { Loading, FormValidator },
   computed: {
     ...mapState(["token"]),
-    ...mapFields("global", {
-      ready: "ready",
-    }),
   },
   methods: {
     ...mapActions(["register", "loginFb"]),
@@ -168,13 +163,6 @@ export default {
         this.$router.push("/account/profile");
       }
       this.isLoading = false;
-    },
-
-    async reload() {
-      this.ready = false;
-      setTimeout(() => {
-        this.ready = true;
-      }, 200);
     },
   },
   head() {

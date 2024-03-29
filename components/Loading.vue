@@ -1,13 +1,13 @@
 <template>
   <div v-if="visible" class="loading-template" :class="{ hidden: hidden }">
     <div class="svg">
-      <Loading />
+    <Loading />
     </div>
   </div>
 </template>
 
 <script>
-import Loading from "@/components/pages/admin/layout/Loading.vue";
+import Loading from "@/components/global/molecules/common/Loading";
 
 export default {
   components: {
@@ -19,10 +19,9 @@ export default {
   }),
   computed: {
     requests() {
-      return this.$store.state.requests;
+      return _.cloneDeep(this.$store.state.requests);
     },
   },
-  mouted() {},
   watch: {
     "requests.length"(value) {
       if (value > 0) {
@@ -56,16 +55,13 @@ export default {
   opacity: 0.8;
   height: 100vh;
   width: 100%;
-
 }
 
 .loading-template .svg {
   z-index: 100000;
-  position: fixed;
   background-color: #333;
-  right: calc(50% - 30px);
-  top: calc(50% - 30px);
   height: 100px;
+  width: 100%;
+  margin: calc(50vh - 50px) auto;
 }
-
 </style>

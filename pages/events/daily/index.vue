@@ -2,13 +2,12 @@
   <client-only>
     <HomePage
       :title="title"
-      :loading="!ready"
       goBack
       reload
       @reload="reload()"
       table
     >
-      <template v-if="ready" #body>
+      <template #body>
         <form class="form daily-event">
           <div class="content-main text-center mb-2">
             Đoạn đúng chắc chắc có thưởng!
@@ -175,7 +174,6 @@ export default {
   },
 
   computed: {
-    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       user: "user",
       token: "token",
@@ -231,7 +229,6 @@ export default {
       }
     },
     async onPageChange(page) {
-      this.ready = false;
       if (this.token) {
         await this.setQuery({ page });
         await this.fetchVotedDailyEventHistories();
@@ -245,9 +242,6 @@ export default {
           ? this.$router.push(`/events/daily`)
           : this.$router.push(`/events/daily?page=${page}`);
       }
-      setTimeout(() => {
-        this.ready = true;
-      }, 200);
     },
     reload() {
       this.onPageChange(this.pageSave);

@@ -2,13 +2,12 @@
   <client-only>
     <HomePage
       title="Nick Ninja School Online"
-      :loading="!ready"
       goBack
       reload
       @reload="reloadNinja('')"
       notBoder
     >
-      <template v-if="ready" #body>
+      <template #body>
         <div class="mt-4">
           <AccountNinjaSearch @search="searchNinjas()"></AccountNinjaSearch>
           <AccountNinjaList></AccountNinjaList>

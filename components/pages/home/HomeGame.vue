@@ -82,6 +82,7 @@ import DepositCardForm from "@/components/pages/client/account/wallet/DepositCar
 
 // import { mapFields } from "vuex-map-fields";
 import { mapState, mapActions } from "vuex";
+
 export default {
   name: "HomeGame",
 

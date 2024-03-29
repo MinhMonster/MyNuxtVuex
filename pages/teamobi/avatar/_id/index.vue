@@ -1,7 +1,7 @@
 <template>
   <client-only>
-    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
-      <template v-if="accountAvatar && accountAvatar.ID && ready" #body>
+    <HomePage goBack reload @reload="fetchAccount()" table>
+      <template v-if="accountAvatar && accountAvatar.ID" #body>
         <AccountAvatarDetail
           :account-avatar="accountAvatar"
         ></AccountAvatarDetail>
@@ -42,9 +42,7 @@ export default {
     AccountAvatarList,
   },
   computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
+    ...mapFields("global", {}),
     ...mapFields("home/game/avatars", {
       accountAvatar: "accountAvatar",
       accountAvatars: "accountAvatars",
@@ -71,14 +69,11 @@ export default {
     ]),
 
     async fetchAccount() {
-      this.ready = false;
-
       await this.fetchAccountAvatar({
         params: {
           id: this.accountId,
         },
       });
-      this.ready = true;
 
       await this.resetQuery();
       await this.resetAccountAvatars();

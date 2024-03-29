@@ -2,13 +2,12 @@
   <client-only>
     <HomePage
       title="Nick Avatar Xứ Sở Diệu Kỳ"
-      :loading="!ready"
       goBack
       reload
       @reload="reload()"
       notBoder
     >
-      <template v-if="ready" #body>
+      <template #body>
         <div class="mt-4">
           <AccountAvatarSearch @search="search()"></AccountAvatarSearch>
           <AccountAvatarList></AccountAvatarList>
@@ -35,16 +34,13 @@ export default {
   },
   computed: {
     ...mapFields("global", {
-      ready: "ready",
       isLoadingSearch: "isLoadingSearch",
     }),
   },
   async mounted() {
-    this.ready = false;
     await this.resetQuery();
     await this.resetAccountAvatars();
     await this.fetchAccountAvatars();
-    this.ready = true;
   },
   methods: {
     ...mapActions("home/game/avatars", [
@@ -62,11 +58,9 @@ export default {
       }, 300);
     },
     async reload() {
-      this.ready = false;
       await this.resetQuery();
       await this.resetAccountAvatars();
       await this.fetchAccountAvatars();
-      this.ready = true;
     },
   },
   data() {

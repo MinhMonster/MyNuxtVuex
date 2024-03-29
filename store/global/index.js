@@ -5,7 +5,6 @@ const SET_VALIDATION_ERRORS = "SET_VALIDATION_ERRORS";
 export default {
   namespaced: true,
   state: () => ({
-    ready: false,
     isLoadingSearch: false,
     validationErrors: {},
     selectedImages: [],

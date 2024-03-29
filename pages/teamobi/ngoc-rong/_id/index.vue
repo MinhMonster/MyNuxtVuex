@@ -1,7 +1,7 @@
 <template>
   <client-only>
-    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
-      <template v-if="account && account.ID && ready" #body>
+    <HomePage goBack reload @reload="fetchAccount()" table>
+      <template v-if="account && account.ID" #body>
         <AccountDragonBallDetail :account="account" />
       </template>
       <template #table>
@@ -39,9 +39,6 @@ export default {
   },
 
   computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
     ...mapFields("home/game/dragon_balls", {
       account: "accountDragonBall",
       accounts: "accountDragonBalls",
@@ -68,14 +65,11 @@ export default {
     ]),
 
     async fetchAccount() {
-      this.ready = false;
-
       await this.fetchAccountDragonBall({
         params: {
           id: this.accountId,
         },
       });
-      this.ready = true;
 
       await this.resetQuery();
       await this.resetAccountDragonBalls();

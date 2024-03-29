@@ -44,8 +44,6 @@
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
-
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
 // import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
@@ -68,9 +66,6 @@ export default {
   },
   computed: {
     ...mapState(["token"]),
-    ...mapFields("global", {
-      ready: "ready",
-    }),
   },
   methods: {
     ...mapActions(["login", "logout", "fetchUser", "loginFb"]),

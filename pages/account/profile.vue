@@ -4,12 +4,11 @@
       :title="title"
       content="Cập nhật thông tin của bạn tại đây"
       full-screen
-      :loading="!ready"
       goBack
       reload
       @reload="fetchAccount()"
     >
-      <template v-if="token && user && ready" #body>
+      <template v-if="token && user" #body>
         <div class="account-body">
           <table class="table text-center">
             <tbody>
@@ -98,7 +97,6 @@
 import HomePage from "@/components/pages/home/HomePage";
 import Loading from "@/components/global/molecules/common/Loading";
 
-import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 
@@ -111,7 +109,6 @@ export default {
     HomePage,
   },
   computed: {
-    ...mapFields("global", { ready: "ready" }),
     ...mapState(["token", "user"]),
   },
   async mounted() {
@@ -121,11 +118,7 @@ export default {
     ...mapActions(["logout", "fetchUser", "getToken"]),
 
     async fetchAccount() {
-      this.ready = false;
-
       await this.fetchUser();
-
-      this.ready = true;
     },
   },
   data() {

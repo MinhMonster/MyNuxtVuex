@@ -4,13 +4,12 @@
       :title="title"
       content="Các thông tin nick sẽ được cập nhật tại đây."
       full-screen
-      :loading="!ready"
       goBack
       :path-go-back="`/account/history`"
       reload
       @reload="fetchHistory()"
     >
-      <template v-if="user && ready && history" #body>
+      <template v-if="user && history" #body>
         <div class="table-responsive">
           <table class="table">
             <tbody>
@@ -135,12 +134,10 @@ export default {
     AdminInbox,
   },
   computed: {
-    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       history: "historyBuyAccount",
       pageSave: "pageSave",
     }),
-    ...mapFields("home/game/ninjas", {}),
     ...mapState(["token", "user"]),
     historyId() {
       return _.cloneDeep(this.$route.params.id);
@@ -156,9 +153,7 @@ export default {
       element.scrollIntoView();
     },
     async fetchHistory() {
-      this.ready = false;
       await this.historyBuyAccount(this.historyId);
-      this.ready = true;
     },
     goBack() {
       this.$router.push(`/account/history?page=${this.pageSave}`);

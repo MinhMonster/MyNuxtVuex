@@ -2,13 +2,12 @@
   <client-only>
     <HomePage
       title="Nick Ngọc Rồng Online"
-      :loading="!ready"
       goBack
       reload
       @reload="reload()"
       notBoder
     >
-      <template v-if="ready" #body>
+      <template #body>
         <div class="mt-4">
           <AccountDragonBallSearch @search="search()"></AccountDragonBallSearch>
           <AccountDragonBallList></AccountDragonBallList>
@@ -20,7 +19,6 @@
 
 <script>
 import HomePage from "@/components/pages/home/HomePage";
-import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import AccountDragonBallSearch from "@/components/pages/client/game/dragon_balls/AccountDragonBallSearch";
 import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/AccountDragonBallList";
@@ -33,17 +31,10 @@ export default {
     AccountDragonBallSearch,
     AccountDragonBallList,
   },
-  computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
-  },
   async mounted() {
-    this.ready = false;
     await this.resetQuery();
     await this.resetAccountDragonBalls();
     await this.fetchAccountDragonBalls();
-    this.ready = true;
   },
   methods: {
     ...mapActions("home/game/dragon_balls", [
@@ -53,17 +44,13 @@ export default {
       "fetchAccountDragonBalls",
     ]),
     async search() {
-      this.ready = false;
       await this.resetAccountDragonBalls();
       await this.fetchAccountDragonBalls();
-      this.ready = true;
     },
     async reload() {
-      this.ready = false;
       await this.resetQuery();
       await this.resetAccountDragonBalls();
       await this.fetchAccountDragonBalls();
-      this.ready = true;
     },
   },
   data() {

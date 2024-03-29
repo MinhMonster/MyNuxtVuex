@@ -4,12 +4,11 @@
       :title="title"
       content="Xem lại các Giao dịch gần nhất."
       full-screen
-      :loading="!ready"
       goBack
       reload
       @reload="onPageChange(queryPage)"
     >
-      <template v-if="token && user && ready && histories" #body>
+      <template v-if="token && user && histories" #body>
         <div class="table-responsive">
           <table
             style="font-size: 14px"
@@ -85,12 +84,10 @@ export default {
 
   components: { Pagination, HomePage },
   computed: {
-    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       histories: "historyBuyAccounts",
       historyMeta: "historyMeta",
     }),
-    ...mapFields("home/game/ninjas", {}),
     ...mapState(["token", "user"]),
     queryPage() {
       return _.cloneDeep(this.$route.query.page) || 1;
@@ -108,13 +105,11 @@ export default {
       element.scrollIntoView();
     },
     async onPageChange(page) {
-      this.ready = false;
       await this.setQuery({ page });
       await this.historyBuyAccounts();
       page == 1 || !page
         ? await this.$router.push(`/account/history`)
         : await this.$router.push(`/account/history?page=${page}`);
-      this.ready = true;
     },
   },
   data() {

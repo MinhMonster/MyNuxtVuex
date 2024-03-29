@@ -10,7 +10,6 @@ export default {
   },
   computed: {
     ...mapFields("global", {
-      ready: "ready",
       isLoadingSearch: "isLoadingSearch"
     }),
     ...mapFields("home/game/ninjas", {
@@ -110,18 +109,14 @@ export default {
       }, 300);
     },
     async reloadNinja(type) {
-      this.ready = false;
       await this.resetQueryNinja(type);
       await this.resetAccountNinjas();
       await this.fetchAccountNinjas();
-      this.ready = true;
     },
     async getAccountNinjas(type) {
-      this.ready = false;
       await this.setQueryNinja(type);
       await this.resetAccountNinjas();
       await this.fetchAccountNinjas();
-      this.ready = true;
     },
     async setQueryNinja(type) {
       await this.resetQuery(type);

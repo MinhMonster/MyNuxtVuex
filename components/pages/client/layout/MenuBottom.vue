@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
 import ModalGame from "@/components/pages/client/layout/ModalGame";
 import ModalSetting from "@/components/pages/client/layout/ModalSetting";
 import ModalSupport from "@/components/pages/client/layout/ModalSupport";
@@ -50,24 +49,11 @@ export default {
     ModalSupport,
   },
 
-  computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
-  },
   methods: {
     nextPath(path) {
-      if (this.path === path) {
-        this.reset();
-      } else {
+      if (this.path !== path) {
         this.$router.push(path);
       }
-    },
-    async reset() {
-      this.ready = false;
-      setTimeout(() => {
-        this.ready = true;
-      }, 200);
     },
   },
 };

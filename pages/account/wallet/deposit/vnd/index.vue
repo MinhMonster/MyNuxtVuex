@@ -2,7 +2,6 @@
   <client-only>
     <HomePage
       :title="title"
-      :loading="!ready"
       goBack
       reload
       @reload="reload()"
@@ -10,7 +9,7 @@
       :col-right="4"
       table
     >
-      <template v-if="ready" #body>
+      <template #body>
         <form class="form">
           <div class="content-main">
             Chuyển tiền cho Admin xong bạn vào đây để tạo thông báo nạp tiền
@@ -254,7 +253,6 @@ export default {
   },
 
   computed: {
-    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       histories: "historyWalletDepositVnds",
       historyMeta: "historyMeta",
@@ -307,13 +305,11 @@ export default {
       }
     },
     async onPageChange(page) {
-      this.ready = false;
       await this.setQuery({ page });
       await this.historyWalletDepositVnds();
       page == 1 || !page
         ? this.$router.push(`/account/wallet/deposit/vnd`)
         : this.$router.push(`/account/wallet/deposit/vnd?page=${page}`);
-      this.ready = true;
     },
     increaseMoney(history) {
       return history.moneyFirst < history.moneyLast;

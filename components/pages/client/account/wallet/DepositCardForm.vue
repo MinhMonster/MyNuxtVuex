@@ -219,7 +219,6 @@ export default {
   },
 
   computed: {
-    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       histories: "historyWalletDepositCards",
     }),

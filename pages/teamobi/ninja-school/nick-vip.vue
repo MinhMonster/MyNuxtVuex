@@ -2,13 +2,12 @@
   <client-only>
     <HomePage
       title="Nick Ninja School VIP"
-      :loading="!ready"
       goBack
       reload
       @reload="reloadNinja('VIP')"
       notBoder
     >
-      <template v-if="ready" #body>
+      <template #body>
         <div class="mt-4">
           <AccountNinjaSearch
             type="VIP"

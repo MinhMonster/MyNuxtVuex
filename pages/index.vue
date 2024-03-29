@@ -1,7 +1,7 @@
 <template>
   <client-only>
-    <HomePage :loading="!ready" notBoder>
-      <template v-if="ready" #body>
+    <HomePage notBoder>
+      <template #body>
         <div class="mt-1">
           <HomeGame></HomeGame>
         </div>
@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
-
 import HomePage from "@/components/pages/home/HomePage";
 import HomeGame from "@/components/pages/home/HomeGame";
 
@@ -22,22 +20,6 @@ export default {
   components: {
     HomePage,
     HomeGame,
-  },
-  computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
-  },
-  mounted() {
-    this.reload();
-  },
-  methods: {
-    reload() {
-      this.ready = false;
-      setTimeout(() => {
-        this.ready = true;
-      }, 50);
-    },
   },
   data() {
     return {

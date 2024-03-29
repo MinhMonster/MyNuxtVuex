@@ -21,7 +21,8 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       // if (!config.noRequireToken) {
       switch (namespace) {
         case "clientLayout":
-          store.dispatch("disableLoading");
+          
+          // store.dispatch("disableLoading");
           authToken = store.state.home.users.token;
           break;
         default:
@@ -187,7 +188,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     }
     setTimeout(() => {
       store.dispatch("disableLoading");
-    }, 50);
+    }, 500);
 
   });
 
@@ -201,7 +202,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
     setTimeout(() => {
       store.dispatch("disableLoading");
-    }, 50);
+    }, 500);
   })
   inject("api", api);
 }

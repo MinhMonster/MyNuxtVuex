@@ -1,12 +1,9 @@
 <template #body>
   <HomePage
     title="Đại Tây Du - G4M"
-    :loading="!ready"
     goBack
-    reload
     full-screen
     goHome
-    @reload="reload()"
   >
     <template #body>
       <div class="text-center mb-5">
@@ -29,30 +26,12 @@
 
 <script>
 import HomePage from "@/components/pages/home/HomePage";
-import { mapFields } from "vuex-map-fields";
-
 
 export default {
   layout: "clientLayout",
 
   components: {
     HomePage,
-  },
-  computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
-  },
-  async mounted() {
-    this.reload();
-  },
-  methods: {
-    async reload() {
-      this.ready = false;
-      setTimeout(() => {
-        this.ready = true;
-      }, 200);
-    },
   },
   data() {
     return {
