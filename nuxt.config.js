@@ -37,14 +37,14 @@ export default {
       // },
     ],
   },
-  generate: {
-    routes: async () => {
-      const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
-      return data.sitemap_topics.map(
-        file => `${file.link}`
-      );
-    },
-  },
+  // generate: {
+  //   routes: async () => {
+  //     const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
+  //     return data.sitemap_topics.map(
+  //       file => `${file.link}`
+  //     );
+  //   },
+  // },
   mounted() {
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
