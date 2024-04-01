@@ -209,38 +209,4 @@ export default {
   position: relative;
 }
 
-.go-back,
-.reload {
-  position: absolute;
-  top: 12px;
-  height: 20px !important;
-  width: 20px !important;
-  z-index: 999;
-
-  .v-btn--icon.v-size--default {
-    height: 20px;
-    width: 20px;
-    background: radial-gradient(
-      circle at 50% 100%,
-      #e28637,
-      #9f5424 58%,
-      #561d00 127%
-    );
-  }
-}
-
-.go-back {
-  left: 10px;
-}
-
-.reload {
-  right: 10px;
-
-  .v-btn--icon.v-size--default .v-icon,
-  .v-btn--fab.v-size--default .v-icon {
-    height: 18px;
-    font-size: 18px;
-    width: 18px;
-  }
-}
 </style>

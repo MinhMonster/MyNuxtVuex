@@ -3,10 +3,10 @@
     <div id="next-top" class="title text-center">
       Hướng dẫn nạp tiền qua {{ history.walletType }}
     </div>
-    <small id="fileHelp" class="form-text text-muted"
+    <h4 id="fileHelp" class="form-text text-muted"
       >Hãy chuyển tiền cho Admin để
       <v-btn color="success" class="pd-5px btn-sm">Hoàn thành</v-btn>
-      giao dịch nạp tiền này.</small
+      giao dịch nạp tiền này.</h4
     >
     <div class="info-atm-momo">
       <img src="/icon/icon-next-right.gif" /> Bạn Chuyển tiền cho Admin:<br />
@@ -24,7 +24,7 @@
         >NAP MBN {{ user.id }}
         <ButtonCoppy :content="`NAP MBN ${user.id}`"></ButtonCoppy> </span
       ><br />
-      <img src="/icon/icon-next-right.gif" /> Sau 5-30p khi bạn đã chuyển tiền
+      <img src="/icon/icon-next-right.gif" /> Sau 1-5p khi bạn đã chuyển tiền
       cho Admin thành công nhưng vẫn chưa được cộng tiền trên Web thì hãy liên
       hệ cho Admin để xử lý:
       <AdminInbox />

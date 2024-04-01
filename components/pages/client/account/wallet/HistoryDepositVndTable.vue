@@ -5,8 +5,8 @@
         ><i class="mdi mdi-history"></i> Lịch sử nạp ATM-MOMO của
         <font color="red">{{ user.name }}</font></label
       ><br />
-      <small id="fileHelp" class="form-text text-muted"
-        >Xem lại các Giao dịch gần nhất.</small
+      <h4 id="fileHelp" class="form-text text-muted"
+        >Xem lại các Giao dịch gần nhất.</h4
       >
       <table style="font-size: 14px" class="table table-striped table-border">
         <thead>

@@ -12,9 +12,9 @@
               {{ title }}
             </div>
             <div v-if="content" class="text-center">
-              <small id="fileHelp" class="form-text text-muted">
+              <h3 id="fileHelp" class="form-text text-muted">
                 {{ content }}
-              </small>
+              </h3>
             </div>
 
             <div v-if="goBack" class="go-back" @click="onGoBack()">

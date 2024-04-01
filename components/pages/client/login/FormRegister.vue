@@ -160,7 +160,13 @@ export default {
         input: this.user,
       });
       if (this.token) {
+        this.$emit("close");
         this.$router.push("/account/profile");
+        this.showSwal({
+          icon: "success",
+          title: "Đăng ký Thành công",
+          html: "Cảm ơn bạn đã sử dụng dịch vụ!",
+        });
       }
       this.isLoading = false;
     },
