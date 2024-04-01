@@ -205,20 +205,21 @@ th.info-nick {
     top: 0;
   }
 }
+
 .row {
   padding: 0;
   margin: 0px;
+
   .col-md-12 {
     margin: 0px;
     padding: 0px;
+
     .info-atm-momo {
-      border: 1px solid #663019;
-      background: #ffcf9c;
-      margin: 5px;
       padding: 5px;
       line-height: 25px;
       font-size: 14px;
     }
   }
 }
+
 </style>

@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       title:
-        "ShopNick.Online - Shop Nick Ngọc Rồng Online Tự Động - Shop Mua Bán Nick Ngọc Rồng Online VIP Giá Rẻ, Uy Tín Nhất MXH",
+        "ShopNick.Online | Shop Nick Ngọc Rồng Online Tự Động - Shop Mua Bán Acc Ngọc Rồng Online VIP Giá Rẻ, Uy Tín Nhất MXH",
       description:
         "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
     };
@@ -68,7 +68,7 @@ export default {
         { hid: "description", name: "description", content: this.description },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.description },
-        { property: "og:image", content: "/images/banners/banner_nro_min.jpg" },
+        { property: "og:image", content: "/images/banners/ngocrong-blue.png" },
         {
           property: "og:image:alt",
           content: "Shop Nick Ngọc Rồng Online VIP Giá Rẻ - NRO",

@@ -15,10 +15,10 @@
                     ></div>
                   </v-col>
                   <v-col cols="8">
-                    <div class="text-main text-14-700">
+                    <div class="text-14-700">
                       {{ item.title }}
                     </div>
-                    <div class="break-line-2 text-main text-13-400">
+                    <div class="break-line-2 text-13-400">
                       {{ item.description }}
                     </div>
                   </v-col>
@@ -96,7 +96,7 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
-        { property: "og:image", content: "/banner.jpg" },
+        { property: "og:image", content: "/images/banners/banner-blue.png" },
       ],
     };
   },

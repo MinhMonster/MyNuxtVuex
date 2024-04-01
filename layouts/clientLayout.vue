@@ -16,9 +16,9 @@
     <ModalLogin />
 
     <template v-if="isShowButton">
-      <div class="change-theme">
+      <!-- <div class="change-theme">
         <BaseSvg name="theme-light-dark" @click="changeTheme()" />
-      </div>
+      </div> -->
       <div class="next-top">
         <BaseSvg name="next-top" @click="nextTop()" />
       </div>
@@ -101,9 +101,9 @@ export default {
   },
   methods: {
     ...mapActions("home/users", ["fetchUser"]),
-    changeTheme() {
-      this.isThemeDark = !this.isThemeDark;
-    },
+    // changeTheme() {
+    //   this.isThemeDark = !this.isThemeDark;
+    // },
     scroll() {
       if (!this.isShowButton) {
         this.isShowButton = true;
@@ -152,42 +152,7 @@ export default {
     }
   }
 }
-.change-theme,
-.next-top,
-.next-bottom {
-  position: fixed;
-  right: 30px;
-  height: 30px;
-  width: 30px;
-  z-index: 10;
-  svg {
-    height: 26px;
-    width: 26px;
-    path {
-      height: 26px;
-      width: 26px;
-    }
-  }
-  .v-btn--icon.v-size--default {
-    height: 30px;
-    width: 30px;
-    background: radial-gradient(
-      circle at 50% 100%,
-      #e28637,
-      #9f5424 58%,
-      #561d00 127%
-    );
-  }
-}
-.change-theme {
-  bottom: 170px;
-}
-.next-top {
-  bottom: 130px;
-}
-.next-bottom {
-  bottom: 90px;
-}
+
 .theme--dark.v-application {
   background: radial-gradient(
     circle at 50% 100%,
@@ -198,21 +163,12 @@ export default {
   color: #ffffff;
   z-index: 2;
 }
-.bg-website {
-  // background: #ffcf9c;
-  background: #9f5424;
-  // position: fixed;
-  // top: 50px;
-  // bottom: 55px;
-  // margin: 0 auto;
-  // width: 100%;
-}
 // @media (min-width: 1300px) {
 ::v-deep {
   .v-main__wrap {
     .container.client-main {
       top: 55px;
-      bottom: 75px;
+      bottom: 50px;
       right: 5px;
       position: fixed;
       width: calc(100% - 55px) !important;
@@ -220,8 +176,14 @@ export default {
       margin-left: 50px;
       max-width: 100% !important;
       border-radius: 4px;
-      background: #ffcf9c;
+
+      background: #fff;
       transition: margin-left 0.2s;
+      background-size: cover;
+      background-image: url('https://shopnick.online/images/bg/blue/bg.jpg');
+      @media (max-width: 599px) {
+        background-image: url('https://shopnick.online/images/bg/blue/bg-mb.png');
+      }
     }
   }
 
@@ -235,7 +197,7 @@ export default {
     .v-main__wrap {
       .container.client-main {
         top: 55px;
-        bottom: 60px;
+        bottom: 50px;
         width: calc(100% - 65px) !important;
         margin-left: 60px;
       }
@@ -259,7 +221,7 @@ export default {
     .v-main__wrap {
       .container.client-main {
         top: 55px;
-        bottom: 60px;
+        bottom: 50px;
 
         #home-page {
           .page-body {
@@ -339,104 +301,5 @@ export default {
 //   }
 // }
 
-::v-deep {
-  .slick-dots {
-    bottom: 10px;
-  }
-  .slick-slide {
-    padding: 6px;
-    // border: 1px solid #663019;
-    // height: calc(100% - 10px) !important;
-    // border-radius: 3px !important;
-  }
-  @media (max-width: 400px) {
-    .slick-slide {
-      padding: 0px;
-    }
-    #home-page.page-body {
-      padding: 6px;
-    }
-    #account-slider {
-      padding: 9px;
-    }
-    .title-category {
-      margin: 0 -9px !important;
-      margin-top: -9px !important;
-      margin-bottom: 9px !important;
-    }
-  }
 
-  .slick-arrow,
-  .slick-arrow:hover {
-    z-index: 2;
-    &.slick-next {
-      right: 15px;
-    }
-    &.slick-prev {
-      left: 15px;
-    }
-
-    &.slick-next,
-    &.slick-prev,
-    &.slick-prev::before,
-    &.slick-next::before {
-      color: #fff;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle at 50% 100%,
-        #e28637,
-        #9f5424 58%,
-        #561d00 127%
-      );
-    }
-  }
-}
-::v-deep {
-  #home-page {
-    table.table {
-      &.table-striped > tbody > tr:nth-of-type(odd) {
-        color: #9f5424;
-        border: 1px solid #663019;
-        background: #ffcf9c;
-      }
-      thead {
-        th {
-          padding: 7.5px;
-          &.trading-code {
-            width: 10% !important;
-            min-width: 60px;
-            vertical-align: middle !important;
-            text-align: center;
-          }
-          &.holder-action {
-            width: 10% !important;
-            min-width: 60px;
-            vertical-align: middle !important;
-            text-align: center;
-          }
-          &.info-history {
-            width: 80% !important;
-            min-width: 150px;
-            vertical-align: middle !important;
-            text-align: left;
-          }
-        }
-      }
-      tbody {
-        tr {
-          td {
-            padding: 6px 3px;
-            .col-sm-12,
-            .col-md-6,
-            .col-lg-3 {
-              padding: 3px 15px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
 </style>

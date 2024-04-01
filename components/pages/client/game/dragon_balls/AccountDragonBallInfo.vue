@@ -92,47 +92,7 @@ export default {
   color: #1e5b7e;
   margin-bottom: 10px;
 }
-table.table tbody {
-  // border: 1px solid #663019;
-}
-th.info-nick {
-  width: 50%;
-  padding: 7px;
-  color: #ffcf9c;
-  border: 1px solid #663019;
-  background: #e28637;
-}
-.btn-buy-account,
-.mua-nick {
-  cursor: pointer;
-  padding: 5px;
-  color: #663019;
-  border: 1px solid #663019;
-  background: #ffcf9c;
-}
 
-.btn-buy-account-hover {
-  color: #ffcf9c;
-  border: 1px solid #663019;
-  background: #e28637;
-}
-.btn-buy-account,
-.btn-buy-account-hover,
-.mua-nick {
-  padding: 6.5px;
-  border-radius: 3px !important;
-  text-align: center;
-}
-.table td {
-  padding: 5px;
-  vertical-align: top;
-  border: 1px solid #e28637;
-}
-.mua-nick span {
-  font-size: 14px;
-  font-weight: 400;
-  color: #663019;
-}
 
 ::v-deep {
   .modal-header {

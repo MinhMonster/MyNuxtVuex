@@ -1,10 +1,54 @@
+.rightbar-content .user-info-wrap {
+  top: 0px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  background: #3399ff;
+  background-size: 100% 100%;
+
+  .base-svg {
+    svg {
+      height: 70px;
+      width: 70px;
+    }
+  }
+
+  .user-info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button.v-btn .v-btn__content,
+    .v-btn--icon.v-size--default {
+      height: 70px !important;
+      width: 70px !important;
+      font-size: 70px;
+    }
+
+    img {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+    }
+  }
+}
+
+.rightbar-content .member-nav .h-line {
+  background-color: #3399ff;
+}
+
 .rightbar-content {
-  border: 2px solid #561d00 !important;
+  border: 2px solid $blue-bold  !important;
   background: radial-gradient(circle at 50% 100%,
-      #e28637,
-      #9f5424 58%,
-      #561d00 127%);
-  max-height: calc(100vh - 50px - 55px);
+      #3399ff,
+      $blue-bold 58%,
+      $blue-bold 127%);
+  max-height: calc(100vh - 50px - 45px);
   height: 100%;
   margin-top: 0px;
   border-radius: 4px;
@@ -35,10 +79,10 @@
 
   .user-info-wrap {
     border: none !important;
-    border-bottom: 2px solid #561d00 !important;
+    border: 2px solid $blue-bold  !important;
   }
 
   @media (max-width: 1265px) {
-    max-height: calc(100vh - 50px);
+    max-height: calc(100vh - 45px);
   }
 }

@@ -1,0 +1,36 @@
+.swal2-popup {
+  background-color: #fff !important;
+  border: 2px solid #fff !important;
+  // border-image: url(https://muabannick.pro/images/box/box.jpg) 10 round;
+  background: #fff !important;
+  border-radius: 3px;
+}
+
+
+.swal2-confirm.swal2-styled {
+  color: #fff !important;
+  border: none !important;
+  background: $color-theme-blue !important;
+}
+
+.swal2-icon.swal2-error {
+  border-color: #dc3545 !important;
+  color: #dc3545 !important;
+}
+
+.swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+  background: #dc3545 !important;
+}
+
+.swal2-title {
+  color: $blue-bold !important;
+}
+
+.swal2-html-container {
+  color: $blue-bold !important;
+}
+
+.swal2-success-circular-line-left {
+  background-color: none !important;
+}
+

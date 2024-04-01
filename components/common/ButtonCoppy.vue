@@ -6,7 +6,7 @@
     v-clipboard:error="onCopy(false)"
     class="mb-1"
   >
-    <BaseSvg v-if="!isCheck" name="content-copy" />
+    <BaseSvg v-if="!isCheck" name="content-copy" class="btn-copy" />
     <BaseSvg v-else :class="{ 'v-icon-success': isCheck }" name="check" />
   </span>
 </template>
@@ -44,19 +44,8 @@ export default {
 .v-btn--icon.v-size--default {
   height: 25px !important;
   width: 25px !important;
-
   .v-icon {
     font-size: 18px !important;
-
-    &.mdi.mdi-content-copy {
-      color: #561d00;
-    }
-
-    &.mdi-check-circle-outline {
-      &.v-icon-success {
-        color: #28a745;
-      }
-    }
   }
 }
 </style>

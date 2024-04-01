@@ -125,30 +125,4 @@ export default {
   }
 }
 
-.list-number {
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-
-  .number {
-    width: 20%;
-    margin-bottom: 10px;
-
-    .v-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #e28637;
-      color: #ffcf9c;
-
-      .v-icon {
-        font-size: 20px;
-      }
-
-      &.active {
-        background: #561d00;
-      }
-    }
-  }
-}
 </style>

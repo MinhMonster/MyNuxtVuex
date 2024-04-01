@@ -23,7 +23,9 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'format-detection', content: 'telephone=no' },
-      { name: 'keywords', content: 'nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja, shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, nick avatar, nick dai tay du ' },
+      {
+        name: 'keywords', content: 'nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja, shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, nick avatar, nick dai tay du, nick avatar dk, shop nick avatar 2x, mua nick avatar dk, mua nick avatar 2x, shop acc avatar dk, shop acc avatar 2x, nick avatar dk teamobi, shop nick avatar 2x teamobi'
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -37,14 +39,14 @@ export default {
       // },
     ],
   },
-  generate: {
-    routes: async () => {
-      const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
-      return data.sitemap_topics.map(
-        file => `${file.link}`
-      );
-    },
-  },
+  // generate: {
+  //   routes: async () => {
+  //     const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
+  //     return data.sitemap_topics.map(
+  //       file => `${file.link}`
+  //     );
+  //   },
+  // },
   mounted() {
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }

@@ -50,8 +50,12 @@ export default {
         this.accountId
       )} - Nick Ninja School Online - ShopNick.Online`;
     },
-    imagenHead() {
-      return _.get(this.accountNinja, "hinhanh[0]", "/banner.jpg");
+    imageHead() {
+      return _.get(
+        this.accountNinja,
+        "hinhanh[0]",
+        "/images/banners/ninja-cheap-blue.png"
+      );
     },
   },
   async mounted() {
@@ -96,32 +100,14 @@ export default {
         { property: "og:description", content: this.title },
         {
           property: "og:image",
-          content: this.imagenHead,
+          content: this.imageHead,
+        },
+        {
+          property: "og:image:alt",
+          content: "Shop Nick Ninja School Online VIP  Giá Rẻ - NSO",
         },
       ],
     };
   },
 };
 </script>
-<style lang="scss" scoped>
-#home-page {
-  max-width: 1400px !important;
-}
-.title-category {
-  margin: 0 -9px;
-  margin-top: -9px;
-  margin-bottom: 9px;
-  height: 30px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background: radial-gradient(
-    circle at 50% 100%,
-    #e28637,
-    #9f5424 58%,
-    #561d00 127%
-  );
-  .title {
-    color: #ffefa3 !important;
-  }
-}
-</style>

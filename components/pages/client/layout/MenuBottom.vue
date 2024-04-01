@@ -20,7 +20,7 @@
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
-      <ModalSetting />
+      <!-- <ModalSetting /> -->
       <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
           <BaseSvg
@@ -33,23 +33,43 @@
         </div>
         <span class="title-menu-buttom">Bài Đăng</span>
       </div>
+      <div class="sub-menu-buttom" @click="changeTheme()">
+        <div class="footer_icon service">
+          <BaseSvg
+            class="icon-menu"
+            id="btn-change-theme"
+            title="Đổi Màu"
+            aria-label="Đổi Màu"
+            name="theme-light-dark"
+          />
+        </div>
+        <span class="title-menu-buttom">Đổi Màu</span>
+      </div>
     </div>
   </client-only>
 </template>
 
 <script>
 import ModalGame from "@/components/pages/client/layout/ModalGame";
-import ModalSetting from "@/components/pages/client/layout/ModalSetting";
+// import ModalSetting from "@/components/pages/client/layout/ModalSetting";
 import ModalSupport from "@/components/pages/client/layout/ModalSupport";
+import { mapFields } from "vuex-map-fields";
 
 export default {
   components: {
     ModalGame,
-    ModalSetting,
+    // ModalSetting,
     ModalSupport,
   },
-
+  computed: {
+    ...mapFields("global", {
+      isThemeDark: "isThemeDark",
+    }),
+  },
   methods: {
+    changeTheme() {
+      this.isThemeDark = !this.isThemeDark;
+    },
     nextPath(path) {
       if (this.path !== path) {
         this.$router.push(path);

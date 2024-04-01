@@ -18,19 +18,23 @@
 export default {
   computed: {
     items() {
-      return [
-        {
-          src: this.isMobile
-            ? "https://muabannick.pro/images/banners/banner_mobile.png"
-            : "https://muabannick.pro/images/banners/muabannick_banner_min.png",
-        },
-        // {
-        //   src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
-        // },
-        // {
-        //   src: "https://muabannick.pro/images/banners/banner_ny_min.gif",
-        // },
-      ];
+      if (this.isDark) {
+        return [
+          {
+            src: this.isMobile
+              ? "https://shopnick.online/images/banners/banner-violet.png"
+              : "https://shopnick.online/images/banners/banner-violet.png",
+          },
+        ];
+      } else {
+        return [
+          {
+            src: this.isMobile
+              ? "https://shopnick.online/images/banners/banner-blue.png"
+              : "https://shopnick.online/images/banners/banner-blue.png",
+          },
+        ];
+      }
     },
   },
   methods: {

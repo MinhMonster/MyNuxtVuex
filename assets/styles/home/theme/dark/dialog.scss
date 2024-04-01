@@ -31,6 +31,15 @@
 
     .v-card {
       border-bottom: $border-theme-dark;
+      .base-dialog::-webkit-scrollbar-thumb {
+        background: #a937ed !important;
+        border-radius: 10px !important;
+      }
+    
+      .base-dialog::-webkit-scrollbar-track {
+        background: #171e28;
+        border-radius: 10px;
+      }
       .v-card__actions {
         border: $border-theme-dark;
         border-top: none;

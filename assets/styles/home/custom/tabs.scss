@@ -1,14 +1,20 @@
 .v-tabs {
   .v-tabs-slider {
-    background-color: #663019;
+    background-color: $blue-bold;
   }
   .v-tab {
     width: 50%;
+    font-weight: bold;
     &.v-tab--active {
-      font-weight: bold;
+      color: #fff;
       border: none;
-      border-bottom: 1px solid #663019;
-      background-color: #ffefa3;
+      border-bottom: 1px solid $blue-bold;
+      background-color: $blue-bold;
+    }
+    &:not(.v-tab--active) {
+      color: #333;
+      background-color: $color-blue;
+
     }
   }
 }

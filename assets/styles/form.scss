@@ -22,13 +22,13 @@
 
   }
 
-  background: #ffefa3;
-  border: 1px solid #561d00;
+  background: $color-theme-blue-bland;
+  border: $border-gray;
 
 }
 
 .form-search {
-  background: #ffcf9c;
+  background: none;
   margin: -6px;
   // @media (max-width: 768px) {
   //   input,
@@ -43,8 +43,7 @@
 
   form {
     padding: 10px;
-    background: #ffefa3;
-
+    background: none;
   }
 
   @media (max-width: 600px) {
@@ -65,6 +64,7 @@
     a {
       color: #e28637;
     }
+
     .custom-field-input {
       padding: 6px 12px;
     }
@@ -78,7 +78,7 @@
   button {
     width: auto;
     color: #ffffff;
-    background: linear-gradient(-135deg, #e28637, #561d00);
+    background: linear-gradient(-135deg, $color-blue, $blue-bold);
 
     border: none !important;
     border-radius: 4px !important;
@@ -113,7 +113,7 @@
     .v-input__slot {
       background: #fff;
       border-radius: 3px;
-      border: 1px solid #e28637;
+      border: $border-gray;
     }
 
     &.v-input--radio-group--column {
@@ -124,18 +124,18 @@
 
       .v-radio {
         .v-icon {
-          color: #663019 !important;
+          color: $blue-bold !important;
 
         }
 
         .primary--text {
-          color: #663019 !important;
-          caret-color: #663019 !important;
+          color: $blue-bold !important;
+          caret-color: $blue-bold !important;
 
         }
 
         .v-label {
-          color: #663019 !important;
+          color: $blue-bold !important;
 
         }
       }
@@ -240,14 +240,14 @@ input.v-input {
   min-height: 34px !important;
   padding: 5px 10px !important;
   border-radius: 4px;
-  border: 1px solid #e28637 !important;
+  border: $border-gray !important;
   background-color: #fff !important;
   color: #0F0F0F !important;
 }
 
-button.btn-login {
-  background: radial-gradient(circle at 50% 100%, #e28637, #9f5424 58%, #561d00 127%) !important;
-}
+// button.btn-login {
+//   background: radial-gradient(circle at 50% 100%, #e28637, #9f5424 58%, #561d00 127%) !important;
+// }
 
 .register-btn {
   position: relative;
@@ -274,7 +274,7 @@ button.btn-login {
 
 form.form {
   // padding: 10px 30px 30px;
-  background: #ffefa3;
+  background: $color-theme-blue-bland;
   // border: 1px solid #663019;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -302,8 +302,8 @@ form.form {
       &.v-input {
         z-index: 999999999;
         height: 35px;
-        border: 1px solid #e28637;
-        color: #663019 !important;
+        // border: 1px solid #e28637;
+        color: #0F0F0F !important;
 
         &.text-danger {
           color: red !important;
@@ -326,17 +326,17 @@ form.form {
     .btn-login {
       width: 100%;
       border-radius: 20px;
-      color: #ffcf9c !important;
+      color: #fff !important;
       border: none;
       padding-left: 0;
       // font-size: 20px;
       font-weight: 500;
       cursor: pointer;
-      background: linear-gradient(-135deg, #e28637, #561d00);
+      background: linear-gradient(-135deg, #3399ff, $blue-bold) !important;
       transition: all 0.3s ease;
 
       span {
-        color: #ffcf9c !important;
+        color: #fff !important;
       }
     }
   }

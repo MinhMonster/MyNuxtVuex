@@ -1,0 +1,62 @@
+// ::v-deep {
+.slick-dots {
+  bottom: 10px;
+}
+
+.slick-slide {
+  padding: 6px;
+  // border: 1px solid #663019;
+  // height: calc(100% - 10px) !important;
+  // border-radius: 3px !important;
+}
+
+@media (max-width: 400px) {
+  .slick-slide {
+    padding: 0px;
+  }
+
+  #home-page.page-body {
+    padding: 6px;
+  }
+
+  #account-slider {
+    padding: 9px;
+  }
+
+  .title-category {
+    margin: 0 -9px !important;
+    margin-top: -9px !important;
+    margin-bottom: 9px !important;
+  }
+}
+
+.slick-arrow,
+.slick-arrow:hover {
+  z-index: 2;
+
+  &.slick-next {
+    right: 15px;
+  }
+
+  &.slick-prev {
+    left: 15px;
+  }
+
+  &.slick-next,
+  &.slick-prev,
+  &.slick-next:active,
+  &.slick-prev:active,
+  &.slick-prev::before,
+  &.slick-next::before {
+    color: #fff;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 100%,
+        $color-blue,
+        $blue-bold 58%,
+        $blue-bold 127%);
+  }
+}
+
+// }

@@ -1,9 +1,63 @@
 button.v-btn.v-size--default {
   &.btn-sm {
     height: 34px !important;
+
     span.v-btn__content {
       color: #fff;
       text-shadow: none;
     }
   }
+
+  &.btn-copy {
+    color: #333;
+  }
+
+  &.v-icon-success {
+    color: #28a745;
+  }
+}
+
+.change-theme,
+.next-top,
+.next-bottom {
+  position: fixed;
+  right: 30px;
+  height: 30px;
+  width: 30px;
+  z-index: 10;
+
+  svg {
+    height: 20px;
+    width: 20px;
+
+    path {
+      height: 26px;
+      width: 26px;
+    }
+  }
+
+  .v-btn--icon.v-size--default {
+    height: 30px;
+    width: 30px;
+    background: radial-gradient(circle at 50% 100%,
+        #3399ff,
+        $blue-bold 58%,
+        $blue-bold 127%);
+
+
+  }
+
+
+}
+
+.change-theme {
+  bottom: 170px;
+}
+
+.next-top {
+  bottom: 130px;
+}
+
+.next-bottom {
+  bottom: 90px;
 }

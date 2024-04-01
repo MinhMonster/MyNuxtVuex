@@ -77,70 +77,12 @@ export default {
   }
 }
 .account-info {
-  width: 100%;
-  background: #ffefa3;
-  border-radius: 12px;
-  border: 1px solid #663019;
-  text-align: center;
-  overflow: hidden;
-
-  .account-thongtin,
-  .account-cash,
-  .account-buy {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background: #e28637;
-    color: #ffcf9c;
-    border: 1px solid #663019;
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: 3px;
-    padding: 3px;
-    line-height: 25px;
-  }
-  // .account-thongtin {
-  //   max-height: 30px;
-  //   overflow: hidden;
-  // }
-  // .text-thongtin {
-  //   width: 70px;
-  //   max-height: 30px;
-  //   display: -webkit-box !important;
-  //   -webkit-line-clamp: 1 !important;
-  //   -webkit-box-orient: vertical !important;
-  //   overflow: hidden !important;
-  //   text-overflow: ellipsis !important;
-  //   word-break: break-word !important;
-  // }
-  // .full-info {
-  //   width: calc(100% - 70px);
-  //   text-align: left;
-  //   max-height: 30px;
-  //   overflow: hidden;
-  // }
-  // .account-cash{
-  //   background: #ffcf9c;
-  //   color: #663019;
-  // }
-
-  .account-code,
-  .account-class,
-  .account-server {
-    font-size: 11px;
-    color: #663019;
-    text-transform: uppercase;
-    font-weight: 600;
-    line-height: 1.42857143;
+  border-radius: 4px;
+  ::v-deep {
+    .fileItemWrapper {
+      padding: 6px;
+      padding-bottom: 0px;
+    }
   }
 }
-// ::v-deep {
-// @media (min-width: 1300px) {
-//   .v-main__wrap .container {
-//     max-width: 100% !important;
-//   }
-// }
-// }
 </style>

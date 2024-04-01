@@ -189,7 +189,6 @@ th.info-nick {
           .info-atm-momo {
             border: 1px solid #663019;
             background: #ffcf9c;
-            margin: 5px;
             padding: 5px;
             line-height: 25px;
             font-size: 14px;

@@ -160,45 +160,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.rightbar-content .user-info-wrap {
-  top: 0px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 200px;
-  background: #e28637;
-  background-size: 100% 100%;
 
-  .base-svg {
-    svg {
-      height: 70px;
-      width: 70px;
-    }
-  }
-
-  .user-info {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    button.v-btn .v-btn__content,
-    .v-btn--icon.v-size--default {
-      height: 70px !important;
-      width: 70px !important;
-      font-size: 70px;
-    }
-
-    img {
-      height: 80px;
-      width: 80px;
-      border-radius: 50%;
-    }
-  }
-}
 
 .rightbar-content .user-info-wrap .user-info .member {
   font-size: 20px;
@@ -214,7 +176,6 @@ export default {
 .rightbar-content .member-nav .h-line {
   width: 100%;
   height: 1px;
-  background-color: #561d00;
 }
 
 .rightbar-content .member-nav .member-nav-list {

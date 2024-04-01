@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       title:
-        "ShopNick.Online - Shop Nick Đại Tây Du G4M Tự Động - Shop Mua Bán Nick Đại Tây Du G4M VIP Giá Rẻ, Uy Tín Nhất MXH",
+        "ShopNick.Online | Shop Nick Đại Tây Du G4M Tự Động - Shop Mua Bán Nick Đại Tây Du G4M VIP Giá Rẻ, Uy Tín Nhất MXH",
       description:
         "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
     };

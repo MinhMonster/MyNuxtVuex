@@ -1,5 +1,5 @@
 <template>
-  <form class="form-login">
+  <form class="form form-login">
     <!-- <div id="content" class="title text-main text-center bold">Đăng Nhập</div> -->
     <div class="field">
       <form-validator name="username">
@@ -122,7 +122,7 @@ export default {
 // }
 form {
   padding: 10px;
-  background: #ffefa3;
+  // background: #ffefa3;
   border: none;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -175,19 +175,19 @@ form {
       transition: all 0.3s ease;
     }
 
-    input[type="submit"],
-    .btn-login {
-      width: 100%;
-      border-radius: 20px;
-      color: #ffcf9c;
-      border: none;
-      padding-left: 0;
-      // font-size: 20px;
-      font-weight: 500;
-      cursor: pointer;
-      background: linear-gradient(-135deg, #e28637, #561d00);
-      transition: all 0.3s ease;
-    }
+    // input[type="submit"],
+    // .btn-login {
+    //   width: 100%;
+    //   border-radius: 20px;
+    //   color: #ffcf9c;
+    //   border: none;
+    //   padding-left: 0;
+    //   // font-size: 20px;
+    //   font-weight: 500;
+    //   cursor: pointer;
+    //   background: linear-gradient(-135deg, #e28637, #561d00);
+    //   transition: all 0.3s ease;
+    // }
   }
 
   .signin {
@@ -220,78 +220,78 @@ form {
 }
 
 // }
-.checkbox {
-  position: relative;
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  float: left;
-  // width: 100% !important;
-  user-select: none;
-  white-space: nowrap;
-  padding-top: 10px;
+// .checkbox {
+//   position: relative;
+//   display: block;
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+//   float: left;
+//   // width: 100% !important;
+//   user-select: none;
+//   white-space: nowrap;
+//   padding-top: 10px;
 
-  input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    z-index: -1;
-    margin: 0;
-  }
+//   input[type="checkbox"] {
+//     position: absolute;
+//     opacity: 0;
+//     z-index: -1;
+//     margin: 0;
+//   }
 
-  label {
-    display: inline-block;
-    color: #e28637;
-    font-size: 16px;
-    max-width: 100%;
-    position: relative;
-    padding-left: 35px;
-    height: 2em;
-    min-height: 20px;
-    padding-left: 20px;
-    margin-bottom: 0;
-    font-weight: 400;
-    cursor: pointer;
-  }
+//   label {
+//     display: inline-block;
+//     color: #e28637;
+//     font-size: 16px;
+//     max-width: 100%;
+//     position: relative;
+//     padding-left: 35px;
+//     height: 2em;
+//     min-height: 20px;
+//     padding-left: 20px;
+//     margin-bottom: 0;
+//     font-weight: 400;
+//     cursor: pointer;
+//   }
 
-  label:before,
-  label:after {
-    top: 2px;
-    width: 17px !important;
-    height: 17px !important;
-  }
-}
+//   label:before,
+//   label:after {
+//     top: 2px;
+//     width: 17px !important;
+//     height: 17px !important;
+//   }
+// }
 
-.checkbox input[type="checkbox"] + label::before {
-  content: " ";
-  position: absolute;
-  border: 1px solid #e28637;
-  top: 2px;
-  left: 0;
-  width: 17px !important;
-  height: 17px !important;
-  border-radius: 2px;
-}
+// .checkbox input[type="checkbox"] + label::before {
+//   content: " ";
+//   position: absolute;
+//   border: 1px solid #e28637;
+//   top: 2px;
+//   left: 0;
+//   width: 17px !important;
+//   height: 17px !important;
+//   border-radius: 2px;
+// }
 
-.checkbox input[type="checkbox"]:checked + label::before {
-  content: " ";
-  background: linear-gradient(#e28637, #663019);
-}
+// .checkbox input[type="checkbox"]:checked + label::before {
+//   content: " ";
+//   background: linear-gradient(#e28637, #663019);
+// }
 
-input[type="checkbox"]:checked + label::after {
-  content: "\2714";
-  top: -0.5px;
-  left: 0;
-  position: absolute;
-  z-index: 2;
-  transition: 0.25s all ease;
+// input[type="checkbox"]:checked + label::after {
+//   content: "\2714";
+//   top: -0.5px;
+//   left: 0;
+//   position: absolute;
+//   z-index: 2;
+//   transition: 0.25s all ease;
 
-  width: 17px !important;
-  height: 17px !important;
+//   width: 17px !important;
+//   height: 17px !important;
 
-  line-height: 1.5;
-  text-align: center;
-  color: #fff;
-}
+//   line-height: 1.5;
+//   text-align: center;
+//   color: #fff;
+// }
 
 @media (min-width: 450px) {
   .account-box {

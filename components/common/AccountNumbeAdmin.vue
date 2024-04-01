@@ -43,9 +43,6 @@ export default {
   color: #f64e60;
 }
 
-.title {
-  color: #561d00;
-}
 @media (max-width: 599px) {
   .info-atm-momo {
     height: auto;

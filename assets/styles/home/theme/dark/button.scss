@@ -1,4 +1,13 @@
 .theme-dark {
+  button.v-btn.v-size--default {
+    &.btn-copy {
+      color: #fff;
+    }
+    &.v-icon-success {
+      color: #b549cc;
+    }
+  }
+
   button {
     .v-btn__content {
       text-shadow: $text-shadow-theme-dark;

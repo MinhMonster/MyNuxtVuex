@@ -4,7 +4,7 @@
       top: 50px;
       width: 250px;
       text-align: left;
-      max-height: calc(100% - 50px);
+      max-height: calc(100% - 45px);
     "
     :style="{
       minHeight: heightMenu,
@@ -49,7 +49,7 @@ export default {
       showMenuRight: "showMenuRight",
     }),
     heightMenu() {
-      return this.isMobile ? `calc(100% - 50px)` : `calc(100% - 105px)`;
+      return this.isMobile ? `calc(100% - 45px)` : `calc(100% - 95px)`;
     },
   },
   methods: {

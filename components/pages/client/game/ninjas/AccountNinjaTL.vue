@@ -112,12 +112,12 @@
         Lv: {{ accountNinja.level }}</span
       >
       <span class="account-server-number">
-          Sv: {{ serverNinjaNumber(accountNinja.server) }}
+        Sv: {{ serverNinjaNumber(accountNinja.server) }}
       </span>
 
       <span class="account-ingame text-13-450">
         @{{ accountNinja.ingame }}
-      </span> 
+      </span>
       <!-- <span
         v-if="accountNinja.saleOff"
         class="account-cash-atm bg-none text-13-450"
@@ -185,8 +185,9 @@ export default {
   justify-content: center;
   border-radius: 3px;
   padding: 0px 5px;
-  color: #ffffff;
-  background: #a21d0a;
+  background: #fff;
+  color: #333;
+  border: 1px solid #a4a4a4;
   .v-btn--icon.v-size--default {
     height: 20px;
     width: 20px;
@@ -235,8 +236,9 @@ export default {
   text-align: center;
   border-radius: 3px;
   padding: 0px;
-  color: #ffffff;
-  background: #a21d0a;
+  background: #fff;
+  color: #333;
+  border: 1px solid #a4a4a4;
 }
 
 .account-mounts {
@@ -254,14 +256,14 @@ export default {
     align-items: center;
     justify-content: center;
     height: 100% !important;
-    color: #ffffff;
-    background: #a21d0a;
+    background: #fff;
+    color: #333;
+    border: 1px solid #a4a4a4;
     border-radius: 3px;
     padding: 0px 5px;
     margin: 0 auto !important;
   }
 }
-
 
 .account-book {
   right: 4px;
@@ -287,8 +289,6 @@ export default {
   top: 65%;
 }
 
-
-
 .account-yen,
 .account-book,
 .account-cake,
@@ -302,8 +302,9 @@ export default {
   height: 10% !important;
   text-align: center;
 
-  color: #ffffff;
-  background: #a21d0a;
+  background: #fff;
+  color: #333;
+  border: 1px solid #a4a4a4;
   padding: 0px 5px;
   border-radius: 3px;
 }

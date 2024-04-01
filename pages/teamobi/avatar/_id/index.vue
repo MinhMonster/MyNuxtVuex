@@ -96,27 +96,16 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
+        {
+          property: "og:image",
+          content: "/images/banners/avatar-blue.png",
+        },
+        {
+          property: "og:image:alt",
+          content: "Shop Nick Avatar SX Diệu Kỳ (2x) VIP Giá RẺ",
+        },
       ],
     };
   },
 };
 </script>
-<style lang="scss" scoped>
-.title-category {
-  margin: 0 -9px;
-  margin-top: -9px;
-  margin-bottom: 9px;
-  height: 30px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background: radial-gradient(
-    circle at 50% 100%,
-    #e28637,
-    #9f5424 58%,
-    #561d00 127%
-  );
-  .title {
-    color: #ffefa3 !important;
-  }
-}
-</style>

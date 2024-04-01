@@ -70,7 +70,9 @@ export default {
         { property: "og:description", content: this.title },
         {
           property: "og:image",
-          content: this.imagenHead ? this.imagenHead : "/banner.jpg",
+          content: this.imagenHead
+            ? this.imagenHead
+            : "/images/banners/banner-blue.png",
         },
       ],
     };

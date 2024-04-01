@@ -42,7 +42,7 @@ export default {
   name: "AppBar",
   data() {
     return {
-      logo: "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png",
+      logo: "https://shopnick.online/images/logo/logo.png",
       clipped: true,
       miniVariant: false,
     };
@@ -81,8 +81,8 @@ export default {
     },
     getLogo() {
       this.logo = this.isDark
-        ? "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png"
-        : "https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200029.png";
+        ? "https://shopnick.online/images/logo/logo.png"
+        : "https://shopnick.online/images/logo/logo.png";
     },
   },
 };

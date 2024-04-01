@@ -10,7 +10,7 @@ export default {
     selectedImages: [],
     screenMobile: true,
     isNotification: true,
-    isThemeDark: true,
+    isThemeDark: false,
     showMenuRight: false,
     fixed: false,
     isMb: true,

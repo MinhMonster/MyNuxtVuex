@@ -1,22 +1,145 @@
+table th {
+  width: 50%;
+  padding: 7px;
+  color: #fff;
+  border: 1px solid #a4a4a4 !important;
+  background: $blue-bold;
+}
+
+
+
+.table td {
+  padding: 5px;
+  vertical-align: middle;
+  border: 1px solid #a4a4a4;
+}
+
+
+table.table {
+  &.table-striped>tbody>tr:nth-of-type(odd) {
+    color: #333;
+    border: 1px solid #a4a4a4;
+    background: #fff;
+  }
+
+  thead {
+    th {
+      padding: 7.5px;
+
+      &.trading-code {
+        width: 10% !important;
+        min-width: 60px;
+        vertical-align: middle !important;
+        text-align: center;
+      }
+
+      &.holder-action {
+        width: 10% !important;
+        min-width: 60px;
+        vertical-align: middle !important;
+        text-align: center;
+      }
+
+      &.info-history {
+        width: 80% !important;
+        min-width: 150px;
+        vertical-align: middle !important;
+        text-align: left;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 6px 3px;
+
+        .col-sm-12,
+        .col-md-6,
+        .col-lg-3 {
+          padding: 3px 15px;
+        }
+      }
+    }
+  }
+}
+
 .v-pagination {
   .v-pagination__navigation {
     border-radius: 50%;
     margin: 1px;
-    color: #ffffff;
-    border: 1px solid #663019;
-    background: #e28637;
+    color: #333 !important;
+    border: 1px solid #a4a4a4 !important;
+    background: #999 !important;
   }
 
   .v-pagination__item {
-    color: #ffffff;
-    border: 1px solid #663019;
-    background: #e28637;
+    color: #333 !important;
+    border: 1px solid #a4a4a4 !important;
+    background: #f1f1f1 !important;
     border-radius: 50%;
     margin: 1px;
 
     &.v-pagination__item--active.primary {
-      background-color: #663019 !important;
-      border: 1px solid #663019 !important;
+      color: #fff !important;
+      background-color: $blue-bold !important;
+      border: 1px solid $blue-bold !important;
     }
   }
 }
+
+th.info-nick {
+  width: 50%;
+  padding: 7px;
+  color: #fff;
+  border: $border-gray  !important;
+  background: $blue-bold;
+}
+
+
+td.mua-nick {
+  cursor: pointer;
+  padding: 5px;
+  color: #333 !important;
+  border: $border-gray  !important;
+  background: $color-theme-blue-bland;
+
+  .v-btn {
+    font-weight: 400;
+  }
+
+
+}
+
+td.mua-nick {
+  span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+  }
+}
+
+.btn-buy-account,
+.btn-buy-account-hover {
+  color: #fff;
+  border: none !important;
+  background: $color-theme-blue  !important;
+
+  .v-btn {
+    color: #ffcf9c;
+  }
+}
+
+.btn-buy-account,
+.btn-buy-account-hover,
+.mua-nick {
+  padding: 6.5px;
+  border-radius: 3px !important;
+  text-align: center;
+}
+
+// .table td {
+//   padding: 5px;
+//   vertical-align: top;
+//   border: 1px solid #e28637;
+// }
