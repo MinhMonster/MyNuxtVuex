@@ -133,8 +133,10 @@ export default {
   
   <style lang="scss" scoped>
 ::v-deep {
-  .fileItemWrapper img.full {
-    height: 100%;
+  .fileItemWrapper {
+    img.full {
+      height: 100%;
+    }
   }
 }
 .fileItemWrapper {
@@ -146,7 +148,8 @@ export default {
   align-items: flex-start;
   // height: 100%;
   overflow: hidden;
-  // border-radius: 5px;
+  border-radius: 4px;
+  border: 1px solid #a4a4a4;
 
   img {
     width: 120%;

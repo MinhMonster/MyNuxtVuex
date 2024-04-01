@@ -101,6 +101,19 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
+        {
+          property: "og:image",
+          content: "/images/banners/banner_avatar_min.jpg",
+        },
+        {
+          property: "og:image:alt",
+          content: "Shop Nick Avatar SX Diệu Kỳ (2x) VIP Giá RẺ",
+        },
+        {
+          name: "keywords",
+          content:
+            " nick avatar dk, shop nick avatar 2x, mua nick avatar dk, mua nick avatar 2x, shop acc avatar dk, shop acc avatar 2x, nick avatar dk teamobi, shop nick avatar 2x teamobi",
+        },
       ],
     };
   },

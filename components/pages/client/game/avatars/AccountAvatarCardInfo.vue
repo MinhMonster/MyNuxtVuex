@@ -79,10 +79,18 @@ export default {
 .account-info {
   width: 100%;
   background: #ffefa3;
-  border-radius: 12px;
+  border-radius: 4px;
   border: 1px solid #663019;
   text-align: center;
   overflow: hidden;
+  ::v-deep {
+    .fileItemWrapper {
+      padding: 6px;
+      img {
+        border-radius: 4px;
+      }
+    }
+  }
 
   .account-thongtin,
   .account-cash,

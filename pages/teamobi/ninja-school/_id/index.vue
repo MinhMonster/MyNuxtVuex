@@ -104,6 +104,11 @@ export default {
           property: "og:image",
           content: this.imagenHead,
         },
+        {
+          name: "keywords",
+          content:
+            "nick ninja, shop nick ninja, mua nick ninja, mua nick ninja school, shop nick ninja school, shop acc ninja, nick ninja teamobi, shop nick ninja teamobi, nick ninja gia re, nick ninja vip",
+        },
       ],
     };
   },

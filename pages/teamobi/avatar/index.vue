@@ -72,9 +72,9 @@ export default {
   data() {
     return {
       title:
-        "MuaBanNick.Pro - Shop Nick Avatar SX Diệu Kỳ Tự Động - Shop Mua Bán Nick Avatar SX Diệu Kỳ VIP Giá Rẻ, Uy Tín Nhất MXH",
+        "MuaBanNick.Pro - Shop Nick Avatar SX Diệu Kỳ (2x) - Shop Mua Bán Acc Avatar SX Diệu Kỳ (2x) VIP Giá Rẻ của TeaMobi Uy Tín Nhất MXH",
       description:
-        "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
+        "WEB Mua Bán Nick Avatar DK (2x), Mua Bán Acc Avatar DK, Shop Acc Avatar DK (2x), Shop Nick Avatar DK (2x) của TeaMobi - Uy Tín - Giá rẻ",
     };
   },
   head() {
@@ -90,7 +90,12 @@ export default {
         },
         {
           property: "og:image:alt",
-          content: "Shop Nick Avatar SX Diệu Kỳ VIP Giá RẺ",
+          content: "Shop Nick Avatar SX Diệu Kỳ (2x) VIP Giá RẺ",
+        },
+        {
+          name: "keywords",
+          content:
+            " nick avatar dk, shop nick avatar 2x, mua nick avatar dk, mua nick avatar 2x, shop acc avatar dk, shop acc avatar 2x, nick avatar dk teamobi, shop nick avatar 2x teamobi",
         },
       ],
     };

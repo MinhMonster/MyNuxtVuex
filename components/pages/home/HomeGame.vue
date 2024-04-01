@@ -29,7 +29,10 @@
         lg="4"
         id="home-right"
       >
-        <div class="mt--1 form-deposit-card" :style="{ height: heightHomeLeft + 'px' }">
+        <div
+          class="mt--1 form-deposit-card"
+          :style="{ height: heightHomeLeft + 'px' }"
+        >
           <template><DepositCardForm /></template>
         </div>
       </v-col>
@@ -82,7 +85,7 @@ export default {
     // FormLogin,
     // SideBarMenu,
     HomeSlider,
-    DepositCardForm
+    DepositCardForm,
     // RunText,
   },
   props: {
@@ -94,6 +97,22 @@ export default {
   data() {
     return {
       gameList: [
+        {
+          title: "Shop Nick Mới",
+          path: "https://shopnick.online",
+          image:
+            "https://muabannick.pro/images/banners/banner-shopnickonline.png",
+          numberAccount: "90",
+          sold: "69",
+          target: true,
+        },
+        {
+          title: "Avatar XS.DKỳ",
+          path: "/teamobi/avatar",
+          image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
+          numberAccount: "90",
+          sold: "69",
+        },
         {
           title: "Nick Ninja VIP",
           path: "/teamobi/ninja-school/nick-vip",
@@ -110,13 +129,7 @@ export default {
           numberAccount: "7481",
           sold: "7185",
         },
-        {
-          title: "Avatar XS.DKỳ",
-          path: "/teamobi/avatar",
-          image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
-          numberAccount: "90",
-          sold: "69",
-        },
+
         {
           title: "Sự kiện Hằng ngày",
           path: "/events/daily",
@@ -125,21 +138,13 @@ export default {
           numberAccount: "5245",
           sold: "5144",
         },
-        
+
         {
           title: "Ngọc Rồng Online",
           path: "/teamobi/ngoc-rong",
           image: "https://muabannick.pro//images/banners/banner_nro_min.jpg",
           numberAccount: "515",
           sold: "438",
-        },
-        {
-          title: "Đai Tây Du - G4M",
-          path: "/g4m/dai-tay-du",
-          image:
-            "https://muabannick.pro/images/banners/banner_dai_tay_du_g4m_min.jpg",
-          numberAccount: "90",
-          sold: "69",
         },
       ],
     };
