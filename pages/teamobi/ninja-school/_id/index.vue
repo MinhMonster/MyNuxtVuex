@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage goBack reload @reload="fetchAccount()" table>
-      <template v-if="accountNinja && accountNinja.ID" #body>
+      <template v-if="accountNinja && accountNinja.ID == accountId" #body>
         <AccountNinjaDetail :account-ninja="accountNinja"></AccountNinjaDetail>
       </template>
       <template #table>

@@ -208,12 +208,13 @@ export default {
 }
 
 .register-btn {
-  box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 49%);
-  border: 1px solid #ffeb00;
+  // box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 49%);
+  // border: 1px solid #ffeb00;
   font-weight: 700;
-  color: #000;
+  min-width: 75px
+  // color: #000;
   /* background-image: linear-gradient(180deg,#fdffdb,#d9e254); */
-  background-image: linear-gradient(180deg, #fdffdb, #ffcf9c);
+  // background-image: linear-gradient(180deg, #fdffdb, #ffcf9c);
 }
 
 .register-btn {

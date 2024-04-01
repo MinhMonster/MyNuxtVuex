@@ -247,12 +247,12 @@ $danger : #a21d0a;
   align-items: center;
   justify-content: center;
   padding: 0 0.235rem;
-  border-radius: 0.32rem;
+  border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
   color: #333;
   box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 50%);
-  border: $border-gray;
+  border: none;
   background: #fff;
 
   &:hover {

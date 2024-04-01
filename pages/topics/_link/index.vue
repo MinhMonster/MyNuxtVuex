@@ -9,7 +9,7 @@
       reload
       @reload="getTopic()"
     >
-      <template #body>
+      <template v-if="topic && topicLink == topic.link" #body>
         <div class="topic mt-4">
           <h1 class="title text-center">{{ topic.title }}</h1>
           <div v-html="topic.content" class="mt-4"></div>
