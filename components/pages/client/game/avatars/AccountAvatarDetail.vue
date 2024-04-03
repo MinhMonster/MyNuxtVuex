@@ -2,7 +2,7 @@
 <template>
   <client-only>
     <v-row v-if="accountAvatar.ID">
-      <v-col cols="12" sm="12" md="6" lg="8">
+      <v-col cols="12" sm="12" md="6" lg="6">
         <div class="title">
           <center>
             <h3>
@@ -45,7 +45,7 @@
           </div>
         </VueSlickCarousel>
       </v-col>
-      <v-col cols="12" sm="12" md="6" lg="4">
+      <v-col cols="12" sm="12" md="6" lg="6">
         <v-row>
           <v-col cols="12" sm="12" md="12">
             <AccountAvatarInfo
@@ -149,6 +149,8 @@ export default {
   // border-radius: 5px;
 
   img {
+    border: 1px solid #a4a4a4;
+    border-radius: 4px;
     width: 120%;
     margin-left: -10%;
     height: 100%;
