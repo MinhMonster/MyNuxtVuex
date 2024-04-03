@@ -45,7 +45,7 @@ export default {
       title:
         "MuaBanNick.Pro - Shop Nick Ninja School Online Tự Động - Shop Mua Bán Nick Ninja School Online Giá Rẻ, Uy Tín Nhất MXH",
       description:
-        "WWEB Mua Bán Nick Ninja School, Tài Khoản Ninja School, Dịch Vụ Game Ninja School, Shop Nick Ninja School, Shop Nick Nso, Mua Bán Acc Ninja School, Shop Acc Ninja School của TeaMobi - Uy Tín - Giá rẻ",
+        "WEB Mua Bán Nick Ninja School, Tài Khoản Ninja School, Dịch Vụ Game Ninja School, Shop Nick Ninja School, Shop Nick Nso, Mua Bán Acc Ninja School, Shop Acc Ninja School của TeaMobi - Uy Tín - Giá rẻ",
     };
   },
   head() {

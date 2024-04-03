@@ -23,11 +23,24 @@
           >Máy chủ <br />{{ serverNinja(accountNinja.server) }}</span
         ></v-col
       >
-      <v-col cols="6"
-        ><span class="account-cash"
-          >{{ cash_atm(accountNinja.giatien) }} Vnđ</span
-        ></v-col
-      >
+      <v-col cols="6">
+        <span v-if="accountNinja.saleOff" class="account-cash has-sale">
+          <span class="bg-danger sale-off">
+            {{ "-" + accountNinja.saleOff + "% " }}</span
+          >
+          <span class="text-center cash-sale">
+            {{
+              " " +
+              cash_atm(accountNinja.giatien * (1 - accountNinja.saleOff / 100))
+            }}
+            Vnđ</span
+          >
+        </span>
+
+        <span v-else class="account-cash">
+          {{ cash_atm(accountNinja.giatien) }} Vnđ
+        </span>
+      </v-col>
       <v-col cols="6">
         <nuxt-link :to="`/teamobi/ninja-school/${this.accountNinja.ID}`">
           <span class="account-buy"> Xem Nick</span>
@@ -74,8 +87,6 @@ export default {
   border: 1px solid #663019;
   text-align: center;
 
-
-
   .account-thongtin,
   .account-cash,
   .account-buy {
@@ -108,6 +119,18 @@ export default {
     line-height: 1.42857143;
   }
 }
+.sale-off {
+  width: 40px;
+}
+.cash-sale {
+  width: calc(100% - 40px);
+}
+.bg-danger.sale-off {
+  background: #a21d0a !important;
+}
+// .has-sale.account-cash {
+//   justify-content: space-between;
+// }
 // ::v-deep {
 // @media (min-width: 1300px) {
 //   .v-main__wrap .container {
@@ -115,6 +138,4 @@ export default {
 //   }
 // }
 // }
-
-
 </style>

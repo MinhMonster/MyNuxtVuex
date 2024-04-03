@@ -42,13 +42,13 @@ export default {
   align-items: flex-start;
   // height: 100%;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 5px;
 
   img {
     width: 120%;
     margin-left: -10%;
     height: 270px;
-    border-radius: 4px;
+    border-radius: 5px;
     border: 1px solid #a4a4a4;
     &.full {
       width: 100%;

@@ -148,10 +148,11 @@ export default {
   align-items: flex-start;
   // height: 100%;
   overflow: hidden;
-  border-radius: 4px;
-  border: 1px solid #a4a4a4;
+  border-radius: 5px;
 
   img {
+    border-radius: 5px;
+    border: 1px solid #a4a4a4;
     width: 120%;
     margin-left: -10%;
     height: 100%;
