@@ -12,6 +12,38 @@
         30s-5p thanh toán. Cam kết Acc sạch 100% và có xác nhận từ NPH TeaMobi
         gửi về.
       </div>
+      <div>
+        ⭐ Sở hữu <span class="bold text-13-500">Acc Nso</span> chỉ sau 30s-5p
+        thanh toán. Cam kết Acc sạch 100% và có xác nhận từ NPH TeaMobi gửi về.
+      </div>
+      <div>
+        ⭐ PR: Shop Mua Bán
+        <span class="bold text-13-500"
+          ><a
+            href="https://muabannick.pro/teamobi/avatar"
+            target="_blank"
+            title="MuaBanNick.Pro | Shop Nick Avatar DK (2x) của TeaMobi"
+            >Nick Avatar</a
+          > </span
+        >,
+        <span class="bold text-13-500">
+          <a
+            target="_blank"
+            href="https://muabannick.pro/teamobi/ninja-school"
+            title="MuaBanNick.Pro | Shop Nick Ninja School của TeaMobi"
+            >Nick Ninja School</a
+          >
+        </span>
+        Uy Tín, Giá Rẻ của Admin Đỗ Minh tại
+        <span class="bold text-13-500">
+          <a
+            target="_blank"
+            href="https://muabannick.pro"
+            title="MuaBanNick.Pro | Shop Nick Avatar DK (2x), Ninja School của TeaMobi"
+            >MuaBanNick.Pro</a
+          >.
+        </span>
+      </div>
     </div>
     <div class="page-body">
       <form @submit.prevent="search()">
@@ -75,30 +107,16 @@ export default {
           value: null,
         },
         {
-          text: "Dưới 50k",
+          text: "Dưới 100k",
           value: {
             min: 0,
-            max: 49000,
-          },
-        },
-        {
-          text: "Giá 50k đến 100k",
-          value: {
-            min: 50000,
             max: 100000,
           },
         },
         {
-          text: "Giá 100k đến 200k",
+          text: "Giá 100k đến 300k",
           value: {
             min: 100000,
-            max: 200000,
-          },
-        },
-        {
-          text: "Giá 200k đến 300k",
-          value: {
-            min: 200000,
             max: 300000,
           },
         },
@@ -110,30 +128,16 @@ export default {
           },
         },
         {
-          text: "Giá 500k đến 700k",
+          text: "Giá 500k đến 1 Triệu",
           value: {
             min: 500000,
-            max: 700000,
-          },
-        },
-        {
-          text: "Giá 700k đến 1 Triệu",
-          value: {
-            min: 700000,
             max: 1000000,
           },
         },
         {
-          text: "Giá 1Tr đến 1,5 Triệu",
+          text: "Giá 1Tr đến 3 Triệu",
           value: {
             min: 1000000,
-            max: 1500000,
-          },
-        },
-        {
-          text: "Giá 1,5Tr đến 3 Triệu",
-          value: {
-            min: 1500000,
             max: 3000000,
           },
         },

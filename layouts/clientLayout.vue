@@ -129,6 +129,7 @@ export default {
     margin: 0 auto;
   }
   #home-page {
+    // max-width: 1400px;
     // height: calc(100vh - 145px);
     // top: 70px;
     // bottom: 60px;
@@ -180,9 +181,9 @@ export default {
       background: #fff;
       transition: margin-left 0.2s;
       background-size: cover;
-      background-image: url('https://shopnick.online/images/bg/blue/bg.jpg');
+      background-image: url("https://shopnick.online/images/bg/blue/bg.jpg");
       @media (max-width: 599px) {
-        background-image: url('https://shopnick.online/images/bg/blue/bg-mb.png');
+        background-image: url("https://shopnick.online/images/bg/blue/bg-mb.png");
       }
     }
   }
@@ -300,6 +301,4 @@ export default {
 //     }
 //   }
 // }
-
-
 </style>

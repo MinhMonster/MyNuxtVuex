@@ -111,3 +111,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+#home-page {
+  max-width: 1400px !important;
+}
+</style>

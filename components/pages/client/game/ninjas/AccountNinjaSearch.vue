@@ -45,8 +45,37 @@
           chuyển sim cụ thể từng tài khoản.
         </div>
         <div>
-          ⭐ Sở hữu <span class="bold text-13-500">Acc Nso</span> chỉ sau 30s-5p thanh toán. Cam kết Acc sạch 100% và có
-          xác nhận từ NPH TeaMobi gửi về.
+          ⭐ Sở hữu <span class="bold text-13-500">Acc Nso</span> chỉ sau 30s-5p
+          thanh toán. Cam kết Acc sạch 100% và có xác nhận từ NPH TeaMobi gửi
+          về.
+        </div>
+        <div>
+          ⭐ PR: Shop Mua Bán
+          <span class="bold text-13-500"
+            ><a
+              href="https://muabannick.pro/teamobi/avatar"
+              target="_blank"
+              title="MuaBanNick.Pro | Shop Nick Avatar DK (2x) của TeaMobi"
+              >Nick Avatar</a
+            > </span
+          >,
+          <span class="bold text-13-500">
+            <a
+              target="_blank"
+              href="https://muabannick.pro/teamobi/ninja-school"
+              title="MuaBanNick.Pro | Shop Nick Ninja School của TeaMobi"
+              >Nick Ninja School</a
+            >
+          </span>
+          Uy Tín, Giá Rẻ của Admin Đỗ Minh tại
+          <span class="bold text-13-500">
+            <a
+              target="_blank"
+              href="https://muabannick.pro"
+              title="MuaBanNick.Pro | Shop Nick Avatar DK (2x), Ninja School của TeaMobi"
+              >MuaBanNick.Pro</a
+            >.
+          </span>
         </div>
       </div>
     </v-col>
@@ -87,7 +116,7 @@ export default {
   },
   computed: {
     ...mapFields("global", {
-      isLoadingSearch: "isLoadingSearch"
+      isLoadingSearch: "isLoadingSearch",
     }),
 
     isQuery() {

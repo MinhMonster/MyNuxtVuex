@@ -169,30 +169,16 @@ export default {
           value: null,
         },
         {
-          text: "Dưới 50k",
+          text: "Dưới 100k",
           value: {
-            min: 10000,
-            max: 49000,
-          },
-        },
-        {
-          text: "Giá 50k đến 100k",
-          value: {
-            min: 50000,
+            min: 0,
             max: 100000,
           },
         },
         {
-          text: "Giá 100k đến 200k",
+          text: "Giá 100k đến 300k",
           value: {
             min: 100000,
-            max: 200000,
-          },
-        },
-        {
-          text: "Giá 200k đến 300k",
-          value: {
-            min: 200000,
             max: 300000,
           },
         },
@@ -204,30 +190,16 @@ export default {
           },
         },
         {
-          text: "Giá 500k đến 700k",
+          text: "Giá 500k đến 1 Triệu",
           value: {
             min: 500000,
-            max: 700000,
-          },
-        },
-        {
-          text: "Giá 700k đến 1 Triệu",
-          value: {
-            min: 700000,
             max: 1000000,
           },
         },
         {
-          text: "Giá 1Tr đến 1,5 Triệu",
+          text: "Giá 1Tr đến 3 Triệu",
           value: {
             min: 1000000,
-            max: 1500000,
-          },
-        },
-        {
-          text: "Giá 1,5Tr đến 3 Triệu",
-          value: {
-            min: 1500000,
             max: 3000000,
           },
         },
