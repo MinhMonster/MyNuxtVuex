@@ -118,21 +118,4 @@ export default {
 #home-page {
   max-width: 1400px !important;
 }
-.title-category {
-  margin: 0 -9px;
-  margin-top: -9px;
-  margin-bottom: 9px;
-  height: 30px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background: radial-gradient(
-    circle at 50% 100%,
-    #e28637,
-    #9f5424 58%,
-    #561d00 127%
-  );
-  .title {
-    color: #ffefa3 !important;
-  }
-}
 </style>
