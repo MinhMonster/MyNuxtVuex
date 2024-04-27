@@ -21,6 +21,10 @@ html {
   opacity: 0.8;
 }
 
+.v-application a.link {
+  color: inherit;
+}
+
 .img-fluid {
   width: 100%;
 }
@@ -29,9 +33,11 @@ html {
   width: 100%;
   margin-bottom: 15px;
 }
+
 .relative {
   position: relative;
 }
+
 // .pre-line {
 //   white-space: pre-line;
 // }

@@ -19,6 +19,7 @@
             href="https://shopnick.online/teamobi/avatar"
             target="_blank"
             title="ShopNick.Online | Shop Nick Avatar DK (2x) của TeaMobi"
+            class="link"
             >Shop Nick Avatar</a
           > </span
         >,
@@ -27,7 +28,8 @@
             target="_blank"
             href="https://shopnick.online/teamobi/ninja-school"
             title="ShopNick.Online | Shop Nick Ninja School của TeaMobi"
-            >Shop Nick Ninja School</a
+            class="link"
+            >Shop Nick Ninja</a
           >
         </span>
         Uy Tín, Giá Rẻ của Admin Đỗ Minh tại
@@ -36,6 +38,7 @@
             target="_blank"
             href="https://shopnick.online"
             title="ShopNick.Online | Shop Nick Avatar DK (2x), Ninja School của TeaMobi"
+            class="link"
             >ShopNick.Online</a
           >.
         </span>
