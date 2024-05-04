@@ -89,8 +89,11 @@
                         {{ history.accountCode }}</span
                       >
                       <ButtonCoppy
-                        :content="`GO SIMMOI
-                      ${history.accountName} ${history.accountCode}`"
+                        :content="`${
+                          'GO SIMMOI ' +
+                          history.accountName +
+                          history.accountCode
+                        }`"
                       ></ButtonCoppy
                       ><br />
                       <img src="/icon/icon-next-right.gif" />
