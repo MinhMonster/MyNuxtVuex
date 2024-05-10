@@ -1,23 +1,16 @@
 <template>
   <div>
-    <v-row class="hom-page">
+    <ModalNotification
+      v-if="isNotification"
+      ref="modal"
+      :title="`Thông Báo`"
+      size="md"
+      @hide="onNotification = false"
+    >
+    </ModalNotification>
+    <v-row v-if="isShowHome" class="hom-page">
       <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8" id="home-left">
         <v-row style="margin: -15px">
-          <!-- <v-col cols="12">
-            <div class="page-body">
-              <a
-                href="https://muabannick.pro"
-                class="text-white content"
-                target="_blank"
-                title="MuaBanNick.Pro"
-              >
-                <b class="">Thông Báo:</b> <br />
-                ⭐ Đây là Website thuộc MuaBanNick.Pro <br />
-                ⭐ Đồng bộ tất cả Nick Game, Lịch Sử Giao Dịch...<br />
-                ⭐ Các bạn có thể giao dịch thay cho: MuaBanNick.Pro<br />
-              </a>
-            </div>
-          </v-col> -->
           <v-col cols="12">
             <!-- <RunText v-if="isTablet" /> -->
 
@@ -52,43 +45,19 @@
         </div>
       </v-col>
     </v-row>
-
-    <!-- <ModalPayload
-      v-if="isNotification"
-      ref="modal"
-      :title="`Thông Báo`"
-      size="md"
-    >
-      <template #content>
-        <div class="page-body">
-          <AdminNotification />
-        </div>
-      </template>
-      <template #footer-button>
-        <v-btn
-          size="sm"
-          color="warning"
-          @click="setNotification(), $refs.modal.close()"
-        >
-          <span>Đóng 2 giờ</span>
-        </v-btn>
-      </template>
-    </ModalPayload> -->
   </div>
 </template>
 
 <script>
 import GameCard from "@/components/pages/home/GameCard";
-// import ModalPayload from "@/components/common/ModalPayload";
-// import AdminNotification from "@/components/pages/home/AdminNotification";
+import ModalNotification from "@/components/pages/client/layout/ModalNotification";
 // import FormLogin from "@/components/pages/client/login/FormLogin";
 // import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import HomeSlider from "@/components/pages/home/HomeSlider";
 import DepositCardForm from "@/components/pages/client/account/wallet/DepositCardForm";
 
 // import RunText from "@/components/global/molecules/common/template/RunText";
-
-// import { mapFields } from "vuex-map-fields";
+import { mapFields } from "vuex-map-fields";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -96,8 +65,7 @@ export default {
 
   components: {
     GameCard,
-    // ModalPayload,
-    // AdminNotification,
+    ModalNotification,
     // FormLogin,
     // SideBarMenu,
     HomeSlider,
@@ -111,10 +79,22 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      onNotification: true,
+    };
   },
   computed: {
     ...mapState("home/users", ["token", "user"]),
+    ...mapFields("global", {
+      isNotification: "isNotification",
+    }),
+    isShowHome() {
+      return (
+        !this.isNotification ||
+        !this.isMobile ||
+        (this.isMobile && this.isNotification && !this.onNotification)
+      );
+    },
     gameList() {
       if (this.isDark) {
         return [
@@ -214,6 +194,12 @@ export default {
         ];
       }
     },
+  },
+  mounted() {
+    this.getNotification();
+  },
+  methods: {
+    ...mapActions("global", ["getNotification"]),
   },
 };
 </script>

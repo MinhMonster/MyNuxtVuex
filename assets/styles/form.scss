@@ -110,6 +110,17 @@
       }
     }
 
+    &.v-input--switch {
+      &.v-input--selection-controls {
+        margin-top: 0px;
+      }
+      .v-input__slot {
+        background: none;
+        border-radius: 3px;
+        border: none;
+      }
+    }
+
     .v-input__slot {
       background: #fff;
       border-radius: 3px;
@@ -124,18 +135,18 @@
 
       .v-radio {
         .v-icon {
-          color: $blue-bold !important;
+          color: $blue-bold  !important;
 
         }
 
         .primary--text {
-          color: $blue-bold !important;
-          caret-color: $blue-bold !important;
+          color: $blue-bold  !important;
+          caret-color: $blue-bold  !important;
 
         }
 
         .v-label {
-          color: $blue-bold !important;
+          color: $blue-bold  !important;
 
         }
       }
@@ -223,7 +234,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: $blue-bold !important;
+      background: $blue-bold  !important;
       border-radius: 10px !important;
     }
   }
@@ -240,7 +251,7 @@ input.v-input {
   min-height: 34px !important;
   padding: 5px 10px !important;
   border-radius: 4px;
-  border: $border-gray !important;
+  border: $border-gray  !important;
   background-color: #fff !important;
   color: #0F0F0F !important;
 }

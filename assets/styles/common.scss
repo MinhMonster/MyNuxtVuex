@@ -450,6 +450,17 @@ html {
   font-style: italic
 }
 
+.text-black {
+  * {
+    color: #333 !important;
+  }
+}
+
+.theme--dark.v-application .red {
+  background-color: #a21d0a !important;
+  border-color: #a21d0a !important;
+}
+
 .shepherd-content {
   .shepherd-text {
     padding: 1rem;

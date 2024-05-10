@@ -3,16 +3,25 @@
   <v-dialog
     v-if="dialog"
     v-model="dialog"
-    :id="`${isDark ? 'theme-dark' : ''}`"
+    :id="`${isDark ? 'theme-dark' : 'alb'}`"
     :title="title"
     scrollable
     :size="size"
     max-width="500px"
     @hide="close()"
     class="modal-content"
+    aria-labelledby="labeldiv"
   >
     <v-card :max-height="height">
-      <BaseSvg class="close" color="red" @click="close()" name="close" />
+      <BaseSvg
+        class="close"
+        color="red"
+        id="btn-close-modal-header"
+        title="Đóng"
+        aria-label="Đóng"
+        @click="close()"
+        name="close"
+      />
       <v-card-title class="title-modal text-menu-main">
         {{ title }}
       </v-card-title>
@@ -32,7 +41,14 @@
                 <slot name="footer-button"></slot>
               </div>
               <div class="text-right right w-100">
-                <v-btn color="red" class="btn-sm" @click="dialog = false">
+                <v-btn
+                  color="red"
+                  class="btn-sm text-white bold bg-danger"
+                  id="btn-close-modal"
+                  title="Đóng"
+                  aria-label="Đóng"
+                  @click="close()"
+                >
                   {{ textClose }}
                 </v-btn>
               </div>

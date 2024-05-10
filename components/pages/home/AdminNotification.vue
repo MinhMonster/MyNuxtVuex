@@ -16,37 +16,35 @@
           >- Admin cập nhật Nick Mới hằng ngày
         </nuxt-link>
       </p> -->
-      <p class="bold text-italic text-13-700">
+      <!-- <p class="bold text-italic text-13-700">
         <nuxt-link to="/events/daily" class="text-primary">
           <span class="text-danger">*</span>Tham gia Sự kiện hằng ngày
           <span class="text-danger">"Tại Đây"</span>
         </nuxt-link>
+      </p> -->
+      <p class="bold text-italic text-13-700 text-danger">
+        <nuxt-link to="/teamobi/ninja-school">
+          <span class="text-danger">*</span> Mở Rộng và Cập nhật rất nhiều Nick
+          Avatar
+        </nuxt-link>
       </p>
-      <p class="bold text-italic text-13-700">
-        <nuxt-link to="/admin-information" class="text-success">
-          <span class="text-danger">*</span> Giảm 20% tất cả Nick Trên Shop đến
-          10/02
+      <p class="bold text-italic text-13-700 text-primary">
+        <nuxt-link to="/teamobi/ninja-school">
+          <span class="text-danger">*</span> Giảm Giá tất cả Nick Ninja Trên
+          Shop
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700 text-danger">
-        <nuxt-link to="/account/wallet/deposit/card">
-          - Nạp Thẻ, Mua Nick tự động không Chiết khấu.
-        </nuxt-link>
+        - Nạp Thẻ, Mua Nick tự động không Chiết khấu.
       </p>
 
       <p class="bold text-italic text-13-700">
-        <nuxt-link to="/account/wallet/deposit/vnd" class="text-primary"
-          >- Hãy nạp tiền từ ATM-MOMO để được +20%
-        </nuxt-link>
+        - Hãy nạp tiền từ ATM-MOMO để được +20%
       </p>
 
-      <p class="bold text-italic text-13-700">
-        <a
-          href="https://zalo.me/0961646828"
-          target="_blank"
-          class="text-primary"
-        >
-          - Mua Nick qua ATM-MOMO liên hệ Admin
+      <p class="bold text-italic text-13-700 text-primary">
+        <a href="https://zalo.me/0961646828" target="_blank">
+          - Mua Xu Ninja, Nick qua ATM-MOMO liên hệ:
         </a>
       </p>
 
