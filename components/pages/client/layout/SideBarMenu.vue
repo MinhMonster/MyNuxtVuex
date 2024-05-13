@@ -231,12 +231,6 @@ export default {
   padding: 0 0.36rem;
 }
 
-.rightbar-content .member-nav .h-line {
-  width: 100%;
-  height: 1px;
-  background-color: #561d00;
-}
-
 .rightbar-content .member-nav .member-nav-list {
   padding-top: 0.2rem;
 }

@@ -47,18 +47,18 @@
           - Mua Xu Ninja, Nick qua ATM-MOMO liên hệ:
         </a>
       </p>
-      <div class="flex">
-        <span class="base-dialog-name text-main bold">
-          <span class="mr-1">
-            <BaseSvg name="theme-light-dark" />
-          </span>
-          Giao Diện Tối </span
-        ><i class="menu-active"></i>
+      <AdminInbox />
+      <div data-v-78190b84="" class="h-line mgt-10px"></div>
+      <div class="flex flex-center change-theme">
+        <div class="base-dialog-name text-main bold">
+          <span class="mr-1"> Giao Diện Sáng</span>
+        </div>
 
         <v-switch v-model="isThemeDark" color="main" hide-details></v-switch>
+        <div class="ml-1 base-dialog-name text-main bold flex">
+          <span>Giao Diện Tối</span>
+        </div>
       </div>
-
-      <AdminInbox />
     </div>
   </client-only>
 </template>
@@ -76,6 +76,10 @@ export default {
   p {
     line-height: 35px;
     margin-bottom: 0 !important;
+  }
+  .change-theme {
+    max-width: 240px;
+    margin: 10px auto;
   }
 }
 ::v-deep {

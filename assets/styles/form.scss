@@ -113,7 +113,20 @@
     &.v-input--switch {
       &.v-input--selection-controls {
         margin-top: 0px;
+
+
+        .main--text {
+          color: #833cf7 !important;
+          caret-color: #f1f1f1 !important;
+        }
       }
+      .v-input--switch__thumb {
+        color: #663019;
+      }
+      .v-input--switch__track {
+        color: #fff;
+      }
+
       .v-input__slot {
         background: none;
         border-radius: 3px;

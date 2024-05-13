@@ -1,6 +1,6 @@
 .theme-dark {
   .form-deposit-card {
-    border: $border-theme-dark  !important;
+    border: $border-theme-dark !important;
 
     form {
       &::-webkit-scrollbar-thumb {
@@ -29,8 +29,7 @@
       // .form-group {
       input.v-input,
       select {
-
-        border: $border-theme-dark  !important;
+        border: $border-theme-dark !important;
       }
 
 
@@ -40,7 +39,7 @@
           padding: 5px 10px;
           background: #171e28;
           color: #f1f1f1 !important;
-          border: $border-theme-dark  !important;
+          border: $border-theme-dark !important;
 
           &:hover,
           &:active {
@@ -61,7 +60,7 @@
 
       button.btn-login {
         color: #f1f1f1 !important;
-        border: $border-theme-dark  !important;
+        border: $border-theme-dark !important;
         background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
 
         span {
@@ -119,7 +118,7 @@
     }
 
     &.form-login {
-      border: $border-theme-dark  !important;
+      border: $border-theme-dark !important;
       // height: 100vh;
     }
   }
@@ -181,8 +180,14 @@
   // }
   &.theme--dark {
     .v-input {
+      &.v-input--switch {
+        .v-input__slot {
+          border: none !important;
+        }
+      }
+
       .v-input__slot {
-        border: $border-theme-dark  !important;
+        border: $border-theme-dark !important;
       }
 
 
@@ -224,7 +229,7 @@
   }
 
   .v-menu__content {
-    border: $border-theme-dark  !important;
+    border: $border-theme-dark !important;
 
     .v-list {
       .v-list-item {
