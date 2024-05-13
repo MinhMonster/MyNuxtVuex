@@ -113,6 +113,20 @@
                   <span class="member-nav-name">Quản lý: Admin</span>
                 </nuxt-link>
               </div>
+              <div>
+                <span class="base-dialog-name text-main bold d-flex">
+                  <span class="mr-1"> <BaseSvg name="bell-ring" /> </span
+                  ><v-switch
+                    :value="isNotification"
+                    color="main"
+                    hide-details
+                    @click="setNotification(!isNotification)"
+                  ></v-switch>
+                  <span v-if="!isNotification" class="text-14-400"
+                    >(Đã tắt trong 2 giờ)</span
+                  ></span
+                ><i class="menu-active"></i>
+              </div>
             </template>
           </div>
           <template v-if="token && user">
@@ -135,17 +149,23 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("home/users");
+import { mapState, mapActions } from "vuex";
+
+import { mapFields } from "vuex-map-fields";
+
 // import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 export default {
   // components: { ButtonLoginFacebook },
   computed: {
-    ...mapState(["token", "user"]),
+    ...mapState("home/users", ["token", "user"]),
+    ...mapFields("global", {
+      isNotification: "isNotification",
+    }),
   },
   methods: {
-    ...mapActions(["logout", "fetchUser", "loginFb"]),
+    ...mapActions("home/users", ["logout", "fetchUser", "loginFb"]),
+    ...mapActions("global", ["setNotification", "getNotification"]),
     async logoutUser() {
       await this.logout();
     },

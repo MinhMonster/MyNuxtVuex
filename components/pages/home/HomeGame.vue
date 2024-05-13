@@ -1,6 +1,14 @@
 <template>
   <div>
-    <v-row class="hom-page">
+    <ModalNotification
+      v-if="isNotification"
+      ref="modal"
+      :title="`Thông Báo`"
+      size="md"
+      @hide="onNotification = false"
+    >
+    </ModalNotification>
+    <v-row v-if="isShowHome" class="hom-page">
       <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8" id="home-left">
         <v-row style="margin: -15px">
           <v-col cols="12">
@@ -37,35 +45,12 @@
         </div>
       </v-col>
     </v-row>
-
-    <!-- <ModalPayload
-      v-if="isNotification"
-      ref="modal"
-      :title="`Thông Báo`"
-      size="md"
-    >
-      <template #content>
-        <div class="page-body">
-          <AdminNotification />
-        </div>
-      </template>
-      <template #footer-button>
-        <v-btn
-          size="sm"
-          color="warning"
-          @click="setNotification(), $refs.modal.close()"
-        >
-          <span>Đóng 2 giờ</span>
-        </v-btn>
-      </template>
-    </ModalPayload> -->
   </div>
 </template>
 
 <script>
 import GameCard from "@/components/pages/home/GameCard";
-// import ModalPayload from "@/components/common/ModalPayload";
-// import AdminNotification from "@/components/pages/home/AdminNotification";
+import ModalNotification from "@/components/pages/client/layout/ModalNotification";
 // import FormLogin from "@/components/pages/client/login/FormLogin";
 // import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import HomeSlider from "@/components/pages/home/HomeSlider";
@@ -73,15 +58,14 @@ import DepositCardForm from "@/components/pages/client/account/wallet/DepositCar
 
 // import RunText from "@/components/global/molecules/common/template/RunText";
 
-// import { mapFields } from "vuex-map-fields";
+import { mapFields } from "vuex-map-fields";
 import { mapState, mapActions } from "vuex";
 export default {
   name: "HomeGame",
 
   components: {
     GameCard,
-    // ModalPayload,
-    // AdminNotification,
+    ModalNotification,
     // FormLogin,
     // SideBarMenu,
     HomeSlider,
@@ -96,6 +80,7 @@ export default {
   },
   data() {
     return {
+      onNotification: true,
       gameList: [
         {
           title: "Shop Nick Mới",
@@ -151,30 +136,27 @@ export default {
   },
   computed: {
     ...mapState("home/users", ["token", "user"]),
+    ...mapFields("global", {
+      isNotification: "isNotification",
+    }),
+    isShowHome() {
+      return (
+        !this.isNotification ||
+        !this.isMobile ||
+        (this.isMobile && this.isNotification && !this.onNotification)
+      );
+    },
+  },
+  mounted() {
+    this.getNotification();
+  },
+  methods: {
+    ...mapActions("global", ["getNotification"]),
   },
 };
 </script>
 
 <style lang="scss" scoped>
-// .form-deposit-card {
-//   position: fixed;
-//   width: calc(24% + 5px);
-//   max-width: 300px;
-
-//   @media (min-width: 876px) {
-//     width: calc(25% + 10px);
-//   }
-
-//   @media (min-width: 978px) {
-//     width: calc(25% + 15px);
-//   }
-// }
-// @media (min-width: 768px) {
-//   .form-deposit-card {
-//     margin-left: 3%;
-//   }
-// }
-
 .account {
   margin: -9px;
   cursor: pointer;
