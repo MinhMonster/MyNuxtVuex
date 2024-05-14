@@ -1,6 +1,15 @@
 <template>
   <client-only>
     <div class="rightbar-content scroll-y">
+      <BaseSvg
+        class="close"
+        color="red"
+        id="btn-close-modal-header"
+        title="Đóng"
+        aria-label="Đóng"
+        @click="$emit('close')"
+        name="close"
+      />
       <div class="user-info-wrap">
         <div class="user-info">
           <BaseSvg

@@ -22,7 +22,7 @@
         @click="close()"
         name="close"
       />
-      <v-card-title class="title-modal text-menu-main">
+      <v-card-title class="title-modal text-menu-main bold">
         {{ title }}
       </v-card-title>
       <v-card-text class="modal-body">

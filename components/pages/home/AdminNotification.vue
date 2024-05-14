@@ -34,7 +34,7 @@
           Shop
         </nuxt-link>
       </p>
-      <p class="bold text-italic text-13-700 text-danger">
+      <p class="bold text-italic text-13-700">
         - Nạp Thẻ, Mua Nick tự động không Chiết khấu.
       </p>
 
@@ -54,7 +54,14 @@
           <span class="mr-1"> Giao Diện Sáng</span>
         </div>
 
-        <v-switch v-model="isThemeDark" color="main" hide-details></v-switch>
+        <v-switch
+          v-model="isThemeDark"
+          id="change-theme"
+          title="Thay Đổi Giao Diện"
+          aria-label="Thay Đổi Giao Diện"
+          color="main"
+          hide-details
+        ></v-switch>
         <div class="ml-1 base-dialog-name text-main bold flex">
           <span>Giao Diện Tối</span>
         </div>
@@ -78,7 +85,7 @@ export default {
     margin-bottom: 0 !important;
   }
   .change-theme {
-    max-width: 240px;
+    max-width: 260px;
     margin: 10px auto;
   }
 }

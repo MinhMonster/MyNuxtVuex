@@ -80,7 +80,6 @@ export default {
   },
   data() {
     return {
-      onNotification: true,
       gameList: [
         {
           title: "Shop Nick Mới",
@@ -138,6 +137,7 @@ export default {
     ...mapState("home/users", ["token", "user"]),
     ...mapFields("global", {
       isNotification: "isNotification",
+      onNotification: "onNotification"
     }),
     isShowHome() {
       return (

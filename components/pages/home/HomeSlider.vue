@@ -15,22 +15,47 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+
 export default {
+  data() {
+    return {
+      itemsData: null,
+    };
+  },
   computed: {
-    items() {
-      return [
-        {
-          src: this.isMobile
-            ? "https://muabannick.pro/images/banners/banner_mobile.png"
-            : "https://muabannick.pro/images/banners/muabannick_banner_min.png",
-        },
-        // {
-        //   src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
-        // },
-        // {
-        //   src: "https://muabannick.pro/images/banners/banner_ny_min.gif",
-        // },
-      ];
+    ...mapFields("global", {
+      isNotification: "isNotification",
+      onNotification: "onNotification",
+    }),
+    isShowNoti() {
+      return this.isNotification && this.onNotification;
+    },
+    items: {
+      get() {
+        if (!this.itemsData) {
+          return [
+            {
+              src: this.isMobile
+                ? "https://muabannick.pro/images/banners/banner-mobile.jpg"
+                : this.isShowNoti
+                ? "https://muabannick.pro/images/banners/muabannick_banner_min.png"
+                : "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif",
+            },
+            // {
+            //   src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
+            // },
+            // {
+            //   src: "https://muabannick.pro/images/banners/banner_ny_min.gif",
+            // },
+          ];
+        } else {
+          return this.itemsData;
+        }
+      },
+      set(newValue) {
+        this.itemsData = newValue;
+      },
     },
   },
   methods: {
@@ -44,13 +69,16 @@ export default {
       // }
     },
     onErrorAvatar(item) {
-      // if (item == "https://muabannick.pro/images/banners/banner_ny_min.gif") {
-      //   this.items = [
-      //     {
-      //       src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
-      //     },
-      //   ];
-      // }
+      if (
+        item ==
+        "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif"
+      ) {
+        this.items = [
+          {
+            src: "https://muabannick.pro/images/banners/muabannick_banner_min.png",
+          },
+        ];
+      }
     },
   },
 };
