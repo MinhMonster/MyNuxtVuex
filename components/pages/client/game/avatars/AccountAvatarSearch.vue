@@ -2,6 +2,12 @@
   <div class="form-search mb-3">
     <div class="page-body mb-2">
       <div>
+        <nuxt-link to="/topics/huong-dan-tai-game-avatar" class="bold text-danger">
+          ⭐ Hướng dẫn tải game Avatar trên máy IOS và Phiên bản mod (hack) trên máy Android
+        </nuxt-link>
+
+      </div>
+      <div>
         ⭐ Tất cả
         <span class="bold text-13-500">Nick Avatar</span> trên Website đều có
         Sim đăng ký. Khi các bạn mua thành công sẽ có hướng dẫn chuyển sim cụ

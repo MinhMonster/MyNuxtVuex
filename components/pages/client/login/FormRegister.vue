@@ -403,7 +403,7 @@ form {
 .form-input:focus + .form-label {
   top: -9px;
   left: 0px;
-  // padding: 0 10px;
+  padding: 0 10px;
   display: inline-block;
   background: none !important;
   color: #333;
