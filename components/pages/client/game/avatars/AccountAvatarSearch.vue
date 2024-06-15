@@ -2,6 +2,12 @@
   <div class="form-search mb-3">
     <div class="page-body mb-2">
       <div>
+        <nuxt-link to="/topics/huong-dan-tai-game-avatar" class="bold text-danger">
+          ⭐ Hướng dẫn tải game Avatar trên máy IOS và Phiên bản mod (hack) trên máy Android
+        </nuxt-link>
+
+      </div>
+      <div>
         ⭐ Tất cả
         <span class="bold text-13-500">Nick Avatar</span> trên Website đều có
         Sim đăng ký. Khi các bạn mua thành công sẽ có hướng dẫn chuyển sim cụ
@@ -14,33 +20,17 @@
       </div>
       <div>
         ⭐ PR: Shop Mua Bán
-        <span class="bold text-13-500"
-          ><a
-            href="https://shopnick.online/teamobi/avatar"
-            target="_blank"
-            title="ShopNick.Online | Shop Nick Avatar DK (2x) của TeaMobi"
-            class="link"
-            >Shop Nick Avatar</a
-          > </span
-        >,
+        <span class="bold text-13-500"><a href="https://shopnick.online/teamobi/avatar" target="_blank"
+            title="ShopNick.Online | Shop Nick Avatar DK (2x) của TeaMobi" class="link">Shop Nick Avatar</a> </span>,
         <span class="bold text-13-500">
-          <a
-            target="_blank"
-            href="https://shopnick.online/teamobi/ninja-school"
-            title="ShopNick.Online | Shop Nick Ninja School của TeaMobi"
-            class="link"
-            >Shop Nick Ninja</a
-          >
+          <a target="_blank" href="https://shopnick.online/teamobi/ninja-school"
+            title="ShopNick.Online | Shop Nick Ninja School của TeaMobi" class="link">Shop Nick Ninja</a>
         </span>
         Uy Tín, Giá Rẻ của Admin Đỗ Minh tại
         <span class="bold text-13-500">
-          <a
-            target="_blank"
-            href="https://shopnick.online"
+          <a target="_blank" href="https://shopnick.online"
             title="ShopNick.Online | Shop Nick Avatar DK (2x), Ninja School của TeaMobi"
-            class="link"
-            >ShopNick.Online</a
-          >.
+            class="link">ShopNick.Online</a>.
         </span>
       </div>
     </div>
@@ -49,33 +39,21 @@
         <v-row>
           <v-col cols="6" sm="3" md="2">
             <div class="field">
-              <input
-                v-model="queryForm.q.username"
-                type="text"
-                placeholder="Tìm tên Nick..."
-                class="v-input form-input"
-              />
+              <input v-model="queryForm.q.username" type="text" placeholder="Tìm tên Nick..."
+                class="v-input form-input" />
             </div>
           </v-col>
 
           <v-col cols="6" sm="3" md="2">
             <div class="field">
-              <input
-                v-model="queryForm.q.id"
-                type="number"
-                placeholder="Nhập mã số nick..."
-                class="v-input form-input"
-              />
+              <input v-model="queryForm.q.id" type="number" placeholder="Nhập mã số nick..."
+                class="v-input form-input" />
             </div>
           </v-col>
           <v-col cols="6" sm="3" md="2">
             <div class="field v-input form-input">
               <select v-model="queryForm.q.cash" class="">
-                <option
-                  v-for="(option, index) in cashOptions"
-                  :key="index"
-                  :value="option.value"
-                >
+                <option v-for="(option, index) in cashOptions" :key="index" :value="option.value">
                   {{ option.text }}
                 </option>
               </select>
@@ -149,7 +127,7 @@ export default {
       ],
     };
   },
-  created() {},
+  created() { },
 
   computed: {
     ...mapFields("home/game/avatars", {

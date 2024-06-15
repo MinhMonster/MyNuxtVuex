@@ -419,7 +419,7 @@ form {
 .form-input:not(:placeholder-shown) + .form-label,
 .form-input:focus + .form-label {
   top: -9px;
-  left: 11px;
+  left: 0px;
   padding: 0 10px;
   display: inline-block;
   background: none !important;
