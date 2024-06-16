@@ -1,19 +1,24 @@
+import { defaultPagy } from '@/utils/admin/default'
+import { enableResetStore } from '@/utils/admin/common'
 import { getField, updateField } from "vuex-map-fields";
+
 const SET_STATE = "SET_STATE";
 const SET_QUERY = "SET_QUERY";
 
-export default {
+export default enableResetStore({
   namespaced: true,
-  state: () => ({
-    topics: [],
-    topic: null,
-    post: [],
-    metaTopics: {},
-    query: {
-      page: 1,
-      perPage: 24
+  state() {
+    return {
+      stateDefault: {
+        queryTopics: queryTopics,
+        queryTopic: queryTopic,
+      },
+      queryTopics: queryTopics,
+      queryTopic: queryTopic,
+      formTopic: formTopic
     }
-  }),
+
+  },
 
   mutations: {
     updateField,
@@ -129,7 +134,7 @@ export default {
   //     // Handle error here
   //   }
   // }
-}
+});
 
 export const newTopic = {
   title: "",
@@ -140,3 +145,127 @@ export const newTopic = {
   description: "",
 };
 
+
+
+const queryTopics = _.cloneDeep({
+  response: {
+    meta: defaultPagy,
+    data: [],
+    count: 0,
+    sum_value: 0
+  },
+  page: {
+    type: "text",
+    show: false,
+    value: 1
+  },
+  perPage: {
+    type: "text",
+    show: false,
+    value: 15
+  },
+  id: {
+    // title: "ID",
+    placeholder: "ID",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  username: {
+    placeholder: "Tài Khoản",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  status: {
+    placeholder: "Trạng Thái",
+    type: "select-options",
+    show: true,
+    value: "yes",
+    options: [
+      {
+        text: "Tất cả",
+        value: null,
+      },
+      {
+        text: "Đang bán",
+        value: "yes",
+      },
+      {
+        text: "Đã bán",
+        value: "no",
+      },
+    ],
+  },
+});
+
+
+const queryTopic = _.cloneDeep({
+
+  ID: "",
+  username: "",
+  dat: "",
+  ga: "",
+  ca: "",
+  mcs: "",
+  thongtin: "",
+  giatien: "",
+  gianhap: "",
+  sim: "",
+  image: '',
+  full: "0"
+
+});
+
+
+const formTopic =
+  _.cloneDeep([
+    // {
+    //   title: "Image",
+    //   type: "text",
+    //   value: 'image',
+    //   show: false,
+    //   cols: 12,
+    //   sm: 12,
+    //   md: 12,
+    //   lg: 12
+    // },
+    {
+      title: "Title",
+      type: "text",
+      value: 'title',
+      cols: 12,
+      sm: 12,
+      md: 6,
+      lg: 6
+    },
+    {
+      title: "Link",
+      type: "text",
+      value: 'link',
+      cols: 12,
+      sm: 12,
+      md: 6,
+      lg: 6
+    },
+    {
+      title: "Mô tả",
+      type: "content-editer",
+      value: 'description',
+      cols: 12,
+      sm: 12,
+      md: 12,
+      lg: 12
+    },
+    {
+      title: "Nội dung",
+      type: "content-editer",
+      value: 'content',
+      height: '100%',
+      fullHeight: true,
+      cols: 12,
+      sm: 12,
+      md: 12,
+      lg: 12
+    },
+  ]);
