@@ -39,6 +39,7 @@
             <FileSelected
               :selectedImages="selectedImages"
               @removeFile="removeFile"
+              @removeFiles="removeFiles"
             ></FileSelected>
           </b-tab>
         </b-tabs>
@@ -119,6 +120,10 @@ export default {
 
     removeFile(file) {
       this.selectedImages = this.selectedImages.filter((item) => item != file);
+      this.setSelectedImages(this.selectedImages);
+    },
+    removeFiles() {
+      this.selectedImages = [];
       this.setSelectedImages(this.selectedImages);
     },
 

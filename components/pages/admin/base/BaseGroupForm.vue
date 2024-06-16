@@ -13,9 +13,9 @@
         <BaseInput
           v-if="form.type === 'cash'"
           :name="form.value"
-          v-model="dataForm[form.value]"
           :label="form.title"
           :disabled="form.disabled || (is_create && form.value === 'ID')"
+          v-model="dataForm[`${form.value}`]"
           @change="onChange"
         />
         <v-text-field
@@ -37,17 +37,17 @@
           @change="updateForm()"
         ></v-select>
         <div v-if="form.type === 'content-editer'">
-          <label for="" class="content-editer">{{form.title}}</label>
+          <label for="" class="content-editer">{{ form.title }}</label>
           <ContentEditer
-          
-          :name="form.value"
-          v-model="dataForm[form.value]"
-          :label="form.title"
-          :disabled="form.disabled"
-          @input="updateForm()"
-        ></ContentEditer>
+            v-model="dataForm[`${form.value}`]"
+            :name="form.value"
+            :label="form.title"
+            :disabled="form.disabled"
+            :height="form.height"
+            :class="form.fullHeight ? 'full-height' : ''"
+            @input="updateForm()"
+          ></ContentEditer>
         </div>
-        
       </form-validator>
     </v-col>
   </v-row>
@@ -105,6 +105,13 @@ export default {
 .bg-editor ::v-deep {
   .ck.ck-content.ck-editor__editable.ck-rounded-corners {
     max-height: 200px !important;
+  }
+
+  .full-height
+    + .ck.ck-reset.ck-editor.ck-rounded-corners
+    .ck.ck-content.ck-editor__editable.ck-rounded-corners {
+    height: 450px !important;
+    max-height: 450px !important;
   }
 }
 </style>

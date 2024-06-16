@@ -22,15 +22,24 @@
             @input="updateForm()"
             >Show Full Avatar
           </b-form-checkbox>
-          <ImageList v-model="dataForm.hinhanh" @updated="updateForm" />
+          <ImageList
+            v-if="multipleImages"
+            v-model="dataForm.hinhanh"
+            @updated="updateForm"
+          />
+          <UploadImage
+            v-else
+            @changeImage="changeImage"
+            :images-props="dataForm.image ? [dataForm.image ?? ''] : []"
+          />
         </b-tab>
       </b-tabs>
       <br />
       <div class="d-flex">
         <v-btn v-if="isDelete" @click="onDelete()" color="red"> Delete</v-btn>
-        <v-btn v-if="isUnDelete" @click="unDelete()" color="red"
-          >Un Delete</v-btn
-        >
+        <v-btn v-if="isUnDelete" @click="unDelete()" color="red">
+          Un Delete
+        </v-btn>
         <v-spacer />
         <div class="text-right">
           <v-btn type="submit" color="primary"> Submit </v-btn>
@@ -41,6 +50,7 @@
 </template>
 
 <script>
+import UploadImage from "@/components/pages/admin/topics/form/UploadImage";
 import ImageList from "@/components/global/molecules/common/ImageList";
 import BaseGroupForm from "@/components/pages/admin/base/BaseGroupForm.vue";
 import { mapState } from "vuex";
@@ -48,6 +58,7 @@ import { mapState } from "vuex";
 export default {
   components: {
     BaseGroupForm,
+    UploadImage,
     ImageList,
   },
   name: "AdminBaseForm",
@@ -73,6 +84,12 @@ export default {
       type: String,
       default: "",
       require: false,
+    },
+    multipleImages: {
+      type: Boolean,
+      default: () => {
+        return true;
+      },
     },
   },
   data() {
@@ -111,6 +128,10 @@ export default {
     await this.resetForm();
   },
   methods: {
+    changeImage(images) {
+      this.dataForm.image = images[0] ?? "";
+      this.updateForm();
+    },
     updateForm() {
       this.updateState(this.dataForm);
     },
@@ -287,8 +308,9 @@ img.image-account {
 }
 
 .tab-scroll {
-  height: calc(100vh - 385px);
+  height: calc(100vh - 350px);
 }
+
 .bg-account {
   margin: 0px;
 }

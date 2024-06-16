@@ -4,6 +4,7 @@
       :config="editorConfig"
       :value="value"
       :disabled="disabled"
+      :style="{height: height}"
       @input="(event) => $emit('input', event)"
     />
   </client-only>
@@ -22,6 +23,10 @@ export default {
       type: String,
       default: "",
     },
+    height: {
+      type: String,
+      default: "300px",
+    },
     disabled: {
       type: Boolean,
       required: false,
@@ -32,7 +37,7 @@ export default {
     return {
       editorConfig: {
         height: "800px",
-        
+
     // plugins: [
     //   'Bold',
     //   'Link',
@@ -88,13 +93,13 @@ export default {
             "Highlight",
             "fontColor",
             "fontBackgroundColor",
-            
+
             "ImageInsert",
             "ImageResize",
 
           ],
         },
-        
+
         simpleUpload: {
           uploadUrl: "https://muabannick.pro/apis/files/uploadSingleFile.php",
           headers: {

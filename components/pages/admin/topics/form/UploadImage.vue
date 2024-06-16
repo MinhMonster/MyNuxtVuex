@@ -1,5 +1,5 @@
 <template>
-  <form-validator name="hinhanh">
+  <form-validator name="image">
     <v-col v-if="!images.length" cols="12" sm="6" md="4" class="middle">
       <UploadImageModal
         @onUploaded="onUploaded"
@@ -8,7 +8,7 @@
       ></UploadImageModal>
     </v-col>
     <draggable
-      v-model="images"
+      v-model="imagesProps"
       ghost-class="ghost"
       @change="changeByDrag"
       handle=".handle"
@@ -16,7 +16,7 @@
       tag="div"
     >
       <v-col
-        v-for="(image, index) in images"
+        v-for="(image, index) in imagesProps"
         :key="index"
         cols="12"
         sm="6"
@@ -82,8 +82,7 @@ export default {
       },
     },
     is_create() {
-      const path = this.$route.path;
-      return path.includes("/new");
+      return this.path.includes("/new");
     },
   },
   async mounted() {

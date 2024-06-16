@@ -55,7 +55,7 @@
             :class="{ active: folderUpload == folder.folderPath }"
           >
             <div class="body-folder" @click="setPath(folder.folderPath)">
-              <v-icon v-if="path == folder.folderPath" color="blue"
+              <v-icon v-if="pathFolder == folder.folderPath" color="blue"
                 >mdi-folder-multiple</v-icon
               >
               <v-icon v-else color="blue">mdi-folder</v-icon>
@@ -366,6 +366,7 @@ export default {
       await this.getFiles();
     },
     async getFiles() {
+      this.images = [];
       const res = await this.fetchFiles(this.folderUpload);
       this.images = res.data.files;
     },

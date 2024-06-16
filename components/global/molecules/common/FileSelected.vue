@@ -78,8 +78,10 @@ export default {
     },
     removeAll() {
       this.files = [];
-      this.preview = [];
-      this.$refs.file.value = null;
+      this.$emit("removeFiles");
+
+      // this.selectedImages = [];
+      // this.$refs.file.value = null;
     },
   },
 };
