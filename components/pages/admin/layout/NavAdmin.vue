@@ -31,7 +31,7 @@
             </div>
 
             <div class="group-right">
-              
+
               <div v-if="filter" class="reload-page" @click="onFilter()">
                 <v-btn icon>
                   <v-icon>mdi-filter</v-icon>
@@ -68,7 +68,7 @@
     <div id="next-bottom"></div>
   </div>
 </template>
-  
+
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 

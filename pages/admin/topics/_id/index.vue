@@ -17,10 +17,10 @@
             state: 'queryTopic',
             module: 'admin.topics',
             form: 'formTopic',
-            action: 'fetchTopic',
-            update: 'updateTopic',
-            delete: 'destroyTopic',
-            unDelete: 'unDestroyTopic',
+            action: 'adminFetchTopic',
+            update: 'adminUpdateTopic',
+            delete: 'adminDestroyTopic',
+            unDelete: 'adminUnDestroyTopic',
           }"
           :multipleImages="false"
         ></AdminBaseForm>

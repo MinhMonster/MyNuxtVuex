@@ -34,8 +34,7 @@
           />
         </b-tab>
       </b-tabs>
-      <br />
-      <div class="d-flex">
+      <div class="d-flex mt-3">
         <v-btn v-if="isDelete" @click="onDelete()" color="red"> Delete</v-btn>
         <v-btn v-if="isUnDelete" @click="unDelete()" color="red">
           Un Delete
@@ -121,7 +120,7 @@ export default {
     },
     isUnDelete() {
       const api = _.get(this.store, "unDelete", null);
-      return this.id && this.stateQuery.status === "no" && api;
+      return this.id && (this.stateQuery.status === "no" || !this.stateQuery.status) && api;
     },
   },
   async mounted() {
@@ -205,7 +204,7 @@ export default {
     async onDelete() {
       this.$swal
         .fire({
-          title: `Bạn muốn xóa ID: ${this.id} ?`,
+          title: `Delete ID: ${this.id} ?`,
           text: "",
           icon: "question",
           type: "warning",
@@ -213,8 +212,8 @@ export default {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Xóa",
-          cancelButtonText: "Hủy",
+          confirmButtonText: "Accept",
+          cancelButtonText: "Cancel",
           timer: 5000,
           // closeOnConfirm: false,
           // closeOnCancel: false
@@ -238,7 +237,7 @@ export default {
     async unDelete() {
       this.$swal
         .fire({
-          title: `Bạn muốn Đăng bán ID: ${this.id}?`,
+          title: `Un Delete ID: ${this.id}?`,
           text: "",
           icon: "question",
           type: "warning",
@@ -246,8 +245,8 @@ export default {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Xác nhận",
-          cancelButtonText: "Hủy",
+          confirmButtonText: "Accept",
+          cancelButtonText: "Cancel",
           timer: 5000,
           // closeOnConfirm: false,
           // closeOnCancel: false
@@ -308,7 +307,7 @@ img.image-account {
 }
 
 .tab-scroll {
-  height: calc(100vh - 350px);
+  height: calc(100vh - 315px);
 }
 
 .bg-account {

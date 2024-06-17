@@ -110,8 +110,8 @@ export default {
   .full-height
     + .ck.ck-reset.ck-editor.ck-rounded-corners
     .ck.ck-content.ck-editor__editable.ck-rounded-corners {
-    height: 450px !important;
-    max-height: 450px !important;
+    height: 500px !important;
+    max-height: 500px !important;
   }
 }
 </style>

@@ -5,6 +5,7 @@
     next-page
     new-page
     @newPage="$router.push('/admin/topics/new')"
+    filter
     reload
     @reload="$refs.table.fetchData()"
   >
@@ -19,7 +20,7 @@
             :store="{
               state: 'queryTopics',
               module: 'admin.topics',
-              action: 'fetchTopics',
+              action: 'adminFetchTopics',
             }"
           >
             <template #actions="props">

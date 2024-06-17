@@ -17,7 +17,7 @@
             state: 'queryTopic',
             module: 'admin.topics',
             form: 'formTopic',
-            create: 'createTopic',
+            create: 'adminCreateTopic',
           }"
           :multipleImages="false"
         ></AdminBaseForm>

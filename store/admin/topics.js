@@ -139,7 +139,7 @@ export default enableResetStore({
 export const newTopic = {
   title: "",
   content: "",
-  image: null,
+  image: '',
   link: "",
   status: "yes",
   description: "",
@@ -171,8 +171,14 @@ const queryTopics = _.cloneDeep({
     show: true,
     value: ''
   },
-  username: {
-    placeholder: "Tài Khoản",
+  title: {
+    placeholder: "Title",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  link: {
+    placeholder: "Link",
     type: "text",
     show: true,
     value: ''
@@ -188,11 +194,11 @@ const queryTopics = _.cloneDeep({
         value: null,
       },
       {
-        text: "Đang bán",
+        text: "Xuất bản",
         value: "yes",
       },
       {
-        text: "Đã bán",
+        text: "Ẩn",
         value: "no",
       },
     ],
@@ -203,18 +209,12 @@ const queryTopics = _.cloneDeep({
 const queryTopic = _.cloneDeep({
 
   ID: "",
-  username: "",
-  dat: "",
-  ga: "",
-  ca: "",
-  mcs: "",
-  thongtin: "",
-  giatien: "",
-  gianhap: "",
-  sim: "",
+  title: "",
+  content: "",
   image: '',
-  full: "0"
-
+  link: "",
+  status: "yes",
+  description: "",
 });
 
 
