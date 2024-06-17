@@ -18,8 +18,11 @@
                     <div class="text-14-700">
                       {{ item.title }}
                     </div>
-                    <div class="break-line-2 text-13-400">
-                      {{ item.description }}
+                    <div
+                      class="break-line-2 text-main text-13-400"
+                      :class="isMobile ? 'break-line-2' : 'break-line-3'"
+                    >
+                      <div v-html="item.description"></div>
                     </div>
                   </v-col>
                 </v-row>
@@ -52,7 +55,7 @@ export default {
   layout: "clientLayout",
   components: {
     HomePage,
-    Pagination,
+    Pagination
   },
   computed: {
     ...mapState("home/topics", ["topics", "metaTopics"]),
