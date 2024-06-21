@@ -1,4 +1,3 @@
-
 <template>
   <client-only>
     <v-row v-if="accountNinja.ID">
@@ -22,7 +21,10 @@
           :rows="2"
           :dots="true"
         >
-          <AccountNinjaTL :account-ninja="accountNinja" />
+          <AccountNinjaTL
+            v-if="!accountNinja.full"
+            :account-ninja="accountNinja"
+          />
           <div
             v-for="(image, index) in accountNinja.hinhanh"
             :key="index"
@@ -34,12 +36,14 @@
               :src="image"
               alt=""
               class="image-account"
+              :class="{ full: index == 0 && accountNinja.full }"
             />
             <img
               v-else
               :src="`https://muabannick.pro${image}`"
               alt=""
               class="image-account"
+              :class="{ full: index == 0 && accountNinja.full }"
             />
           </div>
         </VueSlickCarousel>
@@ -70,12 +74,14 @@
                 :src="image"
                 alt=""
                 class="image-ninja"
+                :class="{ full: index == 0 && accountNinja.full }"
               />
               <img
                 v-else
                 :src="`https://muabannick.pro${image}`"
                 alt=""
                 class="image-ninja"
+                :class="{ full: index == 0 && accountNinja.full }"
               />
             </div>
           </v-col>
@@ -88,8 +94,8 @@
     </v-row>
   </client-only>
 </template>
-  
-  <script>
+
+<script>
 import AccountNinjaInfo from "@/components/pages/client/game/ninjas/AccountNinjaInfo";
 import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
@@ -99,13 +105,13 @@ export default {
   props: {
     accountNinja: {
       type: Object,
-      default: () => {},
-    },
-  },
+      default: () => {}
+    }
+  }
 };
 </script>
-  
-  <style lang="scss" scoped>
+
+<style lang="scss" scoped>
 ::v-deep {
   .slick-slide {
     overflow: hidden !important;
@@ -114,6 +120,9 @@ export default {
       img {
         // width: 112% !important;
         margin-left: 0px;
+        &.full {
+          width: 101.5% !important;
+        }
       }
     }
   }
@@ -133,12 +142,18 @@ export default {
   img {
     width: 108%;
     // max-height: 200px;
+    &.full {
+      width: 100% !important;
+    }
   }
 }
 .image-account {
   width: 110% !important;
   overflow: hidden;
   margin-left: 0px;
+  &.full {
+    width: 101.5% !important;
+  }
 }
 .title {
   color: #1e5b7e;

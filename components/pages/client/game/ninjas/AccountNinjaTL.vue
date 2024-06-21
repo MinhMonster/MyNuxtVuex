@@ -6,118 +6,123 @@
         :src="accountNinja.hinhanh[0]"
         alt=""
         class="image-ninja"
+        :class="{ full: accountNinja.full }"
       />
       <img
         v-else
         :src="`https://muabannick.pro${accountNinja.hinhanh[0]}`"
         alt=""
         class="image-ninja"
+        :class="{ full: accountNinja.full }"
       />
-      <span
-        v-if="accountNinja.tl1"
-        class="account-tl text-13-450"
-        style="right: 24%; top: 19%"
-        >{{ accountNinja.tl1 }}</span
-      >
-      <span
-        v-if="accountNinja.tl2"
-        class="account-tl text-13-450"
-        style="right: 24%; top: 30.5%"
-        >{{ accountNinja.tl2 }}</span
-      >
-      <span
-        v-if="accountNinja.tl3"
-        class="account-tl text-13-450"
-        style="right: 24%; top: 42%"
-        >{{ accountNinja.tl3 }}</span
-      >
-      <span
-        v-if="accountNinja.tl4"
-        class="account-tl text-13-450"
-        style="right: 24%; top: 53%"
-        >{{ accountNinja.tl4 }}</span
-      >
-      <span
-        v-if="accountNinja.tl5"
-        class="account-tl text-13-450"
-        style="right: 24%; top: 64%"
-        >{{ accountNinja.tl5 }}</span
-      >
+      <template v-if="!accountNinja.full">
+        <span
+          v-if="accountNinja.tl1"
+          class="account-tl text-13-450"
+          style="right: 24%; top: 19%"
+          >{{ accountNinja.tl1 }}</span
+        >
+        <span
+          v-if="accountNinja.tl2"
+          class="account-tl text-13-450"
+          style="right: 24%; top: 30.5%"
+          >{{ accountNinja.tl2 }}</span
+        >
+        <span
+          v-if="accountNinja.tl3"
+          class="account-tl text-13-450"
+          style="right: 24%; top: 42%"
+          >{{ accountNinja.tl3 }}</span
+        >
+        <span
+          v-if="accountNinja.tl4"
+          class="account-tl text-13-450"
+          style="right: 24%; top: 53%"
+          >{{ accountNinja.tl4 }}</span
+        >
+        <span
+          v-if="accountNinja.tl5"
+          class="account-tl text-13-450"
+          style="right: 24%; top: 64%"
+          >{{ accountNinja.tl5 }}</span
+        >
 
-      <span
-        v-if="accountNinja.tl6"
-        class="account-tl text-13-450"
-        style="left: 25%; top: 19%"
-        >{{ accountNinja.tl6 }}</span
-      >
-      <span
-        v-if="accountNinja.tl7"
-        class="account-tl text-13-450"
-        style="left: 25%; top: 30.5%"
-        >{{ accountNinja.tl7 }}</span
-      >
-      <span
-        v-if="accountNinja.tl8"
-        class="account-tl text-13-450"
-        style="left: 25%; top: 42%"
-        >{{ accountNinja.tl8 }}</span
-      >
-      <span
-        v-if="accountNinja.tl9"
-        class="account-tl text-13-450"
-        style="left: 25%; top: 53%"
-        >{{ accountNinja.tl9 }}</span
-      >
-      <span
-        v-if="accountNinja.tl10"
-        class="account-tl text-13-450"
-        style="left: 25%; top: 64%"
-        >{{ accountNinja.tl10 }}</span
-      >
+        <span
+          v-if="accountNinja.tl6"
+          class="account-tl text-13-450"
+          style="left: 25%; top: 19%"
+          >{{ accountNinja.tl6 }}</span
+        >
+        <span
+          v-if="accountNinja.tl7"
+          class="account-tl text-13-450"
+          style="left: 25%; top: 30.5%"
+          >{{ accountNinja.tl7 }}</span
+        >
+        <span
+          v-if="accountNinja.tl8"
+          class="account-tl text-13-450"
+          style="left: 25%; top: 42%"
+          >{{ accountNinja.tl8 }}</span
+        >
+        <span
+          v-if="accountNinja.tl9"
+          class="account-tl text-13-450"
+          style="left: 25%; top: 53%"
+          >{{ accountNinja.tl9 }}</span
+        >
+        <span
+          v-if="accountNinja.tl10"
+          class="account-tl text-13-450"
+          style="left: 25%; top: 64%"
+          >{{ accountNinja.tl10 }}</span
+        >
 
-      <span
-        v-if="accountNinja.tl11"
-        class="account-tl text-13-450"
-        style="left: 44.5%; top: 62%"
-        >{{ accountNinja.tl11 }}</span
-      >
+        <span
+          v-if="accountNinja.tl11"
+          class="account-tl text-13-450"
+          style="left: 44.5%; top: 62%"
+          >{{ accountNinja.tl11 }}</span
+        >
 
-      <span
-        v-if="accountNinja.eye"
-        class="account-tl text-13-450"
-        style="left: 56.5%; top: 62%"
-        >{{ accountNinja.eye }}</span
-      >
-      <span v-if="accountNinja.disguise" class="account-disguise text-13-450">
-        CT: {{ accountNinja.disguise }}
-      </span>
-      <span v-if="accountNinja.clone" class="account-clone text-13-450">
-        {{ accountNinja.clone }}
-      </span>
-      <span v-if="accountNinja.mounts" class="account-mounts">
-        <span class="mounts-info text-13-450">
-          {{ accountNinja.mounts }}
+        <span
+          v-if="accountNinja.eye"
+          class="account-tl text-13-450"
+          style="left: 56.5%; top: 62%"
+          >{{ accountNinja.eye }}</span
+        >
+        <span v-if="accountNinja.disguise" class="account-disguise text-13-450">
+          CT: {{ accountNinja.disguise }}
         </span>
-      </span>
-      <span v-if="accountNinja.book" class="account-book text-13-450">
-        {{ accountNinja.book !== 13 ? accountNinja.book : "max" }} sách
-      </span>
-      <span v-if="accountNinja.cake" class="account-cake text-13-450">
-        {{ accountNinja.cake !== 20 ? accountNinja.cake : "max" }} bánh
-      </span>
-      <span v-if="accountNinja.yen" class="account-yen text-13-450">
-        {{ accountNinja.yen }}
-      </span>
-      <span class="account-cash-atm text-13-450">
-        Lv: {{ accountNinja.level }}</span
-      >
-      <span class="account-server-number">
+        <span v-if="accountNinja.clone" class="account-clone text-13-450">
+          {{ accountNinja.clone }}
+        </span>
+        <span v-if="accountNinja.mounts" class="account-mounts">
+          <span class="mounts-info text-13-450">
+            {{ accountNinja.mounts }}
+          </span>
+        </span>
+        <span v-if="accountNinja.book" class="account-book text-13-450">
+          {{ accountNinja.book !== 13 ? accountNinja.book : "max" }} sách
+        </span>
+        <span v-if="accountNinja.cake" class="account-cake text-13-450">
+          {{ accountNinja.cake !== 20 ? accountNinja.cake : "max" }} bánh
+        </span>
+        <span v-if="accountNinja.yen" class="account-yen text-13-450">
+          {{ accountNinja.yen }}
+        </span>
+        <span class="account-cash-atm text-13-450">
+          Lv: {{ accountNinja.level }}</span
+        >
+        <span class="account-server-number">
           Sv: {{ serverNinjaNumber(accountNinja.server) }}
-      </span>
+        </span>
 
-      <span class="account-ingame text-13-450">
-        @{{ accountNinja.ingame }}
-      </span> 
+        <span class="account-ingame text-13-450">
+          @{{ accountNinja.ingame }}
+        </span>
+      </template>
+
       <!-- <span
         v-if="accountNinja.saleOff"
         class="account-cash-atm bg-none text-13-450"
@@ -148,9 +153,9 @@ export default {
   props: {
     accountNinja: {
       type: Object,
-      default: () => {},
-    },
-  },
+      default: () => {}
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -168,6 +173,11 @@ export default {
   img {
     width: 108%;
     // max-height: 200px;
+
+    &.full {
+      width: 100%;
+      margin-left: 0px;
+    }
   }
 }
 .account-ingame {
@@ -262,7 +272,6 @@ export default {
   }
 }
 
-
 .account-book {
   right: 4px;
   top: 53%;
@@ -286,8 +295,6 @@ export default {
   left: 4px;
   top: 65%;
 }
-
-
 
 .account-yen,
 .account-book,
