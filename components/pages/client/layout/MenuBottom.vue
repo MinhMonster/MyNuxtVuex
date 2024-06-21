@@ -20,7 +20,18 @@
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
-      <ModalSetting />
+      <div class="sub-menu-buttom" @click="isThemeDark = !isThemeDark">
+        <div class="footer_icon theme">
+          <BaseSvg
+            class="icon-menu"
+            id="theme-light-dark"
+            title="Giao Diện"
+            aria-label="Giao Diện"
+            name="theme-light-dark"
+          />
+        </div>
+        <span class="title-menu-buttom">Giao Diện</span>
+      </div>
       <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
           <BaseSvg
@@ -40,22 +51,25 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import ModalGame from "@/components/pages/client/layout/ModalGame";
-import ModalSetting from "@/components/pages/client/layout/ModalSetting";
+// import ModalSetting from "@/components/pages/client/layout/ModalSetting";
 import ModalSupport from "@/components/pages/client/layout/ModalSupport";
 
 export default {
   components: {
     ModalGame,
-    ModalSetting,
-    ModalSupport,
+    // ModalSetting,
+    ModalSupport
   },
 
   computed: {
     ...mapFields("global", {
-      ready: "ready",
-    }),
+      ready: "ready"
+    })
   },
   methods: {
+    // changeTheme() {
+    //   this.isThemeDark = !this.isThemeDark;
+    // },
     nextPath(path) {
       if (this.path === path) {
         this.reset();
@@ -68,9 +82,8 @@ export default {
       setTimeout(() => {
         this.ready = true;
       }, 200);
-    },
-  },
+    }
+  }
 };
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

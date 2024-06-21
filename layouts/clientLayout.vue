@@ -16,9 +16,9 @@
     <ModalLogin />
 
     <template v-if="isShowButton">
-      <div class="change-theme">
+      <!-- <div class="change-theme">
         <BaseSvg name="theme-light-dark" @click="changeTheme()" />
-      </div>
+      </div> -->
       <div class="next-top">
         <BaseSvg name="next-top" @click="nextTop()" />
       </div>
@@ -100,9 +100,9 @@ export default {
   },
   methods: {
     ...mapActions("home/users", ["fetchUser"]),
-    changeTheme() {
-      this.isThemeDark = !this.isThemeDark;
-    },
+    // changeTheme() {
+    //   this.isThemeDark = !this.isThemeDark;
+    // },
     scroll() {
       if (!this.isShowButton) {
         this.isShowButton = true;
@@ -151,7 +151,7 @@ export default {
     }
   }
 }
-.change-theme,
+// .change-theme,
 .next-top,
 .next-bottom {
   position: fixed;
@@ -178,9 +178,9 @@ export default {
     );
   }
 }
-.change-theme {
-  bottom: 170px;
-}
+// .change-theme {
+//   bottom: 170px;
+// }
 .next-top {
   bottom: 130px;
 }

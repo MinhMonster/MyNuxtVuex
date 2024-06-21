@@ -24,8 +24,8 @@
       </p> -->
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/teamobi/avatar">
-          <span class="text-danger">*</span> Mở Rộng và Cập nhật rất nhiều Nick
-          Avatar
+          <span class="text-danger">*</span> Cập nhật rất nhiều Nick Avatar,
+          Ninja School
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700">
@@ -48,8 +48,8 @@
         </a>
       </p>
       <AdminInbox />
-      <div data-v-78190b84="" class="h-line mgt-10px"></div>
-      <div class="flex flex-center change-theme">
+      <!-- <div class="h-line mgt-10px"></div> -->
+      <!-- <div class="flex flex-center change-theme">
         <div class="base-dialog-name text-main bold">
           <span class="mr-1"> Giao Diện Sáng</span>
         </div>
@@ -65,7 +65,7 @@
         <div class="ml-1 base-dialog-name text-main bold flex">
           <span>Giao Diện Tối</span>
         </div>
-      </div>
+      </div> -->
     </div>
   </client-only>
 </template>
@@ -74,8 +74,8 @@
 import AdminInbox from "@/components/common/client/AdminInbox";
 export default {
   components: {
-    AdminInbox,
-  },
+    AdminInbox
+  }
 };
 </script>
 <style lang="scss" scoped>

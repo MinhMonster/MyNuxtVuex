@@ -1,7 +1,6 @@
 <template>
   <div>
     <ModalNotification
-      v-if="isNotification"
       ref="modal"
       :title="`Thông Báo`"
       size="md"
@@ -41,7 +40,9 @@
           class="mt--1 form-deposit-card"
           :style="{ height: heightHomeLeft + 'px' }"
         >
-          <template><DepositCardForm /></template>
+          <template
+            ><DepositCardForm
+          /></template>
         </div>
       </v-col>
     </v-row>
@@ -69,14 +70,14 @@ export default {
     // FormLogin,
     // SideBarMenu,
     HomeSlider,
-    DepositCardForm,
+    DepositCardForm
     // RunText,
   },
   props: {
     query: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
@@ -88,14 +89,14 @@ export default {
             "https://muabannick.pro/images/banners/banner-shopnickonline.png",
           numberAccount: "90",
           sold: "69",
-          target: true,
+          target: true
         },
         {
           title: "Avatar XS.DKỳ",
           path: "/teamobi/avatar",
           image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
           numberAccount: "90",
-          sold: "69",
+          sold: "69"
         },
         {
           title: "Nick Ninja VIP",
@@ -103,7 +104,7 @@ export default {
           image:
             "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
           numberAccount: "5245",
-          sold: "5144",
+          sold: "5144"
         },
         {
           title: "Nick Ninja Giá Rẻ",
@@ -111,7 +112,7 @@ export default {
           image:
             "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
           numberAccount: "7481",
-          sold: "7185",
+          sold: "7185"
         },
 
         {
@@ -120,7 +121,7 @@ export default {
           image:
             "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
           numberAccount: "5245",
-          sold: "5144",
+          sold: "5144"
         },
 
         {
@@ -128,31 +129,34 @@ export default {
           path: "/teamobi/ngoc-rong",
           image: "https://muabannick.pro//images/banners/banner_nro_min.jpg",
           numberAccount: "515",
-          sold: "438",
-        },
-      ],
+          sold: "438"
+        }
+      ]
     };
   },
   computed: {
     ...mapState("home/users", ["token", "user"]),
     ...mapFields("global", {
-      isNotification: "isNotification",
+      // isNotification: "isNotification",
       onNotification: "onNotification"
     }),
     isShowHome() {
       return (
-        !this.isNotification ||
+        // !this.isNotification ||
         !this.isMobile ||
-        (this.isMobile && this.isNotification && !this.onNotification)
+        (this.isMobile &&
+          // this.isNotification &&
+          !this.onNotification)
       );
-    },
+    }
   },
   mounted() {
-    this.getNotification();
+    this.onNotification = true;
+    // this.getNotification();
   },
   methods: {
-    ...mapActions("global", ["getNotification"]),
-  },
+    // ...mapActions("global", ["getNotification"]),
+  }
 };
 </script>
 
