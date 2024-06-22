@@ -16,15 +16,15 @@
         <VueSlickCarousel
           v-else-if="accountNinja.hinhanh"
           :initialSlide="0"
-          :slidesToShow="2"
+          :slidesToShow="1"
           :arrows="true"
-          :rows="2"
+          :rows="1"
           :dots="true"
         >
-          <AccountNinjaTL
+          <!-- <AccountNinjaTL
             v-if="!accountNinja.full"
             :account-ninja="accountNinja"
-          />
+          /> -->
           <div
             v-for="(image, index) in accountNinja.hinhanh"
             :key="index"
@@ -140,7 +140,7 @@ export default {
   // border-radius: 5px;
 
   img {
-    width: 108%;
+    width: 100%;
     // max-height: 200px;
     &.full {
       width: 100% !important;
@@ -148,11 +148,11 @@ export default {
   }
 }
 .image-account {
-  width: 110% !important;
+  width: 100% !important;
   overflow: hidden;
   margin-left: 0px;
   &.full {
-    width: 101.5% !important;
+    width: 100% !important;
   }
 }
 .title {
