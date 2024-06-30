@@ -40,15 +40,13 @@
     <v-col cols="12">
       <div class="page-body mg--6px">
         <div>
-          ⭐ Tất cả <span class="bold text-13-500">Nick Ninja School</span> trên
-          Website đều có Sim đăng ký. Khi các bạn mua thành công sẽ có hướng dẫn
-          chuyển sim cụ thể từng tài khoản.
+          ⭐ Sở hữu <span class="bold text-13-500">Nick Ninja</span> chỉ sau
+          30s-5p thanh toán. Tất cả đều có Sim đăng ký.
+          <span class="bold pointer text-danger" @click="$refs.modal.show()"
+            >Xem HD Chuyển Sim</span
+          >
         </div>
-        <div>
-          ⭐ Sở hữu <span class="bold text-13-500">Acc Nso</span> chỉ sau 30s-5p
-          thanh toán. Cam kết Acc sạch 100% và có xác nhận từ NPH TeaMobi gửi
-          về.
-        </div>
+
         <div>
           ⭐ PR: Shop Mua Bán
           <span class="bold text-13-500"
@@ -67,7 +65,7 @@
               >Nick Ninja School</a
             >
           </span>
-          Uy Tín, Giá Rẻ của Admin Đỗ Minh tại
+          Uy Tín của Admin Đỗ Minh tại
           <span class="bold text-13-500">
             <a
               target="_blank"
@@ -89,6 +87,7 @@
     <v-col v-if="isQuery && !isLoadingSearch" cols="12">
       <div class="title text-center text-danger">Kết quả tìm kiếm...</div>
     </v-col>
+    <ModalChangeAccountRegister ref="modal" />
   </v-row>
 </template>
 
@@ -97,12 +96,14 @@ import ninjas_mixins from "@/mixins/ninjas_mixins";
 import { mapFields } from "vuex-map-fields";
 import FormValidator from "@/components/global/form/FormValidator";
 import FormSearch from "@/components/pages/client/game/ninjas/FormSearch";
+import ModalChangeAccountRegister from "@/components/pages/client/game/ModalChangeAccountRegister";
+
 // import { mapActions } from "vuex";
 
 export default {
   mixins: [ninjas_mixins],
 
-  components: { FormValidator, FormSearch },
+  components: { FormValidator, FormSearch, ModalChangeAccountRegister },
   props: {
     type: {
       type: String,

@@ -8,7 +8,7 @@
       @hide="onNotification = false"
     >
     </ModalNotification>
-    <v-row v-if="isShowHome" class="hom-page">
+    <v-row class="hom-page">
       <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8" id="home-left">
         <v-row style="margin: -15px">
           <v-col cols="12">
