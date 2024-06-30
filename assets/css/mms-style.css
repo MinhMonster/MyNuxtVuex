@@ -3597,10 +3597,6 @@ select.select-time {
 }
 
 
-.pointer {
-  cursor: pointer;
-}
-
 .btn {
   height: 28px;
   cursor: pointer;
