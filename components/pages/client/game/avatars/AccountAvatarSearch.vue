@@ -36,10 +36,6 @@
         >
       </div>
       <div>
-        ⭐ Sở hữu <span class="bold text-13-500">Acc Nso</span> chỉ sau 30s-5p
-        thanh toán. Cam kết Acc sạch 100% và có xác nhận từ NPH TeaMobi gửi về.
-      </div>
-      <div>
         ⭐ PR: Shop Mua Bán
         <span class="bold text-13-500"
           ><a
@@ -54,7 +50,7 @@
             target="_blank"
             href="https://muabannick.pro/teamobi/ninja-school"
             title="MuaBanNick.Pro | Shop Nick Ninja School của TeaMobi"
-            >Nick Ninja School</a
+            >Nick Ninja</a
           >
         </span>
         Uy Tín của Admin Đỗ Minh tại
