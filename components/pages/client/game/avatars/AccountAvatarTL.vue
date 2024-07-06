@@ -48,7 +48,7 @@ export default {
     width: 120%;
     margin-left: -10%;
     height: 270px;
-    border-radius: 5px;
+    border-radius: 7px;
     border: 1px solid #a4a4a4;
     &.full {
       width: 100%;
@@ -78,7 +78,7 @@ export default {
   font-weight: 450;
   width: auto !important;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 0px 5px;
   color: #ffffff;
   background: #a21d0a;

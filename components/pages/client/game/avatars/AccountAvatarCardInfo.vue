@@ -87,7 +87,7 @@ export default {
     .fileItemWrapper {
       padding: 6px;
       img {
-        border-radius: 4px;
+        border-radius: 7px;
       }
     }
   }

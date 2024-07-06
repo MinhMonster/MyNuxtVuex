@@ -106,7 +106,7 @@
     </v-row>
   </client-only>
 </template>
-  
+
   <script>
 import AccountAvatarInfo from "@/components/pages/client/game/avatars/AccountAvatarInfo";
 import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvatarTL";
@@ -130,7 +130,7 @@ export default {
   },
 };
 </script>
-  
+
   <style lang="scss" scoped>
 ::v-deep {
   .fileItemWrapper {
@@ -151,7 +151,7 @@ export default {
   border-radius: 5px;
 
   img {
-    border-radius: 5px;
+    border-radius: 7px;
     border: 1px solid #a4a4a4;
     width: 120%;
     margin-left: -10%;
