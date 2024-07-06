@@ -1,6 +1,7 @@
 <template>
   <div>
     <ModalNotification
+      v-if="isNotification"
       ref="modal"
       :title="`Thông Báo`"
       size="md"
