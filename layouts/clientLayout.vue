@@ -310,20 +310,26 @@ export default {
 
 .bg-website::-webkit-scrollbar-thumb,
 .container.client-main::-webkit-scrollbar-thumb {
-  background: #ffcf9c !important;
+  background: #9f5424 !important;
   border-radius: 10px;
 }
 
 .bg-website::-webkit-scrollbar-track,
 .container.client-main::-webkit-scrollbar-track {
-  background: #9f5424 !important;
-  border-radius: 10px;
+  background: none !important;
 }
 
 .bg-website::-webkit-scrollbar,
 .container.client-main::-webkit-scrollbar {
   width: 0px;
   direction: ltr;
+}
+
+@media (min-width: 678px) {
+  .bg-website::-webkit-scrollbar,
+  .container.client-main::-webkit-scrollbar {
+    width: 5px;
+  }
 }
 
 // .v-application.v-application--is-ltr.theme--dark {

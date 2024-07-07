@@ -2,10 +2,16 @@
   .page-body {
     color: #f1f1f1;
     background: #031019;
-    border: $border-theme-dark  !important;
+    border: $border-theme-dark !important;
+  }
+
+  .bg-website::-webkit-scrollbar-thumb,
+  .bg-website .container.client-main::-webkit-scrollbar-thumb {
+    background: #0F0F0F !important;
   }
 
   .bg-website {
+
     .btn-next-more button {
       background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
       color: #f1f1f1;
@@ -23,6 +29,7 @@
         background: #3f474c;
         background-size: cover;
         background-image: url(https://muabannick.pro/images/bg/bg-mbn-violet.png) !important;
+
         @media (max-width: 599px) {
           background-image: url(https://muabannick.pro/images/bg/bg-mbn-violet-mb-min.png) !important;
         }
@@ -36,7 +43,7 @@
 
         .page-body {
           background: #031019;
-          border: $border-theme-dark  !important;
+          border: $border-theme-dark !important;
         }
 
         .form-search {
@@ -48,7 +55,7 @@
 
             .field {
               select {
-                border: $border-theme-dark  !important;
+                border: $border-theme-dark !important;
               }
 
               input.v-input {
@@ -80,7 +87,7 @@
 
         .account-empty {
           background: #031019;
-          border: $border-theme-dark  !important;
+          border: $border-theme-dark !important;
 
           .text-danger {
             color: #b549cc !important;
@@ -142,7 +149,7 @@
 
   .account-search {
     background: #0F0F0FE6 !important;
-    border: $border-theme-dark  !important;
+    border: $border-theme-dark !important;
   }
 
   .account {
@@ -180,7 +187,7 @@
         border: 1px solid #333 !important;
         color: #f1f1f1;
         // background-image: linear-gradient(180deg, #111, #111 9%, #333 58%, #424040) !important;
-        // background-image: linear-gradient(139.4deg,#b549cc 5.38%,#0F0F0F 25.2%,#0F0F0F 58.96%,#0F0F0F 54.97%,#0F0F0F 35.49%,#222 81.5%,#b549cc 90.52%) !important; 
+        // background-image: linear-gradient(139.4deg,#b549cc 5.38%,#0F0F0F 25.2%,#0F0F0F 58.96%,#0F0F0F 54.97%,#0F0F0F 35.49%,#222 81.5%,#b549cc 90.52%) !important;
         background-image: linear-gradient(139.4deg, #0F0F0F 17.38%, #a937ed 55.2%, #ac3be4 58.96%, #b549cc 54.97%, #a937ed 35.49%, #0F0F0F 81.5%, #0F0F0F 90.52%) !important;
 
         &:hover {
@@ -212,7 +219,7 @@
     // background-image: linear-gradient(180deg, #424040, #0F0F0F 9%, #0F0F0F 58%, #0F0F0F) !important;
     // background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
     background: #171e28 !important;
-    border: $border-theme-dark  !important;
+    border: $border-theme-dark !important;
     // text-shadow: $text-shadow-theme-dark;
     color: #f1f1f1;
   }
@@ -257,7 +264,7 @@
   .account-ingame {
     background: #171e28 !important;
 
-    border: $border-theme-dark  !important;
+    border: $border-theme-dark !important;
     // text-shadow: $text-shadow-theme-dark;
   }
 
@@ -328,7 +335,7 @@
     .btn.active-btn {
       color: #f1f1f1 !important;
       width: 100%;
-      border: $border-theme-dark  !important;
+      border: $border-theme-dark !important;
       background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
 
       &:hover {
