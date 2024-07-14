@@ -9,7 +9,7 @@
     >
       <template #body>
         <div class="mt-4">
-          <AccountAvatarSearch @search="search()"></AccountAvatarSearch>
+          <AccountAvatarSearch></AccountAvatarSearch>
           <AccountAvatarList></AccountAvatarList>
         </div>
       </template>
@@ -18,51 +18,25 @@
 </template>
 
 <script>
+import avatars_mixins from "@/mixins/avatars_mixins";
 import HomePage from "@/components/pages/home/HomePage";
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
 import AccountAvatarSearch from "@/components/pages/client/game/avatars/AccountAvatarSearch";
 import AccountAvatarList from "@/components/pages/client/game/avatars/AccountAvatarList";
 
 export default {
   layout: "clientLayout",
-
+  mixins: [avatars_mixins],
   components: {
     HomePage,
     AccountAvatarSearch,
     AccountAvatarList,
   },
-  computed: {
-    ...mapFields("global", {
-      isLoadingSearch: "isLoadingSearch",
-    }),
-  },
+
   async mounted() {
-    await this.resetQuery();
-    await this.resetAccountAvatars();
-    await this.fetchAccountAvatars();
+    await this.reload();
+    this.nextAvatarId();
   },
-  methods: {
-    ...mapActions("home/game/avatars", [
-      "resetQuery",
-      "setQuery",
-      "resetAccountAvatars",
-      "fetchAccountAvatars",
-    ]),
-    async search() {
-      this.isLoadingSearch = true;
-      await this.resetAccountAvatars();
-      await this.fetchAccountAvatars();
-      setTimeout(() => {
-        this.isLoadingSearch = false;
-      }, 300);
-    },
-    async reload() {
-      await this.resetQuery();
-      await this.resetAccountAvatars();
-      await this.fetchAccountAvatars();
-    },
-  },
+
   data() {
     return {
       title:

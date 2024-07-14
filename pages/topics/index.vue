@@ -59,9 +59,9 @@ export default {
   },
   computed: {
     ...mapState("home/topics", ["topics", "metaTopics"]),
-    queryPage() {
-      return _.cloneDeep(this.$route.query.page) || 1;
-    },
+    ...mapFields("global", {
+      ready: "ready"
+    }),
     queryGoBack() {
       return `page=2`;
     },

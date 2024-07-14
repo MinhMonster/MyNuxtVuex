@@ -253,9 +253,6 @@ export default {
 
     ...mapFields("home/game/ninjas", {}),
     ...mapState(["token", "user"]),
-    queryPage() {
-      return this.$route.query.page || 1;
-    },
   },
   mounted() {
     this.onPageChange(this.queryPage);

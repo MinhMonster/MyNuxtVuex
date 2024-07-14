@@ -185,9 +185,6 @@ export default {
       pageSave: "pageSave",
     }),
     ...mapFields("home/game/ninjas", {}),
-    queryPage() {
-      return this.$route.query.page || 1;
-    },
   },
   mounted() {
     this.reload();

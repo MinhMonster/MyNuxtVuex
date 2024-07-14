@@ -104,6 +104,9 @@ export default {
     path() {
       return this.$route.path;
     },
+    queryPage() {
+      return _.cloneDeep(Number(this.$route.query.page)) || 1;
+    },
     nowYear() {
       var year = this.currentYear
       return year;
