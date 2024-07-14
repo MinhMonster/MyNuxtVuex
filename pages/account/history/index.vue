@@ -92,9 +92,6 @@ export default {
     }),
     ...mapFields("home/game/ninjas", {}),
     ...mapState(["token", "user"]),
-    queryPage() {
-      return _.cloneDeep(this.$route.query.page) || 1;
-    },
   },
   async mounted() {
     await this.resetQuery();

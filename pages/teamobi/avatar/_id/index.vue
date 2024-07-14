@@ -8,11 +8,9 @@
       </template>
       <template #table>
         <div class="page-body bg-none mt--2">
-          <div class="title-category">
-            <div data-v-53350ac5="" class="title">
-              <center data-v-53350ac5="">
-                <h3 data-v-53350ac5="">Danh Sách Nick Gợi Ý</h3>
-              </center>
+          <div class="title-category mt--2">
+            <div class="title">
+              <h2 class="text-center">Danh Sách Nick Gợi Ý</h2>
             </div>
           </div>
           <AccountAvatarList></AccountAvatarList>
@@ -80,7 +78,7 @@ export default {
       });
       this.ready = true;
 
-      await this.resetQuery();
+      await this.setQuery({ page: this.queryPage });
       await this.resetAccountAvatars();
       if (this.accountAvatar) {
         await this.setQuery({

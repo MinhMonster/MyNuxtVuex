@@ -11,7 +11,7 @@
             />
           </div>
         </v-col>
-        <v-col cols="12" sm="7" md="10" >
+        <v-col cols="12" sm="7" md="10">
           <div class="pd-10px">
             <div>
               ⭐ Group mới
@@ -89,7 +89,7 @@
           <v-col cols="6" sm="3" md="2">
             <div class="field">
               <input
-                v-model="queryForm.q.username"
+                v-model="username"
                 type="text"
                 placeholder="Tìm tên Nick..."
                 class="v-input form-input"
@@ -100,7 +100,7 @@
           <v-col cols="6" sm="3" md="2">
             <div class="field">
               <input
-                v-model="queryForm.q.id"
+                v-model="id"
                 type="number"
                 placeholder="Nhập mã số nick..."
                 class="v-input form-input"
@@ -109,7 +109,7 @@
           </v-col>
           <v-col cols="6" sm="3" md="2">
             <div class="field v-input form-input">
-              <select v-model="queryForm.q.cash" class="">
+              <select v-model="cash" class="">
                 <option
                   v-for="(option, index) in cashOptions"
                   :key="index"
@@ -127,101 +127,23 @@
     <v-col v-if="isQuery && !isLoadingSearch" cols="12">
       <div class="title text-center text-danger">Kết quả tìm kiếm...</div>
     </v-col>
+    <v-col v-if="queryPage > 1" cols="12">
+      <div class="title text-center text-danger">
+        Bạn đang ở Trang: {{ queryPage }}
+      </div>
+    </v-col>
     <ModalChangeAccountRegister ref="modal" />
   </div>
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
+import avatars_mixins from "@/mixins/avatars_mixins";
 import GroupBtnSearch from "@/components/common/client/button/GroupBtnSearch";
 import ModalChangeAccountRegister from "@/components/pages/client/game/ModalChangeAccountRegister";
 
 export default {
+  mixins: [avatars_mixins],
   components: { GroupBtnSearch, ModalChangeAccountRegister },
-  data() {
-    return {
-      cashOptions: [
-        {
-          text: "Chon Giá Tiền",
-          value: null,
-        },
-        {
-          text: "Dưới 100k",
-          value: {
-            min: 0,
-            max: 100000,
-          },
-        },
-        {
-          text: "Giá 100k đến 300k",
-          value: {
-            min: 100000,
-            max: 300000,
-          },
-        },
-        {
-          text: "Giá 300k đến 500k",
-          value: {
-            min: 300000,
-            max: 500000,
-          },
-        },
-        {
-          text: "Giá 500k đến 1 Triệu",
-          value: {
-            min: 500000,
-            max: 1000000,
-          },
-        },
-        {
-          text: "Giá 1Tr đến 3 Triệu",
-          value: {
-            min: 1000000,
-            max: 3000000,
-          },
-        },
-        {
-          text: "Giá trên 3 Triệu",
-          value: {
-            min: 3000000,
-          },
-        },
-      ],
-    };
-  },
-  computed: {
-    ...mapFields("home/game/avatars", {
-      query: "query",
-    }),
-    ...mapFields("global", {
-      isLoadingSearch: "isLoadingSearch",
-    }),
-    queryForm() {
-      return _.cloneDeep(this.query);
-    },
-    isQuery() {
-      return (
-        this.queryForm.q.username ||
-        this.queryForm.q.id ||
-        this.queryForm.q.cash
-      );
-    },
-  },
-  methods: {
-    ...mapActions("home/game/avatars", ["resetQuery", "setQuery"]),
-    search() {
-      this.setQueryForm();
-      this.$emit("search");
-    },
-    async reset() {
-      this.resetQuery();
-      this.search();
-    },
-    setQueryForm() {
-      this.queryForm.page = 1;
-      this.setQuery(this.queryForm);
-    },
-  },
+
 };
 </script>

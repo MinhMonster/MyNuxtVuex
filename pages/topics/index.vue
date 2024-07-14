@@ -69,9 +69,6 @@ export default {
     ...mapFields("global", {
       ready: "ready"
     }),
-    queryPage() {
-      return _.cloneDeep(this.$route.query.page) || 1;
-    },
     queryGoBack() {
       return `page=2`;
     },

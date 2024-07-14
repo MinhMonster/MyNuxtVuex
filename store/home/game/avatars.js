@@ -43,13 +43,12 @@ export default {
       });
     },
     SET_AVATARS(state, payload) {
-      const accountAvatars = _.cloneDeep(state.accountAvatars);
-      state.accountAvatars = accountAvatars.concat(payload.accountAvatars);
+      state.accountAvatars = payload.accountAvatars;
       state.metaAvatars = payload.pagy
       state.countAvatars = payload.count
     },
     RESET_AVATARS(state) {
-      state.accountAvatars = []; 
+      state.accountAvatars = [];
       state.metaAvatars = {}
       state.countAvatars = ""
     },

@@ -1,8 +1,11 @@
 <template>
-  <div v-if="isLoadingSearch" class="center mgt--50px mgb--50px loading-resoult">
+  <div
+    v-if="isLoadingSearch"
+    class="center mgt--50px mgb--50px loading-resoult"
+  >
     <Loading></Loading>
   </div>
-  <div v-else>
+  <div v-else  id="list-avatar">
     <v-row class="text-center account">
       <AccountAvatarCard
         v-for="(avatar, index) in accountAvatars"
@@ -10,73 +13,28 @@
         :account-avatar="avatar"
       ></AccountAvatarCard>
     </v-row>
-    <div v-if="isLoading" class="center mgt--50px mgb--50px">
-      <Loading></Loading>
-    </div>
     <div v-if="!accountAvatars.length" class="account-empty mt-4">
       <h1 class="text-center bold text-danger">
         Không tìm thấy Tài khoản nào!
       </h1>
     </div>
-    <div class="btn-next-more">
-      <BaseSvg
-        v-if="isShowNext && accountAvatars.length && !isLoading"
-        name="skip"
-        button
-        content="Xem Thêm Nick Avatar"
-        variant="danger"
-        class="flex mt-3 mb-1"
-        @click="onChange()"
-      />
-    </div>
+    <Pagination
+      v-if="metaAvatars && metaAvatars.pages > 1"
+      :meta="metaAvatars"
+      @change="onChange"
+    ></Pagination>
   </div>
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
+import avatars_mixins from "@/mixins/avatars_mixins";
 import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
+import Pagination from "@/components/global/molecules/common/Pagination";
 import Loading from "@/components/global/molecules/common/Loading";
+
 export default {
-  components: { AccountAvatarCard, Loading },
-  props: {
-    query: {
-      type: Object,
-      default: () => {},
-    },
-  },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
-  computed: {
-    ...mapFields("home/game/avatars", {
-      accountAvatars: "accountAvatars",
-      page: "query.page",
-      pages: "metaAvatars.pages",
-    }),
-    ...mapFields("global", {
-      isLoadingSearch: "isLoadingSearch",
-    }),
-    isShowNext() {
-      return this.page < this.pages;
-    },
-  },
-  methods: {
-    ...mapActions("home/game/avatars", [
-      "fetchAccountAvatars",
-      "setQuery",
-      "resetQuery",
-      "resetAccountAvatars",
-    ]),
-    async onChange() {
-      this.isLoading = true;
-      await this.setQuery({ page: this.page + 1 });
-      await this.fetchAccountAvatars();
-      this.isLoading = false;
-    },
-  },
+  mixins: [avatars_mixins],
+  components: { AccountAvatarCard, Pagination, Loading },
 };
 </script>
 

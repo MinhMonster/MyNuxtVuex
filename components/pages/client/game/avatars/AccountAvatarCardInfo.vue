@@ -1,5 +1,5 @@
 <template>
-  <div class="account-info">
+  <div :id="accountAvatar.ID" class="account-info">
     <AccountAvatarTL :account-avatar="accountAvatar" />
     <v-row class="account-body">
       <v-col cols="12"
@@ -52,14 +52,6 @@ export default {
     accountAvatar: {
       type: Object,
       default: () => {},
-    },
-  },
-  created() {},
-
-  computed: {},
-  methods: {
-    async viewAaccount() {
-      await this.$router.push(`/teamobi/avatar/${this.accountAvatar.ID}`);
     },
   },
 };
