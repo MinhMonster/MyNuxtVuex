@@ -17,6 +17,7 @@ export default {
       id: "query.q.id",
       username: "query.q.username",
       sex: "query.q.sex",
+      farm: "query.q.farm",
       page: "query.page",
     }),
     isQuery() {
@@ -47,6 +48,22 @@ export default {
         return null;
       }
     },
+    queryFarm() {
+      const farmMin = Number(this.$route.query.farmMin)
+      const farmMax = Number(this.$route.query.farmMax)
+      if (farmMin && farmMax) {
+        return {
+          min: farmMin,
+          max: farmMax,
+        };
+      } else if (farmMin) {
+        return {
+          min: farmMin,
+        };
+      } else {
+        return null;
+      }
+    },
 
     wherePage() {
       return Number(this.page) > 1 ? "page=" + this.page : "";
@@ -65,6 +82,13 @@ export default {
         ? "&cashMin=" +
         this.cash.min +
         (this.cash.max ? "&cashMax=" + this.cash.max : "")
+        : "";
+    },
+    whereFarm() {
+      return this.farm
+        ? "&farmMin=" +
+        this.farm.min +
+        (this.farm.max ? "&farmMax=" + this.farm.max : "")
         : "";
     },
   },
@@ -116,7 +140,8 @@ export default {
             id: this.queryId || null,
             cash: this.queryCash || null,
             username: this.queryName || null,
-            sex: this.querySex || null
+            sex: this.querySex || null,
+            farm: this.queryFarm || null
           }
         });
       this.nextPathAvatar();
@@ -129,7 +154,8 @@ export default {
         this.whereCash +
         this.whereId +
         this.whereName +
-        this.whereSex
+        this.whereSex +
+        this.whereFarm
 
         }`
       );
@@ -148,7 +174,7 @@ export default {
     return {
       cashOptions: [
         {
-          text: "Chon Giá Tiền",
+          text: "Chọn Giá Tiền",
           value: null,
         },
         {
@@ -195,7 +221,7 @@ export default {
       ],
       sexOptions: [
         {
-          text: "Chon Giới tính",
+          text: "Chọn Giới tính",
           value: null,
         },
         {
@@ -209,6 +235,32 @@ export default {
         {
           text: "Bê Đê",
           value: "gay",
+        },
+      ],
+      farmOptions: [
+        {
+          text: "Chọn Farm",
+          value: null,
+        },
+        {
+          text: "Dưới 48 ô đất",
+          value: {
+            min: 0,
+            max: 48,
+          },
+        },
+        {
+          text: "49 đến 95 ô đất",
+          value: {
+            min: 49,
+            max: 95,
+          },
+        },
+        {
+          text: "96 ô đất (Max)",
+          value: {
+            min: 96,
+          },
         },
       ],
     };
