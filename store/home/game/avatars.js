@@ -91,6 +91,7 @@ export const queryAvatar = {
     id: null,
     cash: null,
     username: null,
-    sex: null
+    sex: null,
+    farm: null
   },
 };

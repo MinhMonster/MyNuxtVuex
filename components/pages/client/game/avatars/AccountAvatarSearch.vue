@@ -136,6 +136,19 @@
               </select>
             </div>
           </v-col>
+          <v-col cols="6" sm="3" md="2">
+            <div class="field v-input form-input">
+              <select v-model="farm" class="" @change="search">
+                <option
+                  v-for="(option, index) in farmOptions"
+                  :key="index"
+                  :value="option.value"
+                >
+                  {{ option.text }}
+                </option>
+              </select>
+            </div>
+          </v-col>
           <GroupBtnSearch @search="search" @reset="reset" />
         </v-row>
       </form>
