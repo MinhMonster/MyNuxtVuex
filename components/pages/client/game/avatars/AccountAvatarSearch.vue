@@ -93,6 +93,7 @@
                 type="text"
                 placeholder="Tìm tên Nick..."
                 class="v-input form-input"
+                @change="search"
               />
             </div>
           </v-col>
@@ -104,14 +105,29 @@
                 type="number"
                 placeholder="Nhập mã số nick..."
                 class="v-input form-input"
+                @change="search"
               />
             </div>
           </v-col>
           <v-col cols="6" sm="3" md="2">
             <div class="field v-input form-input">
-              <select v-model="cash" class="">
+              <select v-model="cash" class="" @change="search"
+              >
                 <option
                   v-for="(option, index) in cashOptions"
+                  :key="index"
+                  :value="option.value"
+                >
+                  {{ option.text }}
+                </option>
+              </select>
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="2">
+            <div class="field v-input form-input">
+              <select v-model="sex" class="" @change="search">
+                <option
+                  v-for="(option, index) in sexOptions"
                   :key="index"
                   :value="option.value"
                 >

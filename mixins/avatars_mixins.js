@@ -16,6 +16,7 @@ export default {
       cash: "query.q.cash",
       id: "query.q.id",
       username: "query.q.username",
+      sex: "query.q.sex",
       page: "query.page",
     }),
     isQuery() {
@@ -26,6 +27,9 @@ export default {
     },
     queryName() {
       return this.$route.query.username || null;
+    },
+    querySex() {
+      return this.$route.query.sex || null;
     },
     queryCash() {
       const cashMin = Number(this.$route.query.cashMin)
@@ -52,6 +56,9 @@ export default {
     },
     whereName() {
       return this.username ? "&username=" + this.username : "";
+    },
+    whereSex() {
+      return this.sex ? "&sex=" + this.sex : "";
     },
     whereCash() {
       return this.cash
@@ -108,7 +115,8 @@ export default {
           q: {
             id: this.queryId || null,
             cash: this.queryCash || null,
-            username: this.queryName || null
+            username: this.queryName || null,
+            sex: this.querySex || null
           }
         });
       this.nextPathAvatar();
@@ -120,7 +128,8 @@ export default {
         this.wherePage +
         this.whereCash +
         this.whereId +
-        this.whereName
+        this.whereName +
+        this.whereSex
 
         }`
       );
@@ -146,42 +155,60 @@ export default {
           text: "Dưới 100k",
           value: {
             min: 0,
-            max: 100000,
+            max: 120000,
           },
         },
         {
           text: "Giá 100k đến 300k",
           value: {
-            min: 100000,
-            max: 300000,
+            min: 120000,
+            max: 350000,
           },
         },
         {
-          text: "Giá 300k đến 500k",
+          text: "Giá 300k đến 600k",
           value: {
-            min: 300000,
-            max: 500000,
+            min: 350000,
+            max: 700000,
           },
         },
         {
-          text: "Giá 500k đến 1 Triệu",
+          text: "Giá 600k đến 1 Triệu",
           value: {
-            min: 500000,
-            max: 1000000,
+            min: 700000,
+            max: 1200000,
           },
         },
         {
           text: "Giá 1Tr đến 3 Triệu",
           value: {
-            min: 1000000,
-            max: 3000000,
+            min: 1200000,
+            max: 3600000,
           },
         },
         {
           text: "Giá trên 3 Triệu",
           value: {
-            min: 3000000,
+            min: 3600000,
           },
+        },
+      ],
+      sexOptions: [
+        {
+          text: "Chon Giới tính",
+          value: null,
+        },
+        {
+          text: "Nam",
+          value: "male",
+        },
+        {
+          text: "Nữ",
+          value: "female",
+        },
+        {
+          text: "Bê Đê",
+          value: "gay",
         },
       ],
     };
