@@ -21,7 +21,7 @@ export default {
       page: "query.page",
     }),
     isQuery() {
-      return (this.queryName || this.queryId || this.queryCash);
+      return (this.queryName || this.queryId || this.queryCash || this.querySex || this.queryFarm);
     },
     queryId() {
       return Number(this.$route.query.id) || null;
@@ -180,7 +180,7 @@ export default {
         {
           text: "Dưới 100k",
           value: {
-            min: 0,
+            min: 10000,
             max: 120000,
           },
         },
@@ -245,7 +245,7 @@ export default {
         {
           text: "Dưới 48 ô đất",
           value: {
-            min: 0,
+            min: 6,
             max: 48,
           },
         },
