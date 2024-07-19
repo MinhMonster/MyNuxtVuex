@@ -85,3 +85,19 @@ export const classNinjaOptions = _.cloneDeep([
   },
 ]);
 
+// Avatar
+export const sexAvatarOptions = _.cloneDeep([
+  {
+    text: "Nam",
+    value: "male",
+  },
+  {
+    text: "Nữ",
+    value: "female",
+  },
+  {
+    text: "Bê đê",
+    value: "gay",
+  }
+]);
+
