@@ -10,15 +10,7 @@ export default {
     metaAvatars: {},
     countAvatars: "",
     accountAvatar: {},
-    query: {
-      page: 1,
-      perPage: 24,
-      q: {
-        id: null,
-        cash: null,
-        username: null
-      },
-    }
+    query: queryAvatar
   }),
 
   getters: {
@@ -60,9 +52,6 @@ export default {
   },
 
   actions: {
-    newAccountAvatar({ commit }) {
-      commit(SET_STATE, { accountAvatar: newAccountAvatar });
-    },
     async fetchAccountAvatars({ commit, state }) {
       try {
         const res = await this.$repositories.gameAvatars.fetchAccountAvatars({ input: state.query })
@@ -89,27 +78,19 @@ export default {
       commit('RESET_AVATARS');
     },
     resetQuery({ commit }) {
-      commit(SET_QUERY, {
-        page: 1,
-        perPage: 24,
-        q: {
-          id: null,
-          cash: null,
-          username: null
-        },
-      });
+      commit(SET_QUERY, queryAvatar);
     },
 
   },
 }
 
-export const newAccountAvatar = {
-  ID: "",
-  dat: "",
-  ga: "",
-  ca: "",
-  inGame: "",
-  thongtin: "",
-  price: "",
-  images: [],
+export const queryAvatar = {
+  page: 1,
+  perPage: 24,
+  q: {
+    id: null,
+    cash: null,
+    username: null,
+    sex: null
+  },
 };
