@@ -44,9 +44,19 @@
             <div>
               ⭐ Sở hữu <span class="bold text-13-500">Nick Avatar</span> chỉ
               sau 30s-5p thanh toán. Tất cả đều có Sim đăng ký.
-              <span class="bold pointer text-danger" @click="$refs.modal.show()"
-                >Xem HD Chuyển Sim</span
+              <span
+                class="bold pointer text-danger"
+                @click="$refs.modal.show()"
               >
+                Xem HD Chuyển Sim
+              </span>
+            </div>
+            <div>
+              ⭐ Hỗ trợ
+              <span class="bold pointer text-danger"
+                >trả góp lên đến 1 tháng </span
+              >, Số tiền thanh toán và thời gian trả góp tùy thuộc vào giá trị
+              nick.
             </div>
             <div>
               ⭐ PR: Shop Mua Bán
@@ -111,8 +121,7 @@
           </v-col>
           <v-col cols="6" sm="3" md="2">
             <div class="field v-input form-input">
-              <select v-model="cash" class="" @change="search"
-              >
+              <select v-model="cash" class="" @change="search">
                 <option
                   v-for="(option, index) in cashOptions"
                   :key="index"
@@ -173,6 +182,5 @@ import ModalChangeAccountRegister from "@/components/pages/client/game/ModalChan
 export default {
   mixins: [avatars_mixins],
   components: { GroupBtnSearch, ModalChangeAccountRegister },
-
 };
 </script>
