@@ -3,9 +3,7 @@
     title="Bank Deposits"
     goBack
     next-page
-    new-page
     filter
-    @newPage="$router.push('/admin/game/avatars/new')"
     reload
     @reload="fetchData()"
   >
@@ -66,7 +64,7 @@ export default {
           attributes: {
             align: "center",
             style: {
-              width: "100px",
+              minWidth: "50px",
             },
           },
         },
@@ -76,7 +74,7 @@ export default {
           type: "actions",
           attributes: {
             style: {
-              width: "100px",
+              minWidth: "80px",
             },
           },
         },
@@ -86,7 +84,7 @@ export default {
           type: "number",
           attributes: {
             style: {
-              width: "120px",
+              minWidth: "100px",
             },
           },
         },
@@ -96,7 +94,7 @@ export default {
           type: "number",
           attributes: {
             style: {
-              width: "120px",
+              minWidth: "100px",
             },
           },
         },
@@ -105,7 +103,7 @@ export default {
           label: "Type",
           attributes: {
             style: {
-              width: "100px",
+              minWidth: "100px",
             },
           },
         },
@@ -114,7 +112,7 @@ export default {
           label: "ID User",
           attributes: {
             style: {
-              width: "100px",
+              minWidth: "100px",
             },
           },
         },
@@ -123,7 +121,7 @@ export default {
           label: "User",
           attributes: {
             style: {
-              width: "150px",
+              minWidth: "150px",
             },
           },
         },
@@ -132,7 +130,7 @@ export default {
           label: "Name",
           attributes: {
             style: {
-              width: "100px",
+              minWidth: "150px",
             },
           },
         },
@@ -141,7 +139,7 @@ export default {
           label: "Card NUmber",
           attributes: {
             style: {
-              width: "100px",
+              minWidth: "100px",
             },
           },
         },
@@ -150,7 +148,7 @@ export default {
           label: "Time",
           attributes: {
             style: {
-              width: "150px",
+              minWidth: "150px",
             },
           },
         },

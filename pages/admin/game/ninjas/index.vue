@@ -66,7 +66,7 @@ export default {
             align: "center",
 
             style: {
-              "min-width": 120,
+              minWidth: "60px",
             },
           },
         },
@@ -74,57 +74,87 @@ export default {
           key: "taikhoan",
           label: "Account",
           attributes: {
-            minWidth: "120",
+            style: {
+              minWidth: "150px",
+            },
           },
         },
         {
           key: "ingame",
           label: "In Game",
           attributes: {
-            minWidth: "120",
+            style: {
+              minWidth: "150px",
+            },
           },
         },
         {
           key: "giatien",
           label: "Price",
           type: "number",
-          attributes: {},
+          attributes: {
+            style: {
+              minWidth: "120px",
+            },
+          },
         },
         {
           key: "class",
           label: "Class",
           type: "class-ninja",
-          attributes: {},
+          attributes: {
+            style: {
+              minWidth: "70px",
+            },
+          },
         },
         {
           key: "level",
           label: "Level",
-          attributes: {},
+          attributes: {
+            style: {
+              minWidth: "70px",
+            },
+          },
         },
         {
           key: "server",
           label: "Server",
           type: "server-ninja",
-          attributes: {},
+          attributes: {
+            style: {
+              minWidth: "150px",
+            },
+          },
         },
         {
           key: "loainick",
           label: "Type",
           type: "type-ninja",
-          attributes: {},
+          attributes: {
+            style: {
+              minWidth: "70px",
+            },
+          },
         },
         {
           key: "status",
           label: "Status",
           type: "status-ninja",
-          attributes: {},
+          attributes: {
+            style: {
+              minWidth: "80px",
+            },
+          },
         },
         {
           key: "actions",
           label: "Actions",
           type: "actions",
           attributes: {
-            minWidth: "120",
+            style: {
+              minWidth: "100px",
+            },
           },
         },
       ],

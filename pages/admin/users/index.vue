@@ -127,14 +127,20 @@ export default {
         {
           key: "login_at",
           label: "Login",
-          attributes: {},
+          attributes: {
+            style: {
+              minWidth: "150px",
+            }
+          },
         },
         {
           key: "action",
           label: "Actions",
           type: "actions",
           attributes: {
-            minWidth: "120",
+            style: {
+              minWidth: "50px",
+            }
           },
         },
       ],

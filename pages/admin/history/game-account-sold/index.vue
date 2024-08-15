@@ -136,6 +136,15 @@ export default {
           key: "uid",
           label: "UID",
         },
+        {
+          key: "time",
+          label: "Time",
+          attributes: {
+            style: {
+              minWidth: "150px",
+            },
+          },
+        },
       ],
     };
   },

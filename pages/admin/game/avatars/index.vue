@@ -68,45 +68,76 @@ export default {
             align: "center",
 
             style: {
-              "min-width": 120,
+              minWidth: "80px",
             },
           },
         },
         {
           key: "username",
           label: "Account",
+          attributes: {
+            style: {
+              minWidth: "150px",
+            },
+          },
         },
         {
           key: "dat",
           label: "Đất",
           type: "number",
+          attributes: {
+            style: {
+              minWidth: "70px",
+            },
+          },
         },
         {
           key: "ga",
           label: "Gà",
           type: "number",
+          attributes: {
+            style: {
+              minWidth: "70px",
+            },
+          },
         },
         {
           key: "ca",
           label: "Cá",
+          attributes: {
+            style: {
+              minWidth: "70px",
+            },
+          },
         },
         {
           key: "giatien",
           label: "Price",
           type: "number",
+          attributes: {
+            style: {
+              minWidth: "120px",
+            },
+          },
         },
         {
           key: "status",
           label: "Status",
           type: "status-ninja",
-          attributes: {},
+          attributes: {
+            style: {
+              minWidth: "50px",
+            },
+          },
         },
         {
           key: "actions",
           label: "Actions",
           type: "actions",
           attributes: {
-            minWidth: "120",
+            style: {
+              minWidth: "100px",
+            },
           },
         },
       ],
