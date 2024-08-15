@@ -20,6 +20,10 @@ import adminSaleOffs from '~/repositories/admin/sale_offs'
 //admin events
 import adminDailyEvents from '~/repositories/admin/events/daily'
 
+//learn languages
+import adminLearnLanguages from '~/repositories/admin/learn_languages'
+
+
 
 // Home Page
 import gameNinjas from '~/repositories/home/game/ninjas'
@@ -56,6 +60,8 @@ export default ($api) => ({
   //admin events
   adminDailyEvents: adminDailyEvents($api),
 
+  //learn languages
+  adminLearnLanguages: adminLearnLanguages($api),
 
   // Home Page
   gameNinjas: gameNinjas($api),

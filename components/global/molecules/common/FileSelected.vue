@@ -1,6 +1,6 @@
 <template>
   <b-card class="border border-light shadow-none">
-    <div class="fileList">
+    <div class="fileList scroll-y">
       <div
         v-if="preview.length == 0"
         ref="upload"
@@ -22,7 +22,7 @@
             pill
             @click="removeFile(file)"
           >
-            <i class="mdi mdi-close-thick"></i>
+            <i class="mdi mdi-close-thick text-white"></i>
           </b-button>
           <div class="fileIcon">
             <img v-if="file.url" :src="file.url" />
@@ -39,12 +39,14 @@
     </div>
 
     <template #footer>
-      <div class="text-right">
-        <b-button variant="danger" @click="removeAll">
-          <i class="mdi mdi-close-box-multiple"></i>
-          Clear
-        </b-button>
-      </div>
+      <v-card-actions>
+        <div class="text-right">
+          <b-button variant="danger" @click="removeAll">
+            <i class="mdi mdi-close-box-multiple"></i>
+            Clear
+          </b-button>
+        </div>
+      </v-card-actions>
     </template>
   </b-card>
 </template>
@@ -76,8 +78,10 @@ export default {
     },
     removeAll() {
       this.files = [];
-      this.preview = [];
-      this.$refs.file.value = null;
+      this.$emit("removeFiles");
+
+      // this.selectedImages = [];
+      // this.$refs.file.value = null;
     },
   },
 };
@@ -85,9 +89,11 @@ export default {
 
 <style lang="scss" scoped>
 .fileList {
+  padding-left: 10px;
+  padding-top: 10px;
+
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
 
   .fileItem {
     // flex: 1;
@@ -160,7 +166,8 @@ export default {
 }
 
 .modal-upload .card-body {
-  min-height: 50vh;
+  min-height: calc(75vh - 140px);
+  padding: 0px;
 }
 
 .full-zone {

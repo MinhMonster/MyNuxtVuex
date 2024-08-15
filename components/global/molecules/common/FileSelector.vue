@@ -9,7 +9,7 @@
       @change="onFileChange"
     />
 
-    <div class="fileList">
+    <div class="fileList scroll-y">
       <div
         v-if="preview.length == 0 || multiple"
         ref="upload"
@@ -37,7 +37,7 @@
             pill
             @click="removeFile(index)"
           >
-            <i class="mdi mdi-close-thick"></i>
+            <i class="mdi mdi-close-thick text-white"></i>
           </b-button>
           <div class="fileIcon">
             <img v-if="file.url" :src="file.url" />
@@ -334,7 +334,7 @@ export default {
 }
 
 .modal-upload .card-body {
-  min-height: 50vh;
+  min-height: calc(75vh - 160px);
 }
 
 .full-zone {

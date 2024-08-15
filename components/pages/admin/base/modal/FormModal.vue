@@ -1,12 +1,15 @@
 <template>
-  <v-dialog v-model="dialog" scrollable max-width="300px" light>
+  <v-dialog v-model="dialog" scrollable :max-width="width" light>
     <v-card v-if="stateQuery">
-      <v-card-title class="title-modal"> {{ title }}</v-card-title>
+      <v-card-title class="title-modal center">
+        {{ title }} <br />
+        {{ subTitle }}
+      </v-card-title>
       <v-card-text
         :style="{ 'min-height': minHeight, 'max-height': maxHeight }"
       >
         <div class="modal-body">
-          <form @submit.prevent="onUpdate()">
+          <form v-if="isForm" @submit.prevent="onUpdate()">
             <BaseGroupForm
               :data-form="dataForm"
               :forms="stateForms"
@@ -20,34 +23,50 @@
             >
             </v-btn>
           </form>
+          <slot v-else name="show"></slot>
         </div>
       </v-card-text>
       <v-card-actions class="text-right right gap-10">
-        <v-btn color="red" class="text-white" @click="dialog = false">
-          Close
-        </v-btn>
-        <v-btn
-          type="submit"
-          color="primary"
-          class="text-white"
-          @click="onUpdate()"
-        >
-          Update
-        </v-btn>
+        <div class="text-right right w-100">
+          <v-btn color="red" class="text-white" @click="dialog = false">
+            Close
+          </v-btn>
+          <v-btn
+            v-if="isForm"
+            type="submit"
+            color="primary"
+            class="text-white"
+            @click="onUpdate()"
+          >
+            Submit
+          </v-btn>
+          <v-btn v-if="isShow" color="primary" class="text-white left">
+            <v-icon v-if="isForm" @click="isForm = false"> mdi-eye </v-icon>
+            <v-icon v-else @click="isForm = true"> mdi-pen </v-icon>
+          </v-btn>
+          <slot name="btn-footer"></slot>
+        </div>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 <script>
 import BaseGroupForm from "@/components/pages/admin/base/BaseGroupForm.vue";
+import BaseCheckBox from "@/components/pages/admin/base/form/BaseCheckBox";
+
 import { mapState } from "vuex";
 
 export default {
-  components: { BaseGroupForm },
+  components: { BaseGroupForm, BaseCheckBox },
   props: {
     title: {
       type: String,
       default: "Title",
+      require: false,
+    },
+    subTitle: {
+      type: String,
+      default: "",
       require: false,
     },
     id: {
@@ -82,11 +101,19 @@ export default {
       default: "500px",
       require: false,
     },
+    width: {
+      type: String,
+      default: "300px",
+      require: false,
+    },
+    reset: Boolean,
+    isShow: Boolean,
   },
   data() {
     return {
       dialog: false,
       cash: 0,
+      isForm: true,
     };
   },
   computed: {
@@ -105,13 +132,27 @@ export default {
       return _.cloneDeep(this.stateQuery);
     },
   },
+  mounted() {},
   methods: {
+    show() {
+      this.dialog = true;
+      if (this.isShow) {
+        this.isForm = false;
+      }
+      if (this.reset) {
+        this.resetDataForm();
+      }
+    },
     updateForm() {
       this.updateState(this.dataForm);
     },
     resetForm() {
       this.$store.dispatch(this.module + "/resetData", this.store.state);
     },
+    resetDataForm() {
+      this.$store.dispatch(this.module + "/resetDataForm", this.store.state);
+    },
+
     updateState(data) {
       this.$store.dispatch(this.module + "/setState", {
         stateName: this.store.state,
@@ -185,36 +226,39 @@ form {
 /* .v-card.v-sheet.theme--dark {
   background: #fff !important;
 } */
-.v-card__title.title-modal {
-  color: #fff;
-  border-left: 2px solid #272727;
-  border-right: 2px solid #272727;
-  background: #333;
-  border-bottom: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.v-dialog--scrollable > .v-card > .v-card__text {
-  position: relative;
-  border: 2px solid #272727;
-  background: #f2f2f2;
-  padding: 10px;
-  .modal-body {
-    background: #fff;
-    height: auto;
-    min-height: 100%;
-    padding: 5px 1rem;
-  }
-}
-.v-dialog > .v-card > .v-card__actions {
-  border: 2px solid #272727;
-  background: #333;
-  border-top: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  justify-content: end;
-  align-content: flex-end;
-}
+// .v-card__title.title-modal {
+//   color: #fff;
+//   border-left: 2px solid #272727;
+//   border-right: 2px solid #272727;
+//   background: #333;
+//   border-bottom: none;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+// .v-dialog--scrollable > .v-card > .v-card__text {
+//   position: relative;
+//   border: 2px solid #272727;
+//   background: #f2f2f2;
+//   padding: 10px;
+//   .modal-body {
+//     background: #fff;
+//     height: auto;
+//     min-height: 100%;
+//     padding: 5px 1rem;
+//   }
+// }
+// .v-dialog > .v-card > .v-card__actions {
+//   border: 2px solid #272727 !important;
+//   background: #333;
+//   border-top: none;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: right;
+//   align-content: flex-end;
+//   padding: 6px 16px;
+//   button {
+//     // margin-left: 5px;
+//   }
+// }
 </style>

@@ -78,6 +78,11 @@ export default {
         },
         {
           icon: "mdi-image",
+          title: "Learn Languages",
+          to: "/admin/learn_languages",
+        },
+        {
+          icon: "mdi-image",
           title: "Users",
           to: "/admin/users",
         },

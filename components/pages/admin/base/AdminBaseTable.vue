@@ -1,6 +1,6 @@
 <template>
   <div class="base-tale">
-    <div class="d-flex" align="center">
+    <div v-if="!noTotal" class="d-flex" align="center">
       <div>
         <v-card-title class="mgl--15px"
           >Record: {{ format_number(count) }}
@@ -27,8 +27,8 @@
         <slot :name="column.key" :row="row" :value="value">{{
           columnsValue(column.type, value)
         }}</slot>
-      </template></BaseTable
-    >
+      </template>
+    </BaseTable>
   </div>
 </template>
 <script>
@@ -74,6 +74,12 @@ export default {
       type: Array,
       default: () => [],
     },
+    noTotal: Boolean,
+    params: {
+      type: Array,
+      default: () => [],
+      require: false,
+    },
   },
   data() {
     return {
@@ -84,6 +90,12 @@ export default {
     ...mapState({
       stateQuery(state) {
         return _.get(state, this.store.module + "." + this.store.state, {});
+      },
+      stateParamDefault(state) {
+        // console.log("this.params", this.params);
+        return this.params.length > 0
+          ? _.get(state, this.store.module + "." + "paramDefaults", {})
+          : {};
       },
       haveStore() {
         return !_.isEmpty(this.store);
@@ -186,7 +198,6 @@ export default {
           stateName: this.store.state,
           data: page || this.stateQuery.page.value || 1,
         });
-
         this.fetchActions();
       } else {
         // try {
@@ -216,15 +227,24 @@ export default {
     async fetchActions() {
       try {
         // await this.$store.dispatch(this.module + "/resetData", this.store.state);
+        this.params.forEach((param, index) => {
+          this.$store.dispatch(this.module + "/setParamDefault", {
+            query: param.query,
+            data: param.value,
+          });
+          // console.log("default", this.store.state + "." + param.query + ".value", index, this.params);
+        });
+
         const { dataSearch, dataOrigin, dataRoute } =
           await this.$store.dispatch(
             this.module + "/convertDataSend",
             this.store.state
           );
+        // console.log("stateParamDefault", this.stateParamDefault);
         const result = await this.$repositories[this.repository][
           this.store.action
         ]({
-          input: dataSearch,
+          input: Object.assign(dataSearch, this.stateParamDefault),
         });
 
         dataOrigin.response = result.data.response;
@@ -366,11 +386,11 @@ element.style {
 .table.text-center th,
 .table.text-center td {
   text-align: center !important;
-  min-width: 100px;
+  // min-width: 100px;
 }
 
 .table th {
-  min-width: 100px;
+  // min-width: 100px;
 }
 
 #admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {

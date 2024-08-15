@@ -22,15 +22,23 @@
             @input="updateForm()"
             >Show Full Avatar
           </b-form-checkbox>
-          <ImageList v-model="dataForm.hinhanh" @updated="updateForm" />
+          <ImageList
+            v-if="multipleImages"
+            v-model="dataForm.hinhanh"
+            @updated="updateForm"
+          />
+          <UploadImage
+            v-else
+            @changeImage="changeImage"
+            :images-props="dataForm.image ? [dataForm.image ?? ''] : []"
+          />
         </b-tab>
       </b-tabs>
-      <br />
-      <div class="d-flex">
+      <div class="d-flex mt-3">
         <v-btn v-if="isDelete" @click="onDelete()" color="red"> Delete</v-btn>
-        <v-btn v-if="isUnDelete" @click="unDelete()" color="red"
-          >Un Delete</v-btn
-        >
+        <v-btn v-if="isUnDelete" @click="unDelete()" color="red">
+          Un Delete
+        </v-btn>
         <v-spacer />
         <div class="text-right">
           <v-btn type="submit" color="primary"> Submit </v-btn>
@@ -41,6 +49,7 @@
 </template>
 
 <script>
+import UploadImage from "@/components/pages/admin/topics/form/UploadImage";
 import ImageList from "@/components/global/molecules/common/ImageList";
 import BaseGroupForm from "@/components/pages/admin/base/BaseGroupForm.vue";
 import { mapState } from "vuex";
@@ -48,6 +57,7 @@ import { mapState } from "vuex";
 export default {
   components: {
     BaseGroupForm,
+    UploadImage,
     ImageList,
   },
   name: "AdminBaseForm",
@@ -73,6 +83,12 @@ export default {
       type: String,
       default: "",
       require: false,
+    },
+    multipleImages: {
+      type: Boolean,
+      default: () => {
+        return true;
+      },
     },
   },
   data() {
@@ -104,13 +120,17 @@ export default {
     },
     isUnDelete() {
       const api = _.get(this.store, "unDelete", null);
-      return this.id && this.stateQuery.status === "no" && api;
+      return this.id && (this.stateQuery.status === "no" || !this.stateQuery.status) && api;
     },
   },
   async mounted() {
     await this.resetForm();
   },
   methods: {
+    changeImage(images) {
+      this.dataForm.image = images[0] ?? "";
+      this.updateForm();
+    },
     updateForm() {
       this.updateState(this.dataForm);
     },
@@ -184,7 +204,7 @@ export default {
     async onDelete() {
       this.$swal
         .fire({
-          title: `Bạn muốn xóa ID: ${this.id} ?`,
+          title: `Delete ID: ${this.id} ?`,
           text: "",
           icon: "question",
           type: "warning",
@@ -192,8 +212,8 @@ export default {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Xóa",
-          cancelButtonText: "Hủy",
+          confirmButtonText: "Accept",
+          cancelButtonText: "Cancel",
           timer: 5000,
           // closeOnConfirm: false,
           // closeOnCancel: false
@@ -217,7 +237,7 @@ export default {
     async unDelete() {
       this.$swal
         .fire({
-          title: `Bạn muốn Đăng bán ID: ${this.id}?`,
+          title: `Un Delete ID: ${this.id}?`,
           text: "",
           icon: "question",
           type: "warning",
@@ -225,8 +245,8 @@ export default {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Xác nhận",
-          cancelButtonText: "Hủy",
+          confirmButtonText: "Accept",
+          cancelButtonText: "Cancel",
           timer: 5000,
           // closeOnConfirm: false,
           // closeOnCancel: false
@@ -287,8 +307,9 @@ img.image-account {
 }
 
 .tab-scroll {
-  height: calc(100vh - 385px);
+  height: calc(100vh - 315px);
 }
+
 .bg-account {
   margin: 0px;
 }

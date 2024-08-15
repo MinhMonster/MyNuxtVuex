@@ -57,9 +57,12 @@ export default {
     ...client.mapState(["user"]),
     is_game() {
       return (
-        this.path.includes("game/ninjas") ||
-        this.path.includes("game/ngocrongs") ||
-        this.path.includes("game/avatars")
+        this.path.includes("game/")
+      );
+    },
+    is_deverloper() {
+      return (
+        this.path.includes("deverlopers/")
       );
     },
     styleMain() {
@@ -101,7 +104,7 @@ export default {
   unMounted() {},
   methods: {
     onChangePath() {
-      if (this.is_game) {
+      if (!this.is_deverloper) {
         const body = document.querySelector("body");
         if (body.clientWidth > 1000) {
           this.showMenuLeft = true;

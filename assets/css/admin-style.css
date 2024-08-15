@@ -23,7 +23,7 @@
 }
 
 #admin .v-dialog.v-dialog--active.v-dialog--persistent .v-sheet {
-  min-height: 50vh;
+  /* min-height: 50vh; */
 }
 
 /* #admin .v-dialog.v-dialog--active.v-dialog--persistent .v-sheet:has(.manager-folder.active) {
@@ -502,6 +502,12 @@ code {
 
 #admin .bg-editor label {
   color: #fff;
+}
+
+#admin .bg-editor label.content-editer {
+  color: #333;
+  margin-left: 0px;
+  font-size: 16px;
 }
 
 #admin .bg-editor .v-text-field .v-label--active {

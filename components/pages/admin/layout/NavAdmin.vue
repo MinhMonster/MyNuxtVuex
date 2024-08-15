@@ -31,9 +31,15 @@
             </div>
 
             <div class="group-right">
+
               <div v-if="filter" class="reload-page" @click="onFilter()">
                 <v-btn icon>
                   <v-icon>mdi-filter</v-icon>
+                </v-btn>
+              </div>
+              <div v-if="btnEdit" class="reload-page" @click="onEdit()">
+                <v-btn icon>
+                  <v-icon>mdi-pen</v-icon>
                 </v-btn>
               </div>
               <div v-if="newPage" class="new-page" @click="onNewPage()">
@@ -62,7 +68,7 @@
     <div id="next-bottom"></div>
   </div>
 </template>
-  
+
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 
@@ -91,18 +97,19 @@ export default {
     },
     pathGoBack: {
       type: String,
-      default: null,
+      default: "",
     },
-    queryGoBack: {
-      type: String,
-      default: null,
-    },
+    // queryGoBack: {
+    //   type: String,
+    //   default: null,
+    // },
     goBack: Boolean,
     nextPage: Boolean,
     goHome: Boolean,
     filter: Boolean,
     reload: Boolean,
     newPage: Boolean,
+    btnEdit:  Boolean,
     loading: Boolean,
     fullScreen: Boolean,
     notBoder: Boolean,
@@ -158,8 +165,8 @@ export default {
     async onGoBack() {
       if (this.isGoHome) {
         this.$router.push("/");
-      } else if (this.pathGoBack && this.queryGoBack) {
-        await this.$router.push(`${this.pathGoBack}?${this.queryGoBack}`);
+      } else if (this.pathGoBack) {
+        this.$router.push(`${this.pathGoBack}`);
       } else {
         const { from } = this.$route.query;
         if (from) this.$router.push(from);
@@ -192,6 +199,9 @@ export default {
     onFilter() {
       this.isFilter = !this.isFilter;
       this.$emit("filter");
+    },
+    onEdit() {
+      this.$emit("edit");
     },
   },
 };
