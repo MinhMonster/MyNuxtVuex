@@ -211,7 +211,7 @@ export default {
   .v-main__wrap {
     .container.client-main {
       top: 55px;
-      bottom: 75px;
+      bottom: 50px;
       right: 5px;
       position: fixed;
       width: calc(100% - 55px) !important;
@@ -234,7 +234,7 @@ export default {
     .v-main__wrap {
       .container.client-main {
         top: 55px;
-        bottom: 60px;
+        bottom: 50px;
         width: calc(100% - 65px) !important;
         margin-left: 60px;
       }
@@ -258,7 +258,7 @@ export default {
     .v-main__wrap {
       .container.client-main {
         top: 55px;
-        bottom: 60px;
+        bottom: 50px;
 
         #home-page {
           .page-body {
