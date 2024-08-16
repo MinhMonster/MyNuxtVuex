@@ -78,7 +78,7 @@ export default {
       if (this.showMenuRight && !this.isMobile) {
         return "width: calc(100% - 260px) !important; margin-right: 250px; transition: margin-left 0.3s";
       }
-      return "width: calc(100% - 10px) !important; margin-left: 5px; transition: margin-left 0.3s";
+      return "width: calc(100% - 0px) !important; margin-left: 0px; transition: margin-left 0.3s";
     },
     // isAvatar() {
     //   const path = this.$route.path;
@@ -210,15 +210,15 @@ export default {
 ::v-deep {
   .v-main__wrap {
     .container.client-main {
-      top: 55px;
-      bottom: 50px;
-      right: 5px;
+      top: 50px;
+      bottom: 45px;
+      right: 0px;
       position: fixed;
       width: calc(100% - 55px) !important;
       // height: calc(100vh - 115px);
       margin-left: 50px;
       max-width: 100% !important;
-      border-radius: 4px;
+      border-radius: 0px;
       background: #ffcf9c;
       transition: margin-left 0.2s;
     }
@@ -233,8 +233,8 @@ export default {
     }
     .v-main__wrap {
       .container.client-main {
-        top: 55px;
-        bottom: 50px;
+        top: 50px;
+        bottom: 45px;
         width: calc(100% - 65px) !important;
         margin-left: 60px;
       }
@@ -257,8 +257,8 @@ export default {
     }
     .v-main__wrap {
       .container.client-main {
-        top: 55px;
-        bottom: 50px;
+        top: 50px;
+        bottom: 45px;
 
         #home-page {
           .page-body {
