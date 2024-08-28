@@ -487,13 +487,22 @@ const formLanguageWord =
   ]);
 
 
-  
+
   const formLanguageExample =
   _.cloneDeep([
     {
       title: "Example",
       type: "text",
       value: 'example',
+      cols: 12,
+      sm: 12,
+      md: 12,
+      lg: 12
+    },
+    {
+      title: "Spell",
+      type: "text",
+      value: 'spell',
       cols: 12,
       sm: 12,
       md: 12,
@@ -520,7 +529,7 @@ const formLanguageWord =
   ]);
 
 
-  
+
 
 
 

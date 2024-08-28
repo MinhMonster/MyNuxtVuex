@@ -6,18 +6,17 @@
       </v-col>
       <v-col cols="12" sm="6" md="6">
         <v-text-field label="Đường link" v-model="deverloper.link"></v-text-field>
-      </v-col>  
-      <v-col cols="12" sm="12" md="12" >
+      </v-col>
+      <v-col cols="12" sm="12" md="12">
         <b-form-group>
-          
+
           <div>
-          <!-- <h1>{{deverloper_view.title}}</h1> -->
-          <div             class="bg-view view_html"
- v-html="deverloper.info"></div>
-          <!-- <p>{{ JSON.parse(deverloper.code) }}</p> -->
-        </div>
-      </b-form-group>
-        
+            <!-- <h1>{{deverloper_view.title}}</h1> -->
+            <div class="bg-view view_html" v-html="deverloper.info"></div>
+            <!-- <p>{{ JSON.parse(deverloper.code) }}</p> -->
+          </div>
+        </b-form-group>
+
       </v-col>
     </v-row>
   </client-only>
@@ -26,7 +25,7 @@
 <script>
 import ContentEditer from "@/components/pages/admin/Shared/nuxt-editor/CkEditorNuxt.vue";
 export default {
-  components:{
+  components: {
     ContentEditer
   },
   props: {
@@ -45,7 +44,7 @@ export default {
     }
   },
   name: "FormDeverloper",
-  methods:{
+  methods: {
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
       const formData = new FormData();
       formData.append("file", file);
@@ -60,11 +59,12 @@ export default {
   }
 };
 </script>
-<style >
-.ck.ck-content{
+<style>
+.ck.ck-content {
   height: 200px !important;
 
 }
+
 .CodeMirror {
   height: 300px;
   resize: horizontal;

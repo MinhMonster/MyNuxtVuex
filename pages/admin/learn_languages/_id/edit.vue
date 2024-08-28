@@ -76,13 +76,13 @@
               <template #example="props">
                 <div class="mb-2">
                   <div>
-                    <span class="title">Ex:</span> {{ props.row.example }}
-                  </div>
-                  <div v-if="props.row.translate">
-                    <span class="title">Translate:</span>
-                    {{ props.row.translate }}
+                    <span class="title">Word:</span> {{ props.row.example }}
                   </div>
                   <div v-if="props.row.spell">
+                    <span class="title">Spell:</span>
+                    {{ props.row.spell }}
+                  </div>
+                  <div v-if="props.row.translate">
                     <span class="title">Translate:</span>
                     {{ props.row.translate }}
                   </div>
