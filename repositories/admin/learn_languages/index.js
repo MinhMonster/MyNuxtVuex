@@ -20,7 +20,7 @@ export default ($api) => ({
   fetchLanguageExamples(payload) {
     return $api.get(`${resource}/fetchLanguageExamples.php`, { params: { input: payload.input } })
   },
-  
+
   view(payload) {
     return $api.get(`${resource}/view.php`, payload)
   },
@@ -36,14 +36,14 @@ export default ($api) => ({
   create(payload) {
     return $api.post(`${resource}/create.php`, payload)
   },
-  
+
   createLanguageCategory(payload) {
     return $api.post(`${resource}/createLanguageCategory.php`, payload)
   },
   createLanguageTopic(payload) {
     return $api.post(`${resource}/createLanguageTopic.php`, payload)
   },
-  
+
   updateLanguageTopic(payload) {
     return $api.post(`${resource}/updateLanguageTopic.php`, payload)
   },
@@ -62,7 +62,7 @@ export default ($api) => ({
   updateLanguageExample(payload) {
     return $api.post(`${resource}/updateLanguageExample.php`, payload)
   },
-  
+
   updateLanguageItem(payload) {
     return $api.post(`${resource}/updateLanguageItem.php`, payload)
   },

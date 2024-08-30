@@ -58,8 +58,10 @@
               <span class="title">Word:</span> {{ languageWord.word }}
               <ButtonCoppy :content="languageWord.word"></ButtonCoppy>
             </p>
-            <p><span class="title">Spell:</span> {{ languageWord.spell }}</p>
-            <p>
+            <p v-if="languageWord.spell">
+              <span class="title">Spell:</span> {{ languageWord.spell }}
+            </p>
+            <p v-if="languageWord.translate">
               <span class="title">Translate:</span> {{ languageWord.translate }}
             </p>
             <p>
@@ -320,6 +322,7 @@ export default {
         await this.$repositories.adminLearnLanguages.fetchLanguageExamples({
           input: {
             id: ID,
+            perPage: 100,
           },
         });
       this.languageExamples = _.get(res, "data.response", {
