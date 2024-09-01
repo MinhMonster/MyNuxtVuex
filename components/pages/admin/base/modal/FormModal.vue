@@ -41,8 +41,8 @@
             Submit
           </v-btn>
           <v-btn v-if="isShow" color="primary" class="text-white left">
-            <v-icon v-if="isForm" @click="isForm = false"> mdi-eye </v-icon>
-            <v-icon v-else @click="isForm = true"> mdi-pen </v-icon>
+            <v-icon v-if="isForm" @click="isForm = false" title="Display"> mdi-eye </v-icon>
+            <v-icon v-else @click="isForm = true" title="Edit"> mdi-pen </v-icon>
           </v-btn>
           <slot name="btn-footer"></slot>
         </div>

@@ -1,10 +1,11 @@
 <template>
   <client-only placeholder="loading...">
-    <ckeditor-nuxt class="bg-view view_htm"
+    <ckeditor-nuxt
+      class="bg-view view_htm"
       :config="editorConfig"
       :value="value"
       :disabled="disabled"
-      :style="{height: height}"
+      :style="{ height: height }"
       @input="(event) => $emit('input', event)"
     />
   </client-only>
@@ -38,20 +39,14 @@ export default {
       editorConfig: {
         height: "800px",
 
-    // plugins: [
-    //   'Bold',
-    //   'Link',
-    //   'List',
-    //   'FontSize',
-    // ],
+        // plugins: [
+        //   'Bold',
+        //   'Link',
+        //   'List',
+        //   'FontSize',
+        // ],
         image: {
-          styles: [
-            "full",
-            "side",
-            "alignLeft",
-            "alignRight",
-            "alignCenter",
-          ],
+          styles: ["full", "side", "alignLeft", "alignRight", "alignCenter"],
           toolbar: [
             "imageStyle:full",
             "imageStyle:side",
@@ -73,6 +68,10 @@ export default {
             // "Superscript",
             // "RemoveFormat",
             "|",
+            "Indent",
+            "alignment",
+            "HorizontalLine",
+            "|",
             "Link",
             "bold",
             "italic",
@@ -85,10 +84,7 @@ export default {
             "|",
             "fontfamily",
             "fontsize",
-            "|",
-            "Indent",
-            "alignment",
-            "HorizontalLine",
+
             "|",
             "Highlight",
             "fontColor",
@@ -96,7 +92,6 @@ export default {
 
             "ImageInsert",
             "ImageResize",
-
           ],
         },
 
@@ -112,8 +107,17 @@ export default {
   },
 };
 </script>
-<style >
-.ck.ck-content{
+<style lang="scss">
+.ck.ck-content {
   height: 450px;
+}
+.ck.ck-toolbar-dropdown {
+  .ck-dropdown__panel {
+    max-width: 710px !important;
+    @media (max-width: 800px) {
+      max-width: 53.6vw !important;
+    }
+
+  }
 }
 </style>

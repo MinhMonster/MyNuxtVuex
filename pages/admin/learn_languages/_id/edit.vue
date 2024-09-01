@@ -95,7 +95,7 @@
                 </div>
               </template>
               <template #actions="props">
-                <v-btn light icon @click="showModalUpdateExample(props.row)">
+                <v-btn light icon @click="showModalUpdateExample(props.row)" title="Edit Example">
                   <v-icon>mdi-pen</v-icon>
                 </v-btn>
               </template>
@@ -106,6 +106,7 @@
           <div
             @click="$refs.modalCreateExample.show()"
             class="text-right left ml-1"
+            title="Add New Example"
           >
             <v-btn color="primary">
               <v-icon> mdi-plus </v-icon>
