@@ -95,7 +95,12 @@
                 </div>
               </template>
               <template #actions="props">
-                <v-btn light icon @click="showModalUpdateExample(props.row)" title="Edit Example">
+                <v-btn
+                  light
+                  icon
+                  @click="showModalExample(props.row)"
+                  title="Edit Example"
+                >
                   <v-icon>mdi-pen</v-icon>
                 </v-btn>
               </template>
@@ -104,7 +109,7 @@
         </template>
         <template #btn-footer>
           <div
-            @click="$refs.modalCreateExample.show()"
+            @click="showModalExample()"
             class="text-right left ml-1"
             title="Add New Example"
           >
@@ -149,38 +154,28 @@
         @updated="$refs.table.fetchData()"
       />
       <FormModal
-        ref="modalCreateExample"
+        ref="modalExample"
         :title="languageWord.word"
-        subTitle="Create Example"
-        :id="languageWord.ID"
         reset
         width="800px"
         minHeight="65vh"
         module="admin/learn_languages"
         repository="adminLearnLanguages"
-        :store="{
-          state: 'languageExample',
-          module: 'admin.learn_languages',
-          form: 'formLanguageExample',
-          update: 'createLanguageExample',
-        }"
-        @updated="fetchLanguageExamples(languageWord.ID)"
-      />
-      <FormModal
-        ref="modalUpdateExample"
-        :title="languageWord.word"
-        subTitle="Update Example"
         :id="languageExample.ID"
-        reset
-        width="800px"
-        minHeight="65vh"
-        module="admin/learn_languages"
-        repository="adminLearnLanguages"
+        :subTitle="
+          languageExample.ID
+            ? 'Update Language Example'
+            : 'Create Language Example'
+        "
         :store="{
           state: 'languageExample',
           module: 'admin.learn_languages',
           form: 'formLanguageExample',
-          update: 'updateLanguageExample',
+          update: `${
+            languageExample.ID
+              ? 'updateLanguageExample'
+              : 'createLanguageExample'
+          }`,
         }"
         @updated="fetchLanguageExamples(languageWord.ID)"
       />
@@ -190,7 +185,6 @@
 
 <script>
 import API from "@/apis/modules/admin/topics";
-import api_file from "@/apis/modules/admin/files";
 import { mapActions, mapState } from "vuex";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
@@ -332,9 +326,14 @@ export default {
       });
     },
 
-    showModalUpdateExample(row) {
-      this.$refs.modalUpdateExample.show();
-      this.languageExample = row;
+    showModalExample(row = null) {
+      this.$refs.modalExample.show();
+      console.log("ok", this.languageExample);
+      if (row) {
+        this.languageExample = row;
+      } else {
+        this.languageExample.vocabulary_id = this.languageWord.ID;
+      }
     },
     showModalCreateNewWord() {
       this.$refs.modalCreateNewWord.show();
