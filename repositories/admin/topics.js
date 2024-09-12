@@ -1,24 +1,25 @@
 const resource = '/apis/admin/topics/'
+const baseResource = '/api'
+
 export default ($api) => ({
-  fetchTopics(payload) {
-    return $api.get(`${resource}/fetchTopics.php`, { params: { input: payload.input } })
+  adminFetchTopics(payload) {
+    return $api.get(`${baseResource}/adminFetchTopics`, { params: { input: payload.input } })
   },
-  fetchTopic(id) {
-    return $api.get(`${resource}/fetchTopic.php?id=${id}`)
-  },
-  show(id) {
-    return $api.get(`${resource}/${id}`)
+  adminFetchTopic(id) {
+    return $api.get(`${baseResource}/adminFetchTopic?id=${id}`)
   },
 
-  createTopic(payload) {
-    return $api.post(`${resource}/createTopic.php`, payload)
+  adminCreateTopic(payload) {
+    return $api.post(`${baseResource}/adminCreateTopic`, payload)
   },
 
-  updateTopic(payload) {
-    return $api.post(`${resource}/updateTopic.php`, payload)
+  adminUpdateTopic(payload) {
+    return $api.post(`${baseResource}/adminUpdateTopic`, payload)
   },
-
-  delete(id) {
-    return $api.delete(`${resource}/${id}`)
-  }
+  adminDestroyTopic(payload) {
+    return $api.get(`${baseResource}/adminDestroyTopic`, { params: { id: payload } })
+  },
+  adminUnDestroyTopic(payload) {
+    return $api.get(`${baseResource}/adminUnDestroyTopic`, { params: { id: payload } })
+  },
 })

@@ -1,0 +1,73 @@
+.v-dialog {
+
+  .nav.nav-tabs {
+    background: #333;
+
+    .nav-link {
+      font-weight: 500;
+      color: #fff;
+
+      &.active {
+        color: #333;
+
+      }
+    }
+  }
+
+  .v-card {
+    .modal-body {
+      padding: 0px;
+      form {
+        padding: 10px;
+      }
+    }
+
+    .v-card__title.title-modal {
+      color: #fff;
+      border-left: 2px solid #272727;
+      border-right: 2px solid #272727;
+      background: #333;
+      border-bottom: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .v-card__text {
+      position: relative;
+      border: 2px solid #272727;
+      background: #f2f2f2;
+      padding: 10px !important;
+    }
+
+    // &.modal-upload {
+    //   position: relative;
+    //   .v-card__actions{
+    //     position:absolute;
+    //     width: 100%;
+    //   }
+
+    // }
+    .card-footer {
+      padding: 0 5px;
+    }
+  }
+
+
+}
+
+.v-dialog>.v-card>.v-card__actions {
+  border: 2px solid #272727 !important;
+  background: #333;
+  border-top: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-content: flex-end;
+  padding: 6px 16px;
+  gap: 5px;
+
+  button {
+    // margin-left: 5px;
+  }
+}

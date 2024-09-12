@@ -3,7 +3,10 @@
     class="border border-light shadow-none card-folder"
     :class="{ 'zoom-modal scroll-x': isZoom }"
   >
-    <div class="folder-plugin">
+    <div class="folder-plugin nowrap scroll-x">
+      <v-btn color="white" @click="showFolder = !showFolder">
+        <v-icon>mdi-folder-move</v-icon>
+      </v-btn>
       <v-btn color="white" @click="browseFiles">
         <v-icon>mdi-upload</v-icon>
       </v-btn>
@@ -13,7 +16,7 @@
       <v-btn v-if="!isZoom" color="white" @click="isZoom = true">
         <v-icon>mdi-arrow-expand-all</v-icon>
       </v-btn>
-      <v-btn v-if="isZoom" color="white" @click="isZoom = false">
+      <v-btn v-else color="white" @click="isZoom = false">
         <v-icon>mdi-arrow-collapse-all</v-icon>
       </v-btn>
     </div>
@@ -25,27 +28,34 @@
       @click="clearImgPath"
       @change="onFileChange"
     />
-    <div class="flex-row folder-show">
+    <div class="flex-row folder-show" :class="{ show: showFolder }">
       <div v-if="folders.length" class="folderList scroll-y">
         <div
-          @click="setPath('/images/')"
           class="pointer main-folder"
           :class="{ active: folderUpload == '/images/' }"
         >
-          <v-icon color="blue">mdi-folder-multiple</v-icon> Images
+          <div @click="setPath('/images/')">
+            <v-icon color="blue">mdi-folder-multiple</v-icon>
+            Images
+          </div>
+
+          <v-icon class="btn-show" @click="showFolder = false"
+            >mdi-dots-vertical</v-icon
+          >
         </div>
 
         <div
           v-for="(folder, index) in folders"
           :key="index"
           class="pointer folder-item"
+          :class="{ hidden: !showFolder }"
         >
           <div
             class="folder-item-body flex-row-space-between"
             :class="{ active: folderUpload == folder.folderPath }"
           >
             <div class="body-folder" @click="setPath(folder.folderPath)">
-              <v-icon v-if="path == folder.folderPath" color="blue"
+              <v-icon v-if="pathFolder == folder.folderPath" color="blue"
                 >mdi-folder-multiple</v-icon
               >
               <v-icon v-else color="blue">mdi-folder</v-icon>
@@ -71,14 +81,6 @@
               <v-icon class="dots-vertical" @click="editFolder(folder)"
                 >mdi-dots-vertical</v-icon
               >
-              <EditFolderModal
-                v-if="folderUpload == folder.folderPath"
-                :isShow="isShowEdit"
-                :folder="folder"
-                @closeModal="isShowEdit = false"
-                @change="newFolder"
-                @editNameFolder="isEdit = true"
-              ></EditFolderModal>
             </div>
           </div>
 
@@ -90,12 +92,13 @@
               :class="{ active: folderUpload == subFolder.folderPath }"
             >
               <div @click="setFolderUpload(subFolder.folderPath)">
-                <span class="folder-name"
-                  ><v-icon
+                <span class="folder-name">
+                  <v-icon
                     v-if="folderUpload == subFolder.folderPath"
                     color="blue"
-                    >mdi-folder-multiple</v-icon
                   >
+                    mdi-folder-multiple
+                  </v-icon>
                   <v-icon v-else color="blue">mdi-folder</v-icon
                   >{{ subFolder.folderName }}
                   <v-icon class="dots-vertical">mdi-dots-vertical</v-icon>
@@ -116,7 +119,7 @@
                 pill
                 @click="removeFile(index)"
               >
-                <i class="mdi mdi-close-thick"></i>
+              <i class="mdi mdi-close-thick text-white"></i>
               </b-button>
               <div class="fileIcon">
                 <img v-if="file.url" :src="file.url" />
@@ -148,7 +151,7 @@
                 pill
                 @click="onDeleteFile(image)"
               >
-                <i class="mdi mdi-close-thick"></i>
+              <i class="mdi mdi-close-thick text-white"></i>
               </b-button>
               <div class="fileIcon">
                 <img
@@ -174,32 +177,50 @@
     </div>
 
     <template v-if="!autoupload && preview.length" #footer>
-      <div class="text-right">
-        <b-button variant="danger" @click="removeAll">
-          <i class="mdi mdi-close-box-multiple"></i>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="red"
+          variant="danger"
+          class="text-white"
+          @click="removeAll"
+        >
           Clear
-        </b-button>
-        <b-button variant="primary" @click="uploadFiles">
-          <i class="mdi mdi-cloud-upload"></i>
+        </v-btn>
+        <v-btn
+          color="primary"
+          variant="primary"
+          class="text-white"
+          @click="uploadFiles"
+        >
           Upload
-        </b-button>
-      </div>
+        </v-btn>
+      </v-card-actions>
     </template>
+    <EditFolderModal
+      v-if="folderUpload == folderEdit.folderPath"
+      :isShow="isShowEdit"
+      :folder="folderEdit"
+      @closeModal="isShowEdit = false"
+      @change="newFolder"
+      @editNameFolder="isEdit = true"
+    ></EditFolderModal>
 
-    <NewFolderModal
+    <UpdateNameFolderModal
       v-if="isShow"
       :isShow="isShow"
       :label="`New Folder`"
       @closeModal="isShow = false"
       @change="newFolder"
-    ></NewFolderModal>
-    <EditNameFolderModal
+    ></UpdateNameFolderModal>
+    <UpdateNameFolderModal
       v-if="isEdit"
       :isShow="isEdit"
-      :folder="folderEdit"
+      :folder-name="folderEdit.folderName"
+      :label="`Update Name: ${folderEdit.folderName}`"
       @closeModal="isEdit = false"
       @change="updateNameFolder"
-    ></EditNameFolderModal>
+    ></UpdateNameFolderModal>
   </b-card>
 </template>
 
@@ -207,21 +228,18 @@
 import { mapFields } from "vuex-map-fields";
 
 import mixins from "@/mixins/index";
-import { createNamespacedHelpers } from "vuex";
-// const { mapActions, mapState } = createNamespacedHelpers("global");
 import { mapActions } from "vuex";
 
-import NewFolderModal from "@/components/global/molecules/common/NewFolderModal.vue";
 import EditFolderModal from "@/components/global/molecules/common/EditFolderModal.vue";
-import EditNameFolderModal from "@/components/global/molecules/common/EditNameFolderModal.vue";
+
+import UpdateNameFolderModal from "@/components/global/molecules/common/upload/UpdateNameFolderModal";
 
 let WidgetCount = 0;
 export default {
   mixins: [mixins],
   components: {
-    NewFolderModal,
+    UpdateNameFolderModal,
     EditFolderModal,
-    EditNameFolderModal,
   },
   props: {
     activated: {
@@ -280,7 +298,8 @@ export default {
   },
   data() {
     return {
-      path: "/images/",
+      showFolder: true,
+      pathFolder: "/images/",
       folderUpload: "/images/",
       pathActive: "/images/",
       images: [],
@@ -342,11 +361,12 @@ export default {
       } else {
         this.pathActive = "/images/";
       }
-      this.path = value;
+      this.pathFolder = value;
       this.folderUpload = value;
       await this.getFiles();
     },
     async getFiles() {
+      this.images = [];
       const res = await this.fetchFiles(this.folderUpload);
       this.images = res.data.files;
     },
@@ -493,7 +513,7 @@ export default {
     },
     newFolder(value) {
       const input = {
-        path: this.path,
+        path: this.pathFolder,
         folder: value,
       };
       this.$emit("newFolder", input);
@@ -541,6 +561,8 @@ export default {
   min-height: 50vh;
   max-height: calc(100vh - 130px);
   border-right: 1px solid #dee2e6;
+  display: none;
+  // background: #333;
 
   .folder-item {
     border-top: 1px solid #d7dcdf;
@@ -579,7 +601,7 @@ export default {
   padding-left: 10px;
   padding-top: 10px;
 
-  width: calc(100% - 250px);
+  width: 100%;
   min-height: 50vh;
   max-height: 50vh;
   // display: flex;
@@ -626,6 +648,7 @@ export default {
         border-radius: 5px;
         padding: 5px;
         height: 100%;
+        // color: #fff;
 
         &.active {
           border: 2px solid #2196f3 !important;
@@ -706,17 +729,8 @@ export default {
     }
   }
 }
-@media (max-width: 675px) {
-  .fileList {
-    width: calc(100% - 200px);
-  }
-}
 .bg-gray {
   background: #e1e1e1 !important;
-}
-
-.modal-upload .card-body {
-  min-height: 50vh;
 }
 
 .full-zone {
@@ -728,9 +742,10 @@ export default {
   height: 50px;
   padding: 7.5px;
   background: #fafafa;
+  color: #495057 !important;
 }
 .card-folder .theme--light.v-btn {
-  color: #495057 !important;
+  // color: #fff !important;
 }
 
 .v-btn--is-elevated {
@@ -768,7 +783,13 @@ export default {
 }
 
 .folderList .main-folder {
+  position: relative;
   padding: 10px;
+  .btn-show {
+    position: absolute;
+    right: 0px;
+    top: 12px;
+  }
 }
 .folderList .main-folder.active {
   margin-left: 0px;
@@ -831,5 +852,24 @@ export default {
       width: 50% !important;
     }
   }
+}
+.show {
+  .folderList {
+    display: block;
+  }
+  .fileList {
+    width: calc(100% -250px);
+    @media (max-width: 675px) {
+      width: calc(100% - 170px);
+    }
+  }
+}
+.hidden {
+  display: none;
+}
+.v-btn:not(.v-btn--round).v-size--default {
+  height: 36px;
+  min-width: 36px;
+  padding: 0;
 }
 </style>

@@ -1,63 +1,63 @@
 <template>
-  <v-row class="right mgr-5px" :class="{ middle: icon == 'add-file' }">
-    <v-dialog light v-model="dialog" persistent width="1250" class="modal">
-      <template v-slot:activator="{ props }">
-        <v-btn
-          v-if="icon == 'btn-icon'"
-          v-bind="props"
-          icon
-          class="right primary"
-          @click="dialog = true"
-        >
-          <v-icon>mdi-plus</v-icon>
+  <!-- <v-row class="right mgr-5px" :class="{ middle: icon == 'add-file' }"> -->
+  <v-dialog light v-model="dialog" persistent width="1250" class="modal">
+    <template v-slot:activator="{ props }">
+      <v-btn
+        v-if="icon == 'btn-icon'"
+        v-bind="props"
+        icon
+        class="right primary"
+        @click="dialog = true"
+      >
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
+      <i
+        v-if="icon == 'add-file'"
+        class="display-4 text-muted mdi mdi-playlist-plus"
+        @click="dialog = true"
+      ></i>
+    </template>
+    <v-card class="modal-upload">
+      <!-- <v-card-title> </v-card-title> -->
+      <v-card-text>
+        <!-- <v-container> -->
+        <b-tabs>
+          <b-tab title="Upload">
+            <FileSelector @uploaded="uploaded"></FileSelector>
+          </b-tab>
+          <b-tab title="Manager Folder" class="manager-folder">
+            <FolderFile
+              v-if="folders"
+              :folders="folders"
+              :selectedImages="selectedImages"
+              :activated="activated"
+              @newFolder="newFolder"
+              @selected="selected"
+            ></FolderFile>
+          </b-tab>
+          <b-tab v-if="selectedImages.length" title="Selected">
+            <FileSelected
+              :selectedImages="selectedImages"
+              @removeFile="removeFile"
+              @removeFiles="removeFiles"
+            ></FileSelected>
+          </b-tab>
+        </b-tabs>
+        <!-- <v-col cols="12" sm="12" md="12"> </v-col> -->
+        <!-- </v-container> -->
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
+          Close
         </v-btn>
-        <i
-          v-if="icon == 'add-file'"
-          class="display-4 text-muted mdi mdi-playlist-plus"
-          @click="dialog = true"
-        ></i>
-      </template>
-      <v-card class="modal-upload">
-        <v-card-title>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <b-tabs>
-              <b-tab title="Upload Images">
-                <FileSelector @uploaded="uploaded"></FileSelector>
-              </b-tab>
-              <b-tab title="Manager Folder" class="manager-folder">
-                <FolderFile
-                  v-if="folders"
-                  :folders="folders"
-                  :selectedImages="selectedImages"
-                  :activated="activated"
-                  @newFolder="newFolder"
-                  @selected="selected"
-                ></FolderFile>
-              </b-tab>
-              <b-tab v-if="selectedImages.length" title="Selected Images">
-                <FileSelected
-                  :selectedImages="selectedImages"
-                  @removeFile="removeFile"
-                ></FileSelected>
-              </b-tab>
-            </b-tabs>
-            <v-col cols="12" sm="12" md="12"> </v-col>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
-            Close
-          </v-btn>
-          <v-btn color="blue-darken-1" variant="text" @click="saveSelected()">
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
+        <v-btn color="blue-darken-1" variant="text" @click="saveSelected()">
+          Save
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+  <!-- </v-row> -->
 </template>
 
 <script>
@@ -122,17 +122,89 @@ export default {
       this.selectedImages = this.selectedImages.filter((item) => item != file);
       this.setSelectedImages(this.selectedImages);
     },
+    removeFiles() {
+      this.selectedImages = [];
+      this.setSelectedImages(this.selectedImages);
+    },
 
     saveSelected() {
       this.dialog = false;
       this.$emit("onUploaded", this.selectedImages);
       this.setSelectedImages([]);
     },
-
   },
 };
 </script>
 <style lang="scss" scoped>
+::v-deep {
+  .v-dialog {
+    margin: 12px;
+    background: #fff;
+    .v-sheet.v-card:not(.v-sheet--outlined) {
+      box-shadow: none;
+    }
+    @media (max-width: 675px) {
+      min-height: 75vh;
+      max-height: 85vh;
+      .modal-upload {
+        min-height: 75vh;
+        .fileList,
+        .folderList {
+          max-height: calc(85vh - 250px);
+        }
+        .folderList {
+          width: 170px;
+          .folder-item {
+            padding-left: 20px;
+            .active {
+              margin-left: -20px;
+              padding-left: 20px;
+            }
+            .sub-folder {
+              padding-left: 15px;
+              &.active {
+                padding-left: 30px;
+              }
+            }
+          }
+        }
+        // .modal-folder {
+        //   margin-top: -35px;
+        //   height: 230px;
+        //   max-height: 230px;
+        //   min-height: 230px !important;
+        //   width: 80%;
+        //   left: 10%;
+        //   /* position: fixed; */
+        //   z-index: 2;
+        // }
+      }
+    }
+  }
+  .modal-upload {
+    position: relative;
+    min-height: 75vh;
+    .card-body {
+      min-height: calc(75vh - 130px);
+      &.v-sheet {
+        min-width: 100%;
+        max-width: 911px;
+      }
+    }
+
+    &.v-card {
+      .v-card__text {
+        padding: 0 !important;
+      }
+    }
+    .fileList,
+    .folderList {
+      min-height: calc(75vh - 130px);
+      max-height: calc(85vh - 230px);
+    }
+  }
+}
+
 .mdi-playlist-plus {
   cursor: pointer;
 }

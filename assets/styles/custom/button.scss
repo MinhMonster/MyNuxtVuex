@@ -1,0 +1,13 @@
+#admin {
+
+  //   ::deep {
+  .v-btn:not(.v-btn--round).v-size--default {
+    min-width: 32px !important;
+    margin: 0 !important;
+    span {
+      padding: 0 5px;
+    }
+  }
+
+  //   }
+}

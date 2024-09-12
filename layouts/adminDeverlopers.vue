@@ -118,52 +118,52 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-@import '~/assets/css/admin-style.css';
-@import '~/assets/css/mms-style.css';
-@import '~/assets/css/reset.css';
-.bg-default {
-  background: #f0f2f5;
-  color: #333;
-}
-#admin input {
-  border: 1px solid #ccc;
-  color: #333;
-  padding-left: 10px;
-  height: 40px;
-  /* margin-top: 10px; */
-}
-#admin label {
-  color: #a4a4a4;
-  padding-left: 10px;
-}
-#admin.v-application .primary--text {
-  color: #333 !important;
-  caret-color: #333 !important;
-}
-#admin.v-application .primary--text {
-  font-size: 20px;
-}
-#admin .v-text-field__slot {
-  /* margin-top: 10px; */
-}
-#admin .v-text-field .v-label--active {
-  max-width: 100%;
-  transform: translateY(-20px) scale(0.8);
-  pointer-events: auto;
-}
-#admin .v-input__control {
-  /* margin-bottom: 10px; */
-}
-#admin .quillWrapper {
-  margin: 30px 0;
-}
-/* #admin #body-admin {
-  padding: 0 16px;
-} */
-#admin .sub-menu {
-  margin-left: 50px;
-}
-#admin .v-navigation-drawer--mini-variant .sub-menu {
-  margin-left: 0px;
-}
+// @import '~/assets/css/admin-style.css';
+// @import '~/assets/css/mms-style.css';
+// @import '~/assets/css/reset.css';
+// .bg-default {
+//   background: #f0f2f5;
+//   color: #333;
+// }
+// #admin input {
+//   border: 1px solid #ccc;
+//   color: #333;
+//   padding-left: 10px;
+//   height: 40px;
+//   /* margin-top: 10px; */
+// }
+// #admin label {
+//   color: #a4a4a4;
+//   padding-left: 10px;
+// }
+// #admin.v-application .primary--text {
+//   color: #333 !important;
+//   caret-color: #333 !important;
+// }
+// #admin.v-application .primary--text {
+//   font-size: 20px;
+// }
+// #admin .v-text-field__slot {
+//   /* margin-top: 10px; */
+// }
+// #admin .v-text-field .v-label--active {
+//   max-width: 100%;
+//   transform: translateY(-20px) scale(0.8);
+//   pointer-events: auto;
+// }
+// #admin .v-input__control {
+//   /* margin-bottom: 10px; */
+// }
+// #admin .quillWrapper {
+//   margin: 30px 0;
+// }
+// /* #admin #body-admin {
+//   padding: 0 16px;
+// } */
+// #admin .sub-menu {
+//   margin-left: 50px;
+// }
+// #admin .v-navigation-drawer--mini-variant .sub-menu {
+//   margin-left: 0px;
+// }
 </style>

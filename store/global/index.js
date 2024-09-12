@@ -5,6 +5,7 @@ export default {
   namespaced: true,
   state: () => ({
     ready: false,
+    isFilter: false,
     sidebarActive: true,
     customerDetailsActive: true,
     token: null,
@@ -37,7 +38,6 @@ export default {
   }),
   getters: {
     getField,
-
   },
   actions: {
     setScreenMobile({ commit }, payload) {

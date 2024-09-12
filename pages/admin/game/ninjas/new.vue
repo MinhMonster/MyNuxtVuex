@@ -1,66 +1,46 @@
 <template>
-  <client-only>
-    <div>
-      <div id="body-admin">
-        <form @submit.prevent="create()">
-          <NinjaForm></NinjaForm>
-          <br />
-          <div class="d-flex">
-            <v-spacer />
-            <div class="text-right">
-              <v-btn type="submit" color="" to="/admin/game/ninjas">
-                Trở Về
-              </v-btn>
-              <v-btn type="submit" color="primary"> Thêm </v-btn>
-            </div>
-          </div>
-        </form>
+  <NavAdmin
+    title="New Account Ninja School"
+    goBack
+    next-page
+    reload
+    @reload="$refs.form.resetForm()"
+  >
+    <template #body>
+      <div id="body-admin" class="mt-2">
+        <AdminBaseForm
+          ref="form"
+          module="admin/game/ninjas"
+          repository="adminGameNinjas"
+          :store="{
+            state: 'queryNinja',
+            module: 'admin.game.ninjas',
+            form: 'formNinja',
+            create: 'createAccountNinja',
+          }"
+        ></AdminBaseForm>
       </div>
-    </div>
-  </client-only>
+    </template>
+  </NavAdmin>
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
-import NinjaForm from "@/components/pages/admin/game/ninjas/form/NinjaForm.vue";
-import mixins from "@/mixins/index";
+import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
+import AdminBaseForm from "@/components/pages/admin/base/AdminBaseForm";
 
 export default {
-  mixins: [mixins],
   components: {
-    NinjaForm,
+    NavAdmin,
+    AdminBaseForm,
   },
   layout: "adminDev",
+  name: "NewAccountNinja",
   props: {},
   data() {
-    return {
-      titel: `Admin: New Account Ninja`,
-    };
+    return {};
   },
-  methods: {
-    ...mapActions("admin/game/ninjas", ["createAccountNinja"]),
-    async create() {
-      try {
-        const res = await this.createAccountNinja();
-        if (res.data.code === 200) {
-          this.$toasted.success(res.data.message);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>
-::v-deep {
-  .CodeMirror {
-    height: 500px;
-    resize: horizontal;
-  }
-  .CodeMirror-wrap pre {
-    word-break: break-word;
-  }
-}
 </style>

@@ -29,8 +29,9 @@ export default {
       }
 
     },
-    logout({ commit }) {
-      commit(AUTH_LOGOUT);
+    async logout({ commit, dispatch }) {
+      const  res = await this.$repositories.adminAuths.logout()
+      commit("AUTH_LOGOUT");
     },
   },
   mutations: {

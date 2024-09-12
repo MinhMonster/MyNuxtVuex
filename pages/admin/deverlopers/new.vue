@@ -7,13 +7,13 @@
         </v-col>
         <v-spacer />
         <v-col>
-          <v-card-title class="right" >Bài viết mới</v-card-title>
+          <v-card-title class="right">Bài viết mới</v-card-title>
         </v-col>
       </v-row>
       <div id="body-admin">
         <form @submit.prevent="create()">
           <DeverloperForm :deverloper="deverloper"></DeverloperForm>
-          <br/>
+          <br />
           <div class="text-right">
             <v-btn type="submit" color="" to="/admin/topics"> Trở Về </v-btn>
             <v-btn type="submit" color="primary"> Thêm mới </v-btn>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 import DeverloperForm from "@/components/pages/admin/deverlopers/form/DeverloperForm.vue";
 
 export default {
@@ -54,12 +54,12 @@ export default {
       },
     };
   },
-  
+
   created() {
     this.setNew();
   },
   methods: {
-    ...mapActions('admin/deverlopers',["get_deverlopers", "setNew"]),
+    ...mapActions("admin/deverlopers", ["setNew"]),
     async create() {
       const formData = new FormData();
       formData.append("title", this.deverloper.title);
@@ -67,17 +67,16 @@ export default {
       formData.append("info", this.deverloper.info);
       // const res = await API.create(formData);
       // this.$swal.fire(res.data.message, "", res.data.status);
-      try{
-        const res = await this.$repositories.adminDeverlopers.create(formData)
-        if(res.data.code === 200){
+      try {
+        const res = await this.$repositories.adminDeverlopers.create(formData);
+        if (res.data.code === 200) {
           this.$toasted.success(res.data.message);
-          this.$router.push("/admin/deverlopers")
+          this.$router.push("/admin/deverlopers");
         }
-      } catch(e) {
-        console.log(e)
+      } catch (e) {
+        console.log(e);
       }
     },
-    
 
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
       const formData = new FormData();

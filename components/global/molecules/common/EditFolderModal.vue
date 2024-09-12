@@ -3,15 +3,18 @@
     <v-card class="modal-folder">
       <v-card-title>{{ folder.folderName }}</v-card-title>
       <v-divider></v-divider>
-      <v-card-text @click="$emit('editNameFolder'), closeModal()">
+      <v-card-text
+        class="pointer"
+        @click="$emit('editNameFolder'), closeModal()"
+      >
         <v-icon color="blue">mdi-lead-pencil</v-icon>
-        Edit
+        Edit Name
       </v-card-text>
-      <v-card-text>
+      <v-card-text class="pointer">
         <v-icon color="red">mdi-delete-sweep</v-icon>
-        Delete
+        Delete Folder
       </v-card-text>
-      <v-card-text>
+      <v-card-text class="pointer">
         <v-icon color="red">mdi-folder-remove</v-icon>
         Reset All File
       </v-card-text>
@@ -22,7 +25,7 @@
         pill
         @click="closeModal()"
       >
-        <i class="mdi mdi-close-thick"></i>
+        <i class="mdi mdi-close-thick text-white"></i>
       </b-button>
     </v-card>
     <div class="bg-modal"></div>
@@ -63,14 +66,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .modal-folder {
-  position: absolute;
-  margin-top: -35px;
-  height: 230px;
-  max-height: 230px;
-  min-height: 230px !important;
-  width: 200px;
-  left: 250px;
-  /* position: fixed; */
+  top: 30%;
+  /* height: 270px; */
+  /* max-height: 270px; */
+  min-height: 270px !important;
+  width: 300px;
+  max-width: calc(100% - 50px);
+
+  position: fixed;
   z-index: 2;
   .v-card__text {
     font-size: 15px;
@@ -110,5 +113,6 @@ button.btn-delete {
   height: 20px;
   font-size: 10px;
   padding: 1px;
+  color: #fff;
 }
 </style>

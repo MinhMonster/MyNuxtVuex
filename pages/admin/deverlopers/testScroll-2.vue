@@ -73,11 +73,11 @@ export default {
   mounted() {
     // Detect when scrolled to bottom.
     const listElm = document.querySelector('#infinite-list');
-    listElm.addEventListener('scroll', e => {
-      if(listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
-        this.loadMore();
-      }
-    });
+    // listElm.addEventListener('scroll', e => {
+    //   if(listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
+    //     this.loadMore();
+    //   }
+    // });
     // Initially load some items.
     this.loadMore();
   },
@@ -91,7 +91,6 @@ export default {
   methods: {
     ...mapActions("admin/deverlopers", [
       "get_deverlopers_scroll",
-      "get_deverlopers",
       "change_positions",
     ]),
     loadMore: function () {

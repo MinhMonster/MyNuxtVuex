@@ -23,23 +23,28 @@
 }
 
 #admin .v-dialog.v-dialog--active.v-dialog--persistent .v-sheet {
-  min-height: 50vh;
+  /* min-height: 50vh; */
 }
 
-#admin .v-dialog.v-dialog--active.v-dialog--persistent .v-sheet:has(.manager-folder.active) {
+/* #admin .v-dialog.v-dialog--active.v-dialog--persistent .v-sheet:has(.manager-folder.active) {
   min-width: 911px;
-}
+} */
 
 #admin .tab-account .v-text-field__details {
   display: none;
 }
 
 #admin .custom-select+.validation {
-  margin:12px -30px 40px -10px;
+  margin: 12px -30px 40px -10px;
 }
 
 #admin .form-group {
   margin-top: 0px;
+  padding: 0px;
+}
+
+#admin .outline-format .form-group {
+  padding: 0px;
 }
 
 @keyframes menu-left-off {
@@ -459,9 +464,7 @@ code {
   margin-left: 0px;
 }
 
-#admin .bg-editor .v-input.v-input--is-label-active .v-select__selections {
-  margin-left: 0px;
-}
+
 
 #admin .bg-editor .v-select__selection.v-select__selection--comma {
   margin-right: -20px;
@@ -499,6 +502,12 @@ code {
 
 #admin .bg-editor label {
   color: #fff;
+}
+
+#admin .bg-editor label.content-editer {
+  color: #333;
+  margin-left: 0px;
+  font-size: 16px;
 }
 
 #admin .bg-editor .v-text-field .v-label--active {
