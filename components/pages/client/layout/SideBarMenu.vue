@@ -1,22 +1,22 @@
 <template>
   <client-only>
-    <div class="rightbar-content">
+    <div class="rightbar-content scroll-y">
       <div class="user-info-wrap">
         <div class="user-info">
-          <v-btn icon v-if="!user && !token">
+          <v-btn icon class="circle">
             <v-icon>mdi-account-circle</v-icon>
           </v-btn>
-          <div v-else-if="user && token" class="circle">
+          <!-- <div v-else-if="user && token" class="circle">
             <img v-if="user.avatar" :src="user.avatar" />
             <img
               v-else
               :src="`https://graph.facebook.com/${user.uid}/picture?type=normal`"
             />
-          </div>
+          </div> -->
           <div class="member">
             <div v-if="!user" class="mt-4">
               <div class="flex justify-center">
-                <div class="login-btn cursor-pointer" @click="nextLogin()">
+                <div class="login-btn cursor-pointer mr-1" @click="nextLogin()">
                   <span>Đăng nhập</span>
                 </div>
                 <div
@@ -27,7 +27,7 @@
                 </div>
               </div>
 
-              <ButtonLoginFacebook />
+              <!-- <ButtonLoginFacebook /> -->
             </div>
             <template v-else>
               {{ user.name }}
@@ -164,9 +164,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.rightbar-content {
-  margin-top: 0px;
-}
 .rightbar-content .user-info-wrap {
   top: 0px;
   position: relative;
@@ -175,7 +172,6 @@ export default {
   align-items: center;
   width: 100%;
   height: 200px;
-  border: 2px solid #561d00;
   background: #e28637;
   background-size: 100% 100%;
 
@@ -200,7 +196,7 @@ export default {
   }
 }
 .rightbar-content .user-info-wrap .user-info .member {
-  font-size: 30px;
+  font-size: 20px;
   // font-weight: 700;
   color: #fff;
   text-align: center;

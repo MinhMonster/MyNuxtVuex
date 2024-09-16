@@ -1,6 +1,15 @@
 
 <template>
-  <b-modal ref="modal" :title="title" scrollable :size="size" @hide="close()">
+  <b-modal
+    ref="modal"
+    :id="`${
+      (isAvatar ? 'theme-avatar' : '', isThemeDark ? 'theme-dark' : '')
+    }`"
+    :title="title"
+    scrollable
+    :size="size"
+    @hide="close()"
+  >
     <div class="modal-info">
       <slot name="content"></slot>
     </div>
@@ -19,6 +28,8 @@
 </template>
   
 <script>
+import { mapFields } from "vuex-map-fields";
+
 export default {
   name: "ModalPayload",
 
@@ -37,12 +48,19 @@ export default {
     },
   },
   mounted() {},
-  computed: {},
+  computed: {
+    ...mapFields("global", { isThemeDark: "isThemeDark" }),
+    isAvatar() {
+      const path = this.$route.path;
+      return path.includes("teamobi/avatar");
+    },
+  },
   methods: {
     show() {
       this.$refs.modal.show();
     },
     close() {
+      this.$refs.modal.hide();
       this.$emit("hide");
     },
   },
@@ -59,8 +77,10 @@ export default {
   .modal-header {
     border-left: 2px solid #663019;
     border-right: 2px solid #663019;
-    background: #e28637 url(https://muabannick.pro/images/header/bg_top.png)
-      repeat-x;
+    // background: #e28637 url(https://muabannick.pro/images/header/bg_top.png)
+    //   repeat-x;
+    background-image: linear-gradient(180deg, #561d00, #e28637 9%, #e28637 58%, #e28637) ;
+
     border-bottom: none;
     display: flex;
     justify-content: center;

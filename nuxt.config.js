@@ -1,5 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 import webpack from "webpack";
+import axios from "axios";
 
 
 export default {
@@ -7,32 +8,40 @@ export default {
   // mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'MuaBanNick.Pro - %s',
-    title: 'Hệ thống bán Nick tự động. Shop Game TeaMobile. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Hệ thống bán Nick tự động 100%. Giảm 10% tất cả các Nick trên Shop. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín - Giá Rẻ- An Toàn Nhất MXH' },
       { name: 'format-detection', content: 'telephone=no' },
-      { name: 'keywords', content: 'nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja,  shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, ' },
-      { property: 'og:image', content: '/banner.jfif' },
-      { property: 'og:description', content: 'MuaBanNick.Pro - Shop Mua Bán Nick Ninja School Online, Ngọc Rồng Online, Avatar Tự Động' }
+      { name: 'keywords', content: 'nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja,  shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, nick avatar, nick dai tay du ' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
-  ,
-  
+    ],
+    script: [
+      {
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-EYXLZ4SE11',
+      },
+      {
+        src: 'https://www.googleadservices.com/pagead/conversion.js',
+      },
+    ],
+  },
+  mounted() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'AW-11265837402');
+    gtag('event', 'conversion', { 'send_to': 'AW-11265837402/7E7zCI2d4YYZENqS_Psp' });
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     "@/assets/css/mms-style.css",
     "@/assets/styles/common.scss",
-    "@/assets/styles/home/_ckeditor.scss",
+    // "@/assets/styles/home/_ckeditor.scss",
     "@/assets/styles/home/account.scss",
   ],
 
@@ -43,16 +52,9 @@ export default {
     // "@/plugins/vue-sweetalert",
 
     '~/plugins/repositories.js',
-    { src: "@/plugins/vue-infinite-scroll", ssr: false },
-    { src: "@/plugins/vue-codemirror", ssr: false },
     { src: "@/plugins/vue-slick-carousel" },
     { src: "@/plugins/vue-clipboard2", ssr: false },
-
-    // "~/plugins/axios",
-    // "~/plugins/vee-validate",  
-    // { src: "@/plugins/vee-validate", ssr: false },
-    // "~/apis/modules/admin",
-
+    { src: "@/plugins/mixins", ssr: false },
 
   ],
   axios: {
@@ -92,13 +94,32 @@ export default {
 
     // 'vuex-persistedstate'
     '@nuxtjs/dotenv',
-    "vue2-editor/nuxt",
+    // "vue2-editor/nuxt",
     // "nuxt-sweetalert2",
-    "@nuxtjs/toast",
-    "vue-sweetalert2/nuxt"
+    // "@nuxtjs/toast",
+    "vue-sweetalert2/nuxt",
     // 'nuxt-validate'
-
+    '@nuxtjs/sitemap'
   ],
+  sitemap: {
+    hostname: 'https://muabannick.pro',
+    // routes: async () => {
+    //   const { data } = await axios.get('https://muabannick.pro/apis/sitemap/index.php');
+    //   return data.sitemap.map((item) => `${item.link}`)
+    // },
+    sitemaps: [
+      {
+        path: '/sitemap.xml',
+      },
+      {
+        path: '/sitemap/topics.xml',
+        routes: async () => {
+          const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
+          return data.sitemap_topics.map((item) => `${item.link}`)
+        },
+      },
+    ]
+  },
 
   nuxtValidate: {
     lang: 'es',
@@ -109,12 +130,12 @@ export default {
     }
   },
   // @nuxtjs/toast configurations
-  toast: {
-    position: "top-right",
-    duration: 3000, // ms
-    theme: "bubble",
-    iconPack: "material",
-  },
+  // toast: {
+  //   position: "top-right",
+  //   duration: 3000, // ms
+  //   theme: "bubble",
+  //   iconPack: "material",
+  // },
   // toast: {
   //   position: 'top-center',
   //   register: [ // Register custom toasts
@@ -164,6 +185,6 @@ export default {
     // extend(config, ctx) {},
 
   },
-  loading: "@/components/Loading.vue",
+  // loading: "@/components/Loading.vue",
 
 }

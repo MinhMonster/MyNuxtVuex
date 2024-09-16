@@ -1,7 +1,4 @@
 
-import AdminAuth from "./admin/auth"
-import AdminTopics from "./admin/topics"
-import AdminDeverlopers from "./admin/deverlopers"
 import HomeUser from "./home/users"
 
 
@@ -43,9 +40,6 @@ export default {
   },
 
   modules: {
-    ADAU: AdminAuth,
-    ADTP: AdminTopics,
-    ADDV: AdminDeverlopers,
     HOUS: HomeUser,
 
   },

@@ -5,10 +5,15 @@
         <div class="header-user">
           <div class="header-logo" @click="nextHome()">
             <img
-              src="https://muabannick.pro/images/logo/lg-muabannick.png"
+              :src="
+                isThemeDark
+                  ? 'https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png'
+                  : 'https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200029.png'
+              "
               alt=""
             />
           </div>
+          <!-- <RunText v-if="!isTablet" /> -->
           <SideBarHome></SideBarHome>
         </div>
       </div>
@@ -19,21 +24,34 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import SideBarHome from "@/components/pages/client/layout/SideBarHome";
+// import RunText from "@/components/global/molecules/common/template/RunText";
+
 import mixins from "@/mixins/index";
 
 export default {
   mixins: [mixins],
   components: {
     SideBarHome,
+    // RunText,
   },
   props: {},
   computed: {
     ...mapFields("global", {
       ready: "ready",
+      isThemeDark: "isThemeDark",
     }),
     isHome() {
       return this.$route.path == "/";
     },
+  },
+  mounted() {
+    this.$nextTick(function () {
+      this.onResize();
+    });
+    window.addEventListener("resize", this.onResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
   },
   methods: {
     nextHome() {
@@ -58,18 +76,19 @@ export default {
 //     height: 20px;
 //     font-size: 20px;
 //     width: 20px;
-//   }
+//   }o
 // }
 .home-header {
   height: 50px;
   flex-shrink: 0;
+  // padding: 0 0.22rem;
 }
 .home-header .header-content {
   display: flex;
   align-items: center;
   width: 100%;
   height: 50px;
-  padding: 0 0.22rem;
+  padding: 0 0.5rem;
   position: fixed;
   left: 0;
   top: 0;
@@ -86,6 +105,7 @@ export default {
     #9f5424 58%,
     #561d00 127%
   );
+  // background-image: linear-gradient(180deg, #561d00, #9f5424 9%, #e28637 58%, #e28637) !important;
 }
 .home-header .header-user {
   width: 100%;

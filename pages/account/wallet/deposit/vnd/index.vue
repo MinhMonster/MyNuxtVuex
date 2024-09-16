@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="NẠP VĐT ATM-MOMO"
+      :title="title"
       :loading="!ready"
       goBack
       reload
@@ -55,13 +55,10 @@
                     >Tiền chuyển
                     <small>(<span style="color: red">*</span>)</small></label
                   >
-                  <input
+                  <BaseInputCash
                     v-model="money.amount"
-                    type="number"
-                    placeholder=" "
+                    @change="setMoneyOut"
                     class="v-input form-input"
-                    @keyup="setMoneyOut()"
-                    @keyup.enter="submit()"
                   />
                 </form-validator></div
             ></b-col>
@@ -180,6 +177,7 @@ import ModalPayload from "@/components/common/ModalPayload";
 import HistoryDepositVndTable from "@/components/pages/client/account/wallet/HistoryDepositVndTable";
 import Pagination from "@/components/global/molecules/common/Pagination";
 import HomePage from "@/components/pages/home/HomePage";
+import BaseInputCash from "@/components/base/BaseInputCash";
 
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
@@ -189,9 +187,20 @@ const global = createNamespacedHelpers("global");
 export default {
   mixins: [mixins],
   layout: "clientLayout",
+  components: {
+    HomePage,
+    Loading,
+    FormValidator,
+    ButtonCoppy,
+    AccountNumbeAdmin,
+    RechargeInstructions,
+    ModalPayload,
+    HistoryDepositVndTable,
+    Pagination,
+    BaseInputCash,
+  },
   data() {
     return {
-      ready: false,
       isLoading: false,
       isCheck: false,
       walletOptions: [
@@ -218,26 +227,18 @@ export default {
       ],
       money: {
         walletType: null,
-        amount: null,
+        amount: "",
         bankAccountName: "",
         bankAccountNumber: "",
       },
-      moneyReceived: 0,
+      moneyReceived: "",
       isFailed: false,
+      title: "NẠP VĐT ATM-MOMO",
     };
   },
-  components: {
-    HomePage,
-    Loading,
-    FormValidator,
-    ButtonCoppy,
-    AccountNumbeAdmin,
-    RechargeInstructions,
-    ModalPayload,
-    HistoryDepositVndTable,
-    Pagination,
-  },
+
   computed: {
+    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       histories: "historyWalletDepositVnds",
       historyMeta: "historyMeta",
@@ -285,16 +286,17 @@ export default {
         this.$router.push(`/account/wallet/deposit/vnd/${history.ID}`);
       }
     },
-    setMoneyOut() {
-      if (this.money.amount < 10000) {
+    setMoneyOut(name, value) {
+      this.money.amount = value;
+      if (value < 10000) {
         this.isFailed = true;
         this.moneyReceived = "Ít nhất 10.000đ";
-      } else if (this.money.amount > 10000000) {
+      } else if (value > 10000000) {
         this.isFailed = true;
         this.moneyReceived = "Tối đa 10 Triệu";
       } else {
         this.isFailed = false;
-        this.moneyReceived = this.format_number(this.money.amount * 1.2) + " đ";
+        this.moneyReceived = this.format_number(value * 1.2) + " đ";
       }
     },
     async onPageChange(page) {
@@ -328,6 +330,16 @@ export default {
     showModal() {
       this.$refs.modal.show();
     },
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

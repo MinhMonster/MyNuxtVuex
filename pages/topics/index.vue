@@ -2,14 +2,13 @@
   <client-only>
     <HomePage
       title="Danh Mục Bài Viết"
-      titleHead="Danh Mục Bài Viết, Tổng Hợp và Chia Sẻ Các Kinh Nghiệm Chơi Game"
       :loading="!ready"
       goBack
       reload
       @reload="getTopics()"
     >
       <template v-if="ready" #body>
-        <div class="mt-4">
+        <div class="mt-4 topics">
           <ul class="topics-list">
             <li v-for="(item, index) in topics" :key="index">
               <nuxt-link :to="`/topics/${item.link}`">
@@ -96,55 +95,29 @@ export default {
       this.ready = true;
     },
   },
+  data() {
+    return {
+      title:
+        "Danh Mục Bài Viết, Tổng Hợp và Chia Sẻ Các Kinh Nghiệm Chơi Game TeaMobile",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+        { property: 'og:image', content: '/banner.jpg' },
+
+      ],
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
 #home-page {
   max-width: 700px;
 }
-ul.topics-list {
-  li {
-    // list-style-type: circle;
-    // margin-left: 30px;
-    // margin-top: 10px;
-    padding: 7px;
 
-    // padding: 5px 20px;
-    &:nth-of-type(odd) {
-      background: #ffcf9c !important;
-    }
-    .image-topic {
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 120px;
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      z-index: 1;
-      opacity: 1;
-      transition: opacity 0.35s ease, filter 0s ease;
-
-      img {
-        width: 100%;
-        max-height: 120px;
-      }
-    }
-    @media (max-width: 600px) {
-      .image-topic {
-        height: 80px;
-        img {
-        width: 100%;
-        max-height: 80px;
-      }
-      }
-    }
-    pre {
-      white-space: pre;
-    }
-  }
-  hr {
-    margin: 3px auto;
-  }
-}
 </style>

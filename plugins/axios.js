@@ -1,5 +1,10 @@
 export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
+  const isThemeDark = store.state.global.isThemeDark;
+  const customClassSwal = {
+    container: isThemeDark ? "swal-dark" : "",
+  }
+
   const axiosConfig = { timeout: 60000 };
   axiosConfig.baseURL = process.env.apiUrl;
 
@@ -43,12 +48,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     switch (layout) {
       case "clientLayout":
         break;
-      case "adminDev":
-        if (!store.state.admin.auth.token || !store.state.admin.auth.authenticated) {
-          store.dispatch("admin/auth/logout");
-          redirect('/admin/login')
-        }
-        break;
     }
 
     // return config;
@@ -65,8 +64,13 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     if (code && code === 200) {
       switch (layout) {
         case "clientLayout":
-          if(response.data.message){
-            $swal.fire(response.data.message, response.data.content, "success");
+          if (response.data.message) {
+            $swal.fire({
+              title: response.data.message,
+              html: response.data.content,
+              icon: "success",
+              customClass: customClassSwal
+            });
           }
           break;
       }
@@ -83,6 +87,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
               showCancelButton: true,
               cancelButtonText: "Bỏ qua",
               confirmButtonText: "Nạp tiền",
+              customClass: customClassSwal
               // icon: "error",
             })
             .then(async (result) => {
@@ -105,7 +110,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
               showCancelButton: true,
               cancelButtonText: "Bỏ qua",
               confirmButtonText: "Đăng nhập",
-              // icon: "error",
+              customClass: customClassSwal
             })
             .then(async (result) => {
               store.dispatch("home/users/logout");
@@ -115,22 +120,21 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
                 redirect('/')
               }
             });
-          
-          break;
-        case "adminDev":
-          store.dispatch("admin/auth/logout");
-          redirect('/admin/login')
+
           break;
       }
-      // store.dispatch("admin/auth/logout");
-      // redirect('/admin/login')
     }
     if (code && code === 404) {
       switch (layout) {
         case "clientLayout":
           redirect('/404')
-          if(response.data.message){
-            $swal.fire(response.data.message, response.data.error_content, "error");
+          if (response.data.message) {
+            $swal.fire({
+              title: response.data.message,
+              html: response.data.error_content,
+              icon: "error",
+              customClass: customClassSwal
+            });
           }
           break;
       }
@@ -139,10 +143,14 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
       switch (layout) {
         case "clientLayout":
-          $swal.fire(response.data.message, response.data.error_content, "error");
-          break;
-        case "adminDev":
-          $toast.error(response.data.message);
+          $swal.fire({
+            title: response.data.message,
+            html: response.data.error_content,
+            icon: "error",
+            customClass: customClassSwal
+          });
+
+
           break;
       }
 
@@ -197,10 +205,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
     if (code === 400) {
       redirect('/400')
-    }
-    if (code === 401) {
-      store.dispatch("admin/auth/logout");
-      redirect('/admin/login')
     }
     setTimeout(() => {
       store.dispatch("disableLoading");

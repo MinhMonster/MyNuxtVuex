@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="ĐĂNG NHẬP"
+      :title="title"
       full-screen
       goBack
       goHome
@@ -49,8 +49,8 @@
               <span v-else> Đăng nhập </span>
             </b-button>
           </div>
-          <div class="signin">----------- Hoặc -----------</div>
-          <ButtonLoginFacebook />
+          <!-- <div class="signin">----------- Hoặc -----------</div>
+          <ButtonLoginFacebook /> -->
         </form>
       </template>
     </HomePage>
@@ -76,6 +76,7 @@ export default {
       isLoading: false,
       username: "",
       password: "",
+      title: "Đăng Nhập",
     };
   },
   components: { HomePage, Loading, FormValidator, ButtonLoginFacebook },
@@ -114,6 +115,17 @@ export default {
       }, 200);
     },
   },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+        { property: 'og:image', content: '/banner.jpg' },
+      ],
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -145,7 +157,7 @@ export default {
 form {
   padding: 10px 30px 30px;
   background: #ffefa3;
-  // border: 1px solid #663019;
+  border: none;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 

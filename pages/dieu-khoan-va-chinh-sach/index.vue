@@ -1,8 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="Điều Khoản & Chính Sách"
-      titleHead="Điều Khoản & Chính Sách"
+      :title="title"
       :loading="!ready"
       full-screen
       goBack
@@ -10,9 +9,11 @@
       @reload="reload()"
     >
       <template v-if="ready" #body>
-        <div class="container">
+        <div class="container text-shadow">
           <div class="c-content-title-1">
-            <h2 class="c-font-uppercase c-font-bold text-center">Điều khoản sử dụng</h2>
+            <h2 class="c-font-uppercase c-font-bold text-center">
+              Điều khoản sử dụng
+            </h2>
             <div class="c-line-left c-theme-bg"></div>
           </div>
           <p><strong>1 Nguyên tắc chung&nbsp;</strong></p>
@@ -171,7 +172,9 @@
           </p>
 
           <div class="c-content-title-1 mt-2">
-            <h2 class="c-font-uppercase c-font-bold text-center">Chính sách bảo mật</h2>
+            <h2 class="c-font-uppercase c-font-bold text-center">
+              Chính sách bảo mật
+            </h2>
             <div class="c-line-left c-theme-bg"></div>
           </div>
 
@@ -534,6 +537,21 @@ export default {
         this.ready = true;
       }, 200);
     },
+  },
+  data() {
+    return {
+      title: "Điều Khoản & Chính Sách",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

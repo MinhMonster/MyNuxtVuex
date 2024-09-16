@@ -1,9 +1,10 @@
-
 <template>
   <client-only>
     <div v-if="accountAvatar">
       <div class="title">
-        <center><h3>Thông tin chi tiết</h3></center>
+        <center>
+          <h3>Thông tin chi tiết</h3>
+        </center>
       </div>
 
       <table class="table text-center">
@@ -30,9 +31,9 @@
           </tr>
 
           <tr>
-            <th class="info-nick" style="">Chi tiết</th>
+            <th class="info-nick detail" style="">Chi tiết</th>
             <td class="mua-nick">
-              <span>{{ accountAvatar.thongtin }} </span>
+              <span v-html="accountAvatar.thongtin"> </span>
             </td>
           </tr>
           <tr>
@@ -62,7 +63,7 @@
   </client-only>
 </template>
   
-  <script>
+<script>
 import mixins from "@/mixins/index";
 import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
@@ -71,7 +72,10 @@ export default {
   name: "accountAvatarList",
   mixins: [mixins],
 
-  components: { AccountAvatarCard, GroupBtnBuyAccount },
+  components: {
+    AccountAvatarCard,
+    GroupBtnBuyAccount,
+  },
   props: {
     accountAvatar: {
       type: Object,
@@ -93,8 +97,8 @@ export default {
   },
 };
 </script>
-  
-  <style lang="scss" scoped>
+
+<style lang="scss" scoped>
 .title {
   color: #1e5b7e;
   margin-bottom: 10px;
@@ -103,11 +107,14 @@ table.table tbody {
   // border: 1px solid #663019;
 }
 th.info-nick {
-  width: 50%;
+  width: 40%;
   padding: 7px;
   color: #ffcf9c;
   border: 1px solid #663019;
   background: #e28637;
+  &.detail {
+    vertical-align: middle;
+  }
 }
 .btn-buy-account,
 .mua-nick {
@@ -139,6 +146,11 @@ th.info-nick {
   font-size: 14px;
   font-weight: 400;
   color: #663019;
+  ::v-deep {
+    p {
+      margin-bottom: 8px;
+    }
+  }
 }
 
 ::v-deep {

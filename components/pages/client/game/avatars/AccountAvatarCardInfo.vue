@@ -3,10 +3,11 @@
     <AccountAvatarTL :account-avatar="accountAvatar" />
     <b-row class="account-body">
       <b-col cols="12"
-        ><span class="account-thongtin break-line-1"
-          >Thông tin: {{ accountAvatar.thongtin }}</span
-        ></b-col
-      >
+        ><span class="account-thongtin break-line-1">
+          Thông tin:
+          {{ accountAvatar.thongtin }}
+        </span>
+      </b-col>
       <b-col cols="3"
         ><span class="account-code"
           >Mã Số <br />{{ format_number(accountAvatar.ID) }}</span
@@ -102,6 +103,26 @@ export default {
     padding: 3px;
     line-height: 25px;
   }
+  // .account-thongtin {
+  //   max-height: 30px;
+  //   overflow: hidden;
+  // }
+  // .text-thongtin {
+  //   width: 70px;
+  //   max-height: 30px;
+  //   display: -webkit-box !important;
+  //   -webkit-line-clamp: 1 !important;
+  //   -webkit-box-orient: vertical !important;
+  //   overflow: hidden !important;
+  //   text-overflow: ellipsis !important;
+  //   word-break: break-word !important;
+  // }
+  // .full-info {
+  //   width: calc(100% - 70px);
+  //   text-align: left;
+  //   max-height: 30px;
+  //   overflow: hidden;
+  // }
   // .account-cash{
   //   background: #ffcf9c;
   //   color: #663019;

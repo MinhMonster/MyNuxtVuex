@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="Thông tin Tài Khoản"
+      :title="title"
       content="Các thông tin nick sẽ được cập nhật tại đây."
       full-screen
       :loading="!ready"
@@ -135,12 +135,8 @@ export default {
     ButtonCoppy,
     AdminInbox,
   },
-  data() {
-    return {
-      ready: false,
-    };
-  },
   computed: {
+    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       history: "historyBuyAccount",
       pageSave: "pageSave",
@@ -172,6 +168,21 @@ export default {
     goBack() {
       this.$router.push(`/account/history?page=${this.pageSave}`);
     },
+  },
+  data() {
+    return {
+      title: "Thông tin Tài Khoản",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

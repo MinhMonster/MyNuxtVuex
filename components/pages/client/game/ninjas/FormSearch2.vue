@@ -1,6 +1,6 @@
 <template>
   <div class="form-search">
-    <div class="title center">Tìm Kiếm Nick</div>
+    <!-- <div class="title center">Tìm Kiếm Nick</div> -->
     <!-- <div class="close">Đóng</div> -->
     <div class="page-body">
       <form class="form">
@@ -11,7 +11,6 @@
               <b-form-select
                 v-model="level"
                 :options="levelOptions"
-                @change="setQueryForm()"
                 size="sm"
               ></b-form-select>
               <!-- </form-validator> -->
@@ -23,7 +22,6 @@
               <b-form-select
                 v-model="cash"
                 :options="cashOptions"
-                @change="setQueryForm()"
                 size="sm"
               ></b-form-select>
               <!-- </form-validator> -->
@@ -35,7 +33,6 @@
               <b-form-select
                 v-model="classNinjas"
                 :options="classOptions"
-                @change="setQueryForm()"
                 size="sm"
               ></b-form-select>
               <!-- </form-validator> -->
@@ -47,7 +44,6 @@
               <b-form-select
                 v-model="server"
                 :options="serverOptions"
-                @change="setQueryForm()"
                 size="sm"
               ></b-form-select>
               <!-- </form-validator> -->
@@ -59,7 +55,6 @@
               <b-form-input
                 v-model="id"
                 placeholder="Nhập ID nick..."
-                @change="setQueryForm()"
                 @keyup.enter="search()"
                 class="v-input form-input"
               ></b-form-input>
@@ -70,7 +65,8 @@
             <b-button
               type="submit"
               name="timkiem"
-              class="btn search-btn"
+              variant="info"
+              class="search-btn text-white"
               @click="search()"
             >
               <i class="fa fa-search"></i> Tìm kiếm
@@ -415,6 +411,14 @@ export default {
 .form-search {
   background: #ffcf9c;
   margin: -6px;
+  @media (max-width: 600px) {
+    .page-body {
+      padding: 6px;
+      .col-12, .col-6 {
+        padding: 3px;
+      }
+    }
+  }
 }
 
 form {

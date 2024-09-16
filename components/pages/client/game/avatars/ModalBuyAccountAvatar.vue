@@ -77,7 +77,7 @@
                   <tr>
                     <th class="info-nick">Chi tiết</th>
                     <td class="mua-nick">
-                      <span> {{ account.thongtin }} </span>
+                      <div v-html="account.thongtin"></div>
                     </td>
                   </tr>
                 </tbody>

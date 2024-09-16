@@ -1,13 +1,6 @@
 <template>
   <client-only>
-    <HomePage
-      :titleHead="`Mã Số: ${format_number(accountId)} - Nick Ngọc Rồng Online`"
-      :loading="!ready"
-      goBack
-      reload
-      @reload="fetchAccount()"
-      table
-    >
+    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
       <template v-if="account && account.ID && ready" #body>
         <AccountDragonBallDetail :account="account" />
       </template>
@@ -44,14 +37,11 @@ export default {
     AccountDragonBallDetail,
     AccountDragonBallList,
   },
-  data() {
-    return {
-      ready: false,
-    };
-  },
+
   computed: {
     ...mapFields("global", {
       screenMobile: "screenMobile",
+      ready: "ready",
     }),
     ...mapFields("home/game/dragon_balls", {
       account: "accountDragonBall",
@@ -59,6 +49,11 @@ export default {
     }),
     accountId() {
       return this.$route.params.id;
+    },
+    title() {
+      return `Mã Số: ${this.format_number(
+        this.accountId
+      )} - Nick Ngọc Rồng Online - MuaBanNick.Pro`;
     },
   },
   mounted() {
@@ -96,6 +91,16 @@ export default {
         await this.fetchAccountDragonBalls();
       }
     },
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

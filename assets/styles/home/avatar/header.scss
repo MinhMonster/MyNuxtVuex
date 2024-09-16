@@ -1,0 +1,165 @@
+.theme-avatar {
+  .home-header {
+    .header-content {
+      background: radial-gradient(circle at 50% 100%, #99FFFF, #009298 58%, #009298 127%) !important;
+    }
+  }
+
+  .bg-website {
+    background: #009298 !important;
+
+    .v-main__wrap {
+      .container.client-main {
+        background: #fff;
+      }
+
+      #home-page {
+        .title {
+          color: #009298 !important;
+        }
+
+        .page-body {
+          background: #BFEFFF;
+          border: 1px solid #a4a4a4 !important;
+
+
+        }
+
+        .account-empty {
+          background: #BFEFFF;
+          border: 1px solid #a4a4a4 !important;
+
+          .text-danger {
+            color: #009298 !important;
+          }
+        }
+      }
+    }
+  }
+
+  #menu-bottom {
+    background: linear-gradient(180deg, #99FFFF, #009298 12%, #009298) !important;
+
+    .sub-menu-buttom {
+      color: #fff !important;
+
+      .circle-menu {
+        background-color: #00B2BF !important;
+
+        .icon-wrap {
+          background: radial-gradient(circle at 50% 15%, #99FFFF, #009298 72%) !important;
+
+          .mdi.mdi-home {
+            color: #fff !important;
+
+          }
+        }
+      }
+    }
+
+    .footer_icon button.icon-menu,
+    .title-menu-buttom {
+      color: #fff !important;
+    }
+
+    // #menu-bottom a .footer_icon button.icon-menu
+
+  }
+
+  .login-btn {
+    background-image: linear-gradient(180deg, #99FFFF, #009298 9%, #009298 58%, #009298);
+  }
+
+  .go-back,
+  .reload,
+  .next-top,
+  .next-bottom {
+    .v-btn--icon.v-size--default {
+      background: radial-gradient(circle at 50% 100%, #99FFFF, #009298 58%, #009298 127%) !important;
+    }
+  }
+
+  .account-search {
+    background: #BFEFFF !important;
+    border: 1px solid #a4a4a4 !important;
+  }
+
+  .account {
+    .account-info {
+      background: #BFEFFF !important;
+      border: 1px solid #a4a4a4 !important;
+
+      .account-body {
+
+        .account-thongtin,
+        .account-cash,
+        .account-buy {
+          background-image: linear-gradient(180deg, #99FFFF, #009298 9%, #009298 58%, #009298);
+          border: none !important;
+          color: #fff;
+        }
+
+        .account-code,
+        .account-server,
+        .account-class {
+          color: #009298;
+        }
+      }
+
+      .account-cash-atm,
+      .account-ingame {
+        background-image: linear-gradient(180deg, #99FFFF, #009298 9%, #009298 58%, #009298);
+        // border: 1px solid #a4a4a4 !important;
+        color: #fff;
+      }
+    }
+  }
+
+  .table {
+    th.info-nick {
+      background: #009298;
+      color: #fff;
+      border: 1px solid #a4a4a4 !important;
+    }
+
+    td.mua-nick {
+      background: #B0E2FF;
+      color: #fff;
+      border: 1px solid #a4a4a4 !important;
+
+      span {
+        color: #009298;
+      }
+    }
+  }
+
+  .account-cash-atm,
+  .account-ingame {
+    background-image: linear-gradient(180deg, #99FFFF, #009298 9%, #009298 58%, #009298) !important;
+
+  }
+
+  .btn-buy-account {
+    background-image: linear-gradient(180deg, #99FFFF, #48D1CC 9%, #48D1CC 58%, #48D1CC) !important;
+    color: #fff !important;
+    border: none;
+
+    .text-main {
+      color: #fff !important;
+    }
+  }
+
+  .btn-buy-account-hover {
+    background-image: linear-gradient(180deg, #99FFFF, #009298 9%, #009298 58%, #009298) !important;
+    border: none;
+  }
+
+  .title-category {
+    background: radial-gradient(circle at 50% 100%, #99FFFF, #009298 58%, #009298 127%) !important;
+
+    .title {
+      color: #009298 !important;
+    }
+  }
+
+}

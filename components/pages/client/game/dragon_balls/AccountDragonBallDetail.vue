@@ -91,7 +91,6 @@ import AccountDragonBallTL from "@/components/pages/client/game/dragon_balls/Acc
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  name: "accountAvatarList",
   mixins: [mixins],
 
   components: {
@@ -106,9 +105,7 @@ export default {
     },
   },
   data() {
-    return {
-      isMobile: false,
-    };
+    return {};
   },
   async mounted() {
     this.$nextTick(function () {
@@ -116,17 +113,11 @@ export default {
     });
     window.addEventListener("resize", this.onResize);
   },
-  computed: {},
-  methods: {
-    onResize() {
-      const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
   },
+  computed: {},
+  methods: {},
 };
 </script>
   

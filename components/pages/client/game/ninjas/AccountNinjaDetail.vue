@@ -17,10 +17,12 @@
         <VueSlickCarousel
           v-else-if="accountNinja.hinhanh"
           :initialSlide="0"
-          :slidesToShow="1"
+          :slidesToShow="2"
           :arrows="true"
+          :rows="2"
           :dots="true"
         >
+          <AccountNinjaTL :account-ninja="accountNinja" />
           <div
             v-for="(image, index) in accountNinja.hinhanh"
             :key="index"
@@ -62,7 +64,7 @@
             md="6"
             lg="4"
           >
-            <div class="fileItemWrapper">
+            <div class="image-card">
               <img
                 v-if="image.includes('muabannick.pro')"
                 :src="image"
@@ -91,7 +93,6 @@ import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  name: "AccountNinjaList",
   mixins: [mixins],
 
   components: { AccountNinjaInfo, AccountNinjaTL, GroupBtnBuyAccount },
@@ -102,9 +103,7 @@ export default {
     },
   },
   data() {
-    return {
-      isMobile: false,
-    };
+    return {};
   },
   async mounted() {
     this.$nextTick(function () {
@@ -112,22 +111,29 @@ export default {
     });
     window.addEventListener("resize", this.onResize);
   },
-  computed: {},
-  methods: {
-    onResize() {
-      const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
   },
+  computed: {},
+  methods: {},
 };
 </script>
   
   <style lang="scss" scoped>
-.fileItemWrapper {
+::v-deep {
+  .slick-slide {
+    overflow: hidden !important;
+    .image-card {
+      width: 101.5% !important;
+      img {
+        // width: 112% !important;
+        margin-left: 0px;
+      }
+    }
+  }
+}
+
+.image-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -153,9 +159,9 @@ export default {
   margin: 0 auto;
 }
 .image-account {
-  width: 112% !important;
+  width: 110% !important;
   overflow: hidden;
-  margin-left: -6px;
+  margin-left: 0px;
 }
 .title {
   color: #1e5b7e;

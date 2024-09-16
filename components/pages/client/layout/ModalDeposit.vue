@@ -1,7 +1,12 @@
 <template>
   <v-dialog v-model="dialog" scrollable max-width="300px" light>
     <template v-slot:activator="{ on, attrs }">
-      <div v-if="token && user" v-bind="attrs" v-on="on" class="sub-menu-buttom">
+      <div
+        v-if="token && user"
+        v-bind="attrs"
+        v-on="on"
+        class="sub-menu-buttom"
+      >
         <div class="footer_icon Member">
           <v-btn icon class="icon-menu">
             <v-icon>mdi-bank</v-icon>
@@ -94,10 +99,10 @@ export default {
       if (!this.isLogin) {
         this.$router.push("/login");
       } else {
-        this.$swal.fire(
-          "Bạn chưa đăng nhập",
-          "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!"
-        );
+        this.showSwal({
+          title: "Bạn chưa đăng nhập",
+          html: "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!",
+        });
       }
     },
   },

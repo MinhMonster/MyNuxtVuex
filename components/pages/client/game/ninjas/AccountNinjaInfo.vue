@@ -53,6 +53,12 @@
               <div style="margin: 10px"></div>
 
               Giá Bán
+              <br />
+              {{
+                accountNinja.saleOff
+                  ? "(Giảm giá: " + accountNinja.saleOff + "%)"
+                  : ""
+              }}
             </th>
             <td class="mua-nick">
               <span>{{ format_number(accountNinja.giatien) }} Card </span>
@@ -65,7 +71,27 @@
                   margin-bottom: 5px;
                 "
               ></div>
-              <span>{{ cash_atm(accountNinja.giatien) }} ATM - MOMO</span>
+              <span :class="{ 'text-line-middel': accountNinja.saleOff }"
+                >{{ cash_atm(accountNinja.giatien) }} ATM - MOMO</span
+              >
+              <div
+                v-if="accountNinja.saleOff"
+                style="
+                  width: 100%;
+                  height: 1px;
+                  background-color: #a4a4a4;
+                  margin-top: 5px;
+                  margin-bottom: 5px;
+                "
+              ></div>
+              <span v-if="accountNinja.saleOff"
+                >{{
+                  cash_atm(
+                    accountNinja.giatien * (1 - accountNinja.saleOff / 100)
+                  )
+                }}
+                ATM - MOMO
+              </span>
             </td>
           </tr>
         </tbody>

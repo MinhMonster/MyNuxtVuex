@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :class="{ 'theme-avatar': isAvatar, 'theme-dark': isThemeDark }">
     <HeaderHome></HeaderHome>
     <!-- <MenuGameHome v-if="isMenuGame"></MenuGameHome>
     <v-btn
@@ -21,6 +21,11 @@
       </v-container>
     </v-main>
     <MenuBottom></MenuBottom>
+    <div class="change-theme">
+      <v-btn icon @click="changeTheme()">
+        <v-icon>mdi-theme-light-dark</v-icon>
+      </v-btn>
+    </div>
     <div class="next-top">
       <v-btn icon @click="nextTop()">
         <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
@@ -38,6 +43,7 @@
 import HeaderHome from "@/components/pages/client/layout/HeaderHome";
 import MenuGameHome from "@/components/pages/client/layout/MenuGameHome";
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
+import { mapFields } from "vuex-map-fields";
 
 import { mapState, mapActions } from "vuex";
 
@@ -62,6 +68,7 @@ export default {
   },
   computed: {
     ...mapState("home/users", ["token"]),
+    ...mapFields("global", { isThemeDark: "isThemeDark" }),
 
     styleMain() {
       if (!this.isMenuGame) {
@@ -77,20 +84,30 @@ export default {
         return false;
       }
     },
+    isAvatar() {
+      const path = this.$route.path;
+      return path.includes("teamobi/avatar");
+    },
   },
   async mounted() {
     if (this.token) {
       await this.fetchUser();
     }
-    this.setScreenMobile(this.isScreenMobile);
-    this.$nextTick(function () {
-      this.nextPath();
-    });
-    window.addEventListener("click", this.nextPath());
+    // this.setScreenMobile(this.isScreenMobile);
+    // this.$nextTick(function () {
+    //   this.nextPath();
+    // });
+    // window.addEventListener("click", this.nextPath());
   },
+  // destroyed(){
+  //   window.removeEventListener("click", this.onResize);
+  // },
   methods: {
     ...mapActions("home/users", ["logout", "fetchUser"]),
     ...mapActions("global", ["setScreenMobile", "setPath"]),
+    changeTheme() {
+      this.isThemeDark = !this.isThemeDark;
+    },
 
     nextTop() {
       const element = document.getElementById("home-page");
@@ -100,10 +117,10 @@ export default {
       const element = document.getElementById("next-bottom");
       element.scrollIntoView();
     },
-    nextPath() {
-      const path = this.$route.path;
-      this.setPath(path);
-    },
+    // nextPath() {
+    //   const path = this.$route.path;
+    //   this.setPath(path);
+    // },
   },
 };
 </script>
@@ -112,7 +129,7 @@ export default {
   #home-page,
   #account-slider {
     border-radius: 10px;
-    max-width: 1350px;
+    max-width: 1156px;
     margin: 0 auto;
   }
   #home-page {
@@ -150,6 +167,7 @@ export default {
   //   width: 30px;
   // }
 }
+.change-theme,
 .next-top,
 .next-bottom {
   position: fixed;
@@ -167,6 +185,9 @@ export default {
       #561d00 127%
     );
   }
+}
+.change-theme {
+  bottom: 170px;
 }
 .next-top {
   bottom: 130px;

@@ -2,13 +2,14 @@
 
 
 import { createNamespacedHelpers } from "vuex";
-// import moment from "moment-timezone";
-// const globalMapper = createNamespacedHelpers("shop/global");
 
 export default {
   data() {
     return {
+      isMobile: false,
+      isTablet: false,
       currentYear: new Date().getFullYear(),
+      heightHomeLeft: 810,
       optionsNinjaType: [
         {
           text: "Thường",
@@ -41,12 +42,8 @@ export default {
           value: 5,
         },
         {
-          text: "Sv6 - Tone",
+          text: "Sv67 - Tone + Sanzu",
           value: 6,
-        },
-        {
-          text: "Sv7 - Suzan",
-          value: 7,
         },
         {
           text: "Sv8 - Sensha",
@@ -86,15 +83,9 @@ export default {
     }
   },
   computed: {
-    // ...globalMapper.mapGetters(["shopRegion", "getTimezoneName"]),
-    // getLocaleMoment() {
-    //   switch (this.shopRegion()) {
-    //     case "TW":
-    //       return "zh-tw";
-    //     default:
-    //       return "ja";
-    //   }
-    // },
+    path() {
+      return this.$route.path;
+    },
     nowYear() {
       var year = this.currentYear
       return year;
@@ -149,7 +140,33 @@ export default {
     },
   },
   methods: {
-
+    onResize() {
+      const screenWidth = document.querySelector("body").clientWidth;
+      if (screenWidth < 600) {
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+      }
+      if (screenWidth < 768) {
+        this.isTablet = true;
+      } else {
+        this.isTablet = false;
+      }
+      if (!this.isTablet && this.path == "/") {
+        setTimeout(() => {
+          const homeLeft = document.querySelector("#home-left");
+          if (homeLeft) {
+            const heightHomeLeft = homeLeft.clientHeight;
+            const heightDichVuGame = document.querySelector("#dich-vu-game").clientHeight;
+            if (heightHomeLeft / heightDichVuGame <= 7 / 5) {
+              this.heightHomeLeft = (heightDichVuGame / (515 / 836)) - 30;
+            } else {
+              this.heightHomeLeft = heightHomeLeft - 30;
+            }
+          }
+        }, 50);
+      }
+    },
     format_number(number) {
       const number_toFixed = Number(number).toFixed(0);
       const result = Intl.NumberFormat().format(number_toFixed)
@@ -157,6 +174,14 @@ export default {
     },
     cash_atm(number) {
       return this.format_number(Math.round((number * 0.85) / 10000).toFixed(0) * 10000)
+    },
+    formatTwoNumber(number) {
+      number = Number(number);
+      if (number < 10) {
+        return "0" + `${number}`;
+      } else {
+        return `${number}`;
+      }
     },
     time_10(time) {
       if (time > 1000) {
@@ -169,9 +194,6 @@ export default {
     },
 
     format_money(money) {
-      // if(money = 0) {
-
-      // }
       if (money >= 0 && money < 1000) {
         return 0;
       } else {
@@ -196,25 +218,18 @@ export default {
       switch (type) {
         case "1":
           return "Đao";
-          break;
         case "2":
           return "Kiếm";
-          break;
         case "3":
           return "Tiêu";
-          break;
         case "4":
           return "Cung";
-          break;
         case "5":
           return "Quạt";
-          break;
         case "6":
           return "Kunai";
-          break;
         case "7":
           return "Chưa";
-          break;
       }
     },
 
@@ -222,25 +237,18 @@ export default {
       switch (type) {
         case "1":
           return "Bokken";
-          break;
         case "2":
           return "Shuriken + Tessen";
-          break;
         case "4":
           return "Kunai";
-          break;
         case "5":
           return "katana";
-          break;
         case "6":
-          return "Tone";
-          break;
+          return "Tone + Sanzu";
         case "7":
-          return "Suzan";
-          break;
+          return "Tone + Sanzu";
         case "8":
           return "SenSha";
-          break;
       }
     },
 
@@ -248,13 +256,10 @@ export default {
       switch (type) {
         case "3":
           return "Thường";
-          break;
         case "1":
           return "VIP";
-          break;
         case "2":
           return "TTGT";
-          break;
       }
     },
 
@@ -262,13 +267,10 @@ export default {
       switch (status) {
         case "Chờ Duyệt":
           return "warning";
-          break;
         case "Thành Công":
           return "success";
-          break;
         case "Thất Bại":
           return "danger";
-          break;
       }
     },
 
@@ -276,68 +278,13 @@ export default {
       switch (wallet) {
         case "Ví MOMO":
           return "0961646828";
-          break;
         case "MB Bank":
           return "8330105578888";
-          break;
         case "VietinBank":
           return "107006711803";
-          break;
         case "VietcomBank":
           return "0541000311219";
-          break;
       }
     }
-
-
-    // formatRangeTime(
-    //   timeStart,
-    //   timeEnd,
-    //   formatInput = "YYYY-MM-DD HH:mm:ss UTC",
-    //   isUTC = true
-    // ) {
-    //   moment.locale(this.getLocaleMoment);
-    //   let result = "";
-    //   if (isUTC) {
-    //     const momentStart = moment
-    //       .utc(timeStart, formatInput)
-    //       .tz(this.getTimezoneName());
-    //     const momentEnd = moment
-    //       .utc(timeEnd, formatInput)
-    //       .tz(this.getTimezoneName());
-    //     if (
-    //       momentStart.format("YYYY-MM-DD") === momentEnd.format("YYYY-MM-DD")
-    //     ) {
-    //       result =
-    //         momentStart.format("YYYY/MM/DD(dd) HH:mm") +
-    //         " ~ " +
-    //         momentEnd.format("HH:mm");
-    //     }
-    //   }
-    //   return result;
-    // },
-    // checkTimeBetween(startAt, endAt, time) {
-    //   const momentStart = moment
-    //     .utc(startAt, "YYYY-MM-DD HH:mm:ss UTC")
-    //     .tz(this.getTimezoneName());
-    //   const momentEnd = moment
-    //     .utc(endAt, "YYYY-MM-DD HH:mm:ss UTC")
-    //     .tz(this.getTimezoneName());
-    //   return (
-    //     momentEnd.format("YYYY-MM-DD HH:mm") >= time &&
-    //     momentStart.format("YYYY-MM-DD HH:mm") <= time
-    //   );
-    // },
-    // formatTitleCalendar(start) {
-    //   moment.locale(this.getLocaleMoment);
-    //   const momentStart = moment(start).tz(this.getTimezoneName());
-    //   return momentStart.format("MMM YYYY");
-    // },
-    // formatTimeByAccount(time) {
-    //   const timeByAccount = moment
-    //     .utc(time, "YYYY-MM-DD HH:mm")
-    //     .tz(this.getTimezoneName());
-    //   return timeByAccount.format("YYYY/MM/DD(dd) HH:mm");
-    // },
   },
 };

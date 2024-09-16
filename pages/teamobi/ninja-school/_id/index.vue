@@ -1,15 +1,6 @@
 <template>
   <client-only>
-    <HomePage
-      :titleHead="`Mã Số: ${format_number(
-        accountId
-      )} - Nick Ninja School Online`"
-      :loading="!ready"
-      goBack
-      reload
-      @reload="fetchAccount()"
-      table
-    >
+    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
       <template v-if="accountNinja && accountNinja.ID && ready" #body>
         <AccountNinjaDetail :account-ninja="accountNinja"></AccountNinjaDetail>
       </template>
@@ -46,14 +37,10 @@ export default {
     AccountNinjaDetail,
     AccountNinjaList,
   },
-  data() {
-    return {
-      ready: false,
-    };
-  },
   computed: {
     ...mapFields("global", {
       screenMobile: "screenMobile",
+      ready: "ready",
     }),
     ...mapFields("home/game/ninjas", {
       accountNinja: "accountNinja",
@@ -62,9 +49,17 @@ export default {
     accountId() {
       return this.$route.params.id;
     },
+    title() {
+      return `Mã Số: ${this.format_number(
+        this.accountId
+      )} - Nick Ninja School Online - MuaBanNick.Pro`;
+    },
+    imagenHead() {
+      return _.get(this.accountNinja, "hinhanh[0]", "/banner.jpg");
+    },
   },
-  mounted() {
-    this.fetchAccount();
+  async mounted() {
+    await this.fetchAccount();
   },
   methods: {
     ...mapActions("home/game/ninjas", [
@@ -99,9 +94,26 @@ export default {
       }
     },
   },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+        {
+          property: "og:image",
+          content: this.imagenHead,
+        },
+      ],
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
+#home-page {
+  max-width: 1400px !important;
+}
 .title-category {
   margin: 0 -9px;
   margin-top: -9px;

@@ -1,21 +1,20 @@
 <template>
   <client-only>
-    <div v-if="game" class="fileItemWrapper">
+    <div v-if="game" class="image-card">
       <img
         v-if="game.image"
+        eager
         :src="game.image"
-        alt=""
+        :alt="game.title"
         class="image-ninja"
       />
     </div>
   </client-only>
 </template>
 <script>
-import mixins from "@/mixins/index";
 
 export default {
-  mixins: [mixins],
-  name: "AccountNinjaCardInfo",
+  name: "ImageCard",
   components: {},
   props: {
     game: {
@@ -23,14 +22,10 @@ export default {
       default: () => {},
     },
   },
-  mounted() {},
-
-  computed: {},
-  methods: {},
 };
 </script>
 <style lang="scss" scoped>
-.fileItemWrapper {
+.image-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -44,39 +39,48 @@ export default {
 
   img {
     width: 100%;
-    height: 240px;
+    height: 190px;
+    aspect-ratio: 4/3 !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .image-card {
+    img {
+      height: 170px ;
+    }
   }
 }
 @media (max-width: 800px) {
-  .fileItemWrapper {
+  .image-card {
     img {
-      height: 260px ;
+      height: 130px ;
     }
   }
 }
 @media (max-width: 600px) {
-  .fileItemWrapper {
+  .image-card {
     img {
-      height: 200px;
+      height: 180px;
     }
   }
 }
 @media (max-width: 500px) {
-  .fileItemWrapper {
+  .image-card {
     img {
       height: 150px;
     }
   }
 }
 @media (max-width: 400px) {
-  .fileItemWrapper {
+  .image-card {
     img {
       height: 140px;
     }
   }
 }
 @media (max-width: 360px) {
-  .fileItemWrapper {
+  .image-card {
     img {
       height: 130px;
     }

@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="Thông tin Tài khoản"
+      :title="title"
       content="Cập nhật thông tin của bạn tại đây"
       full-screen
       :loading="!ready"
@@ -112,13 +112,8 @@ export default {
     Loading,
     HomePage,
   },
-  data() {
-    return {
-      ready: false,
-    };
-  },
   computed: {
-    ...mapFields("global", {}),
+    ...mapFields("global", { ready: "ready" }),
     ...mapState(["token", "user"]),
   },
   async mounted() {
@@ -144,6 +139,22 @@ export default {
 
       this.ready = true;
     },
+  },
+  data() {
+    return {
+      title: "Thông tin Cá Nhân",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+        { property: 'og:image', content: '/banner.jpg' },
+      ],
+    };
   },
 };
 </script>

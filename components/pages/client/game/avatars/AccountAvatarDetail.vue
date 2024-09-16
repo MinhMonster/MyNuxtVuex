@@ -2,7 +2,7 @@
 <template>
   <client-only>
     <b-row v-if="accountAvatar.ID">
-      <b-col cols="12" sm="12" md="8" lg="8">
+      <b-col cols="12" sm="12" md="6" lg="8">
         <div class="title">
           <center>
             <h3>
@@ -13,7 +13,10 @@
             </h3>
           </center>
         </div>
-        <AccountAvatarTL v-if="isMobile" :account-avatar="accountAvatar" />
+        <AccountAvatarTL
+          v-if="isMobile || accountAvatar.full"
+          :account-avatar="accountAvatar"
+        />
         <VueSlickCarousel
           v-else-if="accountAvatar.images"
           :initialSlide="0"
@@ -42,7 +45,7 @@
           </div>
         </VueSlickCarousel>
       </b-col>
-      <b-col cols="12" sm="12" md="4" lg="4">
+      <b-col cols="12" sm="12" md="6" lg="4">
         <b-row>
           <b-col cols="12" sm="12" md="12">
             <AccountAvatarInfo
@@ -56,8 +59,26 @@
           <center>Hình Ảnh Của Nick Avatar</center>
         </div>
         <b-row>
+          <b-col cols="12" sm="12" md="6" lg="4">
+            <div class="fileItemWrapper">
+              <img
+                v-if="accountAvatar.images[0].includes('muabannick.pro')"
+                :src="accountAvatar.images[0]"
+                alt=""
+                class="image-ninja"
+                :class="{ full: accountAvatar.full }"
+              />
+              <img
+                v-else
+                :src="`https://muabannick.pro${accountAvatar.images[0]}`"
+                alt=""
+                class="image-ninja"
+                :class="{ full: accountAvatar.full }"
+              />
+            </div>
+          </b-col>
           <b-col
-            v-for="(image, index) in accountAvatar.images"
+            v-for="(image, index) in images"
             :key="index"
             cols="12"
             sm="12"
@@ -93,7 +114,6 @@ import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvata
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  name: "accountAvatarList",
   mixins: [mixins],
 
   components: { AccountAvatarInfo, AccountAvatarTL, GroupBtnBuyAccount },
@@ -104,9 +124,7 @@ export default {
     },
   },
   data() {
-    return {
-      isMobile: false,
-    };
+    return {};
   },
   async mounted() {
     this.$nextTick(function () {
@@ -114,21 +132,27 @@ export default {
     });
     window.addEventListener("resize", this.onResize);
   },
-  computed: {},
-  methods: {
-    onResize() {
-      const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
+  },
+  computed: {
+    images() {
+      const images = this.accountAvatar.images.filter((image, index) => {
+        return index != 0;
+      });
+      return images;
     },
   },
+  methods: {},
 };
 </script>
   
   <style lang="scss" scoped>
+::v-deep {
+  .fileItemWrapper img.full {
+    height: 100%;
+  }
+}
 .fileItemWrapper {
   position: relative;
   display: flex;
@@ -143,6 +167,11 @@ export default {
   img {
     width: 120%;
     margin-left: -10%;
+    height: 100%;
+    &.full {
+      width: 100%;
+      margin-left: 0px;
+    }
   }
 }
 .account {

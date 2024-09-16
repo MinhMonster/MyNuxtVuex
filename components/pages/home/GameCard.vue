@@ -1,14 +1,14 @@
 <template>
-  <b-col cols="6" sm="6" md="3" lg="3" @click="nextPath(game.path)">
+  <b-col cols="6" :sm="isTablet ? 3 : 4" md="4" @click="nextPath(game.path)">
     <div class="account-info">
       <ImageCard :game="game" />
       <b-row class="account-body">
         <b-col cols="12"
-          ><span class="account-thongtin break-line-1">
-            {{ game.title }}</span
+          ><v-btn class="account-thongtin break-line-1 btn-main" :title="game.title">
+            {{ game.title }}</v-btn
           ></b-col
         >
-        <b-col cols="6"
+        <!-- <b-col cols="6"
           ><span class="account-code"
             >Số Nick <br />{{ format_number(game.numberAccount) }}</span
           ></b-col
@@ -27,7 +27,7 @@
         >
         <b-col cols="6">
           <span class="account-buy"> Xem Nick</span>
-        </b-col>
+        </b-col> -->
       </b-row>
     </div>
   </b-col>
@@ -48,8 +48,15 @@ export default {
     },
   },
   created() {},
-
-  computed: {},
+  mounted() {
+    this.$nextTick(function () {
+      this.onResize();
+    });
+    window.addEventListener("resize", this.onResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
+  },
   methods: {
     nextPath(path) {
       this.$router.push(`${path}`);
@@ -89,9 +96,10 @@ export default {
     border: 1px solid #663019;
     font-size: 14px;
     font-weight: 500;
-    border-radius: 3px;
+    border-radius: 20px;
     padding: 3px;
     line-height: 25px;
+    height: 30px;
   }
 
   .account-code,

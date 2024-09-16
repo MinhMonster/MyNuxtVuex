@@ -10,8 +10,11 @@ $danger : #a21d0a;
     margin-top: 15px !important;
   }
 
-
+  .v-application p {
+    margin-bottom: 8px !important;
+  }
 }
+
 
 // .full-screen {
 //   .row {
@@ -29,6 +32,10 @@ $danger : #a21d0a;
   font-weight: 500;
   color: $danger  !important;
 
+}
+
+.text-menu-main {
+  color: #ffcf9c !important;
 }
 
 #home-page {
@@ -231,14 +238,10 @@ $danger : #a21d0a;
   font-size: 12px;
   font-weight: 500;
   color: #fff;
-  margin-right: 0.2rem;
+  // margin-right: 0.2rem;
   box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 50%);
   /* background-image: linear-gradient(180deg,#8872c7,#6142bf 9%,#271170 58%,#4e23af); */
-  background-image: linear-gradient(180deg,
-      #e28637,
-      #9f5424 9%,
-      #561d00 58%,
-      #9f5424);
+
 
 }
 
@@ -260,8 +263,12 @@ $danger : #a21d0a;
   }
 }
 
-.btn.login-btn {
-  border: 1px solid #9f5424;
+.login-btn {
+  background-image: linear-gradient(180deg,
+      #e28637,
+      #9f5424 9%,
+      #561d00 58%,
+      #9f5424);
 
   &:hover {
     color: #fff;
@@ -270,6 +277,29 @@ $danger : #a21d0a;
         #9f5424 9%,
         #9f5424 58%,
         #561d00);
+  }
+}
+
+.btn,
+.v-btn {
+
+  &.login-btn,
+  &.btn-main {
+    border: 1px solid #9f5424;
+    background-image: linear-gradient(180deg,
+        #e28637,
+        #9f5424 9%,
+        #561d00 58%,
+        #9f5424);
+
+    &:hover {
+      color: #fff;
+      background-image: linear-gradient(180deg,
+          #e28637,
+          #9f5424 9%,
+          #9f5424 58%,
+          #561d00);
+    }
   }
 }
 
@@ -414,13 +444,14 @@ $danger : #a21d0a;
         margin-top: 0px;
       }
 
-      input:valid ~ label {
+      input:valid~label {
         top: 0%;
         font-size: 16px;
         color: #4158d0;
         background: none;
         transform: translateY(-50%);
       }
+
       input {
         height: 100%;
         width: 100%;
@@ -451,6 +482,7 @@ $danger : #a21d0a;
         transform: translateY(-50%);
         transition: all 0.3s ease;
       }
+
       input[type="submit"] {
         color: #ffcf9c;
         border: none;
@@ -568,7 +600,7 @@ $danger : #a21d0a;
 
 form {
   padding: 30px 20px 20px 20px;
-  border: 1px solid #333;
+  // border: 1px solid #333;
   background: #ffffff;
 }
 
@@ -673,13 +705,21 @@ table.table {
   }
 }
 
-figure.image{
-  &.image-style-align-center{
+figure.image {
+  &.image-style-align-center {
     text-align: center;
-    img{
+
+    img {
       max-width: 100%;
       margin: 0 auto;
 
     }
+  }
+}
+
+.btn-next-more {
+  .v-btn:not(.v-btn--round).v-size--default {
+    text-align: center;
+    margin: 0 auto;
   }
 }

@@ -2,7 +2,6 @@
   <client-only>
     <HomePage
       title="Nick Ninja School Online"
-      titleHead="Shop Bán Nick Ninja School Giá Rẻ Uy Tín Nhất MXH"
       :loading="!ready"
       goBack
       reload
@@ -39,5 +38,33 @@ export default {
     this.getAccountNinjas();
   },
   methods: {},
+  data() {
+    return {
+      title:
+        "MuaBanNick.Pro - Shop Nick Ninja School Online Tự Động - Shop Mua Bán Nick Ninja School Online VIP Giá Rẻ, Uy Tín Nhất MXH",
+      description:
+        "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.description },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.description },
+        { property: "og:image", content: "/banner.jpg" },
+        {
+          property: "og:image:alt",
+          content: "Shop Nick Ninja School Online VIP  Giá Rẻ - NSO",
+        },
+      ],
+    };
+  },
 };
 </script>
+<style lang="scss" scoped>
+#home-page {
+  max-width: 1400px !important;
+}
+</style>

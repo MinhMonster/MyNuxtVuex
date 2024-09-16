@@ -1,21 +1,13 @@
 <template>
   <client-only>
-    <HomePage
-      title="Trang Chủ - Danh Vụ Game"
-      titleHead="Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH"
-      :loading="!ready"
-      goBack
-      reload
-      @reload="reload()"
-      notBoder
-    >
+    <HomePage :loading="!ready" @reload="reload()" notBoder>
       <template v-if="ready" #body>
-        <div class="mt-4">
+        <div class="mt-1">
           <HomeGame></HomeGame>
-          <b-row>
+          <!-- <b-row>
             <b-col cols="12" sm="12" md="6"> <HistoryBuyAccount /> </b-col>
             <b-col cols="12" sm="12" md="6"> <HistoryDeposit /></b-col>
-          </b-row>
+          </b-row> -->
         </div>
       </template>
     </HomePage>
@@ -23,13 +15,11 @@
 </template>
 
 <script>
-import HomePage from "@/components/pages/home/HomePage";
-import HistoryBuyAccount from "@/components/pages/home/HistoryBuyAccount";
-import HistoryDeposit from "@/components/pages/home/HistoryDeposit";
-
 import { mapFields } from "vuex-map-fields";
 
-import { mapActions } from "vuex";
+import HomePage from "@/components/pages/home/HomePage";
+// import HistoryBuyAccount from "@/components/pages/home/HistoryBuyAccount";
+// import HistoryDeposit from "@/components/pages/home/HistoryDeposit";
 import HomeGame from "@/components/pages/home/HomeGame";
 import Loading from "@/components/global/molecules/common/Loading";
 
@@ -40,24 +30,47 @@ export default {
     HomePage,
     HomeGame,
     Loading,
-    HistoryBuyAccount,
-    HistoryDeposit,
+    // HistoryBuyAccount,
+    // HistoryDeposit,
   },
   computed: {
     ...mapFields("global", {
       ready: "ready",
     }),
   },
-  async mounted() {
+  mounted() {
     this.reload();
   },
   methods: {
-    async reload() {
+    reload() {
       this.ready = false;
       setTimeout(() => {
         this.ready = true;
-      }, 200);
+      }, 50);
     },
+  },
+  data() {
+    return {
+      title:
+        "MuaBanNick.Pro - Shop Nick Tự Động - Shop Mua Bán Nick Ninja School Online, Ngọc Rồng Online, Avatar, Đại Tây Du Giá Rẻ, Uy Tín Nhất MXH",
+      description:
+        "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.description },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.description },
+        { property: "og:image", content: "/banner.jpg" },
+        {
+          property: "og:image:alt",
+          content: "MuaBanNick.Pro - Shop Nick Tự Động",
+        },
+      ],
+    };
   },
 };
 </script>

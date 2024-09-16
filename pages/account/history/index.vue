@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="Lịch Sử Mua Nick của Bạn"
+      :title="title"
       content="Xem lại các Giao dịch gần nhất."
       full-screen
       :loading="!ready"
@@ -84,12 +84,8 @@ export default {
   mixins: [mixins],
 
   components: { Pagination, HomePage },
-  data() {
-    return {
-      ready: false,
-    };
-  },
   computed: {
+    ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
       histories: "historyBuyAccounts",
       historyMeta: "historyMeta",
@@ -124,6 +120,21 @@ export default {
         : await this.$router.push(`/account/history?page=${page}`);
       this.ready = true;
     },
+  },
+  data() {
+    return {
+      title: "Lịch Sử Mua Nick Của Bạn",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+      ],
+    };
   },
 };
 </script>

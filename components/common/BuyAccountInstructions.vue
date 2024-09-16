@@ -3,7 +3,15 @@
     <div class="title text-center">HD Mua Nick = ATM - MOMO</div>
     <img src="/icon/icon-next-right.gif" /> Bạn Chuyển tiền cho Admin:<br />
     <img src="/icon/icon-next-right.gif" /> Số tiền:
-    <span class="sms">{{ cash_atm(account.giatien || account.price) }} đ </span
+    <span class="sms"
+      >{{
+        account.saleOff
+          ? cash_atm(
+              (account.giatien || account.price) * (1 - account.saleOff / 100)
+            )
+          : cash_atm(account.giatien || account.price)
+      }}
+    Vnđ </span
     ><br />
     <img src="/icon/icon-next-right.gif" /> ND:
     <span class="sms"

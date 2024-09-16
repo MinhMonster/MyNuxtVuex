@@ -1,8 +1,7 @@
 <template>
   <client-only>
     <HomePage
-      title="Thông tin Admin"
-      titleHead="Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH"
+      :title="title"
       :loading="!ready"
       full-screen
       goBack
@@ -10,13 +9,15 @@
       @reload="reload()"
     >
       <template v-if="ready" #body>
-        <div class="page-body mt-4">
-          <AdminInformations />
+        <div class="admin-info">
+          <div class="page-body no-border mt-4">
+            <AdminInformations />
+          </div>
+          <div class="page-body no-border mt-4">
+            <AccountNumbeAdmin />
+          </div>
+          <GroupBtnInbox />
         </div>
-        <div class="page-body mt-4">
-          <AccountNumbeAdmin />
-        </div>
-        <GroupBtnInbox />
       </template>
     </HomePage>
   </client-only>
@@ -24,7 +25,6 @@
 
 <script>
 import HomePage from "@/components/pages/home/HomePage";
-import HistoryBuyAccount from "@/components/pages/home/HistoryBuyAccount";
 import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
 import AdminInformations from "@/components/common/AdminInformations";
 import GroupBtnInbox from "@/components/common/client/button/GroupBtnInbox";
@@ -41,7 +41,6 @@ export default {
     HomePage,
     HomeGame,
     Loading,
-    HistoryBuyAccount,
     AccountNumbeAdmin,
     AdminInformations,
     GroupBtnInbox,
@@ -62,10 +61,34 @@ export default {
       }, 200);
     },
   },
+  data() {
+    return {
+      title: "Thông tin Admin",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.title },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.title },
+        { property: "og:image", content: "/banner.jpg" },
+      ],
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
 #home-page {
   max-width: 600px;
+  .no-border {
+    border: none;
+    ::v-deep {
+      .info-atm-momo {
+        min-height: 50px !important;
+      }
+    }
+  }
 }
 </style>

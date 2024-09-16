@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div v-if="accountNinja" class="fileItemWrapper">
+    <div v-if="accountNinja" class="image-card">
       <img
         v-if="accountNinja.hinhanh[0].includes('muabannick.pro')"
         :src="accountNinja.hinhanh[0]"
@@ -108,11 +108,21 @@
       <span v-if="accountNinja.yen" class="account-yen text-13-450">
         {{ accountNinja.yen }}
       </span>
-      <span class="account-cash-atm text-13-450">
-        <!-- <v-btn icon>
-          <v-icon>mdi-cart-variant</v-icon>
-        </v-btn> -->
-        {{ cash_atm(accountNinja.giatien) }} ATM-MOMO</span
+      <span
+        v-if="accountNinja.saleOff"
+        class="account-cash-atm bg-none text-13-450"
+      >
+        <span class="bg-warning"> {{ "-" + accountNinja.saleOff + "% " }}</span>
+        <span class="bg-danger text-white">
+          {{
+            " " +
+            cash_atm(accountNinja.giatien * (1 - accountNinja.saleOff / 100))
+          }}
+          Vnđ</span
+        >
+      </span>
+      <span v-else class="account-cash-atm text-13-450">
+        {{ cash_atm(accountNinja.giatien) }} Vnđ</span
       >
 
       <span class="account-ingame text-13-450">
@@ -144,7 +154,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.fileItemWrapper {
+.image-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -162,11 +172,6 @@ export default {
 }
 .account-ingame {
   right: 4px;
-}
-.account-cash-atm {
-  left: 4px;
-  font-size: 11px;
-  font-weight: 700;
 }
 .account-ingame,
 .account-cash-atm {
@@ -193,6 +198,26 @@ export default {
     }
   }
 }
+
+.account-cash-atm {
+  &.bg-none {
+    background: none !important;
+    color: #333 !important;
+    padding: 0px !important;
+  }
+  left: 4px;
+  // font-size: 11px;
+  font-weight: 700;
+  span {
+    padding:0 5px;
+    height: 100% !important;
+    line-height: 100%;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+  }
+}
+
 .account-tl {
   position: absolute;
   display: flex;

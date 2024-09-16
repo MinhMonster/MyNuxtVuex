@@ -4,15 +4,12 @@ import cookie from "cookie";
 
 export default ({ store, req }) => {
   createPersistedState({
-    key: "MinhMonster",
+    key: "MuaBanNickPro",
     paths: [
-      "admin.auth.token",
-      "admin.auth.authenticated",
-      "admin.deverlopers.deverlopers",
-      "admin.deverlopers.deverloper",
       "home.users.token",
       "home.users.user",
       "home.users.authenticated",
+      "global.isThemeDark"
     ],
     storage: {
       getItem: (key) => {

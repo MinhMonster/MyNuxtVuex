@@ -1,8 +1,23 @@
 @import "~/assets/styles/base-class.scss";
+@import "~/assets/styles/home/avatar/index.scss";
+@import "~/assets/styles/home/page/index.scss";
+@import "~/assets/styles/home/theme/index.scss";
+@import "~/assets/styles/home/custom/index.scss";
+
+
+body {
+  font-size: 13px;
+  font-weight: 400;
+  font-family: "Roboto", "Arial", sans-serif;
+}
 
 html {
   scroll-behavior: smooth;
   overflow-y: overlay;
+}
+
+[disabled] {
+  opacity: 0.8;
 }
 
 .pre-line {
@@ -19,10 +34,45 @@ html {
   box-shadow: none !important;
 }
 
+.text-line-middel {
+  text-decoration: line-through;
+}
+
+
+.text-underline {
+  text-decoration: underline;
+}
 .flex-center {
   align-items: center;
   justify-content: center;
 }
+
+// .hidden-sm {
+//   display: block;
+
+//   @media (max-width: 575px) {
+//     display: none;
+//   }
+// }
+
+
+
+// @media (min-width: 960px) {
+//   .hidden-md {
+//     display: block;
+//   }
+// }
+// @media (max-width: 960px) {
+//   .hidden-md {
+//     display: none;
+
+//   }
+//   .hidden-md-12 {
+//     width: 100% !important;
+//     max-width: 100% !important;
+//   }
+// }
+
 
 .loading {
   position: fixed;

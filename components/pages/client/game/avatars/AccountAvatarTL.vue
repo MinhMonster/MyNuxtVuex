@@ -5,13 +5,15 @@
         v-if="accountAvatar.images[0].includes('muabannick.pro')"
         :src="accountAvatar.images[0]"
         alt=""
-        class="image-ninja"
+        class="image-account"
+        :class="{ full: accountAvatar.full }"
       />
       <img
         v-else
         :src="`https://muabannick.pro${accountAvatar.images[0]}`"
         alt=""
-        class="image-ninja"
+        class="image-account"
+        :class="{ full: accountAvatar.full }"
       />
       <span class="account-cash-atm"
         ><v-btn icon>
@@ -63,6 +65,11 @@ export default {
   img {
     width: 120%;
     margin-left: -10%;
+    height: 270px;
+    &.full {
+      width: 100%;
+      margin-left: 0px;
+    }
     // max-height: 200px;
   }
 }

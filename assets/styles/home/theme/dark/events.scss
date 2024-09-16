@@ -1,0 +1,26 @@
+.theme-dark {
+  .list-number {
+    .number {  
+      .v-btn {
+        background: #0F0F0F;
+        color: #f1f1f1;
+        &.active {
+          background: #f1f1f1;
+          color: #0F0F0F;
+        }
+      }
+    }
+  }
+  form.daily-event {
+    &.form {
+      .field {
+        input.v-input {
+          color: #0F0F0F !important;
+          &.number {
+            text-shadow: 2px 2px 2px #b549cc !important;
+          }
+        }
+      }
+    }
+  }
+}
