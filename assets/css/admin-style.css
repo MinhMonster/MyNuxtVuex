@@ -385,7 +385,7 @@ ol li::before {
 }
 
 .v-application ul {
-  padding-left: 0px;
+  /* padding-left: 0px; */
 }
 
 
@@ -917,8 +917,8 @@ font-size: 15px;
 
   /* #admin .menu-left-off +  .body-admin,
   #admin .menu-left-on +  .body-admin,
-  #admin .menu-left-off +  .body-admin,  
-  #admin .menu-left-on +  .body-admin,  
+  #admin .menu-left-off +  .body-admin,
+  #admin .menu-left-on +  .body-admin,
   #admin .menu-left-off #header-site #header-admin,
   #admin .menu-left-on #header-site #header-admin,
   #admin .menu-left-off #header-site .header-layout
