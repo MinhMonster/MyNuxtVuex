@@ -9,15 +9,26 @@
     >
       <template #body>
         <form class="form daily-event">
-          <div class="content-main text-center mb-2">
-            Đoạn đúng chắc chắc có thưởng!
+          <div v-if="!isEvent" class="flex flex-column flex-center card">
+            <h1 class="bold text-danger height-200px middle text-20-800">
+              Sự kiện đang bảo trì!
+            </h1>
           </div>
-          <div class="btn-show-more">
-            <v-btn @click="showModal()" variant="danger" class="flex mt-3 mb-1">
-              Xem Hướng Dẫn Tham Gia
-            </v-btn>
-          </div>
-          <v-row>
+          <v-row v-else>
+            <div class="flex flex-column flex-center">
+              <div class="content-main text-center mb-2">
+                Đoạn đúng chắc chắc có thưởng!
+              </div>
+              <div class="btn-show-more">
+                <v-btn
+                  @click="showModal()"
+                  variant="danger"
+                  class="flex mt-3 mb-1"
+                >
+                  Xem Hướng Dẫn Tham Gia
+                </v-btn>
+              </div>
+            </div>
             <v-col v-if="!votedDaylyEvent" cols="12" class="middle">
               <div class="field center">
                 <form-validator name="phone">
@@ -179,6 +190,7 @@ export default {
       token: "token",
     }),
     ...mapFields("home/events/daily", {
+      isEvent: "isEvent",
       votedDaylyEvent: "votedDaylyEvent",
       histories: "historyVotedDailyEvents",
       historyMeta: "historyMeta",
@@ -194,6 +206,7 @@ export default {
       "voted",
       "setQuery",
       "resetQuery",
+      "fetchStatusEvent",
       "fetchVotedDailyEventHistories",
     ]),
     ...global.mapActions(["nextOldPath"]),
@@ -241,6 +254,7 @@ export default {
       }
     },
     reload() {
+      this.fetchStatusEvent();
       this.onPageChange(this.pageSave);
     },
     showModal() {

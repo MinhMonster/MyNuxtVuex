@@ -5,6 +5,9 @@ const headers = {
   },
 }
 export default ($api) => ({
+  fetchStatusEvent() {
+    return $api.get(`${resource}/fetchStatusEvent.php`,)
+  },
   voted(payload) {
     return $api.post(`${resource}/dailyVoted.php`, payload,)
   },
