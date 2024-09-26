@@ -3,13 +3,18 @@
   bottom: 0px;
   position: fixed;
   z-index: 10;
-  display: flex;
-  justify-content: space-evenly;
   height: 45px;
   background: $color-theme-blue;
-padding-bottom:5px ;
+  padding-bottom:5px ;
   @media (max-width: 599px) {
     height: 45px;
+  }
+  .body-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 1500px;
+    margin: 0 auto;
   }
 }
 

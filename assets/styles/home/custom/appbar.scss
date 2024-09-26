@@ -12,12 +12,14 @@
   justify-content: space-between;
   align-items: center;
   background: $color-theme-blue  !important;
+  // max-width: 1500px;
   // background-color: #1c3695;
 
   .v-toolbar__content {
     height: 50px !important;
     padding: 5px 5px;
-
+    max-width: 1200px;
+    margin: 0 auto;
     .header-user {
       width: 100%;
       display: flex;
