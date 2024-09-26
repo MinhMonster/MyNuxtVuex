@@ -4,12 +4,12 @@
       <BaseSvg
         class="icon-menu"
         id="btn-games"
-        title="Nick Game"
-        aria-label="Nick Game"
-        name="game"
+        title="Sản Phẩm"
+        aria-label="Sản Phẩm"
+        name="list"
       />
     </div>
-    <span class="title-menu-buttom">Game</span>
+    <span class="title-menu-buttom">Sản Phẩm</span>
     <ModalPayload ref="modal" :title="`Menu Nick Game`" size="md" hiddenFooter>
       <template #content>
         <div class="base-diglog page-body">

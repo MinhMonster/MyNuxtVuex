@@ -40,12 +40,12 @@
             <BaseSvg
               class="icon-menu"
               id="btn-change-theme"
-              title="Đổi Màu"
-              aria-label="Đổi Màu"
-              name="theme-light-dark"
+              title="Giỏ Hàng"
+              aria-label="Giỏ Hàng"
+              name="cart"
             />
           </div>
-          <span class="title-menu-buttom">Đổi Màu</span>
+          <span class="title-menu-buttom">Giỏ Hàng</span>
         </div>
       </div>
     </div>
