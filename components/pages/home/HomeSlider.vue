@@ -22,17 +22,27 @@ export default {
         return [
           {
             src: this.isMobile
-              ? "https://shopnick.online/images/banners/banner-violet.png"
-              : "https://shopnick.online/images/banners/banner-violet.png",
+              ? "/banner.jpg"
+              : "/banner.jpg",
           },
+          {
+            src: this.isMobile
+              ? "/banner.jpg"
+              : "/banner-2.jpg",
+          }
         ];
       } else {
         return [
           {
             src: this.isMobile
-              ? "https://shopnick.online/images/banners/banner-blue.png"
-              : "https://shopnick.online/images/banners/banner-blue.png",
+              ? "/banner.jpg"
+              : "/banner.jpg",
           },
+          {
+            src: this.isMobile
+              ? "/banner.jpg"
+              : "/banner-2.jpg",
+          }
         ];
       }
     },
@@ -70,7 +80,7 @@ export default {
       .v-carousel__item {
         height: auto !important;
         min-height: 150px;
-        max-height: 320px;
+        max-height: 100%;
       }
     }
   }

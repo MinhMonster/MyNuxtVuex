@@ -18,7 +18,7 @@
           </v-col>
         </v-row>
         <div class="mt-3" id="dich-vu-game">
-          <div class="title text-center text-underline">DỊCH VỤ GAME</div>
+          <div class="title text-center text-underline">Danh Sách Đồ Ăn Vặt</div>
           <v-row class="text-center account mb-1">
             <GameCard
               v-for="(game, index) in gameList"
@@ -101,45 +101,56 @@ export default {
           {
             title: "Avatar XS.DKỳ",
             path: "/teamobi/avatar",
-            image: "https://shopnick.online/images/banners/avatar.png",
+            image: "/images/products/kho-ga-la-chanh.jpg",
             numberAccount: "90",
             sold: "69",
           },
           {
             title: "Nick Ninja VIP",
             path: "/teamobi/ninja-school/nick-vip",
-            image: "https://shopnick.online/images/banners/ninja-vip.png",
-
+            image: "/images/products/kho-heo-chay-toi.jpg",
             numberAccount: "5245",
             sold: "5144",
           },
           {
             title: "Nick Ninja Giá Rẻ",
             path: "/teamobi/ninja-school/nick-gia-re",
-            image: "https://shopnick.online/images/banners/ninja-cheap.png",
+            image: "/images/products/kho-bo-xe-soi.jpg",
             numberAccount: "7481",
             sold: "7185",
           },
           {
             title: "Ngọc Rồng Online",
             path: "/teamobi/ngoc-rong",
-            image: "https://shopnick.online/images/banners/ngocrong.png",
+            image: "/images/products/muc-hap-nuoc-dua.jpg",
             numberAccount: "515",
             sold: "438",
           },
           {
             title: "Sự kiện Hằng ngày",
             path: "/events/daily",
-            image: "https://shopnick.online/images/banners/events.png",
+            image: "/images/products/combo-ga-bo.jpg",
             numberAccount: "5245",
             sold: "5144",
           },
-
           {
             title: "Đai Tây Du - G4M",
             path: "/g4m/dai-tay-du",
-            image: "https://shopnick.online/images/banners/daitaydu.png",
-
+            image: "/images/products/combo-vui-ve.png",
+            numberAccount: "90",
+            sold: "69",
+          },
+          {
+            title: "Đai Tây Du - G4M",
+            path: "/g4m/dai-tay-du",
+            image: "/images/products/combo-cau-vong.jpg",
+            numberAccount: "90",
+            sold: "69",
+          },
+          {
+            title: "Đai Tây Du - G4M",
+            path: "/g4m/dai-tay-du",
+            image: "/images/products/combo-vui-ve.png",
             numberAccount: "90",
             sold: "69",
           },
@@ -149,14 +160,14 @@ export default {
           {
             title: "Avatar XS.DKỳ",
             path: "/teamobi/avatar",
-            image: "https://shopnick.online/images/banners/avatar-blue.png",
+            image: "/images/products/kho-ga-la-chanh.jpg",
             numberAccount: "90",
             sold: "69",
           },
           {
             title: "Nick Ninja VIP",
             path: "/teamobi/ninja-school/nick-vip",
-            image: "https://shopnick.online/images/banners/ninja-vip-blue.png",
+            image: "/images/products/kho-heo-chay-toi.jpg",
 
             numberAccount: "5245",
             sold: "5144",
@@ -164,30 +175,49 @@ export default {
           {
             title: "Nick Ninja Giá Rẻ",
             path: "/teamobi/ninja-school/nick-gia-re",
-            image:
-              "https://shopnick.online/images/banners/ninja-cheap-blue.png",
+            image: "/images/products/kho-bo-xe-soi.jpg",
             numberAccount: "7481",
             sold: "7185",
           },
           {
             title: "Ngọc Rồng Online",
             path: "/teamobi/ngoc-rong",
-            image: "https://shopnick.online/images/banners/ngocrong-blue.png",
+            image: "/images/products/muc-hap-nuoc-dua.jpg",
             numberAccount: "515",
             sold: "438",
           },
           {
             title: "Sự kiện Hằng ngày",
             path: "/events/daily",
-            image: "https://shopnick.online/images/banners/events-blue.png",
+            image: "/images/products/combo-ga-bo.jpg",
             numberAccount: "5245",
             sold: "5144",
           },
           {
             title: "Đai Tây Du - G4M",
             path: "/g4m/dai-tay-du",
-            image: "https://shopnick.online/images/banners/daitaydu-blue.png",
-
+            image: "/images/products/combo-cau-vong.jpg",
+            numberAccount: "90",
+            sold: "69",
+          },
+          {
+            title: "Đai Tây Du - G4M",
+            path: "/g4m/dai-tay-du",
+            image: "/images/products/combo-vui-ve.png",
+            numberAccount: "90",
+            sold: "69",
+          },
+          {
+            title: "Đai Tây Du - G4M",
+            path: "/g4m/dai-tay-du",
+            image: "/images/products/combo-cau-vong.jpg",
+            numberAccount: "90",
+            sold: "69",
+          },
+          {
+            title: "Đai Tây Du - G4M",
+            path: "/g4m/dai-tay-du",
+            image: "/images/products/combo-vui-ve.png",
             numberAccount: "90",
             sold: "69",
           },
