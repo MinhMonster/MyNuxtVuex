@@ -3,7 +3,7 @@
     <nuxt-link :to="game.path">
       <div class="account-info">
         <ImageCard :game="game" />
-        <v-row class="account-body">
+        <!-- <v-row class="account-body">
           <v-col cols="12"
             ><v-btn
               class="account-thongtin break-line-1 btn-main"
@@ -12,7 +12,7 @@
               {{ game.title }}</v-btn
             ></v-col
           >
-        </v-row>
+        </v-row> -->
       </div>
     </nuxt-link>
   </v-col>

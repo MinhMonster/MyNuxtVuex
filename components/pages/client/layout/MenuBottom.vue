@@ -8,16 +8,17 @@
 
         <div class="sub-menu-buttom" @click="nextPath('/')">
           <div class="footer_icon home">
-            <div class="circle-menu">
-              <div class="icon-wrap">
+            <!-- <div class="circle-menu"> -->
+              <!-- <div class="icon-wrap"> -->
                 <BaseSvg
+                  class="icon-menu"
                   id="btn-home"
                   title="Trang Chủ"
                   aria-label="Trang Chủ"
                   name="home"
                 />
-              </div>
-            </div>
+              <!-- </div> -->
+            <!-- </div> -->
           </div>
           <span class="title-menu-buttom">Trang chủ</span>
         </div>

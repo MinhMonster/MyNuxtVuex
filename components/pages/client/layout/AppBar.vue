@@ -42,7 +42,7 @@ export default {
   name: "AppBar",
   data() {
     return {
-      logo: "https://shopnick.online/images/logo/logo.png",
+      logo: "/mimifood.png",
       clipped: true,
       miniVariant: false,
     };
@@ -80,9 +80,10 @@ export default {
       }
     },
     getLogo() {
-      this.logo = this.isDark
-        ? "https://shopnick.online/images/logo/logo.png"
-        : "https://shopnick.online/images/logo/logo.png";
+      this.logo ="/mimifood.png"
+      // this.logo = this.isDark
+      //   ? "https://shopnick.online/images/logo/logo.png"
+      //   : "https://shopnick.online/images/logo/logo.png";
     },
   },
 };

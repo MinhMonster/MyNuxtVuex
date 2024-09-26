@@ -3,8 +3,8 @@
   bottom: 0px;
   position: fixed;
   z-index: 10;
-  height: 45px;
-  background: $color-theme-blue;
+  height: 50px;
+  background: $color-theme-yellow;
   padding-bottom:5px ;
   @media (max-width: 599px) {
     height: 45px;
@@ -34,7 +34,7 @@
   flex-direction: column;
   /* width: 1.1rem; */
   width: 20%;
-  padding-top: 0;
+  padding-top: 3px;
   font-size: 24px;
   color: #ffcf9c;
   text-align: center;
@@ -65,7 +65,7 @@
 #menu-bottom .sub-menu-buttom .footer_icon button.icon-menu,
 .title-menu-buttom {
   margin-top: 15px !important;
-  color: #fff;
+  color: $bottom-color;
 }
 
 #menu-bottom a.on .footer_icon svg,
@@ -82,9 +82,8 @@
 
 
   path {
-    fill: #f1f1f1;
-
-    color: #f1f1f1 !important;
+    fill: $bottom-color;
+    color: $bottom-color !important;
     text-shadow: none !important;
 
 
@@ -114,13 +113,13 @@
 
 #menu-bottom .circle-menu {
   position: absolute;
-  left: -21px;
-  top: -22px;
-  width: 50px;
-  height: 50px;
+  left: -16px;
+  top: 3px;
+  width: 40px;
+  height: 40px;
   padding: 10px;
   border-radius: 50%;
-  background-color: $blue-bold;
+  background-color: #FFC107;
 }
 
 #menu-bottom .circle-menu .icon-wrap {
@@ -129,11 +128,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   /* background: radial-gradient(circle at 50% 15%, #8a6ede, #2f215a 72%); */
-  background: radial-gradient(circle at 50% 15%, #3399ff, $blue-bold 72%);
+  background: radial-gradient(circle at 50% 15%, #ff8b5f, $yellow-bold 72%);
 }
 
 #menu-bottom .mdi.mdi-home {

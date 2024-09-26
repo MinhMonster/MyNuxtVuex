@@ -39,10 +39,12 @@ button.v-btn.v-size--default {
   .v-btn--icon.v-size--default {
     height: 30px;
     width: 30px;
+    color: $dark-bold !important;
     background: radial-gradient(circle at 50% 100%,
-        #3399ff,
-        $blue-bold 58%,
-        $blue-bold 127%);
+      $yellow-bold-2,
+      $yellow-bold 58%,
+      $yellow-bold 127%
+    );
 
 
   }

@@ -3,7 +3,7 @@
     <AppBar />
     <v-main id="main" class="bg-website">
       <v-container
-        class="client-main scroll-y"
+        class="client-main"
         :style="styleMain"
         v-on:wheel="scroll()"
         v-on:scroll="scroll()"
@@ -171,7 +171,7 @@ export default {
       top: 55px;
       bottom: 50px;
       right: 5px;
-      position: fixed;
+      // position: fixed;
       width: calc(100% - 55px) !important;
       // height: calc(100vh - 115px);
       margin-left: 50px;
@@ -181,10 +181,10 @@ export default {
       background: #fff;
       transition: margin-left 0.2s;
       background-size: cover;
-      background-image: url("https://shopnick.online/images/bg/blue/bg.jpg");
-      @media (max-width: 599px) {
-        background-image: url("https://shopnick.online/images/bg/blue/bg-mb.png");
-      }
+      // background-image: url("https://shopnick.online/images/bg/blue/bg.jpg");
+      // @media (max-width: 599px) {
+      //   background-image: url("https://shopnick.online/images/bg/blue/bg-mb.png");
+      // }
     }
   }
 
