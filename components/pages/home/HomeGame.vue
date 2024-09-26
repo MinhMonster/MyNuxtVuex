@@ -9,7 +9,7 @@
     >
     </ModalNotification>
     <v-row class="hom-page">
-      <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8" id="home-left">
+      <v-col cols="12" id="home-left">
         <v-row style="margin: -15px">
           <v-col cols="12">
             <!-- <RunText v-if="isTablet" /> -->
@@ -29,7 +29,7 @@
         </div>
       </v-col>
 
-      <v-col
+      <!-- <v-col
         v-if="!isTablet"
         cols="12"
         :sm="isTablet ? 12 : 4"
@@ -43,7 +43,7 @@
         >
           <template><DepositCardForm /></template>
         </div>
-      </v-col>
+      </v-col> -->
     </v-row>
   </div>
 </template>
@@ -54,7 +54,7 @@ import ModalNotification from "@/components/pages/client/layout/ModalNotificatio
 // import FormLogin from "@/components/pages/client/login/FormLogin";
 // import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import HomeSlider from "@/components/pages/home/HomeSlider";
-import DepositCardForm from "@/components/pages/client/account/wallet/DepositCardForm";
+// import DepositCardForm from "@/components/pages/client/account/wallet/DepositCardForm";
 
 // import RunText from "@/components/global/molecules/common/template/RunText";
 import { mapFields } from "vuex-map-fields";
@@ -69,7 +69,7 @@ export default {
     // FormLogin,
     // SideBarMenu,
     HomeSlider,
-    DepositCardForm,
+    // DepositCardForm,
     // RunText,
   },
   props: {

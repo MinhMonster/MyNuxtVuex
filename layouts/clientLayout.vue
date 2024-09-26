@@ -12,7 +12,7 @@
       </v-container>
     </v-main>
     <MenuBottom />
-    <MenuRight />
+    <!-- <MenuRight /> -->
     <ModalLogin />
 
     <template v-if="isShowButton">
@@ -32,7 +32,7 @@
 <script>
 import AppBar from "@/components/pages/client/layout/AppBar";
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
-import MenuRight from "@/components/pages/client/layout/MenuRight";
+// import MenuRight from "@/components/pages/client/layout/MenuRight";
 import ModalLogin from "@/components/pages/client/account/wallet/ModalLogin";
 import { mapFields } from "vuex-map-fields";
 
@@ -43,7 +43,7 @@ export default {
   components: {
     AppBar,
     MenuBottom,
-    MenuRight,
+    // MenuRight,
     ModalLogin,
   },
   data() {
@@ -72,13 +72,13 @@ export default {
     ...mapState("home/users", ["token"]),
     ...mapFields("global", {
       isThemeDark: "isThemeDark",
-      showMenuRight: "showMenuRight",
+      // showMenuRight: "showMenuRight",
     }),
 
     styleMain() {
-      if (this.showMenuRight && !this.isMobile) {
-        return "width: calc(100% - 260px) !important; margin-right: 250px; transition: margin-left 0.3s";
-      }
+      // if (this.showMenuRight && !this.isMobile) {
+      //   return "width: calc(100% - 260px) !important; margin-right: 250px; transition: margin-left 0.3s";
+      // }
       return "width: calc(100% - 10px) !important; margin-left: 5px; transition: margin-left 0.3s";
     },
     // isAvatar() {

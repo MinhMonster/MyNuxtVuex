@@ -10,7 +10,7 @@
 
     <v-spacer />
 
-    <div class="header-menu" @click.stop="showMenuRight = !showMenuRight">
+    <!-- <div class="header-menu" @click.stop="showMenuRight = !showMenuRight">
       <div class="login-btn">
         <span @click="openMenu()"
           >{{ user && token ? user.name : "Tài khoản" }}
@@ -30,7 +30,7 @@
           aria-label="Close"
         />
       </div>
-    </div>
+    </div> -->
   </v-app-bar>
 </template>
 
@@ -57,7 +57,7 @@ export default {
   computed: {
     ...mapState("home/users", ["token", "user"]),
     ...mapFields("global", {
-      showMenuRight: "showMenuRight",
+      // showMenuRight: "showMenuRight",
       fixed: "fixed",
     }),
     isHome() {
