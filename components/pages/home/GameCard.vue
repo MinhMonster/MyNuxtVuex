@@ -1,45 +1,42 @@
 <template>
-  <v-col cols="6" :sm="isTablet ? 3 : 4" md="4" @click="nextPath(game.path)">
-    <div class="account-info">
-      <ImageCard :game="game" />
-      <v-row class="account-body">
-        <v-col cols="12"
-          ><v-btn class="account-thongtin break-line-1 btn-main" :title="game.title">
-            {{ game.title }}</v-btn
-          ></v-col
-        >
-        <!-- <v-col cols="6"
-          ><span class="account-code"
-            >Số Nick <br />{{ format_number(game.numberAccount) }}</span
-          ></v-col
-        >
-        <v-col cols="6"
-          ><span class="account-class"
-            >Đã Bán<br />
-            {{ format_number(game.sold) }}</span
-          ></v-col
-        >
-
-        <v-col cols="6"
-          ><span class="account-cash"
-            >Mua Ngay</span
-          ></v-col
-        >
-        <v-col cols="6">
-          <span class="account-buy"> Xem Nick</span>
-        </v-col> -->
-      </v-row>
-    </div>
+  <v-col cols="6" :sm="isTablet ? 3 : 4" md="4">
+    <a v-if="game.target" :href="game.path" target="_blank">
+      <div class="account-info">
+        <ImageCard :game="game" />
+        <v-row class="account-body">
+          <v-col cols="12"
+            ><v-btn
+              class="account-thongtin break-line-1 btn-main"
+              :title="game.title"
+            >
+              {{ game.title }}</v-btn
+            ></v-col
+          >
+        </v-row>
+      </div>
+    </a>
+    <nuxt-link v-else :to="game.path">
+      <div class="account-info">
+        <ImageCard :game="game" />
+        <v-row class="account-body">
+          <v-col cols="12"
+            ><v-btn
+              class="account-thongtin break-line-1 btn-main"
+              :title="game.title"
+            >
+              {{ game.title }}</v-btn
+            ></v-col
+          >
+        </v-row>
+      </div>
+    </nuxt-link>
   </v-col>
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import ImageCard from "@/components/pages/home/ImageCard";
 
 export default {
-  mixins: [mixins],
-  name: "GameCard",
   components: { ImageCard },
   props: {
     game: {
@@ -47,21 +44,11 @@ export default {
       default: () => {},
     },
   },
-  created() {},
-  mounted() {
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
-  },
-  methods: {
-    nextPath(path) {
-      this.$router.push(`${path}`);
-    },
-  },
+  // methods: {
+  //   nextPath(path) {
+  //     this.$router.push(`${path}`);
+  //   },
+  // },
 };
 </script>
 

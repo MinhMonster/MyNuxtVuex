@@ -2,3 +2,36 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+
+$color-theme-dark: #a937ed;
+
+$color-boder: #b549cc;
+
+$border-theme-dark: 1px solid $color-boder;
+
+$border-theme-dark-2: 2px solid $color-boder;
+
+
+$text-shadow-theme-dark: $color-theme-dark 0px 0px 5px,
+  $color-theme-dark 0px 0px 0px,
+  $color-theme-dark 0px 0px 0px,
+  $color-theme-dark 0px 0px 0px,
+  $color-theme-dark 0px 0px 0px;
+
+$text-shadow-topic-theme-dark: $color-theme-dark 0px 0px 2px,
+  $color-theme-dark 0px 0px 0px,
+  $color-theme-dark 0px 0px 0px,
+  $color-theme-dark 0px 0px 0px,
+  $color-theme-dark 0px 0px 0px;
+
+$title-text-shadow: $color-theme-dark 0px 0px 5px,
+  $color-theme-dark 0px 0px 0px,
+  $color-theme-dark 0px 0px 0px,
+  $color-theme-dark 0px 0px 0px,
+  $color-theme-dark 0px 0px 0px;
+// $title-text-shadow: $color-theme-dark 0px 0px 5px,
+//   $color-theme-dark 0px 0px 5px,
+//   $color-theme-dark 0px 0px 0px,
+//   $color-theme-dark 0px 0px 0px,
+//   $color-theme-dark 0px 0px 0px;
+// ;

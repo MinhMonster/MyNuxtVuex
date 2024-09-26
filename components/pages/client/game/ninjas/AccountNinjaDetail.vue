@@ -1,4 +1,3 @@
-
 <template>
   <client-only>
     <v-row v-if="accountNinja.ID">
@@ -17,12 +16,15 @@
         <VueSlickCarousel
           v-else-if="accountNinja.hinhanh"
           :initialSlide="0"
-          :slidesToShow="2"
+          :slidesToShow="1"
           :arrows="true"
-          :rows="2"
+          :rows="1"
           :dots="true"
         >
-          <AccountNinjaTL :account-ninja="accountNinja" />
+          <!-- <AccountNinjaTL
+            v-if="!accountNinja.full"
+            :account-ninja="accountNinja"
+          /> -->
           <div
             v-for="(image, index) in accountNinja.hinhanh"
             :key="index"
@@ -34,12 +36,14 @@
               :src="image"
               alt=""
               class="image-account"
+              :class="{ full: index == 0 && accountNinja.full }"
             />
             <img
               v-else
               :src="`https://muabannick.pro${image}`"
               alt=""
               class="image-account"
+              :class="{ full: index == 0 && accountNinja.full }"
             />
           </div>
         </VueSlickCarousel>
@@ -70,56 +74,44 @@
                 :src="image"
                 alt=""
                 class="image-ninja"
+                :class="{ full: index == 0 && accountNinja.full }"
               />
               <img
                 v-else
                 :src="`https://muabannick.pro${image}`"
                 alt=""
                 class="image-ninja"
+                :class="{ full: index == 0 && accountNinja.full }"
               />
             </div>
           </v-col>
         </v-row>
-        <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja School Online" />
+        <GroupBtnBuyAccount
+          :account="accountNinja"
+          account-type="Ninja School Online"
+        />
       </v-col>
     </v-row>
   </client-only>
 </template>
-  
-  <script>
-import mixins from "@/mixins/index";
+
+<script>
 import AccountNinjaInfo from "@/components/pages/client/game/ninjas/AccountNinjaInfo";
 import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  mixins: [mixins],
-
   components: { AccountNinjaInfo, AccountNinjaTL, GroupBtnBuyAccount },
   props: {
     accountNinja: {
       type: Object,
-      default: () => {},
-    },
-  },
-  data() {
-    return {};
-  },
-  async mounted() {
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
-  },
-  computed: {},
-  methods: {},
+      default: () => {}
+    }
+  }
 };
 </script>
-  
-  <style lang="scss" scoped>
+
+<style lang="scss" scoped>
 ::v-deep {
   .slick-slide {
     overflow: hidden !important;
@@ -128,6 +120,9 @@ export default {
       img {
         // width: 112% !important;
         margin-left: 0px;
+        &.full {
+          width: 101.5% !important;
+        }
       }
     }
   }
@@ -145,23 +140,20 @@ export default {
   // border-radius: 5px;
 
   img {
-    width: 108%;
+    width: 100%;
     // max-height: 200px;
+    &.full {
+      width: 100% !important;
+    }
   }
 }
-.account {
-  margin: -9px;
-}
-.btn-next-more {
-  color: #ffffff;
-  background: #a21d0a !important;
-  text-align: center;
-  margin: 0 auto;
-}
 .image-account {
-  width: 110% !important;
+  width: 100% !important;
   overflow: hidden;
   margin-left: 0px;
+  &.full {
+    width: 100% !important;
+  }
 }
 .title {
   color: #1e5b7e;

@@ -1,6 +1,6 @@
 <template>
   <form class="form-login">
-    <div id="content" class="title text-main text-center bold">Đăng Nhập</div>
+    <!-- <div id="content" class="title text-main text-center bold">Đăng Nhập</div> -->
     <div class="field">
       <form-validator name="username">
         <input
@@ -29,7 +29,7 @@
         <input type="checkbox" id="remember" checked />
         <label for="remember">Lưu đăng nhập</label>
       </div>
-      <nuxt-link to="/register">Đăng Ký</nuxt-link>
+      <span @click="showModalLoginRegister('register')">Đăng Ký</span>
     </div>
     <input type="hidden" id="confirm" name="confirm" />
     <div class="field submit">
@@ -48,7 +48,7 @@ import { mapFields } from "vuex-map-fields";
 
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
-import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
+// import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
 
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
@@ -61,14 +61,17 @@ export default {
       password: "",
     };
   },
-  components: { Loading, FormValidator, ButtonLoginFacebook },
+  components: {
+    Loading,
+    FormValidator,
+    // ButtonLoginFacebook,
+  },
   computed: {
     ...mapState(["token"]),
     ...mapFields("global", {
       ready: "ready",
     }),
   },
-  mounted() {},
   methods: {
     ...mapActions(["login", "logout", "fetchUser", "loginFb"]),
     async loginUser() {
@@ -81,28 +84,33 @@ export default {
       });
       if (this.token) {
         this.fetchUser();
+        this.$emit("close");
+        this.showSwal({
+          icon: "success",
+          title: "Đăng nhập Thành công",
+          html: "Cảm ơn bạn đã sử dụng dịch vụ!",
+        });
       }
       this.isLoading = false;
     },
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .form-login {
   height: 100%;
   max-height: calc(100vh - 140px);
+  text-align: center;
 }
-::v-depp {
-  .has-error .validation {
-    margin-top: 10px !important;
-  }
-}
+
 .account-box {
   width: 100%;
   max-width: 390px;
   margin: 0 auto;
   padding: 0px;
 }
+
 // .wrapper {
 //   border-radius: 15px;
 //   box-shadow: 0px 15px 20px rgb(0 0 0 / 10%);
@@ -118,7 +126,7 @@ export default {
 //   background: linear-gradient(-135deg, #e28637, #561d00);
 // }
 form {
-  padding: 10px 30px 30px;
+  padding: 10px;
   background: #ffefa3;
   border: none;
   border-bottom-right-radius: 10px;
@@ -129,9 +137,11 @@ form {
     width: 100%;
     margin-top: 20px;
     position: relative;
+
     &.submit {
       margin-top: 0px;
     }
+
     input:valid ~ label {
       top: 0%;
       font-size: 16px;
@@ -139,6 +149,7 @@ form {
       background: none;
       transform: translateY(-50%);
     }
+
     input {
       height: 100%;
       width: 100%;
@@ -149,12 +160,14 @@ form {
       border-radius: 4px;
       transition: all 0.3s ease;
       background: #fff;
+
       &.v-input {
         height: 40px;
         border: 1px solid #e28637;
         color: #663019 !important;
       }
     }
+
     label {
       position: absolute;
       top: 50%;
@@ -166,6 +179,7 @@ form {
       transform: translateY(-50%);
       transition: all 0.3s ease;
     }
+
     input[type="submit"],
     .btn-login {
       width: 100%;
@@ -180,12 +194,14 @@ form {
       transition: all 0.3s ease;
     }
   }
+
   .signin {
     display: flex;
     justify-content: center;
     margin-top: 15px;
     color: #663019;
   }
+
   .content {
     display: flex;
     flex-wrap: wrap;
@@ -193,11 +209,13 @@ form {
     font-size: 16px;
     align-items: center;
     justify-content: space-around;
+
     input {
       width: 15px;
       height: 15px;
       background: red;
     }
+
     span {
       white-space: nowrap;
       color: #4158d0 !important;
@@ -205,6 +223,7 @@ form {
     }
   }
 }
+
 // }
 .checkbox {
   position: relative;
@@ -216,12 +235,14 @@ form {
   user-select: none;
   white-space: nowrap;
   padding-top: 10px;
+
   input[type="checkbox"] {
     position: absolute;
     opacity: 0;
     z-index: -1;
     margin: 0;
   }
+
   label {
     display: inline-block;
     color: #e28637;
@@ -244,6 +265,7 @@ form {
     height: 17px !important;
   }
 }
+
 .checkbox input[type="checkbox"] + label::before {
   content: " ";
   position: absolute;
@@ -254,10 +276,12 @@ form {
   height: 17px !important;
   border-radius: 2px;
 }
+
 .checkbox input[type="checkbox"]:checked + label::before {
   content: " ";
   background: linear-gradient(#e28637, #663019);
 }
+
 input[type="checkbox"]:checked + label::after {
   content: "\2714";
   top: -0.5px;
@@ -279,11 +303,13 @@ input[type="checkbox"]:checked + label::after {
     margin: 7% auto;
   }
 }
+
 @media (max-width: 380px) {
   .account-box {
     padding: 0px;
   }
 }
+
 #home-page {
   max-width: 400px;
 }

@@ -1,20 +1,28 @@
 
 <template>
   <v-dialog
+    v-if="dialog"
     v-model="dialog"
-    :id="`${(isAvatar ? 'theme-avatar' : '', isThemeDark ? 'theme-dark' : '')}`"
+    :id="`${isDark ? 'theme-dark' : 'alb'}`"
     :title="title"
     scrollable
     :size="size"
     max-width="500px"
     @hide="close()"
     class="modal-content"
+    aria-labelledby="labeldiv"
   >
-    <v-card>
-      <v-btn class="close" color="red" icon @click="dialog = false">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-      <v-card-title class="title-modal text-menu-main">
+    <v-card :max-height="height">
+      <BaseSvg
+        class="close"
+        color="red"
+        id="btn-close-modal-header"
+        title="Đóng"
+        aria-label="Đóng"
+        @click="close()"
+        name="close"
+      />
+      <v-card-title class="title-modal text-menu-main bold">
         {{ title }}
       </v-card-title>
       <v-card-text class="modal-body">
@@ -33,7 +41,14 @@
                 <slot name="footer-button"></slot>
               </div>
               <div class="text-right right w-100">
-                <v-btn color="red" class="text-white" @click="dialog = false">
+                <v-btn
+                  color="red"
+                  class="btn-sm text-white bold bg-danger"
+                  id="btn-close-modal"
+                  title="Đóng"
+                  aria-label="Đóng"
+                  @click="close()"
+                >
                   {{ textClose }}
                 </v-btn>
               </div>
@@ -57,8 +72,6 @@
 </template>
   
 <script>
-import { mapFields } from "vuex-map-fields";
-
 export default {
   name: "ModalPayload",
   data() {
@@ -79,15 +92,11 @@ export default {
       type: String,
       default: "lg",
     },
-    hiddenFooter: Boolean,
-  },
-  mounted() {},
-  computed: {
-    ...mapFields("global", { isThemeDark: "isThemeDark" }),
-    isAvatar() {
-      const path = this.$route.path;
-      return path.includes("teamobi/avatar");
+    height: {
+      type: String,
+      default: "auto",
     },
+    hiddenFooter: Boolean,
   },
   methods: {
     show() {

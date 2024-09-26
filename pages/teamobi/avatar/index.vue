@@ -10,7 +10,7 @@
     >
       <template v-if="ready" #body>
         <div class="mt-4">
-          <AccountAvatarSearch @search="search()"></AccountAvatarSearch>
+          <AccountAvatarSearch></AccountAvatarSearch>
           <AccountAvatarList></AccountAvatarList>
         </div>
       </template>
@@ -19,61 +19,31 @@
 </template>
 
 <script>
+import avatars_mixins from "@/mixins/avatars_mixins";
 import HomePage from "@/components/pages/home/HomePage";
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
 import AccountAvatarSearch from "@/components/pages/client/game/avatars/AccountAvatarSearch";
 import AccountAvatarList from "@/components/pages/client/game/avatars/AccountAvatarList";
-import Loading from "@/components/global/molecules/common/Loading";
 
 export default {
   layout: "clientLayout",
-
+  mixins: [avatars_mixins],
   components: {
     HomePage,
     AccountAvatarSearch,
     AccountAvatarList,
-    Loading,
   },
-  computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
-  },
+
   async mounted() {
-    this.ready = false;
-    await this.resetQuery();
-    await this.resetAccountAvatars();
-    await this.fetchAccountAvatars();
-    this.ready = true;
+    await this.reload();
+    this.nextAvatarId();
   },
-  methods: {
-    ...mapActions("home/game/avatars", [
-      "resetQuery",
-      "setQuery",
-      "resetAccountAvatars",
-      "fetchAccountAvatars",
-    ]),
-    async search() {
-      this.ready = false;
-      await this.resetAccountAvatars();
-      await this.fetchAccountAvatars();
-      this.ready = true;
-    },
-    async reload() {
-      this.ready = false;
-      await this.resetQuery();
-      await this.resetAccountAvatars();
-      await this.fetchAccountAvatars();
-      this.ready = true;
-    },
-  },
+
   data() {
     return {
       title:
-        "MuaBanNick.Pro - Shop Nick Avatar SX Diệu Kỳ Tự Động - Shop Mua Bán Nick Avatar SX Diệu Kỳ VIP Giá Rẻ, Uy Tín Nhất MXH",
+        "MuaBanNick.Pro - Shop Nick Avatar SX Diệu Kỳ (2x) - Shop Mua Bán Acc Avatar SX Diệu Kỳ (2x) VIP Giá Rẻ của TeaMobi Uy Tín Nhất MXH",
       description:
-        "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
+        "WEB Mua Bán Nick Avatar DK (2x), Mua Bán Acc Avatar DK, Shop Acc Avatar DK (2x), Shop Nick Avatar DK (2x) của TeaMobi - Uy Tín - Giá rẻ",
     };
   },
   head() {
@@ -89,10 +59,20 @@ export default {
         },
         {
           property: "og:image:alt",
-          content: "Shop Nick Avatar SX Diệu Kỳ VIP Giá RẺ",
+          content: "Shop Nick Avatar SX Diệu Kỳ (2x) VIP Giá RẺ",
+        },
+        {
+          name: "keywords",
+          content:
+            " nick avatar dk, shop nick avatar 2x, mua nick avatar dk, mua nick avatar 2x, shop acc avatar dk, shop acc avatar 2x, nick avatar dk teamobi, shop nick avatar 2x teamobi",
         },
       ],
     };
   },
 };
 </script>
+<style scoped>
+#home-page {
+  max-width: 1400px !important;
+}
+</style>

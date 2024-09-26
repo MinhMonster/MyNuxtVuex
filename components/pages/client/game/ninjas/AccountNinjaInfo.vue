@@ -1,53 +1,54 @@
-
 <template>
   <client-only>
     <div v-if="accountNinja">
-      <div class="title">
+      <div v-if="!isMobile || !accountNinja.full" class="title">
         <center><h3>Thông tin chi tiết</h3></center>
       </div>
 
       <table class="table text-center">
         <tbody>
-          <tr>
-            <th class="info-nick">Class</th>
-            <td class="mua-nick">
-              <span>{{ classNinja(accountNinja.class) }}</span>
-            </td>
-          </tr>
+          <template v-if="!isMobile || !accountNinja.full">
+            <tr>
+              <th class="info-nick">Class</th>
+              <td class="mua-nick">
+                <span>{{ classNinja(accountNinja.class) }}</span>
+              </td>
+            </tr>
 
-          <tr>
-            <th class="info-nick" style="">Level</th>
-            <td class="mua-nick">
-              <span> {{ accountNinja.level }}</span>
-            </td>
-          </tr>
+            <tr>
+              <th class="info-nick" style="">Cấp độ</th>
+              <td class="mua-nick">
+                <span> {{ accountNinja.level }}</span>
+              </td>
+            </tr>
 
-          <tr>
-            <th class="info-nick" style="">Vũ Khí</th>
-            <td class="mua-nick">
-              <span>{{ accountNinja.vukhi }}</span>
-            </td>
-          </tr>
+            <tr>
+              <th class="info-nick" style="">Vũ Khí</th>
+              <td class="mua-nick">
+                <span>{{ accountNinja.vukhi }}</span>
+              </td>
+            </tr>
 
-          <tr>
-            <th class="info-nick" style="">Đồ</th>
-            <td class="mua-nick">
-              <span>{{ accountNinja.do }}</span>
-            </td>
-          </tr>
+            <tr>
+              <th class="info-nick" style="">Đồ</th>
+              <td class="mua-nick">
+                <span>{{ accountNinja.do }}</span>
+              </td>
+            </tr>
 
-          <tr>
-            <th class="info-nick" style="">Server</th>
-            <td class="mua-nick">
-              <span>{{ serverNinja(accountNinja.server) }}</span>
-            </td>
-          </tr>
-          <tr>
-            <th class="info-nick" style="">Chi tiết</th>
-            <td class="mua-nick">
-              <span>{{ accountNinja.thongtin }} </span>
-            </td>
-          </tr>
+            <tr>
+              <th class="info-nick" style="">Máy Chủ</th>
+              <td class="mua-nick">
+                <span>{{ serverNinja(accountNinja.server) }}</span>
+              </td>
+            </tr>
+            <tr>
+              <th class="info-nick" style="">Chi tiết</th>
+              <td class="mua-nick">
+                <span>{{ accountNinja.thongtin }} </span>
+              </td>
+            </tr>
+          </template>
           <tr>
             <th class="info-nick" style="">
               <div style="margin: 10px"></div>
@@ -96,45 +97,42 @@
           </tr>
         </tbody>
       </table>
-      <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja School Online" />
+      <GroupBtnBuyAccount
+        :account="accountNinja"
+        account-type="Ninja School Online"
+      />
     </div>
   </client-only>
 </template>
-  
-  <script>
-import mixins from "@/mixins/index";
+
+<script>
 import AccountNinjaCard from "@/components/pages/client/game/ninjas/AccountNinjaCard";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  name: "AccountNinjaList",
-  mixins: [mixins],
-
   components: { AccountNinjaCard, GroupBtnBuyAccount },
   props: {
     accountNinja: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       isBuy: "wallet",
       isShow: false,
-      isBank: false,
+      isBank: false
     };
   },
-  async mounted() {},
-  computed: {},
   methods: {
     buyNow() {
       this.isShow = true;
-    },
-  },
+    }
+  }
 };
 </script>
-  
-  <style lang="scss" scoped>
+
+<style lang="scss" scoped>
 .title {
   color: #1e5b7e;
   margin-bottom: 10px;

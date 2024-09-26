@@ -2,7 +2,7 @@
 <template>
   <client-only>
     <v-row v-if="accountAvatar.ID">
-      <v-col cols="12" sm="12" md="6" lg="8">
+      <v-col cols="12" sm="12" md="6" lg="6">
         <div class="title">
           <center>
             <h3>
@@ -45,7 +45,7 @@
           </div>
         </VueSlickCarousel>
       </v-col>
-      <v-col cols="12" sm="12" md="6" lg="4">
+      <v-col cols="12" sm="12" md="6" lg="6">
         <v-row>
           <v-col cols="12" sm="12" md="12">
             <AccountAvatarInfo
@@ -106,34 +106,19 @@
     </v-row>
   </client-only>
 </template>
-  
+
   <script>
-import mixins from "@/mixins/index";
 import AccountAvatarInfo from "@/components/pages/client/game/avatars/AccountAvatarInfo";
 import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvatarTL";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  mixins: [mixins],
-
   components: { AccountAvatarInfo, AccountAvatarTL, GroupBtnBuyAccount },
   props: {
     accountAvatar: {
       type: Object,
       default: () => {},
     },
-  },
-  data() {
-    return {};
-  },
-  async mounted() {
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
   },
   computed: {
     images() {
@@ -143,14 +128,15 @@ export default {
       return images;
     },
   },
-  methods: {},
 };
 </script>
-  
+
   <style lang="scss" scoped>
 ::v-deep {
-  .fileItemWrapper img.full {
-    height: 100%;
+  .fileItemWrapper {
+    img.full {
+      height: 100%;
+    }
   }
 }
 .fileItemWrapper {
@@ -162,9 +148,11 @@ export default {
   align-items: flex-start;
   // height: 100%;
   overflow: hidden;
-  // border-radius: 5px;
+  border-radius: 5px;
 
   img {
+    border-radius: 7px;
+    border: 1px solid #a4a4a4;
     width: 120%;
     margin-left: -10%;
     height: 100%;

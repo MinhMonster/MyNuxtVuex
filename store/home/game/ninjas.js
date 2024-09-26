@@ -12,7 +12,7 @@ export default {
     accountNinja: {},
     query: {
       page: 1,
-      perPage: 24,
+      perPage: 36,
       q: {
         id: null,
         level: null,
@@ -96,7 +96,7 @@ export default {
       const type = payload ? payload : null;
       commit(SET_QUERY, {
         page: 1,
-        perPage: 24,
+        perPage: 36,
         q: {
           id: null,
           level: null,

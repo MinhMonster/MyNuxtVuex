@@ -15,39 +15,21 @@
         class="image-account"
         :class="{ full: accountAvatar.full }"
       />
-      <span class="account-cash-atm"
-        ><v-btn icon>
-          <v-icon>mdi-cart-variant</v-icon>
-        </v-btn>
+      <!-- <span class="account-cash-atm">
         {{ cash_atm(accountAvatar.price) }} ATM-MOMO</span
       >
-
-      <span class="account-ingame">
-        <v-btn icon>
-          <v-icon>mdi-account</v-icon>
-        </v-btn>
-        {{ accountAvatar.inGame }}
-      </span>
+      <span class="account-ingame"> @{{ accountAvatar.inGame }} </span> -->
     </div>
   </client-only>
 </template>
 <script>
-import mixins from "@/mixins/index";
-
 export default {
-  mixins: [mixins],
-  name: "accountAvatarCardInfo",
-  components: {},
   props: {
     accountAvatar: {
       type: Object,
       default: () => {},
     },
   },
-  mounted() {},
-
-  computed: {},
-  methods: {},
 };
 </script>
 <style lang="scss" scoped>
@@ -60,15 +42,22 @@ export default {
   align-items: flex-start;
   // height: 100%;
   overflow: hidden;
-  // border-radius: 5px;
+  border-radius: 5px;
 
   img {
     width: 120%;
     margin-left: -10%;
     height: 270px;
+    border-radius: 7px;
+    border: 1px solid #a4a4a4;
     &.full {
       width: 100%;
       margin-left: 0px;
+    }
+    @media (max-width: 600px) {
+      &.image-account {
+        height: 100%;
+      }
     }
     // max-height: 200px;
   }
@@ -89,7 +78,7 @@ export default {
   font-weight: 450;
   width: auto !important;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 0px 5px;
   color: #ffffff;
   background: #a21d0a;

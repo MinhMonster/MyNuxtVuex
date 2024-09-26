@@ -1,7 +1,15 @@
 import colors from 'vuetify/es5/util/colors'
 import webpack from "webpack";
 import axios from "axios";
+// import Vuetify from 'vuetify/lib';
+// import Vue from 'vue';
 
+// // Remove MDI icons
+// Vue.use(Vuetify, {
+//   icons: {
+//     iconfont: 'fa', // Sử dụng FontAwesome thay vì MDI
+//   },
+// });
 
 export default {
   // target: 'static', // default is 'server'
@@ -15,7 +23,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'format-detection', content: 'telephone=no' },
-      { name: 'keywords', content: 'nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja, shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, nick avatar, nick dai tay du ' },
+      { name: 'keywords', content: 'nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja, shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, nick avatar, nick dai tay du, nick avatar dk, shop nick avatar 2x, mua nick avatar dk, mua nick avatar 2x, shop acc avatar dk, shop acc avatar 2x, nick avatar dk teamobi, shop nick avatar 2x teamobi' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -29,6 +37,14 @@ export default {
       // },
     ],
   },
+  // generate: {
+  //   routes: async () => {
+  //     const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
+  //     return data.sitemap_topics.map(
+  //       file => `${file.link}`
+  //     );
+  //   },
+  // },
   mounted() {
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -36,10 +52,12 @@ export default {
     gtag('config', 'AW-11265837402');
     gtag('event', 'conversion', { 'send_to': 'AW-11265837402/7E7zCI2d4YYZENqS_Psp' });
   },
+  components: true,
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     "@/assets/css/mms-style.css",
+    "@/assets/css/reset.css",
     "@/assets/styles/common.scss",
     // "@/assets/styles/home/_ckeditor.scss",
     "@/assets/styles/home/account.scss",
@@ -50,7 +68,7 @@ export default {
     { src: "@/plugins/vuex-persistedstate", ssr: false },
     "@/plugins/axios",
     // "@/plugins/vue-sweetalert",
-
+    // '@/plugins/filters.js',
     '~/plugins/repositories.js',
     { src: "@/plugins/vue-slick-carousel" },
     { src: "@/plugins/vue-clipboard2", ssr: false },
@@ -75,7 +93,8 @@ export default {
     '@nuxtjs/axios',
     "lodash",
     "@nuxt/content",
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-analytics',
+    '@nuxtjs/svg',
 
   ],
   googleAnalytics: {
@@ -87,7 +106,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    "bootstrap-vue/nuxt",
+    // "bootstrap-vue/nuxt",
     'cookie-universal-nuxt',
     // With options
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
@@ -99,7 +118,8 @@ export default {
     // "@nuxtjs/toast",
     "vue-sweetalert2/nuxt",
     // 'nuxt-validate'
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
   ],
   sitemap: {
     hostname: 'https://muabannick.pro',
@@ -120,7 +140,16 @@ export default {
       },
     ]
   },
+  robots: {
+    UserAgent: '*', // Default user agent
+    Disallow: ['/account',], // Disallow specific paths
+    Allow: '/', // Allow all other paths
+    // ... other configuration options
+  },
 
+  // svgSprite: {
+  //   input: '@/assets/images/svg/',
+  // },
   nuxtValidate: {
     lang: 'es',
     nuxti18n: {

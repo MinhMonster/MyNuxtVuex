@@ -24,8 +24,11 @@
                     <div class="text-main text-14-700">
                       {{ item.title }}
                     </div>
-                    <div class="break-line-2 text-main text-13-400">
-                      {{ item.description }}
+                    <div
+                      class="break-line-2 text-main text-13-400"
+                      :class="isMobile ? 'break-line-2' : 'break-line-3'"
+                    >
+                      <div v-html="item.description"></div>
                     </div>
                   </v-col>
                 </v-row>
@@ -59,22 +62,19 @@ export default {
   layout: "clientLayout",
   components: {
     HomePage,
-    Pagination,
+    Pagination
   },
   computed: {
     ...mapState("home/topics", ["topics", "metaTopics"]),
     ...mapFields("global", {
-      ready: "ready",
+      ready: "ready"
     }),
-    queryPage() {
-      return _.cloneDeep(this.$route.query.page) || 1;
-    },
     queryGoBack() {
       return `page=2`;
     },
     pathGoBack() {
       return "/topics";
-    },
+    }
   },
 
   mounted() {
@@ -93,12 +93,12 @@ export default {
         ? await this.$router.push(`/topics`)
         : await this.$router.push(`/topics?page=${page}`);
       this.ready = true;
-    },
+    }
   },
   data() {
     return {
       title:
-        "Danh Mục Bài Viết, Tổng Hợp và Chia Sẻ Các Kinh Nghiệm Chơi Game TeaMobile",
+        "Danh Mục Bài Viết, Tổng Hợp và Chia Sẻ Các Kinh Nghiệm Chơi Game TeaMobile"
     };
   },
   head() {
@@ -108,10 +108,10 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
-        { property: "og:image", content: "/banner.jpg" },
-      ],
+        { property: "og:image", content: "/banner.jpg" }
+      ]
     };
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>

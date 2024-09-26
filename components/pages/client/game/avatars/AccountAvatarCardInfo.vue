@@ -1,5 +1,5 @@
 <template>
-  <div class="account-info">
+  <div :id="accountAvatar.ID" class="account-info">
     <AccountAvatarTL :account-avatar="accountAvatar" />
     <v-row class="account-body">
       <v-col cols="12"
@@ -31,11 +31,11 @@
       >
       <v-col cols="6"
         ><span class="account-cash"
-          >{{ format_number(accountAvatar.price) }} Card</span
+          >{{ cash_atm(accountAvatar.price) }} Vnđ</span
         ></v-col
       >
       <v-col cols="6">
-        <nuxt-link :to="`/teamobi/avatar/${this.accountAvatar.ID}`">
+        <nuxt-link :to="`/teamobi/avatar/${accountAvatar.ID}`">
           <span class="account-buy"> Xem Nick</span>
         </nuxt-link>
       </v-col>
@@ -44,25 +44,14 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvatarTL";
 
 export default {
-  mixins: [mixins],
-  name: "accountAvatarCardInfo",
   components: { AccountAvatarTL },
   props: {
     accountAvatar: {
       type: Object,
       default: () => {},
-    },
-  },
-  created() {},
-
-  computed: {},
-  methods: {
-    async viewAaccount() {
-      await this.$router.push(`/teamobi/avatar/${this.accountAvatar.ID}`);
     },
   },
 };
@@ -82,9 +71,18 @@ export default {
 .account-info {
   width: 100%;
   background: #ffefa3;
-  border-radius: 5px;
+  border-radius: 4px;
   border: 1px solid #663019;
   text-align: center;
+  overflow: hidden;
+  ::v-deep {
+    .fileItemWrapper {
+      padding: 6px;
+      img {
+        border-radius: 7px;
+      }
+    }
+  }
 
   .account-thongtin,
   .account-cash,

@@ -1,31 +1,28 @@
 <template>
   <div id="home-page">
     <Loading v-if="loading" />
-    <v-row v-else  >
+    <v-row v-else>
       <v-col cols="12" md="12" :lg="colLeft">
-        <div :class="{ 'full-screen': fullScreen, 'page-body': !notBoder }">
+        <div
+          class="page-body"
+          :class="{ 'full-screen': fullScreen, 'not-border': notBoder }"
+        >
           <div :class="{ 'page-info': fullScreen }">
             <div v-if="title" class="title-page title text-center">
               {{ title }}
             </div>
-            <small
-              v-if="content"
-              id="fileHelp"
-              class="form-text text-muted text-center"
-              >{{ content }}</small
-            >
+            <div v-if="content" class="text-center">
+              <small id="fileHelp" class="form-text text-muted">
+                {{ content }}
+              </small>
+            </div>
+
             <div v-if="goBack" class="go-back" @click="onGoBack()">
-              <v-btn v-if="!isGoHome" icon>
-                <v-icon>mdi-arrow-left-bold-circle-outline</v-icon>
-              </v-btn>
-              <v-btn v-else icon>
-                <v-icon>mdi-home</v-icon>
-              </v-btn>
+              <BaseSvg v-if="!isGoHome" name="next-left" />
+              <BaseSvg v-else name="home" />
             </div>
             <div v-if="reload" class="reload" @click="onReload()">
-              <v-btn icon>
-                <v-icon>mdi-reload</v-icon>
-              </v-btn>
+              <BaseSvg name="reload" />
             </div>
             <slot name="body"></slot>
           </div>
@@ -44,15 +41,9 @@
   
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
-import mixins from "@/mixins/index";
-
 import { mapFields } from "vuex-map-fields";
-import { mapState, mapActions } from "vuex";
 
 export default {
-  name: "HomePage",
-  mixins: [mixins],
-
   components: { Loading },
   props: {
     title: {
@@ -99,18 +90,7 @@ export default {
       default: null,
     },
   },
-  // data() {
-  //   return {
-  //     isMobile: false,
-  //   };
-  // },
-  // async mounted() {
-  //   this.$nextTick(function () {
-  //     this.nextPath();
-  //   });
-  // },
   computed: {
-    ...mapState("global", ["oldPath", "nowPath"]),
     ...mapFields("global", {
       ready: "ready",
     }),
@@ -118,17 +98,7 @@ export default {
       return this.goHome;
     },
   },
-  mounted(){
-    // window.addEventListener("wheel", this.scroll());
-
-  },
   methods: {
-    // ...mapActions("global", ["setPath"]),
-    // nextPath() {
-    //   const path = this.$route.path;
-    //   this.setPath(path);
-    // },
-   
     async onGoBack() {
       if (this.isGoHome) {
         this.$router.push("/");

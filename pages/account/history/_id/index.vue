@@ -90,8 +90,11 @@
                         {{ history.accountCode }}</span
                       >
                       <ButtonCoppy
-                        :content="`GO SIMMOI
-                      ${history.accountName} ${history.accountCode}`"
+                        :content="`${
+                          'GO SIMMOI ' +
+                          history.accountName +
+                          history.accountCode
+                        }`"
                       ></ButtonCoppy
                       ><br />
                       <img src="/icon/icon-next-right.gif" />
@@ -123,11 +126,10 @@ import AdminInbox from "@/components/common/client/AdminInbox";
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import mixins from "@/mixins/index";
 
 export default {
+  middleware: ["authentication"],
   layout: "clientLayout",
-  mixins: [mixins],
 
   components: {
     Loading,
@@ -158,11 +160,7 @@ export default {
     },
     async fetchHistory() {
       this.ready = false;
-      if (!this.token) {
-        this.$router.push("/login");
-      } else {
-        await this.historyBuyAccount(this.historyId);
-      }
+      await this.historyBuyAccount(this.historyId);
       this.ready = true;
     },
     goBack() {

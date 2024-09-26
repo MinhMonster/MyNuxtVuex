@@ -43,7 +43,7 @@
                 <v-col :cols="12" :sm="6" :md="2" :lg="2">
                   <v-btn
                     :color="class_status(history.depositState)"
-                    class="text-white pd-5px"
+                    class="btn-sm pd-5px"
                   >
                     {{ history.depositState }}
                   </v-btn>
@@ -53,8 +53,8 @@
             <td class="text-middle">
               <v-btn
                 color="info"
-                class="text-white pd-10px"
-                :to="`/account/wallet/deposit/vnd/${history.ID}`"
+                class="btn-sm pd-10px"
+                @click="$emit('show', history)"
               >
                 Xem
               </v-btn>
@@ -70,23 +70,7 @@
 </template>
 
 <script>
-import Loading from "@/components/global/molecules/common/Loading";
-import ButtonCoppy from "@/components/common/ButtonCoppy";
-import mixins from "@/mixins/index";
-import ModalPayload from "@/components/common/ModalPayload";
-
-import { mapFields } from "vuex-map-fields";
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("home/users");
-
 export default {
-  mixins: [mixins],
-  layout: "clientLayout",
-  components: {
-    Loading,
-    ButtonCoppy,
-    ModalPayload,
-  },
   props: {
     histories: {
       type: Array,
@@ -97,18 +81,6 @@ export default {
       default: () => {},
     },
   },
-  data() {
-    return {
-      isShow: false,
-      isLoading: false,
-      isCheck: false,
-      moneyReceived: 0,
-      isFailed: false,
-    };
-  },
-
-  computed: {},
-  mounted() {},
-  methods: {},
 };
 </script>
+

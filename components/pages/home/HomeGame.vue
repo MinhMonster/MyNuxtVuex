@@ -1,10 +1,19 @@
 <template>
   <div>
+    <ModalNotification
+      v-if="isNotification"
+      ref="modal"
+      :title="`Thông Báo`"
+      size="md"
+      @hide="onNotification = false"
+    >
+    </ModalNotification>
     <v-row class="hom-page">
       <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8" id="home-left">
         <v-row style="margin: -15px">
           <v-col cols="12">
             <!-- <RunText v-if="isTablet" /> -->
+
             <HomeSlider />
           </v-col>
         </v-row>
@@ -28,60 +37,39 @@
         lg="4"
         id="home-right"
       >
-        <div class="mt--1 home-user" :style="{ height: heightHomeLeft + 'px' }">
-          <template v-if="token"><SideBarMenu /></template>
-          <template v-else><FormLogin /></template>
+        <div
+          class="mt--1 form-deposit-card"
+          :style="{ height: heightHomeLeft + 'px' }"
+        >
+          <template><DepositCardForm /></template>
         </div>
       </v-col>
     </v-row>
-
-    <!-- <ModalPayload
-      v-if="isNotification"
-      ref="modal"
-      :title="`Thông Báo`"
-      size="md"
-    >
-      <template #content>
-        <div class="page-body">
-          <AdminNotification />
-        </div>
-      </template>
-      <template #footer-button>
-        <v-btn
-          size="sm"
-          color="warning"
-          @click="setNotification(), $refs.modal.close()"
-        >
-          <span>Đóng 2 giờ</span>
-        </v-btn>
-      </template>
-    </ModalPayload> -->
   </div>
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import GameCard from "@/components/pages/home/GameCard";
-// import ModalPayload from "@/components/common/ModalPayload";
-// import AdminNotification from "@/components/pages/home/AdminNotification";
-import FormLogin from "@/components/pages/client/login/FormLogin";
-import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
+import ModalNotification from "@/components/pages/client/layout/ModalNotification";
+// import FormLogin from "@/components/pages/client/login/FormLogin";
+// import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import HomeSlider from "@/components/pages/home/HomeSlider";
+import DepositCardForm from "@/components/pages/client/account/wallet/DepositCardForm";
+
 // import RunText from "@/components/global/molecules/common/template/RunText";
 
-// import { mapFields } from "vuex-map-fields";
+import { mapFields } from "vuex-map-fields";
 import { mapState, mapActions } from "vuex";
 export default {
   name: "HomeGame",
-  mixins: [mixins],
 
   components: {
     GameCard,
-    // ModalPayload,
-    // AdminNotification,
-    FormLogin,
-    SideBarMenu,
+    ModalNotification,
+    // FormLogin,
+    // SideBarMenu,
     HomeSlider,
+    DepositCardForm,
     // RunText,
   },
   props: {
@@ -93,6 +81,22 @@ export default {
   data() {
     return {
       gameList: [
+        {
+          title: "Shop Nick Mới",
+          path: "https://shopnick.online",
+          image:
+            "https://muabannick.pro/images/banners/banner-shopnickonline.png",
+          numberAccount: "90",
+          sold: "69",
+          target: true,
+        },
+        {
+          title: "Avatar XS.DKỳ",
+          path: "/teamobi/avatar",
+          image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
+          numberAccount: "90",
+          sold: "69",
+        },
         {
           title: "Nick Ninja VIP",
           path: "/teamobi/ninja-school/nick-vip",
@@ -109,6 +113,7 @@ export default {
           numberAccount: "7481",
           sold: "7185",
         },
+
         {
           title: "Sự kiện Hằng ngày",
           path: "/events/daily",
@@ -117,13 +122,7 @@ export default {
           numberAccount: "5245",
           sold: "5144",
         },
-        {
-          title: "Avatar XS.DKỳ",
-          path: "/teamobi/avatar",
-          image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
-          numberAccount: "90",
-          sold: "69",
-        },
+
         {
           title: "Ngọc Rồng Online",
           path: "/teamobi/ngoc-rong",
@@ -131,74 +130,36 @@ export default {
           numberAccount: "515",
           sold: "438",
         },
-        {
-          title: "Đai Tây Du - G4M",
-          path: "/g4m/dai-tay-du",
-          image:
-            "https://muabannick.pro/images/banners/banner_dai_tay_du_g4m_min.jpg",
-          numberAccount: "90",
-          sold: "69",
-        },
       ],
     };
   },
-  async mounted() {
-    // await this.getNotification();
-    // if (this.isNotification) {
-    //   // this.$refs.modal.show();
-    // }
-    window.addEventListener("resize", this.onResize);
-    this.$nextTick(function () {
-      this.onResize();
-    });
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize);
-  },
   computed: {
     ...mapState("home/users", ["token", "user"]),
-
-    // nextPath(path) {
-    //   this.$router.push(`${path}`);
-    // },
-    // ...mapFields("global", {
-    //   isNotification: "isNotification",
-    // }),
+    ...mapFields("global", {
+      isNotification: "isNotification",
+      onNotification: "onNotification",
+    }),
+    isShowHome() {
+      return (
+        !this.isNotification ||
+        !this.isMobile ||
+        (this.isMobile && this.isNotification && !this.onNotification)
+      );
+    },
   },
-  // methods: {
-  //   ...mapActions("global", ["setNotification", "getNotification"]),
-  // },
+  mounted() {
+    this.onNotification = true;
+    this.getNotification();
+  },
+  methods: {
+    ...mapActions("global", ["getNotification"]),
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.home-user {
-  position: fixed;
-  width: calc(25% + 5px);
-  max-width: 300px;
-
-  @media (min-width: 876px) {
-    width: calc(25% + 10px);
-  }
-
-  @media (min-width: 978px) {
-    width: calc(25% + 15px);
-  }
-}
-@media (min-width: 768px) {
-  .hom-page {
-    margin-left: 3%;
-  }
-}
-
 .account {
   margin: -9px;
   cursor: pointer;
-}
-.btn-next-more {
-  color: #ffffff;
-  background: #a21d0a !important;
-  text-align: center;
-  margin: 0 auto;
 }
 </style>

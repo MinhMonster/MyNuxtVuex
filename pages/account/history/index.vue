@@ -47,7 +47,7 @@
                   <v-btn
                     size="sx"
                     color="success"
-                    class="btn btn-success text-white bdrs-5px"
+                    class="btn btn-success btn-sm text-white bdrs-5px"
                     :to="`/account/history/${history.ID}`"
                     >Xem
                   </v-btn>
@@ -78,11 +78,10 @@ import Pagination from "@/components/global/molecules/common/Pagination";
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import mixins from "@/mixins/index";
 
 export default {
+  middleware: ["authentication"],
   layout: "clientLayout",
-  mixins: [mixins],
 
   components: { Pagination, HomePage },
   computed: {
@@ -93,18 +92,11 @@ export default {
     }),
     ...mapFields("home/game/ninjas", {}),
     ...mapState(["token", "user"]),
-    queryPage() {
-      return _.cloneDeep(this.$route.query.page) || 1;
-    },
   },
   async mounted() {
-    if (!this.token) {
-      this.$router.push("/login");
-    } else {
-      await this.resetQuery();
-      await this.setQuery({ page: this.queryPage });
-      this.onPageChange(this.queryPage);
-    }
+    await this.resetQuery();
+    await this.setQuery({ page: this.queryPage });
+    this.onPageChange(this.queryPage);
   },
   methods: {
     ...mapActions(["historyBuyAccounts", "setQuery", "resetQuery"]),

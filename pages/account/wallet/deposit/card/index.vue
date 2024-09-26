@@ -10,7 +10,7 @@
       :col-right="4"
       table
     >
-      <template v-if="token && user && ready" #body>
+      <template v-if="ready" #body>
         <form class="form">
           <v-row>
             <v-col cols="12" sm="6" class="middle">
@@ -20,11 +20,15 @@
                     >Chọn loại thẻ
                     <small>(<span style="color: red">*</span>)</small></label
                   >
-                  <v-select
-                    v-model="card.telco"
-                    :items="walletOptions"
-                    size="sm"
-                  ></v-select>
+                  <select v-model="card.telco">
+                    <option
+                      v-for="(option, index) in walletOptions"
+                      :key="index"
+                      :value="option.value"
+                    >
+                      {{ option.text }}
+                    </option>
+                  </select>
                 </form-validator>
               </div>
             </v-col>
@@ -35,11 +39,15 @@
                     >Chọn Mệnh giá
                     <small>(<span style="color: red">*</span>)</small></label
                   >
-                  <v-select
-                    v-model="card.amount"
-                    :items="amountOptions"
-                    size="sm"
-                  ></v-select>
+                  <select v-model="card.amount">
+                    <option
+                      v-for="(option, index) in amountOptions"
+                      :key="index"
+                      :value="option.value"
+                    >
+                      {{ option.text }}
+                    </option>
+                  </select>
                 </form-validator>
               </div>
             </v-col>
@@ -101,39 +109,54 @@
         </v-row>
       </template>
       <template #table>
-        <HistoryDepositCardTable :histories="histories" :user="user" />
+        <HistoryDepositCardTable
+          :histories="histories"
+          :user="user"
+          @show="showModalDetail"
+        />
         <Pagination
           v-if="historyMeta && historyMeta.pages > 1"
           :meta="historyMeta"
           @change="onPageChange"
         ></Pagination>
+        <ModalDetaiCard ref="modalDetail" :history="history" />
       </template>
     </HomePage>
   </client-only>
 </template>
 
 <script>
+import HomePage from "@/components/pages/home/HomePage";
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
-import ButtonCoppy from "@/components/common/ButtonCoppy";
-import mixins from "@/mixins/index";
 import DepositCardInstructions from "@/components/common/DepositCardInstructions";
 import HistoryDepositCardTable from "@/components/pages/client/account/wallet/HistoryDepositCardTable";
 import Pagination from "@/components/global/molecules/common/Pagination";
-import HomePage from "@/components/pages/home/HomePage";
+import ModalDetaiCard from "@/components/pages/client/account/wallet/ModalDetaiCard";
 
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 const global = createNamespacedHelpers("global");
+import mixins from "@/mixins/index";
 
 export default {
+  middleware: ["authentication"],
   mixins: [mixins],
   layout: "clientLayout",
+  components: {
+    HomePage,
+    Loading,
+    FormValidator,
+    DepositCardInstructions,
+    HistoryDepositCardTable,
+    Pagination,
+    ModalDetaiCard,
+  },
   data() {
     return {
+      history: null,
       isLoading: false,
-      isCheck: false,
       walletOptions: [
         {
           text: "Chọn loại thẻ",
@@ -221,15 +244,7 @@ export default {
       title: "Nạp Thẻ Tự Động",
     };
   },
-  components: {
-    HomePage,
-    Loading,
-    FormValidator,
-    ButtonCoppy,
-    DepositCardInstructions,
-    HistoryDepositCardTable,
-    Pagination,
-  },
+
   computed: {
     ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
@@ -237,30 +252,18 @@ export default {
       historyMeta: "historyMeta",
       pageSave: "pageSave",
     }),
-    // ...mapFields("home/users", {
-    //   histories: "historyWalletDepositVnds",
-    //   historyMeta: "historyMeta",
-    //   pageSave: "pageSave",
-    // }),
+
     ...mapFields("home/game/ninjas", {}),
     ...mapState(["token", "user"]),
-    queryPage() {
-      return this.$route.query.page || 1;
-    },
   },
   mounted() {
-    if (!this.token) {
-      this.$router.push("/login");
-    } else {
-      this.onPageChange(this.queryPage);
-    }
+    this.onPageChange(this.queryPage);
   },
   methods: {
     ...mapActions([
       "depositCard",
       "fetchHistoryWalletDepositCards",
       "setQuery",
-      "resetQuery",
     ]),
     ...global.mapActions(["nextOldPath"]),
 
@@ -270,25 +273,13 @@ export default {
         input: this.card,
       });
       this.isLoading = false;
-      const depositCardId = res.data.depositCardId;
+      const history = res.data.depositCard;
 
-      if (depositCardId) {
+      if (history) {
+        await this.showModalDetail(history);
         await this.resetInput();
         await this.setQuery({ page: 1 });
         this.fetchHistoryWalletDepositCards();
-        this.$router.push(`/account/wallet/deposit/card/${depositCardId}`);
-      }
-    },
-    setMoneyOut() {
-      if (this.card.amount < 10000) {
-        this.isFailed = true;
-        this.moneyReceived = "Ít nhất 10.000đ";
-      } else if (this.card.amount > 10000000) {
-        this.isFailed = true;
-        this.moneyReceived = "Tối đa 10 Triệu";
-      } else {
-        this.isFailed = false;
-        this.moneyReceived = this.format_number(this.card.amount * 1.2) + " đ";
       }
     },
     async onPageChange(page) {
@@ -300,9 +291,6 @@ export default {
         : this.$router.push(`/account/wallet/deposit/card?page=${page}`);
       this.ready = true;
     },
-    increaseMoney(history) {
-      return history.moneyFirst < history.moneyLast;
-    },
     resetInput() {
       this.card = {
         telco: null,
@@ -312,12 +300,14 @@ export default {
       };
       this.moneyReceived = 0;
     },
-    goBack() {
-      // this.$router.push(`/`);
-      // this.nextOldPath();
-    },
     reload() {
       this.onPageChange(this.pageSave);
+    },
+    showModalDetail(history) {
+      this.history = history;
+      setTimeout(() => {
+        this.$refs.modalDetail.show();
+      }, 200);
     },
   },
   head() {
@@ -365,119 +355,6 @@ export default {
 //     border-radius: 15px 15px 0 0;
 //     background: linear-gradient(-135deg, #e28637, #561d00);
 //   }
-form {
-  // padding: 10px 30px 30px;
-  background: #ffefa3;
-  // border: 1px solid #663019;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-
-  .field {
-    height: 40px;
-    width: 100%;
-    margin-top: 15px;
-    position: relative;
-    &.submit {
-      margin-top: 0px;
-    }
-    // input:valid ~ label {
-    //   top: 0%;
-    //   font-size: 16px;
-    //   color: #4158d0;
-    //   background: none;
-    //   transform: translateY(-50%);
-    // }
-    input {
-      height: 100%;
-      width: 100%;
-      outline: none;
-      font-size: 17px;
-      padding-left: 5px;
-      border: 1px solid lightgrey;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      background: #fff;
-      &.v-input {
-        z-index: 999999999;
-        height: 35px;
-        border: 1px solid #e28637;
-        color: #663019 !important;
-        &.text-danger {
-          color: red !important;
-          font-size: 15px;
-        }
-      }
-    }
-    select {
-      height: 100%;
-      width: 100%;
-      outline: none;
-      font-size: 17px;
-      padding-left: 5px;
-      border: 1px solid #e28637 !important;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      // background: #fff;
-      .custom-select {
-        z-index: 999999999;
-        height: 35px;
-        border: 1px solid #e28637 !important;
-        color: #663019 !important;
-      }
-    }
-    // label {
-    //   position: absolute;
-    //   top: 50%;
-    //   left: 20px;
-    //   color: #999999;
-    //   font-weight: 400;
-    //   font-size: 17px;
-    //   pointer-events: none;
-    //   transform: translateY(-50%);
-    //   transition: all 0.3s ease;
-    // }
-    input[type="submit"],
-    .btn-login {
-      width: 100%;
-      border-radius: 20px;
-      color: #ffcf9c !important;
-      border: none;
-      padding-left: 0;
-      // font-size: 20px;
-      font-weight: 500;
-      cursor: pointer;
-      background: linear-gradient(-135deg, #e28637, #561d00);
-      transition: all 0.3s ease;
-      span {
-        color: #ffcf9c !important;
-      }
-    }
-  }
-  .signin {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    color: #663019;
-  }
-  .content {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    font-size: 16px;
-    align-items: center;
-    justify-content: space-around;
-    input {
-      width: 15px;
-      height: 15px;
-      background: red;
-    }
-    span {
-      white-space: nowrap;
-      color: #4158d0 !important;
-      cursor: pointer;
-    }
-  }
-}
 // }
 .checkbox {
   position: relative;
@@ -557,13 +434,13 @@ form {
 //  margin: 20px;
 // }
 
-.form-input {
-  border: 1px solid #333;
-  width: 100%;
-  height: 50px;
-  padding: 0 0px;
-  transform: 0.25s ease;
-}
+// .form-input {
+//   border: 1px solid #333;
+//   width: 100%;
+//   height: 50px;
+//   padding: 0 0px;
+//   transform: 0.25s ease;
+// }
 
 .form-input:focus {
   border-color: blue;

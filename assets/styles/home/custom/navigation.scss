@@ -1,0 +1,12 @@
+.v-navigation-drawer {
+  &.v-navigation-drawer--fixed{
+    z-index: 101;
+  }
+  .form-deposit-card {
+    height: 100%;
+
+    .rightbar-content, .form-login {
+      max-height: 100%;
+    }
+  }
+}

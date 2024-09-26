@@ -8,7 +8,7 @@
 }
 
 .v-dialog {
-  margin: 10px !important;
+  margin: 15px !important;
 
   &.v-dialog--active {
     overflow: visible;
@@ -47,6 +47,18 @@
       border: 2px solid #561d00;
       background: #ffcf9c;
       padding: 10px !important;
+
+      .field {
+        height: 50px;
+
+        .validation {
+          margin-top: -2px !important;
+          min-height: 30px;
+          margin-bottom: 10px !important;
+        }
+      }
+
+
     }
   }
 
@@ -197,6 +209,10 @@
   .red--text {
     color: red !important;
     caret-color: red !important;
+  }
+
+  .info-atm-momo {
+    padding: 5px;
   }
 
 }

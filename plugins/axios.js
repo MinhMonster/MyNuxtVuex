@@ -1,9 +1,6 @@
 export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
-  const isThemeDark = store.state.global.isThemeDark;
-  const customClassSwal = {
-    container: isThemeDark ? "swal-dark" : "",
-  }
+
 
   const axiosConfig = { timeout: 60000 };
   axiosConfig.baseURL = process.env.apiUrl;
@@ -16,7 +13,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     if (!hideLoading) {
       config.id =
         new Date().getTime() + Math.random().toString(36).substring(2, 15);
-      store.dispatch("addRequest", config.id);
     }
 
     try {
@@ -26,11 +22,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       // if (!config.noRequireToken) {
       switch (namespace) {
         case "clientLayout":
-          store.dispatch("disableLoading");
           authToken = store.state.home.users.token;
-          break;
-        case "adminDev":
-          authToken = store.state.admin.auth.token;
           break;
         default:
           authToken = null;
@@ -49,9 +41,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       case "clientLayout":
         break;
     }
-
-    // return config;
-
   })
 
   api.onResponse((response) => {
@@ -59,6 +48,12 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
 
     store.dispatch("global/setValidationErrors", {});
+
+    //check theme dark
+    const isThemeDark = store.state.global.isThemeDark;
+    const customClassSwal = {
+      container: isThemeDark ? "swal-dark" : "",
+    }
 
     // store.dispatch("removeRequest", response.config.id);
     if (code && code === 200) {
@@ -115,7 +110,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
             .then(async (result) => {
               store.dispatch("home/users/logout");
               if (result.isConfirmed) {
-                redirect('/login')
+                store.dispatch("global/openModalLogin");
               } else {
                 redirect('/')
               }
@@ -190,12 +185,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       // }
 
     }
-    setTimeout(() => {
-      store.dispatch("disableLoading");
-    }, 500);
-
-
-
 
   });
 
@@ -206,9 +195,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     if (code === 400) {
       redirect('/400')
     }
-    setTimeout(() => {
-      store.dispatch("disableLoading");
-    }, 500);
+
   })
   inject("api", api);
 }

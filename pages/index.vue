@@ -1,13 +1,9 @@
 <template>
   <client-only>
-    <HomePage :loading="!ready" @reload="reload()" notBoder>
+    <HomePage :loading="!ready" notBoder>
       <template v-if="ready" #body>
         <div class="mt-1">
           <HomeGame></HomeGame>
-          <!-- <v-row>
-            <v-col cols="12" sm="12" md="6"> <HistoryBuyAccount /> </v-col>
-            <v-col cols="12" sm="12" md="6"> <HistoryDeposit /></v-col>
-          </v-row> -->
         </div>
       </template>
     </HomePage>
@@ -18,10 +14,7 @@
 import { mapFields } from "vuex-map-fields";
 
 import HomePage from "@/components/pages/home/HomePage";
-// import HistoryBuyAccount from "@/components/pages/home/HistoryBuyAccount";
-// import HistoryDeposit from "@/components/pages/home/HistoryDeposit";
 import HomeGame from "@/components/pages/home/HomeGame";
-import Loading from "@/components/global/molecules/common/Loading";
 
 export default {
   layout: "clientLayout",
@@ -29,9 +22,6 @@ export default {
   components: {
     HomePage,
     HomeGame,
-    Loading,
-    // HistoryBuyAccount,
-    // HistoryDeposit,
   },
   computed: {
     ...mapFields("global", {
@@ -46,7 +36,7 @@ export default {
       this.ready = false;
       setTimeout(() => {
         this.ready = true;
-      }, 50);
+      }, 30);
     },
   },
   data() {
@@ -54,7 +44,7 @@ export default {
       title:
         "MuaBanNick.Pro - Shop Nick Tự Động - Shop Mua Bán Nick Ninja School Online, Ngọc Rồng Online, Avatar, Đại Tây Du Giá Rẻ, Uy Tín Nhất MXH",
       description:
-        "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
+        "WEB Mua Bán Nick Game, Tài Khoản Game, Account Game, Dịch Vụ Game Online, Nick Ninja School - Nso, Nick Ngọc Rồng - Nro, Nick Avatar SX Diệu Kỳ (2x) của TeaMobi - Uy Tín - Giá rẻ",
     };
   },
   head() {
@@ -68,6 +58,11 @@ export default {
         {
           property: "og:image:alt",
           content: "MuaBanNick.Pro - Shop Nick Tự Động",
+        },
+        {
+          name: "keywords",
+          content:
+            "nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja, shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, nick avatar, nick dai tay du, nick avatar dk, shop nick avatar 2x, mua nick avatar dk, mua nick avatar 2x, shop acc avatar dk, shop acc avatar 2x, nick avatar dk teamobi, shop nick avatar 2x teamobi",
         },
       ],
     };

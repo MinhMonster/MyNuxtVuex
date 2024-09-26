@@ -64,35 +64,16 @@
 </template>
   
 <script>
-import mixins from "@/mixins/index";
-import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  name: "accountAvatarList",
-  mixins: [mixins],
-
   components: {
-    AccountAvatarCard,
     GroupBtnBuyAccount,
   },
   props: {
     accountAvatar: {
       type: Object,
       default: () => {},
-    },
-  },
-  data() {
-    return {
-      isBuy: "wallet",
-      isShow: false,
-    };
-  },
-  async mounted() {},
-  computed: {},
-  methods: {
-    buyNow() {
-      this.isShow = true;
     },
   },
 };

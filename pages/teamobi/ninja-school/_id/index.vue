@@ -7,9 +7,9 @@
       <template #table>
         <div class="page-body bg-none mt--2">
           <div class="title-category">
-            <div data-v-53350ac5="" class="title">
-              <center data-v-53350ac5="">
-                <h3 data-v-53350ac5="">Danh Sách Nick Gợi Ý</h3>
+            <div class="title">
+              <center>
+                <h3>Danh Sách Nick Gợi Ý</h3>
               </center>
             </div>
           </div>
@@ -21,17 +21,17 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import HomePage from "@/components/pages/home/HomePage";
 import AccountNinjaDetail from "@/components/pages/client/game/ninjas/AccountNinjaDetail";
 import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
+import mixins from "@/mixins/index";
 
 export default {
-  layout: "clientLayout",
   mixins: [mixins],
+  layout: "clientLayout",
   components: {
     HomePage,
     AccountNinjaDetail,
@@ -39,7 +39,6 @@ export default {
   },
   computed: {
     ...mapFields("global", {
-      screenMobile: "screenMobile",
       ready: "ready",
     }),
     ...mapFields("home/game/ninjas", {
@@ -105,6 +104,11 @@ export default {
           property: "og:image",
           content: this.imagenHead,
         },
+        {
+          name: "keywords",
+          content:
+            "nick ninja, shop nick ninja, mua nick ninja, mua nick ninja school, shop nick ninja school, shop acc ninja, nick ninja teamobi, shop nick ninja teamobi, nick ninja gia re, nick ninja vip",
+        },
       ],
     };
   },
@@ -113,22 +117,5 @@ export default {
 <style lang="scss" scoped>
 #home-page {
   max-width: 1400px !important;
-}
-.title-category {
-  margin: 0 -9px;
-  margin-top: -9px;
-  margin-bottom: 9px;
-  height: 30px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background: radial-gradient(
-    circle at 50% 100%,
-    #e28637,
-    #9f5424 58%,
-    #561d00 127%
-  );
-  .title {
-    color: #ffefa3 !important;
-  }
 }
 </style>

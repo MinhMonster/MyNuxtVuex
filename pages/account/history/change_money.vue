@@ -87,17 +87,15 @@
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 import HomePage from "@/components/pages/home/HomePage";
-
 import Pagination from "@/components/global/molecules/common/Pagination";
 
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import mixins from "@/mixins/index";
 
 export default {
+  middleware: ["authentication"],
   layout: "clientLayout",
-  mixins: [mixins],
 
   components: { Loading, Pagination, HomePage },
   computed: {
@@ -108,18 +106,11 @@ export default {
     }),
     ...mapFields("home/game/ninjas", {}),
     ...mapState(["token", "user"]),
-    queryPage() {
-      return _.cloneDeep(this.$route.query.page) || 1;
-    },
   },
   async mounted() {
-    if (!this.token) {
-      this.$router.push("/login");
-    } else {
-      await this.resetQuery();
-      await this.setQuery({ page: this.queryPage });
-      this.onPageChange(this.queryPage);
-    }
+    await this.resetQuery();
+    await this.setQuery({ page: this.queryPage });
+    this.onPageChange(this.queryPage);
   },
   methods: {
     ...mapActions(["historyChangeMoneys", "setQuery", "resetQuery"]),

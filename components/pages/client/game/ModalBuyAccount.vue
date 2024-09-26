@@ -22,7 +22,7 @@
               <slot name="account-info"></slot>
             </v-window-item>
           </v-window>
-          <v-radio-group v-model="isBuy"> 
+          <v-radio-group v-model="isBuy">
             <v-radio
               name="some-radios"
               value="wallet"
@@ -55,17 +55,23 @@
         </div>
       </template>
       <template #footer-button>
-        <v-btn v-if="!user" size="sm" color="success" to="/login"
+        <v-btn
+          v-if="!user"
+          size="sm"
+          color="success"
+          class="btn-sm"
+          @click="openModalLogin()"
           ><span>Đăng nhập</span></v-btn
         >
         <v-btn
           v-else-if="Number(user.cash) < price"
           color="success"
+          class="btn-sm"
           to="/account/wallet/deposit/vnd"
           ><span>Nap tiền</span></v-btn
         >
 
-        <v-btn v-else color="success" class="btn-buy" @click="buyNow()">
+        <v-btn v-else color="success" class="btn-buy btn-sm" @click="buyNow()">
           <Loading v-if="isLoading" button></Loading>
           <span v-else> Thanh Toán </span>
         </v-btn>
@@ -76,7 +82,6 @@
   
 <script>
 import { mapActions, mapState } from "vuex";
-import mixins from "@/mixins/index";
 import Loading from "@/components/global/molecules/common/Loading";
 import ModalPayload from "@/components/common/ModalPayload";
 import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
@@ -84,8 +89,6 @@ import BuyAccountInstructions from "@/components/common/BuyAccountInstructions";
 import TablePayAccount from "@/components/pages/client/game/TablePayAccount";
 
 export default {
-  mixins: [mixins],
-
   components: {
     Loading,
     ModalPayload,
@@ -110,7 +113,6 @@ export default {
       isLoading: false,
     };
   },
-  async mounted() {},
   computed: {
     ...mapState("home/users", ["token", "user"]),
     price() {
@@ -119,6 +121,12 @@ export default {
   },
   methods: {
     ...mapActions("home/users", ["buyAccount"]),
+    openModalLogin() {
+      this.$refs.modal.close();
+      setTimeout(() => {
+        this.showModalLoginRegister("login");
+      }, 200);
+    },
 
     async buyNow() {
       this.isLoading = true;

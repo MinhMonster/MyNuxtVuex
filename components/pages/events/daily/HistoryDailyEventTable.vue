@@ -6,7 +6,7 @@
         bạn:
       </label>
       <label v-else class="text-danger">
-         Hãy đăng nhập để xem lịch sử tham gia Sự kiện của bạn
+        Hãy đăng nhập để xem lịch sử tham gia Sự kiện của bạn
       </label>
       <br />
       <table style="font-size: 14px" class="table table-striped table-border">
@@ -33,9 +33,7 @@
 </template>
 
 <script>
-
 export default {
-  components: {},
   props: {
     histories: {
       type: Array,
@@ -46,13 +44,5 @@ export default {
       default: () => {},
     },
   },
-  data() {
-    return {
-    };
-  },
-
-  computed: {},
-  mounted() {},
-  methods: {},
 };
 </script>

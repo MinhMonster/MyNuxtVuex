@@ -40,8 +40,6 @@ export default {
       },
     },
   },
-  computed: {
-  },
   created() {
     this.formattedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     this.formatInput();
@@ -59,6 +57,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-</style>

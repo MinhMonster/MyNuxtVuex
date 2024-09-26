@@ -8,11 +8,9 @@
       </template>
       <template #table>
         <div class="page-body bg-none mt--2">
-          <div class="title-category">
-            <div data-v-53350ac5="" class="title">
-              <center data-v-53350ac5="">
-                <h3 data-v-53350ac5="">Danh Sách Nick Gợi Ý</h3>
-              </center>
+          <div class="title-category mt--2">
+            <div class="title">
+              <h2 class="text-center">Danh Sách Nick Gợi Ý</h2>
             </div>
           </div>
           <AccountAvatarList></AccountAvatarList>
@@ -23,7 +21,6 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import HomePage from "@/components/pages/home/HomePage";
 
 import AccountAvatarDetail from "@/components/pages/client/game/avatars/AccountAvatarDetail";
@@ -31,10 +28,11 @@ import AccountAvatarList from "@/components/pages/client/game/avatars/AccountAva
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
+import mixins from "@/mixins/index";
 
 export default {
-  layout: "clientLayout",
   mixins: [mixins],
+  layout: "clientLayout",
 
   components: {
     HomePage,
@@ -43,7 +41,6 @@ export default {
   },
   computed: {
     ...mapFields("global", {
-      screenMobile: "screenMobile",
       ready: "ready",
     }),
     ...mapFields("home/game/avatars", {
@@ -81,7 +78,7 @@ export default {
       });
       this.ready = true;
 
-      await this.resetQuery();
+      await this.setQuery({ page: this.queryPage });
       await this.resetAccountAvatars();
       if (this.accountAvatar) {
         await this.setQuery({
@@ -102,27 +99,21 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
+        {
+          property: "og:image",
+          content: "/images/banners/banner_avatar_min.jpg",
+        },
+        {
+          property: "og:image:alt",
+          content: "Shop Nick Avatar SX Diệu Kỳ (2x) VIP Giá RẺ",
+        },
       ],
     };
   },
 };
 </script>
 <style lang="scss" scoped>
-.title-category {
-  margin: 0 -9px;
-  margin-top: -9px;
-  margin-bottom: 9px;
-  height: 30px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background: radial-gradient(
-    circle at 50% 100%,
-    #e28637,
-    #9f5424 58%,
-    #561d00 127%
-  );
-  .title {
-    color: #ffefa3 !important;
-  }
+#home-page {
+  max-width: 1400px !important;
 }
 </style>

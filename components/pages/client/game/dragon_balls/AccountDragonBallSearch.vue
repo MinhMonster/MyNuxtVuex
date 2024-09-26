@@ -1,7 +1,7 @@
 <template>
   <div class="form-search mb-3">
     <div class="page-body">
-      <form class="form">
+      <form>
         <v-row>
           <v-col cols="6" sm="4" md="2" lg="2">
             <v-select
@@ -40,7 +40,7 @@
             <v-btn
               type="submit"
               color="primary"
-              class="btn btn-primary btn-search text-white w-100"
+              class="btn btn-primary btn-search text-not-shadow text-white w-100"
               @click="search()"
             >
               <i class="fa fa-search"></i> Tìm kiếm
@@ -50,7 +50,7 @@
             <v-btn
               type=""
               color="error"
-              class="btn btn-danger btn-search text-white w-100"
+              class="btn btn-danger btn-search  text-not-shadow text-white w-100"
               @click="reset()"
               ><i class="fa fa-list"></i> Xóa</v-btn
             >

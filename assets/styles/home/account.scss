@@ -4,7 +4,6 @@ $primary-bold: #0069d9;
 $blue: #007bff;
 $danger : #a21d0a;
 
-
 ::v-depp {
   .has-error .validation {
     margin-top: 15px !important;
@@ -15,19 +14,6 @@ $danger : #a21d0a;
   }
 }
 
-
-// .full-screen {
-//   .row {
-
-
-//     .col-lg-8,
-//     .col-lg-4
-//     {
-//       width: 100%;
-//       padding: 6px;
-//     }
-//   }
-// }
 .sms {
   font-weight: 500;
   color: $danger  !important;
@@ -48,8 +34,14 @@ $danger : #a21d0a;
 
   // .text-main {
   .v-btn--icon.v-size--default {
-    height: 25px !important;
-    width: 25px !important;
+    height: 26px !important;
+    width: 26px !important;
+
+    svg {
+      height: 18px !important;
+      width: 18px !important;
+      line-height: 18px;
+    }
 
     .v-icon {
       font-size: 18px !important;
@@ -66,20 +58,6 @@ $danger : #a21d0a;
     }
   }
 
-  .btn-show-more {
-    color: #ffffff;
-    background: linear-gradient(-135deg, #e28637, #561d00);
-
-    border: none !important;
-    border-radius: 4px !important;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-
-  // }
-
-
 
 
   .title {
@@ -87,15 +65,27 @@ $danger : #a21d0a;
   }
 }
 
-
 .page-body {
   position: relative;
   color: #663019;
-  border: 1px solid #663019;
-  background: #ffefa3;
   padding: 6px;
   border-radius: 4px;
 }
+
+.bg-website .v-main__wrap #home-page {
+  .page-body {
+    border: 1px solid #663019;
+    background: #ffefa3;
+
+    &.not-border {
+      border: none !important;
+      background: none !important;
+    }
+  }
+
+}
+
+
 
 .box-body {
   position: relative;
@@ -228,6 +218,7 @@ $danger : #a21d0a;
 }
 
 .login-btn {
+  cursor: pointer;
   position: relative;
   height: 30px;
   display: flex;
@@ -238,10 +229,26 @@ $danger : #a21d0a;
   font-size: 12px;
   font-weight: 500;
   color: #fff;
-  // margin-right: 0.2rem;
   box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 50%);
-  /* background-image: linear-gradient(180deg,#8872c7,#6142bf 9%,#271170 58%,#4e23af); */
+  background-image: linear-gradient(180deg,
+      #e28637,
+      #9f5424 9%,
+      #561d00 58%,
+      #9f5424);
 
+  &:hover {
+    color: #fff;
+    background-image: linear-gradient(180deg,
+        #e28637,
+        #9f5424 9%,
+        #9f5424 58%,
+        #561d00);
+  }
+
+  .v-btn.v-btn--icon.v-size--default {
+    height: 20px !important;
+    width: 20px !important;
+  }
 
 }
 
@@ -260,23 +267,6 @@ $danger : #a21d0a;
         $primary-bold 9%,
         $primary-border 58%,
         $primary-bold);
-  }
-}
-
-.login-btn {
-  background-image: linear-gradient(180deg,
-      #e28637,
-      #9f5424 9%,
-      #561d00 58%,
-      #9f5424);
-
-  &:hover {
-    color: #fff;
-    background-image: linear-gradient(180deg,
-        #e28637,
-        #9f5424 9%,
-        #9f5424 58%,
-        #561d00);
   }
 }
 
@@ -361,29 +351,6 @@ $danger : #a21d0a;
         $primary-bold 9%,
         $blue 58%,
         $blue);
-  }
-}
-
-.btn.register-btn {
-  position: relative;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // padding: 0 0.235rem;
-  border-radius: 0.32rem;
-  font-size: 12px;
-  box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 49%);
-  border: 1px solid #ffcf9c;
-  font-weight: 700;
-  font-weight: 500;
-  color: #000;
-  /* background-image: linear-gradient(180deg,#fdffdb,#d9e254); */
-  background-image: linear-gradient(180deg, #fdffdb, #ffcf9c);
-
-  &:hover {
-    background-image: linear-gradient(180deg, #ffcf9c, #fdffdb);
-
   }
 }
 
@@ -609,10 +576,10 @@ form {
 // }
 
 .form-input {
-  border: 1px solid #333;
+  // border: 1px solid #333;
   width: 100%;
   height: 50px;
-  padding: 0 20px;
+  padding: 0px;
   transform: 0.25s ease;
 }
 
@@ -718,6 +685,14 @@ figure.image {
 }
 
 .btn-next-more {
+  color: #ffffff;
+  text-align: center;
+  margin: 0 auto;
+
+  button {
+    background: #a21d0a !important;
+  }
+
   .v-btn:not(.v-btn--round).v-size--default {
     text-align: center;
     margin: 0 auto;

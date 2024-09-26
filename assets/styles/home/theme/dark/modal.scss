@@ -1,13 +1,13 @@
 .theme-dark {
-  .modal-content {
-    box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 2px 5px;
-    border-bottom: 1px solid #b549cc;
+  .v-dialog {
+    // box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 2px 5px;
+    // border-bottom: $border-theme-dark;
 
-    margin: 5px;
+    // margin: 5px;
 
     .modal-header {
-      border-left: 1px solid #b549cc;
-      border-right: 1px solid #b549cc;
+      border-left: $border-theme-dark;
+      border-right: $border-theme-dark;
       background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
       // background-image: linear-gradient(180deg, #663019, #e28637 9%, #e28637 58%, #e28637) ;
 
@@ -23,19 +23,37 @@
       .close {
         color: #f1f1f1;
         background: radial-gradient(circle at 50% 15%, #a937ed, #0F0F0F 72%) !important;
-        border: 1px solid #b549cc;
+        border: $border-theme-dark;
       }
     }
 
+    .v-card__actions * {
+      text-shadow: none !important;
+    }
+
     .modal-body {
-      border: 1px solid #b549cc;
+      border: $border-theme-dark;
       border-top: none;
       border-bottom: none;
       background: #171e28;
-      text-shadow: #833cf7 0px 0px 2px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
+      // text-shadow: $text-shadow-topic-theme-dark !important;
 
       .thongbao {
-        text-shadow: none;
+        * {
+          text-shadow: none !important;
+
+        }
+
+        a,
+        .text-primary {
+          color: #fff !important;
+        }
+
+        .text-danger {
+          color: #a937ed !important;
+          // text-shadow: #fff 0px 0px 5px!important;
+        }
+
       }
 
       .page-body {
@@ -49,7 +67,7 @@
 
         .table {
           &.text-center {
-            text-shadow: #833cf7 0px 0px 5px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px;
+            text-shadow: $text-shadow-theme-dark;
 
           }
 
@@ -83,7 +101,7 @@
     }
 
     .modal-footer {
-      border: 1px solid #b549cc;
+      border: $border-theme-dark;
       border-top: none;
       border-bottom: none;
       background: #0f0f0f;
@@ -98,7 +116,7 @@
 
   .custom-control-input:checked~.custom-control-label::before {
     color: #333;
-    border: 1px solid #b549cc !important;
+    border: $border-theme-dark !important;
     background-color: #0F0F0F !important;
   }
 
@@ -124,7 +142,7 @@
 
   .v-btn--icon.v-size--default .v-icon.mdi.mdi-content-copy {
     color: #f1f1f1 !important;
-    text-shadow: #833cf7 0px 0px 2px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px, #833cf7 0px 0px 0px !important;
+    text-shadow: $text-shadow-topic-theme-dark !important;
 
   }
 

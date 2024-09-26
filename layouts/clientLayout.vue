@@ -1,51 +1,39 @@
 <template>
-  <v-app :class="{ 'theme-avatar': isAvatar, 'theme-dark': isThemeDark }">
-    <HeaderHome></HeaderHome>
-    <!-- <MenuGameHome v-if="isMenuGame"></MenuGameHome>
-    <v-btn
-      icon
-      class="fixed btn-drop-menu-game"
-      :class="{ active: isMenuGame }"
-      @click="isMenuGame = !isMenuGame"
-    >
-      <v-icon v-if="isMenuGame">mdi-chevron-double-left</v-icon>
-      <v-icon v-else>mdi-chevron-double-right</v-icon>
-    </v-btn> -->
+  <v-app :class="{ 'theme-dark': isThemeDark }">
+    <AppBar />
     <v-main id="main" class="bg-website">
       <v-container
         class="client-main scroll-y"
-        :class="{ 'menu-game-active': isMenuGame }"
         :style="styleMain"
         v-on:wheel="scroll()"
+        v-on:scroll="scroll()"
       >
         <Nuxt />
       </v-container>
     </v-main>
-    <MenuBottom></MenuBottom>
+    <MenuBottom />
+    <MenuRight />
+    <ModalLogin />
+
     <template v-if="isShowButton">
-      <div class="change-theme">
-        <v-btn icon @click="changeTheme()">
-          <v-icon>mdi-theme-light-dark</v-icon>
-        </v-btn>
-      </div>
+      <!-- <div class="change-theme">
+        <BaseSvg name="theme-light-dark" @click="changeTheme()" />
+      </div> -->
       <div class="next-top">
-        <v-btn icon @click="nextTop()">
-          <v-icon>mdi-arrow-up-bold-circle-outline</v-icon>
-        </v-btn>
+        <BaseSvg name="next-top" @click="nextTop()" />
       </div>
       <div class="next-bottom">
-        <v-btn icon @click="nextBottom()">
-          <v-icon>mdi-arrow-down-bold-circle-outline</v-icon>
-        </v-btn>
+        <BaseSvg name="next-bottom" @click="nextBottom()" />
       </div>
     </template>
   </v-app>
 </template>
 
 <script>
-import HeaderHome from "@/components/pages/client/layout/HeaderHome";
-import MenuGameHome from "@/components/pages/client/layout/MenuGameHome";
+import AppBar from "@/components/pages/client/layout/AppBar";
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
+import MenuRight from "@/components/pages/client/layout/MenuRight";
+import ModalLogin from "@/components/pages/client/account/wallet/ModalLogin";
 import { mapFields } from "vuex-map-fields";
 
 import { mapState, mapActions } from "vuex";
@@ -53,71 +41,72 @@ import { mapState, mapActions } from "vuex";
 export default {
   name: "ClientLayout",
   components: {
-    HeaderHome,
-    MenuGameHome,
+    AppBar,
     MenuBottom,
+    MenuRight,
+    ModalLogin,
   },
   data() {
     return {
-      isMenuGame: false,
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: "Vuetify.js",
       isShowButton: false,
     };
   },
-
-  computed: {
-    ...mapState("home/users", ["token"]),
-    ...mapFields("global", { isThemeDark: "isThemeDark" }),
-
-    styleMain() {
-      if (!this.isMenuGame) {
-        return "width: calc(100% - 10px) !important; margin-left: 5px; transition: margin-left 0.3s";
-      }
+  watch: {
+    token: {
+      async handler(newValue, oldValue) {
+        if (!this.token && this.path.includes("/account/")) {
+          this.$router.push("/");
+        }
+      },
     },
-
-    isScreenMobile() {
-      const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    isAvatar() {
-      const path = this.$route.path;
-      return path.includes("teamobi/avatar");
+    path: {
+      async handler(newValue, oldValue) {
+        if (!this.token && this.path.includes("/account/")) {
+          this.$router.push("/");
+        }
+      },
     },
   },
+  computed: {
+    ...mapState("home/users", ["token"]),
+    ...mapFields("global", {
+      isThemeDark: "isThemeDark",
+      showMenuRight: "showMenuRight",
+    }),
+
+    styleMain() {
+      if (this.showMenuRight && !this.isMobile) {
+        return "width: calc(100% - 260px) !important; margin-right: 250px; transition: margin-left 0.3s";
+      }
+      return "width: calc(100% - 0px) !important; margin-left: 0px; transition: margin-left 0.3s";
+    },
+    // isAvatar() {
+    //   const path = this.$route.path;
+    //   return path.includes("teamobi/avatar");
+    // },
+  },
+
   async mounted() {
     if (this.token) {
       await this.fetchUser();
     }
-    // this.setScreenMobile(this.isScreenMobile);
-    // this.$nextTick(function () {
-    //   this.nextPath();
-    // });
-    // window.addEventListener("click", this.nextPath());
+    this.$nextTick(function () {
+      this.onResize();
+    });
+    window.addEventListener("resize", this.onResize);
   },
-  // destroyed(){
-  //   window.removeEventListener("click", this.onResize);
-  // },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
+  },
   methods: {
-    ...mapActions("home/users", ["logout", "fetchUser"]),
-    ...mapActions("global", ["setScreenMobile", "setPath"]),
-    changeTheme() {
-      this.isThemeDark = !this.isThemeDark;
-    },
+    ...mapActions("home/users", ["fetchUser"]),
+    // changeTheme() {
+    //   this.isThemeDark = !this.isThemeDark;
+    // },
     scroll() {
       if (!this.isShowButton) {
         this.isShowButton = true;
       }
-      console.log("scroll");
     },
     nextTop() {
       const element = document.getElementById("home-page");
@@ -127,10 +116,6 @@ export default {
       const element = document.getElementById("next-bottom");
       element.scrollIntoView();
     },
-    // nextPath() {
-    //   const path = this.$route.path;
-    //   this.setPath(path);
-    // },
   },
 };
 </script>
@@ -165,19 +150,8 @@ export default {
       }
     }
   }
-  #account-slider {
-    margin-top: 12px;
-    color: #000000;
-    border: 1px solid #663019;
-    background: #ffefa3;
-    padding: 12px;
-  }
-  // .v-btn--icon.v-size--default {
-  //   height: 30px;
-  //   width: 30px;
-  // }
 }
-.change-theme,
+// .change-theme,
 .next-top,
 .next-bottom {
   position: fixed;
@@ -185,6 +159,14 @@ export default {
   height: 30px;
   width: 30px;
   z-index: 10;
+  svg {
+    height: 26px;
+    width: 26px;
+    path {
+      height: 26px;
+      width: 26px;
+    }
+  }
   .v-btn--icon.v-size--default {
     height: 30px;
     width: 30px;
@@ -196,9 +178,9 @@ export default {
     );
   }
 }
-.change-theme {
-  bottom: 170px;
-}
+// .change-theme {
+//   bottom: 170px;
+// }
 .next-top {
   bottom: 130px;
 }
@@ -215,26 +197,6 @@ export default {
   color: #ffffff;
   z-index: 2;
 }
-.btn-drop-menu-game {
-  height: 30px;
-  width: 30px;
-  z-index: 2;
-  top: 45%;
-  left: -30px;
-  width: 50px;
-  height: 50px;
-  padding: 10px;
-  border-radius: 50%;
-  background-color: #333;
-  opacity: 0.65;
-  .v-icon {
-    padding-left: 25px;
-    font-size: 30px;
-  }
-  &.active {
-    left: 20px;
-  }
-}
 .bg-website {
   // background: #ffcf9c;
   background: #9f5424;
@@ -248,15 +210,15 @@ export default {
 ::v-deep {
   .v-main__wrap {
     .container.client-main {
-      top: 55px;
-      bottom: 75px;
-      right: 5px;
+      top: 50px;
+      bottom: 45px;
+      right: 0px;
       position: fixed;
       width: calc(100% - 55px) !important;
       // height: calc(100vh - 115px);
       margin-left: 50px;
       max-width: 100% !important;
-      border-radius: 4px;
+      border-radius: 0px;
       background: #ffcf9c;
       transition: margin-left 0.2s;
     }
@@ -264,15 +226,15 @@ export default {
 
   @media (min-width: 400px) {
     .container.client-main {
-      padding: 15px;
+      padding: 5px;
     }
     .btn-drop-menu-game.active {
       left: 30px;
     }
     .v-main__wrap {
       .container.client-main {
-        top: 55px;
-        bottom: 60px;
+        top: 50px;
+        bottom: 45px;
         width: calc(100% - 65px) !important;
         margin-left: 60px;
       }
@@ -295,34 +257,9 @@ export default {
     }
     .v-main__wrap {
       .container.client-main {
-        top: 55px;
-        bottom: 60px;
-        &.menu-game-active {
-          padding: 3px;
-          #home-page,
-          #account-slider {
-            padding: 3px;
-            // .col-12 {
-            //   padding: 12px !important;
-            // }
-          }
-          .title-category {
-            margin: 0 -9px !important;
-            margin-top: -9px !important;
-            margin-bottom: 9px !important;
-          }
-          #home-page {
-            .page-body {
-              padding: 6px;
-              &.full-screen {
-                min-height: calc(100vh - 128px);
-                .page-info {
-                  min-height: calc(100vh - 143px);
-                }
-              }
-            }
-          }
-        }
+        top: 50px;
+        bottom: 45px;
+
         #home-page {
           .page-body {
             &.full-screen {
@@ -342,18 +279,18 @@ export default {
   @media (min-width: 300px) and (max-width: 499px) {
     .v-main__wrap {
       .container.client-main {
-        &.menu-game-active {
-          #home-page {
-            .page-body {
-              &.full-screen {
-                min-height: calc(100vh - 190px) !important;
-                .page-info {
-                  min-height: calc(100vh - 170px) !important;
-                }
-              }
-            }
-          }
-        }
+        // &.menu-game-active {
+        //   #home-page {
+        //     .page-body {
+        //       &.full-screen {
+        //         min-height: calc(100vh - 190px) !important;
+        //         .page-info {
+        //           min-height: calc(100vh - 170px) !important;
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
         #home-page {
           .page-body {
             &.full-screen {
@@ -373,20 +310,26 @@ export default {
 
 .bg-website::-webkit-scrollbar-thumb,
 .container.client-main::-webkit-scrollbar-thumb {
-  background: #ffcf9c !important;
+  background: #9f5424 !important;
   border-radius: 10px;
 }
 
 .bg-website::-webkit-scrollbar-track,
 .container.client-main::-webkit-scrollbar-track {
-  background: #9f5424 !important;
-  border-radius: 10px;
+  background: none !important;
 }
 
 .bg-website::-webkit-scrollbar,
 .container.client-main::-webkit-scrollbar {
   width: 0px;
   direction: ltr;
+}
+
+@media (min-width: 678px) {
+  .bg-website::-webkit-scrollbar,
+  .container.client-main::-webkit-scrollbar {
+    width: 5px;
+  }
 }
 
 // .v-application.v-application--is-ltr.theme--dark {

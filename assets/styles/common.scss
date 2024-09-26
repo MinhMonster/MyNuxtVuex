@@ -1,6 +1,6 @@
 @import "~/assets/styles/index.scss";
 @import "~/assets/styles/base-class.scss";
-@import "~/assets/styles/home/avatar/index.scss";
+// @import "~/assets/styles/home/avatar/index.scss";
 @import "~/assets/styles/home/page/index.scss";
 @import "~/assets/styles/home/theme/index.scss";
 @import "~/assets/styles/home/custom/index.scss";
@@ -9,7 +9,12 @@
 body {
   font-size: 13px;
   font-weight: 400;
-  font-family: "Roboto", "Arial", sans-serif;
+  font-family: "Arial", sans-serif;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  right: 0;
 }
 
 html {
@@ -19,6 +24,23 @@ html {
 
 [disabled] {
   opacity: 0.8;
+}
+
+.bg-website {
+  background: #fff;
+}
+
+.img-fluid {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.relative {
+  position: relative;
 }
 
 // .pre-line {
@@ -57,6 +79,9 @@ html {
 
 .text-underline {
   text-decoration: underline;
+}
+.text-uppercase {
+  text-transform: uppercase;
 }
 
 .flex-center {
@@ -431,6 +456,17 @@ html {
 
 .text-italic {
   font-style: italic
+}
+
+.text-black {
+  * {
+    color: #333 !important;
+  }
+}
+
+.theme--dark.v-application .red {
+  background-color: #a21d0a !important;
+  border-color: #a21d0a !important;
 }
 
 .shepherd-content {

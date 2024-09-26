@@ -1,36 +1,30 @@
 <template>
   <client-only>
     <div id="menu-bottom">
-      <nuxt-link to="/admin-information"
-        ><div class="footer_icon service">
-          <v-btn icon class="icon-menu">
-            <v-icon>mdi-shield-crown-outline</v-icon>
-          </v-btn>
-        </div>
-        <span class="title-menu-buttom">Admin</span>
-      </nuxt-link>
+      <ModalSupport />
 
       <ModalGame />
 
       <div class="sub-menu-buttom" @click="nextPath('/')">
         <div class="footer_icon home">
-          <div class="circle-menu">
-            <div class="icon-wrap">
-              <v-btn icon>
-                <v-icon>mdi-home</v-icon>
-              </v-btn>
-            </div>
-          </div>
+          <!-- <div class="circle-menu">
+            <div class="icon-wrap"> -->
+          <BaseSvg class="icon-menu" id="btn-home" title="Trang Chủ" aria-label="Trang Chủ" name="home" />
+          <!-- </div>
+          </div> -->
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
-      <!-- <ModalDeposit /> -->
-      <ModalSetting/>
+      <div class="sub-menu-buttom" @click="isThemeDark = !isThemeDark">
+        <div class="footer_icon theme">
+          <BaseSvg class="icon-menu" id="theme-light-dark" title="Giao Diện" aria-label="Giao Diện"
+            name="theme-light-dark" />
+        </div>
+        <span class="title-menu-buttom">Giao Diện</span>
+      </div>
       <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
-          <v-btn icon class="icon-menu">
-            <v-icon>mdi-book-open-variant</v-icon>
-          </v-btn>
+          <BaseSvg class="icon-menu" id="btn-topics" title="Bài Đăng" aria-label="Bài Đăng" name="book" />
         </div>
         <span class="title-menu-buttom">Bài Đăng</span>
       </div>
@@ -41,82 +35,30 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import ModalGame from "@/components/pages/client/layout/ModalGame";
-import ModalDeposit from "@/components/pages/client/layout/ModalDeposit";
-import ModalSetting from "@/components/pages/client/layout/ModalSetting";
+// import ModalSetting from "@/components/pages/client/layout/ModalSetting";
+import ModalSupport from "@/components/pages/client/layout/ModalSupport";
 
-import mixins from "@/mixins/index";
 export default {
-  mixins: [mixins],
   components: {
     ModalGame,
-    ModalDeposit,
-    ModalSetting
+    // ModalSetting,
+    ModalSupport
   },
-  props: {},
-  data() {
-    return {
-      showModalGame: false,
-    };
-  },
+
   computed: {
-    ...mapFields("home/users", ["token", "user"]),
     ...mapFields("global", {
-      ready: "ready",
-    }),
-    isHome() {
-      return this.$route.path == "/";
-    },
-    isLogin() {
-      const path = this.$route.path;
-      return path.includes("login") || path.includes("register");
-    },
+      ready: "ready"
+    })
   },
   methods: {
-    nextProfile() {
-      if (this.token) {
-        this.$router.push("/account/profile");
-      } else {
-        this.disabledLogin();
-      }
-    },
-    nextHistory() {
-      if (this.token) {
-        this.$router.push("/account/history");
-      } else {
-        this.disabledLogin();
-      }
-    },
+    // changeTheme() {
+    //   this.isThemeDark = !this.isThemeDark;
+    // },
     nextPath(path) {
-      const routePath = this.$route.path;
-      if (routePath === path) {
+      if (this.path === path) {
         this.reset();
       } else {
         this.$router.push(path);
-      }
-    },
-    nextWalletDeposit() {
-      if (this.token) {
-        this.$router.push("/account/wallet/deposit/vnd");
-      } else {
-        this.disabledLogin();
-      }
-    },
-    disabledLogin() {
-      if (!this.isLogin) {
-        this.$router.push("/login");
-      } else {
-        this.showSwal({
-          title: "Bạn chưa đăng nhập",
-          html: "Hãy đăng nhập hoặc đăng ký nếu chưa có tài khoản để sử dụng dịch vụ. <br/> Xin cảm ơn!"
-        });
-      }
-    },
-
-    nextHome() {
-      if (this.isHome) {
-        this.reset();
-      } else {
-        this.$router.push("/");
       }
     },
     async reset() {
@@ -124,10 +66,8 @@ export default {
       setTimeout(() => {
         this.ready = true;
       }, 200);
-    },
-  },
+    }
+  }
 };
 </script>
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

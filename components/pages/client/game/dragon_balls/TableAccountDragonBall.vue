@@ -20,7 +20,7 @@
         </td>
       </tr>
       <tr>
-        <th class="info-nick">Server</th>
+        <th class="info-nick">Máy Chủ</th>
         <td class="mua-nick">
           <span>{{ account.server }} Sao</span>
         </td>
@@ -35,11 +35,8 @@
   </table>
 </template>
 <script>
-import mixins from "@/mixins/index";
 
 export default {
-  mixins: [mixins],
-
   props: {
     account: {
       type: Object,

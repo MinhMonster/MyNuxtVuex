@@ -15,28 +15,26 @@
         Không tìm thấy Tài khoản nào!
       </h1>
     </div>
-    <v-btn
-      v-if="isShowNext && accountDragonBalls.length && !isLoading"
-      variant="danger"
-      class="btn-next-more flex mt-3 mb-1"
-      @click="onChange()"
-    >
-      <v-icon>mdi-skip-next</v-icon>
-      Xem Thêm Nick Ngọc Rồng
-    </v-btn>
+    <div class="btn-next-more">
+      <BaseSvg
+        v-if="isShowNext && accountDragonBalls.length && !isLoading"
+        button
+        name="skip"
+        content="Xem Thêm Nick Ngọc Rồng"
+        variant="danger"
+        class="flex mt-3 mb-1"
+        @click="onChange()"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-import mixins from "@/mixins/index";
 import AccountDragonBallCard from "@/components/pages/client/game/dragon_balls/AccountDragonBallCard";
 import Loading from "@/components/global/molecules/common/Loading";
 export default {
-  name: "AccountAvatarList",
-  mixins: [mixins],
-
   components: { AccountDragonBallCard, Loading },
   props: {
     query: {
@@ -49,7 +47,6 @@ export default {
       isLoading: false,
     };
   },
-  async mounted() {},
   computed: {
     ...mapFields("home/game/dragon_balls", {
       accountDragonBalls: "accountDragonBalls",
@@ -80,11 +77,5 @@ export default {
 <style lang="scss" scoped>
 .account {
   margin: -9px;
-}
-.btn-next-more {
-  color: #ffffff;
-  background: #a21d0a !important;
-  text-align: center;
-  margin: 0 auto;
 }
 </style>

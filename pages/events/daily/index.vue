@@ -10,17 +10,26 @@
     >
       <template v-if="ready" #body>
         <form class="form daily-event">
-          <div class="content-main text-center mb-2">
-            Đoạn đúng chắc chắc có thưởng!
+          <div v-if="!isEvent" class="flex flex-column flex-center card">
+            <h1 class="bold text-danger height-200px middle text-20-800">
+              Sự kiện đang bảo trì!
+            </h1>
           </div>
-          <v-btn
-            @click="showModal()"
-            color="primary"
-            class="btn-show-more"
-          >
-            Xem Hướng Dẫn Tham Gia
-          </v-btn>
-          <v-row>
+          <v-row v-else>
+            <div class="flex flex-column flex-center">
+              <div class="content-main text-center mb-2">
+                Đoạn đúng chắc chắc có thưởng!
+              </div>
+              <div class="btn-show-more">
+                <v-btn
+                  @click="showModal()"
+                  variant="danger"
+                  class="flex mt-3 mb-1"
+                >
+                  Xem Hướng Dẫn Tham Gia
+                </v-btn>
+              </div>
+            </div>
             <v-col v-if="!votedDaylyEvent" cols="12" class="middle">
               <div class="field center">
                 <form-validator name="phone">
@@ -69,7 +78,12 @@
             </v-col>
           </v-row>
         </form>
-        <ModalPayload ref="modal" size="md" title="Hướng dẫn tham gia Sự kiện" hiddenFooter >
+        <ModalPayload
+          ref="modal"
+          size="md"
+          title="Hướng dẫn tham gia Sự kiện"
+          hiddenFooter
+        >
           <template #content>
             <v-row>
               <v-col cols="12" class="size">
@@ -135,7 +149,6 @@
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
-import mixins from "@/mixins/index";
 import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
 import ModalPayload from "@/components/common/ModalPayload";
 import HistoryDailyEventTable from "@/components/pages/events/daily/HistoryDailyEventTable";
@@ -148,11 +161,10 @@ import ModalChoseNumberEvent from "@/components/pages/events/daily/ModalChoseNum
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 
-const { mapState, mapActions } = createNamespacedHelpers("home/events/daily");
+const { mapActions } = createNamespacedHelpers("home/events/daily");
 const global = createNamespacedHelpers("global");
 
 export default {
-  mixins: [mixins],
   layout: "clientLayout",
   components: {
     HomePage,
@@ -180,15 +192,13 @@ export default {
       token: "token",
     }),
     ...mapFields("home/events/daily", {
+      isEvent: "isEvent",
       votedDaylyEvent: "votedDaylyEvent",
       histories: "historyVotedDailyEvents",
       historyMeta: "historyMeta",
       pageSave: "pageSave",
     }),
     ...mapFields("home/game/ninjas", {}),
-    queryPage() {
-      return this.$route.query.page || 1;
-    },
   },
   mounted() {
     this.reload();
@@ -198,6 +208,7 @@ export default {
       "voted",
       "setQuery",
       "resetQuery",
+      "fetchStatusEvent",
       "fetchVotedDailyEventHistories",
     ]),
     ...global.mapActions(["nextOldPath"]),
@@ -249,6 +260,7 @@ export default {
       }, 200);
     },
     reload() {
+      this.fetchStatusEvent();
       this.onPageChange(this.pageSave);
     },
     showModal() {
@@ -285,7 +297,7 @@ form.daily-event {
           opacity: 1;
         }
         &.number {
-          height: 80px;
+          height: 80px !important;
           text-shadow: 2px 2px 2px #e28637;
           ::v-deep {
             + .validation {
@@ -529,13 +541,13 @@ form {
 //  margin: 20px;
 // }
 
-.form-input {
-  border: 1px solid #333;
-  width: 100%;
-  height: 50px;
-  padding: 0 0px;
-  transform: 0.25s ease;
-}
+// .form-input {
+//   border: 1px solid #333;
+//   width: 100%;
+//   height: 50px;
+//   padding: 0 0px;
+//   transform: 0.25s ease;
+// }
 
 .form-input:focus {
   border-color: blue;

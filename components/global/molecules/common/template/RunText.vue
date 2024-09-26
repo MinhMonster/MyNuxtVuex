@@ -20,16 +20,6 @@
     </v-col>
   </v-row>
 </template>
-
-<script>
-export default {
-  data() {
-    return {};
-  },
-  mounted() {},
-  methods: {},
-};
-</script>
 <style lang="scss" scoped>
 @media (max-width: 768px) {
   .run-text {
