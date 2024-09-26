@@ -50,6 +50,7 @@ import HomePage from "@/components/pages/home/HomePage";
 import Pagination from "@/components/global/molecules/common/Pagination";
 
 import { mapActions, mapState } from "vuex";
+import { mapFields } from "vuex-map-fields";
 
 export default {
   layout: "clientLayout",
