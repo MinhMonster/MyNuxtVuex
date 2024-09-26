@@ -9,7 +9,7 @@ export default {
     validationErrors: {},
     selectedImages: [],
     screenMobile: true,
-    isNotification: true,
+    isNotification: false,
     isThemeDark: false,
     // showMenuRight: false,
     fixed: false,

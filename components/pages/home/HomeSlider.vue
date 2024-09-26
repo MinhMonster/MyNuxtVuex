@@ -27,7 +27,7 @@ export default {
           },
           {
             src: this.isMobile
-              ? "/banner.jpg"
+              ? "/banner-2.jpg"
               : "/banner-2.jpg",
           }
         ];
@@ -40,7 +40,7 @@ export default {
           },
           {
             src: this.isMobile
-              ? "/banner.jpg"
+              ? "/banner-2.jpg"
               : "/banner-2.jpg",
           }
         ];

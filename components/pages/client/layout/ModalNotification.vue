@@ -38,13 +38,13 @@ export default {
     }),
   },
   mounted() {
-    this.show();
+    // this.show();
   },
   methods: {
     ...mapActions("global", ["setNotification"]),
     show() {
       if (this.isNotification) {
-        this.$refs.modal.show();
+        // this.$refs.modal.show();
       } else {
         this.$emit("hide");
       }

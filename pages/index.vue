@@ -24,9 +24,9 @@ export default {
   data() {
     return {
       title:
-        "ShopNick.Online | Shop Nick Tự Động - Shop Mua Bán Nick Ninja School Online, Ngọc Rồng Online, Avatar, Đại Tây Du Giá Rẻ, Uy Tín Nhất MXH",
+        "MiMiFood.Vn - Thế giới đồ ăn vặt",
       description:
-        "WEB Mua Bán Nick Game, Tài Khoản Game, Account Game, Dịch Vụ Game Online, Nick Ninja School - Nso, Nick Ngọc Rồng - Nro, Nick Avatar SX Diệu Kỳ (2x) của TeaMobi - Uy Tín - Giá rẻ",
+        "MiMiFood.Vn - Thế giới đồ ăn vặt",
     };
   },
   head() {
@@ -39,12 +39,11 @@ export default {
         { property: "og:image", content: "/images/banners/banner-blue.png" },
         {
           property: "og:image:alt",
-          content: "ShopNick.Online - Shop Nick Tự Động",
+          content: "MiMiFood.Vn - Thế giới đồ ăn vặt",
         },
         {
           name: "keywords",
-          content:
-            "nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja, shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, nick avatar, nick dai tay du, nick avatar dk, shop nick avatar 2x, mua nick avatar dk, mua nick avatar 2x, shop acc avatar dk, shop acc avatar 2x, nick avatar dk teamobi, shop nick avatar 2x teamobi",
+          content: "Khô gà lá chanh, Khô heo cháy tỏi, Khô mực ướt dừa",
         },
       ],
     };
