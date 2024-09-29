@@ -137,7 +137,7 @@
         </div>
         <div v-if="images.length" class="file-images">
           <div v-for="(image, index) in images" :key="index" class="fileItem">
-            <div
+            <div v-if="image && image.url"
               class="fileItemWrapper"
               :class="{
                 active: is_selected(image),
@@ -155,7 +155,7 @@
               </b-button>
               <div class="fileIcon">
                 <img
-                  v-if="image.url"
+                  v-if="image && image.url"
                   :src="image.url"
                   :disabled="is_activated(image)"
                   @click="addImage(image)"
@@ -346,7 +346,7 @@ export default {
       return this.selectedImages.find((item) => item.url == image.url);
     },
     is_activated(image) {
-      return this.activated.find((item) => item == image.url);
+      return image ? this.activated.find((item) => item == image.url) : false;
     },
     async editFolder(folder) {
       this.folderEdit = folder;
