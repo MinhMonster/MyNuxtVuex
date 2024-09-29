@@ -39,28 +39,30 @@ export default {
   plugins: [
     { src: "@/plugins/vuex-persistedstate", ssr: false },
     "@/plugins/axios",
+    "@/plugins/axios_mimifood",
+
     // "@/plugins/vue-sweetalert",
 
     '~/plugins/repositories.js',
+    '~/plugins/repositories_mimifood.js',
     { src: "@/plugins/vue-infinite-scroll", ssr: false },
     { src: "@/plugins/vue-codemirror", ssr: false },
     { src: "@/plugins/vue-slick-carousel" },
     { src: "@/plugins/vue-clipboard2", ssr: false },
     { src: '@/plugins/util', },
-    // "~/plugins/axios",
-    // "~/plugins/vee-validate",  
+    // "~/plugins/vee-validate",
     // { src: "@/plugins/vee-validate", ssr: false },
     // "~/apis/modules/admin",
 
 
   ],
   axios: {
-    baseURL: process.env.API_BASE_URL || 'https://muabannick.pro'
+    baseURL: process.env.API_BASE_URL || 'https://muabannick.pro',
   },
   env: {
     // nodeEnv: process.env.NODE_ENV || "development",
-    apiUrl:
-      process.env.API_BASE_URL,
+    apiUrl: process.env.API_BASE_URL,
+    apiMimiFoodUrl: process.env.API_BASE_MIMIFOOD_URL,
   },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
