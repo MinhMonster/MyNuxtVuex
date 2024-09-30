@@ -18,9 +18,66 @@
           </v-col>
         </v-row>
         <div class="mt-3" id="dich-vu-game">
-          <div class="title text-center text-underline">Danh Sách Đồ Ăn Vặt</div>
-          <v-row class="text-center account mb-1">
+          <div class="title text-center text-underline">
+            Danh Sách Đồ Ăn Vặt
+          </div>
+          <v-row class="text-center account mt-1 mb-1">
+            <VueSlickCarousel
+              v-if="isMobile"
+              :initialSlide="0.5"
+              :slidesToShow="1.5"
+              :arrows="false"
+              :rows="1"
+              :dots="false"
+              :rtl="false"
+              :infinite="true"
+              :draggable="true"
+              :swipeToSlide="true"
+              class="w-100 slick-product"
+            >
+              <div
+                v-for="(game, index) in gameList"
+                :key="index"
+                :src="game.image"
+                alt=""
+                class="slider-item"
+              >
+                <div class="item-body">
+                  <img
+                    v-if="game.image.includes('muabannick.pro')"
+                    :src="game.image"
+                    alt=""
+                    class="image-account"
+                  />
+                  <img
+                    v-else
+                    :src="`${game.image}`"
+                    alt=""
+                    class="image-account"
+                  />
+                  <div>
+                    <div class="text-17-400 text-left pd-5px">{{ game.title }}</div>
+                    <div class="text-17-500 text-left text-yellow pd-5px mt--5px ">500.000đ</div>
+
+                    <v-btn
+                      class="w-100 break-line-1 btn-main text-17-800"
+                      :title="game.title"
+                    >
+                      <BaseSvg
+                        class="icon-menu"
+                        id="btn-change-theme"
+                        title="Giỏ Hàng"
+                        aria-label="Giỏ Hàng"
+                        name="cart"
+                      />
+                      Chọn Mua</v-btn
+                    >
+                  </div>
+                </div>
+              </div>
+            </VueSlickCarousel>
             <GameCard
+              v-else
               v-for="(game, index) in gameList"
               :key="index"
               :game="game"
@@ -99,56 +156,56 @@ export default {
       if (this.isDark) {
         return [
           {
-            title: "Avatar XS.DKỳ",
+            title: "Khô gà Lá chanh",
             path: "/teamobi/avatar",
             image: "/images/products/kho-ga-la-chanh.jpg",
             numberAccount: "90",
             sold: "69",
           },
           {
-            title: "Nick Ninja VIP",
+            title: "Khô heo Cháy tỏi",
             path: "/teamobi/ninja-school/nick-vip",
             image: "/images/products/kho-heo-chay-toi.jpg",
             numberAccount: "5245",
             sold: "5144",
           },
           {
-            title: "Nick Ninja Giá Rẻ",
+            title: "Khô bò Xé sợi",
             path: "/teamobi/ninja-school/nick-gia-re",
             image: "/images/products/kho-bo-xe-soi.jpg",
             numberAccount: "7481",
             sold: "7185",
           },
           {
-            title: "Ngọc Rồng Online",
+            title: "Mực hấp Nước dừa",
             path: "/teamobi/ngoc-rong",
             image: "/images/products/muc-hap-nuoc-dua.jpg",
             numberAccount: "515",
             sold: "438",
           },
           {
-            title: "Sự kiện Hằng ngày",
+            title: "Combo Gà + Bò",
             path: "/events/daily",
             image: "/images/products/combo-ga-bo.jpg",
             numberAccount: "5245",
             sold: "5144",
           },
           {
-            title: "Đai Tây Du - G4M",
+            title: "Combo Vui Vẻ",
             path: "/g4m/dai-tay-du",
             image: "/images/products/combo-vui-ve.png",
             numberAccount: "90",
             sold: "69",
           },
           {
-            title: "Đai Tây Du - G4M",
+            title: "Combo Vui Vẻ",
             path: "/g4m/dai-tay-du",
             image: "/images/products/combo-cau-vong.jpg",
             numberAccount: "90",
             sold: "69",
           },
           {
-            title: "Đai Tây Du - G4M",
+            title: "Combo Vui Vẻ",
             path: "/g4m/dai-tay-du",
             image: "/images/products/combo-vui-ve.png",
             numberAccount: "90",
@@ -158,14 +215,14 @@ export default {
       } else {
         return [
           {
-            title: "Avatar XS.DKỳ",
+            title: "Khô gà Lá chanh",
             path: "/teamobi/avatar",
             image: "/images/products/kho-ga-la-chanh.jpg",
             numberAccount: "90",
             sold: "69",
           },
           {
-            title: "Nick Ninja VIP",
+            title: "Khô heo Cháy tỏi",
             path: "/teamobi/ninja-school/nick-vip",
             image: "/images/products/kho-heo-chay-toi.jpg",
 
@@ -173,49 +230,49 @@ export default {
             sold: "5144",
           },
           {
-            title: "Nick Ninja Giá Rẻ",
+            title: "Khô bò Xé sợi",
             path: "/teamobi/ninja-school/nick-gia-re",
             image: "/images/products/kho-bo-xe-soi.jpg",
             numberAccount: "7481",
             sold: "7185",
           },
           {
-            title: "Ngọc Rồng Online",
+            title: "Mực hấp Nước dừa",
             path: "/teamobi/ngoc-rong",
             image: "/images/products/muc-hap-nuoc-dua.jpg",
             numberAccount: "515",
             sold: "438",
           },
           {
-            title: "Sự kiện Hằng ngày",
+            title: "Combo Gà + Bò",
             path: "/events/daily",
             image: "/images/products/combo-ga-bo.jpg",
             numberAccount: "5245",
             sold: "5144",
           },
           {
-            title: "Đai Tây Du - G4M",
+            title: "Combo Vui Vẻ",
             path: "/g4m/dai-tay-du",
             image: "/images/products/combo-cau-vong.jpg",
             numberAccount: "90",
             sold: "69",
           },
           {
-            title: "Đai Tây Du - G4M",
+            title: "Combo Vui Vẻ",
             path: "/g4m/dai-tay-du",
             image: "/images/products/combo-vui-ve.png",
             numberAccount: "90",
             sold: "69",
           },
           {
-            title: "Đai Tây Du - G4M",
+            title: "Combo Vui Vẻ",
             path: "/g4m/dai-tay-du",
             image: "/images/products/combo-cau-vong.jpg",
             numberAccount: "90",
             sold: "69",
           },
           {
-            title: "Đai Tây Du - G4M",
+            title: "Combo Vui Vẻ",
             path: "/g4m/dai-tay-du",
             image: "/images/products/combo-vui-ve.png",
             numberAccount: "90",

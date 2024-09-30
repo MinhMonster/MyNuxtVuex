@@ -289,13 +289,14 @@ $danger : #a21d0a;
 
   &.login-btn,
   &.btn-main {
-    background-color: $blue-bold  !important;
-    background: $blue-bold;
+    background-color: $yellow-bold  !important;
+    background: $yellow-bold;
     color: #fff;
 
     &:hover {
-      background-color: $color-blue  !important;
-      background: $color-blue;
+      background-color: $yellow-bold  !important;
+      background: $yellow-bold;
+      opacity: 0.9;
     }
   }
 }

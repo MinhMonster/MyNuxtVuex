@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="6" :sm="isTablet ? 3 : 4" md="4">
+  <v-col cols="6" :sm="6" md="3">
     <nuxt-link :to="game.path">
       <div class="account-info">
         <ImageCard :game="game" />
