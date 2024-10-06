@@ -2,7 +2,8 @@
   <v-navigation-drawer
     style="
       top: 50px;
-      width: 250px;
+      width: 500px;
+      max-width: 100%;
       text-align: left;
       max-height: calc(100% - 45px);
     "
@@ -13,7 +14,6 @@
     :right="right"
     :clipped="clipped"
     fixed
-    app
   >
     <SideBarMenu @close="showMenuRight = false"></SideBarMenu>
   </v-navigation-drawer>
@@ -37,11 +37,11 @@ export default {
     };
   },
   async mounted() {
-    if (this.isMobile) {
+    // if (this.isMobile) {
       this.showMenuRight = false;
-    } else {
-      this.showMenuRight = true;
-    }
+    // } else {
+    //   this.showMenuRight = true;
+    // }
   },
   computed: {
     ...mapState("home/users", ["token", "user"]),

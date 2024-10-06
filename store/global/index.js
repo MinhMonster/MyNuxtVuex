@@ -11,7 +11,7 @@ export default {
     screenMobile: true,
     isNotification: false,
     isThemeDark: false,
-    // showMenuRight: false,
+    showMenuRight: false,
     fixed: false,
     isMb: true,
     is_tablet: false,

@@ -26,7 +26,7 @@
               v-if="isMobile"
               :initialSlide="0.5"
               :slidesToShow="1.5"
-              :arrows="false"
+              :arrows="true"
               :rows="1"
               :dots="false"
               :rtl="false"
@@ -36,52 +36,28 @@
               class="w-100 slick-product"
             >
               <div
-                v-for="(game, index) in gameList"
+                v-for="(product, index) in products"
                 :key="index"
-                :src="game.image"
+                :src="product.image"
                 alt=""
-                class="slider-item"
-              >
-                <div class="item-body">
-                  <img
-                    v-if="game.image.includes('muabannick.pro')"
-                    :src="game.image"
-                    alt=""
-                    class="image-account"
-                  />
-                  <img
-                    v-else
-                    :src="`${game.image}`"
-                    alt=""
-                    class="image-account"
-                  />
-                  <div>
-                    <div class="text-17-400 text-left pd-5px">{{ game.title }}</div>
-                    <div class="text-17-500 text-left text-yellow pd-5px mt--5px ">500.000đ</div>
-
-                    <v-btn
-                      class="w-100 break-line-1 btn-main text-17-800"
-                      :title="game.title"
-                    >
-                      <BaseSvg
-                        class="icon-menu"
-                        id="btn-change-theme"
-                        title="Giỏ Hàng"
-                        aria-label="Giỏ Hàng"
-                        name="cart"
-                      />
-                      Chọn Mua</v-btn
-                    >
-                  </div>
-                </div>
+                class="product-item"
+                :class="{ skeleton: isSkeleton }"
+                >
+                <CardProduct :product="product" />
               </div>
             </VueSlickCarousel>
-            <GameCard
+            <v-col
               v-else
-              v-for="(game, index) in gameList"
+              v-for="(product, index) in products"
               :key="index"
-              :game="game"
-            ></GameCard>
+              cols="6"
+              :sm="6"
+              md="3"
+              class="product-item"
+              :class="{ skeleton: isSkeleton }"
+            >
+              <CardProduct :product="product"></CardProduct>
+            </v-col>
           </v-row>
         </div>
       </v-col>
@@ -112,6 +88,7 @@ import ModalNotification from "@/components/pages/client/layout/ModalNotificatio
 // import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import HomeSlider from "@/components/pages/home/HomeSlider";
 // import DepositCardForm from "@/components/pages/client/account/wallet/DepositCardForm";
+import CardProduct from "@/components/common/products/CardProduct";
 
 // import RunText from "@/components/global/molecules/common/template/RunText";
 import { mapFields } from "vuex-map-fields";
@@ -126,6 +103,7 @@ export default {
     // FormLogin,
     // SideBarMenu,
     HomeSlider,
+    CardProduct,
     // DepositCardForm,
     // RunText,
   },
@@ -145,6 +123,7 @@ export default {
     ...mapFields("global", {
       isNotification: "isNotification",
     }),
+    ...mapState("products", ["products", "isSkeleton"]),
     isShowHome() {
       return (
         !this.isNotification ||
@@ -152,141 +131,14 @@ export default {
         (this.isMobile && this.isNotification && !this.onNotification)
       );
     },
-    gameList() {
-      if (this.isDark) {
-        return [
-          {
-            title: "Khô gà Lá chanh",
-            path: "/teamobi/avatar",
-            image: "/images/products/kho-ga-la-chanh.jpg",
-            numberAccount: "90",
-            sold: "69",
-          },
-          {
-            title: "Khô heo Cháy tỏi",
-            path: "/teamobi/ninja-school/nick-vip",
-            image: "/images/products/kho-heo-chay-toi.jpg",
-            numberAccount: "5245",
-            sold: "5144",
-          },
-          {
-            title: "Khô bò Xé sợi",
-            path: "/teamobi/ninja-school/nick-gia-re",
-            image: "/images/products/kho-bo-xe-soi.jpg",
-            numberAccount: "7481",
-            sold: "7185",
-          },
-          {
-            title: "Mực hấp Nước dừa",
-            path: "/teamobi/ngoc-rong",
-            image: "/images/products/muc-hap-nuoc-dua.jpg",
-            numberAccount: "515",
-            sold: "438",
-          },
-          {
-            title: "Combo Gà + Bò",
-            path: "/events/daily",
-            image: "/images/products/combo-ga-bo.jpg",
-            numberAccount: "5245",
-            sold: "5144",
-          },
-          {
-            title: "Combo Vui Vẻ",
-            path: "/g4m/dai-tay-du",
-            image: "/images/products/combo-vui-ve.png",
-            numberAccount: "90",
-            sold: "69",
-          },
-          {
-            title: "Combo Vui Vẻ",
-            path: "/g4m/dai-tay-du",
-            image: "/images/products/combo-cau-vong.jpg",
-            numberAccount: "90",
-            sold: "69",
-          },
-          {
-            title: "Combo Vui Vẻ",
-            path: "/g4m/dai-tay-du",
-            image: "/images/products/combo-vui-ve.png",
-            numberAccount: "90",
-            sold: "69",
-          },
-        ];
-      } else {
-        return [
-          {
-            title: "Khô gà Lá chanh",
-            path: "/teamobi/avatar",
-            image: "/images/products/kho-ga-la-chanh.jpg",
-            numberAccount: "90",
-            sold: "69",
-          },
-          {
-            title: "Khô heo Cháy tỏi",
-            path: "/teamobi/ninja-school/nick-vip",
-            image: "/images/products/kho-heo-chay-toi.jpg",
-
-            numberAccount: "5245",
-            sold: "5144",
-          },
-          {
-            title: "Khô bò Xé sợi",
-            path: "/teamobi/ninja-school/nick-gia-re",
-            image: "/images/products/kho-bo-xe-soi.jpg",
-            numberAccount: "7481",
-            sold: "7185",
-          },
-          {
-            title: "Mực hấp Nước dừa",
-            path: "/teamobi/ngoc-rong",
-            image: "/images/products/muc-hap-nuoc-dua.jpg",
-            numberAccount: "515",
-            sold: "438",
-          },
-          {
-            title: "Combo Gà + Bò",
-            path: "/events/daily",
-            image: "/images/products/combo-ga-bo.jpg",
-            numberAccount: "5245",
-            sold: "5144",
-          },
-          {
-            title: "Combo Vui Vẻ",
-            path: "/g4m/dai-tay-du",
-            image: "/images/products/combo-cau-vong.jpg",
-            numberAccount: "90",
-            sold: "69",
-          },
-          {
-            title: "Combo Vui Vẻ",
-            path: "/g4m/dai-tay-du",
-            image: "/images/products/combo-vui-ve.png",
-            numberAccount: "90",
-            sold: "69",
-          },
-          {
-            title: "Combo Vui Vẻ",
-            path: "/g4m/dai-tay-du",
-            image: "/images/products/combo-cau-vong.jpg",
-            numberAccount: "90",
-            sold: "69",
-          },
-          {
-            title: "Combo Vui Vẻ",
-            path: "/g4m/dai-tay-du",
-            image: "/images/products/combo-vui-ve.png",
-            numberAccount: "90",
-            sold: "69",
-          },
-        ];
-      }
-    },
   },
-  mounted() {
-    this.getNotification();
+  async mounted() {
+    await this.getNotification();
+    await this.fetchProducts();
   },
   methods: {
     ...mapActions("global", ["getNotification"]),
+    ...mapActions("products", ["fetchProducts"]),
   },
 };
 </script>

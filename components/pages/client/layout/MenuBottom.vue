@@ -35,7 +35,7 @@
           </div>
           <span class="title-menu-buttom">Bài Đăng</span>
         </div>
-        <div class="sub-menu-buttom" @click="changeTheme()">
+        <div class="sub-menu-buttom" @click="changeCart()">
           <div class="footer_icon service">
             <BaseSvg
               class="icon-menu"
@@ -66,12 +66,12 @@ export default {
   },
   computed: {
     ...mapFields("global", {
-      isThemeDark: "isThemeDark",
+      showMenuRight: "showMenuRight",
     }),
   },
   methods: {
-    changeTheme() {
-      this.isThemeDark = !this.isThemeDark;
+    changeCart() {
+      this.showMenuRight = !this.showMenuRight;
     },
     nextPath(path) {
       if (this.path !== path) {

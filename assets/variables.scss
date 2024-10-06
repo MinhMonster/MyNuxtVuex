@@ -6,6 +6,8 @@
 $color-gray: #a4a4a4;
 $color-blue: #3399ff;
 $blue-bold: #1976d2;
+
+$yellow-bland: rgb(223, 223, 176);
 $yellow-bold: rgb(228, 137, 36);
 $yellow-bold-2: #ff6900;
 $dark-bold: #333;
@@ -24,6 +26,8 @@ $border-theme-dark-2: 2px solid $color-boder;
 
 $color-theme-yellow: $yellow-bold;
 $bottom-color: $dark-bold;
+
+$background-sidebar: $yellow-bold;
 
 $text-shadow-theme-dark: $color-theme-dark 0px 0px 5px,
   $color-theme-dark 0px 0px 0px,

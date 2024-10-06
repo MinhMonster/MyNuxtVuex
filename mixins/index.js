@@ -89,6 +89,9 @@ export default {
       isFormLoginRegister: "isFormLoginRegister",
       isThemeDark: "isThemeDark"
     }),
+    imageEmpty() {
+      return "/images/logo-border.png";
+    },
     isMobile() {
       return this.isMb
     },

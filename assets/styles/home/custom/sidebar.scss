@@ -1,14 +1,18 @@
 .rightbar-content .user-info-wrap {
-  top: 0px;
-  position: relative;
+  top: 5px;
+  right: 5px;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 200px;
-  background: #3399ff;
+  width: calc(100% - 10px);
+  height: calc(100vh - 50px - 50px - 10px);
+  background: #fff !important;;
   background-size: 100% 100%;
-
+  border-radius: 4px;
+  @media (max-width: 1265px) {
+    height: calc(100vh - 50px - 10px);
+  }
   .base-svg {
     svg {
       height: 70px;
@@ -42,16 +46,14 @@
   background-color: #3399ff;
 }
 
+
 .rightbar-content {
-  border: 2px solid $blue-bold  !important;
-  background: radial-gradient(circle at 50% 100%,
-      #3399ff,
-      $blue-bold 58%,
-      $blue-bold 127%);
+  border: 5px solid $yellow-bold  !important;
+  background: $background-sidebar;
   max-height: calc(100vh - 50px - 45px);
   height: 100%;
   margin-top: 0px;
-  border-radius: 4px;
+  // border-radius: 4px;
 
   .base-svg {
     margin: 0;
@@ -79,7 +81,7 @@
 
   .user-info-wrap {
     border: none !important;
-    border: 2px solid $blue-bold  !important;
+    // border: 2px solid $blue-bold  !important;
   }
 
   @media (max-width: 1265px) {

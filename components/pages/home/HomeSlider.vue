@@ -80,7 +80,7 @@ export default {
       .v-carousel__item {
         height: auto !important;
         min-height: 150px;
-        max-height: 100%;
+        max-height: 500px;
       }
     }
   }
