@@ -544,7 +544,7 @@ $danger : #a21d0a;
 .checkbox input[type="checkbox"]+label::before {
   content: " ";
   position: absolute;
-  border: 1px solid #333;
+  border: 1px solid $yellow-bold-2;
   top: 2px;
   left: 0;
   width: 17px !important;
@@ -554,7 +554,7 @@ $danger : #a21d0a;
 
 .checkbox input[type="checkbox"]:checked+label::before {
   content: " ";
-  background: linear-gradient($color-blue, $blue-bold);
+  background: linear-gradient($yellow-bold-2, $yellow-bold);
 }
 
 input[type="checkbox"]:checked+label::after {

@@ -39,11 +39,10 @@ export default {
     async login({ commit }, payload) {
       try {
         const response = await this.$repositories.homeUsers.login(payload);
-        commit(
-          AUTH_SUCCESS,
-          response.data
-        );
-      } catch { }
+        commit(AUTH_SUCCESS, response.data);
+      } catch {
+        commit(AUTH_LOGOUT);
+      }
     },
     async loginFb({ commit },) {
       try {
@@ -63,11 +62,10 @@ export default {
       try {
         // await this.$repositories.homeUsers.register(payload);
         const response = await this.$repositories.homeUsers.register(payload);
-        commit(
-          AUTH_SUCCESS,
-          response.data
-        );
-      } catch { }
+        commit(AUTH_SUCCESS, response.data);
+      } catch {
+        commit(AUTH_LOGOUT);
+      }
     },
 
     async fetchUser({ commit }) {
@@ -109,7 +107,7 @@ export default {
 
       } catch { }
     },
-    
+
     async historyBuyAccount({ commit, state }, id) {
       try {
         const response = await this.$repositories.homeUsers.historyBuyAccount(id);

@@ -2,9 +2,9 @@
   <form class="form form-login">
     <!-- <div id="content" class="title text-main text-center bold">Đăng Nhập</div> -->
     <div class="field">
-      <form-validator name="username">
+      <form-validator name="email">
         <input
-          v-model="username"
+          v-model="email"
           type="text"
           class="v-input"
           placeholder="Tài Khoản"
@@ -23,6 +23,9 @@
           @keyup.enter="loginUser()"
         />
       </form-validator>
+    </div>
+    <div class="">
+      <form-validator name="error"></form-validator>
     </div>
     <div class="content">
       <div class="checkbox">
@@ -55,7 +58,7 @@ export default {
   data() {
     return {
       isLoading: false,
-      username: "",
+      email: "",
       password: "",
     };
   },
@@ -72,10 +75,8 @@ export default {
     async loginUser() {
       this.isLoading = true;
       const res = await this.login({
-        input: {
-          username: this.username,
-          password: this.password,
-        },
+        email: this.email,
+        password: this.password,
       });
       if (this.token) {
         this.fetchUser();

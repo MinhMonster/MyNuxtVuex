@@ -32,6 +32,9 @@ export default {
     setValidationErrors({ commit }, payload) {
       commit(SET_VALIDATION_ERRORS, payload);
     },
+    resetValidationErrors({ commit }) {
+      commit(SET_VALIDATION_ERRORS, {});
+    },
 
     // setThemeDark({ commit, dispatch }) {
     //   const isThemeDark = state.isThemeDark;

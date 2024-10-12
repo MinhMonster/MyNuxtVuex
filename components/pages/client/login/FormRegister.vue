@@ -23,25 +23,6 @@
       </v-col>
       <v-col cols="12" sm="12" class="middle">
         <div class="field">
-          <form-validator name="username">
-            <input
-              v-model="user.username"
-              id="username"
-              type="text"
-              placeholder=" "
-              class="v-input form-input"
-            />
-            <label for="username" class="form-label"
-              >Tài Khoản
-              <small
-                >(<span style="color: red">*</span> VD: NguyenVanAn)</small
-              ></label
-            >
-          </form-validator>
-        </div></v-col
-      >
-      <v-col cols="12" sm="12" class="middle">
-        <div class="field">
           <form-validator name="password">
             <input
               v-model="user.password"
@@ -58,9 +39,9 @@
       </v-col>
       <v-col cols="12" sm="12" class="middle">
         <div class="field">
-          <form-validator name="re_password">
+          <form-validator name="password_confirmation">
             <input
-              v-model="user.rePassword"
+              v-model="user.password_confirmation"
               type="password"
               placeholder=" "
               class="v-input form-input"
@@ -141,7 +122,7 @@ export default {
         name: "",
         username: "",
         password: "",
-        rePassword: "",
+        password_confirmation: "",
         phone: "",
         email: "",
       },
@@ -156,9 +137,7 @@ export default {
     ...mapActions(["register", "loginFb"]),
     async registerUser() {
       this.isLoading = true;
-      const res = await this.register({
-        input: this.user,
-      });
+      const res = await this.register(this.user);
       if (this.token) {
         this.$emit("close");
         this.$router.push("/account/profile");

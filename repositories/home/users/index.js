@@ -5,17 +5,17 @@ const headers = {
   },
 }
 export default ($api) => ({
+  register(payload) {
+    return $api.post(`/register`, payload);
+  },
   login(payload) {
-    return $api.post(`${resource}/login.php`, payload);
+    return $api.post(`/login`, payload);
   },
   loginFb() {
     return $api.get(`/login.php`);
   },
   logout() {
     return $api.get(`${resource}/logout.php`);
-  },
-  register(payload) {
-    return $api.post(`${resource}/register.php`, payload);
   },
   getToken() {
     return $api.get(`${resource}/getToken.php`,)

@@ -21,7 +21,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       // if (!config.noRequireToken) {
       switch (namespace) {
         case "clientLayout":
-          
+
           // store.dispatch("disableLoading");
           authToken = store.state.home.users.token;
           break;
@@ -135,57 +135,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
           break;
       }
     }
-    if (code && code === 422) {
 
-      switch (layout) {
-        case "clientLayout":
-          $swal.fire({
-            title: response.data.message,
-            html: response.data.error_content,
-            icon: "error",
-            customClass: customClassSwal
-          });
-
-
-          break;
-      }
-
-      const errors = response.data.errors;
-
-      if (response.data.errors) {
-        store.dispatch("global/setValidationErrors", errors ? errors || {} : {});
-
-      }
-      if (!response.data.errors) {
-        store.dispatch("global/setValidationErrors", {});
-      }
-
-      // const errors = response.data.errors;
-
-      // if (errors && errors.length > 0) {
-      //   errors.config = response.config;
-
-      //   const errorMessage =
-      //     response.config.toastErrorMessage ||
-      //     _.get(errors[0], "message") ||
-      //     GLOBAL_TOAST_ERROR_MESSAGE;
-      //   if (!response.config.hideToastError) {
-      //     store._vm.$nuxt.$toast.error(errorMessage);
-      //   }
-
-      //   // const findError = errors.find(
-      //   //   (item) => item.error_messages && item.code === 422
-      //   // );
-      //   const findError = errors.find(
-      //     (item) => item.error_messages && item.code === 422
-      //   );
-      //   store.dispatch(
-      //     "global/setValidationErrors",
-      //     findError ? findError.error_messages || {} : {}
-      //   );
-      // }
-
-    }
     setTimeout(() => {
       store.dispatch("disableLoading");
     }, 500);
@@ -195,14 +145,34 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
   api.onError(error => {
     const code = parseInt(error.response && error.response.status)
     // const code = parseInt(error.response && error.response.status)
-
     if (code === 400) {
-      redirect('/400')
+      store.commit("home/users/AUTH_LOGOUT");
+    }
+
+    if (code === 401) {
+      store.commit("home/users/AUTH_LOGOUT");
+      store.dispatch("global/setValidationErrors", {
+        error: "Thông tin xác thực không hợp lệ!"
+      });
+    }
+
+    if (code && code === 422) {
+
+      const errors = error.response.data.errors;
+
+      if (errors) {
+        store.dispatch("global/setValidationErrors", errors ? errors || {} : {});
+
+      }
+      if (!errors) {
+        store.dispatch("global/setValidationErrors", {});
+      }
+
     }
 
     setTimeout(() => {
       store.dispatch("disableLoading");
-    }, 500);
+    }, 200);
   })
   inject("api", api);
 }

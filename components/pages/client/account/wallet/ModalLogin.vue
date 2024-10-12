@@ -19,7 +19,7 @@
     </ModalPayload>
   </div>
 </template>
-  
+
 <script>
 import { mapFields } from "vuex-map-fields";
 import { mapActions, mapState } from "vuex";
@@ -36,11 +36,17 @@ export default {
   watch: {
     showLoginRegister: {
       async handler(newValue, oldValue) {
+        await this.resetValidationErrors();
         if (this.showLoginRegister) {
           this.show();
         } else {
           this.$refs.modal.dialog = false;
         }
+      },
+    },
+    isFormLoginRegister: {
+      async handler(newValue, oldValue) {
+        this.resetValidationErrors();
       },
     },
   },
@@ -61,6 +67,7 @@ export default {
   },
   methods: {
     ...mapActions("home/users", ["buyAccount"]),
+    ...mapActions("global", ["resetValidationErrors"]),
     show() {
       this.$refs.modal.show();
     },
@@ -72,7 +79,7 @@ export default {
   },
 };
 </script>
-  
+
 <style lang="scss" scoped>
 .theme-dark form.form-login {
   border: none !important;
