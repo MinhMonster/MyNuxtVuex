@@ -1,16 +1,21 @@
 <template>
   <client-only>
     <div class="rightbar-content scroll-y">
-      <div class="user-info-wrap">
+      <div class="user-info-wrap scroll-y">
+        <div class="carts">
+          <h1 class="text-center">
+            <span class="bold title">Sản phẩm đã chọn</span>
+          </h1>
+          <div>
+            <form class="flex flex-columns mt-8">
+              <div v-for="(cart, index) in carts" :key="index">
+                <CartItem :index="index" />
+                <div class="h-line mt-0 mb-3"></div>
+              </div>
+            </form>
+          </div>
+        </div>
         <div class="user-info">
-          <BaseSvg
-            class="avatar circle"
-            name="avatar"
-            id="btn-avatar"
-            title="Ảnh đại diện"
-            aria-label="Ảnh đại diện"
-          />
-
           <!-- <div v-else-if="user && token" class="circle">
             <img v-if="user.avatar" :src="user.avatar" />
             <img
@@ -50,7 +55,7 @@
           </div>
         </div>
       </div>
-      <template>
+      <!-- <template>
         <template> </template>
         <div class="h-line"></div>
         <div class="member-nav">
@@ -143,7 +148,7 @@
             </div>
           </template>
         </div>
-      </template>
+      </template> -->
     </div>
   </client-only>
 </template>
@@ -152,20 +157,23 @@
 import { mapState, mapActions } from "vuex";
 
 import { mapFields } from "vuex-map-fields";
-
-// import ButtonLoginFacebook from "@/components/common/client/button/ButtonLoginFacebook";
+import CartItem from "@/components/common/carts/CartItem";
 
 export default {
-  // components: { ButtonLoginFacebook },
+  components: { CartItem },
   computed: {
     ...mapState("home/users", ["token", "user"]),
     ...mapFields("global", {
       isNotification: "isNotification",
     }),
+    ...mapFields("carts", {
+      carts: "carts",
+    }),
   },
   methods: {
     ...mapActions("home/users", ["logout", "fetchUser", "loginFb"]),
     ...mapActions("global", ["setNotification", "getNotification"]),
+    ...mapActions("carts", ["increaseCart", "reduceCart", "deleteCart"]),
 
     async logoutUser() {
       await this.logout();
@@ -181,11 +189,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.rightbar-content .user-info-wrap .user-info .member {
-  font-size: 20px;
-  // font-weight: 700;
-  color: #fff;
-  text-align: center;
+.rightbar-content .user-info-wrap {
+  height: calc(100vh - 200px);
+  color: #333;
+  .user-info .member {
+    font-size: 20px;
+    // font-weight: 700;
+    color: #fff;
+    text-align: center;
+  }
 }
 
 .rightbar-content .member-nav {

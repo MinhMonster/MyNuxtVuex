@@ -9,7 +9,8 @@ export default ({ store, req }) => {
       "home.users.token",
       "home.users.user",
       "home.users.authenticated",
-      "global.isThemeDark"
+      "global.isThemeDark",
+      "carts.carts",
     ],
     storage: {
       getItem: (key) => {

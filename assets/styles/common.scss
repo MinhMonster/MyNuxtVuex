@@ -17,8 +17,15 @@ html {
   overflow-y: overlay;
 }
 
-[disabled] {
-  opacity: 0.8;
+[disabled], :disabled {
+  opacity: 0.7;
+}
+
+.h-line {
+  height: 1px;
+  width: 100%;
+  background-color: #a4a4a4 !important;
+  opacity: 0.6;
 }
 
 .bg-website {
@@ -83,6 +90,15 @@ html {
 .flex-center {
   align-items: center;
   justify-content: center;
+}
+
+.flex-col, .flex-columns{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-between {
+  justify-content: space-between;
 }
 
 // .hidden-sm {

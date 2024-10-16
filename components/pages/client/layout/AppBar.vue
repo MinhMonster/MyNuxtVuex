@@ -10,27 +10,17 @@
 
     <v-spacer />
 
-    <!-- <div class="header-menu" @click.stop="showMenuRight = !showMenuRight">
+    <div v-if="showMenuRight && isMobile" class="header-menu" @click.stop="showMenuRight = !showMenuRight">
       <div class="login-btn">
-        <span @click="openMenu()"
-          >{{ user && token ? user.name : "Tài khoản" }}
-        </span>
         <BaseSvg
-          v-if="!showMenuRight"
-          name="down"
+          v-if="showMenuRight"
+          name="close"
           id="btn-down"
-          title="Open"
-          aria-label="Open"
-        />
-        <BaseSvg
-          v-else
-          name="up"
-          id="btn-up"
-          title="Close"
-          aria-label="Close"
+          title="Đóng"
+          aria-label="Đóng"
         />
       </div>
-    </div> -->
+    </div>
   </v-app-bar>
 </template>
 
@@ -57,7 +47,7 @@ export default {
   computed: {
     ...mapState("home/users", ["token", "user"]),
     ...mapFields("global", {
-      // showMenuRight: "showMenuRight",
+      showMenuRight: "showMenuRight",
       fixed: "fixed",
     }),
     isHome() {

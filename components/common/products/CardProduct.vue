@@ -7,22 +7,26 @@
         alt=""
         class="image-account"
       />
-      <img v-else :src="`${product.avatar || imageEmpty}`" alt="" class="image-account" />
+      <img
+        v-else
+        :src="`${product.avatar || imageEmpty}`"
+        alt=""
+        class="image-account"
+      />
     </div>
 
     <div>
       <div class="title-product text-17-400 text-left mt-2">
         <span> {{ product.name }}</span>
       </div>
-      <div
-        class="price-product text-17-500 text-left text-yellow"
-      >
-        <span>{{ format_number(product.price) + " đ"}}</span>
+      <div class="price-product text-17-500 text-left text-yellow">
+        <span>{{ format_number(product.price) + " đ" }}</span>
       </div>
 
       <v-btn
         class="w-100 break-line-1 btn-main text-17-800 mt-2"
         :title="product.name"
+        @click="addToCart(product)"
       >
         <BaseSvg
           class="icon-menu"
@@ -38,6 +42,9 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
+import { mapFields } from "vuex-map-fields";
 export default {
   data() {
     return {
@@ -50,7 +57,9 @@ export default {
       default: null,
     },
   },
-  methods: {},
+  methods: {
+    ...mapActions("carts", ["addToCart"]),
+  },
 };
 </script>
 

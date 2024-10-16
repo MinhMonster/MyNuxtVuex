@@ -13,12 +13,12 @@
   @media (max-width: 1265px) {
     height: calc(100vh - 50px - 10px);
   }
-  .base-svg {
-    svg {
-      height: 70px;
-      width: 70px;
-    }
-  }
+  // .base-svg {
+  //   svg {
+  //     height: 70px;
+  //     width: 70px;
+  //   }
+  // }
 
   .user-info {
     height: 100%;
@@ -69,15 +69,15 @@
     }
   }
 
-  .user-info-wrap {
-    .base-svg {
+  // .user-info-wrap {
+  //   .base-svg {
 
-      svg {
-        height: 70px;
-        width: 70px;
-      }
-    }
-  }
+  //     svg {
+  //       height: 70px;
+  //       width: 70px;
+  //     }
+  //   }
+  // }
 
   .user-info-wrap {
     border: none !important;

@@ -2,16 +2,14 @@ import { getField, updateField } from "vuex-map-fields";
 
 const SET_STATE = "SET_STATE";
 const SET_QUERY = "SET_QUERY";
+const SET_CART = "SET_CART";
 
 
 export default {
   namespaced: true,
   state: () => ({
-    products: baseProducts,
+    carts: [],
     isSkeleton: true,
-    topic: null,
-    post: [],
-    metaTopics: {},
     pageSave: 1,
     query: {
       page: 1,
@@ -21,12 +19,10 @@ export default {
 
   mutations: {
     updateField,
-
-    SET_TOPICS(state, topics) {
-      state.topics = topics
-    },
-    SET_POST(state, post) {
-      state.post = post
+    SET_CART(state, { index, value }) {
+        const carts = _.cloneDeep(state.carts);
+        carts[index] = _.cloneDeep(value);
+        state.carts = carts;
     },
     SET_STATE(state, payload) {
       _.each(payload, (value, key) => {
@@ -39,30 +35,63 @@ export default {
         ..._.cloneDeep(payload),
       };
     },
+    ADD_TO_CART(state, product) {
+      const cart = state.carts.filter((cart, index) => {
+        return product.link == cart.link;
+      });
+      if (_.isEmpty(cart)) {
+        product.total = 1;
+        state.carts.push(product);
+      }
+      console.log("cart", cart, state.carts);
+
+    },
+    INCREASE_CART(state, index) {
+      console.log("ok");
+      if (state.carts[index].total < state.carts[index].quantity) {
+        state.carts[index].total++;
+      }
+    },
+    REDUCE_CART(state, index) {
+      if (state.carts[index].total > 1) {
+        state.carts[index].total--;
+      }
+    },
+    DELETE_CART(state, index) {
+      console.log("in", index);
+      state.carts.splice(index, 1);
+    },
   },
   getters: {
     getField,
+    getCart: (state) => (index) => {
+      return (state.carts[index]);
+    },
+    getTotal:(state) => (index) => {
+      return (state.carts[index].total);
+    },
   },
   actions: {
-    async fetchProducts({ commit, state, dispatch }) {
-      dispatch('setSkeleton', true);
-      try {
-        const res = await this.$repositories.products.fetchProducts({ input: state.query });
-        commit('SET_STATE', { products: res.data, metaTopics: res.data.pagy });
-        setTimeout(() => {
-          dispatch('setSkeleton', false);
-        }, 200);
-      } catch (error) {
-        commit('SET_STATE', { products: baseProducts })
-      }
+    setCart({ dispatch, commit }, payload) {
+      console.log(payload);
+      commit(SET_CART, payload);
+      // sumCashRevenues
     },
-    async fetchTopic({ commit }, link) {
-      try {
-        const res = await this.$repositories.homeTopics.fetchTopic(link)
-        commit('SET_STATE', { topic: res.data.topic })
-      } catch (error) {
-
-      }
+    async addToCart({ commit, state }, product) {
+      commit('ADD_TO_CART', product);
+    },
+    increaseCart({ commit }, index) {
+      commit('INCREASE_CART', index);
+    },
+    reduceCart({ commit }, index) {
+      commit('REDUCE_CART', index);
+    },
+    deleteCart({ commit }, index) {
+      commit('DELETE_CART', index);
+    },
+    setCarts({ commit }, carts) {
+      console.log("carts", carts);
+      commit('SET_STATE', { carts: carts })
     },
     setSkeleton({ commit, state }, payload) {
       commit(SET_STATE, { isSkeleton: payload });
@@ -81,45 +110,4 @@ export default {
 
   }
 }
-
-export const newAccountNinja = {
-  ID: "",
-  taikhoan: "",
-  ingame: "",
-  level: "",
-  vukhi: "",
-  mcs: "",
-  thongtin: "",
-  loainick: 1,
-  class: 1,
-  server: 1,
-  giatien: "",
-  gianhap: "",
-  sim: "",
-  hinhanh: [],
-  do: "",
-
-  tl1: "",
-  tl2: "",
-  tl3: "",
-  tl4: "",
-  tl5: "",
-  tl6: "",
-  tl7: "",
-  tl8: "",
-  tl9: "",
-  tl10: "",
-  tl11: "",
-};
-
-
-export const baseProducts = new Array(4).fill({
-  name: "",
-  link: "",
-  avatar: "",
-  images: [],
-  price: 0,
-  quantity: 0,
-  description: ""
-});
 
