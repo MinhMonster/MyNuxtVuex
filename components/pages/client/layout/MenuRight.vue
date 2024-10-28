@@ -49,7 +49,7 @@ export default {
       showMenuRight: "showMenuRight",
     }),
     heightMenu() {
-      return this.isMobile ? `calc(100% - 45px)` : `calc(100% - 95px)`;
+      return this.isMobile ? `calc(100% - 45px)` : `calc(100% - 45px)`;
     },
   },
   methods: {

@@ -58,6 +58,18 @@ $margins: (
   }
 }
 
+@for $i from 1 through 5 {
+  .break-line-#{$i} {
+      word-break: break-all;
+      display: -webkit-box !important;
+      -webkit-line-clamp: #{$i};
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+    }
+  }
+
 .bold {
   font-weight: bold;
 }

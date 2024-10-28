@@ -15,44 +15,41 @@
             </form>
           </div>
         </div>
-        <div class="user-info">
-          <!-- <div v-else-if="user && token" class="circle">
+      </div>
+      <div class="user-info bg-main">
+        <!-- <div v-else-if="user && token" class="circle">
             <img v-if="user.avatar" :src="user.avatar" />
             <img
               v-else
               :src="`https://graph.facebook.com/${user.uid}/picture?type=normal`"
             />
           </div> -->
-          <div class="member">
-            <div v-if="!user" class="mt-4">
-              <div class="flex justify-center">
-                <div
-                  class="login-btn cursor-pointer mr-1"
-                  @click="nextLoginRegister('login')"
-                >
-                  <span>Đăng nhập</span>
-                </div>
-                <div
-                  class="register-btn cursor-pointer"
-                  @click="nextLoginRegister('register')"
-                >
-                  <span>Đăng ký</span>
-                </div>
+        <div class="member aggregate mb-1">
+          <div v-if="!user">
+            <div class="text-center">Hãy đăng nhập để đặt hàng!</div>
+            <div class="flex justify-center">
+              <div
+                class="login-btn cursor-pointer mr-1"
+                @click="nextLoginRegister('login')"
+              >
+                <span>Đăng nhập</span>
               </div>
-
-              <!-- <ButtonLoginFacebook /> -->
+              <div
+                class="register-btn cursor-pointer"
+                @click="nextLoginRegister('register')"
+              >
+                <span>Đăng ký</span>
+              </div>
             </div>
-            <template v-else>
-              {{ user.name }}
-              <p class="text-main">
-                Số dư:
-                <span class="text-blue bold">
-                  {{ format_number(user.cash) }}
-                  <sup class="text-sup">vnđ</sup></span
-                >
-              </p>
-            </template>
+
+            <!-- <ButtonLoginFacebook /> -->
           </div>
+          <template v-else>
+            <div>
+              <div>Tổng</div>
+              <!-- <div>{{ format_number(12345678) }}</div> -->
+            </div>
+          </template>
         </div>
       </div>
       <!-- <template>
@@ -190,7 +187,7 @@ export default {
 
 <style lang="scss" scoped>
 .rightbar-content .user-info-wrap {
-  height: calc(100vh - 200px);
+  height: calc(100% - 60px);
   color: #333;
   .user-info .member {
     font-size: 20px;
@@ -250,7 +247,7 @@ export default {
 
 .register-btn {
   position: relative;
-  height: 30px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -6,13 +6,16 @@
   flex-direction: column;
   align-items: center;
   width: calc(100% - 10px);
-  height: calc(100vh - 50px - 50px - 10px);
-  background: #fff !important;;
+  min-height: calc(100% - 160px) !important;
+  background: #fff !important;
+  bottom: 70px;
   background-size: 100% 100%;
   border-radius: 4px;
-  @media (max-width: 1265px) {
-    height: calc(100vh - 50px - 10px);
-  }
+  padding-bottom: 70px;
+  // @media (max-width: 1265px) {
+  //   height: calc(100% - 160px);
+  // }
+
   // .base-svg {
   //   svg {
   //     height: 70px;
@@ -20,25 +23,36 @@
   //   }
   // }
 
-  .user-info {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
-    button.v-btn .v-btn__content,
-    .v-btn--icon.v-size--default {
-      height: 70px !important;
-      width: 70px !important;
-      font-size: 70px;
-    }
+}
 
-    img {
-      height: 80px;
-      width: 80px;
-      border-radius: 50%;
-    }
+.user-info {
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // margin-bottom: 50px;
+  .aggregate {
+    margin: 0 auto;
+    width: calc(100% - 10px);
+  }
+
+  button.v-btn .v-btn__content,
+  .v-btn--icon.v-size--default {
+    height: 70px !important;
+    width: 70px !important;
+    font-size: 70px;
+  }
+
+  img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
   }
 }
 
@@ -48,9 +62,10 @@
 
 
 .rightbar-content {
-  border: 5px solid $yellow-bold  !important;
+  position: relative;
+  border: 5px solid $yellow-bold !important;
   background: $background-sidebar;
-  max-height: calc(100vh - 50px - 45px);
+  // max-height: calc(100vh - 50px - 45px);
   height: 100%;
   margin-top: 0px;
   // border-radius: 4px;

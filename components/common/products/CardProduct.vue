@@ -26,7 +26,7 @@
       <v-btn
         class="w-100 break-line-1 btn-main text-17-800 mt-2"
         :title="product.name"
-        @click="addToCart(product)"
+        @click="addToCart(product), showMenuRight=true"
       >
         <BaseSvg
           class="icon-menu"
@@ -56,6 +56,11 @@ export default {
       type: Object,
       default: null,
     },
+  },
+  computed: {
+    ...mapFields("global", {
+      showMenuRight: "showMenuRight",
+    }),
   },
   methods: {
     ...mapActions("carts", ["addToCart"]),

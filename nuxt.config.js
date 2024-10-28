@@ -120,28 +120,28 @@ export default {
     // "@nuxtjs/toast",
     "vue-sweetalert2/nuxt",
     // 'nuxt-validate'
-    '@nuxtjs/sitemap',
+    // '@nuxtjs/sitemap',
     '@nuxtjs/robots',
   ],
-  sitemap: {
-    hostname: 'https://shopnick.online',
-    // routes: async () => {
-    //   const { data } = await axios.get('https://muabannick.pro/apis/sitemap/index.php');
-    //   return data.sitemap.map((item) => `${item.link}`)
-    // },
-    sitemaps: [
-      {
-        path: '/sitemap.xml',
-      },
-      {
-        path: '/sitemap/topics.xml',
-        routes: async () => {
-          const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
-          return data.sitemap_topics.map((item) => `${item.link}`)
-        },
-      },
-    ]
-  },
+  // sitemap: {
+  //   hostname: 'https://shopnick.online',
+  //   // routes: async () => {
+  //   //   const { data } = await axios.get('https://muabannick.pro/apis/sitemap/index.php');
+  //   //   return data.sitemap.map((item) => `${item.link}`)
+  //   // },
+  //   sitemaps: [
+  //     {
+  //       path: '/sitemap.xml',
+  //     },
+  //     {
+  //       path: '/sitemap/topics.xml',
+  //       routes: async () => {
+  //         const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
+  //         return data.sitemap_topics.map((item) => `${item.link}`)
+  //       },
+  //     },
+  //   ]
+  // },
   robots: {
     UserAgent: '*', // Default user agent
     Disallow: ['/account',], // Disallow specific paths

@@ -1,4 +1,5 @@
 .carts {
+  // height: calc(100% - 70px);
   .cart-item {
     position: relative;
     width: 100%;
@@ -30,12 +31,10 @@
       position: absolute;
       background: #fff;
       border: none;
-      z-index: 2;
       opacity: 1 !important;
       font-size: 23px;
       padding: 0px;
       // margin: -11px -11px -11px auto;
-      z-index: 1001;
 
       &.v-btn--icon.v-size--default .v-icon {
         height: 24px;

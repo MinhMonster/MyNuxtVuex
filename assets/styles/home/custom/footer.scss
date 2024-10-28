@@ -6,6 +6,9 @@
   height: 50px;
   background: $color-theme-yellow;
   padding-bottom:5px ;
+  &.active {
+    width: calc(100% - 500px);
+  }
   @media (max-width: 599px) {
     height: 45px;
   }

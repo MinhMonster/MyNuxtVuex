@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div id="menu-bottom">
+    <div id="menu-bottom" :class="{active: showMenuRight && !isMobile}">
       <div class="body-bottom">
         <ModalSupport />
 
