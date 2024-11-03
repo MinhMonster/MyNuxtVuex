@@ -214,7 +214,9 @@ export default {
     setAccountNotifications({ commit }, payload) {
       commit(SET_ACCOUNT_NOTIFICATIONS, payload);
     },
+
     fileUpload({ state, commit, dispatch }, payload) {
+      console.log("okok", payload);
       return new Promise((resolve, reject) => {
         const config = {
           header: {

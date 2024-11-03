@@ -1,23 +1,23 @@
 <template>
   <v-row justify="center" v-if="isShow">
     <v-card class="modal-folder">
-      <v-card-title>{{ label }}</v-card-title>
-      <v-divider></v-divider>
-      <v-card-text>
-        <form ref="form" @submit.stop.prevent="change()">
-          <b-form-group
-            label-for="name-input"
-            invalid-feedback="Name is required"
-          >
-            <b-form-input
-              id="name-input"
-              v-model="name"
-              required
-            ></b-form-input>
-          </b-form-group>
-        </form>
+      <v-card-title class="title-modal">{{ label }}</v-card-title>
+      <v-card-text >
+        <div class="modal-body pd-15px">
+          <form ref="form" @submit.stop.prevent="change()">
+            <b-form-group
+              label-for="name-input"
+              invalid-feedback="Name is required"
+            >
+              <b-form-input
+                id="name-input"
+                v-model="name"
+                required
+              ></b-form-input>
+            </b-form-group>
+          </form>
+        </div>
       </v-card-text>
-      <v-divider></v-divider>
       <v-card-actions class="right">
         <v-btn class="bg-danger text-white" @click="closeModal()">
           Close
@@ -46,18 +46,18 @@ export default {
       type: Boolean,
       default: false,
     },
-    folderName: {
+    name: {
       type: String,
       default: "",
     },
   },
   data() {
     return {
-      name: "",
+      // name: "",
     };
   },
-  mounted(){
-    this.name = _.cloneDeep(this.folderName);
+  mounted() {
+    // this.name = _.cloneDeep(this.name);
   },
   methods: {
     closeModal() {
@@ -75,9 +75,9 @@ export default {
   top: 30%;
   /* height: 270px; */
   /* max-height: 270px; */
-  min-height: 270px !important;
+  /* min-height: 270px !important; */
   width: 500px;
-  max-width: calc(100% - 50px); 
+  max-width: calc(100% - 50px);
 
   position: fixed;
   z-index: 2;

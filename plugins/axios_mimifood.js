@@ -72,7 +72,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
           }
           break;
         case "adminDev":
-          $toast.success(response.statusText);
+          $toast.success(response.data.message ? response.data.message : null);
 
           // $toast.fire(response.data.message);
           break;
@@ -206,6 +206,10 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     if (code === 400) {
       redirect('/400')
     }
+    if (code === 500) {
+      $toast.error(error.response.data.message);
+    }
+
     if (code === 401) {
       store.dispatch("admin/auth/logout");
       redirect('/admin/login')

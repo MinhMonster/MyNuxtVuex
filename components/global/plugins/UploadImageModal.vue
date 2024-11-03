@@ -110,7 +110,7 @@ export default {
       if (result.data.code === 200) {
         this.$toasted.success(result.data.message);
       }
-      await this.fetchFolders();
+      await this.fetchFolders(this.$route.path);
     },
 
     selected(files) {
