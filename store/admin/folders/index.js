@@ -83,11 +83,10 @@ export default {
       } catch (error) { }
     },
     async createFolder({ commit }, payload) {
-      console.log("payload", payload);
       try {
         if (payload.route_path.includes('mimifood')) {
           return await this.$repositories_mimifood.mimiFoodFolders.adminCreateFolder({
-            keyword: payload.folder,
+            name: payload.name,
             parent_id: payload.parent_id
 
           })
@@ -99,7 +98,14 @@ export default {
     },
     async editNameFolder({ commit }, payload) {
       try {
-        return await this.$repositories.adminFolders.editNameFolder(payload)
+        if (payload.route_path.includes('mimifood')) {
+          return await this.$repositories_mimifood.mimiFoodFolders.adminUpdateFolder({
+            name: payload.name,
+            id: payload.folder.id
+          })
+        } else {
+          return await this.$repositories.adminFolders.editNameFolder(payload)
+        }
       } catch (error) { }
     },
 

@@ -96,7 +96,7 @@ export default {
       "fetchFolders",
       "deleteMedia",
       "createFolder",
-      "editNameFolder",
+      "updateNameFolder",
     ]),
     ...mapActions("global", ["setSelectedImages"]),
 
@@ -105,9 +105,14 @@ export default {
       this.$emit("onUploaded", files);
     },
 
-    async newFolder(value) {
-      const result = await this.createFolder(value);
-      if (result.data.code === 200) {
+    async newFolder(input) {
+      const result = await this.createFolder(input);
+      if (
+        result &&
+        result.data &&
+        result.data.code &&
+        result.data.code === 200
+      ) {
         this.$toasted.success(result.data.message);
       }
       await this.fetchFolders(this.$route.path);

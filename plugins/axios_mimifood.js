@@ -7,7 +7,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
   // console.log("api_food", api_food);
   api_food.onRequest(config => {
     const hideLoading = config.hideLoading;
-
+    store.dispatch("admin/global/setValidationErrors", {});
     if (!hideLoading) {
       config.id =
         new Date().getTime() + Math.random().toString(36).substring(2, 15);
@@ -139,6 +139,9 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
           if(response.data.message){
             $swal.fire(response.data.message, response.data.error_content, "error");
           }
+          break;
+        case "adminDev":
+          $toast.error(response.data.message);
           break;
       }
     }

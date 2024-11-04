@@ -35,7 +35,7 @@
       <div v-if="folders.length" class="folderList scroll-y">
         <div
           class="pointer main-folder"
-          :class="{ active: folderUpload == '/images/' }"
+          :class="{ active: folder_active == null }"
         >
           <div @click="setPath(null)">
             <v-icon color="blue">mdi-folder-multiple</v-icon>
@@ -55,26 +55,29 @@
         >
           <div
             class="folder-item-body flex-row-space-between"
-            :class="{ active: folderUpload == folder.path }"
+            :class="{ active: folder_active && folder_active.id == folder.id }"
           >
             <div class="body-folder" @click="setPath(folder)">
-              <v-icon v-if="parent_folder == folder.path" color="blue"
+              <v-icon v-if="folder_path == folder.path" color="blue"
                 >mdi-folder-multiple</v-icon
               >
               <v-icon v-else color="blue">mdi-folder</v-icon>
 
               {{ folder.name }}
-              <v-icon
-                class="icon-down"
-                v-if="pathActive != folder.path && folder.sub_folders.length"
-                >mdi-menu-down</v-icon
-              >
 
               <v-icon
                 class="icon-up"
-                v-if="pathActive == folder.path && folder.sub_folders.length"
-                >mdi-menu-up</v-icon
+                v-if="
+                  folder_show_list &&
+                  folder_show_list.id == folder.id &&
+                  folder.sub_folders.length
+                "
               >
+                mdi-menu-up
+              </v-icon>
+              <v-icon class="icon-down" v-else-if="folder.sub_folders.length">
+                mdi-menu-down
+              </v-icon>
             </div>
             <div>
               <v-icon class="dots-vertical" @click="editFolder(folder)"
@@ -83,16 +86,16 @@
             </div>
           </div>
 
-          <template v-if="pathActive == folder.path">
+          <template v-if="folder_show_list && folder_show_list.id == folder.id">
             <div
               v-for="(subFolder, index) in folder.sub_folders"
               :key="index"
               class="pointer sub-folder"
-              :class="{ active: folderUpload == subFolder.path }"
+              :class="{ active: folder_active.id == subFolder.id }"
             >
               <div @click="setFolderUpload(subFolder)">
                 <span class="folder-name">
-                  <v-icon v-if="folderUpload == subFolder.path" color="blue">
+                  <v-icon v-if="folder_active.id == subFolder.id" color="blue">
                     mdi-folder-multiple
                   </v-icon>
                   <v-icon v-else color="blue">mdi-folder</v-icon
@@ -195,9 +198,8 @@
       </v-card-actions>
     </template>
     <EditFolderModal
-      v-if="folderUpload == folderEdit.path"
       :isShow="isShowEdit"
-      :folder="folderEdit"
+      :folder="folder_active"
       @closeModal="isShowEdit = false"
       @change="newFolder"
       @editNameFolder="isEdit = true"
@@ -206,15 +208,13 @@
     <UpdateNameFolderModal
       v-if="isShow"
       :isShow="isShow"
-      :label="`New Folder`"
       @closeModal="isShow = false"
       @change="newFolder"
     ></UpdateNameFolderModal>
     <UpdateNameFolderModal
       v-if="isEdit"
       :isShow="isEdit"
-      :folder-name="folderEdit.name"
-      :label="`Update Name: ${folderEdit.name}`"
+      :folder="folder_active"
       @closeModal="isEdit = false"
       @change="updateNameFolder"
     ></UpdateNameFolderModal>
@@ -237,6 +237,15 @@ export default {
   components: {
     UpdateNameFolderModal,
     EditFolderModal,
+  },
+  watch: {
+    folder_active: {
+      async handler(newValue, oldValue) {
+        this.folder_path = this.folder_active
+          ? this.folder_active.path
+          : "/images/";
+      },
+    },
   },
   props: {
     activated: {
@@ -295,20 +304,17 @@ export default {
   },
   data() {
     return {
-      showFolder: true,
-      parent_folder: "/images/",
-      folderUpload: "/images/",
-      pathActive: "/images/",
       images: [],
       files: [],
       preview: [],
+      folder_active: null,
+      folder_path: "/images/",
+      folder_show_list: null,
+      showFolder: true,
       isShow: false,
-      showEdit: false,
       isShowEdit: false,
       isZoom: false,
       isEdit: false,
-      folderEdit: {},
-      folder: null,
     };
   },
   computed: {
@@ -347,32 +353,30 @@ export default {
       return image ? this.activated.find((item) => item == image.url) : false;
     },
     async editFolder(folder) {
-      this.folderEdit = folder;
-      this.folderUpload = folder.path;
+      this.folder_active = folder;
       this.isShowEdit = true;
-      this.showEdit = folder.path;
       // await this.getFiles();
     },
+    getFolderPath(folder) {
+      return folder ? folder.path : "/images/";
+    },
     async setPath(folder = null) {
-      this.folder = folder;
-      console.log("folder", folder);
-
-      const path = folder ? folder.path : "/images/";
-      if (this.pathActive !== path) {
-        this.pathActive = path;
+      if (
+        this.getFolderPath(this.folder_show_list) != this.getFolderPath(folder)
+      ) {
+        this.folder_show_list = folder;
       } else {
-        this.pathActive = "/images/";
+        this.folder_show_list = null;
       }
-      this.parent_folder = path;
-      this.folderUpload = path;
+      this.folder_active = folder;
       await this.getFiles();
     },
     async getFiles() {
       this.images = await this.fetchFiles({
         route_path: this.$route.path,
         folder: this.$route.path.includes("mimifood")
-          ? this.folder
-          : this.folderUpload,
+          ? this.folder_active
+          : this.folder_path,
       });
     },
     async onDeleteFile(image) {
@@ -390,7 +394,6 @@ export default {
               route_path: this.$route.path,
               file: image,
             });
-            console.log("result", result);
 
             if (result.status === 200 || result.data.code === 200) {
               this.images = this.images.filter((item) => item.id != image.id);
@@ -399,8 +402,7 @@ export default {
         });
     },
     async setFolderUpload(folder) {
-      this.folder = folder;
-      this.folderUpload = folder.path;
+      this.folder_active = folder;
       await this.getFiles();
     },
     dragover(event) {
@@ -509,10 +511,9 @@ export default {
           route_path: this.$route.path,
           path: this.pathUpload,
           folder: this.$route.path.includes("mimifood")
-            ? this.folder
-            : this.folderUpload,
+            ? this.folder_active
+            : this.folder_path,
           data,
-          // namespace: this.namespace,
         });
         if (result.data.code && result.data.code === 200) {
           this.$toasted.success(result.data.message);
@@ -531,24 +532,24 @@ export default {
     },
     newFolder(value) {
       const input = {
-        folder_id: this.folder ? this.folder.id : null,
-        path: this.parent_folder,
-        folder: value,
+        parent_id: this.folder_active ? this.folder_active.id : null,
+        path: this.folder_path,
+        name: value,
         route_path: this.$route.path,
       };
       this.$emit("newFolder", input);
     },
     async updateNameFolder(value) {
       const input = {
-        newName: value,
-        folder: this.folderEdit,
+        route_path: this.$route.path,
+        name: value,
+        folder: this.folder_active,
       };
       const result = await this.editNameFolder(input);
-      if (result.data.code === 200) {
+      if (result && result.data && result.data.code === 200) {
         this.$toasted.success(result.data.message);
-        await this.setPath(result.data.folder);
-        await this.fetchFolders(this.$route.path);
       }
+      await this.fetchFolders(this.$route.path);
     },
     addImage(image) {
       if (this.is_selected(image)) {

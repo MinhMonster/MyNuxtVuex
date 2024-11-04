@@ -6,10 +6,10 @@ export default ($api_food) => ({
     return $api_food.get(`${baseResource}`)
   },
   adminCreateFolder(payload) {
-    return $api_food.post(`${baseResource}`, payload)
+    return $api_food.post(`${baseResource}/create`, payload)
   },
-  adminCreateAndUpdateProduct(payload) {
-    return $api_food.post(`${baseResource}`, payload)
+  adminUpdateFolder(payload) {
+    return $api_food.post(`${baseResource}/update`, payload)
   },
   adminDestroyTopic(payload) {
     return $api_food.get(`${baseResource}/adminDestroyTopic`, { params: { id: payload } })

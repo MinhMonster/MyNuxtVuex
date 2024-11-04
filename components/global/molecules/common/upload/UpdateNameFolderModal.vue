@@ -1,19 +1,21 @@
 <template>
   <v-row justify="center" v-if="isShow">
     <v-card class="modal-folder">
-      <v-card-title class="title-modal">{{ label }}</v-card-title>
-      <v-card-text >
+      <v-card-title class="title-modal">
+        {{ folder ? "Update Name: " + folder.name : "Create Folder" }}
+      </v-card-title>
+      <v-card-text>
         <div class="modal-body pd-15px">
           <form ref="form" @submit.stop.prevent="change()">
             <b-form-group
               label-for="name-input"
               invalid-feedback="Name is required"
             >
-              <b-form-input
-                id="name-input"
-                v-model="name"
-                required
-              ></b-form-input>
+              <form-validator name="id"></form-validator>
+              <form-validator name="name">
+                <b-form-input id="name-input" v-model="name" required>
+                </b-form-input>
+              </form-validator>
             </b-form-group>
           </form>
         </div>
@@ -26,6 +28,7 @@
           color="blue-darken-1"
           class="bg-primary text-white"
           variant="text"
+          :disabled="!name || (folder && folder.name == name)"
           @click="change()"
         >
           Save
@@ -36,7 +39,12 @@
   </v-row>
 </template>
 <script>
+import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+
 export default {
+  components: {
+    FormValidator,
+  },
   props: {
     label: {
       type: String,
@@ -46,18 +54,18 @@ export default {
       type: Boolean,
       default: false,
     },
-    name: {
-      type: String,
-      default: "",
+    folder: {
+      type: Object,
+      default: () => {},
     },
   },
   data() {
     return {
-      // name: "",
+      name: "",
     };
   },
   mounted() {
-    // this.name = _.cloneDeep(this.name);
+    this.name = _.cloneDeep(this.folder ? this.folder.name : "");
   },
   methods: {
     closeModal() {
@@ -65,7 +73,7 @@ export default {
     },
     change() {
       this.$emit("change", this.name);
-      this.$emit("closeModal");
+      // this.$emit("closeModal");
     },
   },
 };
