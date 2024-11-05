@@ -42,9 +42,9 @@
             Images
           </div>
 
-          <v-icon class="btn-show" @click="showFolder = false"
+          <!-- <v-icon class="btn-show" @click="showFolder = false"
             >mdi-dots-vertical</v-icon
-          >
+          > -->
         </div>
 
         <div
@@ -100,7 +100,9 @@
                   </v-icon>
                   <v-icon v-else color="blue">mdi-folder</v-icon
                   >{{ subFolder.name }}
-                  <v-icon class="dots-vertical">mdi-dots-vertical</v-icon>
+                  <v-icon class="dots-vertical" @click="editFolder(subFolder)"
+                    >mdi-dots-vertical</v-icon
+                  >
                 </span>
               </div>
             </div>
@@ -210,7 +212,8 @@
       :isShow="isShow"
       @closeModal="isShow = false"
       @change="newFolder"
-    ></UpdateNameFolderModal>
+    >
+    </UpdateNameFolderModal>
     <UpdateNameFolderModal
       v-if="isEdit"
       :isShow="isEdit"
@@ -569,6 +572,7 @@ export default {
 [disabled] {
   pointer-events: none;
 }
+
 .body-folder {
   width: 90%;
 }
@@ -576,6 +580,7 @@ export default {
 .card-folder .card-body {
   padding: 0;
 }
+
 .folderList {
   width: 250px;
   padding: 0px;
@@ -595,6 +600,7 @@ export default {
     margin-right: 0;
     margin-bottom: 1px;
   }
+
   .sub-folder {
     border-top: 1px solid #d7dcdf;
     padding-left: 25px;
@@ -605,6 +611,7 @@ export default {
     margin-right: 0;
     margin-bottom: 1px;
     position: relative;
+
     .dots-vertical {
       float: right;
       padding: 5px 0;
@@ -613,11 +620,13 @@ export default {
     }
   }
 }
+
 @media (max-width: 675px) {
   .folderList {
     width: 250px;
   }
 }
+
 .fileList {
   padding-left: 10px;
   padding-top: 10px;
@@ -628,6 +637,7 @@ export default {
   // display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
+
   .file-preview {
     width: 100%;
     border-bottom: 2px solid #2196f3;
@@ -642,6 +652,7 @@ export default {
     justify-content: flex-start;
     // align-items: baseline;
     align-content: flex-start;
+
     .fileItem {
       // flex: 1;
       // min-width: 33.33%;
@@ -650,9 +661,11 @@ export default {
 
       padding-right: 10px;
       padding-bottom: 10px;
+
       img {
         max-height: 200px;
       }
+
       &:empty {
         padding-bottom: 0;
       }
@@ -674,9 +687,11 @@ export default {
         &.active {
           border: 2px solid #2196f3 !important;
         }
+
         &.activated,
         &.activated.active {
           border: 2px solid var(--danger) !important;
+
           .fileIcon {
             cursor: not-allowed;
           }
@@ -691,6 +706,7 @@ export default {
           font-size: 10px;
           padding: 1px;
         }
+
         .fileIcon {
           // width: 60px;
           text-align: center;
@@ -730,18 +746,21 @@ export default {
         }
       }
     }
+
     @media (min-width: 400px) {
       .fileItem,
       .dropzone {
         width: 50%;
       }
     }
+
     @media (min-width: 675px) {
       .fileItem,
       .dropzone {
         width: 50%;
       }
     }
+
     @media (min-width: 960px) {
       .fileItem,
       .dropzone {
@@ -750,6 +769,7 @@ export default {
     }
   }
 }
+
 .bg-gray {
   background: #e1e1e1 !important;
 }
@@ -758,6 +778,7 @@ export default {
   width: 100% !important;
   height: 50vh !important;
 }
+
 .folder-plugin {
   color: #fafafa !important;
   height: 50px;
@@ -765,6 +786,7 @@ export default {
   background: #fafafa;
   color: #495057 !important;
 }
+
 .card-folder .theme--light.v-btn {
   // color: #fff !important;
 }
@@ -792,11 +814,13 @@ export default {
   margin-left: -35px;
   padding-left: 35px;
   border: 2px solid #2196f3 !important;
+
   .dots-vertical {
     top: 0px;
     right: -2px !important;
   }
 }
+
 .folderList .folder-item .sub-folder.active {
   margin-left: -35px;
   padding-left: 60px;
@@ -806,12 +830,14 @@ export default {
 .folderList .main-folder {
   position: relative;
   padding: 10px;
+
   .btn-show {
     position: absolute;
     right: 0px;
     top: 12px;
   }
 }
+
 .folderList .main-folder.active {
   margin-left: 0px;
   padding-left: 10px;
@@ -825,33 +851,39 @@ export default {
   width: 100%;
   height: 100vh;
   z-index: 10;
+
   .fileList {
     height: calc(100% - 120px);
     max-height: calc(100vh - 120px);
+
     @media (min-width: 400px) {
       .fileItem,
       .dropzone {
         width: 100% !important;
       }
     }
+
     @media (min-width: 675px) {
       .fileItem,
       .dropzone {
         width: 50% !important;
       }
     }
+
     @media (min-width: 960px) {
       .fileItem,
       .dropzone {
         width: 33.33% !important;
       }
     }
+
     @media (min-width: 1200px) {
       .fileItem,
       .dropzone {
         width: 25% !important;
       }
     }
+
     @media (min-width: 1500px) {
       .fileItem,
       .dropzone {
@@ -860,10 +892,12 @@ export default {
     }
   }
 }
+
 .zoom-modal .folder-plugin {
   width: 100%;
   min-width: 675px;
 }
+
 .zoom-modal .folder-show {
   min-width: 675px;
 
@@ -874,20 +908,25 @@ export default {
     }
   }
 }
+
 .show {
   .folderList {
     display: block;
   }
+
   .fileList {
     width: calc(100% -250px);
+
     @media (max-width: 675px) {
       width: calc(100% - 170px);
     }
   }
 }
+
 .hidden {
   display: none;
 }
+
 .v-btn:not(.v-btn--round).v-size--default {
   height: 36px;
   min-width: 36px;
