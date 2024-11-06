@@ -202,6 +202,9 @@ export default {
         return (size / (1000 * 1024 * 1024)).toFixed(1) + "GB";
       }
     },
+    isSelected(image, selectedImages) {
+      return selectedImages.find((item) => item.url == image.url);
+    },
 
     classNinja(type) {
       switch (type) {

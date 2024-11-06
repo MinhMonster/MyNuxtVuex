@@ -21,7 +21,7 @@
     />
     <div class="flex-row folder-show" :class="{ show: showFolder }">
       <div v-if="folders.length" class="folderList scroll-y">
-        <FileImages :folder-active="folder_active" @setPath="setPath" />
+        <FolderImages :folder-active="folder_active" @setPath="setPath" />
         <div
           v-for="(folder, index) in folders"
           :key="index"
@@ -67,7 +67,7 @@
               class="pointer sub-folder"
               :class="{ active: folder_active.id == subFolder.id }"
             >
-              <FileCard
+              <FolderCard
                 :folder="subFolder"
                 :folder-active="folder_active"
                 @setFolderUpload="setFolderUpload"
@@ -104,69 +104,21 @@
           </div>
           <!-- <div v-for="i in maxFile" :key="maxFile + i" class="fileItem e"></div> -->
         </div>
-        <div v-if="images.length" class="file-images">
-          <div v-for="(image, index) in images" :key="index" class="fileItem">
-            <div
-              v-if="image && image.url"
-              class="fileItemWrapper"
-              :class="{
-                active: is_selected(image),
-                activated: is_activated(image),
-              }"
-            >
-              <b-button
-                variant="danger"
-                size="sm"
-                class="ml-2"
-                pill
-                @click="onDeleteFile(image)"
-              >
-                <i class="mdi mdi-close-thick text-white"></i>
-              </b-button>
-              <div class="fileIcon">
-                <img
-                  v-if="image && image.url"
-                  :src="image.url"
-                  :disabled="is_activated(image)"
-                  @click="addImage(image)"
-                />
-                <i v-else class="mdi mdi-file-document-outline"></i>
-                <div class="fileDescription">
-                  <div class="fileName break-line-1">{{ image.fileName }}</div>
-                  <div class="fileType">
-                    {{ image.type }} - {{ fileSizeFilter(image.byteSize) }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <FileCards
+          v-if="images.length"
+          :images="images"
+          :selectedImages="selectedImages"
+          @addImage="addImage"
+        />
 
         <!-- <div v-for="i in maxFile" :key="maxFile + i" class="fileItem e"></div> -->
       </div>
     </div>
 
     <template v-if="!autoupload && preview.length" #footer>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn
-          color="red"
-          variant="danger"
-          class="text-white"
-          @click="removeAll"
-        >
-          Clear
-        </v-btn>
-        <v-btn
-          color="primary"
-          variant="primary"
-          class="text-white"
-          @click="uploadFiles"
-        >
-          Upload
-        </v-btn>
-      </v-card-actions>
+      <BtnActionUpload @removeAll="removeAll" @uploadFiles="uploadFiles" />
     </template>
+
     <EditFolderModal
       :isShow="isShowEdit"
       :folder="folder_active"
@@ -198,20 +150,25 @@ import { mapFields } from "vuex-map-fields";
 import mixins from "@/mixins/index";
 import { mapActions } from "vuex";
 import GroupBtnActions from "@/components/Uploads/GroupBtnActions.vue";
-import FileImages from "@/components/Uploads/File/FileImages.vue";
-import FileCard from "@/components/Uploads/File/FileCard.vue";
+import FolderImages from "@/components/Uploads/Folder/FolderImages.vue";
+import FolderCard from "@/components/Uploads/Folder/FolderCard.vue";
+import FileCards from "@/components/Uploads/File/FileCards.vue";
+
 import EditFolderModal from "@/components/global/molecules/common/EditFolderModal.vue";
 import UpdateNameFolderModal from "@/components/global/molecules/common/upload/UpdateNameFolderModal";
+import BtnActionUpload from "@/components/Uploads/BtnActionUpload.vue";
 
 let WidgetCount = 0;
 export default {
   mixins: [mixins],
   components: {
     GroupBtnActions,
-    FileImages,
-    FileCard,
+    FolderImages,
+    FolderCard,
+    FileCards,
     UpdateNameFolderModal,
     EditFolderModal,
+    BtnActionUpload,
   },
   watch: {
     folder_active: {
@@ -321,12 +278,7 @@ export default {
       "createFolder",
       "editNameFolder",
     ]),
-    is_selected(image) {
-      return this.selectedImages.find((item) => item.url == image.url);
-    },
-    is_activated(image) {
-      return image ? this.activated.find((item) => item == image.url) : false;
-    },
+
     async editFolder(folder) {
       this.folder_active = folder;
       this.isShowEdit = true;
@@ -527,7 +479,7 @@ export default {
       await this.fetchFolders(this.$route.path);
     },
     addImage(image) {
-      if (this.is_selected(image)) {
+      if (this.isSelected(image, this.selectedImages)) {
         this.selected = this.selected.filter((item) => item.url != image.url);
       } else {
         const list = [];
@@ -607,131 +559,6 @@ export default {
     width: 100%;
     border-bottom: 2px solid #2196f3;
     margin-bottom: 10px;
-  }
-
-  .file-images,
-  .file-preview {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    // align-items: baseline;
-    align-content: flex-start;
-
-    .fileItem {
-      // flex: 1;
-      // min-width: 33.33%;
-      // min-width: 200px;
-      height: auto;
-
-      padding-right: 10px;
-      padding-bottom: 10px;
-
-      img {
-        max-height: 200px;
-      }
-
-      &:empty {
-        padding-bottom: 0;
-      }
-
-      .fileItemWrapper {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: flex-start;
-
-        border: 1px solid #eff2f7;
-        border-radius: 5px;
-        padding: 5px;
-        height: 100%;
-        // color: #fff;
-
-        &.active {
-          border: 2px solid #2196f3 !important;
-        }
-
-        &.activated,
-        &.activated.active {
-          border: 2px solid var(--danger) !important;
-
-          .fileIcon {
-            cursor: not-allowed;
-          }
-        }
-
-        button {
-          position: absolute;
-          right: -10px;
-          top: -10px;
-          width: 20px;
-          height: 20px;
-          font-size: 10px;
-          padding: 1px;
-        }
-
-        .fileIcon {
-          // width: 60px;
-          text-align: center;
-          margin: 0 auto;
-          cursor: pointer;
-
-          img {
-            max-width: 100%;
-            max-height: 120px;
-          }
-
-          .mdi {
-            font-size: 60px;
-            color: #74788d;
-            line-height: 1;
-          }
-        }
-
-        .fileDescription {
-          display: flex;
-          flex-flow: column;
-          flex: 1;
-          justify-content: flex-end;
-          text-align: left;
-
-          .fileName {
-            font-weight: bold;
-            margin-bottom: 5px;
-            word-break: break-all;
-          }
-
-          .fileSize,
-          .fileType {
-            font-style: italic;
-            color: gray;
-          }
-        }
-      }
-    }
-
-    @media (min-width: 400px) {
-      .fileItem,
-      .dropzone {
-        width: 50%;
-      }
-    }
-
-    @media (min-width: 675px) {
-      .fileItem,
-      .dropzone {
-        width: 50%;
-      }
-    }
-
-    @media (min-width: 960px) {
-      .fileItem,
-      .dropzone {
-        width: 33.33%;
-      }
-    }
   }
 }
 
