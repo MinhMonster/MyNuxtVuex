@@ -264,26 +264,21 @@ export default {
       });
     },
     async onDeleteFile(image) {
-      this.$swal
-        .fire({
-          title: ` <img style="width: 100%; height: auto" src="${image.url}" /> <br/> Delete Image? `,
-          confirmButtonColor: "#F64E60",
-          showCancelButton: true,
-          confirmButtonText: "YES",
-          cancelButtonText: "NO",
-        })
-        .then(async (result) => {
-          if (result.isConfirmed) {
-            const result = await this.deleteFile({
-              route_path: this.$route.path,
-              file: image,
-            });
-
-            if (result.status === 200 || result.data.code === 200) {
-              this.images = this.images.filter((item) => item.id != image.id);
-            }
-          }
+      const result = await this.showSwal({
+        title: ` <img style="width: 100%; height: auto" src="${image.url}" /> <br/> Delete Image? `,
+        showCancelButton: true,
+        confirmButtonText: "YES",
+        cancelButtonText: "NO",
+      });
+      if (result) {
+        const res = await this.deleteFile({
+          route_path: this.$route.path,
+          file: image,
         });
+        if (res.status === 200 || res.data.code === 200) {
+          this.images = this.images.filter((item) => item.id != image.id);
+        }
+      }
     },
     dragover(event) {
       event.preventDefault();
@@ -449,8 +444,6 @@ export default {
 [disabled] {
   pointer-events: none;
 }
-
-
 
 .card-folder .card-body {
   padding: 0;

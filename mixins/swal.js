@@ -3,7 +3,7 @@ export default {
   methods: {
     async showSwal(input = {}) {
       // Set default class based on route path
-      const defaultClass = this.path.includes('/admin/') ? 'admin' : '';
+      const defaultClass = this.path.includes('/admin/') ? 'admin-swal' : '';
 
       // Create a custom class object with default
       const customClass = {
