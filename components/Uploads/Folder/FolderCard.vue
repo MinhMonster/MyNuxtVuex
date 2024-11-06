@@ -4,10 +4,10 @@
       <v-icon v-if="folderActive.id == folder.id" color="blue">
         mdi-folder-multiple
       </v-icon>
-      <v-icon v-else color="blue">mdi-folder</v-icon>{{ folder.name }}
-      <v-icon class="dots-vertical" @click="$emit('editFolder', folder)"
-        >mdi-dots-vertical</v-icon
-      >
+      <v-icon v-else color="blue">mdi-folder</v-icon> {{ folder.name }}
+      <v-icon class="dots-vertical" @click="$emit('editFolder', folder)">
+        mdi-dots-vertical
+      </v-icon>
     </span>
   </div>
 </template>
