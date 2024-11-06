@@ -37,22 +37,8 @@
                 >mdi-folder-multiple</v-icon
               >
               <v-icon v-else color="blue">mdi-folder</v-icon>
-
               {{ folder.name }}
-
-              <v-icon
-                class="icon-up"
-                v-if="
-                  folder_show_list &&
-                  folder_show_list.id == folder.id &&
-                  folder.sub_folders.length
-                "
-              >
-                mdi-menu-up
-              </v-icon>
-              <v-icon class="icon-down" v-else-if="folder.sub_folders.length">
-                mdi-menu-down
-              </v-icon>
+              <BtnUpDown :folderShowList="folder_show_list" :folder="folder" />
             </div>
             <div>
               <v-icon class="dots-vertical" @click="editFolder(folder)"
@@ -60,21 +46,13 @@
               >
             </div>
           </div>
-          <template v-if="folder_show_list && folder_show_list.id == folder.id">
-            <div
-              v-for="(subFolder, index) in folder.sub_folders"
-              :key="index"
-              class="pointer sub-folder"
-              :class="{ active: folder_active.id == subFolder.id }"
-            >
-              <FolderCard
-                :folder="subFolder"
-                :folder-active="folder_active"
-                @setFolderUpload="setFolderUpload"
-                @editFolder="editFolder"
-              />
-            </div>
-          </template>
+          <SubFolderCards
+            v-if="folder_show_list && folder_show_list.id == folder.id"
+            :folders="folder.sub_folders"
+            :folder-active="folder_active"
+            @setFolderUpload="setFolderUpload"
+            @editFolder="editFolder"
+          />
         </div>
       </div>
       <div class="fileList scroll-y">
@@ -128,7 +106,8 @@ import mixins from "@/mixins/index";
 import { mapActions } from "vuex";
 import GroupBtnActions from "@/components/Uploads/GroupBtnActions.vue";
 import FolderImages from "@/components/Uploads/Folder/FolderImages.vue";
-import FolderCard from "@/components/Uploads/Folder/FolderCard.vue";
+import SubFolderCards from "@/components/Uploads/Folder/SubFolderCards.vue";
+import BtnUpDown from "@/components/Uploads/Folder/BtnUpDown.vue";
 import FileCards from "@/components/Uploads/File/FileCards.vue";
 import FilePrivewCards from "@/components/Uploads/File/FilePrivewCards.vue";
 import EditFolderModal from "@/components/global/molecules/common/EditFolderModal.vue";
@@ -141,7 +120,8 @@ export default {
   components: {
     GroupBtnActions,
     FolderImages,
-    FolderCard,
+    SubFolderCards,
+    BtnUpDown,
     FileCards,
     FilePrivewCards,
     UpdateNameFolderModal,
@@ -502,18 +482,6 @@ export default {
     margin-right: 0;
     margin-bottom: 1px;
   }
-
-  .sub-folder {
-    border-top: 1px solid #d7dcdf;
-    padding-left: 25px;
-    padding-top: 0;
-    padding-bottom: 0;
-    line-height: 43px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 1px;
-    position: relative;
-  }
 }
 
 @media (max-width: 675px) {
@@ -550,13 +518,6 @@ export default {
 .v-btn--is-elevated {
   box-shadow: none;
   border: 1px solid #dee2e6 !important;
-}
-
-.icon-up,
-.icon-down {
-  float: right;
-  padding: 5px 0;
-  // right: 20px;
 }
 
 .folderList .folder-item .active {

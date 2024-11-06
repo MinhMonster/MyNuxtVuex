@@ -1,5 +1,4 @@
 <template>
-  <!-- <v-row class="right mgr-5px" :class="{ middle: icon == 'add-file' }"> -->
   <v-dialog light v-model="dialog" persistent width="1250" class="modal">
     <template v-slot:activator="{ props }">
       <v-btn
@@ -165,24 +164,8 @@ export default {
               margin-left: -20px;
               padding-left: 20px;
             }
-            .sub-folder {
-              padding-left: 15px;
-              &.active {
-                padding-left: 30px;
-              }
-            }
           }
         }
-        // .modal-folder {
-        //   margin-top: -35px;
-        //   height: 230px;
-        //   max-height: 230px;
-        //   min-height: 230px !important;
-        //   width: 80%;
-        //   left: 10%;
-        //   /* position: fixed; */
-        //   z-index: 2;
-        // }
       }
     }
   }
