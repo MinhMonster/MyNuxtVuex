@@ -49,7 +49,8 @@ export default {
     { src: "@/plugins/vue-codemirror", ssr: false },
     { src: "@/plugins/vue-slick-carousel" },
     { src: "@/plugins/vue-clipboard2", ssr: false },
-    { src: '@/plugins/util', },
+    { src: '@/plugins/mixins', },
+
     // "~/plugins/vee-validate",
     // { src: "@/plugins/vee-validate", ssr: false },
     // "~/apis/modules/admin",
