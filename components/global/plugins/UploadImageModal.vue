@@ -47,10 +47,10 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
+        <v-btn color="red" variant="text" class="text-white" @click="dialog = false">
           Close
         </v-btn>
-        <v-btn color="blue-darken-1" variant="text" @click="saveSelected()">
+        <v-btn color="primary" variant="primary"  @click="saveSelected()">
           Save
         </v-btn>
       </v-card-actions>

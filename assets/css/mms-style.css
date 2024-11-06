@@ -2972,7 +2972,9 @@ h6+p.content {
 .mgl-15px {
   margin-left: 15px;
 }
-
+.mgl-5px {
+  margin-left: 5px !important;
+}
 .mgl-10px {
   margin-left: 10px;
 }
