@@ -21,20 +21,7 @@
     />
     <div class="flex-row folder-show" :class="{ show: showFolder }">
       <div v-if="folders.length" class="folderList scroll-y">
-        <div
-          class="pointer main-folder"
-          :class="{ active: folder_active == null }"
-        >
-          <div @click="setPath(null)">
-            <v-icon color="blue">mdi-folder-multiple</v-icon>
-            Images
-          </div>
-
-          <!-- <v-icon class="btn-show" @click="showFolder = false"
-            >mdi-dots-vertical</v-icon
-          > -->
-        </div>
-
+        <FileImages :folder-active="folder_active" @setPath="setPath" />
         <div
           v-for="(folder, index) in folders"
           :key="index"
@@ -42,7 +29,7 @@
           :class="{ hidden: !showFolder }"
         >
           <div
-            class="folder-item-body flex-row-space-between"
+            class="flex-row-space-between"
             :class="{ active: folder_active && folder_active.id == folder.id }"
           >
             <div class="body-folder" @click="setPath(folder)">
@@ -73,7 +60,6 @@
               >
             </div>
           </div>
-
           <template v-if="folder_show_list && folder_show_list.id == folder.id">
             <div
               v-for="(subFolder, index) in folder.sub_folders"
@@ -212,10 +198,9 @@ import { mapFields } from "vuex-map-fields";
 import mixins from "@/mixins/index";
 import { mapActions } from "vuex";
 import GroupBtnActions from "@/components/Uploads/GroupBtnActions.vue";
+import FileImages from "@/components/Uploads/File/FileImages.vue";
 import FileCard from "@/components/Uploads/File/FileCard.vue";
-
 import EditFolderModal from "@/components/global/molecules/common/EditFolderModal.vue";
-
 import UpdateNameFolderModal from "@/components/global/molecules/common/upload/UpdateNameFolderModal";
 
 let WidgetCount = 0;
@@ -223,6 +208,7 @@ export default {
   mixins: [mixins],
   components: {
     GroupBtnActions,
+    FileImages,
     FileCard,
     UpdateNameFolderModal,
     EditFolderModal,
@@ -597,8 +583,6 @@ export default {
     margin-right: 0;
     margin-bottom: 1px;
     position: relative;
-
-
   }
 }
 
@@ -790,23 +774,6 @@ export default {
 .folderList .folder-item .sub-folder.active {
   margin-left: -35px;
   padding-left: 60px;
-  border: 2px solid #2196f3 !important;
-}
-
-.folderList .main-folder {
-  position: relative;
-  padding: 10px;
-
-  .btn-show {
-    position: absolute;
-    right: 0px;
-    top: 12px;
-  }
-}
-
-.folderList .main-folder.active {
-  margin-left: 0px;
-  padding-left: 10px;
   border: 2px solid #2196f3 !important;
 }
 
