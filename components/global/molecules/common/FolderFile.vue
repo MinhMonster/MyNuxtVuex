@@ -81,18 +81,12 @@
               class="pointer sub-folder"
               :class="{ active: folder_active.id == subFolder.id }"
             >
-              <div @click="setFolderUpload(subFolder)">
-                <span class="folder-name">
-                  <v-icon v-if="folder_active.id == subFolder.id" color="blue">
-                    mdi-folder-multiple
-                  </v-icon>
-                  <v-icon v-else color="blue">mdi-folder</v-icon
-                  >{{ subFolder.name }}
-                  <v-icon class="dots-vertical" @click="editFolder(subFolder)"
-                    >mdi-dots-vertical</v-icon
-                  >
-                </span>
-              </div>
+              <FileCard
+                :folder="subFolder"
+                :folder-active="folder_active"
+                @setFolderUpload="setFolderUpload"
+                @editFolder="editFolder"
+              />
             </div>
           </template>
         </div>
@@ -218,6 +212,7 @@ import { mapFields } from "vuex-map-fields";
 import mixins from "@/mixins/index";
 import { mapActions } from "vuex";
 import GroupBtnActions from "@/components/Uploads/GroupBtnActions.vue";
+import FileCard from "@/components/Uploads/File/FileCard.vue";
 
 import EditFolderModal from "@/components/global/molecules/common/EditFolderModal.vue";
 
@@ -228,6 +223,7 @@ export default {
   mixins: [mixins],
   components: {
     GroupBtnActions,
+    FileCard,
     UpdateNameFolderModal,
     EditFolderModal,
   },
@@ -602,12 +598,7 @@ export default {
     margin-bottom: 1px;
     position: relative;
 
-    .dots-vertical {
-      float: right;
-      padding: 5px 0;
-      right: 0px !important;
-      position: absolute;
-    }
+
   }
 }
 
@@ -769,8 +760,6 @@ export default {
   height: 50vh !important;
 }
 
-
-
 .card-folder .theme--light.v-btn {
   // color: #fff !important;
 }
@@ -785,13 +774,6 @@ export default {
   float: right;
   padding: 5px 0;
   // right: 20px;
-}
-
-.dots-vertical {
-  // top: -50px;
-  // float: right;
-  // padding: 5px 0;
-  // right: -25px;
 }
 
 .folderList .folder-item .active {
