@@ -78,40 +78,17 @@
         </div>
       </div>
       <div class="fileList scroll-y">
-        <div v-if="preview.length" class="file-preview">
-          <div v-for="(file, index) in preview" :key="index" class="fileItem">
-            <div class="fileItemWrapper">
-              <b-button
-                variant="danger"
-                size="sm"
-                class="ml-2"
-                pill
-                @click="removeFile(index)"
-              >
-                <i class="mdi mdi-close-thick text-white"></i>
-              </b-button>
-              <div class="fileIcon">
-                <img v-if="file.url" :src="file.url" />
-                <i v-else class="mdi mdi-file-document-outline"></i>
-              </div>
-              <!-- <div class="fileDescription">
-              <div class="fileName line-clamp-2">{{ file.path }}</div> -->
-              <!-- <div class="fileType">
-              {{ file.type }} - {{ fileSizeFilter(file.byteSize) }}
-            </div> -->
-              <!-- </div> -->
-            </div>
-          </div>
-          <!-- <div v-for="i in maxFile" :key="maxFile + i" class="fileItem e"></div> -->
-        </div>
+        <FilePrivewCards
+          v-if="preview.length"
+          :images="preview"
+          @removeFile="removeFile"
+        />
         <FileCards
           v-if="images.length"
           :images="images"
           :selectedImages="selectedImages"
           @addImage="addImage"
         />
-
-        <!-- <div v-for="i in maxFile" :key="maxFile + i" class="fileItem e"></div> -->
       </div>
     </div>
 
@@ -153,7 +130,7 @@ import GroupBtnActions from "@/components/Uploads/GroupBtnActions.vue";
 import FolderImages from "@/components/Uploads/Folder/FolderImages.vue";
 import FolderCard from "@/components/Uploads/Folder/FolderCard.vue";
 import FileCards from "@/components/Uploads/File/FileCards.vue";
-
+import FilePrivewCards from "@/components/Uploads/File/FilePrivewCards.vue";
 import EditFolderModal from "@/components/global/molecules/common/EditFolderModal.vue";
 import UpdateNameFolderModal from "@/components/global/molecules/common/upload/UpdateNameFolderModal";
 import BtnActionUpload from "@/components/Uploads/BtnActionUpload.vue";
@@ -166,6 +143,7 @@ export default {
     FolderImages,
     FolderCard,
     FileCards,
+    FilePrivewCards,
     UpdateNameFolderModal,
     EditFolderModal,
     BtnActionUpload,
@@ -554,12 +532,6 @@ export default {
   // display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
-
-  .file-preview {
-    width: 100%;
-    border-bottom: 2px solid #2196f3;
-    margin-bottom: 10px;
-  }
 }
 
 .bg-gray {
