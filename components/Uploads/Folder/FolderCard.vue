@@ -9,7 +9,7 @@
           v-if="
             folderPath
               ? folderPath == folder.path
-              : folderActive.id == folder.id
+              : folderActive && folderActive.id == folder.id
           "
           color="blue"
         >

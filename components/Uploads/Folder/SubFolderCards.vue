@@ -4,7 +4,7 @@
       v-for="(folder, index) in folders"
       :key="index"
       class="pointer sub-folder"
-      :class="{ active: folderActive.id == folder.id }"
+      :class="{ active: folderActive && folderActive.id == folder.id }"
     >
       <FolderCard
         :folder="folder"
