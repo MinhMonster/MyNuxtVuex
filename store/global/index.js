@@ -91,11 +91,11 @@ export default {
         return await this.$repositories_mimifood.mimiFoodFiles.deleteFile(
           payload.file.id
         );
-    } else {
-      return await this.$repositories.adminUploads.deleteFile(
-        payload.file
-      );
-    }
+      } else {
+        return await this.$repositories.adminUploads.deleteFile(
+          payload.file
+        );
+      }
 
     },
   },

@@ -59,6 +59,7 @@
           :images="images"
           :selectedImages="selectedImages"
           @addImage="addImage"
+          @onDeleteFile="onDeleteFile"
         />
       </div>
     </div>

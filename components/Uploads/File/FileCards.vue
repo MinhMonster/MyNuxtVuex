@@ -14,7 +14,7 @@
           size="sm"
           class="ml-2"
           pill
-          @click="onDeleteFile(image)"
+          @click="$emit('onDeleteFile', image)"
         >
           <i class="mdi mdi-close-thick text-white"></i>
         </b-button>

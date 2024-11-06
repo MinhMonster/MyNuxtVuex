@@ -15,7 +15,7 @@ export default ($api_food) => ({
     return $api_food.post(`${baseResource}${payload.folder ? `?folder_id=${payload.folder.id}` : ''}`)
   },
   deleteFile(id) {
-    return $api_food.delete(`${baseResource}/${id}`)
+    return $api_food.delete(`${baseResource}/${id}/delete`)
   },
 })
 
