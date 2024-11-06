@@ -3,26 +3,14 @@
     class="border border-light shadow-none card-folder"
     :class="{ 'zoom-modal scroll-x': isZoom }"
   >
-    <div class="folder-plugin nowrap scroll-x">
-      <v-btn color="white" @click="showFolder = !showFolder">
-        <v-icon>mdi-folder-move</v-icon>
-      </v-btn>
-      <v-btn color="white" @click="browseFiles">
-        <v-icon>mdi-upload</v-icon>
-      </v-btn>
-      <v-btn color="white" @click="isShow = true">
-        <v-icon>mdi-folder-plus</v-icon>
-      </v-btn>
-      <v-btn v-if="!isZoom" color="white" @click="isZoom = true">
-        <v-icon>mdi-arrow-expand-all</v-icon>
-      </v-btn>
-      <v-btn v-else color="white" @click="isZoom = false">
-        <v-icon>mdi-arrow-collapse-all</v-icon>
-      </v-btn>
-      <v-btn color="white" @click="fetchFolders($route.path)">
-        <v-icon>mdi-reload</v-icon>
-      </v-btn>
-    </div>
+    <GroupBtnActions
+      :isZoom="isZoom"
+      @setShowFolder="showFolder = !showFolder"
+      @browseFiles="browseFiles"
+      @setIsShow="(value) => (isShow = value)"
+      @setIsZoom="(value) => (isZoom = value)"
+      @fetchFolders="fetchFolders"
+    />
     <input
       ref="file"
       type="file"
@@ -229,6 +217,7 @@ import { mapFields } from "vuex-map-fields";
 
 import mixins from "@/mixins/index";
 import { mapActions } from "vuex";
+import GroupBtnActions from "@/components/Uploads/GroupBtnActions.vue";
 
 import EditFolderModal from "@/components/global/molecules/common/EditFolderModal.vue";
 
@@ -238,6 +227,7 @@ let WidgetCount = 0;
 export default {
   mixins: [mixins],
   components: {
+    GroupBtnActions,
     UpdateNameFolderModal,
     EditFolderModal,
   },
@@ -779,13 +769,7 @@ export default {
   height: 50vh !important;
 }
 
-.folder-plugin {
-  color: #fafafa !important;
-  height: 50px;
-  padding: 7.5px;
-  background: #fafafa;
-  color: #495057 !important;
-}
+
 
 .card-folder .theme--light.v-btn {
   // color: #fff !important;
@@ -891,11 +875,6 @@ export default {
       }
     }
   }
-}
-
-.zoom-modal .folder-plugin {
-  width: 100%;
-  min-width: 675px;
 }
 
 .zoom-modal .folder-show {
