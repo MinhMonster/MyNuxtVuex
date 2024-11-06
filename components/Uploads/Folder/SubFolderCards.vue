@@ -9,7 +9,7 @@
       <FolderCard
         :folder="folder"
         :folder-active="folderActive"
-        @setFolderUpload="(value) => $emit('setFolderUpload', value)"
+        @setPath="(value) => $emit('setPath', value)"
         @editFolder="(value) => $emit('editFolder', value)"
       />
     </div>

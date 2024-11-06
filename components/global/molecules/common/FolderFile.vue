@@ -28,29 +28,22 @@
           class="pointer folder-item"
           :class="{ hidden: !showFolder }"
         >
-          <div
-            class="flex-row-space-between"
-            :class="{ active: folder_active && folder_active.id == folder.id }"
+          <FolderCard
+            :folder="folder"
+            :folder-active="folder_active"
+            :folder-path="folder_path"
+            @setPath="setPath"
+            @editFolder="editFolder"
           >
-            <div class="body-folder" @click="setPath(folder)">
-              <v-icon v-if="folder_path == folder.path" color="blue"
-                >mdi-folder-multiple</v-icon
-              >
-              <v-icon v-else color="blue">mdi-folder</v-icon>
-              {{ folder.name }}
+            <template #btn-up-down>
               <BtnUpDown :folderShowList="folder_show_list" :folder="folder" />
-            </div>
-            <div>
-              <v-icon class="dots-vertical" @click="editFolder(folder)"
-                >mdi-dots-vertical</v-icon
-              >
-            </div>
-          </div>
+            </template>
+          </FolderCard>
           <SubFolderCards
             v-if="folder_show_list && folder_show_list.id == folder.id"
             :folders="folder.sub_folders"
             :folder-active="folder_active"
-            @setFolderUpload="setFolderUpload"
+            @setPath="setPath"
             @editFolder="editFolder"
           />
         </div>
@@ -106,6 +99,7 @@ import mixins from "@/mixins/index";
 import { mapActions } from "vuex";
 import GroupBtnActions from "@/components/Uploads/GroupBtnActions.vue";
 import FolderImages from "@/components/Uploads/Folder/FolderImages.vue";
+import FolderCard from "@/components/Uploads/Folder/FolderCard.vue";
 import SubFolderCards from "@/components/Uploads/Folder/SubFolderCards.vue";
 import BtnUpDown from "@/components/Uploads/Folder/BtnUpDown.vue";
 import FileCards from "@/components/Uploads/File/FileCards.vue";
@@ -120,6 +114,7 @@ export default {
   components: {
     GroupBtnActions,
     FolderImages,
+    FolderCard,
     SubFolderCards,
     BtnUpDown,
     FileCards,
@@ -240,20 +235,23 @@ export default {
     async editFolder(folder) {
       this.folder_active = folder;
       this.isShowEdit = true;
-      // await this.getFiles();
+      await this.getFiles();
     },
     getFolderPath(folder) {
       return folder ? folder.path : "/images/";
     },
-    async setPath(folder = null) {
-      if (
-        this.getFolderPath(this.folder_show_list) != this.getFolderPath(folder)
-      ) {
-        this.folder_show_list = folder;
-      } else {
-        this.folder_show_list = null;
-      }
+    async setPath({ folder = null, isFolderPath = null }) {
       this.folder_active = folder;
+      if (isFolderPath) {
+        if (
+          this.getFolderPath(this.folder_show_list) !=
+          this.getFolderPath(folder)
+        ) {
+          this.folder_show_list = folder;
+        } else {
+          this.folder_show_list = null;
+        }
+      }
       await this.getFiles();
     },
     async getFiles() {
@@ -285,10 +283,6 @@ export default {
             }
           }
         });
-    },
-    async setFolderUpload(folder) {
-      this.folder_active = folder;
-      await this.getFiles();
     },
     dragover(event) {
       event.preventDefault();
@@ -455,9 +449,7 @@ export default {
   pointer-events: none;
 }
 
-.body-folder {
-  width: 90%;
-}
+
 
 .card-folder .card-body {
   padding: 0;

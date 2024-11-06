@@ -1,6 +1,6 @@
 <template>
   <div class="pointer main-folder" :class="{ active: folderActive == null }">
-    <div @click="$emit('setPath', null)">
+    <div @click="$emit('setPath', {folder: null, isSetPath: true})">
       <v-icon color="blue">mdi-folder-multiple</v-icon>
       Images
     </div>
