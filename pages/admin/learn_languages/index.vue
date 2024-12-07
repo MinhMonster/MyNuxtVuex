@@ -5,7 +5,7 @@
     next-page
     new-page
     filter
-    @newPage="$router.push('/admin/learn_languages/new')"
+    @newPage="showModal()"
     reload
     @reload="$refs.table.fetchData()"
   >
@@ -50,7 +50,7 @@
           module: 'admin.learn_languages',
           form: 'formUpdateLanguage',
           // action: 'fetchGameAccountSold',
-          update: 'updateLanguage',
+          update: language.ID ? 'updateLanguage' : 'createLanguage',
         }"
         @updated="$refs.table.fetchData()"
       />
@@ -119,13 +119,14 @@ export default {
     ...mapFields("admin/learn_languages", ["queryLearnLanguage", "language"]),
   },
   methods: {
-    showModal(row) {
+    showModal(row = null) {
       this.$refs.modal.dialog = true;
-      this.languageTitle = row.title;
-      this.language = row;
+      this.languageTitle = row ? row.title : "New Language";
+      if (row) {
+        this.language = row;
+      }
     },
   },
 };
 </script>
-<style>
-</style>
+<style></style>

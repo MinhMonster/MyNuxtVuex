@@ -47,6 +47,9 @@ export default ($api) => ({
   updateLanguageTopic(payload) {
     return $api.post(`${resource}/updateLanguageTopic.php`, payload)
   },
+  createLanguage(payload) {
+    return $api.post(`${resource}/createLanguage.php`, payload)
+  },
   updateLanguage(payload) {
     return $api.post(`${resource}/updateLanguage.php`, payload)
   },
