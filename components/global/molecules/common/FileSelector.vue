@@ -57,8 +57,8 @@
     <template v-if="!autoupload" #footer>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="red" variant="danger" @click="removeAll"> Clear </v-btn>
-        <v-btn color="primary" variant="primary" @click="uploadFiles">
+        <v-btn color="red" variant="danger" class="text-white" @click="removeAll"> Clear </v-btn>
+        <v-btn color="primary" variant="primary" style="margin-left: 5px !important;" @click="uploadFiles">
           Upload
         </v-btn>
       </v-card-actions>

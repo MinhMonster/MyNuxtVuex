@@ -87,6 +87,13 @@ export default {
     //   this.nextPath();
     // });
     // window.addEventListener("click", this.nextPath());
+    this.$nextTick(function () {
+      this.onResize();
+    });
+    window.addEventListener("resize", this.onResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
   },
   methods: {
     ...mapActions("home/users", ["logout", "fetchUser"]),

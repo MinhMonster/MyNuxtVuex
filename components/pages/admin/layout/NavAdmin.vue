@@ -137,7 +137,7 @@ export default {
   },
   data() {
     return {
-      isMobile: false,
+      // isMobile: false,
     };
   },
   async mounted() {

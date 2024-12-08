@@ -66,6 +66,11 @@ export default {
       default: "",
       require: false,
     },
+    repositories:  {
+      type: String,
+      default: null,
+      require: false,
+    },
     meta: {
       type: Object,
       default: () => {},
@@ -241,7 +246,8 @@ export default {
             this.store.state
           );
         // console.log("stateParamDefault", this.stateParamDefault);
-        const result = await this.$repositories[this.repository][
+        const repositoryKey = this.repositories ? this.$repositories_mimifood : this.$repositories;
+        const result = await repositoryKey[this.repository][
           this.store.action
         ]({
           input: Object.assign(dataSearch, this.stateParamDefault),

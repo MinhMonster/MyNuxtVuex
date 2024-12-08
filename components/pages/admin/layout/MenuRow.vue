@@ -106,6 +106,11 @@ export default {
           title: "Avatar",
           to: "/admin/game/avatars",
         },
+        {
+          icon: "mdi-image",
+          title: "Mimi Food",
+          to: "/admin/mimifood",
+        },
       ],
     };
   },

@@ -24,7 +24,7 @@
           </b-form-checkbox>
           <ImageList
             v-if="multipleImages"
-            v-model="dataForm.hinhanh"
+            v-model="dataForm[images]"
             @updated="updateForm"
           />
           <UploadImage
@@ -82,6 +82,16 @@ export default {
     repository: {
       type: String,
       default: "",
+      require: false,
+    },
+    repositories: {
+      type: String,
+      default: "",
+      require: false,
+    },
+    images: {
+      type: String,
+      default: "hinhanh",
       require: false,
     },
     multipleImages: {
@@ -145,12 +155,14 @@ export default {
     },
     async fetchData() {
       try {
-        const result = await this.$repositories[this.repository][
+
+        const repositoryKey = this.repositories ? this.$repositories_mimifood : this.$repositories;
+        const result = await repositoryKey[this.repository][
           this.store.action
         ](this.id);
 
         const data = result.data.response;
-
+        console.log("data", result.data);
         if (data) {
           this.updateState(data);
         } else {
@@ -160,7 +172,8 @@ export default {
     },
     async updateData() {
       try {
-        const result = await this.$repositories[this.repository][
+        const repositoryKey = this.repositories ? this.$repositories_mimifood : this.$repositories;
+        const result = await repositoryKey[this.repository][
           this.store.update
         ]({
           id: this.id,
@@ -179,7 +192,8 @@ export default {
       const payload = _.omit(this.stateQuery, "ID");
 
       try {
-        const result = await this.$repositories[this.repository][
+        const repositoryKey = this.repositories ? this.$repositories_mimifood : this.$repositories;
+        const result = await repositoryKey[this.repository][
           this.store.create
         ]({
           input: payload,

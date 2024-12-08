@@ -334,41 +334,6 @@ body {
   min-height: 500px;
 }
 
-.swal2-popup {
-  background-color: #ffcf9c !important;
-  border: 2px solid #561d00 !important;
-  border-image: url(https://muabannick.pro/images/box/box.jpg) 10 round;
-  background: #e28637 url(https://muabannick.pro/images/header/bg_top.png) repeat-x !important;
-  border-radius: 3px;
-  border: 2px solid #561d00;
-}
-
-.swal2-confirm.swal2-styled {
-  color: #ffcf9c !important;
-  border: 1px solid #663019 !important;
-  background: #9f5424 !important;
-}
-
-.swal2-icon.swal2-error {
-  border-color: #dc3545 !important;
-  color: #dc3545 !important;
-}
-
-.swal2-icon.swal2-error [class^=swal2-x-mark-line] {
-  background: #dc3545 !important;
-}
-
-.swal2-title {
-  color: #561d00 !important;
-}
-
-.swal2-html-container {
-  color: #ffcf9c !important;
-}
-
-
-
-
 .group-icon-right {
   margin-top: 30px;
 }
@@ -2568,11 +2533,11 @@ h6+p.content {
 }
 
 .pd-15px {
-  padding: 15px;
+  padding: 15px !important;
 }
 
 .pd-10px {
-  padding: 10px;
+  padding: 10px !important;
 }
 
 .pd-5px {
@@ -3007,7 +2972,9 @@ h6+p.content {
 .mgl-15px {
   margin-left: 15px;
 }
-
+.mgl-5px {
+  margin-left: 5px !important;
+}
 .mgl-10px {
   margin-left: 10px;
 }

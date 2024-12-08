@@ -1,32 +1,32 @@
 <template>
   <v-row justify="center" v-if="isShow">
     <v-card class="modal-folder">
-      <v-card-title>{{ folder.folderName }}</v-card-title>
-      <v-divider></v-divider>
-      <v-card-text
-        class="pointer"
-        @click="$emit('editNameFolder'), closeModal()"
-      >
-        <v-icon color="blue">mdi-lead-pencil</v-icon>
-        Edit Name
+      <v-card-title class="title-modal">{{ folder.name }}</v-card-title>
+      <v-card-text>
+        <div class="modal-body pd-15px">
+          <div class="pointer" @click="$emit('editNameFolder'), closeModal()">
+            <v-icon color="blue">mdi-lead-pencil</v-icon>
+            Edit Name
+          </div>
+          <hr />
+          <div class="pointer">
+            <v-icon color="red">mdi-delete-sweep</v-icon>
+            Delete Folder
+          </div>
+          <hr />
+          <div class="pointer">
+            <v-icon color="red">mdi-folder-remove</v-icon>
+            Reset All File
+          </div>
+        </div>
       </v-card-text>
-      <v-card-text class="pointer">
-        <v-icon color="red">mdi-delete-sweep</v-icon>
-        Delete Folder
-      </v-card-text>
-      <v-card-text class="pointer">
-        <v-icon color="red">mdi-folder-remove</v-icon>
-        Reset All File
-      </v-card-text>
-      <b-button
-        variant="danger"
-        size="sm"
-        class="btn-delete ml-2"
-        pill
-        @click="closeModal()"
-      >
-        <i class="mdi mdi-close-thick text-white"></i>
-      </b-button>
+      <v-card-actions class="text-right right gap-10">
+        <div class="text-right right w-100">
+          <v-btn color="red" class="text-white" @click="closeModal()">
+            Close
+          </v-btn>
+        </div>
+      </v-card-actions>
     </v-card>
     <div class="bg-modal"></div>
   </v-row>
@@ -69,20 +69,20 @@ export default {
   top: 30%;
   /* height: 270px; */
   /* max-height: 270px; */
-  min-height: 270px !important;
+  // min-height: 270px !important;
   width: 300px;
   max-width: calc(100% - 50px);
 
   position: fixed;
   z-index: 2;
-  .v-card__text {
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 30px;
-    letter-spacing: 0;
-    margin-left: 20px;
-    padding: 5px;
-  }
+  // .v-card__text {
+  //   font-size: 15px;
+  //   font-weight: 600;
+  //   line-height: 30px;
+  //   letter-spacing: 0;
+  //   margin-left: 20px;
+  //   padding: 5px;
+  // }
 }
 .bg-modal {
   position: absolute;
@@ -99,7 +99,7 @@ export default {
   padding: 10px;
   display: flex;
   justify-content: center;
-  color: rgba(0, 0, 0, 0.6) !important;
+  // color: rgba(0, 0, 0, 0.6) !important;
 }
 .v-divider {
   padding: 0;

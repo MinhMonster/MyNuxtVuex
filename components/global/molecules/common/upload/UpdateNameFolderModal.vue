@@ -1,23 +1,25 @@
 <template>
   <v-row justify="center" v-if="isShow">
     <v-card class="modal-folder">
-      <v-card-title>{{ label }}</v-card-title>
-      <v-divider></v-divider>
+      <v-card-title class="title-modal">
+        {{ folder ? "Update Name: " + folder.name : "Create Folder" }}
+      </v-card-title>
       <v-card-text>
-        <form ref="form" @submit.stop.prevent="change()">
-          <b-form-group
-            label-for="name-input"
-            invalid-feedback="Name is required"
-          >
-            <b-form-input
-              id="name-input"
-              v-model="name"
-              required
-            ></b-form-input>
-          </b-form-group>
-        </form>
+        <div class="modal-body pd-15px">
+          <form ref="form" @submit.stop.prevent="change()">
+            <b-form-group
+              label-for="name-input"
+              invalid-feedback="Name is required"
+            >
+              <form-validator name="id"></form-validator>
+              <form-validator name="name">
+                <b-form-input id="name-input" v-model="name" required>
+                </b-form-input>
+              </form-validator>
+            </b-form-group>
+          </form>
+        </div>
       </v-card-text>
-      <v-divider></v-divider>
       <v-card-actions class="right">
         <v-btn class="bg-danger text-white" @click="closeModal()">
           Close
@@ -26,6 +28,7 @@
           color="blue-darken-1"
           class="bg-primary text-white"
           variant="text"
+          :disabled="!name || (folder && folder.name == name)"
           @click="change()"
         >
           Save
@@ -36,7 +39,12 @@
   </v-row>
 </template>
 <script>
+import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
+
 export default {
+  components: {
+    FormValidator,
+  },
   props: {
     label: {
       type: String,
@@ -46,9 +54,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    folderName: {
-      type: String,
-      default: "",
+    folder: {
+      type: Object,
+      default: () => {},
     },
   },
   data() {
@@ -56,8 +64,8 @@ export default {
       name: "",
     };
   },
-  mounted(){
-    this.name = _.cloneDeep(this.folderName);
+  mounted() {
+    this.name = _.cloneDeep(this.folder ? this.folder.name : "");
   },
   methods: {
     closeModal() {
@@ -65,7 +73,7 @@ export default {
     },
     change() {
       this.$emit("change", this.name);
-      this.$emit("closeModal");
+      // this.$emit("closeModal");
     },
   },
 };
@@ -75,9 +83,9 @@ export default {
   top: 30%;
   /* height: 270px; */
   /* max-height: 270px; */
-  min-height: 270px !important;
+  /* min-height: 270px !important; */
   width: 500px;
-  max-width: calc(100% - 50px); 
+  max-width: calc(100% - 50px);
 
   position: fixed;
   z-index: 2;

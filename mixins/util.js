@@ -1,8 +1,6 @@
 import { mapFields } from "vuex-map-fields";
-import mixins from "@/mixins/index";
 
 export default {
-  mixins: [mixins],
 
   data() {
     return {

@@ -1,5 +1,4 @@
 <template>
-  <!-- <v-row class="right mgr-5px" :class="{ middle: icon == 'add-file' }"> -->
   <v-dialog light v-model="dialog" persistent width="1250" class="modal">
     <template v-slot:activator="{ props }">
       <v-btn
@@ -48,10 +47,10 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
+        <v-btn color="red" variant="text" class="text-white" @click="dialog = false">
           Close
         </v-btn>
-        <v-btn color="blue-darken-1" variant="text" @click="saveSelected()">
+        <v-btn color="primary" variant="primary"  @click="saveSelected()">
           Save
         </v-btn>
       </v-card-actions>
@@ -96,7 +95,7 @@ export default {
       "fetchFolders",
       "deleteMedia",
       "createFolder",
-      "editNameFolder",
+      "updateNameFolder",
     ]),
     ...mapActions("global", ["setSelectedImages"]),
 
@@ -105,12 +104,17 @@ export default {
       this.$emit("onUploaded", files);
     },
 
-    async newFolder(value) {
-      const result = await this.createFolder(value);
-      if (result.data.code === 200) {
+    async newFolder(input) {
+      const result = await this.createFolder(input);
+      if (
+        result &&
+        result.data &&
+        result.data.code &&
+        result.data.code === 200
+      ) {
         this.$toasted.success(result.data.message);
       }
-      await this.fetchFolders();
+      await this.fetchFolders(this.$route.path);
     },
 
     selected(files) {
@@ -160,24 +164,8 @@ export default {
               margin-left: -20px;
               padding-left: 20px;
             }
-            .sub-folder {
-              padding-left: 15px;
-              &.active {
-                padding-left: 30px;
-              }
-            }
           }
         }
-        // .modal-folder {
-        //   margin-top: -35px;
-        //   height: 230px;
-        //   max-height: 230px;
-        //   min-height: 230px !important;
-        //   width: 80%;
-        //   left: 10%;
-        //   /* position: fixed; */
-        //   z-index: 2;
-        // }
       }
     }
   }

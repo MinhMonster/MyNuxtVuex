@@ -33,20 +33,20 @@ export default {
   data() {
     return {
       number: "",
-      formattedNumber: this.value,
+      formattedNumber: this.value.toString(),
     };
   },
   watch: {
     value: {
       async handler(newValue, oldValue) {
-        this.formattedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        this.formattedNumber = this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       },
     },
   },
   computed: {
   },
   created() {
-    this.formattedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    this.formattedNumber = this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     this.formatInput();
   },
   methods: {
