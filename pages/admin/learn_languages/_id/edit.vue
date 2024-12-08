@@ -14,6 +14,9 @@
     <template #body>
       <v-row>
         <v-col cols="12" md="12" sm="12">
+          <span class="text-dark" v-html="languageWordsInfo.content"> </span>
+        </v-col>
+        <v-col cols="12" md="12" sm="12">
           <AdminBaseTable
             noTotal
             ref="table"
@@ -39,7 +42,7 @@
         ref="modal"
         :title="wordName"
         :id="languageWord.ID"
-        width="800px"
+        width="1000px"
         minHeight="65vh"
         module="admin/learn_languages"
         repository="adminLearnLanguages"
@@ -123,7 +126,7 @@
         ref="modalCreateNewWord"
         title="Create New Word"
         :id="languageWordsInfo.ID"
-        width="800px"
+        width="1000px"
         minHeight="65vh"
         module="admin/learn_languages"
         repository="adminLearnLanguages"

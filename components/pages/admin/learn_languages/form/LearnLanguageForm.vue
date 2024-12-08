@@ -61,7 +61,9 @@ export default {
 </script>
 <style>
 .ck.ck-content {
-  height: 200px !important;
+  min-height: 200px;
+  max-height: 500px;
+  height: auto !important;
 
 }
 

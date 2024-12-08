@@ -104,7 +104,7 @@ export default {
 <style lang="scss" scoped>
 .bg-editor ::v-deep {
   .ck.ck-content.ck-editor__editable.ck-rounded-corners {
-    max-height: 200px !important;
+    max-height: 500px !important;
   }
 
   .full-height
