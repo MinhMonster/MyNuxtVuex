@@ -78,7 +78,7 @@
               :data="languageExamples.data"
               :meta="{}"
             >
-              <template #example="props">
+              <!-- <template #example="props">
                 <div class="mb-2">
                   <div>
                     <span class="title">Word:</span> {{ props.row.example }}
@@ -92,11 +92,10 @@
                     {{ props.row.translate }}
                   </div>
                   <div v-if="props.row.description">
-                    <!-- <span class="title">Description:</span> -->
                     <span v-html="props.row.description"> </span>
                   </div>
                 </div>
-              </template>
+              </template> -->
               <template #actions="props">
                 <v-btn
                   light
@@ -260,6 +259,26 @@ export default {
         {
           key: "example",
           label: "Example",
+          attributes: {
+            style: {
+              width: "auto",
+              "min-width": "150px",
+            },
+          },
+        },
+        {
+          key: "spell",
+          label: "Spell",
+          attributes: {
+            style: {
+              width: "auto",
+              "min-width": "150px",
+            },
+          },
+        },
+        {
+          key: "translate",
+          label: "Translate",
           attributes: {
             style: {
               width: "auto",
