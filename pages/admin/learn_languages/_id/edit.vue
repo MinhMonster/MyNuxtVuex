@@ -78,25 +78,13 @@
               :data="languageExamples.data"
               :meta="{}"
             >
-              <!-- <template #example="props">
+              <template #example="props">
                 <div class="mb-2">
-                  <div>
-                    <span class="title">Word:</span> {{ props.row.example }}
-                  </div>
-                  <div v-if="props.row.spell">
-                    <span class="title">Spell:</span>
-                    {{ props.row.spell }}
-                  </div>
-                  <div v-if="props.row.translate">
-                    <span class="title">Translate:</span>
-                    {{ props.row.translate }}
-                  </div>
-                  <div v-if="props.row.description">
-                    <span v-html="props.row.description"> </span>
-                  </div>
+                  <span @click="showModalExample(props.row)" class="text-primary cursor-pointer">{{ props.row.example }}</span>
+                  <ButtonCoppy :content="props.row.example"></ButtonCoppy>
                 </div>
-              </template> -->
-              <template #actions="props">
+              </template>
+              <!-- <template #actions="props">
                 <v-btn
                   light
                   icon
@@ -105,7 +93,7 @@
                 >
                   <v-icon>mdi-pen</v-icon>
                 </v-btn>
-              </template>
+              </template> -->
             </BaseTable>
           </div>
         </template>
@@ -286,18 +274,18 @@ export default {
             },
           },
         },
-        {
-          key: "actions",
-          label: "Actions",
-          type: "actions",
-          attributes: {
-            align: "center",
-            style: {
-              width: "70px",
-              "max-width": "70px",
-            },
-          },
-        },
+        // {
+        //   key: "actions",
+        //   label: "Actions",
+        //   type: "actions",
+        //   attributes: {
+        //     align: "center",
+        //     style: {
+        //       width: "70px",
+        //       "max-width": "70px",
+        //     },
+        //   },
+        // },
       ],
     };
   },
