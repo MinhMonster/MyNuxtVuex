@@ -324,8 +324,6 @@ export default {
           return "0961646828";
         case "MB Bank":
           return "8330105578888";
-        case "VietinBank":
-          return "107006711803";
         case "VietcomBank":
           return "0541000311219";
       }

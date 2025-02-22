@@ -236,10 +236,6 @@ export default {
           text: "VietcomBank",
           value: "VietcomBank",
         },
-        {
-          text: "VietinBank",
-          value: "VietinBank",
-        },
       ],
       money: {
         walletType: null,

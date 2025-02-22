@@ -13,10 +13,6 @@
     <span class="sms">8330105578888</span>
     <ButtonCoppy :content="'8330105578888'"></ButtonCoppy><br />
 
-    <img src="/icon/icon-next-right.gif" /> VietinBank:
-    <span class="sms">107006711803</span>
-    <ButtonCoppy :content="'107006711803'"></ButtonCoppy><br />
-
     <img src="/icon/icon-next-right.gif" /> VietcomBank:
     <span class="sms">0541000311219</span>
     <ButtonCoppy :content="'0541000311219'"></ButtonCoppy><br />
