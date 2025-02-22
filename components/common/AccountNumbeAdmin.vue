@@ -27,7 +27,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .info-atm-momo {
-  min-height: 195px;
+  // min-height: 195px;
   .title {
     font-size: 15px !important;
     font-weight: 500;
