@@ -149,6 +149,7 @@
         reset
         width="800px"
         minHeight="65vh"
+        isShow
         module="admin/learn_languages"
         repository="adminLearnLanguages"
         :id="languageExample.ID"
@@ -168,7 +169,26 @@
           }`,
         }"
         @updated="fetchLanguageExamples(languageWord.ID)"
-      />
+      >
+      <template #show>
+          <div class="language-word">
+            <p>
+              <span class="title">Word:</span> {{ languageExample.example }}
+              <ButtonCoppy :content="languageExample.example"></ButtonCoppy>
+            </p>
+            <p v-if="languageExample.spell">
+              <span class="title">Spell:</span> {{ languageExample.spell }}
+            </p>
+            <p v-if="languageExample.translate">
+              <span class="title">Translate:</span> {{ languageExample.translate }}
+            </p>
+            <p>
+              <span class="title">Description:</span>
+              <span v-html="languageExample.description"> </span>
+            </p>
+          </div>
+        </template>
+      </FormModal>
     </template>
   </NavAdmin>
 </template>
