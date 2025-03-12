@@ -43,7 +43,7 @@
         :title="wordName"
         :id="languageWord.ID"
         width="1000px"
-        minHeight="65vh"
+        minHeight="75vh"
         module="admin/learn_languages"
         repository="adminLearnLanguages"
         isShow
@@ -114,7 +114,7 @@
         title="Create New Word"
         :id="languageWordsInfo.ID"
         width="1000px"
-        minHeight="65vh"
+        minHeight="75vh"
         module="admin/learn_languages"
         repository="adminLearnLanguages"
         reset
@@ -131,8 +131,8 @@
         title="Edit Language Topic"
         :id="languageWordsInfo.ID"
         reset
-        width="800px"
-        minHeight="150px"
+        width="1000px"
+        minHeight="70vh"
         module="admin/learn_languages"
         repository="adminLearnLanguages"
         :store="{
@@ -147,8 +147,8 @@
         ref="modalExample"
         :title="languageWord.word"
         reset
-        width="800px"
-        minHeight="65vh"
+        width="1000px"
+        minHeight="75vh"
         isShow
         module="admin/learn_languages"
         repository="adminLearnLanguages"

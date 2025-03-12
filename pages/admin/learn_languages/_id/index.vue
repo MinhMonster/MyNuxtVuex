@@ -86,7 +86,7 @@
         :subTitle="languageItem.title"
         :id="languageItem.ID"
         reset
-        width="800px"
+        width="1000px"
         minHeight="150px"
         module="admin/learn_languages"
         repository="adminLearnLanguages"
