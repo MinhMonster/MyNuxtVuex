@@ -81,15 +81,15 @@ export default {
   data() {
     return {
       gameList: [
-        {
-          title: "Shop Nick Mới",
-          path: "https://shopnick.online",
-          image:
-            "https://muabannick.pro/images/banners/banner-shopnickonline.png",
-          numberAccount: "90",
-          sold: "69",
-          target: true,
-        },
+        // {
+        //   title: "Shop Nick Mới",
+        //   path: "https://shopnick.online",
+        //   image:
+        //     "https://muabannick.pro/images/banners/banner-shopnickonline.png",
+        //   numberAccount: "90",
+        //   sold: "69",
+        //   target: true,
+        // },
         {
           title: "Avatar XS.DKỳ",
           path: "/teamobi/avatar",

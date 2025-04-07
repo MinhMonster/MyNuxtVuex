@@ -58,7 +58,7 @@
               >, Số tiền thanh toán và thời gian trả góp tùy thuộc vào giá trị
               nick.
             </div>
-            <div>
+            <!-- <div>
               ⭐ PR: Shop Mua Bán
               <span class="bold text-13-500"
                 ><a
@@ -88,7 +88,7 @@
                   >ShopNick.Online</a
                 >.
               </span>
-            </div>
+            </div> -->
           </div>
         </v-col>
       </v-row>
