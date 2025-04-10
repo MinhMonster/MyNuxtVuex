@@ -266,7 +266,7 @@ export default {
           value: "5",
         },
         {
-          text: "Sv6+7 - Tone + Sanzu",
+          text: "Sv679 - Tone + Sanzu + Fukiya",
           value: "6",
         },
         {

@@ -39,7 +39,7 @@ export default {
           value: 5,
         },
         {
-          text: "Sv67 - Tone + Sanzu",
+          text: "Sv679 - Tone + Sanzu + Fukiya",
           value: 6,
         },
         {
@@ -272,7 +272,8 @@ export default {
           return "katana";
         case "6":
         case "7":
-          return "Tone + Sanzu";
+        case "9":
+          return "Tone + Sanzu + Fukiya";
         case "8":
           return "SenSha";
       }
