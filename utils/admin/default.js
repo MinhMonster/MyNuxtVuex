@@ -101,3 +101,18 @@ export const sexAvatarOptions = _.cloneDeep([
   }
 ]);
 
+export const statusOptions = _.cloneDeep([
+  {
+    text: "Chưa Bán",
+    value: "yes",
+  },
+  {
+    text: "Đã Bán",
+    value: "no",
+  },
+  {
+    text: "Chờ Duyệt",
+    value: "pending",
+  }
+]);
+

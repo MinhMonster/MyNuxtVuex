@@ -1,4 +1,4 @@
-import { defaultPagy, sexAvatarOptions } from '@/utils/admin/default'
+import { defaultPagy, sexAvatarOptions, statusOptions } from '@/utils/admin/default'
 import { enableResetStore } from '@/utils/admin/common'
 import { getField, updateField } from "vuex-map-fields";
 
@@ -122,7 +122,8 @@ const queryAvatar = _.cloneDeep({
   gianhap: "",
   sim: "",
   hinhanh: [],
-  full: "0"
+  full: "0",
+  status: 'yes'
 
 });
 
@@ -173,6 +174,12 @@ const formAvatar =
       type: "select-options",
       options: sexAvatarOptions,
       value: 'sex'
+    },
+    {
+      title: "Trạng Thái",
+      type: "select-options",
+      options: statusOptions,
+      value: 'status',
     },
     {
       title: "Thông tin",
