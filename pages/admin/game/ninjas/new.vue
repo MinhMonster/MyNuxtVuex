@@ -1,10 +1,14 @@
 <template>
   <NavAdmin
-    title="New Account Ninja School"
+    :title="
+      !isCopy
+        ? 'New Account Ninja School'
+        : `${'Copy Account Ninja School ' + $route.query.copy}`
+    "
     goBack
     next-page
     reload
-    @reload="$refs.form.resetForm()"
+    @reload="!isCopy ? $refs.form.resetForm() : $refs.form.fetchData()"
   >
     <template #body>
       <div id="body-admin" class="mt-2">
@@ -12,10 +16,12 @@
           ref="form"
           module="admin/game/ninjas"
           repository="adminGameNinjas"
+          :id="isCopy ? $route.query.copy : null"
           :store="{
             state: 'queryNinja',
             module: 'admin.game.ninjas',
             form: 'formNinja',
+            action: 'fetchAccountNinja',
             create: 'createAccountNinja',
           }"
         ></AdminBaseForm>
@@ -37,7 +43,15 @@ export default {
   name: "NewAccountNinja",
   props: {},
   data() {
-    return {};
+    return {
+      isCopy: false,
+    };
+  },
+  async created() {
+    const query = this.$route.query;
+    if (query.copy) {
+      this.isCopy = true;
+    }
   },
   methods: {},
 };

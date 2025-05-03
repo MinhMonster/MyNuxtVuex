@@ -1,10 +1,14 @@
 <template>
   <NavAdmin
-    title="New Account Avatar"
+    :title="
+      !isCopy
+        ? 'New Account Avatar'
+        : `${'Copy Account Avatar ' + $route.query.copy}`
+    "
     goBack
     next-page
     reload
-    @reload="$refs.form.resetForm()"
+    @reload="!isCopy ? $refs.form.resetForm() : $refs.form.fetchData()"
   >
     <template #body>
       <div id="body-admin" class="mt-2">
@@ -12,10 +16,12 @@
           ref="form"
           module="admin/game/avatars"
           repository="adminGameAvatars"
+          :id="isCopy ? $route.query.copy : null"
           :store="{
             state: 'queryAvatar',
             module: 'admin.game.avatars',
             form: 'formAvatar',
+            action: 'fetchAccountAvatar',
             create: 'createAccountAvatar',
           }"
         ></AdminBaseForm>
@@ -36,10 +42,17 @@ export default {
   name: "NewAccountAvatar",
   props: {},
   data() {
-    return {};
+    return {
+      isCopy: false,
+    };
+  },
+  async created() {
+    const query = this.$route.query;
+    if (query.copy) {
+      this.isCopy = true;
+    }
   },
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

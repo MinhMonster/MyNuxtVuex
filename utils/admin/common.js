@@ -44,7 +44,7 @@ export const enableResetStore = (store) => {
       setParamDefault({ commit, state }, params = { query, data }) {
         commit("SET_PARAM_DEFAULT", { query: params.query, data: params.data })
       },
-      
+
       // SET_PARAM_QUERY
       setQueryPage({ commit }, payload) {
         commit("SET_PAGE", payload);
@@ -86,7 +86,7 @@ export const enableResetStore = (store) => {
       ...store.mutations,
       SET_STATE(state, payload = { stateName: "", data: "", query: {} }) {
         state[payload.stateName] = payload.data
-        if ('query' in payload) {
+        if ('query' in payload && payload.query) {
           this.$router.push({ query: payload.query })
         }
       },
@@ -118,7 +118,7 @@ export const enableResetStore = (store) => {
       SET_PARAM_DEFAULT(state, params = { query, data }) {
         state.paramDefaults[params.query] = params.data
       },
-      
+
     },
   };
 };

@@ -5,6 +5,8 @@
     next-page
     reload
     @reload="$refs.form.fetchData()"
+    copy
+    @copy="$router.push(`/admin/game/ninjas/new?copy=${$route.params.id}`)"
   >
     <template #body>
       <div id="body-admin">

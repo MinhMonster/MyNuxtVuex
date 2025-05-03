@@ -130,7 +130,11 @@ export default {
     },
     isUnDelete() {
       const api = _.get(this.store, "unDelete", null);
-      return this.id && (this.stateQuery.status === "no" || !this.stateQuery.status) && api;
+      return (
+        this.id &&
+        (this.stateQuery.status === "no" || !this.stateQuery.status) &&
+        api
+      );
     },
   },
   async mounted() {
@@ -155,11 +159,12 @@ export default {
     },
     async fetchData() {
       try {
-
-        const repositoryKey = this.repositories ? this.$repositories_mimifood : this.$repositories;
-        const result = await repositoryKey[this.repository][
-          this.store.action
-        ](this.id);
+        const repositoryKey = this.repositories
+          ? this.$repositories_mimifood
+          : this.$repositories;
+        const result = await repositoryKey[this.repository][this.store.action](
+          this.id
+        );
 
         const data = result.data.response;
         console.log("data", result.data);
@@ -172,10 +177,10 @@ export default {
     },
     async updateData() {
       try {
-        const repositoryKey = this.repositories ? this.$repositories_mimifood : this.$repositories;
-        const result = await repositoryKey[this.repository][
-          this.store.update
-        ]({
+        const repositoryKey = this.repositories
+          ? this.$repositories_mimifood
+          : this.$repositories;
+        const result = await repositoryKey[this.repository][this.store.update]({
           id: this.id,
           input: this.stateQuery,
         });
@@ -192,21 +197,22 @@ export default {
       const payload = _.omit(this.stateQuery, "ID");
 
       try {
-        const repositoryKey = this.repositories ? this.$repositories_mimifood : this.$repositories;
-        const result = await repositoryKey[this.repository][
-          this.store.create
-        ]({
+        const repositoryKey = this.repositories
+          ? this.$repositories_mimifood
+          : this.$repositories;
+        const result = await repositoryKey[this.repository][this.store.create]({
           input: payload,
         });
         const data = result.data;
         if (data.code === 200) {
           this.$toasted.success(data.message);
+          this.$router.push(this.path.replace("new", ""));
         }
       } catch (error) {}
     },
     async onUpdate() {
       try {
-        if (this.id) {
+        if (this.id && this.store.update) {
           this.updateData();
         } else {
           this.createData();

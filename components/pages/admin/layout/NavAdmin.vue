@@ -47,6 +47,11 @@
                   <v-icon>mdi-plus</v-icon>
                 </v-btn>
               </div>
+              <div v-if="copy" class="copy-page" @click="onCopy()">
+                <v-btn icon>
+                  <v-icon>mdi-content-copy</v-icon>
+                </v-btn>
+              </div>
               <div v-if="reload" class="reload-page" @click="onReload()">
                 <v-btn icon>
                   <v-icon>mdi-reload</v-icon>
@@ -109,6 +114,7 @@ export default {
     filter: Boolean,
     reload: Boolean,
     newPage: Boolean,
+    copy: Boolean,
     btnEdit:  Boolean,
     loading: Boolean,
     fullScreen: Boolean,
@@ -193,6 +199,9 @@ export default {
         this.ready = true;
       }, 50);
     },
+    onCopy() {
+      this.$emit("copy");
+    },
     onNewPage() {
       this.$emit("newPage");
     },
@@ -238,6 +247,7 @@ export default {
     .next-page,
     .back-page,
     .reload-page,
+    .copy-page,
     .new-page {
       height: 24px;
       width: 24px;
