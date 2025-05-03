@@ -23,10 +23,14 @@
       :meta="pagy"
       @onChange="fetchData"
     >
-      <template v-for="column in columns" #[column.key]="{ row, value }">
-        <slot :name="column.key" :row="row" :value="value">{{
-          columnsValue(column.type, value)
-        }}</slot>
+      <template
+        v-for="(column, index) in columns"
+        #[column.key]="{ row, value }"
+      >
+        <slot :name="column.key" :row="row" :value="value">
+          <span v-html="columnsValue(column.type, value)" v-bind:key="index">
+          </span>
+        </slot>
       </template>
     </BaseTable>
   </div>
@@ -66,7 +70,7 @@ export default {
       default: "",
       require: false,
     },
-    repositories:  {
+    repositories: {
       type: String,
       default: null,
       require: false,

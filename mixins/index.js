@@ -286,12 +286,33 @@ export default {
       }
     },
     statusNinja(status) {
+      let setting = {};
       switch (status) {
         case "yes":
-          return "Còn";
+          setting = {
+            text: "Còn",
+            color: "text-primary"
+          };
+          break;
         case "no":
-          return "Đã Bán";
+          setting = {
+            text: "Đã Bán",
+            color: "text-danger"
+          };
+          break;
+        case "pending":
+          setting = {
+            text: "Chờ duyệt",
+            color: "text-warning"
+          };
+          break;
+        default:
+          setting = {
+            text: "Không rõ",
+            color: "text-muted"
+          };
       }
+      return `<span class="${setting.color}">${setting.text}</span>`;
     },
 
     numberWalletAdmin(wallet) {

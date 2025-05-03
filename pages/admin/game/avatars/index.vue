@@ -24,7 +24,7 @@
               action: 'fetchAccountAvatars',
             }"
           >
-            <template #actions="props">
+            <!-- <template #actions="props">
               <v-btn light icon :to="`/admin/game/avatars/${props.row.ID}`">
                 <v-icon>mdi-pencil-box-multiple-outline</v-icon>
               </v-btn>
@@ -36,6 +36,11 @@
               >
                 <v-icon>mdi-eye</v-icon>
               </v-btn>
+            </template> -->
+            <template #ID="props">
+              <nuxt-link light :to="`/admin/game/avatars/${props.row.ID}`">
+                {{ format_number(props.row.ID) }}
+              </nuxt-link>
             </template>
           </AdminBaseTable>
           <!-- </v-card> -->
@@ -82,6 +87,16 @@ export default {
           },
         },
         {
+          key: "status",
+          label: "Status",
+          type: "status-ninja",
+          attributes: {
+            style: {
+              minWidth: "50px",
+            },
+          },
+        },
+        {
           key: "dat",
           label: "Đất",
           type: "number",
@@ -120,30 +135,19 @@ export default {
             },
           },
         },
-        {
-          key: "status",
-          label: "Status",
-          type: "status-ninja",
-          attributes: {
-            style: {
-              minWidth: "50px",
-            },
-          },
-        },
-        {
-          key: "actions",
-          label: "Actions",
-          type: "actions",
-          attributes: {
-            style: {
-              minWidth: "100px",
-            },
-          },
-        },
+        // {
+        //   key: "actions",
+        //   label: "Actions",
+        //   type: "actions",
+        //   attributes: {
+        //     style: {
+        //       minWidth: "100px",
+        //     },
+        //   },
+        // },
       ],
     };
   },
 };
 </script>
-<style >
-</style>
+<style></style>
