@@ -1,23 +1,47 @@
 <template>
   <client-only>
-    <div v-if="image" class="fileItemWrapper">
+    <div v-if="image" class="image-avatar">
       <img
         :src="image"
         alt="Image Account Avatar"
-        class="image-account"
-        :class="{ full: accountAvatar?.full }"
+        title="Phóng to ảnh"
+        class="image-account cursor-pointer"
+        :class="{ full: accountAvatar?.full, 'avatar-detail': isDetail }"
+        @click="$refs.modal.show()"
       />
+      <ModalPayload
+        classContent="modal-avatar"
+        width="100%"
+        max-width="1000px"
+        ref="modal"
+        title="Ảnh Nick Avatar"
+        size="md"
+        hiddenFooter
+      >
+        <template #content>
+          <img
+            :src="image"
+            alt="Image Account Avatar"
+            class="image-account w-100"
+            :class="{ full: accountAvatar?.full }"
+          />
+        </template>
+      </ModalPayload>
     </div>
   </client-only>
 </template>
 
 <script>
+import ModalPayload from "@/components/common/ModalPayload";
+
 export default {
+  components: { ModalPayload },
   props: {
     accountAvatar: {
       type: Object,
       default: () => ({}),
     },
+    isDetail: Boolean,
   },
   computed: {
     image() {
@@ -33,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.fileItemWrapper {
+.image-avatar {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -52,6 +76,10 @@ export default {
     &.full {
       width: 100%;
       margin-left: 0;
+    }
+
+    &.avatar-detail {
+      height: 100% !important;
     }
 
     @media (min-width: 1500px), (max-width: 959px) {

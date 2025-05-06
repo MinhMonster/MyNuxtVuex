@@ -16,6 +16,7 @@
         <AccountAvatarTL
           v-if="isMobile || accountAvatar.full"
           :account-avatar="accountAvatar"
+          :isDetail="true"
         />
         <VueSlickCarousel
           v-else-if="accountAvatar.images"
@@ -103,7 +104,9 @@
         </v-row>
         <GroupBtnBuyAccount :account="accountAvatar" account-type="Avatar" />
       </v-col>
+
     </v-row>
+
   </client-only>
 </template>
 

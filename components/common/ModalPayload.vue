@@ -7,12 +7,15 @@
     :title="title"
     scrollable
     :size="size"
-    max-width="500px"
+    :width="width"
+    :max-width="maxWidth"
+    :height="height"
+    :max-height="maxHeight"
     @hide="close()"
     class="modal-content"
     aria-labelledby="labeldiv"
   >
-    <v-card :max-height="height">
+    <v-card >
       <BaseSvg
         class="close"
         color="red"
@@ -25,7 +28,8 @@
       <v-card-title class="title-modal text-menu-main bold">
         {{ title }}
       </v-card-title>
-      <v-card-text class="modal-body">
+      <v-card-text class="modal-body" :class="classContent"
+      >
         <div class="base-dialog">
           <div class="base-dialog-bg">
             <slot name="content"></slot>
@@ -70,7 +74,7 @@
     </template> -->
   </v-dialog>
 </template>
-  
+
 <script>
 export default {
   name: "ModalPayload",
@@ -96,6 +100,22 @@ export default {
       type: String,
       default: "auto",
     },
+    maxHeight: {
+      type: String,
+      default: "90vh !important",
+    },
+    width: {
+      type: String,
+      default: "500px",
+    },
+    maxWidth: {
+      type: String,
+      default: "500px",
+    },
+    classContent: {
+      type: String,
+      default: "",
+    },
     hiddenFooter: Boolean,
   },
   methods: {
@@ -111,7 +131,7 @@ export default {
   },
 };
 </script>
-  
+
   <style lang="scss" scoped>
 .title {
   color: #1e5b7e;
