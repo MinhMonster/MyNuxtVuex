@@ -50,26 +50,38 @@ export default {
     height: 270px;
     border-radius: 7px;
     border: 1px solid #a4a4a4;
+
     &.full {
       width: 100%;
       margin-left: 0px;
     }
-    @media (max-width: 600px) {
+
+    @media (min-width: 1500px), (max-width: 959px) {
+      &.image-account {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 599px) {
       &.image-account {
         height: 100%;
       }
     }
+
     // max-height: 200px;
   }
 }
+
 .account-ingame {
   right: 4px;
 }
+
 .account-cash-atm {
   left: 4px;
   font-size: 11px;
   font-weight: 700;
 }
+
 .account-ingame,
 .account-cash-atm {
   position: absolute;
@@ -82,10 +94,12 @@ export default {
   padding: 0px 5px;
   color: #ffffff;
   background: #a21d0a;
+
   .v-btn--icon.v-size--default {
     height: 20px;
     width: 20px;
     margin: 0 -5px;
+
     i {
       height: 15px;
       width: 15px;
@@ -94,6 +108,7 @@ export default {
     }
   }
 }
+
 .account-tl {
   position: absolute;
   display: flex;

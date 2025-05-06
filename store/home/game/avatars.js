@@ -86,7 +86,7 @@ export default {
 
 export const queryAvatar = {
   page: 1,
-  perPage: 24,
+  perPage: 60,
   q: {
     id: null,
     cash: null,
