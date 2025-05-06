@@ -1,50 +1,48 @@
 <template>
   <client-only>
-    <div v-if="accountAvatar" class="fileItemWrapper">
+    <div v-if="image" class="fileItemWrapper">
       <img
-        v-if="accountAvatar.images[0].includes('muabannick.pro')"
-        :src="accountAvatar.images[0]"
-        alt=""
+        :src="image"
+        alt="Image Account Avatar"
         class="image-account"
-        :class="{ full: accountAvatar.full }"
+        :class="{ full: accountAvatar?.full }"
       />
-      <img
-        v-else
-        :src="`https://muabannick.pro${accountAvatar.images[0]}`"
-        alt=""
-        class="image-account"
-        :class="{ full: accountAvatar.full }"
-      />
-      <!-- <span class="account-cash-atm">
-        {{ cash_atm(accountAvatar.price) }} ATM-MOMO</span
-      >
-      <span class="account-ingame"> @{{ accountAvatar.inGame }} </span> -->
     </div>
   </client-only>
 </template>
+
 <script>
 export default {
   props: {
     accountAvatar: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
+    },
+  },
+  computed: {
+    image() {
+      const img = this.accountAvatar?.images?.[0];
+      if (!img) return null;
+
+      return img.includes("muabannick.pro")
+        ? img
+        : `https://muabannick.pro${img}`;
     },
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .fileItemWrapper {
   position: relative;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: flex-start;
-  // height: 100%;
   overflow: hidden;
   border-radius: 5px;
 
-  img {
+  .image-account {
     width: 120%;
     margin-left: -10%;
     height: 270px;
@@ -53,33 +51,17 @@ export default {
 
     &.full {
       width: 100%;
-      margin-left: 0px;
+      margin-left: 0;
     }
 
     @media (min-width: 1500px), (max-width: 959px) {
-      &.image-account {
-        height: 400px;
-      }
+      height: 400px;
     }
 
     @media (max-width: 599px) {
-      &.image-account {
-        height: 100%;
-      }
+      height: 100%;
     }
-
-    // max-height: 200px;
   }
-}
-
-.account-ingame {
-  right: 4px;
-}
-
-.account-cash-atm {
-  left: 4px;
-  font-size: 11px;
-  font-weight: 700;
 }
 
 .account-ingame,
@@ -88,12 +70,21 @@ export default {
   top: 4px;
   font-size: 13px;
   font-weight: 450;
-  width: auto !important;
-  text-align: center;
   border-radius: 5px;
-  padding: 0px 5px;
-  color: #ffffff;
+  padding: 0 5px;
+  color: #fff;
   background: #a21d0a;
+  text-align: center;
+
+  &.account-ingame {
+    right: 4px;
+  }
+
+  &.account-cash-atm {
+    left: 4px;
+    font-size: 11px;
+    font-weight: 700;
+  }
 
   .v-btn--icon.v-size--default {
     height: 20px;
@@ -121,8 +112,8 @@ export default {
   height: 10% !important;
   text-align: center;
   border-radius: 3px;
-  padding: 0px;
-  color: #ffffff;
+  padding: 0;
+  color: #fff;
   background: #a21d0a;
 }
 </style>
