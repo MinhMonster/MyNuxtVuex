@@ -30,8 +30,7 @@
       </p>
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/teamobi/ninja-school">
-          <span class="text-danger">*</span> Giảm Giá tất cả Nick Ninja Trên
-          Shop
+          <span class="text-danger">*</span> Hỗ trợ <span class="text-danger">Trả góp</span> và <span class="text-danger">Cọc nick</span>  thời gian dài
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700">

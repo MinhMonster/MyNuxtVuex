@@ -54,7 +54,7 @@
             <div>
               ⭐ Hỗ trợ
               <span class="bold pointer text-danger"
-                >trả góp lên đến 1 tháng </span
+                >Trả góp, Cọc nick lên đến 2 tháng </span
               >, Số tiền thanh toán và thời gian trả góp tùy thuộc vào giá trị
               nick.
             </div>
