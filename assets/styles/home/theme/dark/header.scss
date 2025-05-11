@@ -132,21 +132,6 @@
     background-image: linear-gradient(139.4deg, #0F0F0F 15.38%, #a937ed 55.2%, #ac3be4 58.96%, #b549cc 54.97%, #a937ed 35.49%, #ac3be4 81.5%, #0F0F0F 90.52%) !important;
   }
 
-  .change-theme,
-  .go-back,
-  .reload,
-  .next-top,
-  .next-bottom {
-    .v-btn--icon.v-size--default {
-
-      // background: radial-gradient(circle at 50% 100%, #424040, #0F0F0F 58%, #ac3be4 127%) !important;
-      background: radial-gradient(circle at 50% 15%, #a937ed, #0F0F0F 72%) !important;
-
-      border: 1px solid #ac3be4 !important;
-      box-shadow: #0F0F0F 0px 0px 1px inset, #ac3be4 0px 1px 2px;
-    }
-  }
-
   .account-search {
     background: #0F0F0FE6 !important;
     border: $border-theme-dark !important;

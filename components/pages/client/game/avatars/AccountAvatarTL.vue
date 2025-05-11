@@ -95,8 +95,8 @@ export default {
       if (this.isMobile) {
         return this.percent < 300;
       }
-      if(this.screenWidth <= 1500) {
-        return this.maxWidth < (this.screenWidth - 30);
+      if (this.screenWidth <= 1500) {
+        return this.maxWidth < this.screenWidth - 30;
       }
       return this.maxWidth < 1500;
     },
@@ -248,15 +248,22 @@ export default {
   text-align: center;
 
   .btn-zoom {
-    text-align: center;
+    height: 30px;
+    width: 30px;
     background: radial-gradient(
-      circle at 50% 15%,
-      #a937ed,
-      #0f0f0f 72%
-    ) !important;
-
-    border: 1px solid #ac3be4 !important;
-    box-shadow: #0f0f0f 0px 0px 1px inset, #ac3be4 0px 1px 2px;
+      circle at 50% 100%,
+      #e28637,
+      #9f5424 58%,
+      #561d00 127%
+    );
+    svg {
+      height: 26px;
+      width: 26px;
+      path {
+        height: 26px;
+        width: 26px;
+      }
+    }
   }
 }
 </style>
