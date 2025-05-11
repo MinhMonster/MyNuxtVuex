@@ -7,8 +7,10 @@
 
 }
 
-.image-zoom.v-dialog:not(.v-dialog--fullscreen) {
-  max-height: calc(100vh - 80px) !important;
+@media (min-width: 768px) {
+  .image-zoom.v-dialog:not(.v-dialog--fullscreen) {
+    max-height: calc(100vh - 80px) !important;
+  }
 }
 
 .v-dialog {

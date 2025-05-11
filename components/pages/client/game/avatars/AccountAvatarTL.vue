@@ -95,6 +95,9 @@ export default {
       if (this.isMobile) {
         return this.percent < 300;
       }
+      if(this.screenWidth <= 1500) {
+        return this.maxWidth < (this.screenWidth - 30);
+      }
       return this.maxWidth < 1500;
     },
     isZoomIn() {
