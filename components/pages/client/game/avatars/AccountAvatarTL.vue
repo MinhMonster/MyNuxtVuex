@@ -11,20 +11,53 @@
       />
       <ModalPayload
         classContent="modal-avatar"
+        classDiglog="image-zoom"
         width="100%"
-        max-width="1000px"
+        :max-width="maxWidth + 'px'"
         ref="modal"
         title="Ảnh Nick Avatar"
         size="md"
-        hiddenFooter
+        :isBtnClose="false"
+        @hide="resetData()"
       >
         <template #content>
-          <img
-            :src="image"
-            alt="Image Account Avatar"
-            class="image-account w-100"
-            :class="{ full: accountAvatar?.full }"
-          />
+          <div class="scroll-x text-center">
+            <img
+              :src="image"
+              alt="Image Account Avatar"
+              class="image-account w-100"
+              :class="{ full: accountAvatar?.full }"
+              :style="{ width: percent + '%' }"
+            />
+          </div>
+        </template>
+        <template #footer-content>
+          <div class="group-btn-zoom">
+            <v-btn
+              class="btn-zoom"
+              icon
+              @click="zoomInImage()"
+              :disabled="!isZoomIn"
+            >
+              <v-icon>mdi-arrow-collapse-all</v-icon>
+            </v-btn>
+            <v-btn
+              class="btn-zoom ml-10"
+              icon
+              @click="resetData()"
+              :disabled="!isReset"
+            >
+              <v-icon>mdi-reload</v-icon>
+            </v-btn>
+            <v-btn
+              class="btn-zoom ml-10"
+              icon
+              @click="zoomOutImage()"
+              :disabled="!isZoomOut"
+            >
+              <v-icon>mdi-arrow-all</v-icon>
+            </v-btn>
+          </div>
         </template>
       </ModalPayload>
     </div>
@@ -36,6 +69,12 @@ import ModalPayload from "@/components/common/ModalPayload";
 
 export default {
   components: { ModalPayload },
+  data() {
+    return {
+      percent: 100,
+      maxWidth: 800,
+    };
+  },
   props: {
     accountAvatar: {
       type: Object,
@@ -51,6 +90,61 @@ export default {
       return img.includes("muabannick.pro")
         ? img
         : `https://muabannick.pro${img}`;
+    },
+    isZoomOut() {
+      if (this.isMobile) {
+        return this.percent < 300;
+      }
+      return this.maxWidth < 1500;
+    },
+    isZoomIn() {
+      if (this.isMobile) {
+        return this.percent > 100;
+      }
+      return this.maxWidth > 400;
+    },
+    isReset() {
+      if (this.isMobile) {
+        return this.percent != 100;
+      }
+      return this.maxWidth != 800;
+    },
+  },
+  methods: {
+    zoomOutImage() {
+      if (this.isMobile) {
+        if (this.percent <= 280) {
+          this.percent += 20;
+        } else {
+          this.percent = 300;
+        }
+      } else {
+        if (this.maxWidth <= 1400) {
+          this.maxWidth += 100;
+        } else {
+          this.maxWidth = 1500;
+        }
+      }
+    },
+    zoomInImage() {
+      if (this.isMobile) {
+        if (this.percent > 100) {
+          this.percent -= 20;
+        } else {
+          this.percent = 100;
+        }
+      } else {
+        if (this.maxWidth <= 1500 && this.maxWidth > 400) {
+          this.maxWidth -= 100;
+        } else {
+          // this.maxWidth -= 100;
+          this.maxWidth = 400;
+        }
+      }
+    },
+    resetData() {
+      this.percent = 100;
+      this.maxWidth = 800;
     },
   },
 };
@@ -143,5 +237,23 @@ export default {
   padding: 0;
   color: #fff;
   background: #a21d0a;
+}
+
+.group-btn-zoom {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+
+  .btn-zoom {
+    text-align: center;
+    background: radial-gradient(
+      circle at 50% 15%,
+      #a937ed,
+      #0f0f0f 72%
+    ) !important;
+
+    border: 1px solid #ac3be4 !important;
+    box-shadow: #0f0f0f 0px 0px 1px inset, #ac3be4 0px 1px 2px;
+  }
 }
 </style>

@@ -82,6 +82,7 @@ export default {
   computed: {
     ...mapFields("global", {
       isMb: "isMb",
+      scrWidth: "scrWidth",
       is_tablet: "is_tablet",
       heightHomeRight: "heightHomeRight",
       showLoginRegister: "showLoginRegister",
@@ -91,6 +92,9 @@ export default {
     }),
     isMobile() {
       return this.isMb
+    },
+    screenWidth() {
+      return this.scrWidth
     },
     isTablet() {
       return this.is_tablet
@@ -168,13 +172,13 @@ export default {
       this.isFormLoginRegister = value;
     },
     onResize() {
-      const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
+      this.scrWidth = document.querySelector("body").clientWidth;
+      if (this.scrWidth < 600) {
         this.isMb = true;
       } else {
         this.isMb = false;
       }
-      if (screenWidth < 768) {
+      if (this.scrWidth < 768) {
         this.is_tablet = true;
       } else {
         this.is_tablet = false;

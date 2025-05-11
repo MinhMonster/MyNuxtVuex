@@ -15,6 +15,7 @@ export default {
     isThemeDark: true,
     showMenuRight: false,
     fixed: false,
+    scrWidth: 0,
     isMb: true,
     is_tablet: false,
     heightHomeRight: 810,

@@ -11,11 +11,12 @@
     :max-width="maxWidth"
     :height="height"
     :max-height="maxHeight"
+    :content-class="classDiglog"
     @hide="close()"
     class="modal-content"
     aria-labelledby="labeldiv"
   >
-    <v-card >
+    <v-card>
       <BaseSvg
         class="close"
         color="red"
@@ -28,8 +29,7 @@
       <v-card-title class="title-modal text-menu-main bold">
         {{ title }}
       </v-card-title>
-      <v-card-text class="modal-body" :class="classContent"
-      >
+      <v-card-text class="modal-body" :class="classContent">
         <div class="base-dialog">
           <div class="base-dialog-bg">
             <slot name="content"></slot>
@@ -44,7 +44,7 @@
               <div class="text-right right w-100">
                 <slot name="footer-button"></slot>
               </div>
-              <div class="text-right right w-100">
+              <div v-if="isBtnClose" class="text-right right w-100">
                 <v-btn
                   color="red"
                   class="btn-sm text-white bold bg-danger"
@@ -116,7 +116,15 @@ export default {
       type: String,
       default: "",
     },
+    classDiglog: {
+      type: String,
+      default: "",
+    },
     hiddenFooter: Boolean,
+    isBtnClose: {
+      type: Boolean,
+      default: true,
+    },
   },
   methods: {
     show() {
