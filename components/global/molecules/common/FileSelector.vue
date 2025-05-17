@@ -57,8 +57,20 @@
     <template v-if="!autoupload" #footer>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="red" variant="danger" class="text-white" @click="removeAll"> Clear </v-btn>
-        <v-btn color="primary" variant="primary" style="margin-left: 5px !important;" @click="uploadFiles">
+        <v-btn
+          color="red"
+          variant="danger"
+          class="text-white"
+          @click="removeAll"
+        >
+          Clear
+        </v-btn>
+        <v-btn
+          color="primary"
+          variant="primary"
+          style="margin-left: 5px !important"
+          @click="uploadFiles"
+        >
           Upload
         </v-btn>
       </v-card-actions>
@@ -67,12 +79,14 @@
 </template>
 
 <script>
+import ViewImage from "@/components/global/molecules/media/ViewImage";
 import mixins from "@/mixins/index";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions, mapState } = createNamespacedHelpers("global");
 let WidgetCount = 0;
 export default {
   mixins: [mixins],
+  components: { ViewImage },
   props: {
     label: {
       type: String,
@@ -259,6 +273,7 @@ export default {
   display: flex;
   gap: 10px;
 }
+
 .fileList {
   display: flex;
   flex-wrap: wrap;
@@ -293,6 +308,7 @@ export default {
         font-size: 10px;
         padding: 1px;
       }
+
       .fileIcon {
         // width: 60px;
         text-align: center;
@@ -329,6 +345,7 @@ export default {
     }
   }
 }
+
 .bg-gray {
   background: #e1e1e1 !important;
 }
@@ -348,12 +365,14 @@ export default {
     width: 100%;
   }
 }
+
 @media (min-width: 675px) {
   .fileItem,
   .dropzone {
     width: 50%;
   }
 }
+
 @media (min-width: 960px) {
   .fileItem,
   .dropzone {
