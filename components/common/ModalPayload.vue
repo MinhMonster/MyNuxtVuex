@@ -1,10 +1,10 @@
 <template>
-  <v-dialog v-if="dialog" v-model="dialog" :id="`${isDark ? 'theme-dark' : 'alb'}`" :title="title" scrollable
+  <v-dialog v-if="dialog" v-model="dialog" :title="title" scrollable
     :size="size" :width="width" :max-width="maxWidth" :height="height" :max-height="maxHeight"
     :content-class="classDiglog" @hide="close()" class="modal-content" aria-labelledby="labeldiv">
     <v-card>
-      <BaseSvg class="close" color="red" id="btn-close-modal-header" title="Đóng" aria-label="Đóng" @click="close()"
-        name="close" />
+      <!-- <BaseSvg class="close" color="red" id="btn-close-modal-header" title="Đóng" aria-label="Đóng" @click="close()"
+        name="close" /> -->
       <v-card-title class="title-modal text-menu-main bold">
         {{ title }}
       </v-card-title>

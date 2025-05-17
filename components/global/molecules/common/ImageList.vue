@@ -23,7 +23,13 @@
         md="4"
       >
         <div class="fileItemWrapper">
-          <ViewImage v-if="image" :url="image" class="w-100 h-100"/>
+          <ViewImage
+            v-if="image"
+            :image="image"
+            :index="index"
+            :images="images"
+            class="w-100 h-100"
+          />
           <b-button
             variant="danger"
             size="sm"
@@ -55,7 +61,7 @@ export default {
     FormValidator,
     draggable,
     UploadImageModal,
-    ViewImage
+    ViewImage,
   },
   name: "FormAccountNinja",
   props: {

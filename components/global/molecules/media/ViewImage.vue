@@ -1,8 +1,8 @@
 <template>
   <client-only>
-    <div v-if="url" class="view-image">
+    <div v-if="image" class="view-image">
       <img
-        :src="url"
+        :src="image"
         alt="Image Account Avatar"
         title="Phóng to ảnh"
         class="image-account cursor-pointer"
@@ -14,7 +14,7 @@
         width="100%"
         :max-width="maxWidth + 'px'"
         ref="modal"
-        title="Zoom Image"
+        :title="'Zoom Image (' + (indexImage + 1) + '/' + lengthImages + ')'"
         size="md"
         :isBtnClose="false"
         @hide="resetData()"
@@ -32,7 +32,15 @@
         <template #footer-content>
           <div class="group-btn-zoom">
             <v-btn
-              class="btn-zoom"
+              v-if="lengthImages > 1"
+              class="btn-zoom ml-10"
+              icon
+              @click="prevImage()"
+            >
+              <v-icon>mdi-arrow-left-bold-circle-outline</v-icon>
+            </v-btn>
+            <v-btn
+              class="btn-zoom ml-10"
               icon
               @click="zoomInImage()"
               :disabled="!isZoomIn"
@@ -55,6 +63,14 @@
             >
               <v-icon>mdi-arrow-all</v-icon>
             </v-btn>
+            <v-btn
+              v-if="lengthImages > 1"
+              class="btn-zoom ml-10"
+              icon
+              @click="nextImage()"
+            >
+              <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>
+            </v-btn>
           </div>
         </template>
       </ModalPayload>
@@ -70,13 +86,23 @@ export default {
   data() {
     return {
       percent: 100,
-      maxWidth: 800,
+      maxWidth: 750,
+      url: null,
+      indexImage: 0,
     };
   },
   props: {
-    url: {
-      type: Object,
-      default: () => ({}),
+    image: {
+      type: String,
+      default: () => "",
+    },
+    images: {
+      type: Array,
+      default: () => [],
+    },
+    index: {
+      type: Number,
+      default: () => 0,
     },
     isDetail: Boolean,
   },
@@ -91,14 +117,24 @@ export default {
       if (this.isMobile) {
         return this.percent > 100;
       }
-      return this.maxWidth > 400;
+      return this.maxWidth > 450;
     },
     isReset() {
       if (this.isMobile) {
         return this.percent != 100;
       }
-      return this.maxWidth != 800;
+      return this.maxWidth != 750;
     },
+    lengthImages() {
+      if (Array.isArray(this.images)) {
+        return this.images.length;
+      }
+      return 0;
+    },
+  },
+  mounted() {
+    this.url = this.image;
+    this.indexImage = this.index;
   },
   methods: {
     zoomOutImage() {
@@ -110,7 +146,7 @@ export default {
         }
       } else {
         if (this.maxWidth <= 1400) {
-          this.maxWidth += 200;
+          this.maxWidth += 150;
         } else {
           this.maxWidth = 1500;
         }
@@ -124,17 +160,33 @@ export default {
           this.percent = 100;
         }
       } else {
-        if (this.maxWidth <= 1600 && this.maxWidth > 400) {
-          this.maxWidth -= 200;
+        if (this.maxWidth <= 1600 && this.maxWidth > 450) {
+          this.maxWidth -= 150;
         } else {
           // this.maxWidth -= 100;
-          this.maxWidth = 400;
+          this.maxWidth = 450;
         }
       }
     },
     resetData() {
       this.percent = 100;
       this.maxWidth = 800;
+    },
+    async nextImage() {
+      if (this.indexImage < this.lengthImages) {
+        this.indexImage = this.indexImage + 1;
+      } else {
+        this.indexImage = 0;
+      }
+      this.url = this.images[this.indexImage] || this.image;
+    },
+    async prevImage() {
+      if (this.indexImage > 0 && this.indexImage <= this.lengthImages) {
+        this.indexImage = this.indexImage - 1;
+      } else {
+        this.indexImage = this.lengthImages;
+      }
+      this.url = this.images[this.indexImage] || this.image;
     },
   },
 };
@@ -237,13 +289,14 @@ export default {
   .btn-zoom {
     text-align: center;
     background: radial-gradient(
-      circle at 50% 15%,
-      #a937ed,
-      #0f0f0f 72%
-    ) !important;
+      circle at 50% 100%,
+      #a4a4a4,
+      #333333 58%,
+      #121212 127%
+    );
 
-    border: 1px solid #ac3be4 !important;
-    box-shadow: #0f0f0f 0px 0px 1px inset, #ac3be4 0px 1px 2px;
+    border: 1px solid #333 !important;
+    box-shadow: #0f0f0f 0px 0px 1px inset, #333 0px 1px 2px;
   }
 }
 </style>
