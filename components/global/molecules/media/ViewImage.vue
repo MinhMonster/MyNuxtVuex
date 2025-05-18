@@ -14,7 +14,7 @@
         width="100%"
         :max-width="maxWidth + 'px'"
         ref="modal"
-        :title="'Zoom Image (' + (indexImage + 1) + '/' + lengthImages + ')'"
+        :title="'View Image (' + (indexImage + 1) + '/' + lengthImages + ')'"
         size="md"
         :isBtnClose="false"
         @hide="resetData()"
@@ -86,7 +86,7 @@ export default {
   data() {
     return {
       percent: 100,
-      maxWidth: 750,
+      maxWidth: 1200,
       url: null,
       indexImage: 0,
     };
@@ -123,7 +123,7 @@ export default {
       if (this.isMobile) {
         return this.percent != 100;
       }
-      return this.maxWidth != 750;
+      return this.maxWidth != 1200;
     },
     lengthImages() {
       if (Array.isArray(this.images)) {
@@ -170,7 +170,7 @@ export default {
     },
     resetData() {
       this.percent = 100;
-      this.maxWidth = 800;
+      this.maxWidth = 1200;
     },
     async nextImage() {
       if (this.indexImage < this.lengthImages) {
