@@ -1,12 +1,15 @@
 <template>
   <client-only>
-    <div v-if="image" class="image-avatar">
+    <div
+      v-if="image"
+      class="image-avatar"
+      :class="{ full: accountAvatar?.full, 'avatar-detail': isDetail }"
+    >
       <img
         :src="image"
         alt="Image Account Avatar"
         title="Phóng to ảnh"
         class="image-account cursor-pointer"
-        :class="{ full: accountAvatar?.full, 'avatar-detail': isDetail }"
         @click="$refs.modal.show()"
       />
       <ModalPayload
@@ -162,6 +165,7 @@ export default {
   align-items: flex-start;
   overflow: hidden;
   border-radius: 5px;
+  padding: 6px;
 
   .image-account {
     width: 120%;
@@ -170,21 +174,26 @@ export default {
     border-radius: 7px;
     border: 1px solid #a4a4a4;
 
-    &.full {
-      width: 100%;
-      margin-left: 0;
-    }
-
-    &.avatar-detail {
-      height: 100% !important;
-    }
-
     @media (min-width: 1500px), (max-width: 959px) {
       height: 400px;
     }
 
     @media (max-width: 599px) {
       height: 100%;
+    }
+  }
+
+  &.full {
+    .image-account {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  &.avatar-detail {
+    padding: 0px;
+    .image-account {
+      height: 100% !important;
     }
   }
 }
@@ -256,9 +265,11 @@ export default {
       #9f5424 58%,
       #561d00 127%
     );
+
     svg {
       height: 26px;
       width: 26px;
+
       path {
         height: 26px;
         width: 26px;
