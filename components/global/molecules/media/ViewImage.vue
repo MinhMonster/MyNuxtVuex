@@ -295,7 +295,7 @@ export default {
       #663019 127%
     );
 
-    border: 1px solid #663019 !important;
+    border: 1px solid #663019;
     box-shadow: #e28637 0px 0px 1px inset, #663019 0px 1px 2px;
   }
 }
