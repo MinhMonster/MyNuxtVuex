@@ -212,8 +212,8 @@ export default {
 }
 
 .account-server-number {
-  left: calc(50% - 24px);
-  min-width: 50px !important;
+  left: calc(50% - 30px);
+  min-width: 60px !important;
 }
 
 .account-cash-atm {

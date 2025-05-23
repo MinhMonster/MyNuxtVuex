@@ -295,7 +295,8 @@ export default {
           return "5";
         case "6":
         case "7":
-          return "67";
+        case "9":
+          return "679";
         case "8":
           return "8";
       }

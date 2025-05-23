@@ -31,19 +31,6 @@
           </v-col>
           <v-col cols="6" sm="3" md="2">
             <div class="field v-input form-input">
-              <select v-model="classNinjas" class="">
-                <option
-                  v-for="(option, index) in classOptions"
-                  :key="index"
-                  :value="option.value"
-                >
-                  {{ option.text }}
-                </option>
-              </select>
-            </div>
-          </v-col>
-          <v-col cols="6" sm="3" md="2">
-            <div class="field v-input form-input">
               <!-- <base-select v-model="server" :options="serverOptions" /> -->
               <select v-model="server" class="">
                 <option
@@ -56,6 +43,20 @@
               </select>
             </div>
           </v-col>
+          <v-col cols="6" sm="3" md="2">
+            <div class="field v-input form-input">
+              <select v-model="classNinjas" class="">
+                <option
+                  v-for="(option, index) in classOptions"
+                  :key="index"
+                  :value="option.value"
+                >
+                  {{ option.text }}
+                </option>
+              </select>
+            </div>
+          </v-col>
+
           <v-col cols="6" sm="3" md="2">
             <div class="field">
               <input
@@ -272,10 +273,6 @@ export default {
         {
           text: "Sv8 - Sensha",
           value: "8",
-        },
-        {
-          text: "Sv9 - Fukiya",
-          value: "9",
         },
       ],
     };

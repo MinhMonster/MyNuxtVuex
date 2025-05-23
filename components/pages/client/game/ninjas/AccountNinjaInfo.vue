@@ -1,6 +1,11 @@
 <template>
   <client-only>
     <div v-if="accountNinja">
+      <div v-if="isMobile" class="text-center text-danger bold mb-5">
+        <BaseSvg name="next-bottom" />
+        Xem thêm ảnh nick chi tiết ở bên dưới
+        <BaseSvg name="next-bottom" />
+      </div>
       <div v-if="!isMobile || !accountNinja.full" class="title">
         <center><h3>Thông tin chi tiết</h3></center>
       </div>
