@@ -1,13 +1,9 @@
 <template>
   <client-only>
-    <div
-      v-if="image"
-      class="image-avatar"
-      :class="{ full: accountAvatar?.full, 'avatar-detail': isDetail }"
-    >
+    <div v-if="image" class="view-image">
       <img
         :src="image"
-        alt="Image Account Avatar"
+        alt="Image Account"
         title="Phóng to ảnh"
         class="image-account cursor-pointer"
         @click="$refs.modal.show()"
@@ -18,7 +14,7 @@
         width="100%"
         :max-width="maxWidth + 'px'"
         ref="modal"
-        title="Ảnh Nick Avatar"
+        :title="'Xem ảnh (' + (indexImage + 1) + '/' + lengthImages + ')'"
         size="md"
         :isBtnClose="false"
         @hide="resetData()"
@@ -26,10 +22,9 @@
         <template #content>
           <div class="scroll-x text-center">
             <img
-              :src="image"
-              alt="Image Account Avatar"
+              :src="url"
+              alt="Image Account"
               class="image-account w-100"
-              :class="{ full: accountAvatar?.full }"
               :style="{ width: percent + '%' }"
             />
           </div>
@@ -37,7 +32,15 @@
         <template #footer-content>
           <div class="group-btn-zoom">
             <v-btn
-              class="btn-zoom"
+              v-if="lengthImages > 1"
+              class="btn-zoom ml-5"
+              icon
+              @click="prevImage()"
+            >
+              <v-icon>mdi-arrow-left-bold-circle-outline</v-icon>
+            </v-btn>
+            <v-btn
+              class="btn-zoom ml-5"
               icon
               @click="zoomInImage()"
               :disabled="!isZoomIn"
@@ -45,7 +48,7 @@
               <v-icon>mdi-arrow-collapse-all</v-icon>
             </v-btn>
             <v-btn
-              class="btn-zoom ml-10"
+              class="btn-zoom ml-5"
               icon
               @click="resetData()"
               :disabled="!isReset"
@@ -53,12 +56,20 @@
               <v-icon>mdi-reload</v-icon>
             </v-btn>
             <v-btn
-              class="btn-zoom ml-10"
+              class="btn-zoom ml-5"
               icon
               @click="zoomOutImage()"
               :disabled="!isZoomOut"
             >
               <v-icon>mdi-arrow-all</v-icon>
+            </v-btn>
+            <v-btn
+              v-if="lengthImages > 1"
+              class="btn-zoom ml-5"
+              icon
+              @click="nextImage()"
+            >
+              <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>
             </v-btn>
           </div>
         </template>
@@ -75,31 +86,30 @@ export default {
   data() {
     return {
       percent: 100,
-      maxWidth: 800,
+      maxWidth: 1200,
+      url: null,
+      indexImage: 0,
     };
   },
   props: {
-    accountAvatar: {
-      type: Object,
-      default: () => ({}),
+    image: {
+      type: String,
+      default: () => "",
+    },
+    images: {
+      type: Array,
+      default: () => [],
+    },
+    index: {
+      type: Number,
+      default: () => 0,
     },
     isDetail: Boolean,
   },
   computed: {
-    image() {
-      const img = this.accountAvatar?.images?.[0];
-      if (!img) return null;
-
-      return img.includes("muabannick.pro")
-        ? img
-        : `https://muabannick.pro${img}`;
-    },
     isZoomOut() {
       if (this.isMobile) {
         return this.percent < 300;
-      }
-      if (this.screenWidth <= 1500) {
-        return this.maxWidth < this.screenWidth - 30;
       }
       return this.maxWidth < 1500;
     },
@@ -107,14 +117,24 @@ export default {
       if (this.isMobile) {
         return this.percent > 100;
       }
-      return this.maxWidth > 400;
+      return this.maxWidth > 450;
     },
     isReset() {
       if (this.isMobile) {
         return this.percent != 100;
       }
-      return this.maxWidth != 800;
+      return this.maxWidth != 1200;
     },
+    lengthImages() {
+      if (Array.isArray(this.images)) {
+        return this.images.length;
+      }
+      return 1;
+    },
+  },
+  mounted() {
+    this.url = this.image;
+    this.indexImage = this.index;
   },
   methods: {
     zoomOutImage() {
@@ -126,7 +146,7 @@ export default {
         }
       } else {
         if (this.maxWidth <= 1400) {
-          this.maxWidth += 100;
+          this.maxWidth += 150;
         } else {
           this.maxWidth = 1500;
         }
@@ -140,24 +160,40 @@ export default {
           this.percent = 100;
         }
       } else {
-        if (this.maxWidth <= 1500 && this.maxWidth > 400) {
-          this.maxWidth -= 100;
+        if (this.maxWidth <= 1600 && this.maxWidth > 450) {
+          this.maxWidth -= 150;
         } else {
           // this.maxWidth -= 100;
-          this.maxWidth = 400;
+          this.maxWidth = 450;
         }
       }
     },
     resetData() {
       this.percent = 100;
-      this.maxWidth = 800;
+      this.maxWidth = 1200;
+    },
+    async nextImage() {
+      if (this.indexImage < this.lengthImages - 1) {
+        this.indexImage = this.indexImage + 1;
+      } else {
+        this.indexImage = 0;
+      }
+      this.url = this.images[this.indexImage] || this.image;
+    },
+    async prevImage() {
+      if (this.indexImage > 0 && this.indexImage <= this.lengthImages) {
+        this.indexImage = this.indexImage - 1;
+      } else {
+        this.indexImage = this.lengthImages - 1;
+      }
+      this.url = this.images[this.indexImage] || this.image;
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.image-avatar {
+.view-image {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -165,35 +201,29 @@ export default {
   align-items: flex-start;
   overflow: hidden;
   border-radius: 5px;
-  padding: 6px;
 
   .image-account {
-    width: 120%;
-    margin-left: -10%;
-    height: 270px;
+    width: 100%;
+    // margin-left: -10%;
+    // height: 270px;
     border-radius: 7px;
     border: 1px solid #a4a4a4;
 
-    @media (min-width: 1500px), (max-width: 959px) {
-      height: 400px;
-    }
-
-    @media (max-width: 599px) {
-      height: 100%;
-    }
-  }
-
-  &.full {
-    .image-account {
+    &.full {
       width: 100%;
       margin-left: 0;
     }
-  }
 
-  &.avatar-detail {
-    padding: 0px;
-    .image-account {
+    &.avatar-detail {
       height: 100% !important;
+    }
+
+    // @media (min-width: 1500px), (max-width: 959px) {
+    //   height: 400px;
+    // }
+
+    @media (max-width: 599px) {
+      height: 100%;
     }
   }
 }
@@ -257,24 +287,16 @@ export default {
   text-align: center;
 
   .btn-zoom {
-    height: 30px;
-    width: 30px;
+    text-align: center;
     background: radial-gradient(
       circle at 50% 100%,
       #e28637,
-      #9f5424 58%,
-      #561d00 127%
+      #663019 58%,
+      #663019 127%
     );
 
-    svg {
-      height: 26px;
-      width: 26px;
-
-      path {
-        height: 26px;
-        width: 26px;
-      }
-    }
+    border: 1px solid #663019 !important;
+    box-shadow: #e28637 0px 0px 1px inset, #663019 0px 1px 2px;
   }
 }
 </style>

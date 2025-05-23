@@ -19,7 +19,6 @@
           :slidesToShow="1"
           :arrows="true"
           :rows="1"
-          :dots="true"
         >
           <!-- <AccountNinjaTL
             v-if="!accountNinja.full"
@@ -31,22 +30,27 @@
             :src="image"
             alt=""
           >
-            <img
+            <ViewImage
               v-if="image.includes('muabannick.pro')"
-              :src="image"
-              alt=""
-              class="image-account"
+              :image="image"
+              :index="index"
+              :images="accountNinja.hinhanh"
+              class="image-ninja"
               :class="{ full: index == 0 && accountNinja.full }"
             />
-            <img
+            <ViewImage
               v-else
-              :src="`https://muabannick.pro${image}`"
-              alt=""
-              class="image-account"
+              :image="`https://muabannick.pro${image}`"
+              :index="index"
+              :images="accountNinja.hinhanh"
+              class="image-ninja"
               :class="{ full: index == 0 && accountNinja.full }"
             />
           </div>
         </VueSlickCarousel>
+        <div v-if="!isMobile" class="text-center text-danger bold mb-5">
+          Nhấn vào ảnh để xem dạng phóng to
+        </div>
       </v-col>
       <v-col cols="12" sm="12" md="4" lg="4">
         <v-row>
@@ -58,6 +62,9 @@
       <v-col v-if="isMobile" cols="12">
         <div class="title">
           <center>Hình Ảnh Của Nick Ninja</center>
+          <div class="text-center text-danger bold mb-5">
+            Nhấn vào ảnh để xem dạng phóng to
+          </div>
         </div>
         <v-row>
           <v-col
@@ -69,17 +76,19 @@
             lg="4"
           >
             <div class="image-card">
-              <img
+              <ViewImage
                 v-if="image.includes('muabannick.pro')"
-                :src="image"
-                alt=""
+                :image="image"
+                :index="index"
+                :images="accountNinja.hinhanh"
                 class="image-ninja"
                 :class="{ full: index == 0 && accountNinja.full }"
               />
-              <img
+              <ViewImage
                 v-else
-                :src="`https://muabannick.pro${image}`"
-                alt=""
+                :image="`https://muabannick.pro${image}`"
+                :index="index"
+                :images="accountNinja.hinhanh"
                 class="image-ninja"
                 :class="{ full: index == 0 && accountNinja.full }"
               />
@@ -96,18 +105,24 @@
 </template>
 
 <script>
+import ViewImage from "@/components/global/molecules/media/ViewImage";
 import AccountNinjaInfo from "@/components/pages/client/game/ninjas/AccountNinjaInfo";
 import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  components: { AccountNinjaInfo, AccountNinjaTL, GroupBtnBuyAccount },
+  components: {
+    ViewImage,
+    AccountNinjaInfo,
+    AccountNinjaTL,
+    GroupBtnBuyAccount,
+  },
   props: {
     accountNinja: {
       type: Object,
-      default: () => {}
-    }
-  }
+      default: () => {},
+    },
+  },
 };
 </script>
 
@@ -115,11 +130,14 @@ export default {
 ::v-deep {
   .slick-slide {
     overflow: hidden !important;
+
     .image-card {
       width: 101.5% !important;
+
       img {
         // width: 112% !important;
         margin-left: 0px;
+
         &.full {
           width: 101.5% !important;
         }
@@ -141,20 +159,24 @@ export default {
 
   img {
     width: 100%;
+
     // max-height: 200px;
     &.full {
       width: 100% !important;
     }
   }
 }
+
 .image-account {
   width: 100% !important;
   overflow: hidden;
   margin-left: 0px;
+
   &.full {
     width: 100% !important;
   }
 }
+
 .title {
   color: #1e5b7e;
   margin-bottom: 10px;
