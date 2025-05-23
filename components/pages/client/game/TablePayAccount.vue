@@ -31,7 +31,7 @@
           {{ account.saleOff ? "(Giảm giá: " + account.saleOff + "%)" : "" }}
         </th>
         <td class="mua-nick">
-          <span :class="{ 'text-line-middel': account.saleOff }"
+          <span :class="{ 'text-line-middel text-danger': account.saleOff }"
             >{{ cash_atm(price) }} ATM - MOMO</span
           >
           <div

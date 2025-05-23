@@ -77,7 +77,7 @@
                   margin-bottom: 5px;
                 "
               ></div>
-              <span :class="{ 'text-line-middel': accountNinja.saleOff }"
+              <span :class="{ 'text-line-middel text-danger': accountNinja.saleOff }"
                 >{{ cash_atm(accountNinja.giatien) }} ATM - MOMO</span
               >
               <div
