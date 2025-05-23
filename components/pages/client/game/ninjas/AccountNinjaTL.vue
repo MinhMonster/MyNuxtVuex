@@ -153,9 +153,9 @@ export default {
   props: {
     accountNinja: {
       type: Object,
-      default: () => {}
-    }
-  }
+      default: () => {},
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -169,6 +169,7 @@ export default {
   // height: 100%;
   overflow: hidden;
   // border-radius: 5px;
+  border-bottom: 1px solid #663019;
 
   img {
     width: 108%;

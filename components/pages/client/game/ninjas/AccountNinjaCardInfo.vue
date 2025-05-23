@@ -86,6 +86,7 @@ export default {
   border-radius: 5px;
   border: 1px solid #663019;
   text-align: center;
+  overflow: hidden;
 
   .account-thongtin,
   .account-cash,
