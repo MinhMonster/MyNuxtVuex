@@ -14,7 +14,12 @@
         width="100%"
         :max-width="maxWidth + 'px'"
         ref="modal"
-        :title="'Xem ảnh (' + (indexImage + 1) + '/' + lengthImages + ')'"
+        :title="
+          'Xem ảnh ' +
+          (isGridView
+            ? 'dạng lưới'
+            : '(' + (indexImage + 1) + '/' + lengthImages + ')')
+        "
         size="md"
         :isBtnClose="false"
         @hide="resetData()"
@@ -22,25 +27,36 @@
         <template #content>
           <div class="scroll-x text-center">
             <img
+              v-if="!isGridView"
               :src="url"
               alt="Image Account"
               class="image-account w-100"
               :style="{ width: percent + '%' }"
             />
+            <v-row v-else>
+              <v-col v-for="(img, i) in images" :key="i" :cols="12" :sm="6">
+                <img
+                  :src="img"
+                  alt="Image Account"
+                  class="image-account w-100"
+                />
+              </v-col>
+            </v-row>
           </div>
         </template>
         <template #footer-content>
           <div class="group-btn-zoom">
             <v-btn
               v-if="lengthImages > 1"
-              class="btn-zoom ml-5"
+              class="btn-zoom ml-3"
               icon
               @click="prevImage()"
+              :disabled="isGridView"
             >
               <v-icon>mdi-arrow-left-bold-circle-outline</v-icon>
             </v-btn>
             <v-btn
-              class="btn-zoom ml-5"
+              class="btn-zoom ml-3"
               icon
               @click="zoomInImage()"
               :disabled="!isZoomIn"
@@ -48,7 +64,7 @@
               <v-icon>mdi-arrow-collapse-all</v-icon>
             </v-btn>
             <v-btn
-              class="btn-zoom ml-5"
+              class="btn-zoom ml-3"
               icon
               @click="resetData()"
               :disabled="!isReset"
@@ -56,7 +72,16 @@
               <v-icon>mdi-reload</v-icon>
             </v-btn>
             <v-btn
-              class="btn-zoom ml-5"
+              v-if="lengthImages > 1"
+              class="btn-zoom ml-3"
+              icon
+              @click="isGridViewImage()"
+            >
+              <v-icon v-if="!isGridView">mdi-grid</v-icon>
+              <v-icon v-else>mdi-grid-off</v-icon>
+            </v-btn>
+            <v-btn
+              class="btn-zoom ml-3"
               icon
               @click="zoomOutImage()"
               :disabled="!isZoomOut"
@@ -65,9 +90,10 @@
             </v-btn>
             <v-btn
               v-if="lengthImages > 1"
-              class="btn-zoom ml-5"
+              class="btn-zoom ml-3"
               icon
               @click="nextImage()"
+              :disabled="isGridView"
             >
               <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>
             </v-btn>
@@ -89,6 +115,7 @@ export default {
       maxWidth: 1200,
       url: null,
       indexImage: 0,
+      isGridView: true,
     };
   },
   props: {
@@ -109,19 +136,19 @@ export default {
   computed: {
     isZoomOut() {
       if (this.isMobile) {
-        return this.percent < 300;
+        return this.percent < 300 && !this.isGridView;
       }
       return this.maxWidth < 1500;
     },
     isZoomIn() {
       if (this.isMobile) {
-        return this.percent > 100;
+        return this.percent > 100 && !this.isGridView;
       }
       return this.maxWidth > 450;
     },
     isReset() {
       if (this.isMobile) {
-        return this.percent != 100;
+        return this.percent != 100 && !this.isGridView;
       }
       return this.maxWidth != 1200;
     },
@@ -135,6 +162,7 @@ export default {
   mounted() {
     this.url = this.image;
     this.indexImage = this.index;
+    this.resetData();
   },
   methods: {
     zoomOutImage() {
@@ -187,6 +215,9 @@ export default {
         this.indexImage = this.lengthImages - 1;
       }
       this.url = this.images[this.indexImage] || this.image;
+    },
+    async isGridViewImage() {
+      this.isGridView = !this.isGridView;
     },
   },
 };

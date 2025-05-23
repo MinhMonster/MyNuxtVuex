@@ -56,6 +56,20 @@
 
       &.modal-zoom {
         padding: 0 !important;
+
+        .row {
+          margin: 0;
+        }
+
+        .col-12 {
+          padding: 0px;
+        }
+
+        @media (min-width: 768px) {
+          .col-sm-6 {
+            padding: 0px 3px !important;
+          }
+        }
       }
 
       .field {
