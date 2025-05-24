@@ -1,5 +1,5 @@
 <template>
-  <v-dialog light v-model="dialog" persistent width="1250" class="modal">
+  <v-dialog light v-model="dialog" persistent max-width="1250" class="modal">
     <template v-slot:activator="{ props }">
       <v-btn
         v-if="icon == 'btn-icon'"
