@@ -19,6 +19,25 @@
   .v-card {
     position: relative !important;
 
+    &.modal-folder {
+      top: 30%;
+      width: 500px;
+      max-width: calc(100% - 50px);
+      position: fixed !important;
+      z-index: 2;
+      + .bg-modal-folder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        background: #000;
+        opacity: 0.3;
+      }
+    }
+
     .close {
       position: absolute !important;
       align-items: center !important;
