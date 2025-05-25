@@ -42,6 +42,17 @@
                 {{ format_number(props.row.ID) }}
               </nuxt-link>
             </template>
+            <template #giatien="props">
+              {{ cash_atm(props.row.giatien) }}
+            </template>
+            <template #gianhap="props">
+              <span class="text-danger">{{
+                format_number(props.row.gianhap)
+              }}</span>
+            </template>
+            <template #profit="props">
+              <span class="text-success">{{ profit_atm(props.row) }}</span>
+            </template>
           </AdminBaseTable>
           <!-- </v-card> -->
         </v-col>
@@ -130,8 +141,31 @@ export default {
           label: "Price",
           type: "number",
           attributes: {
+            class: 'text-right',
             style: {
-              minWidth: "120px",
+              minWidth: "60px",
+            },
+          },
+        },
+        {
+          key: "gianhap",
+          label: "Cost",
+          type: "number",
+          attributes: {
+            // class: 'text-right',
+            style: {
+              minWidth: "60px",
+            },
+          },
+        },
+        {
+          key: "profit",
+          label: "Profit",
+          type: "number",
+          attributes: {
+            class: "text-right",
+            style: {
+              minWidth: "50px",
             },
           },
         },
