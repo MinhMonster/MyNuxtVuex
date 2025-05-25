@@ -18,6 +18,7 @@
           <td
             v-for="(column, indexColumn) in columns"
             :key="indexColumn"
+            v-bind="column.attributes"
           >
             <slot
               :name="column.key"

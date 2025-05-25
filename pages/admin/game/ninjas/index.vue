@@ -24,18 +24,22 @@
               action: 'fetchAccountNinjas',
             }"
           >
-            <template #actions="props">
-              <v-btn light icon :to="`/admin/game/ninjas/${props.row.ID}`">
-                <v-icon>mdi-pencil-box-multiple-outline</v-icon>
-              </v-btn>
-              <v-btn
-                light
-                color="blue"
-                icon
-                :to="`/teamobi/ninja-school/${props.row.ID}`"
-              >
-                <v-icon>mdi-eye</v-icon>
-              </v-btn>
+            <template #ID="props">
+              <nuxt-link light :to="`/admin/game/ninjas/${props.row.ID}`">
+                {{ format_number(props.row.ID) }}
+              </nuxt-link>
+            </template>
+            <template #giatien="props">
+              {{ cash_atm(props.row.giatien * (1 - props.row.saleOff / 100)) }}
+            </template>
+
+            <template #gianhap="props">
+              <span class="text-danger">{{
+                format_number(props.row.gianhap)
+              }}</span>
+            </template>
+            <template #profit="props">
+              <span class="text-success">{{ profit_atm(props.row) }}</span>
             </template>
           </AdminBaseTable>
           <!-- </v-card> -->
@@ -89,12 +93,12 @@ export default {
           },
         },
         {
-          key: "giatien",
-          label: "Price",
-          type: "number",
+          key: "status",
+          label: "Status",
+          type: "status-ninja",
           attributes: {
             style: {
-              minWidth: "120px",
+              minWidth: "60px",
             },
           },
         },
@@ -138,25 +142,49 @@ export default {
           },
         },
         {
-          key: "status",
-          label: "Status",
-          type: "status-ninja",
+          key: "giatien",
+          label: "Price",
+          type: "number",
           attributes: {
+            class: "text-right",
             style: {
-              minWidth: "80px",
+              minWidth: "60px",
             },
           },
         },
         {
-          key: "actions",
-          label: "Actions",
-          type: "actions",
+          key: "gianhap",
+          label: "Cost",
+          type: "number",
           attributes: {
+            // class: 'text-right',
             style: {
-              minWidth: "100px",
+              minWidth: "60px",
             },
           },
         },
+        {
+          key: "profit",
+          label: "Profit",
+          type: "number",
+          attributes: {
+            class: "text-right",
+            style: {
+              minWidth: "60px",
+            },
+          },
+        },
+
+        // {
+        //   key: "actions",
+        //   label: "Actions",
+        //   type: "actions",
+        //   attributes: {
+        //     style: {
+        //       minWidth: "100px",
+        //     },
+        //   },
+        // },
       ],
     };
   },
