@@ -1,4 +1,6 @@
 .v-dialog {
+  overflow: visible;
+  overflow-y: unset !important;
 
   .nav.nav-tabs {
     background: #333;
@@ -15,8 +17,54 @@
   }
 
   .v-card {
+    position: relative !important;
+
+    &.modal-folder {
+      top: 30%;
+      width: 500px;
+      max-width: calc(100% - 50px);
+      position: fixed !important;
+      z-index: 2;
+      + .bg-modal-folder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        background: #000;
+        opacity: 0.3;
+      }
+    }
+
+    .close {
+      position: absolute !important;
+      align-items: center !important;
+      justify-content: center !important;
+      -ms-flex-pack: center !important;
+      text-decoration: none;
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      line-height: 25px;
+      right: -7px;
+      top: -7px;
+      border: 2px solid #333;
+      z-index: 2;
+      opacity: 1 !important;
+      font-size: 23px;
+      padding: 0;
+      z-index: 1001;
+
+      .v-icon.v-icon {
+        font-size: 20px !important;
+      }
+    }
+
     .modal-body {
       padding: 0px;
+
       form {
         padding: 10px;
       }
@@ -32,6 +80,7 @@
       justify-content: center;
       align-items: center;
     }
+
 
     .v-card__text {
       position: relative;
@@ -54,6 +103,13 @@
     }
   }
 
+  &.image-zoom {
+    .v-card {
+      .v-card__text {
+        padding: 0 !important;
+      }
+    }
+  }
 
 }
 

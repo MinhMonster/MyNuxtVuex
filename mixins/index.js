@@ -169,6 +169,11 @@ export default {
     cash_atm(number) {
       return this.format_number(Math.round((number * 0.85) / 10000).toFixed(0) * 10000)
     },
+    profit_atm(account) {
+      const percent = 1 - ((account.saleOff / 100) || 0);
+      const profit = (account.giatien * 0.85 * percent) - account.gianhap;
+      return this.format_number(Math.round(profit / 10000).toFixed(0) * 10000)
+    },
     time_10(time) {
       if (time > 1000) {
         return time % 100;

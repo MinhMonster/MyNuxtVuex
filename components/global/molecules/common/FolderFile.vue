@@ -58,6 +58,7 @@
           v-if="images.length"
           :images="images"
           :selectedImages="selectedImages"
+          :activated="activated"
           @addImage="addImage"
           @onDeleteFile="onDeleteFile"
         />
@@ -253,6 +254,9 @@ export default {
           this.folder_show_list = null;
         }
       }
+      this.folder_path = this.folder_active
+        ? this.folder_active.path
+        : "/images/";
       await this.getFiles();
     },
     async getFiles() {
@@ -450,7 +454,7 @@ export default {
 }
 
 .folderList {
-  width: 250px;
+  width: 300px;
   padding: 0px;
   min-height: 50vh;
   max-height: calc(100vh - 130px);

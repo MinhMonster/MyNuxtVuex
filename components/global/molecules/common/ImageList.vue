@@ -23,7 +23,13 @@
         md="4"
       >
         <div class="fileItemWrapper">
-          <img :src="image" alt="" class="image-ninja" />
+          <ViewImage
+            v-if="image"
+            :image="image"
+            :index="index"
+            :images="images"
+            class="w-100 h-100"
+          />
           <b-button
             variant="danger"
             size="sm"
@@ -46,6 +52,7 @@ import mixins from "@/mixins/index";
 import draggable from "vuedraggable";
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
 import UploadImageModal from "@/components/global/plugins/UploadImageModal.vue";
+import ViewImage from "@/components/global/molecules/media/ViewImage";
 
 export default {
   mixins: [mixins],
@@ -54,6 +61,7 @@ export default {
     FormValidator,
     draggable,
     UploadImageModal,
+    ViewImage,
   },
   name: "FormAccountNinja",
   props: {
@@ -134,9 +142,5 @@ export default {
       left: -15px;
     }
   }
-}
-img.image-ninja {
-  height: 100%;
-  width: 100%;
 }
 </style>

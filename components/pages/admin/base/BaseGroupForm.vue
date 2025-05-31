@@ -18,6 +18,24 @@
           v-model="dataForm[`${form.value}`]"
           @change="onChange"
         />
+        <BaseInput
+          v-if="form.type === 'cash_sale_off'"
+          :name="form.value"
+          :label="form.title"
+          :disabled="true"
+          :value="
+            cash_atm(
+              dataForm[`${form.value}`] * (1 - (dataForm['saleOff'] || 0) / 100)
+            )
+          "
+        />
+        <BaseInput
+          v-if="form.type === 'profit'"
+          :name="form.value"
+          :label="form.title"
+          :disabled="true"
+          :value="profit_atm(dataForm)"
+        />
         <v-text-field
           v-if="form.type === 'number' || form.type === 'text'"
           :name="form.value"
