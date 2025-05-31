@@ -24,8 +24,7 @@
       </p> -->
       <p class="bold text-italic text-13-700">
         <nuxt-link to="/teamobi/avatar">
-          <span class="text-danger">*</span> Cập nhật rất nhiều Nick Avatar,
-          Ninja School
+          <span class="text-danger">*</span> KM: Giảm giá 10% tất cả các Nick trên Shop đến hết CN tuần này (01/06)
         </nuxt-link>
       </p>
       <p class="bold text-italic text-13-700">
