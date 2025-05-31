@@ -3,7 +3,10 @@
     <ModalPayload ref="modal" :title="`Thông Báo`" size="md" @hide="close">
       <template #content>
         <div class="page-body">
-          <AdminNotification />
+          <div class="thongbao">
+            <div v-html="notification"></div>
+            <AdminInbox />
+          </div>
         </div>
       </template>
       <template #footer-button>
@@ -24,24 +27,29 @@
 </template>
 <script>
 import ModalPayload from "@/components/common/ModalPayload";
-import AdminNotification from "@/components/pages/home/AdminNotification";
+import AdminInbox from "@/components/common/client/AdminInbox";
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 export default {
   components: {
     ModalPayload,
-    AdminNotification,
+    AdminInbox,
   },
   computed: {
     ...mapFields("global", {
       isNotification: "isNotification",
     }),
+    ...mapFields("home/settings", {
+      notification: "notification",
+    }),
   },
-  mounted() {
+  async mounted() {
+    await this.fetchNotification();
     this.show();
   },
   methods: {
     ...mapActions("global", ["setNotification"]),
+    ...mapActions("home/settings", ["fetchNotification"]),
     show() {
       if (this.isNotification) {
         this.$refs.modal.show();
@@ -59,6 +67,21 @@ export default {
 ::v-deep {
   .v-dialog:not(.v-dialog--fullscreen) {
     height: calc(100vh - 200px) !important;
+  }
+}
+.thongbao {
+  p {
+    line-height: 35px;
+    margin-bottom: 0 !important;
+  }
+  .change-theme {
+    max-width: 260px;
+    margin: 10px auto;
+  }
+}
+::v-deep {
+  .btn-buy-account-hover {
+    padding: 0 !important;
   }
 }
 </style>
