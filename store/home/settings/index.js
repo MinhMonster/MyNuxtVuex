@@ -22,9 +22,7 @@ export default {
     async fetchNotification({ commit, state }) {
       try {
         const response = await this.$repositories.settings.fetchNotification();
-        console.log("response", response.data.data);
-        
-        commit(SET_STATE, { notification: response.data.data });
+        commit(SET_STATE, { notification: response.data.response.data });
 
       } catch { }
     },

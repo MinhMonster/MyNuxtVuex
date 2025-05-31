@@ -43,16 +43,16 @@ export default {
       notification: "notification",
     }),
   },
-  async mounted() {
-    await this.fetchNotification();
+  mounted() {
     this.show();
   },
   methods: {
     ...mapActions("global", ["setNotification"]),
     ...mapActions("home/settings", ["fetchNotification"]),
-    show() {
+    async show() {
       if (this.isNotification) {
-        this.$refs.modal.show();
+        await this.$refs.modal.show();
+        await this.fetchNotification();
       } else {
         this.$emit("hide");
       }
