@@ -11,6 +11,9 @@
     <v-btn icon @click.stop="fixed = !fixed">
       <v-icon>mdi-minus</v-icon>
     </v-btn>
+    <v-btn icon to="/admin/settings">
+      <v-icon>mdi-cog-outline</v-icon>
+    </v-btn>
 
     <!-- <v-toolbar-title>
           {{ title }}
