@@ -28,7 +28,9 @@
       <tr>
         <th class="info-nick">
           ATM-MOMO: <br v-if="account.saleOff" />
-          {{ account.saleOff ? "(Giảm giá: " + account.saleOff + "%)" : "" }}
+          <p v-if="account.saleOff" class="text-danger">
+            {{ "(Giảm giá: " + account.saleOff + "%)" }}
+          </p>
         </th>
         <td class="mua-nick">
           <span :class="{ 'text-line-middel text-danger': account.saleOff }"

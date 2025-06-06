@@ -29,11 +29,23 @@
           >Cá <br />{{ accountAvatar.ca }}</span
         ></v-col
       >
-      <v-col cols="6"
-        ><span class="account-cash"
-          >{{ cash_atm(accountAvatar.price) }} Vnđ</span
-        ></v-col
-      >
+      <v-col cols="6">
+        <span v-if="accountAvatar.saleOff" class="account-cash has-sale">
+          <span class="bg-danger sale-off">
+            {{ "-" + accountAvatar.saleOff + "% " }}</span
+          >
+          <span class="text-center cash-sale">
+            {{
+              cash_atm(accountAvatar.price * (1 - accountAvatar.saleOff / 100))
+            }}
+            Vnđ</span
+          >
+        </span>
+
+        <span v-else class="account-cash">
+          {{ cash_atm(accountAvatar.price) }} Vnđ
+        </span>
+      </v-col>
       <v-col cols="6">
         <nuxt-link :to="`/teamobi/avatar/${accountAvatar.ID}`">
           <span class="account-buy"> Xem Nick</span>
@@ -83,7 +95,15 @@ export default {
       }
     }
   }
-
+  .sale-off {
+    width: 40px;
+  }
+  .cash-sale {
+    width: calc(100% - 40px);
+  }
+  .bg-danger.sale-off {
+    background: #a21d0a !important;
+  }
   .account-thongtin,
   .account-cash,
   .account-buy {
@@ -101,30 +121,6 @@ export default {
     padding: 3px;
     line-height: 25px;
   }
-  // .account-thongtin {
-  //   max-height: 30px;
-  //   overflow: hidden;
-  // }
-  // .text-thongtin {
-  //   width: 70px;
-  //   max-height: 30px;
-  //   display: -webkit-box !important;
-  //   -webkit-line-clamp: 1 !important;
-  //   -webkit-box-orient: vertical !important;
-  //   overflow: hidden !important;
-  //   text-overflow: ellipsis !important;
-  //   word-break: break-word !important;
-  // }
-  // .full-info {
-  //   width: calc(100% - 70px);
-  //   text-align: left;
-  //   max-height: 30px;
-  //   overflow: hidden;
-  // }
-  // .account-cash{
-  //   background: #ffcf9c;
-  //   color: #663019;
-  // }
 
   .account-code,
   .account-class,
@@ -136,11 +132,4 @@ export default {
     line-height: 1.42857143;
   }
 }
-// ::v-deep {
-// @media (min-width: 1300px) {
-//   .v-main__wrap .container {
-//     max-width: 100% !important;
-//   }
-// }
-// }
 </style>

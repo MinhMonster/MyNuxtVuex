@@ -41,6 +41,10 @@
               <div style="margin: 10px"></div>
 
               Giá Bán
+              <br />
+              <p v-if="accountAvatar.saleOff" class="text-danger">
+                {{ "(Giảm giá: " + accountAvatar.saleOff + "%)" }}
+              </p>
             </th>
             <td class="mua-nick">
               <span>{{ format_number(accountAvatar.price) }} Card </span>
@@ -53,7 +57,30 @@
                   margin-bottom: 5px;
                 "
               ></div>
-              <span>{{ cash_atm(accountAvatar.price) }} ATM - MOMO</span>
+              <span
+                :class="{
+                  'text-line-middel text-danger': accountAvatar.saleOff,
+                }"
+                >{{ cash_atm(accountAvatar.price) }} ATM - MOMO</span
+              >
+              <div
+                v-if="accountAvatar.saleOff"
+                style="
+                  width: 100%;
+                  height: 1px;
+                  background-color: #a4a4a4;
+                  margin-top: 5px;
+                  margin-bottom: 5px;
+                "
+              ></div>
+              <span v-if="accountAvatar.saleOff"
+                >{{
+                  cash_atm(
+                    accountAvatar.price * (1 - accountAvatar.saleOff / 100)
+                  )
+                }}
+                ATM - MOMO
+              </span>
             </td>
           </tr>
         </tbody>
@@ -83,9 +110,6 @@ export default {
 .title {
   color: #1e5b7e;
   margin-bottom: 10px;
-}
-table.table tbody {
-  // border: 1px solid #663019;
 }
 th.info-nick {
   width: 40%;
@@ -233,16 +257,8 @@ th.info-nick {
     border: 2px solid #663019;
     background: #e28637;
     border-top: none;
-    // .btn-buy.btn-success {
-    //   border: 1px solid #663019;
-    //   background: #663019;
-    // }
   }
-  // .custom-control-input:checked ~ .custom-control-label::before {
-  //   color: #fff;
-  //   border-color: #663019;
-  //   background-color: #663019;
-  // }
+
   .custom-control-label::before {
     top: 0;
   }
