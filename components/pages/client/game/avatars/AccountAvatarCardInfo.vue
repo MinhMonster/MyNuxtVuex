@@ -2,10 +2,9 @@
   <div :id="accountAvatar.ID" class="account-info">
     <AccountAvatarTL :account-avatar="accountAvatar" />
     <v-row class="account-body">
-      <v-col cols="12"
-        ><span class="account-thongtin break-line-1">
-          Thông tin:
-          {{ accountAvatar.thongtin }}
+      <v-col cols="12">
+        <span class="account-thongtin break-line-1">
+          Thông tin: {{ accountAvatar.thongtin }}
         </span>
       </v-col>
       <v-col cols="3"
@@ -30,25 +29,19 @@
         ></v-col
       >
       <v-col cols="6">
-        <span v-if="accountAvatar.saleOff" class="account-cash has-sale">
-          <span class="bg-danger sale-off">
-            {{ "-" + accountAvatar.saleOff + "% " }}</span
-          >
-          <span class="text-center cash-sale">
-            {{
-              cash_atm(accountAvatar.price * (1 - accountAvatar.saleOff / 100))
-            }}
-            Vnđ</span
-          >
-        </span>
-
-        <span v-else class="account-cash">
-          {{ cash_atm(accountAvatar.price) }} Vnđ
+        <span :class="['account-cash', { 'has-sale': hasDiscount }]">
+          <template v-if="hasDiscount">
+            <span class="bg-danger sale-off">
+              -{{ accountAvatar.saleOff }}%
+            </span>
+            <span class="cash-sale"> {{ cash_atm(discountedPrice) }} Vnđ </span>
+          </template>
+          <template v-else> {{ cash_atm(accountAvatar.price) }} Vnđ </template>
         </span>
       </v-col>
       <v-col cols="6">
         <nuxt-link :to="`/teamobi/avatar/${accountAvatar.ID}`">
-          <span class="account-buy"> Xem Nick</span>
+          <span class="account-buy">Xem Nick</span>
         </nuxt-link>
       </v-col>
     </v-row>
@@ -63,7 +56,15 @@ export default {
   props: {
     accountAvatar: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
+    },
+  },
+  computed: {
+    hasDiscount() {
+      return this.accountAvatar?.saleOff > 0;
+    },
+    discountedPrice() {
+      return this.accountAvatar.price * (1 - this.accountAvatar.saleOff / 100);
     },
   },
 };
@@ -87,6 +88,7 @@ export default {
   border: 1px solid #663019;
   text-align: center;
   overflow: hidden;
+
   ::v-deep {
     .fileItemWrapper {
       padding: 6px;
@@ -95,15 +97,19 @@ export default {
       }
     }
   }
+
   .sale-off {
     width: 40px;
   }
+
   .cash-sale {
     width: calc(100% - 40px);
   }
+
   .bg-danger.sale-off {
     background: #a21d0a !important;
   }
+
   .account-thongtin,
   .account-cash,
   .account-buy {
@@ -111,7 +117,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     background: #e28637;
     color: #ffcf9c;
     border: 1px solid #663019;
@@ -120,6 +125,7 @@ export default {
     border-radius: 3px;
     padding: 3px;
     line-height: 25px;
+    text-align: center;
   }
 
   .account-code,

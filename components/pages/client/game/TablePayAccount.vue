@@ -7,60 +7,57 @@
           <span>{{ format_number(account.ID) }}</span>
         </td>
       </tr>
+
       <tr>
         <th class="info-nick">Nhà phát hành:</th>
         <td class="mua-nick">
           <span>TeaMobi</span>
         </td>
       </tr>
+
       <tr>
         <th class="info-nick">Tên game:</th>
         <td class="mua-nick">
           <span>{{ game }}</span>
         </td>
       </tr>
+
       <tr>
         <th class="info-nick">Giá tiền:</th>
         <td class="mua-nick">
           <span>{{ format_number(price) }} Card</span>
         </td>
       </tr>
+
       <tr>
         <th class="info-nick">
-          ATM-MOMO: <br v-if="account.saleOff" />
-          <p v-if="account.saleOff" class="text-danger">
-            {{ "(Giảm giá: " + account.saleOff + "%)" }}
-          </p>
+          ATM-MOMO:
+          <template v-if="hasDiscount">
+            <br />
+            <p class="text-danger">(Giảm giá: {{ account.saleOff }}%)</p>
+          </template>
         </th>
         <td class="mua-nick">
-          <span :class="{ 'text-line-middel text-danger': account.saleOff }"
-            >{{ cash_atm(price) }} ATM - MOMO</span
-          >
-          <div
-            v-if="account.saleOff"
-            style="
-              width: 100%;
-              height: 1px;
-              background-color: #a4a4a4;
-              margin-top: 5px;
-              margin-bottom: 5px;
-            "
-          ></div>
-          <span v-if="account.saleOff"
-            >{{ cash_atm(price * (1 - account.saleOff / 100)) }} ATM -
-            MOMO</span
-          >
+          <span :class="hasDiscount ? 'text-line-middel text-danger' : ''">
+            {{ cash_atm(price) }} ATM - MOMO
+          </span>
+
+          <template v-if="hasDiscount">
+            <div class="divider"></div>
+            <span>{{ cash_atm(discountedPrice) }} ATM - MOMO</span>
+          </template>
         </td>
       </tr>
     </tbody>
   </table>
 </template>
+
 <script>
 export default {
   props: {
     account: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
     game: {
       type: String,
@@ -69,8 +66,25 @@ export default {
   },
   computed: {
     price() {
-      return this.account.giatien || this.account.price;
+      return this.account.giatien || this.account.price || 0;
+    },
+    hasDiscount() {
+      return this.account.saleOff > 0;
+    },
+    discountedPrice() {
+      return this.hasDiscount
+        ? this.price * (1 - this.account.saleOff / 100)
+        : this.price;
     },
   },
 };
 </script>
+
+<style scoped>
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #a4a4a4;
+  margin: 5px 0;
+}
+</style>

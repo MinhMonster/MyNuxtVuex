@@ -1,95 +1,61 @@
 <template>
   <client-only>
     <div v-if="accountAvatar">
-      <div class="title">
-        <center>
-          <h3>Thông tin chi tiết</h3>
-        </center>
+      <div class="title text-center">
+        <h3>Thông tin chi tiết</h3>
       </div>
 
       <table class="table text-center">
         <tbody>
           <tr>
             <th class="info-nick">Đất</th>
-            <td class="mua-nick">
-              <span>{{ accountAvatar.dat }}</span>
-            </td>
+            <td class="mua-nick">{{ accountAvatar.dat }}</td>
           </tr>
-
           <tr>
-            <th class="info-nick" style="">Gà</th>
-            <td class="mua-nick">
-              <span> {{ accountAvatar.ga }}</span>
-            </td>
+            <th class="info-nick">Gà</th>
+            <td class="mua-nick">{{ accountAvatar.ga }}</td>
           </tr>
-
           <tr>
-            <th class="info-nick" style="">Cá</th>
-            <td class="mua-nick">
-              <span>{{ accountAvatar.ca }}</span>
-            </td>
+            <th class="info-nick">Cá</th>
+            <td class="mua-nick">{{ accountAvatar.ca }}</td>
           </tr>
-
           <tr>
-            <th class="info-nick detail" style="">Chi tiết</th>
+            <th class="info-nick detail">Chi tiết</th>
             <td class="mua-nick">
-              <span v-html="accountAvatar.thongtin"> </span>
+              <span v-html="accountAvatar.thongtin"></span>
             </td>
           </tr>
           <tr>
-            <th class="info-nick" style="">
+            <th class="info-nick">
               <div style="margin: 10px"></div>
-
               Giá Bán
-              <br />
-              <p v-if="accountAvatar.saleOff" class="text-danger">
-                {{ "(Giảm giá: " + accountAvatar.saleOff + "%)" }}
-              </p>
+              <template v-if="hasDiscount">
+                <br />
+                <p class="text-danger">
+                  (Giảm giá: {{ accountAvatar.saleOff }}%)
+                </p>
+              </template>
             </th>
             <td class="mua-nick">
-              <span>{{ format_number(accountAvatar.price) }} Card </span>
-              <div
-                style="
-                  width: 100%;
-                  height: 1px;
-                  background-color: #a4a4a4;
-                  margin-top: 5px;
-                  margin-bottom: 5px;
-                "
-              ></div>
-              <span
-                :class="{
-                  'text-line-middel text-danger': accountAvatar.saleOff,
-                }"
-                >{{ cash_atm(accountAvatar.price) }} ATM - MOMO</span
-              >
-              <div
-                v-if="accountAvatar.saleOff"
-                style="
-                  width: 100%;
-                  height: 1px;
-                  background-color: #a4a4a4;
-                  margin-top: 5px;
-                  margin-bottom: 5px;
-                "
-              ></div>
-              <span v-if="accountAvatar.saleOff"
-                >{{
-                  cash_atm(
-                    accountAvatar.price * (1 - accountAvatar.saleOff / 100)
-                  )
-                }}
-                ATM - MOMO
+              <span>{{ format_number(accountAvatar.price) }} Card</span>
+              <div class="divider"></div>
+              <span :class="{ 'text-line-middel text-danger': hasDiscount }">
+                {{ cash_atm(accountAvatar.price) }} ATM - MOMO
               </span>
+              <template v-if="hasDiscount">
+                <div class="divider"></div>
+                <span>{{ cash_atm(discountedPrice) }} ATM - MOMO</span>
+              </template>
             </td>
           </tr>
         </tbody>
       </table>
+
       <GroupBtnBuyAccount :account="accountAvatar" account-type="Avatar" />
     </div>
   </client-only>
 </template>
-  
+
 <script>
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
@@ -100,7 +66,16 @@ export default {
   props: {
     accountAvatar: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
+    },
+  },
+  computed: {
+    hasDiscount() {
+      return this.accountAvatar?.saleOff > 0;
+    },
+    discountedPrice() {
+      if (!this.hasDiscount) return this.accountAvatar.price;
+      return this.accountAvatar.price * (1 - this.accountAvatar.saleOff / 100);
     },
   },
 };
@@ -111,42 +86,49 @@ export default {
   color: #1e5b7e;
   margin-bottom: 10px;
 }
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #a4a4a4;
+  margin: 5px 0;
+}
+
 th.info-nick {
   width: 40%;
   padding: 7px;
   color: #ffcf9c;
   border: 1px solid #663019;
   background: #e28637;
+
   &.detail {
     vertical-align: middle;
   }
 }
+
 .btn-buy-account,
 .mua-nick {
   cursor: pointer;
-  padding: 5px;
+  padding: 6.5px;
   color: #663019;
   border: 1px solid #663019;
   background: #ffcf9c;
+  border-radius: 3px !important;
+  text-align: center;
 }
 
 .btn-buy-account-hover {
   color: #ffcf9c;
-  border: 1px solid #663019;
   background: #e28637;
+  border: 1px solid #663019;
 }
-.btn-buy-account,
-.btn-buy-account-hover,
-.mua-nick {
-  padding: 6.5px;
-  border-radius: 3px !important;
-  text-align: center;
-}
+
 .table td {
   padding: 5px;
   vertical-align: top;
   border: 1px solid #e28637;
 }
+
 .mua-nick span {
   font-size: 14px;
   font-weight: 400;
