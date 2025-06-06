@@ -38,12 +38,19 @@
               </v-btn>
             </template> -->
             <template #ID="props">
-              <nuxt-link light :to="`/admin/game/avatars/${props.row.ID}`">
+              <nuxt-link
+                class="flex"
+                light
+                :to="`/admin/game/avatars/${props.row.ID}`"
+              >
+                <v-icon size="15" class="text-info"
+                  >mdi-arrow-right-bold</v-icon
+                >
                 {{ format_number(props.row.ID) }}
               </nuxt-link>
             </template>
             <template #giatien="props">
-              {{ cash_atm(props.row.giatien) }}
+              {{ cash_atm(props.row.giatien * (1 - props.row.saleOff / 100)) }}
             </template>
             <template #gianhap="props">
               <span class="text-danger">{{
@@ -53,24 +60,51 @@
             <template #profit="props">
               <span class="text-success">{{ profit_atm(props.row) }}</span>
             </template>
+            <template #actions="props">
+              <v-btn light icon @click="showModal(props.row)">
+                <v-icon size="20" class="text-info">mdi-cash-edit</v-icon>
+              </v-btn>
+            </template>
           </AdminBaseTable>
           <!-- </v-card> -->
         </v-col>
+        <template>
+          <FormModal
+            ref="modal"
+            :title="'Update Account: ' + format_number(queryAvatar.ID)"
+            :id="queryAvatar.ID"
+            width="500px"
+            minHeight="150px"
+            module="admin/game/avatars"
+            repository="adminGameAvatars"
+            :store="{
+              state: 'queryAvatar',
+              module: 'admin.game.avatars',
+              form: 'formModalAvatar',
+              // action: 'fetchGameAccountSold',
+              update: 'updateAccountAvatar',
+            }"
+            @updated="$refs.table.fetchData()"
+          />
+        </template>
       </v-row>
     </template>
   </NavAdmin>
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import FormSearch from "@/components/pages/admin/Shared/form/FormSearch";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
+import FormModal from "@/components/pages/admin/base/modal/FormModal";
 export default {
   layout: "adminDev",
   components: {
     NavAdmin,
     FormSearch,
     AdminBaseTable,
+    FormModal,
   },
   name: "Avatars",
   data() {
@@ -141,7 +175,7 @@ export default {
           label: "Price",
           type: "number",
           attributes: {
-            class: 'text-right',
+            class: "text-right",
             style: {
               minWidth: "60px",
             },
@@ -169,18 +203,29 @@ export default {
             },
           },
         },
-        // {
-        //   key: "actions",
-        //   label: "Actions",
-        //   type: "actions",
-        //   attributes: {
-        //     style: {
-        //       minWidth: "100px",
-        //     },
-        //   },
-        // },
+        {
+          key: "actions",
+          label: "Actions",
+          type: "actions",
+          attributes: {
+            align: "center",
+            style: {
+              maxWidth: "60px",
+            },
+          },
+        },
       ],
     };
+  },
+  computed: {
+    ...mapFields("admin/game/avatars", ["queryAvatar"]),
+  },
+  async mounted() {},
+  methods: {
+    showModal(row = null) {
+      this.queryAvatar = row;
+      this.$refs.modal.dialog = true;
+    },
   },
 };
 </script>

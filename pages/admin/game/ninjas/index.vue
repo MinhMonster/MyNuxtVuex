@@ -45,7 +45,7 @@
             </template>
             <template #actions="props">
               <v-btn light icon @click="showModal(props.row)">
-                <v-icon size="20" class="text-info">mdi-pen</v-icon>
+                <v-icon size="20" class="text-info">mdi-cash-edit</v-icon>
               </v-btn>
             </template>
           </AdminBaseTable>

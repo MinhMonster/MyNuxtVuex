@@ -16,6 +16,6 @@ export default ($api) => ({
     return $api.post(`${resource}/updateSaleOff`, payload)
   },
   setDefaultSaleOff(payload) {
-    return $api.post(`${resource}/setDefaultSaleOff`, { id: payload.id, value: payload.value })
+    return $api.post(`${resource}/setDefaultSaleOff`, { id: payload.id, input: payload.input })
   },
 })

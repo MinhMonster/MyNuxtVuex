@@ -20,15 +20,15 @@
               action: 'fetchSaleOffs',
             }"
           >
-            <template #actions="props">
-              <v-btn light icon :to="`/admin/sale-offs/${props.row.ID}`">
-                <v-icon>mdi-pencil-box-multiple-outline</v-icon>
+            <template #ID="props">
+              <v-btn none icon :to="`/admin/sale-offs/${props.row.ID}`">
+                <v-icon color="blue">mdi-pencil</v-icon>
               </v-btn>
             </template>
             <template #is_default="props">
               <BaseCheckBox
                 :value="props.row.is_default"
-                @change="(value) => onchange(value, props.row.ID)"
+                @change="(value) => onchange(value, props.row)"
               ></BaseCheckBox>
             </template>
           </AdminBaseTable>
@@ -58,6 +58,11 @@ export default {
         {
           key: "ID",
           label: "ID",
+          attributes: {
+            style: {
+              minWidth: "50px",
+            },
+          },
         },
         {
           key: "is_default",
@@ -99,25 +104,37 @@ export default {
           key: "sale_3000k",
           label: "3 Triệu",
         },
-
         {
-          key: "actions",
-          label: "Actions",
-          type: "actions",
+          key: "type",
+          label: "Type",
+          type: "text",
           attributes: {
-            minWidth: "120",
+            style: {
+              minWidth: "50px",
+            },
           },
         },
+        // {
+        //   key: "actions",
+        //   label: "Actions",
+        //   type: "actions",
+        //   attributes: {
+        //     minWidth: "120",
+        //   },
+        // },
       ],
     };
   },
   async mounted() {},
   methods: {
-    async onchange(value, ID) {
-      console.log("value", value, ID);
+    async onchange(value, $data) {
+      console.log("value", value, $data);
       await this.$repositories.adminSaleOffs.setDefaultSaleOff({
-        id: ID,
-        value: value,
+        id: $data.ID,
+        input: {
+          value: value,
+          type: $data.type,
+        },
       });
       this.$refs.table.fetchData();
     },

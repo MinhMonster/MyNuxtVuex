@@ -1,4 +1,4 @@
-import { defaultPagy } from '@/utils/admin/default'
+import { defaultPagy, typeSeleOffOptions } from '@/utils/admin/default'
 import { enableResetStore } from '@/utils/admin/common'
 import { getField, updateField } from "vuex-map-fields";
 
@@ -57,6 +57,7 @@ const querySaleOff = _.cloneDeep({
   sale_2000k: "",
   sale_2500k: "",
   sale_3000k: "",
+  type: "ninja",
 });
 
 
@@ -123,12 +124,22 @@ const formSaleOff =
       // cols: 12,
       sm: 6,
       md: 4,
-      lg: 3 
+      lg: 3
     },
     {
       title: "3000k",
       type: "text",
       value: 'sale_3000k',
+      // cols: 12,
+      sm: 6,
+      md: 4,
+      lg: 3
+    },
+    {
+      title: "Type",
+      type: "select-options",
+      options: typeSeleOffOptions,
+      value: 'type',
       // cols: 12,
       sm: 6,
       md: 4,

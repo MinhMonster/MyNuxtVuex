@@ -116,3 +116,15 @@ export const statusOptions = _.cloneDeep([
   }
 ]);
 
+// Ninja
+export const typeSeleOffOptions = _.cloneDeep([
+  {
+    text: "Ninja",
+    value: "ninja",
+  },
+  {
+    text: "Avatar",
+    value: "avatar",
+  },
+]);
+
