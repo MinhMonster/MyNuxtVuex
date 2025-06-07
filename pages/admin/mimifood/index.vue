@@ -6,18 +6,18 @@
           <AdminBaseTable
             ref="table"
             noTotal
-            module="admin/mimifood"
-            repository="mimiFood"
+            module="admin/mms"
+            repository="mms"
             repositories="repositories"
             :columns="columns"
             :store="{
-              state: 'queryMimiFoods',
-              module: 'admin.mimifood',
+              state: 'querymmss',
+              module: 'admin.mms',
               // action: 'adminFetchTopics',
             }"
           >
             <template #name="props">
-              <nuxt-link :to="`/admin/mimifood/${props.row.link}`">{{
+              <nuxt-link :to="`/admin/mms/${props.row.link}`">{{
                 props.row.name
               }}</nuxt-link>
             </template>

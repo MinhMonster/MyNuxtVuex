@@ -109,7 +109,7 @@ export default {
         {
           icon: "mdi-image",
           title: "Mimi Food",
-          to: "/admin/mimifood",
+          to: "/admin/mms",
         },
       ],
     };

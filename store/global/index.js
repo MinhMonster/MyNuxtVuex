@@ -65,8 +65,8 @@ export default {
       console.log("fileUpload", payload);
 
       try {
-        if (payload.route_path.includes('mimifood')) {
-          return await this.$repositories_mimifood.mimiFoodFiles.uploads(payload)
+        if (payload.route_path.includes('mms')) {
+          return await this.$mms.repositories_mms.mmsFiles.uploads(payload)
         } else {
           return await this.$repositories.adminUploads.upload(payload)
         }
@@ -74,8 +74,8 @@ export default {
       };
     },
     async fetchFiles({ commit }, payload) {
-      if (payload.route_path.includes('mimifood')) {
-        const res = await this.$repositories_mimifood.mimiFoodFiles.fetchFiles(
+      if (payload.route_path.includes('mms')) {
+        const res = await this.$mms.repositories_mms.mmsFiles.fetchFiles(
           payload
         );
         return res.data.response.data;
@@ -87,8 +87,8 @@ export default {
       }
     },
     async deleteFile({ commit }, payload) {
-      if (payload.route_path.includes('mimifood')) {
-        return await this.$repositories_mimifood.mimiFoodFiles.deleteFile(
+      if (payload.route_path.includes('mms')) {
+        return await this.$mms.repositories_mms.mmsFiles.deleteFile(
           payload.file.id
         );
       } else {

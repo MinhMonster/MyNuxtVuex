@@ -4,7 +4,7 @@
     goBack
     next-page
     new-page
-    @newPage="$router.push('/admin/mimifood/products/new')"
+    @newPage="$router.push('/admin/mms/products/new')"
     filter
     reload
     @reload="$refs.table.fetchData()"
@@ -14,18 +14,18 @@
         <v-col cols="12" md="12" sm="12">
           <AdminBaseTable
             ref="table"
-            module="admin/mimifood/products"
-            repository="mimiFoodProducts"
+            module="admin/mms/products"
+            repository="mmsProducts"
             :repositories="repositories"
             :columns="columns"
             :store="{
               state: 'queryProducts',
-              module: 'admin.mimifood.products',
+              module: 'admin.mms.products',
               action: 'adminFetchProducts',
             }"
           >
             <template #name="props">
-              <nuxt-link :to="`/admin/mimifood/products/${props.row.id}`">{{
+              <nuxt-link :to="`/admin/mms/products/${props.row.id}`">{{
                 props.row.name
               }}</nuxt-link>
             </template>
@@ -98,7 +98,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("admin/mimifood", ["repositories"]),
+    ...mapState("admin/mms", ["repositories"]),
     queryPage() {
       return _.cloneDeep(this.$route.query.page) || 1;
     },

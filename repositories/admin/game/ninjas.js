@@ -8,6 +8,7 @@ export default ($api) => ({
   createAccountNinja(payload) {
     return $api.post(`${resource}/createAccountNinja.php`, payload)
   },
+  
   fetchAccountNinjas(payload) {
     return $api.get(`${resource}/fetchAccountNinjas.php`, { params: { input: payload.input } },
     )

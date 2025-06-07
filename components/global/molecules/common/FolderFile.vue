@@ -262,7 +262,7 @@ export default {
     async getFiles() {
       this.images = await this.fetchFiles({
         route_path: this.$route.path,
-        folder: this.$route.path.includes("mimifood")
+        folder: this.$route.path.includes("mms")
           ? this.folder_active
           : this.folder_path,
       });
@@ -379,7 +379,7 @@ export default {
         const data = new FormData();
 
         this.files.forEach((file, index) => {
-          if (this.$route.path.includes("mimifood")) {
+          if (this.$route.path.includes("mms")) {
             data.append(`files[]`, file);
           } else {
             data.append(`file_${index}`, file);
@@ -389,7 +389,7 @@ export default {
         const result = await this.fileUpload({
           route_path: this.$route.path,
           path: this.pathUpload,
-          folder: this.$route.path.includes("mimifood")
+          folder: this.$route.path.includes("mms")
             ? this.folder_active
             : this.folder_path,
           data,

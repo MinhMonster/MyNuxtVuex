@@ -1,11 +1,11 @@
 export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
   const axiosConfig = { timeout: 60000 };
-  axiosConfig.baseURL = process.env.apiMimiFoodUrl;
+  axiosConfig.baseURL = process.env.apiMmsUrl;
 
-  const api_food = $axios.create(axiosConfig);
-  // console.log("api_food", api_food);
-  api_food.onRequest(config => {
+  const api_mms = $axios.create(axiosConfig);
+  // console.log("api_mms", api_mms);
+  api_mms.onRequest(config => {
     const hideLoading = config.hideLoading;
     store.dispatch("admin/global/setValidationErrors", {});
     if (!hideLoading) {
@@ -55,7 +55,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
   })
 
-  api_food.onResponse((response) => {
+  api_mms.onResponse((response) => {
     // const code = response.data.code;
     const code = parseInt(response && response.status);
     console.log("response", response);
@@ -201,7 +201,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
   });
 
-  api_food.onError(error => {
+  api_mms.onError(error => {
     const code = parseInt(error.response && error.response.status);
     const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
     // const code = parseInt(error.response && error.response.status)
@@ -243,11 +243,8 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       store.dispatch("disableLoading");
     }, 500);
   })
-  inject("api_food", api_food);
+  inject("api_mms", api_mms);
 
-
-
-
-  // mimifood
+  // mms
 
 }

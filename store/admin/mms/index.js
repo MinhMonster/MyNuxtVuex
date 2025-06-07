@@ -7,10 +7,10 @@ export default enableResetStore({
   state() {
     return {
       stateDefault: {
-        queryMimiFoods: queryMimiFoods,
+        querymmss: querymmss,
       },
-      queryMimiFoods: queryMimiFoods,
-      repositories: "repositories_mimifood"
+      querymmss: querymmss,
+      repositories: "repositories_mms"
     }
 
   },
@@ -27,7 +27,7 @@ export default enableResetStore({
 
 
 
-const queryMimiFoods = _.cloneDeep({
+const querymmss = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [

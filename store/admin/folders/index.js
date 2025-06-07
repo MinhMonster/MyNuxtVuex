@@ -71,8 +71,8 @@ export default {
       try {
         console.log("payload", payload);
         let folders = [];
-        if (payload.includes('mimifood')) {
-          const res = await this.$repositories_mimifood.mimiFoodFolders.adminFetchFolders()
+        if (payload.includes('mms')) {
+          const res = await this.$repositories_mms.mmsFolders.adminFetchFolders()
           folders = res.data.response.data;
         } else {
           const res = await this.$repositories.adminFolders.fetchFolders();
@@ -84,8 +84,8 @@ export default {
     },
     async createFolder({ commit }, payload) {
       try {
-        if (payload.route_path.includes('mimifood')) {
-          return await this.$repositories_mimifood.mimiFoodFolders.adminCreateFolder({
+        if (payload.route_path.includes('mms')) {
+          return await this.$repositories_mms.mmsFolders.adminCreateFolder({
             name: payload.name,
             parent_id: payload.parent_id
 
@@ -98,8 +98,8 @@ export default {
     },
     async editNameFolder({ commit }, payload) {
       try {
-        if (payload.route_path.includes('mimifood')) {
-          return await this.$repositories_mimifood.mimiFoodFolders.adminUpdateFolder({
+        if (payload.route_path.includes('mms')) {
+          return await this.$repositories_mms.mmsFolders.adminUpdateFolder({
             name: payload.name,
             id: payload.folder.id
           })

@@ -39,12 +39,12 @@ export default {
   plugins: [
     { src: "@/plugins/vuex-persistedstate", ssr: false },
     "@/plugins/axios",
-    "@/plugins/axios_mimifood",
+    "@/plugins/axios_mms",
 
     // "@/plugins/vue-sweetalert",
 
     '~/plugins/repositories.js',
-    '~/plugins/repositories_mimifood.js',
+    '~/plugins/repositories_mms.js',
     { src: "@/plugins/vue-infinite-scroll", ssr: false },
     { src: "@/plugins/vue-codemirror", ssr: false },
     { src: "@/plugins/vue-slick-carousel" },
@@ -63,7 +63,7 @@ export default {
   env: {
     // nodeEnv: process.env.NODE_ENV || "development",
     apiUrl: process.env.API_BASE_URL,
-    apiMimiFoodUrl: process.env.API_BASE_MIMIFOOD_URL,
+    apiMmsUrl: process.env.API_BASE_MMS_URL,
   },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

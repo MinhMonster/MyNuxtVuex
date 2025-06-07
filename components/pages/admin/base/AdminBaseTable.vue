@@ -250,7 +250,7 @@ export default {
             this.store.state
           );
         // console.log("stateParamDefault", this.stateParamDefault);
-        const repositoryKey = this.repositories ? this.$repositories_mimifood : this.$repositories;
+        const repositoryKey = this.repositories ? this.$repositories_mms : this.$repositories;
         const result = await repositoryKey[this.repository][
           this.store.action
         ]({

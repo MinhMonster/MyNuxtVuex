@@ -10,14 +10,14 @@
       <div id="body-admin">
         <AdminBaseForm
           ref="form"
-          module="admin/mimifood/products"
-          repository="mimiFoodProducts"
+          module="admin/mms/products"
+          repository="mmsProducts"
           images="images"
           :repositories="repositories"
           :id="$route.params.id"
           :store="{
             state: 'queryTopic',
-            module: 'admin.mimifood.products',
+            module: 'admin.mms.products',
             form: 'formTopic',
             action: 'adminFetchProduct',
             update: 'adminCreateAndUpdateProduct',
@@ -40,7 +40,7 @@ export default {
   layout: "adminDev",
   name: "UpdateProduct",
   computed: {
-    ...mapState("admin/mimifood", ["repositories"]),
+    ...mapState("admin/mms", ["repositories"]),
   },
 };
 </script>

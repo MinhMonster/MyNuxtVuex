@@ -160,7 +160,7 @@ export default {
     async fetchData() {
       try {
         const repositoryKey = this.repositories
-          ? this.$repositories_mimifood
+          ? this.$repositories_mms
           : this.$repositories;
         const result = await repositoryKey[this.repository][this.store.action](
           this.id
@@ -178,7 +178,7 @@ export default {
     async updateData() {
       try {
         const repositoryKey = this.repositories
-          ? this.$repositories_mimifood
+          ? this.$repositories_mms
           : this.$repositories;
         const result = await repositoryKey[this.repository][this.store.update]({
           id: this.id,
@@ -198,7 +198,7 @@ export default {
 
       try {
         const repositoryKey = this.repositories
-          ? this.$repositories_mimifood
+          ? this.$repositories_mms
           : this.$repositories;
         const result = await repositoryKey[this.repository][this.store.create]({
           input: payload,
