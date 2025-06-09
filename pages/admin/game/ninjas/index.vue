@@ -16,6 +16,7 @@
           <AdminBaseTable
             ref="table"
             module="admin/game/ninjas"
+            :repositories="repositories"
             repository="adminGameNinjas"
             :columns="columns"
             :store="{
@@ -24,12 +25,12 @@
               action: 'fetchAccountNinjas',
             }"
           >
-            <template #ID="props">
-              <nuxt-link light :to="`/admin/game/ninjas/${props.row.ID}`">
-                <v-icon size="15" class="text-info"
+            <template #id="props">
+              <nuxt-link light :to="`/admin/game/ninjas/${props.row.id}`">
+                <v-icon size="15" class="text-primary"
                   >mdi-arrow-right-bold</v-icon
                 >
-                {{ format_number(props.row.ID) }}
+                {{ format_number(props.row.id) }}
               </nuxt-link>
             </template>
             <template #giatien="props">
@@ -45,7 +46,7 @@
             </template>
             <template #actions="props">
               <v-btn light icon @click="showModal(props.row)">
-                <v-icon size="20" class="text-info">mdi-cash-edit</v-icon>
+                <v-icon size="20" class="text-primary">mdi-cash-edit</v-icon>
               </v-btn>
             </template>
           </AdminBaseTable>
@@ -54,11 +55,12 @@
       </v-row>
       <FormModal
         ref="modal"
-        :title="'Update Account: ' + format_number(queryNinja.ID)"
-        :id="queryNinja.ID"
+        :title="'Update Account: ' + format_number(queryNinja.id)"
+        :id="queryNinja.id"
         width="500px"
         minHeight="150px"
         module="admin/game/ninjas"
+        :repositories="repositories"
         repository="adminGameNinjas"
         :store="{
           state: 'queryNinja',
@@ -74,6 +76,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import { mapFields } from "vuex-map-fields";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
@@ -91,7 +94,7 @@ export default {
     return {
       columns: [
         {
-          key: "ID",
+          key: "id",
           label: "ID",
           type: "number",
           attributes: {
@@ -103,7 +106,7 @@ export default {
           },
         },
         {
-          key: "taikhoan",
+          key: "username",
           label: "Account",
           attributes: {
             style: {
@@ -112,7 +115,7 @@ export default {
           },
         },
         {
-          key: "ingame",
+          key: "character_name",
           label: "In Game",
           attributes: {
             style: {
@@ -160,7 +163,7 @@ export default {
           },
         },
         {
-          key: "loainick",
+          key: "type",
           label: "Type",
           type: "type-ninja",
           attributes: {
@@ -170,7 +173,7 @@ export default {
           },
         },
         {
-          key: "giatien",
+          key: "selling_price",
           label: "Price",
           type: "number",
           attributes: {
@@ -181,7 +184,7 @@ export default {
           },
         },
         {
-          key: "gianhap",
+          key: "purchase_price",
           label: "Cost",
           type: "number",
           attributes: {
@@ -219,6 +222,7 @@ export default {
   },
   computed: {
     ...mapFields("admin/game/ninjas", ["queryNinja"]),
+    ...mapState("admin/mms", ["repositories"]),
   },
   async mounted() {},
   methods: {

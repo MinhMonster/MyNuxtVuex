@@ -41,8 +41,12 @@
             Submit
           </v-btn>
           <v-btn v-if="isShow" color="primary" class="text-white left">
-            <v-icon v-if="isForm" @click="isForm = false" title="Display"> mdi-eye </v-icon>
-            <v-icon v-else @click="isForm = true" title="Edit"> mdi-pen </v-icon>
+            <v-icon v-if="isForm" @click="isForm = false" title="Display">
+              mdi-eye
+            </v-icon>
+            <v-icon v-else @click="isForm = true" title="Edit">
+              mdi-pen
+            </v-icon>
           </v-btn>
           <slot name="btn-footer"></slot>
         </div>
@@ -85,6 +89,11 @@ export default {
       type: String,
       default: "",
       require: true,
+    },
+    repositories: {
+      type: String,
+      default: "repositories",
+      require: false,
     },
     repository: {
       type: String,
@@ -184,24 +193,23 @@ export default {
     // },
     async onUpdate() {
       try {
-        const result = await this.$repositories[this.repository][
-          this.store.update
-        ]({
+        const repositoryKey = this[`$${this.repositories}`];
+        const result = await repositoryKey[this.repository][this.store.update]({
           id: this.id,
           input: this.stateQuery,
         });
         const data = result.data;
-        if (data.code === 200) {
-          this.$toasted.success(data.message);
-          this.$emit("updated");
+        // if (data.code === 200) {
+        // this.$toasted.success(data.message);
+        this.$emit("updated");
 
-          // if (this.id !== data.response.ID) {
-          //   this.$router.push(this.path.replace(this.id, data.response.ID));
-          // }
-          if (data.response) {
-            this.updateState(data.response);
-          }
+        // if (this.id !== data.response.ID) {
+        //   this.$router.push(this.path.replace(this.id, data.response.ID));
+        // }
+        if (data.response) {
+          this.updateState(data.response);
         }
+        // }
       } catch (error) {}
     },
   },

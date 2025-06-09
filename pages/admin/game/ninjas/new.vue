@@ -15,13 +15,14 @@
         <AdminBaseForm
           ref="form"
           module="admin/game/ninjas"
+          :repositories="repositories"
           repository="adminGameNinjas"
           :id="isCopy ? $route.query.copy : null"
           :store="{
             state: 'queryNinja',
             module: 'admin.game.ninjas',
             form: 'formNinja',
-            action: 'fetchAccountNinja',
+            // action: 'fetchAccountNinja',
             create: 'createAccountNinja',
           }"
         ></AdminBaseForm>
@@ -31,6 +32,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseForm from "@/components/pages/admin/base/AdminBaseForm";
 
@@ -46,6 +48,9 @@ export default {
     return {
       isCopy: false,
     };
+  },
+  computed: {
+    ...mapState("admin/mms", ["repositories"]),
   },
   async created() {
     const query = this.$route.query;

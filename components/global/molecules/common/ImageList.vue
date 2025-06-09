@@ -1,5 +1,5 @@
 <template>
-  <form-validator name="hinhanh">
+  <form-validator name="images">
     <v-col cols="12" sm="6" md="4" class="middle">
       <UploadImageModal
         @onUploaded="onUploaded"

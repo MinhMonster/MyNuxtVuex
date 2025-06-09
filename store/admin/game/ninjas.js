@@ -54,16 +54,16 @@ const queryNinjas = _.cloneDeep({
     show: true,
     value: ''
   },
-  taikhoan: {
+  username: {
     // title: "Tài Khoản",
-    placeholder: "Tài Khoản",
+    placeholder: "Username",
     type: "text",
     show: true,
     value: ''
   },
-  ingame: {
+  character_name: {
     // title: "Tài Khoản",
-    placeholder: "Nhân Vật",
+    placeholder: "In Game",
     type: "text",
     show: true,
     value: ''
@@ -73,42 +73,39 @@ const queryNinjas = _.cloneDeep({
     placeholder: "Trạng Thái",
     type: "select-options",
     show: true,
-    value: "yes",
+    value: "active",
     options: [
       {
-        text: "Tất cả",
-        value: null,
+        text: "All",
+        value: 'all',
       },
       {
-        text: "Đang bán",
-        value: "yes",
+        text: "Active",
+        value: "active",
       },
       {
-        text: "Đã bán",
-        value: "no",
+        text: "Deleted",
+        value: "deleted",
       },
     ],
   },
 });
 
 const queryNinja = _.cloneDeep({
-  ID: "",
-  taikhoan: "",
-  ingame: "",
+  id: "",
+  username: "",
+  character_name: "",
+  description: "",
+  is_full_image: "0",
+  images: [],
+  selling_price: "",
+  purchase_price: "",
+  discount_percent: "",
+  class: "",
   level: "",
-  vukhi: "",
-  mcs: "",
-  thongtin: "",
-  loainick: 1,
-  class: 1,
-  server: 1,
-  giatien: "",
-  gianhap: "",
-  sale_off: "",
-  sim: "",
-  hinhanh: [],
-  do: "",
-
+  server: "",
+  weapon: "",
+  type: "",
   tl1: "",
   tl2: "",
   tl3: "",
@@ -119,14 +116,14 @@ const queryNinja = _.cloneDeep({
   tl8: "",
   tl9: "",
   tl10: "",
-  tl11: "",
+  yoroi: "",
   eye: "",
-  clone: "",
-  mounts: "",
-  yen: "",
   book: "",
   cake: "",
+  yen: "",
+  clone: "",
   disguise: "",
+  mounts: "",
 });
 
 
@@ -135,43 +132,43 @@ const formNinja =
     {
       title: "ID",
       type: "number",
-      value: 'ID'
+      value: 'id'
     },
     {
       title: "Tài Khoản",
       type: "text",
-      value: 'taikhoan'
+      value: 'username'
     },
     {
       title: "Nhân Vật",
       type: "text",
-      value: 'ingame'
+      value: 'character_name'
     },
     {
       title: "Giá Bán (Card)",
       type: "cash",
-      value: 'giatien'
+      value: 'selling_price'
     },
     {
       title: "Giá Bán (Vnđ)",
       type: "cash_sale_off",
-      value: 'giatien',
+      value: 'selling_price',
     },
     {
       title: "Giá Nhập (Vnđ)",
       type: "cash",
-      value: 'gianhap'
+      value: 'purchase_price'
     },
     {
       title: "Giảm Giá (%)",
       type: "number",
-      value: 'sale_off'
+      value: 'discount_percent'
     },
     {
       title: "Loại Nick",
       type: "select-options",
       options: typeNinjaOptions,
-      value: 'loainick'
+      value: 'type'
     },
     {
       title: "Phái",
@@ -194,7 +191,7 @@ const formNinja =
     {
       title: "Vũ Khí",
       type: "number",
-      value: 'vukhi'
+      value: 'weapon'
     },
     // {
     //   title: "Set Đồ",
@@ -204,7 +201,7 @@ const formNinja =
     {
       title: "Thông tin",
       type: "content-editer",
-      value: 'thongtin',
+      value: 'description',
       cols: 12,
       sm: 12,
       md: 12,
@@ -238,7 +235,7 @@ const formNinja =
     {
       title: "Yoroy",
       type: "number",
-      value: 'tl11'
+      value: 'yoroi'
     },
     {
       title: "Nón",
@@ -322,7 +319,7 @@ const formModalNinja =
     {
       title: "Tài Khoản",
       type: "text",
-      value: 'taikhoan',
+      value: 'username',
       cols: 6,
     lg: 6,
     md: 6
@@ -330,7 +327,7 @@ const formModalNinja =
     {
       title: "Nhân Vật",
       type: "text",
-      value: 'ingame',
+      value: 'character_name',
       cols: 6,
     lg: 6,
     md: 6
@@ -339,7 +336,7 @@ const formModalNinja =
     {
       title: "Giá Bán (Card)",
       type: "cash",
-      value: 'giatien',
+      value: 'selling_price',
       cols: 6,
     lg: 6,
     md: 6
@@ -347,7 +344,7 @@ const formModalNinja =
     {
       title: "Giá Bán (Vnđ)",
       type: "cash_sale_off",
-      value: 'giatien',
+      value: 'selling_price',
       cols: 6,
     lg: 6,
     md: 6
@@ -355,7 +352,7 @@ const formModalNinja =
     {
       title: "Giá Nhập (Vnđ)",
       type: "cash",
-      value: 'gianhap',
+      value: 'purchase_price',
       cols: 6,
     lg: 6,
     md: 6

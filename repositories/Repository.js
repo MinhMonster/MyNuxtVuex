@@ -14,7 +14,8 @@ import adminFolders from '~/repositories/admin/folders'
 import adminUsers from '~/repositories/admin/users'
 
 //admin Game
-import adminGameNinjas from '~/repositories/admin/game/ninjas'
+// import adminGameNinjas from '~/repositories/admin/game/ninjas'
+
 import adminGameAvatars from '~/repositories/admin/game/avatars'
 import adminGameAccountSold from '~/repositories/admin/histories/game_account_sold'
 import adminBankDeposits from '~/repositories/admin/histories/bank_deposits'
@@ -54,7 +55,7 @@ export default ($api) => ({
 
 
   // admin Game
-  adminGameNinjas: adminGameNinjas($api),
+  // adminGameNinjas: adminGameNinjas($api),
   adminGameAvatars: adminGameAvatars($api),
   adminGameAccountSold:adminGameAccountSold($api),
   adminBankDeposits: adminBankDeposits($api),

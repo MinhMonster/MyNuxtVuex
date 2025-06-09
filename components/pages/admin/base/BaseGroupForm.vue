@@ -14,7 +14,10 @@
           v-if="form.type === 'cash'"
           :name="form.value"
           :label="form.title"
-          :disabled="form.disabled || (is_create && form.value === 'ID')"
+          :disabled="
+            form.disabled ||
+            (is_create && (form.value === 'ID' || form.value === 'id'))
+          "
           v-model="dataForm[`${form.value}`]"
           @change="onChange"
         />
@@ -42,7 +45,10 @@
           v-model="dataForm[form.value]"
           :type="form.type"
           :label="form.title"
-          :disabled="form.disabled || (is_create && form.value === 'ID')"
+          :disabled="
+            form.disabled ||
+            (is_create && (form.value === 'ID' || form.value === 'id'))
+          "
           @change="updateForm()"
         ></v-text-field>
         <v-select

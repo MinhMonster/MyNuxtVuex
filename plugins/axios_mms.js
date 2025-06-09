@@ -209,7 +209,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     if (code === 400) {
       redirect('/400')
     }
-    if (code === 500) {
+    if (code === 500 || code === 404) {
       $toast.error(error.response.data.message);
     }
 

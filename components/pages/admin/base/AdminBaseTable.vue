@@ -72,7 +72,7 @@ export default {
     },
     repositories: {
       type: String,
-      default: null,
+      default: 'repositories',
       require: false,
     },
     meta: {
@@ -97,6 +97,9 @@ export default {
   },
   computed: {
     ...mapState({
+      repositoryKey() {
+        return this[`$${this.repositories}`];
+      },
       stateQuery(state) {
         return _.get(state, this.store.module + "." + this.store.state, {});
       },
@@ -250,8 +253,7 @@ export default {
             this.store.state
           );
         // console.log("stateParamDefault", this.stateParamDefault);
-        const repositoryKey = this.repositories ? this.$repositories_mms : this.$repositories;
-        const result = await repositoryKey[this.repository][
+        const result = await this.repositoryKey[this.repository][
           this.store.action
         ]({
           input: Object.assign(dataSearch, this.stateParamDefault),

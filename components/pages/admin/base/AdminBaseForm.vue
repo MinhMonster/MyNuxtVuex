@@ -12,8 +12,8 @@
 
         <b-tab title="Upload Images" class="tab-scroll scroll-y">
           <b-form-checkbox
-            v-if="dataForm.full"
-            v-model="dataForm.full"
+            v-if="dataForm.is_full_image"
+            v-model="dataForm.is_full_image"
             name="check-button"
             value="1"
             unchecked-value="0"
@@ -86,12 +86,12 @@ export default {
     },
     repositories: {
       type: String,
-      default: "",
+      default: "repositories",
       require: false,
     },
     images: {
       type: String,
-      default: "hinhanh",
+      default: "images",
       require: false,
     },
     multipleImages: {
@@ -106,6 +106,9 @@ export default {
   },
   computed: {
     ...mapState({
+      repositoryKey() {
+        return this[`$${this.repositories}`];
+      },
       stateQuery(state) {
         return _.get(state, this.store.module + "." + this.store.state, {});
       },
@@ -126,15 +129,11 @@ export default {
     isDelete() {
       const api = _.get(this.store, "delete", null);
 
-      return this.id && this.stateQuery.status === "yes" && api;
+      return this.id && this.stateQuery.deleted_at === null && api;
     },
     isUnDelete() {
       const api = _.get(this.store, "unDelete", null);
-      return (
-        this.id &&
-        (this.stateQuery.status === "no" || !this.stateQuery.status) &&
-        api
-      );
+      return this.id && this.stateQuery.deleted_at !== null && api;
     },
   },
   async mounted() {
@@ -159,12 +158,9 @@ export default {
     },
     async fetchData() {
       try {
-        const repositoryKey = this.repositories
-          ? this.$repositories_mms
-          : this.$repositories;
-        const result = await repositoryKey[this.repository][this.store.action](
-          this.id
-        );
+        const result = await this.repositoryKey[this.repository][
+          this.store.action
+        ](this.id);
 
         const data = result.data.response;
         console.log("data", result.data);
@@ -177,10 +173,9 @@ export default {
     },
     async updateData() {
       try {
-        const repositoryKey = this.repositories
-          ? this.$repositories_mms
-          : this.$repositories;
-        const result = await repositoryKey[this.repository][this.store.update]({
+        const result = await this.repositoryKey[this.repository][
+          this.store.update
+        ]({
           id: this.id,
           input: this.stateQuery,
         });
@@ -197,10 +192,9 @@ export default {
       const payload = _.omit(this.stateQuery, "ID");
 
       try {
-        const repositoryKey = this.repositories
-          ? this.$repositories_mms
-          : this.$repositories;
-        const result = await repositoryKey[this.repository][this.store.create]({
+        const result = await this.repositoryKey[this.repository][
+          this.store.create
+        ]({
           input: payload,
         });
         const data = result.data;
@@ -241,13 +235,13 @@ export default {
         .then(async (result) => {
           if (result.isConfirmed) {
             try {
-              const res = await this.$repositories[this.repository][
+              const res = await this.repositoryKey[this.repository][
                 this.store.delete
               ](this.id);
-              if (res.data.code === 200) {
-                await this.$toasted.success(res.data.message);
-                this.fetchData();
-              }
+              // if (res.data.code === 200) {
+              //   await this.$toasted.success(res.data.message);
+              this.fetchData();
+              // }
             } catch (e) {
               console.log(e);
             }
@@ -274,13 +268,13 @@ export default {
         .then(async (result) => {
           if (result.isConfirmed) {
             try {
-              const res = await this.$repositories[this.repository][
+              const res = await this.repositoryKey[this.repository][
                 this.store.unDelete
               ](this.id);
-              if (res.data.code === 200) {
-                await this.$toasted.success(res.data.message);
-                this.fetchData();
-              }
+              // if (res.data.code === 200) {
+              //   await this.$toasted.success(res.data.message);
+              this.fetchData();
+              // }
             } catch (e) {
               console.log(e);
             }
