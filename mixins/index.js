@@ -320,6 +320,24 @@ export default {
       return `<span class="${setting.color}">${setting.text}</span>`;
     },
 
+    deletedAt(value) {
+      let setting = {};
+      switch (value) {
+        case "null":
+          setting = {
+            text: "Actived",
+            color: "text-primary"
+          };
+          break;
+        default:
+          setting = {
+            text: "Deleted",
+            color: "text-danger"
+          };
+      }
+      return `<span class="${setting.color}">${setting.text}</span>`;
+    },
+
     numberWalletAdmin(wallet) {
       switch (wallet) {
         case "Ví MOMO":

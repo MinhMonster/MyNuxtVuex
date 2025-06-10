@@ -124,9 +124,9 @@ export default {
           },
         },
         {
-          key: "status",
+          key: "deleted_at",
           label: "Status",
-          type: "status-ninja",
+          type: "deleted_at",
           attributes: {
             style: {
               minWidth: "60px",
