@@ -4,24 +4,24 @@ const headers = {
     "Content-Type": "multipart/form-data"
   },
 }
-export default ($api_mms) => ({
+export default ($api) => ({
   fetchAccountNinjas(payload) {
-    return $api_mms.get(`${resource}`, { params: { input: payload.input } },
+    return $api.get(`${resource}`, { params: { input: payload.input } },
     )
   },
-  createAccountNinja(payload) {
-    return $api_mms.post(`${resource}/modify`, payload)
-  },
   fetchAccountNinja(id) {
-    return $api_mms.get(`${resource}/${id}`)
+    return $api.get(`${resource}/${id}`)
+  },
+  createAccountNinja(payload) {
+    return $api.post(`${resource}/modify`, payload)
   },
   updateAccountNinja(payload) {
-    return $api_mms.post(`${resource}/modify`, payload)
+    return $api.post(`${resource}/modify`, payload)
   },
-  destroyAccountNinja(payload) {
-    return $api_mms.post(`${resource}/destroy`, { id: payload } )
+  destroyAccountNinja(id) {
+    return $api.post(`${resource}/destroy`, { id: id })
   },
-  unDestroyAccountNinja(payload) {
-    return $api_mms.post(`${resource}/restore`, { id: payload } )
+  unDestroyAccountNinja(id) {
+    return $api.post(`${resource}/restore`, { id: id })
   },
 })
