@@ -16,6 +16,7 @@
           <AdminBaseTable
             ref="table"
             module="admin/game/avatars"
+            :repositories="repositories"
             repository="adminGameAvatars"
             :columns="columns"
             :store="{
@@ -37,16 +38,16 @@
                 <v-icon>mdi-eye</v-icon>
               </v-btn>
             </template> -->
-            <template #ID="props">
+            <template #id="props">
               <nuxt-link
                 class="flex"
                 light
-                :to="`/admin/game/avatars/${props.row.ID}`"
+                :to="`/admin/game/avatars/${props.row.id}`"
               >
                 <v-icon size="15" class="text-info"
                   >mdi-arrow-right-bold</v-icon
                 >
-                {{ format_number(props.row.ID) }}
+                {{ format_number(props.row.id) }}
               </nuxt-link>
             </template>
             <template #giatien="props">
@@ -71,11 +72,12 @@
         <template>
           <FormModal
             ref="modal"
-            :title="'Update Account: ' + format_number(queryAvatar.ID)"
-            :id="queryAvatar.ID"
+            :title="'Update Account: ' + format_number(queryAvatar.id)"
+            :id="queryAvatar.id"
             width="500px"
             minHeight="150px"
             module="admin/game/avatars"
+            :repositories="repositories"
             repository="adminGameAvatars"
             :store="{
               state: 'queryAvatar',
@@ -93,6 +95,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import { mapFields } from "vuex-map-fields";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import FormSearch from "@/components/pages/admin/Shared/form/FormSearch";
@@ -111,12 +114,11 @@ export default {
     return {
       columns: [
         {
-          key: "ID",
+          key: "id",
           label: "ID",
           type: "number",
           attributes: {
             align: "center",
-
             style: {
               minWidth: "80px",
             },
@@ -132,9 +134,9 @@ export default {
           },
         },
         {
-          key: "status",
+          key: "deleted_at",
           label: "Status",
-          type: "status-ninja",
+          type: "deleted_at",
           attributes: {
             style: {
               minWidth: "50px",
@@ -142,7 +144,7 @@ export default {
           },
         },
         {
-          key: "dat",
+          key: "land",
           label: "Đất",
           type: "number",
           attributes: {
@@ -152,7 +154,7 @@ export default {
           },
         },
         {
-          key: "ga",
+          key: "pets",
           label: "Gà",
           type: "number",
           attributes: {
@@ -162,7 +164,7 @@ export default {
           },
         },
         {
-          key: "ca",
+          key: "fish",
           label: "Cá",
           attributes: {
             style: {
@@ -171,7 +173,7 @@ export default {
           },
         },
         {
-          key: "giatien",
+          key: "selling_price",
           label: "Price",
           type: "number",
           attributes: {
@@ -182,7 +184,7 @@ export default {
           },
         },
         {
-          key: "gianhap",
+          key: "purchase_price",
           label: "Cost",
           type: "number",
           attributes: {
@@ -219,6 +221,7 @@ export default {
   },
   computed: {
     ...mapFields("admin/game/avatars", ["queryAvatar"]),
+    ...mapState("admin/mms", ["repositories"]),
   },
   async mounted() {},
   methods: {

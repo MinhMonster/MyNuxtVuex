@@ -13,6 +13,7 @@
         <AdminBaseForm
           ref="form"
           module="admin/game/avatars"
+          :repositories="repositories"
           repository="adminGameAvatars"
           :id="$route.params.id"
           :store="{
@@ -31,6 +32,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseForm from "@/components/pages/admin/base/AdminBaseForm";
 
@@ -46,7 +48,9 @@ export default {
     return {};
   },
   async mounted() {},
-  computed: {},
+  computed: {
+    ...mapState("admin/mms", ["repositories"]),
+  },
   methods: {},
 };
 </script>

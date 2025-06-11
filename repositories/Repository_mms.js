@@ -5,7 +5,8 @@ import mmsFolders from '~/repositories/admin/mms/folders'
 import mmsFiles from '~/repositories/admin/mms/files'
 
 //admin Game
-import adminGameNinjas from '~/repositories/admin/game/ninjas'
+import adminGameNinjas from '~/repositories/admin/game/ninjas';
+import adminGameAvatars from '~/repositories/admin/game/avatars';
 
 
 export default ($api_mms) => ({
@@ -15,4 +16,5 @@ export default ($api_mms) => ({
 
   // admin Game
   adminGameNinjas: adminGameNinjas($api_mms),
+  adminGameAvatars: adminGameAvatars($api_mms),
 })

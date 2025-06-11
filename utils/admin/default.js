@@ -89,15 +89,15 @@ export const classNinjaOptions = _.cloneDeep([
 export const sexAvatarOptions = _.cloneDeep([
   {
     text: "Nam",
-    value: "male",
+    value: "1",
   },
   {
     text: "Nữ",
-    value: "female",
+    value: "2",
   },
   {
     text: "Bê đê",
-    value: "gay",
+    value: "3",
   }
 ]);
 

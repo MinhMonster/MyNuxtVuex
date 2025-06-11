@@ -15,6 +15,7 @@
         <AdminBaseForm
           ref="form"
           module="admin/game/avatars"
+          :repositories="repositories"
           repository="adminGameAvatars"
           :id="isCopy ? $route.query.copy : null"
           :store="{
@@ -31,6 +32,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseForm from "@/components/pages/admin/base/AdminBaseForm";
 export default {
@@ -51,6 +53,9 @@ export default {
     if (query.copy) {
       this.isCopy = true;
     }
+  },
+  computed: {
+    ...mapState("admin/mms", ["repositories"]),
   },
   methods: {},
 };

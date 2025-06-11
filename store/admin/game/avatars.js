@@ -75,15 +75,15 @@ const queryAvatars = _.cloneDeep({
       },
       {
         text: "Nam",
-        value: "male",
+        value: "1",
       },
       {
         text: "Nữ",
-        value: "female",
+        value: "2",
       },
       {
         text: "Bê đê",
-        value: "gay",
+        value: "3",
       },
     ],
   },
@@ -91,19 +91,19 @@ const queryAvatars = _.cloneDeep({
     placeholder: "Trạng Thái",
     type: "select-options",
     show: true,
-    value: "yes",
+    value: "active",
     options: [
       {
         text: "Tất cả",
-        value: null,
+        value: 'all',
       },
       {
         text: "Đang bán",
-        value: "yes",
+        value: "active",
       },
       {
         text: "Đã bán",
-        value: "no",
+        value: "deleted",
       },
     ],
   },
@@ -113,19 +113,16 @@ const queryAvatar = _.cloneDeep({
 
   ID: "",
   username: "",
-  dat: "",
-  ga: "",
-  ca: "",
+  land: "",
+  pets: "",
+  fish: "",
   sex: "",
-  mcs: "",
-  thongtin: "",
-  giatien: "",
-  gianhap: "",
-  sim: "",
-  hinhanh: [],
-  full: "0",
-  status: 'yes'
-
+  description: "",
+  selling_price: "",
+  purchase_price: "",
+  discount_percent: "",
+  images: [],
+  is_full_image: "0",
 });
 
 const formAvatar =
@@ -133,42 +130,42 @@ const formAvatar =
     {
       title: "ID",
       type: "number",
-      value: 'ID'
+      value: 'id'
     },
     {
-      title: "Tài Khoản",
+      title: "Tài khoản",
       type: "text",
       value: 'username'
     },
     {
       title: "Giá Bán",
       type: "cash",
-      value: 'giatien'
+      value: 'selling_price'
     },
     {
       title: "Giá Nhập",
       type: "cash",
-      value: 'gianhap'
+      value: 'purchase_price'
     },
     {
-      title: "Sim",
+      title: "Discount",
       type: "number",
-      value: 'sim'
+      value: 'discount_percent'
     },
     {
       title: "Đất",
       type: "number",
-      value: 'dat'
+      value: 'land'
     },
     {
       title: "Gà",
       type: "number",
-      value: 'ga'
+      value: 'pets'
     },
     {
       title: "Cá",
       type: "number",
-      value: 'ca'
+      value: 'fish'
     },
     {
       title: "Giới tính",
@@ -176,16 +173,16 @@ const formAvatar =
       options: sexAvatarOptions,
       value: 'sex'
     },
-    {
-      title: "Trạng Thái",
-      type: "select-options",
-      options: statusOptions,
-      value: 'status',
-    },
+    // {
+    //   title: "Trạng Thái",
+    //   type: "select-options",
+    //   options: statusOptions,
+    //   value: 'status',
+    // },
     {
       title: "Thông tin",
       type: "content-editer",
-      value: 'thongtin',
+      value: 'description',
       cols: 12,
       sm: 12,
       md: 12,
@@ -208,7 +205,7 @@ const formModalAvatar =
     {
       title: "Giá Bán (Card)",
       type: "cash",
-      value: 'giatien',
+      value: 'selling_price',
       cols: 6,
       lg: 6,
       md: 6
@@ -216,7 +213,7 @@ const formModalAvatar =
     {
       title: "Giá Bán (Vnđ)",
       type: "cash_sale_off",
-      value: 'giatien',
+      value: 'selling_price',
       cols: 6,
       lg: 6,
       md: 6
@@ -224,7 +221,7 @@ const formModalAvatar =
     {
       title: "Giá Nhập (Vnđ)",
       type: "cash",
-      value: 'gianhap',
+      value: 'purchase_price',
       cols: 6,
       lg: 6,
       md: 6
