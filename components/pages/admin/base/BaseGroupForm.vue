@@ -9,80 +9,24 @@
       :lg="form.lg ? form.lg : 2"
       class="code-title"
     >
-      <form-validator v-if="form.value" :name="form.value">
-        <BaseInput
-          v-if="form.type === 'cash'"
-          :name="form.value"
-          :label="form.title"
-          :disabled="
-            form.disabled ||
-            (is_create && (form.value === 'ID' || form.value === 'id'))
-          "
-          v-model="dataForm[`${form.value}`]"
-          @change="onChange"
-        />
-        <BaseInput
-          v-if="form.type === 'cash_sale_off'"
-          :name="form.value"
-          :label="form.title"
-          :disabled="true"
-          :value="
-            cash_atm(
-              dataForm[`${form.value}`] * (1 - (dataForm['saleOff'] || 0) / 100)
-            )
-          "
-        />
-        <BaseInput
-          v-if="form.type === 'profit'"
-          :name="form.value"
-          :label="form.title"
-          :disabled="true"
-          :value="profit_atm(dataForm)"
-        />
-        <v-text-field
-          v-if="form.type === 'number' || form.type === 'text'"
-          :name="form.value"
-          v-model="dataForm[form.value]"
-          :type="form.type"
-          :label="form.title"
-          :disabled="
-            form.disabled ||
-            (is_create && (form.value === 'ID' || form.value === 'id'))
-          "
-          @change="updateForm()"
-        ></v-text-field>
-        <v-select
-          v-if="form.type === 'select-options'"
-          v-model="dataForm[form.value]"
-          density="compact"
-          :label="form.title"
-          :placeholder="form.placeholder"
-          :items="form.options"
-          @change="updateForm()"
-        ></v-select>
-        <div v-if="form.type === 'content-editer'">
-          <label for="" class="content-editer">{{ form.title }}</label>
-          <ContentEditer
-            v-model="dataForm[`${form.value}`]"
-            :name="form.value"
-            :label="form.title"
-            :disabled="form.disabled"
-            :height="form.height"
-            :class="form.fullHeight ? 'full-height' : ''"
-            @input="updateForm()"
-          ></ContentEditer>
-        </div>
-      </form-validator>
+      <GroupForm
+        :form="form"
+        :dataForm="dataForm"
+        @updated="updateForm"
+      >
+      </GroupForm>
     </v-col>
   </v-row>
 </template>
 <script>
+import GroupForm from "@/components/pages/admin/base/form/GroupForm";
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
 import ContentEditer from "@/components/pages/admin/Shared/nuxt-editor/CkEditorNuxt.vue";
 import BaseInput from "@/components/pages/admin/base/BaseInput";
 
 export default {
   components: {
+    GroupForm,
     FormValidator,
     ContentEditer,
     BaseInput,
