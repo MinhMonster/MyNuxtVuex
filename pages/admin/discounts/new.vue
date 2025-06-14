@@ -10,23 +10,25 @@
       <div id="body-admin">
         <AdminBaseForm
           ref="form"
-          module="admin/sale_offs"
-          repository="adminSaleOffs"
-          :id="$route.params.id"
+          module="admin/discounts"
+          :repositories="repositories"
+          repository="adminDiscounts"
           :store="{
             state: 'querySaleOff',
-            module: 'admin.sale_offs',
+            module: 'admin.discounts',
             form: 'formSaleOff',
-            action: 'fetchSaleOff',
-            update: 'updateSaleOff'
+            // action: 'fetchSaleOff',
+            create: 'createSaleOff',
           }"
-        ></AdminBaseForm>
+        >
+      </AdminBaseForm>
       </div>
     </template>
   </NavAdmin>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseForm from "@/components/pages/admin/base/AdminBaseForm";
 
@@ -36,6 +38,9 @@ export default {
     AdminBaseForm,
   },
   layout: "adminDev",
-  name: "UpdateAccountSold",
+  name: "CreateDiscount",
+  computed: {
+    ...mapState("admin/mms", ["repositories"]),
+  },
 };
 </script>

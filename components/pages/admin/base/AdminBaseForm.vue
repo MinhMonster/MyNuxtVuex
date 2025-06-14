@@ -8,6 +8,7 @@
             :forms="stateForms"
             @updated="updateForm()"
           />
+          <slot></slot>
         </b-tab>
 
         <b-tab title="Upload Images" class="tab-scroll scroll-y">

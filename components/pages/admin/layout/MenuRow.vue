@@ -68,8 +68,8 @@ export default {
         },
         {
           icon: "mdi-image",
-          title: "Sale Off",
-          to: "/admin/sale-offs",
+          title: "Discounts",
+          to: "/admin/discounts",
         },
         {
           icon: "mdi-image",

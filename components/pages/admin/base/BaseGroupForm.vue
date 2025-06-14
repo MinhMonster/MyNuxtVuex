@@ -9,12 +9,31 @@
       :lg="form.lg ? form.lg : 2"
       class="code-title"
     >
+      <v-row v-if="form.type == 'forms'">
+        <v-col
+          v-for="(formItem, indexFormItem) in form.forms"
+          :key="indexFormItem"
+          :cols="formItem.cols ? formItem.cols : 6"
+          :sm="formItem.sm ? formItem.sm : 4"
+          :md="formItem.md ? formItem.md : 3"
+          :lg="formItem.lg ? formItem.lg : 2"
+          class="code-title"
+        >
+          <GroupForm
+            :form="formItem"
+            :index="indexFormItem"
+            :keyForm="form.value"
+            :dataForm="dataForm"
+            @updated="updateForm"
+          />
+        </v-col>
+      </v-row>
       <GroupForm
+        v-else
         :form="form"
         :dataForm="dataForm"
         @updated="updateForm"
-      >
-      </GroupForm>
+      />
     </v-col>
   </v-row>
 </template>

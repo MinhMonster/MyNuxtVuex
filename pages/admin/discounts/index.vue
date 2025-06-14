@@ -2,26 +2,29 @@
   <NavAdmin
     title="List Sale Offs"
     goBack
+    new-page
     next-page
     reload
     @reload="$refs.table.fetchData()"
+    @newPage="$router.push('/admin/discounts/new')"
   >
     <template #body>
       <v-row>
         <v-col cols="12" md="12" sm="12">
           <AdminBaseTable
             ref="table"
-            module="admin/sale_offs"
-            repository="adminSaleOffs"
+            module="admin/discounts"
+            :repositories="repositories"
+            repository="adminDiscounts"
             :columns="columns"
             :store="{
               state: 'querySaleOffs',
-              module: 'admin.sale_offs',
+              module: 'admin.discounts',
               action: 'fetchSaleOffs',
             }"
           >
-            <template #ID="props">
-              <v-btn none icon :to="`/admin/sale-offs/${props.row.ID}`">
+            <template #id="props">
+              <v-btn none icon :to="`/admin/discounts/${props.row.id}`">
                 <v-icon color="blue">mdi-pencil</v-icon>
               </v-btn>
             </template>
@@ -39,6 +42,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import FormSearch from "@/components/pages/admin/Shared/form/FormSearch";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
@@ -56,7 +60,7 @@ export default {
     return {
       columns: [
         {
-          key: "ID",
+          key: "id",
           label: "ID",
           attributes: {
             style: {
@@ -126,10 +130,13 @@ export default {
     };
   },
   async mounted() {},
+  computed: {
+        ...mapState("admin/mms", ["repositories"]),
+  },
   methods: {
     async onchange(value, $data) {
       console.log("value", value, $data);
-      await this.$repositories.adminSaleOffs.setDefaultSaleOff({
+      await this.$repositories.adminDiscounts.setDefaultSaleOff({
         id: $data.ID,
         input: {
           value: value,
