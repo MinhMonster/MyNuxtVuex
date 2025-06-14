@@ -8,12 +8,12 @@
         <div class="border-animate left"></div>
 
         <v-card class="box-admin-login">
-          <v-card-title class="text-white">Đăng nhập Hệ thống</v-card-title>
+          <v-card-title class="text-white">Login Admin</v-card-title>
           <form @submit.prevent="login">
             <LoginForm :user="user" />
             <div class="text-right mt-4">
-              <v-btn type="button" to="/">Trang chủ</v-btn>
-              <v-btn type="submit" color="primary">Đăng nhập</v-btn>
+              <!-- <v-btn type="button" to="/">Trang chủ</v-btn> -->
+              <v-btn type="submit" color="primary">Login</v-btn>
             </div>
           </form>
         </v-card>
@@ -85,7 +85,7 @@ export default {
 }
 .login-border-box {
   position: relative;
-  padding: 4px;
+  padding: 6px;
   border-radius: 16px;
   overflow: hidden;
 
@@ -133,7 +133,7 @@ export default {
       transparent 25%,
       blue 50%,
       transparent 75%,
-      yellow 100%
+      red 100%
     );
     background-size: auto 200%;
     animation: animate-right 4s linear infinite;
@@ -149,7 +149,7 @@ export default {
       to left,
       blue 0%,
       transparent 25%,
-      yellow 50%,
+      green 50%,
       transparent 75%,
       red 100%
     );
@@ -165,7 +165,7 @@ export default {
     height: 100%;
     background: linear-gradient(
       to top,
-      yellow 0%,
+      blue 0%,
       transparent 25%,
       red 50%,
       transparent 75%,
