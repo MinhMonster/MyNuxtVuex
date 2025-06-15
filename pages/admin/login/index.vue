@@ -50,8 +50,8 @@ export default {
   methods: {
     ...mapActions(["authRequest", "login"]),
     async submit() {
-      this.login(this.user);
-      this.$router.push("/admin");
+      await this.login(this.user);
+      this.$router.push("/admin/game/ninjas");
     },
   },
 };

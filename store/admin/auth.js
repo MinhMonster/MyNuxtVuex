@@ -30,7 +30,7 @@ export default {
 
     },
     async logout({ commit, dispatch }) {
-      const res = await this.$repositories.adminAuths.logout()
+      // const res = await this.$repositories.adminAuths.logout()
       commit("AUTH_LOGOUT");
     },
     async login({ commit }, payload) {
