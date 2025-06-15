@@ -214,8 +214,8 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     }
 
     if (code === 401) {
-      store.dispatch("admin/auth/logout");
-      redirect('/admin/login')
+      // store.dispatch("admin/auth/logout");
+      // redirect('/admin/login')
     }
     if (code === 422) {
       const errors = error.response.data.errors;

@@ -118,8 +118,8 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
           
           break;
         case "adminDev":
-          store.dispatch("admin/auth/logout");
-          redirect('/admin/login')
+          // store.dispatch("admin/auth/logout");
+          // redirect('/admin/login')
           break;
       }
       // store.dispatch("admin/auth/logout");

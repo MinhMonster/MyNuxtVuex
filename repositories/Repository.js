@@ -2,7 +2,7 @@ import adminSettings from '~/repositories/admin/settings'
 
 
 // admin Auths
-import adminAuths from '~/repositories/admin/auths'
+// import adminAuths from '~/repositories/admin/auths'
 
 //admin
 import adminTopics from '~/repositories/admin/topics'
@@ -42,7 +42,7 @@ import homeTopics from '~/repositories/home/topics'
 export default ($api) => ({
   adminSettings: adminSettings($api),
   // admin Auths
-  adminAuths: adminAuths($api),
+  // adminAuths: adminAuths($api),
 
   // admin
   adminTopics: adminTopics($api),

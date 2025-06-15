@@ -9,7 +9,7 @@
 
         <v-card class="box-admin-login">
           <v-card-title class="text-white">Login Admin</v-card-title>
-          <form @submit.prevent="login">
+          <form @submit.prevent="submit">
             <LoginForm :user="user" />
             <div class="text-right mt-4">
               <!-- <v-btn type="button" to="/">Trang chủ</v-btn> -->
@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       user: {
-        username: "",
+        email: "",
         password: "",
       },
     };
@@ -48,19 +48,10 @@ export default {
     ...mapState(["token"]),
   },
   methods: {
-    ...mapActions(["authRequest"]),
-    async login() {
-      const formData = new FormData();
-      formData.append("username", this.user.username);
-      formData.append("password", this.user.password);
-      const res = await API.login(formData);
-      if (res.data.status === "success") {
-        this.$toasted.success(res.data.message);
-        this.$router.push("/admin");
-      } else {
-        this.$toasted.error(res.data.message);
-      }
-      this.authRequest(res.data);
+    ...mapActions(["authRequest", "login"]),
+    async submit() {
+      this.login(this.user);
+      this.$router.push("/admin");
     },
   },
 };
@@ -86,7 +77,7 @@ export default {
 .login-border-box {
   position: relative;
   padding: 6px;
-  border-radius: 16px;
+  border-radius: 4px;
   overflow: hidden;
 
   .box-admin-login {
@@ -94,7 +85,7 @@ export default {
     z-index: 2;
     padding: 40px;
     background: #1e1e1e;
-    border-radius: 12px;
+    border-radius: 0px;
   }
 
   .border-animate {

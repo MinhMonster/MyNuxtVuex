@@ -2,11 +2,12 @@
   <v-row>
     <v-col cols="12" sm="12" md="12">
       <v-text-field
-        label="Username"
-        v-model="user.username"
+        label="Email"
+        v-model="user.email"
         :rules="[rules.required]"
         outlined
         clearable
+        type="email"
       ></v-text-field>
     </v-col>
     <v-col cols="12" sm="12" md="12">

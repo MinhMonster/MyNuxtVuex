@@ -30,14 +30,20 @@ export default {
 
     },
     async logout({ commit, dispatch }) {
-      const  res = await this.$repositories.adminAuths.logout()
+      const res = await this.$repositories.adminAuths.logout()
       commit("AUTH_LOGOUT");
+    },
+    async login({ commit }, payload) {
+      try {
+        const response = await this.$repositories_mms.adminAuths.login(payload);
+        commit(AUTH_SUCCESS, response.data);
+      } catch { }
     },
   },
   mutations: {
     updateField,
     AUTH_SUCCESS(state, authData) {
-      state.token = authData.token;
+      state.token = authData.access_token;
       state.authenticated = true;
       state.authErrorMessage = null;
     },

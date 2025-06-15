@@ -1,8 +1,12 @@
 
+// admin Auths
+import adminAuths from '~/repositories/admin/auths'
+
 // Mimi Food
 import mmsProducts from '~/repositories/admin/mms/products'
 import mmsFolders from '~/repositories/admin/mms/folders'
 import mmsFiles from '~/repositories/admin/mms/files'
+
 
 //admin Game
 import adminGameNinjas from '~/repositories/admin/game/ninjas';
@@ -10,6 +14,9 @@ import adminGameAvatars from '~/repositories/admin/game/avatars';
 import adminDiscounts from '~/repositories/admin/discounts'
 
 export default ($api_mms) => ({
+  // admin Auths
+  adminAuths: adminAuths($api_mms),
+  
   mmsProducts: mmsProducts($api_mms),
   mmsFolders: mmsFolders($api_mms),
   mmsFiles: mmsFiles($api_mms),
