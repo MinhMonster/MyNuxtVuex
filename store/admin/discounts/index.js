@@ -55,31 +55,39 @@ const querySaleOff = _.cloneDeep({
   is_active: "0",
   type: "ninja",
   price_tiers: [
-  {
-    value: "0"
-  },
-  {
-    value: "0"
-  },
-  {
-    value: "0"
-  },
-  {
-    value: "0"
-  },
-  {
-    value: "0"
-  },
-  {
-    value: "0"
-  },
-  {
-    value: "0"
-  },
-  {
-    value: "0"
-  },
-],
+    {
+      price: 100000,
+      value: 0
+    },
+    {
+      price: 300000,
+      value: 0
+    },
+    {
+      price: 500000,
+      value: 0
+    },
+    {
+      price: 1000000,
+      value: 0
+    },
+    {
+      price: 2000000,
+      value: 0
+    },
+    {
+      price: 3000000,
+      value: 0
+    },
+    {
+      price: 5000000,
+      value: 0
+    },
+    {
+      price: 10000000,
+      value: 0
+    },
+  ],
 });
 
 

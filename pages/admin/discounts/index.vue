@@ -28,9 +28,9 @@
                 <v-icon color="blue">mdi-pencil</v-icon>
               </v-btn>
             </template>
-            <template #is_default="props">
+            <template #is_active="props">
               <BaseCheckBox
-                :value="props.row.is_default"
+                :value="props.row.is_active"
                 @change="(value) => onchange(value, props.row)"
               ></BaseCheckBox>
             </template>
@@ -69,44 +69,40 @@ export default {
           },
         },
         {
-          key: "is_default",
+          key: "is_active",
           label: "Active",
         },
         {
-          key: "sale_100k",
+          key: "price_tiers[0].value",
           label: "100k",
         },
-        // {
-        //   key: "sale_200k",
-        //   label: "200k",
-        // },
         {
-          key: "sale_300k",
+          key: "price_tiers[1].value",
           label: "300k",
         },
         {
-          key: "sale_500k",
+          key: "price_tiers[2].value",
           label: "500k",
         },
         {
-          key: "sale_1000k",
-          label: "1 Triệu",
-        },
-        {
-          key: "sale_1500k",
+          key: "price_tiers[3].value",
           label: "1 Triệu 500k",
         },
         {
-          key: "sale_2000k",
+          key: "price_tiers[4].value",
           label: "2 Triệu",
         },
         {
-          key: "sale_2500k",
-          label: "2 Triệu 500k",
+          key: "price_tiers[5].value",
+          label: "3 Triệu 500k",
         },
         {
-          key: "sale_3000k",
-          label: "3 Triệu",
+          key: "price_tiers[6].value",
+          label: "5 Triệu",
+        },
+        {
+          key: "price_tiers[7].value",
+          label: "10 Triệu",
         },
         {
           key: "type",
@@ -131,7 +127,7 @@ export default {
   },
   async mounted() {},
   computed: {
-        ...mapState("admin/mms", ["repositories"]),
+    ...mapState("admin/mms", ["repositories"]),
   },
   methods: {
     async onchange(value, $data) {
