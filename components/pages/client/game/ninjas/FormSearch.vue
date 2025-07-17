@@ -31,7 +31,6 @@
           </v-col>
           <v-col cols="6" sm="3" md="3" lg="2">
             <div class="field v-input form-input">
-              <!-- <base-select v-model="server" :options="serverOptions" /> -->
               <select v-model="server" class="">
                 <option
                   v-for="(server, sv) in serverOptions"
