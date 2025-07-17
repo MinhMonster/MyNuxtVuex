@@ -243,7 +243,7 @@ export default {
         },
         {
           text: "Kiếm",
-          value: " 2",
+          value: "2",
         },
         {
           text: "Tiêu",
