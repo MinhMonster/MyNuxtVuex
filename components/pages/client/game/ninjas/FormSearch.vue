@@ -312,14 +312,14 @@ export default {
     },
     whereId() {
       const Id = Number(this.id);
-      return Id ? "id=" + Id : "";
+      return Id ? "&id=" + Id : "";
     },
     whereInGame() {
       const InGame = this.ingame;
-      return InGame ? "ingame=" + InGame : "";
+      return InGame ? "&ingame=" + InGame : "";
     },
     whereClass() {
-      return this.classNinjas ? "class=" + this.classNinjas : "";
+      return this.classNinjas ? "&class=" + this.classNinjas : "";
     },
     whereServer() {
       return this.server ? "&server=" + this.server : "";

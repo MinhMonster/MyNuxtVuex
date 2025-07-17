@@ -20,9 +20,13 @@ export default {
       level: "query.q.level",
       cash: "query.q.cash",
       id: "query.q.id",
+      ingame: "query.q.ingame",
     }),
     queryId() {
       return Number(this.$route.query.id) || null;
+    },
+    queryInGame() {
+      return this.$route.query.ingame || null;
     },
     queryClass() {
       const getClass = Number(this.$route.query.class)
@@ -71,6 +75,9 @@ export default {
     },
     setQueryId() {
       return this.queryId ? "&id=" + this.queryId : "";
+    },
+    setQueryInGame() {
+      return this.queryInGame ? "&ingame=" + this.queryInGame : "";
     },
     setQueryServer() {
       return this.queryServer ? "&server=" + this.queryServer : "";
@@ -130,6 +137,7 @@ export default {
       this.level = this.queryLevel || null;
       this.cash = this.queryCash || null;
       this.id = this.queryId || null;
+      this.ingame = this.queryInGame || null;
       this.$router.push(
         `${this.path +
         "?" +
@@ -137,7 +145,8 @@ export default {
         this.setQueryServer +
         this.setQueryLevel +
         this.setQueryCash +
-        this.setQueryId
+        this.setQueryId +
+        this.setQueryInGame
         }`
       );
     },
