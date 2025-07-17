@@ -3,7 +3,7 @@
     <div class="page-body">
       <form @submit.prevent="search()">
         <v-row>
-          <v-col cols="6" sm="3" md="2">
+          <v-col cols="6" sm="3" md="3" lg="2">
             <div class="field v-input form-input">
               <select v-model="level" class="">
                 <option
@@ -16,7 +16,7 @@
               </select>
             </div>
           </v-col>
-          <v-col cols="6" sm="3" md="2">
+          <v-col cols="6" sm="3" md="3" lg="2">
             <div class="field v-input form-input">
               <select v-model="cash" class="">
                 <option
@@ -29,7 +29,7 @@
               </select>
             </div>
           </v-col>
-          <v-col cols="6" sm="3" md="2">
+          <v-col cols="6" sm="3" md="3" lg="2">
             <div class="field v-input form-input">
               <!-- <base-select v-model="server" :options="serverOptions" /> -->
               <select v-model="server" class="">
@@ -43,7 +43,7 @@
               </select>
             </div>
           </v-col>
-          <v-col cols="6" sm="3" md="2">
+          <v-col cols="6" sm="3" md="3" lg="2">
             <div class="field v-input form-input">
               <select v-model="classNinjas" class="">
                 <option
@@ -57,12 +57,30 @@
             </div>
           </v-col>
 
-          <v-col cols="6" sm="3" md="2">
-            <div class="field">
+          <v-col cols="6" sm="3" md="3" lg="2">
+            <div class="field group-btn-input flex">
+              <v-btn color="white" class="w-20">
+                <label for="id" class="w-100">Mã:</label>
+              </v-btn>
               <input
                 v-model="id"
+                id="id"
                 type="number"
-                placeholder="Nhập mã số nick..."
+                placeholder="Mã số nick..."
+                class="v-input form-input"
+              />
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="3" lg="2">
+            <div class="field group-btn-input flex">
+              <v-btn color="white" class="w-20">
+                <label for="ingame" class="w-100">IG:</label>
+              </v-btn>
+              <input
+                v-model="ingame"
+                id="ingame"
+                type="text"
+                placeholder="Tên nhân vật..."
                 class="v-input form-input"
               />
             </div>
@@ -285,6 +303,7 @@ export default {
       level: "query.q.level",
       cash: "query.q.cash",
       id: "query.q.id",
+      ingame: "query.q.ingame",
     }),
     ...mapFields("global", {
       isLoadingSearch: "isLoadingSearch",
@@ -295,6 +314,10 @@ export default {
     whereId() {
       const Id = Number(this.id);
       return Id ? "id=" + Id : "";
+    },
+    whereInGame() {
+      const InGame = this.ingame;
+      return InGame ? "ingame=" + InGame : "";
     },
     whereClass() {
       return this.classNinjas ? "class=" + this.classNinjas : "";
@@ -338,7 +361,8 @@ export default {
           this.whereServer +
           this.whereLevel +
           this.whereCash +
-          this.whereId
+          this.whereId +
+          this.whereInGame
         }`
       );
     },

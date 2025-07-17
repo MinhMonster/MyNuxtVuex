@@ -15,6 +15,7 @@ export default {
       perPage: 36,
       q: {
         id: null,
+        ingame: null,
         level: null,
         cash: null,
         class: null,
@@ -99,6 +100,7 @@ export default {
         perPage: 36,
         q: {
           id: null,
+          ingame: null,
           level: null,
           cash: null,
           class: null,

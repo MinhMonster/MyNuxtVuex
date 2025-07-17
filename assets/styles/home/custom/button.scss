@@ -7,3 +7,27 @@ button.v-btn.v-size--default {
     }
   }
 }
+
+.group-btn-input {
+  button.v-btn {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border: 1px solid #e28637 !important;
+    border-right: 0px !important;
+    box-shadow: none;
+    color: #222;
+    font-weight: normal;
+    min-width: 45px !important;
+    &.v-size--default {
+      padding: 5px 10px !important;
+      text-align: left;
+    }
+    label {
+      font-size: 16px !important;
+    }
+  }
+  input.v-input {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+}
