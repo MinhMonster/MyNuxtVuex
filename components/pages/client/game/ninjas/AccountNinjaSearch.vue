@@ -91,6 +91,7 @@
         :type="type"
         @close="isShow = false"
         @search="$emit('search')"
+        @reset="$emit('reset')"
       ></FormSearch>
     </v-col>
     <v-col v-if="isQuery && !isLoadingSearch" cols="12">
@@ -158,7 +159,7 @@ export default {
     async nextPath(type, path) {
       await this.$router.push(path);
       if (this.type !== type) return;
-      this.reloadNinja(this.type);
+      this.reload(this.type);
     },
   },
 };

@@ -5,14 +5,15 @@
       :loading="!ready"
       goBack
       reload
-      @reload="reloadNinja('cheap')"
+      @reload="reload('cheap')"
       notBoder
     >
       <template v-if="ready" #body>
         <div class="mt-4">
           <AccountNinjaSearch
             type="cheap"
-            @search="searchNinjas()"
+            @search="search()"
+            @reset="reset('cheap')"
           ></AccountNinjaSearch>
           <AccountNinjaList type="cheap"></AccountNinjaList>
         </div>
@@ -38,7 +39,7 @@ export default {
     AccountNinjaList,
   },
   async mounted() {
-    this.getAccountNinjas("cheap");
+    this.reload("cheap");
   },
   data() {
     return {

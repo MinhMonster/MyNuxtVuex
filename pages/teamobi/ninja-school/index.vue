@@ -5,12 +5,12 @@
       :loading="!ready"
       goBack
       reload
-      @reload="reloadNinja('')"
+      @reload="reload('')"
       notBoder
     >
       <template v-if="ready" #body>
         <div class="mt-4">
-          <AccountNinjaSearch @search="searchNinjas()"></AccountNinjaSearch>
+          <AccountNinjaSearch @search="search()" @reset="reset('')"></AccountNinjaSearch>
           <AccountNinjaList></AccountNinjaList>
         </div>
       </template>
@@ -34,7 +34,7 @@ export default {
     AccountNinjaList,
   },
   async mounted() {
-    this.getAccountNinjas();
+    this.reload("");
   },
   data() {
     return {
