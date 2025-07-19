@@ -5,7 +5,7 @@
         <v-row>
           <v-col cols="6" sm="3" md="3" lg="2">
             <div class="field v-input form-input">
-              <select v-model="level" class="">
+              <select v-model="level" class="" @change="search">
                 <option
                   v-for="(option, index) in levelOptions"
                   :key="index"
@@ -18,7 +18,7 @@
           </v-col>
           <v-col cols="6" sm="3" md="3" lg="2">
             <div class="field v-input form-input">
-              <select v-model="cash" class="">
+              <select v-model="cash" class="" @change="search">
                 <option
                   v-for="(option, index) in cashOptions"
                   :key="index"
@@ -31,7 +31,7 @@
           </v-col>
           <v-col cols="6" sm="3" md="3" lg="2">
             <div class="field v-input form-input">
-              <select v-model="server" class="">
+              <select v-model="server" class="" @change="search">
                 <option
                   v-for="(server, sv) in serverOptions"
                   :key="sv"
@@ -44,7 +44,7 @@
           </v-col>
           <v-col cols="6" sm="3" md="3" lg="2">
             <div class="field v-input form-input">
-              <select v-model="classNinjas" class="">
+              <select v-model="classNinjas" class="" @change="search">
                 <option
                   v-for="(option, index) in classOptions"
                   :key="index"
@@ -63,6 +63,7 @@
               </v-btn>
               <input
                 v-model="id"
+                @change="search"
                 id="id"
                 type="number"
                 placeholder="Mã số nick..."
@@ -77,6 +78,7 @@
               </v-btn>
               <input
                 v-model="ingame"
+                @change="search"
                 id="ingame"
                 type="text"
                 placeholder="Tên nhân vật..."
