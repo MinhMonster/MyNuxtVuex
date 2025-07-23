@@ -1,4 +1,3 @@
-
 <template>
   <v-dialog
     v-if="dialog"
@@ -18,6 +17,7 @@
   >
     <v-card>
       <BaseSvg
+        :disabled="disabledClose"
         class="close"
         color="red"
         id="btn-close-modal-header"
@@ -47,6 +47,7 @@
               <div v-if="isBtnClose" class="text-right right w-100">
                 <v-btn
                   color="red"
+                  :disabled="disabledClose"
                   class="btn-sm text-white bold bg-danger"
                   id="btn-close-modal"
                   title="Đóng"
@@ -121,6 +122,7 @@ export default {
       default: "",
     },
     hiddenFooter: Boolean,
+    disabledClose: Boolean,
     isBtnClose: {
       type: Boolean,
       default: true,
@@ -140,7 +142,7 @@ export default {
 };
 </script>
 
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
 .title {
   color: #1e5b7e;
   margin-bottom: 10px;
@@ -170,6 +172,7 @@ export default {
       color: #561d00;
       text-transform: uppercase;
     }
+
     .close {
       display: flex !important;
       color: var(--danger);
@@ -199,11 +202,13 @@ export default {
   .modal-dialog-scrollable .modal-content {
     overflow: visible;
   }
+
   .modal-body {
     position: relative;
     border: 2px solid #561d00;
     background: #ffcf9c;
     padding: 10px;
+
     .modal-info {
       border-radius: 4px;
       position: relative;
@@ -213,6 +218,7 @@ export default {
       // background: #ffefa3;
     }
   }
+
   .modal-footer {
     border: 2px solid #663019;
     background: #e28637;

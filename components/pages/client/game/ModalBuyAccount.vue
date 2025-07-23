@@ -5,6 +5,7 @@
       ref="modal"
       :title="`XÁC NHẬN MUA TÀI KHOẢN`"
       :text-close="`Hủy`"
+      :disabled-close="isLoading"
       size="md"
       @hide="close()"
     >
@@ -71,7 +72,7 @@
           ><span>Nap tiền</span></v-btn
         >
 
-        <v-btn v-else color="success" class="btn-buy btn-sm" @click="buyNow()">
+        <v-btn v-else color="success" :disabled="isLoading" class="btn-buy btn-sm" @click="buyNow()">
           <Loading v-if="isLoading" button></Loading>
           <span v-else> Thanh Toán </span>
         </v-btn>
