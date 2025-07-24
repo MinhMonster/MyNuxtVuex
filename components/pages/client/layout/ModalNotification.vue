@@ -51,8 +51,8 @@ export default {
     ...mapActions("home/settings", ["fetchNotification"]),
     async show() {
       if (this.isNotification) {
-        await this.$refs.modal.show();
         await this.fetchNotification();
+        await this.$refs.modal.show();
       } else {
         this.$emit("hide");
       }
