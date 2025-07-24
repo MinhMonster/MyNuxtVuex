@@ -11,13 +11,13 @@
       border: none !important;
       border-bottom: $border-theme-dark !important;
       background: linear-gradient(180deg, #0F0F0F, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
-      text-shadow: $text-shadow-theme-dark;
+      // text-shadow: $text-shadow-theme-dark;
 
       .user-info button.v-btn--icon.v-size--default .v-icon {
         height: 70px;
         width: 70px;
         font-size: 70px !important;
-        text-shadow: $text-shadow-theme-dark;
+        // text-shadow: $text-shadow-theme-dark;
         color: #fff;
       }
 
@@ -47,7 +47,7 @@
 
       .member-nav-name,
       button {
-        text-shadow: $text-shadow-theme-dark;
+        // text-shadow: $text-shadow-theme-dark;
       }
     }
 

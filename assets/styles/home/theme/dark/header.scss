@@ -37,7 +37,7 @@
 
       #home-page {
         .title {
-          text-shadow: $title-text-shadow;
+          // text-shadow: $title-text-shadow;
           color: #f1f1f1 !important;
         }
 
@@ -120,7 +120,7 @@
     .footer_icon button.icon-menu,
     .title-menu-buttom {
       color: #f1f1f1 !important;
-      text-shadow: $text-shadow-theme-dark;
+      // text-shadow: $text-shadow-theme-dark;
     }
 
     // #menu-bottom a .footer_icon button.icon-menu
@@ -220,7 +220,7 @@
 
   .table {
     &.text-center {
-      text-shadow: $text-shadow-theme-dark;
+      // text-shadow: $text-shadow-theme-dark;
 
     }
 
