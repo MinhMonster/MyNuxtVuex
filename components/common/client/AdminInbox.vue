@@ -1,5 +1,5 @@
 <template>
-  <p class="text-center bold mt-3 text-16-700 mb-0">
+  <p id="admin-inbox" class="text-center bold mt-3 text-16-700 mb-0">
     <a href="https://messenger.com/t/minh.docong.7" target="_blank">
       <span class="flex-center">
         <BaseSvg
@@ -28,18 +28,25 @@
   </p>
 </template> 
 <style lang="scss" scoped>
-.bg-svg-white {
-  background: #fff;
-  height: 18px;
-  width: 18px;
-  // margin-left: 1px;
-  margin-top: 0px;
-  border-radius: 3px;
+#admin-inbox {
+  .bg-svg-white {
+    &.v-btn--icon.v-size--default {
+      height: 18px !important;
+      width: 18px !important;
+    }
+    margin-top: 0px;
+    border-radius: 3px;
+  }
 }
+
 ::v-deep {
   .base-svg svg {
     filter: none !important;
     box-shadow: none;
+    background: #fff;
+    padding-top: 0px;
+    padding-right: 0px;
+    border-radius: 3px;
   }
 }
 </style>
