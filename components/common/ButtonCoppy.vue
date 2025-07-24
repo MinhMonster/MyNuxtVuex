@@ -7,7 +7,7 @@
     class="mb-1"
   >
     <BaseSvg v-if="!isCheck" name="content-copy" />
-    <BaseSvg v-else :class="{ 'v-icon-success': isCheck }" name="check" />
+    <BaseSvg v-else color="success" :class="{ 'v-icon-success': isCheck }" name="check" />
   </span>
 </template>
 <script>

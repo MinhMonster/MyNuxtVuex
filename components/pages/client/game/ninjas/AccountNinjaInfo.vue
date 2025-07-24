@@ -1,29 +1,47 @@
 <template>
   <client-only>
     <div v-if="accountNinja">
-      <div v-if="isMobile" class="text-center text-danger bold mb-5">
+      <div v-if="isMobile" class="text-center text-danger bold">
         <BaseSvg name="next-bottom" />
         Xem thêm ảnh nick chi tiết ở bên dưới
         <BaseSvg name="next-bottom" />
       </div>
       <div v-if="!isMobile || !accountNinja.full" class="title">
-        <center><h3>Thông tin chi tiết</h3></center>
+        <center>
+          <h3>Thông tin chi tiết</h3>
+        </center>
       </div>
 
       <table class="table text-center">
         <tbody>
           <template v-if="!isMobile || !accountNinja.full">
             <tr>
-              <th class="info-nick">Class</th>
-              <td class="mua-nick">
-                <span>{{ classNinja(accountNinja.class) }}</span>
-              </td>
-            </tr>
-
-            <tr>
-              <th class="info-nick" style="">Cấp độ</th>
-              <td class="mua-nick">
-                <span> {{ accountNinja.level }}</span>
+              <td colspan="2" style="padding: 0">
+                <table style="width: 100%">
+                  <tr>
+                    <th
+                      class="info-nick bd-top"
+                      style="width: 25%"
+                    >
+                      Class
+                    </th>
+                    <td
+                      class="mua-nick bd-top"
+                      style="width: 25%;"
+                    >
+                      <span>{{ classNinja(accountNinja.class) }}</span>
+                    </td>
+                    <th
+                      class="info-nick bd-top"
+                      style="width: 25%"
+                    >
+                      Cấp độ
+                    </th>
+                    <td class="mua-nick bd-top-left" style="width: 25%">
+                      <span>{{ accountNinja.level }}</span>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
 
@@ -34,12 +52,12 @@
               </td>
             </tr>
 
-            <tr>
+            <!-- <tr>
               <th class="info-nick" style="">Đồ</th>
               <td class="mua-nick">
                 <span>{{ accountNinja.do }}</span>
               </td>
-            </tr>
+            </tr> -->
 
             <tr>
               <th class="info-nick" style="">Máy Chủ</th>
@@ -77,7 +95,10 @@
                   margin-bottom: 5px;
                 "
               ></div>
-              <span :class="{ 'text-line-middel text-danger': accountNinja.saleOff }"
+              <span
+                :class="{
+                  'text-line-middel text-danger': accountNinja.saleOff,
+                }"
                 >{{ cash_atm(accountNinja.giatien) }} ATM - MOMO</span
               >
               <div
@@ -119,21 +140,21 @@ export default {
   props: {
     accountNinja: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
       isBuy: "wallet",
       isShow: false,
-      isBank: false
+      isBank: false,
     };
   },
   methods: {
     buyNow() {
       this.isShow = true;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -142,9 +163,11 @@ export default {
   color: #1e5b7e;
   margin-bottom: 10px;
 }
+
 table.table tbody {
   // border: 1px solid #663019;
 }
+
 th.info-nick {
   width: 50%;
   padding: 7px;
@@ -152,6 +175,7 @@ th.info-nick {
   border: 1px solid #663019;
   background: #e28637;
 }
+
 .btn-buy-account,
 .mua-nick {
   cursor: pointer;
@@ -159,6 +183,7 @@ th.info-nick {
   color: #663019;
   border: 1px solid #663019;
   background: #ffcf9c;
+
   .v-btn {
     font-weight: 400;
   }
@@ -168,10 +193,12 @@ th.info-nick {
   color: #ffcf9c;
   border: 1px solid #663019;
   background: #e28637;
+
   .v-btn {
     color: #ffcf9c;
   }
 }
+
 .btn-buy-account,
 .btn-buy-account-hover,
 .mua-nick {
@@ -179,11 +206,23 @@ th.info-nick {
   border-radius: 3px !important;
   text-align: center;
 }
+
 .table td {
   padding: 5px;
   vertical-align: top;
-  border: 1px solid #e28637;
+  border: 0px solid #e28637;
+  .bd-top-left {
+    border-top-width: 1px !important;
+    border-left-width: 0px !important;
+    border-bottom-width: 0px !important;
+    border-right-width: 1px !important;
+    // border: 0px !important;
+  }
+  .bd-top {
+    border-top-width: 1px !important;
+  }
 }
+
 .mua-nick span {
   font-size: 14px;
   font-weight: 400;
@@ -204,6 +243,7 @@ th.info-nick {
     .modal-title {
       color: #561d00;
     }
+
     .close {
       display: flex !important;
       color: #663019;
@@ -231,11 +271,13 @@ th.info-nick {
   .modal-dialog-scrollable .modal-content {
     overflow: visible;
   }
+
   .modal-body {
     position: relative;
     border: 2px solid #561d00;
     background: #ffcf9c;
     padding: 10px;
+
     .modal-info {
       border-radius: 4px;
       position: relative;
@@ -243,16 +285,20 @@ th.info-nick {
       color: #663019;
       border: 1px solid #663019;
       background: #ffefa3;
+
       .tab-content {
         padding: 5px;
       }
+
       .form-group {
         padding: 5px;
         margin-bottom: 0px;
       }
+
       .nav-tabs {
         .nav-item {
           width: 50%;
+
           .nav-link {
             border: none;
             color: #663019;
@@ -267,12 +313,15 @@ th.info-nick {
           }
         }
       }
+
       .row {
         padding: 0;
         margin: 0px;
+
         .col-md-6 {
           margin: 0px;
           padding: 0px;
+
           .info-atm-momo {
             border: 1px solid #663019;
             background: #ffcf9c;
@@ -285,6 +334,7 @@ th.info-nick {
       }
     }
   }
+
   .modal-footer {
     border: 2px solid #663019;
     background: #e28637;
@@ -294,6 +344,7 @@ th.info-nick {
     //   background: #663019;
     // }
   }
+
   // .custom-control-input:checked ~ .custom-control-label::before {
   //   color: #fff;
   //   border-color: #663019;
@@ -302,6 +353,7 @@ th.info-nick {
   .custom-control-label::before {
     top: 0;
   }
+
   .custom-control-label::after {
     top: 0;
   }

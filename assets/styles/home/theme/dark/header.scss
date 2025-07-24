@@ -228,6 +228,9 @@
       background: #171e28 !important;
       color: #f1f1f1;
       border: 1px solid #031019 !important;
+      &.bd-top {
+      border: 1px solid #171e28 !important;
+      }
     }
 
     td.mua-nick {
