@@ -33,12 +33,12 @@
                 {{ format_number(props.row.id) }}
               </nuxt-link>
             </template>
-            <template #giatien="props">
-              {{ cash_atm(props.row.giatien * (1 - props.row.saleOff / 100)) }}
+            <template #selling_price="props">
+              {{ cash_atm(props.row.selling_price * (1 - props.row.active_discount / 100)) }}
             </template>
-            <template #gianhap="props">
+            <template #purchase_price="props">
               <span class="text-danger">{{
-                format_number(props.row.gianhap)
+                format_number(props.row.purchase_price)
               }}</span>
             </template>
             <template #profit="props">
@@ -175,7 +175,7 @@ export default {
         {
           key: "selling_price",
           label: "Price",
-          type: "number",
+          type: "cash_sale_off",
           attributes: {
             class: "text-right",
             style: {

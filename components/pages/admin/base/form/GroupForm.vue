@@ -17,7 +17,7 @@
       :disabled="true"
       :value="
         cash_atm(
-          dataForm[`${getName}`] * (1 - (dataForm['saleOff'] || 0) / 100)
+          dataForm[`${getName}`] * (1 - (dataForm['active_discount'] || 0) / 100)
         )
       "
     />
