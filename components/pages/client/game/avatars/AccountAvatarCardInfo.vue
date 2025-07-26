@@ -1,46 +1,43 @@
 <template>
-  <div :id="accountAvatar.ID" class="account-info">
-    <AccountAvatarTL :account-avatar="accountAvatar" />
+  <div :id="account.id" class="account-info">
+    <AccountAvatarTL :account="account" />
     <v-row class="account-body">
       <v-col cols="12">
         <span class="account-thongtin break-line-1">
-          Thông tin: {{ accountAvatar.thongtin }}
+          <div class="flex flex-center">
+            <span class="mr-1">Thông tin: </span
+            ><span v-html="account.description"></span>
+          </div>
         </span>
       </v-col>
       <v-col cols="3"
         ><span class="account-code"
-          >Mã Số <br />{{ format_number(accountAvatar.ID) }}</span
+          >Mã Số <br />{{ format_number(account.id) }}</span
         ></v-col
       >
       <v-col cols="3"
         ><span class="account-class"
           >Đất<br />
-          {{ accountAvatar.dat }}</span
+          {{ account.land }}</span
         ></v-col
       >
       <v-col cols="3"
-        ><span class="account-server"
-          >Gà <br />{{ accountAvatar.ga }}</span
-        ></v-col
+        ><span class="account-server">Gà <br />{{ account.pets }}</span></v-col
       >
       <v-col cols="3"
-        ><span class="account-server"
-          >Cá <br />{{ accountAvatar.ca }}</span
-        ></v-col
+        ><span class="account-server">Cá <br />{{ account.fish }}</span></v-col
       >
       <v-col cols="6">
         <span :class="['account-cash', { 'has-sale': hasDiscount }]">
           <template v-if="hasDiscount">
-            <span class="bg-danger sale-off">
-              -{{ accountAvatar.saleOff }}%
-            </span>
+            <span class="bg-danger sale-off"> -{{ account.active_discount }}% </span>
             <span class="cash-sale"> {{ cash_atm(discountedPrice) }} Vnđ </span>
           </template>
-          <template v-else> {{ cash_atm(accountAvatar.price) }} Vnđ </template>
+          <template v-else> {{ cash_atm(account.selling_price) }} Vnđ </template>
         </span>
       </v-col>
       <v-col cols="6">
-        <nuxt-link :to="`/teamobi/avatar/${accountAvatar.ID}`">
+        <nuxt-link :to="`/teamobi/avatar/${account.id}`">
           <span class="account-buy">Xem Nick</span>
         </nuxt-link>
       </v-col>
@@ -54,23 +51,28 @@ import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvata
 export default {
   components: { AccountAvatarTL },
   props: {
-    accountAvatar: {
+    account: {
       type: Object,
       default: () => ({}),
     },
   },
   computed: {
     hasDiscount() {
-      return this.accountAvatar?.saleOff > 0;
+      return this.account?.active_discount > 0;
     },
     discountedPrice() {
-      return this.accountAvatar.price * (1 - this.accountAvatar.saleOff / 100);
+      return this.account.selling_price * (1 - this.account.active_discount / 100);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+::v-deep {
+  .v-application p {
+    margin-bottom: 0px !important;
+  }
+}
 .account-body {
   padding: 15px;
   .col-12,

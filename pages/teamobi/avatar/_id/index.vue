@@ -1,9 +1,9 @@
 <template>
   <client-only>
     <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
-      <template v-if="accountAvatar && accountAvatar.ID && ready" #body>
+      <template v-if="account && account.id && ready" #body>
         <AccountAvatarDetail
-          :account-avatar="accountAvatar"
+          :account="account"
         ></AccountAvatarDetail>
       </template>
       <template #table>
@@ -44,8 +44,8 @@ export default {
       ready: "ready",
     }),
     ...mapFields("home/game/avatars", {
-      accountAvatar: "accountAvatar",
-      accountAvatars: "accountAvatars",
+      account: "account",
+      accounts: "accounts",
     }),
     accountId() {
       return this.$route.params.id;
@@ -71,11 +71,7 @@ export default {
     async fetchAccount() {
       this.ready = false;
 
-      await this.fetchAccountAvatar({
-        params: {
-          id: this.accountId,
-        },
-      });
+      await this.fetchAccountAvatar(this.accountId);
       this.ready = true;
 
       await this.setQuery({ page: this.queryPage });
@@ -84,8 +80,8 @@ export default {
         await this.setQuery({
           perPage: 8,
           q: {
-            giatien: this.accountAvatar.price,
-            id_other: this.accountAvatar.ID,
+            giatien: this.account.price,
+            id_other: this.account.id,
           },
         });
         await this.fetchAccountAvatars();

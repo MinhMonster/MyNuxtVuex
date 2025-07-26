@@ -3,7 +3,7 @@
     <div
       v-if="image"
       class="image-avatar"
-      :class="{ full: accountAvatar?.full, 'avatar-detail': isDetail }"
+      :class="{ full: account?.is_full_image, 'avatar-detail': isDetail }"
     >
       <img
         :src="image"
@@ -29,7 +29,7 @@
               :src="image"
               alt="Image Account Avatar"
               class="image-account w-100"
-              :class="{ full: accountAvatar?.full }"
+              :class="{ full: account?.is_full_image }"
               :style="{ width: percent + '%' }"
             />
           </div>
@@ -79,7 +79,7 @@ export default {
     };
   },
   props: {
-    accountAvatar: {
+    account: {
       type: Object,
       default: () => ({}),
     },
@@ -87,7 +87,7 @@ export default {
   },
   computed: {
     image() {
-      const img = this.accountAvatar?.images?.[0];
+      const img = this.account?.images?.[0];
       if (!img) return null;
 
       return img.includes("muabannick.pro")
