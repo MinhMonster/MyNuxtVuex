@@ -27,14 +27,19 @@
           >
             <template #id="props">
               <nuxt-link light :to="`/admin/game/ninjas/${props.row.id}`">
-                <v-icon size="15" class="text-primary"
+                <!-- <v-icon size="15" class="text-primary"
                   >mdi-arrow-right-bold</v-icon
-                >
-                {{ format_number(props.row.id) }}
+                > -->
+                # {{ format_number(props.row.id) }}
               </nuxt-link>
             </template>
             <template #selling_price="props">
-              {{ cash_atm(props.row.selling_price * (1 - props.row.active_discount / 100)) }}
+              {{
+                cash_atm(
+                  props.row.selling_price *
+                    (1 - props.row.active_discount / 100)
+                )
+              }}
             </template>
             <template #purchase_price="props">
               <span class="text-danger">{{
@@ -97,7 +102,7 @@ export default {
           key: "id",
           label: "ID",
           type: "number",
-          fixed: 'left',
+          fixed: "left",
           attributes: {
             align: "center",
 
@@ -211,7 +216,7 @@ export default {
           key: "actions",
           label: "Actions",
           type: "actions",
-          fixed: 'right',
+          fixed: "right",
           attributes: {
             align: "center",
             style: {

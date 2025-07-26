@@ -319,6 +319,7 @@ const formModalNinja =
       type: "text",
       value: 'username',
       cols: 6,
+      sm: 6,
       lg: 6,
       md: 6
     },
@@ -327,6 +328,7 @@ const formModalNinja =
       type: "text",
       value: 'character_name',
       cols: 6,
+      sm: 6,
       lg: 6,
       md: 6
     },
@@ -335,6 +337,7 @@ const formModalNinja =
       type: "cash",
       value: 'discount_percent',
       cols: 6,
+      sm: 6,
       lg: 6,
       md: 6
     },
@@ -344,6 +347,7 @@ const formModalNinja =
       disabled: true,
       value: 'active_discount',
       cols: 6,
+      sm: 6,
       lg: 6,
       md: 6
     },
@@ -352,6 +356,7 @@ const formModalNinja =
       type: "cash",
       value: 'selling_price',
       cols: 6,
+      sm: 6,
       lg: 6,
       md: 6
     },
@@ -360,6 +365,7 @@ const formModalNinja =
       type: "cash_sale_off",
       value: 'selling_price',
       cols: 6,
+      sm: 6,
       lg: 6,
       md: 6
     },
@@ -368,6 +374,7 @@ const formModalNinja =
       type: "cash",
       value: 'purchase_price',
       cols: 6,
+      sm: 6,
       lg: 6,
       md: 6
     },
@@ -376,6 +383,7 @@ const formModalNinja =
       value: 'giatien',
       type: "profit",
       cols: 6,
+      sm: 6,
       lg: 6,
       md: 6
     },

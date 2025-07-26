@@ -3,7 +3,6 @@
 
 import { mapFields } from "vuex-map-fields";
 
-
 export default {
   data() {
     return {
