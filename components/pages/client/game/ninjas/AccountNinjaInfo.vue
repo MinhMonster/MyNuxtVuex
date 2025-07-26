@@ -6,7 +6,7 @@
         Xem thêm ảnh nick chi tiết ở bên dưới
         <BaseSvg name="next-bottom" />
       </div>
-      <div v-if="!isMobile || !accountNinja.full" class="title">
+      <div v-if="!isMobile || !accountNinja.is_full_image" class="title">
         <center>
           <h3>Thông tin chi tiết</h3>
         </center>
@@ -14,29 +14,16 @@
 
       <table class="table text-center">
         <tbody>
-          <template v-if="!isMobile || !accountNinja.full">
+          <template v-if="!isMobile || !accountNinja.is_full_image">
             <tr>
               <td colspan="2" style="padding: 0">
                 <table style="width: 100%">
                   <tr>
-                    <th
-                      class="info-nick bd-top"
-                      style="width: 25%"
-                    >
-                      Class
-                    </th>
-                    <td
-                      class="mua-nick bd-top"
-                      style="width: 25%;"
-                    >
+                    <th class="info-nick bd-top" style="width: 25%">Class</th>
+                    <td class="mua-nick bd-top" style="width: 25%">
                       <span>{{ classNinja(accountNinja.class) }}</span>
                     </td>
-                    <th
-                      class="info-nick bd-top"
-                      style="width: 25%"
-                    >
-                      Cấp độ
-                    </th>
+                    <th class="info-nick bd-top" style="width: 25%">Cấp độ</th>
                     <td class="mua-nick bd-top-left" style="width: 25%">
                       <span>{{ accountNinja.level }}</span>
                     </td>
@@ -48,7 +35,7 @@
             <tr>
               <th class="info-nick" style="">Vũ Khí</th>
               <td class="mua-nick">
-                <span>{{ accountNinja.vukhi }}</span>
+                <span>{{ accountNinja.weapon }}</span>
               </td>
             </tr>
 
@@ -68,7 +55,7 @@
             <tr>
               <th class="info-nick" style="">Chi tiết</th>
               <td class="mua-nick">
-                <span>{{ accountNinja.thongtin }} </span>
+                <span v-html="accountNinja.description"></span>
               </td>
             </tr>
           </template>
@@ -79,13 +66,13 @@
               Giá Bán
               <br />
               {{
-                accountNinja.saleOff
-                  ? "(Giảm giá: " + accountNinja.saleOff + "%)"
+                accountNinja.active_discount
+                  ? "(Giảm giá: " + accountNinja.active_discount + "%)"
                   : ""
               }}
             </th>
             <td class="mua-nick">
-              <span>{{ format_number(accountNinja.giatien) }} Card </span>
+              <span>{{ format_number(accountNinja.selling_price) }} Card </span>
               <div
                 style="
                   width: 100%;
@@ -97,12 +84,12 @@
               ></div>
               <span
                 :class="{
-                  'text-line-middel text-danger': accountNinja.saleOff,
+                  'text-line-middel text-danger': accountNinja.active_discount,
                 }"
-                >{{ cash_atm(accountNinja.giatien) }} ATM - MOMO</span
+                >{{ cash_atm(accountNinja.selling_price) }} ATM - MOMO</span
               >
               <div
-                v-if="accountNinja.saleOff"
+                v-if="accountNinja.active_discount"
                 style="
                   width: 100%;
                   height: 1px;
@@ -111,10 +98,11 @@
                   margin-bottom: 5px;
                 "
               ></div>
-              <span v-if="accountNinja.saleOff"
+              <span v-if="accountNinja.active_discount"
                 >{{
                   cash_atm(
-                    accountNinja.giatien * (1 - accountNinja.saleOff / 100)
+                    accountNinja.selling_price *
+                      (1 - accountNinja.active_discount / 100)
                   )
                 }}
                 ATM - MOMO

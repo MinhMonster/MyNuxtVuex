@@ -4,7 +4,7 @@
       <tr>
         <th class="info-nick">Mã Số:</th>
         <td class="mua-nick">
-          <span>{{ format_number(account.ID) }}</span>
+          <span>{{ format_number(account.id) }}</span>
         </td>
       </tr>
 
@@ -34,7 +34,7 @@
           ATM-MOMO:
           <template v-if="hasDiscount">
             <br />
-            <p class="text-danger">(Giảm giá: {{ account.saleOff }}%)</p>
+            <p class="text-danger">(Giảm giá: {{ account.active_discount }}%)</p>
           </template>
         </th>
         <td class="mua-nick">
@@ -66,14 +66,14 @@ export default {
   },
   computed: {
     price() {
-      return this.account.giatien || this.account.price || 0;
+      return this.account.selling_price || this.account.price || 0;
     },
     hasDiscount() {
-      return this.account.saleOff > 0;
+      return this.account.active_discount > 0;
     },
     discountedPrice() {
       return this.hasDiscount
-        ? this.price * (1 - this.account.saleOff / 100)
+        ? this.price * (1 - this.account.active_discount / 100)
         : this.price;
     },
   },

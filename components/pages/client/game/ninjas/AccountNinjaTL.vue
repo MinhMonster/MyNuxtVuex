@@ -2,20 +2,20 @@
   <client-only>
     <div v-if="accountNinja" class="image-card">
       <img
-        v-if="accountNinja.hinhanh[0].includes('muabannick.pro')"
-        :src="accountNinja.hinhanh[0]"
+        v-if="accountNinja.images[0].includes('muabannick.pro')"
+        :src="accountNinja.images[0]"
         alt=""
         class="image-ninja"
-        :class="{ full: accountNinja.full }"
+        :class="{ full: accountNinja.is_full_image }"
       />
       <img
         v-else
-        :src="`https://muabannick.pro${accountNinja.hinhanh[0]}`"
+        :src="`https://muabannick.pro${accountNinja.images[0]}`"
         alt=""
         class="image-ninja"
-        :class="{ full: accountNinja.full }"
+        :class="{ full: accountNinja.is_full_image }"
       />
-      <template v-if="!accountNinja.full">
+      <template v-if="!accountNinja.is_full_image">
         <span
           v-if="accountNinja.tl1"
           class="account-tl text-13-450"
@@ -79,10 +79,10 @@
         >
 
         <span
-          v-if="accountNinja.tl11"
+          v-if="accountNinja.yoroi"
           class="account-tl text-13-450"
           style="left: 44.5%; top: 62%"
-          >{{ accountNinja.tl11 }}</span
+          >{{ accountNinja.yoroi }}</span
         >
 
         <span
@@ -119,7 +119,7 @@
         </span>
 
         <span class="account-ingame text-13-450">
-          @{{ accountNinja.ingame }}
+          @{{ accountNinja.character_name }}
         </span>
       </template>
 

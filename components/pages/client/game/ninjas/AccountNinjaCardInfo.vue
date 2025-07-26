@@ -9,7 +9,7 @@
       >
       <v-col cols="3"
         ><span class="account-code"
-          >Mã Số <br />{{ format_number(accountNinja.ID) }}</span
+          >Mã Số <br />{{ format_number(accountNinja.id) }}</span
         ></v-col
       >
       <v-col cols="3"
@@ -24,25 +24,25 @@
         ></v-col
       >
       <v-col cols="6">
-        <span v-if="accountNinja.saleOff" class="account-cash has-sale">
+        <span v-if="accountNinja.active_discount" class="account-cash has-sale">
           <span class="bg-danger sale-off">
-            {{ "-" + accountNinja.saleOff + "% " }}</span
+            {{ "-" + accountNinja.active_discount + "% " }}</span
           >
           <span class="text-center cash-sale">
             {{
               " " +
-              cash_atm(accountNinja.giatien * (1 - accountNinja.saleOff / 100))
+              cash_atm(accountNinja.selling_price * (1 - accountNinja.active_discount / 100))
             }}
             Vnđ</span
           >
         </span>
 
         <span v-else class="account-cash">
-          {{ cash_atm(accountNinja.giatien) }} Vnđ
+          {{ cash_atm(accountNinja.selling_price) }} Vnđ
         </span>
       </v-col>
       <v-col cols="6">
-        <nuxt-link :to="`/teamobi/ninja-school/${this.accountNinja.ID}`">
+        <nuxt-link :to="`/teamobi/ninja-school/${this.accountNinja.id}`">
           <span class="account-buy"> Xem Nick</span>
         </nuxt-link>
       </v-col>

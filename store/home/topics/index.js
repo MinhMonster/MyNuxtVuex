@@ -73,34 +73,3 @@ export default {
 
   }
 }
-
-export const newAccountNinja = {
-  ID: "",
-  taikhoan: "",
-  ingame: "",
-  level: "",
-  vukhi: "",
-  mcs: "",
-  thongtin: "",
-  loainick: 1,
-  class: 1,
-  server: 1,
-  giatien: "",
-  gianhap: "",
-  sim: "",
-  hinhanh: [],
-  do: "",
-
-  tl1: "",
-  tl2: "",
-  tl3: "",
-  tl4: "",
-  tl5: "",
-  tl6: "",
-  tl7: "",
-  tl8: "",
-  tl9: "",
-  tl10: "",
-  tl11: "",
-};
-
