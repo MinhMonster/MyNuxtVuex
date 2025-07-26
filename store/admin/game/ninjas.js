@@ -2,8 +2,6 @@ import { defaultPagy, typeNinjaOptions, classNinjaOptions, serverNinjaOptions } 
 import { enableResetStore } from '@/utils/admin/common'
 import { getField, updateField } from "vuex-map-fields";
 
-const SET_STATE = "SET_STATE";
-
 export default enableResetStore({
   namespaced: true,
   state() {
@@ -321,49 +319,65 @@ const formModalNinja =
       type: "text",
       value: 'username',
       cols: 6,
-    lg: 6,
-    md: 6
+      lg: 6,
+      md: 6
     },
     {
       title: "Nhân Vật",
       type: "text",
       value: 'character_name',
       cols: 6,
-    lg: 6,
-    md: 6
+      lg: 6,
+      md: 6
     },
-
+    {
+      title: "Discount",
+      type: "cash",
+      value: 'discount_percent',
+      cols: 6,
+      lg: 6,
+      md: 6
+    },
+    {
+      title: "Discount Active",
+      type: "text",
+      disabled: true,
+      value: 'active_discount',
+      cols: 6,
+      lg: 6,
+      md: 6
+    },
     {
       title: "Giá Bán (Card)",
       type: "cash",
       value: 'selling_price',
       cols: 6,
-    lg: 6,
-    md: 6
+      lg: 6,
+      md: 6
     },
     {
       title: "Giá Bán (Vnđ)",
       type: "cash_sale_off",
       value: 'selling_price',
       cols: 6,
-    lg: 6,
-    md: 6
+      lg: 6,
+      md: 6
     },
     {
       title: "Giá Nhập (Vnđ)",
       type: "cash",
       value: 'purchase_price',
       cols: 6,
-    lg: 6,
-    md: 6
+      lg: 6,
+      md: 6
     },
     {
       title: "Lợi Nhuận (Vnđ)",
       value: 'giatien',
       type: "profit",
       cols: 6,
-    lg: 6,
-    md: 6
+      lg: 6,
+      md: 6
     },
     // {
     //   title: "Giảm Giá (%)",
