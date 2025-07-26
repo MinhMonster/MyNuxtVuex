@@ -619,12 +619,6 @@ code {
   max-height: 50px !important;
 }
 
-
-[disabled] {
-  cursor: not-allowed;
-  opacity: 0.65
-}
-
 #admin .v-toolbar__content .v-btn.v-btn--icon.v-size--default,
 #admin.v-toolbar__extension .v-btn.v-btn--icon.v-size--default {
   height: 36px;

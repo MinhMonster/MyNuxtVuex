@@ -97,6 +97,7 @@ export default {
           key: "id",
           label: "ID",
           type: "number",
+          fixed: 'left',
           attributes: {
             align: "center",
 
@@ -210,6 +211,7 @@ export default {
           key: "actions",
           label: "Actions",
           type: "actions",
+          fixed: 'right',
           attributes: {
             align: "center",
             style: {

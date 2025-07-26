@@ -31,6 +31,11 @@ html {
   justify-content: center;
 }
 
+[disabled] {
+  cursor: not-allowed !important;
+  opacity: 0.65 !important;
+}
+
 .loading {
   position: fixed;
   z-index: 99999999;
