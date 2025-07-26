@@ -170,7 +170,7 @@ export default {
       return this.format_number(Math.round((number * 0.85) / 10000).toFixed(0) * 10000)
     },
     profit_atm(account) {
-      const percent = 1 - ((account.discount_percent / 100) || 0);
+      const percent = 1 - (((account.active_discount || 0) / 100) || 0);
       const profit = (account.selling_price * 0.85 * percent) - account.purchase_price;
       return this.format_number(Math.round(profit / 10000).toFixed(0) * 10000)
     },

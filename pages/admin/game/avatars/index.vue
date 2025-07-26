@@ -25,38 +25,30 @@
               action: 'fetchAccountAvatars',
             }"
           >
-            <!-- <template #actions="props">
-              <v-btn light icon :to="`/admin/game/avatars/${props.row.ID}`">
-                <v-icon>mdi-pencil-box-multiple-outline</v-icon>
-              </v-btn>
-              <v-btn
-                light
-                color="blue"
-                icon
-                :to="`/teamobi/avatar/${props.row.ID}`"
-              >
-                <v-icon>mdi-eye</v-icon>
-              </v-btn>
-            </template> -->
             <template #id="props">
               <nuxt-link
                 class="flex"
                 light
                 :to="`/admin/game/avatars/${props.row.id}`"
               >
-                <v-icon size="15" class="text-info"
+                <!-- <v-icon size="15" class="text-info"
                   >mdi-arrow-right-bold</v-icon
-                >
-                {{ format_number(props.row.id) }}
+                > -->
+                #{{ format_number(props.row.id) }}
               </nuxt-link>
             </template>
-            <template #giatien="props">
-              {{ cash_atm(props.row.giatien * (1 - props.row.saleOff / 100)) }}
+            <template #selling_price="props">
+              {{
+                cash_atm(
+                  props.row.selling_price *
+                    (1 - (props.row.active_discount || 0) / 100)
+                )
+              }}
             </template>
-            <template #gianhap="props">
-              <span class="text-danger">{{
-                format_number(props.row.gianhap)
-              }}</span>
+            <template #purchase_price="props">
+              <span class="text-danger">
+                {{ format_number(props.row.purchase_price) }}
+              </span>
             </template>
             <template #profit="props">
               <span class="text-success">{{ profit_atm(props.row) }}</span>
@@ -117,6 +109,7 @@ export default {
           key: "id",
           label: "ID",
           type: "number",
+          fixed: "left",
           attributes: {
             align: "center",
             style: {
@@ -209,6 +202,7 @@ export default {
           key: "actions",
           label: "Actions",
           type: "actions",
+          fixed: "right",
           attributes: {
             align: "center",
             style: {

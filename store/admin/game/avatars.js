@@ -201,7 +201,23 @@ const formModalAvatar =
       lg: 12,
       md: 12
     },
-
+    {
+      title: "Discount",
+      type: "cash",
+      value: 'discount_percent',
+      cols: 6,
+      lg: 6,
+      md: 6
+    },
+    {
+      title: "Discount Active",
+      type: "text",
+      disabled: true,
+      value: 'active_discount',
+      cols: 6,
+      lg: 6,
+      md: 6
+    },
     {
       title: "Giá Bán (Card)",
       type: "cash",
