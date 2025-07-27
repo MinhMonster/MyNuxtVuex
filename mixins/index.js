@@ -333,6 +333,18 @@ export default {
         case "VietcomBank":
           return "0541000311219";
       }
-    }
+    },
+    game(accountType) {
+      switch (accountType) {
+        case "ninja":
+          return "Ninja";
+        case "avatar":
+          return "Avatar";
+        case "ngocrong":
+          return "NRO";
+        default:
+          return "";
+      }
+    },
   },
 };

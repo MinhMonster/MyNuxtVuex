@@ -80,25 +80,23 @@ export default {
     },
     async buyAccount({ commit, state }, payload) {
       try {
-          const response = await this.$repositories.homeUsers.buyAccount(payload);
-          return response.data
+        const res = await this.$repositories.homeUsers.buyAccount(payload);
+        return res.data
       } catch { }
     },
 
     async historyBuyAccount({ commit, state }, id) {
       try {
-        const response = await this.$repositories.homeUsers.historyBuyAccount(id);
-
-        commit(SET_STATE, { historyBuyAccount: response.data.historyBuyAccount });
+        const res = await this.$repositories.homeUsers.historyBuyAccount(id);
+        commit(SET_STATE, { historyBuyAccount: res.data.response });
 
       } catch { }
     },
     async historyBuyAccounts({ commit, state }) {
       try {
-        const response = await this.$repositories.homeUsers.historyBuyAccounts({ input: state.query });
-        commit(SET_STATE, { historyBuyAccounts: response.data.historyBuyAccounts });
-        commit(SET_STATE, { historyMeta: response.data.pagy });
-
+        const res = await this.$repositories.homeUsers.historyBuyAccounts({ input: state.query });
+        commit(SET_STATE, { historyBuyAccounts: res.data.response.data });
+        commit(SET_STATE, { historyMeta: res.data.response.meta });
       } catch { }
     },
     async historyChangeMoneys({ commit, state }) {

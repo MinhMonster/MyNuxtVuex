@@ -18,16 +18,16 @@ export default ($api) => ({
     return $api.post(`${resource}/register`, payload);
   },
   getToken() {
-    return $api.get(`${resource}/getToken.php`,)
+    return $api.get(`${resource}/getToken.php`)
   },
   fetchUser() {
-    return $api.get(`${resource}/user`,)
+    return $api.get(`${resource}/user`)
   },
   historyBuyAccounts(payload) {
-    return $api.get(`${resource}/history/historyBuyAccounts.php`, { params: { input: payload.input } },)
+    return $api.get(`${resource}/account-purchase-histories`, { params: { input: payload.input } },)
   },
-  historyBuyAccount(payload) {
-    return $api.get(`${resource}/history/historyBuyAccount.php?id=${payload}`)
+  historyBuyAccount(id) {
+    return $api.get(`${resource}/account-purchase-histories/${id}`)
   },
   buyAccount(payload) {
     return $api.post(`${resource}/account-purchase`, payload)

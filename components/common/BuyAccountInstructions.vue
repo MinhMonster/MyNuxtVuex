@@ -13,7 +13,7 @@
     ><br />
     <img src="/icon/icon-next-right.gif" /> ND:
     <span class="sms"
-      >Mua Nick {{ game }} {{ format_number(account.id) }} & SĐT
+      >Mua Nick {{ game(accountType) }} {{ format_number(account.id) }} & SĐT
       <ButtonCoppy
         :content="`Mua Nick ${game} ${format_number(account.id)} & SĐT`"
       ></ButtonCoppy></span
@@ -40,18 +40,6 @@ export default {
     },
   },
   computed: {
-    game() {
-      switch (this.accountType) {
-        case "ninja":
-          return "Ninja";
-        case "avatar":
-          return "Avatar";
-        case "ngocrong":
-          return "NRO";
-        default:
-          return "";
-      }
-    },
     price() {
       return this.account.selling_price || this.account.price;
     },

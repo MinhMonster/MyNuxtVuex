@@ -24,21 +24,21 @@
             </thead>
             <tbody>
               <tr v-for="(history, index) in histories" :key="index">
-                <td class="text-middle">{{ history.ID }}</td>
+                <td class="text-middle">{{ history.id }}</td>
 
                 <td class="text-middle text-left">
                   <v-row>
                     <v-col :cols="12" :sm="6" :md="3" :lg="3">
-                      Game: {{ history.accountType }}
+                      Game: {{ game(history.account_type) }}
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="2" :lg="3">
-                      Mã số: {{ format_number(history.accountId) }}
+                      Mã số: {{ format_number(history.account_id) }}
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="3" :lg="3">
-                      Giá: {{ format_number(history.accountCash) }} VNĐ
+                      Giá: {{ format_number(history.price) }} VNĐ
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="4" :lg="3">
-                      Time: {{ history.buyAt }}
+                      Time: {{ history.purchased_at }}
                     </v-col>
                   </v-row>
                 </td>
@@ -48,7 +48,7 @@
                     size="sx"
                     color="success"
                     class="btn btn-success btn-sm text-white bdrs-5px"
-                    :to="`/account/history/${history.ID}`"
+                    :to="`/account/history/${history.id}`"
                     >Xem
                   </v-btn>
                 </td>
@@ -71,18 +71,17 @@
 </template>
 
 <script>
+import mixins from "@/mixins/index";
 import HomePage from "@/components/pages/home/HomePage";
-
 import Pagination from "@/components/global/molecules/common/Pagination";
-
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
 
 export default {
+  mixins: [mixins],
   middleware: ["authentication"],
   layout: "clientLayout",
-
   components: { Pagination, HomePage },
   computed: {
     ...mapFields("global", { ready: "ready" }),

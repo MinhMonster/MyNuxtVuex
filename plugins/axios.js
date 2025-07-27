@@ -93,26 +93,11 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
           break;
       }
     }
-    if (code && code === 404) {
-      switch (layout) {
-        case "clientLayout":
-          redirect('/404')
-          if (response.data.message) {
-            $swal.fire({
-              title: response.data.message,
-              html: response.data.error_content,
-              icon: "error",
-              customClass: customClassSwal
-            });
-          }
-          break;
-      }
-    }
-
   });
 
   api.onError(error => {
     const code = parseInt(error.response && error.response.status)
+    const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
     // const code = parseInt(error.response && error.response.status)
     console.log(error.response);
     const isThemeDark = store.state.global.isThemeDark;
@@ -128,6 +113,14 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       });
     }
 
+    if (code && code === 404) {
+      switch (layout) {
+        case "clientLayout":
+          redirect('/404')
+          break;
+      }
+    }
+
     if (code === 409) {
       $swal.fire({
         title: "Tài khoản này đã bán",
@@ -140,7 +133,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     }
 
     if (code === 401) {
-      const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
       switch (layout) {
         case "clientLayout":
           store.dispatch("home/users/logout");
