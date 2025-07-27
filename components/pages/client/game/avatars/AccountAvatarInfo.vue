@@ -50,7 +50,7 @@
           </tr>
         </tbody>
       </table>
-      <GroupBtnBuyAccount :account="account" account-type="Avatar" />
+      <GroupBtnBuyAccount :account="account" account-type="avatar" />
     </div>
   </client-only>
 </template>

@@ -17,7 +17,7 @@
           </v-tabs>
           <v-window v-model="tab">
             <v-window-item :value="0">
-              <TablePayAccount :account="account" :game="game" />
+              <TablePayAccount :account="account" :account-type="accountType" />
             </v-window-item>
             <v-window-item :value="1">
               <slot name="account-info"></slot>
@@ -42,7 +42,10 @@
             </v-col>
 
             <v-col cols="12" sm="12" md="12">
-              <BuyAccountInstructions :account="account" :account-type="game" />
+              <BuyAccountInstructions
+                :account="account"
+                :account-type="accountType"
+              />
             </v-col>
           </v-row>
         </div>
@@ -72,7 +75,13 @@
           ><span>Nap tiền</span></v-btn
         >
 
-        <v-btn v-else color="success" :disabled="isLoading" class="btn-buy btn-sm" @click="buyNow()">
+        <v-btn
+          v-else
+          color="success"
+          :disabled="isLoading"
+          class="btn-buy btn-sm"
+          @click="buyNow()"
+        >
           <Loading v-if="isLoading" button></Loading>
           <span v-else> Thanh Toán </span>
         </v-btn>
@@ -102,9 +111,9 @@ export default {
       type: Object,
       default: () => {},
     },
-    game: {
+    accountType: {
       type: String,
-      default: "Ninja School Online",
+      default: "ninja",
     },
   },
   data() {
@@ -117,7 +126,7 @@ export default {
   computed: {
     ...mapState("home/users", ["token", "user"]),
     price() {
-      return this.account.giatien || this.account.price;
+      return this.account.selling_price || this.account.price;
     },
   },
   methods: {
@@ -133,11 +142,16 @@ export default {
       this.isLoading = true;
 
       const res = await this.buyAccount({
-        id: this.account.ID,
-        game: this.game,
+        account_id: this.account.id,
+        account_type: this.accountType,
       });
-      if (res.historyId) {
-        this.$router.push(`/account/history/${res.historyId}`);
+      if (res?.data?.id) {
+        this.$router.push(`/account/history/${res?.data?.id}`);
+        this.showSwal({
+          icon: "success",
+          title: res?.data?.message || "Mua thành công!",
+          html: "Vui lòng chờ vài phút <br/> Để Admin cập nhật thông tin <br/> Cảm ơn bạn đã sử dụng dịch vụ!",
+        });
       }
       this.isLoading = false;
     },

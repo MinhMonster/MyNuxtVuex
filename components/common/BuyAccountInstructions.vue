@@ -42,11 +42,11 @@ export default {
   computed: {
     game() {
       switch (this.accountType) {
-        case "Ninja School Online":
+        case "ninja":
           return "Ninja";
-        case "Avatar":
+        case "avatar":
           return "Avatar";
-        case "Ngọc Rồng Online":
+        case "ngocrong":
           return "NRO";
         default:
           return "";

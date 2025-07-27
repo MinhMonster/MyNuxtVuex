@@ -29,16 +29,8 @@ export default ($api) => ({
   historyBuyAccount(payload) {
     return $api.get(`${resource}/history/historyBuyAccount.php?id=${payload}`)
   },
-  buyAccountNinja(payload) {
-    return $api.post(`${resource}/buy/buyAccountNinja.php`, payload)
-
-  },
-  buyAccountAvatar(payload) {
-    return $api.post(`${resource}/buy/buyAccountAvatar.php`, payload)
-
-  },
-  buyAccountDragonBall(payload) {
-    return $api.post(`${resource}/buy/buyAccountDragonBall.php`, payload)
+  buyAccount(payload) {
+    return $api.post(`${resource}/account-purchase`, payload)
 
   },
   historyChangeMoneys(payload) {

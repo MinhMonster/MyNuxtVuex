@@ -113,7 +113,7 @@
       </table>
       <GroupBtnBuyAccount
         :account="accountNinja"
-        account-type="Ninja School Online"
+        account-type="ninja"
       />
     </div>
   </client-only>

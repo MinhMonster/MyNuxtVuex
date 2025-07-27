@@ -59,7 +59,7 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    game: {
+    accountType: {
       type: String,
       default: "",
     },
@@ -75,6 +75,18 @@ export default {
       return this.hasDiscount
         ? this.price * (1 - this.account.active_discount / 100)
         : this.price;
+    },
+    game() {
+      switch (this.accountType) {
+        case "ninja":
+          return "Ninja School Online";
+        case "avatar":
+          return "Avatar";
+        case "ngocrong":
+          return "Ngọc Rồng Online";
+        default:
+          return "";
+      }
     },
   },
 };

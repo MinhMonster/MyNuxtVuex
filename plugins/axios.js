@@ -115,9 +115,28 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     const code = parseInt(error.response && error.response.status)
     // const code = parseInt(error.response && error.response.status)
     console.log(error.response);
-
+    const isThemeDark = store.state.global.isThemeDark;
+    const customClassSwal = {
+      container: isThemeDark ? "swal-dark" : "",
+    }
     if (code === 400) {
-      redirect('/400')
+      $swal.fire({
+        title: "Đã có lỗi xảy ra",
+        html: "Hãy liên hện Admin để kiểm tra <br/> Xin cảm ơn!",
+        icon: "error",
+        customClass: customClassSwal
+      });
+    }
+
+    if (code === 409) {
+      $swal.fire({
+        title: "Tài khoản này đã bán",
+        html: "Hãy chọn mua Tài khoản khác <br/> Cảm ơn bạn nhiều nhé ❤️",
+        icon: "error",
+        customClass: customClassSwal
+      }).then(() => {
+        window.history.back();
+      });
     }
 
     if (code === 401) {

@@ -80,33 +80,11 @@ export default {
     },
     async buyAccount({ commit, state }, payload) {
       try {
-        if (payload.game === "Ninja School Online") {
-          const response = await this.$repositories.homeUsers.buyAccountNinja({
-            input: {
-              id: payload.id
-            }
-          });
-          return response.data.buyAccountNinja
-
-        } else if (payload.game === "Avatar") {
-          const response = await this.$repositories.homeUsers.buyAccountAvatar({
-            input: {
-              id: payload.id
-            }
-          });
-          return response.data.buyAccountAvatar
-        } else if (payload.game === "Ngọc Rồng Online") {
-          const response = await this.$repositories.homeUsers.buyAccountDragonBall({
-            input: {
-              id: payload.id
-            }
-          });
-          return response.data.buyAccountDragonBall
-        }
-
+          const response = await this.$repositories.homeUsers.buyAccount(payload);
+          return response.data
       } catch { }
     },
-    
+
     async historyBuyAccount({ commit, state }, id) {
       try {
         const response = await this.$repositories.homeUsers.historyBuyAccount(id);

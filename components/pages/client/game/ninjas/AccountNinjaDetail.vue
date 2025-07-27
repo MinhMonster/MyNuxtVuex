@@ -97,7 +97,7 @@
         </v-row>
         <GroupBtnBuyAccount
           :account="accountNinja"
-          account-type="Ninja School Online"
+          account-type="ninja"
         />
       </v-col>
     </v-row>

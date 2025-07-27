@@ -80,7 +80,7 @@
         </v-row>
         <GroupBtnBuyAccount
           :account="account"
-          account-type="Ngọc Rồng Online"
+          account-type="ngocrong"
         />
       </v-col>
     </v-row>

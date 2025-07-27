@@ -101,7 +101,7 @@
             </div>
           </v-col>
         </v-row>
-        <GroupBtnBuyAccount :account="account" account-type="Avatar" />
+        <GroupBtnBuyAccount :account="account" account-type="avatar" />
       </v-col>
 
     </v-row>
