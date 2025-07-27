@@ -39,10 +39,7 @@ export default {
     async login({ commit }, payload) {
       try {
         const response = await this.$repositories.homeUsers.login(payload);
-        commit(
-          AUTH_SUCCESS,
-          response.data
-        );
+        commit(AUTH_SUCCESS, response.data);
       } catch { }
     },
     async loginFb({ commit },) {
@@ -73,7 +70,7 @@ export default {
     async fetchUser({ commit }) {
       try {
         const response = await this.$repositories.homeUsers.fetchUser();
-        const userInfo = response.data.userInfo;
+        const userInfo = response.data.user;
         if (userInfo) {
           commit(SET_USER_INFO, userInfo);
         } else {
@@ -196,7 +193,7 @@ export default {
     },
 
     async logout({ commit }) {
-      await this.$repositories.homeUsers.logout();
+      // await this.$repositories.homeUsers.logout();
       commit(AUTH_LOGOUT);
     },
   },

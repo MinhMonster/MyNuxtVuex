@@ -30,14 +30,6 @@
                 </td>
               </tr>
               <tr>
-                <th class="info-nick" style="width: 30%">Tài khoản</th>
-                <td class="mua-nick">
-                  <span
-                    ><strong>{{ user.username }} </strong>
-                  </span>
-                </td>
-              </tr>
-              <tr>
                 <th class="info-nick" style="width: 30%">Mật khẩu</th>
                 <td class="mua-nick">
                   <span><strong>*********</strong></span>

@@ -1,10 +1,9 @@
 <template>
   <form class="form-login">
-    <!-- <div id="content" class="title text-main text-center bold">Đăng Nhập</div> -->
     <div class="field">
-      <form-validator name="username">
+      <form-validator name="email">
         <input
-          v-model="username"
+          v-model="user.email"
           type="text"
           class="v-input"
           placeholder="Tài Khoản"
@@ -16,7 +15,7 @@
     <div class="field">
       <form-validator name="password">
         <input
-          v-model="password"
+          v-model="user.password"
           type="password"
           class="v-input"
           placeholder="Mật khẩu"
@@ -57,8 +56,10 @@ export default {
   data() {
     return {
       isLoading: false,
-      username: "",
-      password: "",
+      user: {
+        email: "",
+        password: "",
+      },
     };
   },
   components: {
@@ -76,12 +77,7 @@ export default {
     ...mapActions(["login", "logout", "fetchUser", "loginFb"]),
     async loginUser() {
       this.isLoading = true;
-      const res = await this.login({
-        input: {
-          username: this.username,
-          password: this.password,
-        },
-      });
+      const res = await this.login(this.user);
       if (this.token) {
         this.fetchUser();
         this.$emit("close");

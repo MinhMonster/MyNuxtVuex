@@ -93,32 +93,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
           break;
       }
     }
-    if (code && code === 401) {
-      switch (layout) {
-        case "clientLayout":
-          $swal
-            .fire({
-              title: response.data.message,
-              text: response.data.error_content,
-              confirmButtonColor: "#F64E60",
-              cancelButtonColor: "#a4a4a4",
-              showCancelButton: true,
-              cancelButtonText: "Bỏ qua",
-              confirmButtonText: "Đăng nhập",
-              customClass: customClassSwal
-            })
-            .then(async (result) => {
-              store.dispatch("home/users/logout");
-              if (result.isConfirmed) {
-                store.dispatch("global/openModalLogin");
-              } else {
-                redirect('/')
-              }
-            });
-
-          break;
-      }
-    }
     if (code && code === 404) {
       switch (layout) {
         case "clientLayout":
@@ -134,66 +108,35 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
           break;
       }
     }
-    if (code && code === 422) {
-
-      switch (layout) {
-        case "clientLayout":
-          $swal.fire({
-            title: response.data.message,
-            html: response.data.error_content,
-            icon: "error",
-            customClass: customClassSwal
-          });
-
-
-          break;
-      }
-
-      const errors = response.data.errors;
-
-      if (response.data.errors) {
-        store.dispatch("global/setValidationErrors", errors ? errors || {} : {});
-
-      }
-      if (!response.data.errors) {
-        store.dispatch("global/setValidationErrors", {});
-      }
-
-      // const errors = response.data.errors;
-
-      // if (errors && errors.length > 0) {
-      //   errors.config = response.config;
-
-      //   const errorMessage =
-      //     response.config.toastErrorMessage ||
-      //     _.get(errors[0], "message") ||
-      //     GLOBAL_TOAST_ERROR_MESSAGE;
-      //   if (!response.config.hideToastError) {
-      //     store._vm.$nuxt.$toast.error(errorMessage);
-      //   }
-
-      //   // const findError = errors.find(
-      //   //   (item) => item.error_messages && item.code === 422
-      //   // );
-      //   const findError = errors.find(
-      //     (item) => item.error_messages && item.code === 422
-      //   );
-      //   store.dispatch(
-      //     "global/setValidationErrors",
-      //     findError ? findError.error_messages || {} : {}
-      //   );
-      // }
-
-    }
 
   });
 
   api.onError(error => {
     const code = parseInt(error.response && error.response.status)
     // const code = parseInt(error.response && error.response.status)
+    console.log(error.response);
 
     if (code === 400) {
       redirect('/400')
+    }
+
+    if (code === 401) {
+      const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
+      switch (layout) {
+        case "clientLayout":
+          store.dispatch("home/users/logout");
+          break;
+      }
+    }
+
+    if (code === 422) {
+      const errors = error.response.data.errors;
+      if (errors) {
+        store.dispatch("global/setValidationErrors", errors ? errors || {} : {});
+
+      } else {
+        store.dispatch("global/setValidationErrors", {});
+      }
     }
 
   })

@@ -1,4 +1,4 @@
-const resource = '/apis/users'
+const resource = ''
 const headers = {
   headers: {
     "Content-Type": "multipart/form-data"
@@ -6,22 +6,22 @@ const headers = {
 }
 export default ($api) => ({
   login(payload) {
-    return $api.post(`${resource}/login.php`, payload);
+    return $api.post(`${resource}/login`, payload);
   },
   loginFb() {
     return $api.get(`/login.php`);
   },
   logout() {
-    return $api.get(`${resource}/logout.php`);
+    return $api.get(`${resource}/logout`);
   },
   register(payload) {
-    return $api.post(`${resource}/register.php`, payload);
+    return $api.post(`${resource}/register`, payload);
   },
   getToken() {
     return $api.get(`${resource}/getToken.php`,)
   },
   fetchUser() {
-    return $api.get(`${resource}/fetchUser.php`,)
+    return $api.get(`${resource}/user`,)
   },
   historyBuyAccounts(payload) {
     return $api.get(`${resource}/history/historyBuyAccounts.php`, { params: { input: payload.input } },)
