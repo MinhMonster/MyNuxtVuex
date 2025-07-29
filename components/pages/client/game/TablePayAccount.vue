@@ -18,7 +18,7 @@
       <tr>
         <th class="info-nick">Tên game:</th>
         <td class="mua-nick">
-          <span>{{ game }}</span>
+          <span>{{ gameName }}</span>
         </td>
       </tr>
 
@@ -76,7 +76,7 @@ export default {
         ? this.price * (1 - this.account.active_discount / 100)
         : this.price;
     },
-    game() {
+    gameName() {
       switch (this.accountType) {
         case "ninja":
           return "Ninja School Online";

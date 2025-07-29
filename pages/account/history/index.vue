@@ -29,7 +29,7 @@
                 <td class="text-middle text-left">
                   <v-row>
                     <v-col :cols="12" :sm="6" :md="3" :lg="3">
-                      Game: {{ game(history.account_type) }}
+                      Game: {{ game_name(history.account_type) }}
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="2" :lg="3">
                       Mã số: {{ format_number(history.account_id) }}

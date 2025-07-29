@@ -334,7 +334,7 @@ export default {
           return "0541000311219";
       }
     },
-    game(accountType) {
+    game_name(accountType) {
       switch (accountType) {
         case "ninja":
           return "Ninja";

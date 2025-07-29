@@ -17,7 +17,7 @@
               <tr>
                 <th class="info-nick" style="width: 30%">Game</th>
                 <td class="mua-nick">
-                  <span>{{ game(history.account_type) }}</span>
+                  <span>{{ game_name(history.account_type) }}</span>
                 </td>
               </tr>
               <tr>
