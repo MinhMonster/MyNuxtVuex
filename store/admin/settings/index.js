@@ -38,7 +38,7 @@ const formNotification =
         {
             title: "",
             type: "content-editer",
-            value: 'data',
+            value: 'notification',
             cols: 12,
             sm: 12,
             md: 12,

@@ -12,11 +12,11 @@ import mmsFiles from '~/repositories/admin/mms/files'
 import adminGameNinjas from '~/repositories/admin/game/ninjas';
 import adminGameAvatars from '~/repositories/admin/game/avatars';
 import adminDiscounts from '~/repositories/admin/discounts'
+import adminSettings from '~/repositories/admin/settings'
 
 export default ($api_mms) => ({
   // admin Auths
   adminAuths: adminAuths($api_mms),
-  
   mmsProducts: mmsProducts($api_mms),
   mmsFolders: mmsFolders($api_mms),
   mmsFiles: mmsFiles($api_mms),
@@ -25,5 +25,5 @@ export default ($api_mms) => ({
   adminGameNinjas: adminGameNinjas($api_mms),
   adminGameAvatars: adminGameAvatars($api_mms),
   adminDiscounts: adminDiscounts($api_mms),
-  
+  adminSettings: adminSettings($api_mms),
 })

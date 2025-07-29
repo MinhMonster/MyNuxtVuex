@@ -1,9 +1,9 @@
-const resource = '/apis/client/settings';
+const resource = '/admin/settings';
 export default ($api) => ({
   fetchNotification() {
-    return $api.get(`/apis/client/settings/fetchNotification.php`)
+    return $api.get(`${resource}`)
   },
   updateNotification(payload) {
-    return $api.post(`apis/admin/settings/updateNotification.php`, payload)
+    return $api.post(`${resource}/modify`, payload)
   },
 })
