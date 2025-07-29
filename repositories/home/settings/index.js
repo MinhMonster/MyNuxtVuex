@@ -1,6 +1,6 @@
-const resource = '/apis/client/settings';
+const resource = '';
 export default ($api) => ({
   fetchNotification() {
-    return $api.get(`${resource}/fetchNotification.php`)
+    return $api.get(`${resource}/notification`)
   },
 })
