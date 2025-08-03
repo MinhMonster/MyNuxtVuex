@@ -16,63 +16,50 @@
                 <tr>
                   <th class="info-nick" style="width: 30%">Mã giao dịch</th>
                   <td class="mua-nick">
-                    <span>{{ format_number(history.ID) }}</span>
+                    <span>{{ format_number(history.id) }}</span>
                   </td>
                 </tr>
                 <tr>
                   <th class="info-nick" style="width: 30%">Hình thức nạp</th>
                   <td class="mua-nick">
-                    <span>{{ history.walletType }}</span>
+                    <span>{{ history.bank_name }}</span>
                   </td>
                 </tr>
                 <tr>
                   <th class="info-nick" style="width: 30%">Số tiền nạp</th>
                   <td class="mua-nick break-all">
-                    <span>{{ format_number(history.moneyAmount) }} đ </span>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="info-nick" style="width: 30%">
-                    Tiền nhận trên Web
-                  </th>
-                  <td class="mua-nick">
-                    <span>{{ format_number(history.moneyReceived) }} đ </span>
+                    <span>{{ format_number(history.amount) }} đ </span>
                   </td>
                 </tr>
                 <tr>
                   <th class="info-nick" style="width: 30%">Tên người chuyển</th>
                   <td class="mua-nick">
-                    <span>{{ history.bankAccountName }}</span>
+                    <span>{{ history.account_holder_name }}</span>
                   </td>
                 </tr>
 
                 <tr>
                   <th class="info-nick" style="">Số tài khoản chuyển</th>
                   <td class="mua-nick">
-                    <span>{{ history.bankAccountNumber }}</span>
+                    <span>{{ history.account_number }}</span>
                   </td>
                 </tr>
 
                 <tr>
                   <th class="info-nick" style="">Ngày thực hiện</th>
                   <td class="mua-nick">
-                    <span> {{ history.depositAt }}</span>
+                    <span> {{ history.transaction_at }}</span>
                   </td>
                 </tr>
 
                 <tr>
                   <th class="info-nick" style="">Trạng Thái</th>
                   <td class="mua-nick">
-                    <v-btn
-                      :color="class_status(history.depositState)"
-                      class="btn-sm pd-5px"
-                    >
-                      {{ history.depositState }}
-                    </v-btn>
+                    <Status :value="history.status"></Status>
                   </td>
                 </tr>
 
-                <tr>
+                <tr v-if="history.status !== 'success'">
                   <td class="mua-nick text-left instruction" colspan="2">
                     <HistoryInstructionBank :history="history" />
                   </td>
@@ -85,15 +72,17 @@
     </ModalPayload>
   </div>
 </template>
-  
+
 <script>
 import ModalPayload from "@/components/common/ModalPayload";
 import HistoryInstructionBank from "@/components/pages/client/account/wallet/HistoryInstructionBank";
+import Status from "@/components/global/molecules/common/Status";
 
 export default {
   components: {
     ModalPayload,
     HistoryInstructionBank,
+    Status,
   },
   props: {
     history: {
@@ -112,7 +101,7 @@ export default {
   },
 };
 </script>
-  
+
 <style lang="scss" scoped>
 .table {
   margin-bottom: 0px !important;

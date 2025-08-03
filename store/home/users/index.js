@@ -138,8 +138,8 @@ export default {
     async historyWalletDepositVnds({ commit, state }) {
       try {
         const response = await this.$repositories.homeUsers.historyWalletDepositVnds({ input: state.query });
-        commit(SET_STATE, { historyWalletDepositVnds: response.data.historyWalletDepositVnds });
-        commit(SET_STATE, { historyMeta: response.data.pagy });
+        commit(SET_STATE, { historyWalletDepositVnds: response.data.response.data });
+        commit(SET_STATE, { historyMeta: response.data.response.meta });
 
       } catch { }
     },

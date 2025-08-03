@@ -18,35 +18,28 @@
         </thead>
         <tbody v-if="histories.length">
           <tr v-for="(history, index) in histories" :key="index">
-            <td class="text-middle">{{ history.ID }}</td>
+            <td class="text-middle">#{{ history.id }}</td>
 
             <td class="text-middle text-left">
               <v-row>
                 <v-col :cols="12" :sm="6" :md="2" :lg="2">
                   <i class="mdi mdi-google-circles-group"></i>:
-                  {{ format_number(history.moneyAmount) }} đ
+                  {{ format_number(history.amount) }} đ
                 </v-col>
                 <v-col :cols="12" :sm="6" :md="2" :lg="2">
-                  <i class="mdi mdi-cart-plus"></i>:
-                  {{ format_number(history.moneyReceived) }} đ
+                  <i class="mdi mdi-bank"></i>:
+                  {{ history.bank_name }}
                 </v-col>
                 <v-col :cols="12" :sm="6" :md="2" :lg="2">
-                  <i class="mdi mdi-bank"></i>: {{ history.walletType }}
-                </v-col>
-                <v-col :cols="12" :sm="6" :md="2" :lg="2">
-                  <i class="mdi mdi-account"></i>: {{ history.bankAccountName }}
+                  <i class="mdi mdi-account"></i>:
+                  {{ history.account_holder_name }}
                 </v-col>
                 <v-col :cols="12" :sm="6" :md="2" :lg="2">
                   <i class="mdi mdi-credit-card"></i>:
-                  {{ history.bankAccountNumber }}
+                  {{ history.account_number }}
                 </v-col>
                 <v-col :cols="12" :sm="6" :md="2" :lg="2">
-                  <v-btn
-                    :color="class_status(history.depositState)"
-                    class="btn-sm pd-5px"
-                  >
-                    {{ history.depositState }}
-                  </v-btn>
+                  <Status :value="history.status"></Status>
                 </v-col>
               </v-row>
             </td>
@@ -70,7 +63,11 @@
 </template>
 
 <script>
+import Status from "@/components/global/molecules/common/Status";
 export default {
+  components: {
+    Status,
+  },
   props: {
     histories: {
       type: Array,

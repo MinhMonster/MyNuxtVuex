@@ -32,12 +32,12 @@
           <v-row>
             <v-col cols="12" sm="6" class="middle custom-field-input mb-2">
               <div class="field">
-                <form-validator name="wallet_type">
+                <form-validator name="bank_name">
                   <label for="wallet_type" class="form-label"
                     >Hình thức nạp
                     <small>(<span style="color: red">*</span>)</small></label
                   >
-                  <select v-model="money.walletType" class="">
+                  <select v-model="money.bank_name" class="">
                     <option
                       v-for="(option, index) in walletOptions"
                       :key="index"
@@ -50,7 +50,7 @@
               </div>
             </v-col>
 
-            <v-col cols="12" sm="3" class="middle custom-field-input mb-2">
+            <v-col cols="12" sm="6" class="middle custom-field-input mb-2">
               <div class="field">
                 <form-validator name="amount">
                   <label for="amount" class="form-label"
@@ -64,7 +64,7 @@
                   />
                 </form-validator></div
             ></v-col>
-            <v-col cols="12" sm="3" class="middle custom-field-input mb-2">
+            <!-- <v-col cols="12" sm="3" class="middle custom-field-input mb-2">
               <div class="field">
                 <form-validator name="out">
                   <label for="out" class="form-label">Thực nhận +20%</label>
@@ -78,16 +78,16 @@
                   />
                 </form-validator>
               </div>
-            </v-col>
+            </v-col> -->
             <v-col cols="12" sm="6" class="middle custom-form-input">
               <div class="field">
-                <form-validator name="bank_account_name">
+                <form-validator name="account_holder_name">
                   <label class="form-label"
                     >Chủ tài khoản Chuyển tiền
                     <small>(<span style="color: red">*</span>)</small></label
                   >
                   <input
-                    v-model="money.bankAccountName"
+                    v-model="money.account_holder_name"
                     type="text"
                     placeholder=" "
                     class="v-input form-input"
@@ -98,13 +98,13 @@
             </v-col>
             <v-col cols="12" sm="6" class="middle">
               <div class="field">
-                <form-validator name="bank_account_number">
+                <form-validator name="account_number">
                   <label class="form-label"
                     >Số tài khoản Người chuyển
                     <small>(<span style="color: red">*</span>)</small></label
                   >
                   <input
-                    v-model="money.bankAccountNumber"
+                    v-model="money.account_number"
                     type="text"
                     placeholder=" "
                     class="v-input form-input"
@@ -238,10 +238,10 @@ export default {
         },
       ],
       money: {
-        walletType: null,
+        bank_name: null,
         amount: "",
-        bankAccountName: "",
-        bankAccountNumber: "",
+        account_holder_name: "",
+        account_number: "",
       },
       moneyReceived: "",
       isFailed: false,
@@ -273,11 +273,11 @@ export default {
 
     async submit() {
       this.isLoading = true;
-      const res = await this.depositVnd({
-        input: this.money,
-      });
+      const res = await this.depositVnd(this.money);
       this.isLoading = false;
-      const history = res.data.depositVnd;
+      console.log("res", res);
+
+      const history = res?.data?.response;
 
       if (history) {
         await this.showModalDetail(history);
@@ -286,6 +286,7 @@ export default {
         this.historyWalletDepositVnds();
       }
     },
+
     setMoneyOut(name, value) {
       this.money.amount = value;
       if (value < 10000) {
@@ -313,10 +314,10 @@ export default {
     },
     resetInput() {
       this.money = {
-        walletType: null,
+        bank_name: null,
         amount: "",
-        bankAccountName: "",
-        bankAccountNumber: "",
+        account_holder_name: "",
+        account_number: "",
       };
       this.moneyReceived = 0;
     },

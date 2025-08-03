@@ -6,8 +6,13 @@
     v-clipboard:error="onCopy(false)"
     class="mb-1"
   >
-    <BaseSvg v-if="!isCheck" name="content-copy" />
-    <BaseSvg v-else color="success" :class="{ 'v-icon-success': isCheck }" name="check" />
+    <base-svg v-if="!isCheck" name="content-copy" />
+    <base-svg
+      v-else
+      color="success"
+      :class="{ 'v-icon-success': isCheck }"
+      name="check"
+    />
   </span>
 </template>
 <script>
