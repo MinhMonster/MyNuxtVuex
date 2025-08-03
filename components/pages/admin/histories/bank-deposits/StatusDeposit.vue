@@ -21,20 +21,20 @@ export default {
   computed: {
     setStatus() {
       switch (this.status) {
-        case "0":
+        case "pending":
           return {
-            text: "Warning",
+            text: "Pending",
             color: "warning",
           };
-        case "1":
+        case "success":
           return {
             text: "Success",
             color: "success",
           };
-        case "2":
+        case "failed":
           return {
             text: "Failed",
-            color: "error",
+            color: "failed",
           };
       }
     },

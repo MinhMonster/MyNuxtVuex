@@ -1,4 +1,4 @@
-const resource = '/apis/admin/histories/bank_deposits'
+const resource = '/admin/top-up-transactions'
 const headers = {
   headers: {
     "Content-Type": "multipart/form-data"
@@ -6,11 +6,10 @@ const headers = {
 }
 export default ($api) => ({
   fetchBankDeposits(payload) {
-    return $api.get(`${resource}/fetchBankDeposits.php`, { params: { input: payload.input } },
+    return $api.get(`${resource}`, { params: { input: payload.input } },
     )
   },
   confirmBankDeposit(payload) {
-    return $api.post(`${resource}/confirmBankDeposit.php`, { input: payload.input },
-    )
+    return $api.post(`${resource}/update`, payload)
   },
 })

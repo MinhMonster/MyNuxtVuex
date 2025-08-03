@@ -48,19 +48,19 @@ const queryBankDeposits = _.cloneDeep({
     show: false,
     value: 15
   },
-  id_nap: {
+  user_id: {
     // title: "ID",
-    placeholder: "ID User",
+    placeholder: "User ID",
     type: "text",
     show: true,
     value: ''
   },
-  uid: {
-    placeholder: "UID",
-    type: "text",
-    show: true,
-    value: ''
-  },
+  // uid: {
+  //   placeholder: "UID",
+  //   type: "text",
+  //   show: true,
+  //   value: ''
+  // },
   status: {
     placeholder: "Status",
     type: "select-options",
@@ -72,16 +72,16 @@ const queryBankDeposits = _.cloneDeep({
         value: null,
       },
       {
-        text: "Warning",
-        value: "0",
+        text: "Pending",
+        value: "pending",
       },
       {
         text: "Success",
-        value: "1",
+        value: "success",
       },
       {
         text: "Failed",
-        value: "2",
+        value: "failed",
       },
     ],
   },
