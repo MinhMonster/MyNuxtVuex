@@ -14,6 +14,8 @@ export default enableResetStore({
         queryUserCash: queryUserCash,
         queryUser: queryUser,
       },
+      repositories: "repositories_mms",
+      columns: columns,
       queryUsers: queryUsers,
       queryUser: queryUser,
       queryUserCash: queryUserCash,
@@ -74,7 +76,6 @@ const queryUsers = _.cloneDeep({
   },
 });
 
-
 const formUpdateCash =
   _.cloneDeep([
     {
@@ -129,3 +130,43 @@ const queryUser = _.cloneDeep({
   cash: "",
   name: "",
 });
+
+const columns =
+  _.cloneDeep([
+    {
+      key: "id",
+      label: "ID",
+      attributes: {},
+    },
+    {
+      key: "name",
+      label: "Name",
+      attributes: {},
+    },
+    {
+      key: "phone",
+      label: "Phone",
+      attributes: {},
+    },
+    {
+      key: "email",
+      label: "Email",
+      attributes: {},
+    },
+    {
+      key: "cash",
+      label: "Cash",
+      type: "number",
+      attributes: {},
+    },
+    {
+      key: "action",
+      label: "Actions",
+      type: "actions",
+      attributes: {
+        style: {
+          minWidth: "50px",
+        },
+      },
+    },
+  ]);

@@ -147,6 +147,13 @@ export default {
     },
   },
   methods: {
+    convertToCamelCase(str, delimiter = '/') {
+      const parts = str.split(delimiter)
+      return parts.shift() + parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('')
+    },
+    convertToDot(str) {
+      return str.replace(/\//g, '.')
+    },
     onResize() {
       const screenWidth = document.querySelector("body").clientWidth;
       if (screenWidth < 600) {

@@ -13,12 +13,8 @@
           <AdminBaseTable
             ref="table"
             module="admin/users"
-            :repositories="repositories"
-            repository="adminUsers"
-            :columns="columns"
             :store="{
               state: 'queryUsers',
-              module: 'admin.users',
               action: 'fetchUsers',
             }"
           >
@@ -39,11 +35,8 @@
         minHeight="150px"
         module="admin/users"
         :reset="false"
-        :repositories="repositories"
-        repository="adminUsers"
         :store="{
           state: 'queryUserCash',
-          module: 'admin.users',
           form: 'formUpdateCash',
           update: 'updateCashUser',
         }"
@@ -55,7 +48,6 @@
 
 <script>
 import { mapFields } from "vuex-map-fields";
-import { mapState } from "vuex";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import FormModal from "@/components/pages/admin/base/modal/FormModal";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
@@ -83,48 +75,9 @@ export default {
   data() {
     return {
       userSelected: null,
-      columns: [
-        {
-          key: "id",
-          label: "ID",
-          attributes: {},
-        },
-        {
-          key: "name",
-          label: "Name",
-          attributes: {},
-        },
-        {
-          key: "phone",
-          label: "Phone",
-          attributes: {},
-        },
-        {
-          key: "email",
-          label: "Email",
-          attributes: {},
-        },
-        {
-          key: "cash",
-          label: "Cash",
-          type: "number",
-          attributes: {},
-        },
-        {
-          key: "action",
-          label: "Actions",
-          type: "actions",
-          attributes: {
-            style: {
-              minWidth: "50px",
-            },
-          },
-        },
-      ],
     };
   },
   computed: {
-    ...mapState("admin/mms", ["repositories"]),
     ...mapFields("admin/users", {
       queryUser: "queryUser",
       queryUserCash: "queryUserCash",

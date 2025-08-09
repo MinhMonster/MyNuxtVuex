@@ -18,13 +18,13 @@
       @search="fetchData"
     />
     <BaseTable
-      :columns="columns"
+      :columns="stateColumns"
       :data="dataSource"
-      :meta="pagy"
+      :meta="meta"
       @onChange="fetchData"
     >
       <template
-        v-for="(column, index) in columns"
+        v-for="(column, index) in stateColumns"
         #[column.key]="{ row, value }"
       >
         <slot :name="column.key" :row="row" :value="value">
@@ -72,12 +72,8 @@ export default {
     },
     repositories: {
       type: String,
-      default: 'repositories',
+      default: "repositories",
       require: false,
-    },
-    meta: {
-      type: Object,
-      default: () => {},
     },
     columns: {
       type: Array,
@@ -96,44 +92,34 @@ export default {
     };
   },
   computed: {
+    repo() {
+      return this.convertToCamelCase(this.module);
+    },
+    storeModule() {
+      return this.convertToDot(this.module);
+    },
     ...mapState({
-      repositoryKey() {
-        return this[`$${this.repositories}`];
+      repositoryKey(state) {
+        const repositories = _.get(
+          state,
+          this.storeModule + ".repositories",
+          this.repositories
+        );
+        return this[`$${repositories}`];
       },
       stateQuery(state) {
-        return _.get(state, this.store.module + "." + this.store.state, {});
+        return _.get(state, this.storeModule + "." + this.store.state, {});
       },
       stateParamDefault(state) {
         // console.log("this.params", this.params);
         return this.params.length > 0
-          ? _.get(state, this.store.module + "." + "paramDefaults", {})
+          ? _.get(state, this.storeModule + "." + "paramDefaults", {})
           : {};
       },
       haveStore() {
         return !_.isEmpty(this.store);
       },
-      // dataSource(state) {
-      //   if (this.haveStore) {
-      //     // const data
-      //     return _.get(
-      //       state,
-      //       this.store.module + "." + this.store.state + ".response.data",
-      //       []
-      //     );
-      //   }
-      //   return get(this.response, "data", []);
-      // },
-      // pagy(state) {
-      //   if (this.haveStore) {
-      //     return _.get(
-      //       state,
-      //       this.store.module + "." + this.store.state + ".response.meta",
-      //       []
-      //     );
-      //   }
-      //   return get(this.response, "meta", defaultPagy);
-      // },
-      pagy() {
+      meta() {
         if (this.haveStore) {
           return this.$store.getters[this.module + "/metaFilter"](
             this.store.state
@@ -154,7 +140,7 @@ export default {
           // const data
           return _.get(
             state,
-            this.store.module + "." + this.store.state + ".response.count",
+            this.storeModule + "." + this.store.state + ".response.count",
             0
           );
         }
@@ -165,26 +151,16 @@ export default {
           // const data
           return _.get(
             state,
-            this.store.module + "." + this.store.state + ".response.sum_value",
+            this.storeModule + "." + this.store.state + ".response.sum_value",
             0
           );
         }
         return get(this.response, "sum_value", 0);
       },
-      //   computed: {
-      // ...mapFields("admin/histories/game_account_sold", {
-      //   count: "queryGameAccountSolds.response.count",
-      //   sum_value: "queryGameAccountSolds.response.sum_value",
-      // }),
-      // },
+      stateColumns(state) {
+        return _.get(state, this.storeModule + ".columns", this.columns);
+      },
     }),
-
-    // dataSource() {
-    //   if (this.haveStore) {
-    //     _.get(state, this.store.module + "." + this.store.query + ".response.data", [])
-    //   }
-    //   return get(this.response, "data", []);
-    // },
   },
   mounted() {},
   methods: {
@@ -212,28 +188,6 @@ export default {
         });
         this.fetchActions();
       } else {
-        // try {
-        //   console.log(params, 'params')
-        //   this.loading = true
-        //   const api = getRepository(this.module, this.paramsRepository)
-        //   params = { ...params, ...this.defaultParams }
-        //   if (this.type == 'main') {
-        //     this.fullResponse = await api.all(params)
-        //     this.response = get(this.fullResponse, pluralize(this.module, 2), {})
-        //   } else {
-        //     const { id, relation } = this.relation
-        //     const relationCustom = pluralize(relation, 2)
-        //     const relationQuery = this.relation.notQuery ? '' : relationCustom
-        //     this.fullResponse = await api.findModuleRelation(id, relationQuery, params)
-        //     this.response = get(this.fullResponse, pluralize(relationCustom, 2), {})
-        //   }
-        //   this.updateParams()
-        //   this.$emit('fullResponse', this.fullResponse)
-        //   this.$emit('response', this.response)
-        // } catch (e) {
-        //   console.log(e)
-        // }
-        // this.loading = false
       }
     },
     async fetchActions() {
@@ -253,9 +207,7 @@ export default {
             this.store.state
           );
         // console.log("stateParamDefault", this.stateParamDefault);
-        const result = await this.repositoryKey[this.repository][
-          this.store.action
-        ]({
+        const result = await this.repositoryKey[this.repo][this.store.action]({
           input: Object.assign(dataSearch, this.stateParamDefault),
         });
 
