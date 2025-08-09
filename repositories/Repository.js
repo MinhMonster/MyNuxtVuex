@@ -9,7 +9,7 @@ import adminFinances from '~/repositories/admin/finances'
 import adminUploads from '~/repositories/admin/uploads'
 import adminMedias from '~/repositories/admin/medias'
 import adminFolders from '~/repositories/admin/folders'
-import adminUsers from '~/repositories/admin/users'
+// import adminUsers from '~/repositories/admin/users'
 
 //admin Game
 // import adminGameNinjas from '~/repositories/admin/game/ninjas'
@@ -49,7 +49,7 @@ export default ($api) => ({
   adminUploads: adminUploads($api),
   adminMedias: adminMedias($api),
   adminFolders: adminFolders($api),
-  adminUsers: adminUsers($api),
+  // adminUsers: adminUsers($api),
 
 
   // admin Game
@@ -66,8 +66,8 @@ export default ($api) => ({
   adminLearnLanguages: adminLearnLanguages($api),
 
   // Home Page
-  gameNinjas: gameNinjas($api),
-  gameAvatars: gameAvatars($api),
+  // gameNinjas: gameNinjas($api),
+  // gameAvatars: gameAvatars($api),
   gameDragonBalls: gameDragonBalls($api),
   homeUsers: homeUsers($api),
   homeTopics: homeTopics($api),

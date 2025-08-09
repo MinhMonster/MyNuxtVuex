@@ -1,104 +1,131 @@
 import { getField, updateField } from "vuex-map-fields";
+import { defaultPagy } from '@/utils/admin/default'
+import { enableResetStore } from '@/utils/admin/common'
 
 const SET_STATE = "SET_STATE";
 const SET_QUERY = "SET_QUERY";
 
-export default {
+export default enableResetStore({
   namespaced: true,
-  state: () => ({
-    users: [],
-    sumPriceNinjas: "",
-    countNinjas: "",
-    user: null,
-    metaNinjas: {},
-    query: {
-      page: 1,
-      perPage: 15,
-      q: {
-        Ffname: null,
-        username: null,
-        id: null,
-        uid: null,
+  state() {
+    return {
+      stateDefault: {
+        queryUsers: queryUsers,
+        queryUserCash: queryUserCash,
+        queryUser: queryUser,
       },
+      queryUsers: queryUsers,
+      queryUser: queryUser,
+      queryUserCash: queryUserCash,
+      formUpdateCash: formUpdateCash,
     }
-  }),
-
+  },
   getters: {
     getField,
   },
 
   mutations: {
     updateField,
-    SET_QUERY(state, payload) {
-      state.query = {
-        ...state.query,
-        ..._.cloneDeep(payload),
-      };
-    },
-    SET_STATE(state, payload) {
-      _.each(payload, (value, key) => {
-        state[key] = value;
-      });
-    },
-    SET_NINJAS(state, payload) {
-      state.users = payload.users
-      state.sumPriceNinjas = payload.sumPrice
-      state.countNinjas = payload.count
-      state.metaNinjas = payload.pagy
-    },
-
-    SET_NINJA(state, payload) {
-      state.user = payload
-    },
   },
 
-  actions: {
+  actions: {},
+});
 
-    async fetchUsers({ commit, state }) {
-      try {
-        const res = await this.$repositories.adminUsers.fetchUsers({ input: state.query })
-        commit('SET_NINJAS', res.data)
+const queryUsers = _.cloneDeep({
+  response: {
+    meta: defaultPagy,
+    data: [],
+    count: 0,
+    sum_value: 0
+  },
+  page: {
+    type: "text",
+    show: false,
+    value: 1
+  },
+  perPage: {
+    type: "text",
+    show: false,
+    value: 15
+  },
+  id: {
+    placeholder: "ID",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  name: {
+    placeholder: "Name",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  email: {
+    placeholder: "Email",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  phone: {
+    placeholder: "Phone",
+    type: "text",
+    show: true,
+    value: ''
+  },
+});
 
-      } catch (error) { }
-    },
-    async fetchUser({ commit }, payload) {
-      try {
-        const res = await this.$repositories.adminUsers.fetchUser(payload)
-        commit('SET_NINJA', res.data.user)
-      } catch (error) { }
-    },
-    async updateUser({ commit, state }, id) {
-      try {
-        const res = await this.$repositories.adminUsers.updateUser({
-          id,
-          input: state.gameAccountSold
-        });
-        if (res.data.gameAccountSold) {
-          commit('SET_NINJA', res.data.gameAccountSold)
-        }
-        return res
-      } catch (error) { }
-    },
 
-    setAccountNinja({ commit }, payload) {
-      commit('SET_NINJA', payload);
+const formUpdateCash =
+  _.cloneDeep([
+    {
+      title: "Cash",
+      value: 'cash',
+      type: "cash",
+      disabled: true,
+      cols: 12,
+      sm: 12,
+      lg: 12,
+      md: 12
     },
-    setQuery({ commit, state }, payload) {
-      commit(SET_QUERY, payload);
-      commit(SET_STATE, { pageSave: state.query.page });
-    },
-    resetQuery({ commit }, payload) {
-      const type = payload ? payload : null;
-      commit(SET_QUERY, {
-        page: 1,
-        perPage: 15,
-        q: {
-          Ffname: null,
-          username: null,
-          id: null,
-          uid: null,
+    {
+      title: "Type",
+      type: "select-options",
+      value: 'type',
+      options: [
+        {
+          text: "Increase",
+          value: 'increase',
         },
-      });
+        {
+          text: "Decrease",
+          value: "decrease",
+        },
+      ],
+      cols: 12,
+      sm: 12,
+      lg: 12,
+      md: 12
     },
-  },
-}
+    {
+      title: "Amount",
+      value: 'amount',
+      type: "cash",
+      cols: 12,
+      sm: 12,
+      lg: 12,
+      md: 12
+    },
+  ]);
+
+
+const queryUserCash = _.cloneDeep({
+  amount: "",
+  type: "increase",
+  cash: "",
+});
+
+const queryUser = _.cloneDeep({
+  id: "",
+  cash: "",
+  name: "",
+});

@@ -473,7 +473,7 @@ code {
 
 #admin .bg-editor .v-input.v-input--is-label-active .v-select__selection.v-select__selection--comma {
   margin-left: 10px;
-
+  color: var(--white);
 }
 
 

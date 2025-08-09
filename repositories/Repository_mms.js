@@ -1,6 +1,7 @@
 
 // admin Auths
 import adminAuths from '~/repositories/admin/auths'
+import adminUsers from '~/repositories/admin/users'
 
 // Mimi Food
 import mmsProducts from '~/repositories/admin/mms/products'
@@ -18,6 +19,7 @@ import adminBankDeposits from '~/repositories/admin/histories/bank_deposits'
 export default ($api_mms) => ({
   // admin Auths
   adminAuths: adminAuths($api_mms),
+  adminUsers: adminUsers($api_mms),
   mmsProducts: mmsProducts($api_mms),
   mmsFolders: mmsFolders($api_mms),
   mmsFiles: mmsFiles($api_mms),

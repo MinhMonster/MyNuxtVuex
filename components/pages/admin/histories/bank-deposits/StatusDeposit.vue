@@ -34,7 +34,7 @@ export default {
         case "failed":
           return {
             text: "Failed",
-            color: "failed",
+            color: "error",
           };
       }
     },

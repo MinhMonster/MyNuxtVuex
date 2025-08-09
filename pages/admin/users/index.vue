@@ -1,61 +1,71 @@
 <template>
-  <NavAdmin title="Users" goBack next-page filter reload @reload="fetchUsers()">
+  <NavAdmin
+    title="Users"
+    goBack
+    next-page
+    filter
+    reload
+    @reload="$refs.table.fetchData()"
+  >
     <template #body>
-      <div class="d-flex" align="center">
-        <div>
-          <v-card-title class="mgl--15px"
-            >Account: {{ format_number(countNinjas) }}
-          </v-card-title>
-        </div>
-        <v-spacer />
-        <div class="mgr--15px right middle">
-          <v-card-title
-            >Total: {{ format_number(sumPriceNinjas) }} Đ
-          </v-card-title>
-        </div>
-      </div>
       <v-row>
-        <v-col v-if="isFilter" cols="12">
-          <FormSearch @search="search()"></FormSearch>
-        </v-col>
         <v-col cols="12" md="12" sm="12">
-          <v-card>
-            <BaseTable
-              :columns="columns"
-              :data="users"
-              :meta="metaNinjas"
-              @onChange="onPageChange"
-            >
-              <template #action="props">
-                <v-btn light icon @click="showModal(props.row)">
-                  <v-icon>mdi-pencil-box-multiple-outline</v-icon>
-                </v-btn>
-              </template>
-            </BaseTable>
-          </v-card>
+          <AdminBaseTable
+            ref="table"
+            module="admin/users"
+            :repositories="repositories"
+            repository="adminUsers"
+            :columns="columns"
+            :store="{
+              state: 'queryUsers',
+              module: 'admin.users',
+              action: 'fetchUsers',
+            }"
+          >
+            <template #action="props">
+              <v-btn light icon @click="showModal(props.row)">
+                <v-icon>mdi-pencil-box-multiple-outline</v-icon>
+              </v-btn>
+            </template>
+          </AdminBaseTable>
         </v-col>
       </v-row>
-      <FormUpdateCash ref="modal" />
+      <FormModal
+        ref="modal"
+        :title="'Update Cash:'"
+        :subTitle="queryUser.name"
+        :id="queryUser.id"
+        width="350px"
+        minHeight="150px"
+        module="admin/users"
+        :reset="false"
+        :repositories="repositories"
+        repository="adminUsers"
+        :store="{
+          state: 'queryUserCash',
+          module: 'admin.users',
+          form: 'formUpdateCash',
+          update: 'updateCashUser',
+        }"
+        @updated="$refs.table.fetchData()"
+      />
     </template>
   </NavAdmin>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
-
+import { mapState } from "vuex";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
-import FormSearch from "@/components/pages/admin/users/form/FormSearch";
-import BaseTable from "@/components/base/BaseTable";
-import FormUpdateCash from "@/components/pages/admin/users/form/FormUpdateCash";
+import FormModal from "@/components/pages/admin/base/modal/FormModal";
+import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 
 export default {
   layout: "adminDev",
   components: {
     NavAdmin,
-    FormSearch,
-    BaseTable,
-    FormUpdateCash,
+    AdminBaseTable,
+    FormModal,
   },
   head() {
     return {
@@ -69,20 +79,18 @@ export default {
       ],
     };
   },
-  name: "Ninjas",
+  name: "AdminUsers",
   data() {
     return {
       userSelected: null,
       columns: [
         {
-          key: "ID",
+          key: "id",
           label: "ID",
-          attributes: {
-            align: "center",
-          },
+          attributes: {},
         },
         {
-          key: "Ffname",
+          key: "name",
           label: "Name",
           attributes: {},
         },
@@ -97,41 +105,10 @@ export default {
           attributes: {},
         },
         {
-          key: "sodu",
+          key: "cash",
           label: "Cash",
           type: "number",
           attributes: {},
-        },
-        {
-          key: "admin",
-          label: "Admin",
-          type: "number",
-          attributes: {},
-        },
-        {
-          key: "username",
-          label: "User Name",
-          attributes: {},
-        },
-
-        {
-          key: "uid",
-          label: "UID",
-          attributes: {},
-        },
-        // {
-        //   key: "create_time",
-        //   label: "Created",
-        //   attributes: {},
-        // },
-        {
-          key: "login_at",
-          label: "Login",
-          attributes: {
-            style: {
-              minWidth: "150px",
-            }
-          },
         },
         {
           key: "action",
@@ -140,37 +117,25 @@ export default {
           attributes: {
             style: {
               minWidth: "50px",
-            }
+            },
           },
         },
       ],
     };
   },
-  async mounted() {
-    await this.fetchUsers();
-  },
   computed: {
+    ...mapState("admin/mms", ["repositories"]),
     ...mapFields("admin/users", {
-      user: "user",
-      users: "users",
-      sumPriceNinjas: "sumPriceNinjas",
-      countNinjas: "countNinjas",
-      metaNinjas: "metaNinjas",
+      queryUser: "queryUser",
+      queryUserCash: "queryUserCash",
+      cash: "queryUserCash.cash",
     }),
   },
   methods: {
-    ...mapActions("admin/users", ["fetchUsers", "resetQuery", "setQuery"]),
-    async onPageChange(page) {
-      await this.setQuery({ page });
-      await this.fetchUsers();
-      await this.$router.push(`/admin/users?page=${page}`);
-    },
-    search() {
-      this.fetchUsers();
-    },
     showModal(row) {
-      this.$refs.modal.dialog = true;
-      this.user = row;
+      this.$refs.modal.show();
+      this.queryUser = row;
+      this.cash = row.cash;
     },
   },
 };
