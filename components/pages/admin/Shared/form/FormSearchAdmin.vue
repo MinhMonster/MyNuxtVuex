@@ -1,13 +1,9 @@
 <template>
   <div v-if="active & isFilter">
-    <!-- <div class='icon-search'>
-      <FilterFilled :style="{fontSize: '20px', color: '#7A40EE', fontWeight: 'bold'}"
-                    @click='show = !show'></FilterFilled>
-    </div> -->
-    <form @submit.prevent="handleSearch" class="form-search-admin">
+    <form @submit.prevent="search" class="form-search-admin">
       <v-row>
         <v-col
-          v-for="(item, key) in stateQuery"
+          v-for="(item, key) in querySearch"
           cols="12"
           sm="4"
           md="3"
@@ -38,37 +34,6 @@
             <!-- </form-validator> -->
           </div>
         </v-col>
-        <!-- <a-form-item v-if="key != 'response' && key != 'order' " v-show='item.show' :key='key' :label='item.title'>
-          <base-date v-if="item.type == 'range_date_time'" v-model:value='item.value'
-                     :timezone-out="item.more_data.utc ? 'UTC' : 'current'"
-                     :placeholder="item.placeholder"
-                     type='range_date_time'
-                     format='YYYY-MM-DD HH:mm'
-                     @change='changeData'
-          >
-          </base-date>
-          <base-select v-model:value='item.value' v-if="item.type == 'select_load_more'"
-                       @change='changeData'
-                       :default-value='item.value ? [item.value] : null'
-                       :use-load-more='item.more_data ? item.more_data.useLoadMore : {}'
-          >
-          </base-select>
-          <a-select v-model:value='item.value' v-if="item.type == 'select_options'" :allow-clear="item.clear">
-            <a-select-option v-for="(option, index) in item.options" :value="option.value" :key="index">
-              {{ option.title }}
-            </a-select-option>
-          </a-select>
-          <a-input v-if="item.type == 'text'" v-model:value='item.value' @change='changeData'></a-input>
-        </a-form-item> -->
-
-        <!-- <a-form-item class='group-btn'>
-        <a-button type='primary' html-type='submit'>Search</a-button>
-        <a-button class='btn-default' @click='handleReset'>Reset filters, sorters</a-button>
-        <a class='collapse' @click='show = false'>
-          <UpOutlined></UpOutlined>
-          Collapse
-        </a>
-      </a-form-item> -->
         <v-col cols="6" sm="3" md="2">
           <v-btn type="submit" class="btn search-btn">
             <i class="fa fa-search"></i> Search
@@ -77,7 +42,7 @@
         <v-col cols="6" sm="3" md="2">
           <v-btn
             class="btn btn-success btn-search text-white w-100"
-            @click="handleReset()"
+            @click="reset()"
             ><i class="fa fa-list"></i> Reset</v-btn
           >
         </v-col>
@@ -86,23 +51,28 @@
   </div>
 </template>
 <script>
-// import _ from 'lodash'
-// import { FilterFilled, UpOutlined } from '@ant-design/icons-vue'
 import { mapState, mapActions } from "vuex";
 
 export default {
-  // components: { FilterFilled, UpOutlined },
   props: {
-    store: {
+    module: {
+      type: String,
+      default: "",
+      require: false,
+    },
+    stateQuery: {
       type: Object,
       default: () => {
         return {};
       },
     },
-    module: {
+    storeModule: {
       type: String,
       default: "",
-      require: false,
+    },
+    storeState: {
+      type: String,
+      default: "",
     },
   },
   data() {
@@ -117,23 +87,22 @@ export default {
     },
     ...mapActions({
       resetQuery(dispatch) {
-        return dispatch(this.module + "/resetData", this.store.state);
+        return dispatch(this.module + "/resetData", this.storeState);
       },
-      handleSearch(dispatch) {
-        this.$store.dispatch(this.module + "/setQuery", {
-          stateName: this.store?.state,
-          data: this.stateQuery,
+      async search(dispatch) {
+        await dispatch(this.module + "/setQuery", {
+          stateName: this.storeState,
+          data: this.querySearch,
         });
-        dispatch(this.module + "/resetDataPage", this.store.state);
+        await dispatch(this.module + "/resetDataPage", this.storeState);
         this.$emit("search");
-        // dispatch(this.module + "/" + this.store.action);
         this.$nextTick(() => {
           this.searched = true;
         });
       },
     }),
-    handleReset() {
-      this.resetQuery();
+    async reset() {
+      await this.resetQuery();
       try {
         this.$nextTick(() => {
           const data = document.querySelectorAll(
@@ -144,7 +113,7 @@ export default {
           });
         });
       } catch (e) {}
-      this.handleSearch();
+      this.search();
     },
   },
   unmounted() {
@@ -156,30 +125,15 @@ export default {
     active() {
       //@ts-ignore
       return (
-        Object.values(this.stateQuery).filter((item) => {
+        Object.values(this.querySearch).filter((item) => {
           return item ? item.show : false;
         }).length != 0
       );
     },
     ...mapState({
-      stateQuery(state) {
-        return _.cloneDeep(
-          _.get(state, this.store.module + "." + this.store.state, {})
-        );
+      querySearch() {
+        return _.cloneDeep(this.stateQuery);
       },
-      // stateQuery2: {
-      //   get() {
-      //     return _.cloneDeep(
-      //       _.get(state, this.store.module + "." + this.store.state, {})
-      //     );
-      //   },
-      //   set(value) {
-      //     this.setQueryNinja({
-      //       index: this.index,
-      //       value: { ...this.action, title: _.cloneDeep(value) },
-      //     });
-      //   },
-      // },
     }),
   },
 };

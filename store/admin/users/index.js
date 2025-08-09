@@ -2,9 +2,6 @@ import { getField, updateField } from "vuex-map-fields";
 import { defaultPagy } from '@/utils/admin/default'
 import { enableResetStore } from '@/utils/admin/common'
 
-const SET_STATE = "SET_STATE";
-const SET_QUERY = "SET_QUERY";
-
 export default enableResetStore({
   namespaced: true,
   state() {

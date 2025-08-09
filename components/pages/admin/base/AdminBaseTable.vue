@@ -13,8 +13,10 @@
     </div>
     <FormSearchAdmin
       v-if="haveStore"
-      :store="store"
       :module="module"
+      :store-module="storeModule"
+      :store-state="storeState"
+      :state-query="stateQuery"
       @search="fetchData"
     />
     <BaseTable
@@ -98,22 +100,22 @@ export default {
     storeModule() {
       return this.convertToDot(this.module);
     },
+    storeState() {
+      return this.store?.state;
+    },
     ...mapState({
+      stateModule(state) {
+        return _.get(state, this.storeModule);
+      },
       repositoryKey(state) {
-        const repositories = _.get(
-          state,
-          this.storeModule + ".repositories",
-          this.repositories
-        );
-        return this[`$${repositories}`];
+        return this[`$${this.stateModule.repositories || this.repositories}`];
       },
       stateQuery(state) {
-        return _.get(state, this.storeModule + "." + this.store.state, {});
+        return this.stateModule[this.storeState] || {};
       },
       stateParamDefault(state) {
-        // console.log("this.params", this.params);
         return this.params.length > 0
-          ? _.get(state, this.storeModule + "." + "paramDefaults", {})
+          ? this.stateModule.paramDefaults || {}
           : {};
       },
       haveStore() {
@@ -122,7 +124,7 @@ export default {
       meta() {
         if (this.haveStore) {
           return this.$store.getters[this.module + "/metaFilter"](
-            this.store.state
+            this.storeState
           );
         }
         return get(this.response, "meta", defaultPagy);
@@ -130,35 +132,25 @@ export default {
       dataSource() {
         if (this.haveStore) {
           return this.$store.getters[this.module + "/dataFilter"](
-            this.store.state
+            this.storeState
           );
         }
         return get(this.response, "data", []);
       },
       count(state) {
         if (this.haveStore) {
-          // const data
-          return _.get(
-            state,
-            this.storeModule + "." + this.store.state + ".response.count",
-            0
-          );
+          return this.stateQuery?.response?.count || 0;
         }
         return get(this.response, "count", 0);
       },
       sum_value(state) {
         if (this.haveStore) {
-          // const data
-          return _.get(
-            state,
-            this.storeModule + "." + this.store.state + ".response.sum_value",
-            0
-          );
+          return this.stateQuery?.response?.sum_value || 0;
         }
         return get(this.response, "sum_value", 0);
       },
       stateColumns(state) {
-        return _.get(state, this.storeModule + ".columns", this.columns);
+        return this.stateModule.columns || this.columns;
       },
     }),
   },
@@ -183,8 +175,8 @@ export default {
     async fetchData(page) {
       if (this.haveStore) {
         await this.$store.dispatch(this.module + "/setQueryPage", {
-          stateName: this.store.state,
-          data: page || this.stateQuery.page.value || 1,
+          stateName: this.storeState,
+          data: page || this.stateQuery?.page?.value || 1,
         });
         this.fetchActions();
       } else {
@@ -192,19 +184,17 @@ export default {
     },
     async fetchActions() {
       try {
-        // await this.$store.dispatch(this.module + "/resetData", this.store.state);
         this.params.forEach((param, index) => {
           this.$store.dispatch(this.module + "/setParamDefault", {
             query: param.query,
             data: param.value,
           });
-          // console.log("default", this.store.state + "." + param.query + ".value", index, this.params);
         });
 
         const { dataSearch, dataOrigin, dataRoute } =
           await this.$store.dispatch(
             this.module + "/convertDataSend",
-            this.store.state
+            this.storeState
           );
         // console.log("stateParamDefault", this.stateParamDefault);
         const result = await this.repositoryKey[this.repo][this.store.action]({
@@ -213,22 +203,18 @@ export default {
 
         dataOrigin.response = result.data.response;
         this.$store.dispatch(this.module + "/setState", {
-          stateName: this.store.state,
+          stateName: this.storeState,
           data: dataOrigin,
           query: dataRoute,
         });
       } catch (error) {
-        // console.log("error", error);
       }
     },
   },
   async created() {
-    // if (!this.notImmediateFetch && !this.haveStore) {
-    //   this.fetchData(this.stateQuery.page.value);
-    // }
     if (this.haveStore) {
       await this.$store.dispatch(this.module + "/passDataFromQuery", {
-        stateName: this.store.state,
+        stateName: this.storeState,
         query: this.$route.query,
       });
       this.fetchActions();
