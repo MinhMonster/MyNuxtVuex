@@ -11,6 +11,8 @@ export default enableResetStore({
         queryBankDeposits: queryBankDeposits,
         queryBankDeposit: queryBankDeposit,
       },
+      repositories: "repositories_mms",
+      columns: columns,
       queryBankDeposits: queryBankDeposits,
       queryBankDeposit: queryBankDeposit,
     }
@@ -101,5 +103,56 @@ const queryBankDeposit = _.cloneDeep({
   sim: "",
   hinhanh: [],
   full: "0"
-
 });
+
+const columns =
+  _.cloneDeep([
+    {
+      key: "id",
+      label: "ID",
+      type: "number",
+      attributes: {
+        style: {
+          minWidth: "50px",
+        },
+      },
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      type: "actions",
+      attributes: {
+        style: {
+          minWidth: "80px",
+        },
+      },
+    },
+    {
+      key: "amount",
+      label: "Amount",
+      type: "number",
+      attributes: {
+        style: {
+          minWidth: "100px",
+        },
+      },
+    },
+    {
+      key: "user",
+      label: "User",
+      attributes: {
+        style: {
+          minWidth: "100px",
+        },
+      },
+    },
+    {
+      key: "transaction_at",
+      label: "Time",
+      attributes: {
+        style: {
+          minWidth: "100px",
+        },
+      },
+    },
+  ]);

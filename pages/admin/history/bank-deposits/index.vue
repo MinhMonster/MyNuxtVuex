@@ -13,13 +13,9 @@
           <!-- <v-card> -->
           <AdminBaseTable
             ref="table"
-            module="admin/histories/bank_deposits"
-            repository="adminBankDeposits"
-            :columns="columns"
-            :repositories="repositories"
+            module="admin/histories/bankDeposits"
             :store="{
               state: 'queryBankDeposits',
-              module: 'admin.histories.bank_deposits',
               action: 'fetchBankDeposits',
             }"
           >
@@ -72,56 +68,6 @@ export default {
     return {
       selected: {},
       user: {},
-      columns: [
-        {
-          key: "id",
-          label: "ID",
-          type: "number",
-          attributes: {
-            style: {
-              minWidth: "50px",
-            },
-          },
-        },
-        {
-          key: "actions",
-          label: "Actions",
-          type: "actions",
-          attributes: {
-            style: {
-              minWidth: "80px",
-            },
-          },
-        },
-        {
-          key: "amount",
-          label: "Amount",
-          type: "number",
-          attributes: {
-            style: {
-              minWidth: "100px",
-            },
-          },
-        },
-        {
-          key: "user",
-          label: "User",
-          attributes: {
-            style: {
-              minWidth: "100px",
-            },
-          },
-        },
-        {
-          key: "transaction_at",
-          label: "Time",
-          attributes: {
-            style: {
-              minWidth: "100px",
-            },
-          },
-        },
-      ],
     };
   },
   methods: {

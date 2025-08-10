@@ -14,7 +14,7 @@ import adminGameNinjas from '~/repositories/admin/game/ninjas';
 import adminGameAvatars from '~/repositories/admin/game/avatars';
 import adminDiscounts from '~/repositories/admin/discounts'
 import adminSettings from '~/repositories/admin/settings'
-import adminBankDeposits from '~/repositories/admin/histories/bank_deposits'
+import adminHistoriesBankDeposits from '~/repositories/admin/histories/bankDeposits'
 
 export default ($api_mms) => ({
   // admin Auths
@@ -29,5 +29,5 @@ export default ($api_mms) => ({
   adminGameAvatars: adminGameAvatars($api_mms),
   adminDiscounts: adminDiscounts($api_mms),
   adminSettings: adminSettings($api_mms),
-  adminBankDeposits: adminBankDeposits($api_mms),
+  adminHistoriesBankDeposits: adminHistoriesBankDeposits($api_mms),
 })

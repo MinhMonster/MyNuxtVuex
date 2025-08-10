@@ -92,7 +92,7 @@ export default {
     async confirm(value) {
       try {
         const res =
-          await this.$repositories_mms.adminBankDeposits.confirmBankDeposit({
+          await this.$repositories_mms.adminHistoriesBankDeposits.confirmBankDeposit({
             id: this.record.id,
             confirm: value,
           });
