@@ -98,6 +98,11 @@ export default {
         },
         {
           icon: "mdi-image",
+          title: "Transections",
+          to: "/admin/history/wallet-transactions",
+        },
+        {
+          icon: "mdi-image",
           title: "Ninja",
           to: "/admin/game/ninjas",
         },
