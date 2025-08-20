@@ -34,7 +34,7 @@ export default ($api) => ({
 
   },
   historyChangeMoneys(payload) {
-    return $api.get(`${resource}/history/historyChangeMoneys.php`, { params: { input: payload.input } },)
+    return $api.get(`${resource}/account/transactions`, { params: { input: payload.input } },)
   },
   depositVnd(payload) {
     return $api.post(`${resource}/top-up/bank`, payload)

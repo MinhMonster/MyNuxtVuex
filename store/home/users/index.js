@@ -102,8 +102,8 @@ export default {
     async historyChangeMoneys({ commit, state }) {
       try {
         const response = await this.$repositories.homeUsers.historyChangeMoneys({ input: state.query });
-        commit(SET_STATE, { historyChangeMoneys: response.data.historyChangeMoneys });
-        commit(SET_STATE, { historyMeta: response.data.pagy });
+        commit(SET_STATE, { historyChangeMoneys: response.data.response.data });
+        commit(SET_STATE, { historyMeta: response.data.response.meta });
 
       } catch { }
     },

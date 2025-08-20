@@ -24,7 +24,7 @@
             </thead>
             <tbody>
               <tr v-for="(history, index) in histories" :key="index">
-                <td class="text-middle">{{ history.ID }}</td>
+                <td class="text-middle">{{ history.id }}</td>
 
                 <td class="text-middle text-left">
                   <v-row>
@@ -32,10 +32,10 @@
                       {{ history.historyType }}
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="2" :lg="2">
-                      Mã GD: {{ format_number(history.historyCode) }}
+                      Nội dung: {{ history.description }}
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="2" :lg="2">
-                      Trước: {{ format_number(history.moneyFirst) }} đ
+                      Trước: {{ format_number(history.balance_before) }} đ
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="2" :lg="2">
                       Số tiền:
@@ -46,14 +46,14 @@
                             : 'text-danger'
                         "
                         >{{ increaseMoney(history) ? "+" : "-"
-                        }}{{ format_number(history.moneyChange) }} đ</span
+                        }}{{ format_number(history.amount) }} đ</span
                       >
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="2" :lg="2">
-                      Sau: {{ format_number(history.moneyLast) }} đ
+                      Sau: {{ format_number(history.balance_after) }} đ
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="2" :lg="2">
-                      {{ history.buyAt }}
+                      {{ history.created_at }}
                     </v-col>
                   </v-row>
                 </td>
@@ -126,7 +126,7 @@ export default {
       this.ready = true;
     },
     increaseMoney(history) {
-      return history.moneyFirst < history.moneyLast;
+      return history.direction === "increase";
     },
   },
   data() {
