@@ -329,9 +329,9 @@ export default {
         case "Ví MOMO":
           return "0961646828";
         case "MB Bank":
-          return "8330105578888";
+          return "MuaBanNick";
         case "VietcomBank":
-          return "0541000311219";
+          return "MuaBanNick";
       }
     }
   },

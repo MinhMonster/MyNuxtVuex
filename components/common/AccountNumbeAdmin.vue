@@ -10,12 +10,12 @@
     <ButtonCoppy :content="`0961646828`"></ButtonCoppy><br />
 
     <img src="/icon/icon-next-right.gif" /> MB Bank:
-    <span class="sms">8330105578888</span>
-    <ButtonCoppy :content="'8330105578888'"></ButtonCoppy><br />
+    <span class="sms">MuaBanNick</span>
+    <ButtonCoppy :content="'MuaBanNick'"></ButtonCoppy><br />
 
     <img src="/icon/icon-next-right.gif" /> VietcomBank:
-    <span class="sms">0541000311219</span>
-    <ButtonCoppy :content="'0541000311219'"></ButtonCoppy><br />
+    <span class="sms">MuaBanNick</span>
+    <ButtonCoppy :content="'MuaBanNick'"></ButtonCoppy><br />
   </div>
 </template>
 <script>
