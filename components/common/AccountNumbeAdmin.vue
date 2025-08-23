@@ -16,6 +16,7 @@
     <img src="/icon/icon-next-right.gif" /> VietcomBank:
     <span class="sms">MuaBanNick</span>
     <ButtonCoppy :content="'MuaBanNick'"></ButtonCoppy><br />
+    <small class="text-italic"><span class="sms">*</span>STK là chữ <span class="sms">MuaBanNick</span> nhé ae ^^</small>
   </div>
 </template>
 <script>

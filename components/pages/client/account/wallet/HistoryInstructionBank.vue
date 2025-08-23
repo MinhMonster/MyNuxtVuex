@@ -16,6 +16,9 @@
         {{ numberWalletAdmin(history.walletType) }}
         <ButtonCoppy :content="numberWalletAdmin(history.walletType)" />
       </span>
+      <small v-if="history.walletType !== 'Ví MOMO'" class="text-italic">
+        <span class="sms">*</span>STK là chữ na ae
+      </small>
       <br />
       <img src="/icon/icon-next-right.gif" /> Người nhận:
       <span class="sms">Đỗ Công Minh</span> <br />
