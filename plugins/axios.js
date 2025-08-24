@@ -121,6 +121,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       }
     }
 
+
     if (code === 409) {
       $swal.fire({
         title: "Tài khoản này đã bán",
@@ -132,7 +133,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       });
     }
 
-    if (code === 401) {
+    if (code === 401 || code === 419) {
       switch (layout) {
         case "clientLayout":
           store.dispatch("home/users/logout");

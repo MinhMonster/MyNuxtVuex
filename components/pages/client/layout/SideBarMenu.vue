@@ -94,7 +94,7 @@
                 </nuxt-link>
               </div>
               <div class="member-nav-item">
-                <nuxt-link to="/account/history/change_money">
+                <nuxt-link to="/account/transactions">
                   <BaseSvg name="history" />
                   <span class="member-nav-name">Biến động Số dư</span>
                 </nuxt-link>

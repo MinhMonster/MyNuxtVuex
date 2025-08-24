@@ -302,6 +302,7 @@ export default {
       }
     },
 
+
     typeNinja(type) {
       switch (type) {
         case "3":
