@@ -206,6 +206,9 @@ export default {
     cash_atm(number) {
       return this.format_number(Math.round((number * 0.85) / 10000).toFixed(0) * 10000)
     },
+    cash_atm_no_format(number) {
+      return Math.round((number * 0.85) / 10000).toFixed(0) * 10000;
+    },
     formatTwoNumber(number) {
       number = Number(number);
       if (number < 10) {
