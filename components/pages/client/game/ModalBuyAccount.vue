@@ -38,11 +38,7 @@
 
           <v-row v-if="isBuy == 'atm-momo'">
             <v-col cols="12" sm="12" md="12">
-              <AccountNumbeAdmin />
-            </v-col>
-
-            <v-col cols="12" sm="12" md="12">
-              <BuyAccountInstructions :account="account" :account-type="game" />
+              <BuyAccountQRInstructions :account="account" :account-type="game" />
             </v-col>
           </v-row>
         </div>
@@ -80,21 +76,19 @@
     </ModalPayload>
   </div>
 </template>
-  
+
 <script>
 import { mapActions, mapState } from "vuex";
 import Loading from "@/components/global/molecules/common/Loading";
 import ModalPayload from "@/components/common/ModalPayload";
-import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
-import BuyAccountInstructions from "@/components/common/BuyAccountInstructions";
+import BuyAccountQRInstructions from "@/components/common/BuyAccountQRInstructions";
 import TablePayAccount from "@/components/pages/client/game/TablePayAccount";
 
 export default {
   components: {
     Loading,
     ModalPayload,
-    AccountNumbeAdmin,
-    BuyAccountInstructions,
+    BuyAccountQRInstructions,
     TablePayAccount,
   },
   props: {
@@ -110,7 +104,7 @@ export default {
   data() {
     return {
       tab: null,
-      isBuy: "wallet",
+      isBuy: "atm-momo",
       isLoading: false,
     };
   },
@@ -150,7 +144,7 @@ export default {
   },
 };
 </script>
-  
+
   <style lang="scss" scoped>
 th.info-nick {
   width: 50%;
