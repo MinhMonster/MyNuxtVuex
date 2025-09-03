@@ -422,10 +422,10 @@ export default {
             text-align: center;
           }
           &.info-history {
-            width: 80% !important;
-            min-width: 150px;
-            vertical-align: middle !important;
-            text-align: left;
+          //   // width: 80% !important;
+            min-width: 100px;
+          //   vertical-align: middle !important;
+          //   text-align: left;
           }
         }
       }
