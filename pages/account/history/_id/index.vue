@@ -15,31 +15,31 @@
           <table class="table">
             <tbody>
               <tr>
-                <th class="info-nick" style="width: 30%">Game</th>
-                <td class="mua-nick">
+                <th class="info-nick w-50" style="">Game</th>
+                <td class="mua-nick w-50">
                   <span>{{ history.accountType }}</span>
                 </td>
               </tr>
               <tr>
-                <th class="info-nick" style="width: 30%">Mã Số</th>
+                <th class="info-nick" style="">Mã Số</th>
                 <td class="mua-nick">
                   <span>{{ format_number(history.accountId) }}</span>
                 </td>
               </tr>
               <tr>
-                <th class="info-nick" style="width: 30%">Tài Khoản</th>
+                <th class="info-nick" style="">Tài Khoản</th>
                 <td class="mua-nick break-all">
                   <span>{{ history.accountName }} </span>
                 </td>
               </tr>
               <tr>
-                <th class="info-nick" style="width: 30%">Mật khẩu</th>
+                <th class="info-nick" style="">Mật khẩu</th>
                 <td class="mua-nick">
                   <span>{{ history.accountPassword }} </span>
                 </td>
               </tr>
               <tr v-if="history.accountCode">
-                <th class="info-nick" style="width: 30%">Mã chuyển sim</th>
+                <th class="info-nick" style="">Mã chuyển sim</th>
                 <td class="mua-nick">
                   <span>{{ history.accountCode }}</span>
                 </td>

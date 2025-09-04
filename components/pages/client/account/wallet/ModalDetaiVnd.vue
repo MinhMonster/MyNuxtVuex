@@ -10,46 +10,27 @@
     >
       <template #content>
         <div class="page-body">
-          <div v-if="history" class="table-responsive">
+          <div v-if="history">
             <table class="table">
               <tbody>
                 <tr>
-                  <th class="info-nick" style="width: 30%">Mã giao dịch</th>
-                  <td class="mua-nick">
+                  <th class="info-nick w-50" style="">Mã giao dịch</th>
+                  <td class="mua-nick w-50">
                     <span>{{ format_number(history.ID) }}</span>
                   </td>
                 </tr>
                 <tr>
-                  <th class="info-nick" style="width: 30%">Hình thức nạp</th>
-                  <td class="mua-nick">
-                    <span>{{ history.walletType }}</span>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="info-nick" style="width: 30%">Số tiền nạp</th>
+                  <th class="info-nick" style="">Số tiền nạp</th>
                   <td class="mua-nick break-all">
                     <span>{{ format_number(history.moneyAmount) }} đ </span>
                   </td>
                 </tr>
                 <tr>
-                  <th class="info-nick" style="width: 30%">
+                  <th class="info-nick" style="">
                     Tiền nhận trên Web
                   </th>
                   <td class="mua-nick">
                     <span>{{ format_number(history.moneyReceived) }} đ </span>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="info-nick" style="width: 30%">Tên người chuyển</th>
-                  <td class="mua-nick">
-                    <span>{{ history.bankAccountName }}</span>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th class="info-nick" style="">Số tài khoản chuyển</th>
-                  <td class="mua-nick">
-                    <span>{{ history.bankAccountNumber }}</span>
                   </td>
                 </tr>
 
@@ -66,15 +47,16 @@
                     <v-btn
                       :color="class_status(history.depositState)"
                       class="btn-sm pd-5px"
+                      :class="history.depositState === 'Thất Bại' ? 'text-white' : 'text-black'"
                     >
                       {{ history.depositState }}
                     </v-btn>
                   </td>
                 </tr>
 
-                <tr>
+                <tr v-if="history.depositState === 'Chờ Duyệt'">
                   <td class="mua-nick text-left instruction" colspan="2">
-                    <HistoryInstructionBank :history="history" />
+                    <HistoryInstructionBankByQR :history="history" />
                   </td>
                 </tr>
               </tbody>
@@ -85,15 +67,15 @@
     </ModalPayload>
   </div>
 </template>
-  
+
 <script>
 import ModalPayload from "@/components/common/ModalPayload";
-import HistoryInstructionBank from "@/components/pages/client/account/wallet/HistoryInstructionBank";
+import HistoryInstructionBankByQR from "@/components/pages/client/account/wallet/HistoryInstructionBankByQR";
 
 export default {
   components: {
     ModalPayload,
-    HistoryInstructionBank,
+    HistoryInstructionBankByQR,
   },
   props: {
     history: {
@@ -112,7 +94,7 @@ export default {
   },
 };
 </script>
-  
+
 <style lang="scss" scoped>
 .table {
   margin-bottom: 0px !important;
