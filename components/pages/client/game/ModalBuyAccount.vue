@@ -104,7 +104,7 @@ export default {
   data() {
     return {
       tab: null,
-      isBuy: "atm-momo",
+      isBuy: "wallet",
       isLoading: false,
     };
   },

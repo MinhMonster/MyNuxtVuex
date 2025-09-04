@@ -20,11 +20,12 @@
               <div class="field">
                 <form-validator name="amount">
                   <label for="amount" class="form-label"
-                    >Tiền chuyển
+                    >Số tiền nạp
                     <small>(<span style="color: red">*</span>)</small></label
                   >
                   <BaseInputCash
                     v-model="money.amount"
+                    placeholder="Nhập số tiền cần nạp..."
                     @change="setMoneyOut"
                     class="v-input form-input"
                   />

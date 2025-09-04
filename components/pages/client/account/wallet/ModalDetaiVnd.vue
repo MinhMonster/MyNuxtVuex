@@ -14,19 +14,19 @@
             <table class="table">
               <tbody>
                 <tr>
-                  <th class="info-nick" style="width: 30%">Mã giao dịch</th>
-                  <td class="mua-nick">
+                  <th class="info-nick w-50" style="">Mã giao dịch</th>
+                  <td class="mua-nick w-50">
                     <span>{{ format_number(history.ID) }}</span>
                   </td>
                 </tr>
                 <tr>
-                  <th class="info-nick" style="width: 30%">Số tiền nạp</th>
+                  <th class="info-nick" style="">Số tiền nạp</th>
                   <td class="mua-nick break-all">
                     <span>{{ format_number(history.moneyAmount) }} đ </span>
                   </td>
                 </tr>
                 <tr>
-                  <th class="info-nick" style="width: 30%">
+                  <th class="info-nick" style="">
                     Tiền nhận trên Web
                   </th>
                   <td class="mua-nick">
