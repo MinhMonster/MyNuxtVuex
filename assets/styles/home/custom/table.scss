@@ -33,7 +33,7 @@
 
   thead {
     th {
-      padding: 7.5px 12px !important;
+      padding: 6px 3px !important;
       height: 32px;
 
       &.trading-code {
@@ -51,10 +51,10 @@
       }
 
       &.info-history {
-        width: 80% !important;
-        min-width: 150px;
-        vertical-align: middle !important;
-        text-align: left;
+        // width: 80% !important;
+        min-width: 100px;
+        // vertical-align: middle !important;
+        // text-align: left;
       }
     }
   }
@@ -62,7 +62,7 @@
   tbody {
     tr {
       td {
-        padding: 7.5px 12px !important;
+        padding: 6px 3px !important;
 
         .col-sm-12,
         .col-md-6,

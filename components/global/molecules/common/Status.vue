@@ -4,8 +4,9 @@
     :content="status.text"
     overlap
     class="btn-sm pd-5px"
+    :class="value === 'failed' ? '' : 'text-black'"
   >
-  {{ status.text }}
+    {{ status.text }}
   </v-btn>
 </template>
 <script>

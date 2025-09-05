@@ -1,15 +1,15 @@
 <template>
   <v-row>
     <v-col cols="6">
-      <div class="c-font-uppercase btnCheckAccount ajax" @click="showModal()">
-        <div class="btn-buy-account">
-          <BaseSvg content="Mua Ngay" class="text-main" name="next-right" />
-        </div>
+      <div class="btn-buy-account" @click="showBank()">
+        <BaseSvg content="Mua bằng ATM" name="next-right" />
       </div>
     </v-col>
     <v-col cols="6">
-      <div class="btn-buy-account-hover" @click="showBank()">
-        <BaseSvg content="ATM-MOMO" name="next-right" />
+      <div class="c-font-uppercase btnCheckAccount ajax" @click="showModal()">
+        <div class="btn-buy-account-hover">
+          <BaseSvg content="Thanh Toán" class="text-main" name="next-right" />
+        </div>
       </div>
     </v-col>
 
@@ -45,8 +45,8 @@
         />
       </template>
     </ModalBuyAccount>
-    <ModalBuyAccountBank
-      ref="modalBuyAccountBank"
+    <ModalBuyAccountVietQR
+      ref="ModalBuyAccountVietQR"
       :account="account"
       :account-type="accountType"
     />
@@ -57,7 +57,7 @@
 
 <script>
 import ModalBuyAccount from "@/components/pages/client/game/ModalBuyAccount";
-import ModalBuyAccountBank from "@/components/pages/client/game/ModalBuyAccountBank";
+import ModalBuyAccountVietQR from "@/components/pages/client/game/ModalBuyAccountVietQR";
 import TableAccountNinja from "@/components/pages/client/game/ninjas/TableAccountNinja";
 import TableAccountAvatar from "@/components/pages/client/game/avatars/TableAccountAvatar";
 import TableAccountDragonBall from "@/components/pages/client/game/dragon_balls/TableAccountDragonBall";
@@ -67,7 +67,7 @@ export default {
 
   components: {
     ModalBuyAccount,
-    ModalBuyAccountBank,
+    ModalBuyAccountVietQR,
     TableAccountNinja,
     TableAccountAvatar,
     TableAccountDragonBall,
@@ -87,7 +87,7 @@ export default {
       this.$refs.modal.show();
     },
     showBank() {
-      this.$refs.modalBuyAccountBank.show();
+      this.$refs.ModalBuyAccountVietQR.show();
     },
   },
 };

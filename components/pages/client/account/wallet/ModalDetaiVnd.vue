@@ -10,7 +10,7 @@
     >
       <template #content>
         <div class="page-body">
-          <div v-if="history" class="table-responsive">
+          <div v-if="history">
             <table class="table">
               <tbody>
                 <tr>
@@ -20,31 +20,11 @@
                   </td>
                 </tr>
                 <tr>
-                  <th class="info-nick" style="width: 30%">Hình thức nạp</th>
-                  <td class="mua-nick">
-                    <span>{{ history.bank_name }}</span>
-                  </td>
-                </tr>
-                <tr>
                   <th class="info-nick" style="width: 30%">Số tiền nạp</th>
                   <td class="mua-nick break-all">
                     <span>{{ format_number(history.amount) }} đ </span>
                   </td>
                 </tr>
-                <tr>
-                  <th class="info-nick" style="width: 30%">Tên người chuyển</th>
-                  <td class="mua-nick">
-                    <span>{{ history.account_holder_name }}</span>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th class="info-nick" style="">Số tài khoản chuyển</th>
-                  <td class="mua-nick">
-                    <span>{{ history.account_number }}</span>
-                  </td>
-                </tr>
-
                 <tr>
                   <th class="info-nick" style="">Ngày thực hiện</th>
                   <td class="mua-nick">
@@ -61,7 +41,7 @@
 
                 <tr v-if="history.status !== 'success'">
                   <td class="mua-nick text-left instruction" colspan="2">
-                    <HistoryInstructionBank :history="history" />
+                    <HistoryInstructionBankByQR :history="history" />
                   </td>
                 </tr>
               </tbody>
@@ -75,13 +55,13 @@
 
 <script>
 import ModalPayload from "@/components/common/ModalPayload";
-import HistoryInstructionBank from "@/components/pages/client/account/wallet/HistoryInstructionBank";
+import HistoryInstructionBankByQR from "@/components/pages/client/account/wallet/HistoryInstructionBankByQR";
 import Status from "@/components/global/molecules/common/Status";
 
 export default {
   components: {
     ModalPayload,
-    HistoryInstructionBank,
+    HistoryInstructionBankByQR,
     Status,
   },
   props: {

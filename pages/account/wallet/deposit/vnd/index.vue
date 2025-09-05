@@ -6,65 +6,32 @@
       goBack
       reload
       @reload="reload()"
-      :col-left="8"
-      :col-right="4"
       table
     >
       <template v-if="ready" #body>
         <form class="form">
-          <div class="content-main">
-            Chuyển tiền cho Admin xong bạn vào đây để tạo thông báo nạp tiền
+          <div class="content-main text-center">
+            Hãy tạo giao dịch nạp tiền sau đó làm theo hướng dẫn
             <br />
-            100k ATM-MOMO = 120k <br />
-            Shop Thời gian duyệt 30s - 5 Phút <br />
-            SĐT hỗ trợ của Admin: Đỗ Minh - 0961.646.828 <br />
-            Nội dung:
-            <span class="sms">
-              NAP MBN {{ user.id }}
-              <ButtonCoppy :content="`NAP MBN ${user.id}`"></ButtonCoppy> </span
-            ><br />
-            <div class="btn-show-more">
-              <v-btn @click="showModal()" color="primary">
-                Xem Hướng Dẫn Nạp Tiền Từ ATM,MOMO
-              </v-btn>
-            </div>
+            Thời gian duyệt 30s - 5 Phút <br />
           </div>
           <v-row>
             <v-col cols="12" sm="6" class="middle custom-field-input mb-2">
               <div class="field">
-                <form-validator name="bank_name">
-                  <label for="wallet_type" class="form-label"
-                    >Hình thức nạp
-                    <small>(<span style="color: red">*</span>)</small></label
-                  >
-                  <select v-model="money.bank_name" class="">
-                    <option
-                      v-for="(option, index) in walletOptions"
-                      :key="index"
-                      :value="option.value"
-                    >
-                      {{ option.text }}
-                    </option>
-                  </select>
-                </form-validator>
-              </div>
-            </v-col>
-
-            <v-col cols="12" sm="6" class="middle custom-field-input mb-2">
-              <div class="field">
                 <form-validator name="amount">
                   <label for="amount" class="form-label"
-                    >Tiền chuyển
+                    >Số tiền nạp
                     <small>(<span style="color: red">*</span>)</small></label
                   >
                   <BaseInputCash
                     v-model="money.amount"
+                    placeholder="Nhập số tiền cần nạp..."
                     @change="setMoneyOut"
                     class="v-input form-input"
                   />
                 </form-validator></div
             ></v-col>
-            <!-- <v-col cols="12" sm="3" class="middle custom-field-input mb-2">
+            <v-col cols="12" sm="6" class="middle custom-field-input mb-2">
               <div class="field">
                 <form-validator name="out">
                   <label for="out" class="form-label">Thực nhận +20%</label>
@@ -75,40 +42,6 @@
                     placeholder=" "
                     class="v-input form-input"
                     :class="{ 'text-danger': isFailed }"
-                  />
-                </form-validator>
-              </div>
-            </v-col> -->
-            <v-col cols="12" sm="6" class="middle custom-form-input">
-              <div class="field">
-                <form-validator name="account_holder_name">
-                  <label class="form-label"
-                    >Chủ tài khoản Chuyển tiền
-                    <small>(<span style="color: red">*</span>)</small></label
-                  >
-                  <input
-                    v-model="money.account_holder_name"
-                    type="text"
-                    placeholder=" "
-                    class="v-input form-input"
-                    @keyup.enter="submit()"
-                  />
-                </form-validator>
-              </div>
-            </v-col>
-            <v-col cols="12" sm="6" class="middle">
-              <div class="field">
-                <form-validator name="account_number">
-                  <label class="form-label"
-                    >Số tài khoản Người chuyển
-                    <small>(<span style="color: red">*</span>)</small></label
-                  >
-                  <input
-                    v-model="money.account_number"
-                    type="text"
-                    placeholder=" "
-                    class="v-input form-input"
-                    @keyup.enter="submit()"
                   />
                 </form-validator>
               </div>
@@ -123,43 +56,6 @@
             </v-col>
           </v-row>
         </form>
-        <ModalPayload
-          ref="modal"
-          size="md"
-          title="HD Nạp Tiền = ATM - MOMO"
-          hiddenFooter
-        >
-          <template #content>
-            <v-row>
-              <v-col cols="12" class="size">
-                <div class="page-body">
-                  <AccountNumbeAdmin />
-                </div>
-              </v-col>
-              <v-col cols="12" class="mt--2">
-                <div class="page-body">
-                  <RechargeInstructions :user="user" />
-                </div>
-              </v-col>
-            </v-row>
-          </template>
-        </ModalPayload>
-        <!-- <div class="wrapper"> -->
-        <!-- </div> -->
-      </template>
-      <template #col-right>
-        <v-row>
-          <v-col cols="12" sm="6" md="6" lg="12" class="size">
-            <div class="page-body">
-              <AccountNumbeAdmin />
-            </div>
-          </v-col>
-          <v-col cols="12" sm="6" md="6" lg="12">
-            <div class="page-body">
-              <RechargeInstructions :user="user" />
-            </div>
-          </v-col>
-        </v-row>
       </template>
       <template #table>
         <HistoryDepositVndTable
@@ -219,29 +115,8 @@ export default {
     return {
       history: null,
       isLoading: false,
-      walletOptions: [
-        {
-          text: "Chọn hình thức nạp tiền",
-          value: null,
-        },
-        {
-          text: "Ví MOMO",
-          value: "Ví MOMO",
-        },
-        {
-          text: "MB Bank",
-          value: "MB Bank",
-        },
-        {
-          text: "VietcomBank",
-          value: "VietcomBank",
-        },
-      ],
       money: {
-        bank_name: null,
         amount: "",
-        account_holder_name: "",
-        account_number: "",
       },
       moneyReceived: "",
       isFailed: false,
@@ -347,6 +222,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+table th {
+  width: auto !important
+}
 ::v-depp {
   .has-error .validation {
     margin-top: 15px !important;
@@ -365,22 +243,7 @@ export default {
   margin: 0 auto;
   padding: 0px;
 }
-// .wrapper {
-//   border-radius: 15px;
-//   box-shadow: 0px 15px 20px rgb(0 0 0 / 10%);
-//   user-select: none;
-//   .title {
-//     font-size: 30px;
-//     font-weight: 600;
-//     text-align: center;
-//     line-height: 40px;
-//     color: #ffcf9c;
-//     user-select: none;
-//     border-radius: 15px 15px 0 0;
-//     background: linear-gradient(-135deg, #e28637, #561d00);
-//   }
 
-// }
 .checkbox {
   position: relative;
   display: block;
@@ -451,54 +314,10 @@ input[type="checkbox"]:checked + label::after {
 
 form {
   padding: 10px;
-  // border: 1px solid #333;
-  // background: #ffffff;
 }
-
-// .form-field {
-//  margin: 20px;
-// }
-
-// .form-input {
-//   border: 1px solid #333;
-//   width: 100%;
-//   height: 50px;
-//   padding: 0 0px;
-//   transform: 0.25s ease;
-// }
 
 .form-input:focus {
   border-color: blue;
-}
-
-// .form-field {
-//  position: relative;
-// }
-
-.form-label {
-  // color: #a4a4a4;
-  // position: absolute;
-  // top: 20px;
-  // //  top: 35%;
-  // font-size: 14px;
-  // transform: translateY(-50%);
-  // left: 21px;
-  // user-select: none;
-  // pointer-events: none;
-  // transition: 0.25s ease;
-  // z-index: 1;
-  // background: #000;
-}
-
-.form-input:not(:placeholder-shown) + .form-label,
-.form-input:focus + .form-label {
-  // top: -9px;
-  // left: 11px;
-  // padding: 0 10px;
-  // display: inline-block;
-  // background: none !important;
-  // color: #663019;
-  // z-index: 9999;
 }
 
 @media (min-width: 450px) {
