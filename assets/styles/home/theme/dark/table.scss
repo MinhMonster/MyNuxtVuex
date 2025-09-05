@@ -19,6 +19,18 @@
     }
   }
 
+  .table.table-striped {
+    tbody>tr:nth-of-type(odd) {
+      color: #f1f1f1 !important;
+      background: #171e28 !important;
+    }
+
+  }
+
+  .v-data-table>.v-data-table__wrapper>table>tbody>tr:nth-child(even) {
+    color: #fff;
+  }
+
   &.theme--dark {
     .v-pagination {
 
@@ -40,6 +52,12 @@
     }
   }
 
+  .base-table {
 
-
+    .v-data-table>.v-data-table__wrapper>table>tbody>tr>th,
+    .v-data-table>.v-data-table__wrapper>table>thead>tr>th,
+    .v-data-table>.v-data-table__wrapper>table>tfoot>tr>th {
+      color: #f1f1f1 !important;
+    }
+  }
 }

@@ -163,7 +163,7 @@ export default {
     resetQuery({ commit }) {
       commit(SET_QUERY, {
         page: 1,
-        perPage: 24,
+        perPage: 15,
         q: {},
       });
     },

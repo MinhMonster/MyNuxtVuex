@@ -398,50 +398,5 @@ export default {
     }
   }
 }
-::v-deep {
-  #home-page {
-    table.table {
-      &.table-striped > tbody > tr:nth-of-type(odd) {
-        color: #9f5424;
-        border: 1px solid #663019;
-        background: #ffcf9c;
-      }
-      thead {
-        th {
-          padding: 7.5px;
-          &.trading-code {
-            width: 10% !important;
-            min-width: 60px;
-            vertical-align: middle !important;
-            text-align: center;
-          }
-          &.holder-action {
-            width: 10% !important;
-            min-width: 60px;
-            vertical-align: middle !important;
-            text-align: center;
-          }
-          &.info-history {
-            width: 80% !important;
-            min-width: 150px;
-            vertical-align: middle !important;
-            text-align: left;
-          }
-        }
-      }
-      tbody {
-        tr {
-          td {
-            padding: 6px 3px;
-            .col-sm-12,
-            .col-md-6,
-            .col-lg-3 {
-              padding: 3px 15px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+
 </style>

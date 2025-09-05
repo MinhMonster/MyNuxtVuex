@@ -13,9 +13,9 @@
     ><br />
     <img src="/icon/icon-next-right.gif" /> ND:
     <span class="sms"
-      >Mua Nick {{ game(accountType) }} {{ format_number(account.id) }} & SĐT
+      >Mua Nick {{ game_name(accountType) }} {{ format_number(account.id) }} & SĐT
       <ButtonCoppy
-        :content="`Mua Nick ${game} ${format_number(account.id)} & SĐT`"
+        :content="`Mua Nick ${game_name(accountType)} ${format_number(account.id)} & SĐT`"
       ></ButtonCoppy></span
     ><br />
     <img src="/icon/icon-next-right.gif" /> Chuyển xong nhắn tin cho Admin nhận

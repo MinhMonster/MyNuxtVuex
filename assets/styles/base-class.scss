@@ -26,6 +26,17 @@ $fontWeight: (
   800
 );
 
+$widths: (
+  50,
+  60,
+  70,
+  100,
+  120,
+  150,
+  180,
+  200,
+);
+
 $margins: (
   -1,
   -2,
@@ -42,6 +53,25 @@ $margins: (
       font-size: #{$fontSize}px !important;
       font-weight: #{$fontWeight} !important;
     }
+  }
+}
+
+@each $widths in $widths {
+  .min-w-#{$widths}px {
+    min-width: #{$widths}px !important;
+  }
+}
+
+
+@each $widths in $widths {
+  .w-#{$widths}px {
+    width: #{$widths}px !important;
+  }
+}
+
+@each $widths in $widths {
+  .min-w-#{$widths} {
+    min-width: #{$widths}px !important;
   }
 }
 
