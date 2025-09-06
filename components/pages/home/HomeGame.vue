@@ -18,6 +18,16 @@
           </v-col>
         </v-row>
         <div class="mt-3" id="dich-vu-game">
+          <div class="title text-center text-underline">TÀI KHOẢN</div>
+          <v-row class="text-center account mb-1">
+            <AccountCard
+              v-for="(game, index) in accountList"
+              :key="index"
+              :game="game"
+            ></AccountCard>
+          </v-row>
+        </div>
+        <div class="mt-3" id="dich-vu-game">
           <div class="title text-center text-underline">DỊCH VỤ GAME</div>
           <v-row class="text-center account mb-1">
             <GameCard
@@ -50,6 +60,7 @@
 
 <script>
 import GameCard from "@/components/pages/home/GameCard";
+import AccountCard from "@/components/pages/home/AccountCard";
 import ModalNotification from "@/components/pages/client/layout/ModalNotification";
 // import FormLogin from "@/components/pages/client/login/FormLogin";
 // import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
@@ -65,6 +76,7 @@ export default {
 
   components: {
     GameCard,
+    AccountCard,
     ModalNotification,
     // FormLogin,
     // SideBarMenu,
@@ -145,6 +157,30 @@ export default {
         !this.isMobile ||
         (this.isMobile && this.isNotification && !this.onNotification)
       );
+    },
+    accountList() {
+      return [
+        {
+          title: this.isLogin ? "Tài Khoản" : "Đăng Nhập",
+          path: "/account/profile",
+          image: this.isLogin ? "/images/account.jpg" : "/images/login.jpg",
+        },
+        {
+          title: "Nạp Tiền từ ATM MOMO",
+          path: "/account/wallet/deposit/vnd",
+          image: "/images/topup.png",
+        },
+        {
+          title: "Nạp Tiền từ Thẻ Cào",
+          path: "/account/wallet/deposit/card",
+          image: "/images/top-up-card.png",
+        },
+        {
+          title: "Lịch Sử Mua Nick",
+          path: "/account/history",
+          image: "/images/history-buy-account.png",
+        },
+      ];
     },
   },
   mounted() {

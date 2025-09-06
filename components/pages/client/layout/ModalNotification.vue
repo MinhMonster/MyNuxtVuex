@@ -54,7 +54,7 @@ export default {
         await this.fetchNotification();
         await this.$refs.modal.show();
       } else {
-        this.$emit("hide");
+        this.close();
       }
     },
     close() {

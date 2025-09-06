@@ -111,7 +111,6 @@
       <template #table>
         <HistoryDepositCardTable
           :histories="histories"
-          :user="user"
           @show="showModalDetail"
         />
         <Pagination
