@@ -22,16 +22,16 @@
         </td>
       </tr>
 
-      <tr>
+      <!-- <tr>
         <th class="info-nick">Giá tiền:</th>
         <td class="mua-nick">
           <span>{{ format_number(price) }} Card</span>
         </td>
-      </tr>
+      </tr> -->
 
       <tr>
         <th class="info-nick">
-          ATM-MOMO:
+          Giá tiền:
           <template v-if="hasDiscount">
             <br />
             <p class="text-danger">(Giảm giá: {{ account.saleOff }}%)</p>
@@ -39,12 +39,12 @@
         </th>
         <td class="mua-nick">
           <span :class="hasDiscount ? 'text-line-middel text-danger' : ''">
-            {{ cash_atm(price) }} ATM - MOMO
+            {{ cash_atm(price) }} Vnđ
           </span>
 
           <template v-if="hasDiscount">
             <div class="divider"></div>
-            <span>{{ cash_atm(discountedPrice) }} ATM - MOMO</span>
+            <span>{{ cash_atm(discountedPrice) }} Vnđ</span>
           </template>
         </td>
       </tr>

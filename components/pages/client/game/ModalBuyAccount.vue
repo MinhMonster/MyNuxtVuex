@@ -32,7 +32,7 @@
             <v-radio
               name="some-radios"
               value="atm-momo"
-              label="Thanh toán bằng Atm - Momo"
+              label="Thanh toán bằng chuyển khoản"
             ></v-radio>
           </v-radio-group>
 
