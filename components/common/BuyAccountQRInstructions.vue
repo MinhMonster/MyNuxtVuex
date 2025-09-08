@@ -50,8 +50,6 @@ export default {
   },
   computed: {
     game() {
-      console.log("this.accountType", this.accountType);
-
       switch (this.accountType) {
         case "ninja":
           return "Ninja";

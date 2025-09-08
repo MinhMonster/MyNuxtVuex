@@ -60,7 +60,6 @@
       <template #table>
         <HistoryDepositVndTable
           :histories="histories"
-          :user="user"
           @show="showModalDetail"
         />
         <ModalDetaiVnd ref="modalDetail" :history="history" />

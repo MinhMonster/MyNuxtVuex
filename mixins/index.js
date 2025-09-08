@@ -80,6 +80,10 @@ export default {
     }
   },
   computed: {
+    ...mapFields("home/users", {
+      token: "token",
+      user: "user"
+    }),
     ...mapFields("global", {
       isMb: "isMb",
       scrWidth: "scrWidth",
@@ -90,6 +94,9 @@ export default {
       isFormLoginRegister: "isFormLoginRegister",
       isThemeDark: "isThemeDark"
     }),
+    isLogin() {
+      return this.token && this.user;
+    },
     isMobile() {
       return this.isMb
     },

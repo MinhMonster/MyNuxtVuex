@@ -7,6 +7,7 @@
         :src="game.image"
         :alt="game.title"
         class="image-banner"
+        :style="`aspect-ratio: ${ratio} !important`"
       />
     </div>
   </client-only>
@@ -18,6 +19,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    ratio: {
+      type: String|Number,
+      default: 1006/750,
+    }
   },
 };
 </script>

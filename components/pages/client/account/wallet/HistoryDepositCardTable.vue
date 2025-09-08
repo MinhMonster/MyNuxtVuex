@@ -71,10 +71,6 @@ export default {
       type: Array,
       default: () => [],
     },
-    user: {
-      type: Object,
-      default: () => {},
-    },
   },
 };
 </script>
