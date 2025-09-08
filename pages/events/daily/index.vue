@@ -135,7 +135,7 @@
         </ModalPayload>
       </template>
       <template #table>
-        <HistoryDailyEventTable :histories="histories" :user="user" />
+        <HistoryDailyEventTable :histories="histories" />
         <Pagination
           v-if="historyMeta && historyMeta.pages > 1"
           :meta="historyMeta"

@@ -63,7 +63,7 @@ export default {
       return `NAP MBN ${this.user.id + " " + this.history.ID} `;
     },
     amount() {
-      return this.history.moneyAmount;
+      return Number(this.history.moneyAmount);
     }
   },
 };
