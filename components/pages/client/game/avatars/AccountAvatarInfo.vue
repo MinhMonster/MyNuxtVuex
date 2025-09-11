@@ -87,13 +87,6 @@ export default {
   margin-bottom: 10px;
 }
 
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: #a4a4a4;
-  margin: 5px 0;
-}
-
 th.info-nick {
   width: 40%;
   padding: 7px;

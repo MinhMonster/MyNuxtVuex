@@ -26,19 +26,14 @@
       <v-col cols="6">
         <span v-if="accountNinja.saleOff" class="account-cash has-sale">
           <span class="bg-danger sale-off">
-            {{ "-" + accountNinja.saleOff + "% " }}</span
-          >
+            {{ "-" + accountNinja.saleOff + "% " }}
+          </span>
           <span class="text-center cash-sale">
-            {{
-              " " +
-              cash_atm(accountNinja.giatien * (1 - accountNinja.saleOff / 100))
-            }}
-            Vnđ</span
+            {{ " " + format_number(accountNinja.priceSalling) }} Vnđ</span
           >
         </span>
-
         <span v-else class="account-cash">
-          {{ cash_atm(accountNinja.giatien) }} Vnđ
+          {{ format_number(accountNinja.price) }} Vnđ
         </span>
       </v-col>
       <v-col cols="6">

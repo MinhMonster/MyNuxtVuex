@@ -81,10 +81,4 @@ export default {
 </script>
 
 <style scoped>
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: #a4a4a4;
-  margin: 5px 0;
-}
 </style>
