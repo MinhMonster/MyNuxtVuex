@@ -13,7 +13,7 @@ export default {
     isNotification: true,
     onNotification: true,
     isThemeDark: true,
-    isThemeRed: true,
+    isThemeRed: false,
     showMenuRight: false,
     fixed: false,
     scrWidth: 0,
