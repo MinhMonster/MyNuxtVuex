@@ -1,5 +1,5 @@
 <template>
-  <v-app :class="`${isThemeDark ? 'theme-dark' : (isThemeRed ? 'theme-red' : '')}`">
+  <v-app :class="`${isThemeDark ? 'theme-dark' : (isThemeRed ? 'theme-red' : '')}${isViewAccount ? ' admin-view-account' : ''}`">
     <AppBar />
     <v-main id="main" class="bg-website">
       <v-container
@@ -19,6 +19,10 @@
       <!-- <div class="change-theme">
         <BaseSvg name="theme-light-dark" @click="changeTheme()" />
       </div> -->
+      <div v-if="isAdmin" class="view-account">
+        <BaseSvg v-if="!isView" name="eye" @click="changeView()"/>
+        <BaseSvg v-else name="eye-off" @click="changeView()"/>
+      </div>
       <div class="next-top">
         <BaseSvg name="next-top" @click="nextTop()" />
       </div>
@@ -103,6 +107,9 @@ export default {
     // changeTheme() {
     //   this.isThemeDark = !this.isThemeDark;
     // },
+    changeView() {
+      this.isView = !this.isView;
+    },
     scroll() {
       if (!this.isShowButton) {
         this.isShowButton = true;
@@ -152,6 +159,7 @@ export default {
   }
 }
 // .change-theme,
+.view-account,
 .next-top,
 .next-bottom {
   position: fixed;
@@ -181,6 +189,9 @@ export default {
 // .change-theme {
 //   bottom: 170px;
 // }
+.view-account {
+  bottom: 170px;
+}
 .next-top {
   bottom: 130px;
 }

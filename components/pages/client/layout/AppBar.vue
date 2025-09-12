@@ -11,32 +11,34 @@
     <v-spacer />
 
     <div class="header-menu" @click.stop="showMenuRight = !showMenuRight">
-      <div class="login-btn">
-        <span @click="openMenu()"
-          >{{ user && token ? user.name : "Tài khoản" }}
-        </span>
-        <BaseSvg
-          v-if="!showMenuRight"
-          name="down"
-          id="btn-down"
-          title="Open"
-          aria-label="Open"
-        />
-        <BaseSvg
-          v-else
-          name="up"
-          id="btn-up"
-          title="Close"
-          aria-label="Close"
-        />
-      </div>
+      <client-only>
+        <div class="login-btn">
+          <span @click="openMenu()"
+            >{{ isLogin ? user.name : "Tài khoản" }}
+          </span>
+          <BaseSvg
+            v-if="!showMenuRight"
+            name="down"
+            id="btn-down"
+            title="Open"
+            aria-label="Open"
+          />
+          <BaseSvg
+            v-else
+            name="up"
+            id="btn-up"
+            title="Close"
+            aria-label="Close"
+          />
+        </div>
+      </client-only>
     </div>
   </v-app-bar>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
-import { mapState, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "AppBar",
@@ -55,8 +57,6 @@ export default {
     },
   },
   computed: {
-    ...mapState("home/users", ["token", "user"]),
-
     ...mapFields("global", {
       ready: "ready",
     }),
@@ -67,6 +67,9 @@ export default {
     isHome() {
       return this.$route.path == "/";
     },
+    // isAdmin() {
+    //   return this.user?.admin;
+    // },
   },
   mounted() {
     this.getLogo();
@@ -87,7 +90,7 @@ export default {
     },
     ...mapActions("home/users", ["logout", "fetchUser"]),
     openMenu() {
-      if (this.token && !this.isShow) {
+      if (this.isLogin && !this.isShow) {
         this.fetchUser();
       }
     },

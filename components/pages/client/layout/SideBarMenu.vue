@@ -64,7 +64,7 @@
         <div class="h-line"></div>
         <div class="member-nav">
           <div class="member-nav-list">
-            <template v-if="token && user">
+            <template v-if="isLogin">
               <div class="member-nav-item">
                 <nuxt-link to="/account/profile">
                   <BaseSvg name="user-card" />
@@ -114,7 +114,7 @@
                 </nuxt-link>
               </div>
             </template>
-            <template v-if="token && user && user.admin">
+            <template v-if="isAdmin">
               <div class="h-line"></div>
               <div class="member-nav-item">
                 <nuxt-link to="/admin/game/ninjas">
@@ -138,7 +138,7 @@
               </div>
             </template>
           </div>
-          <template v-if="token && user">
+          <template v-if="isLogin">
             <div class="h-line mb-2"></div>
             <div class="sign-out">
               <BaseSvg

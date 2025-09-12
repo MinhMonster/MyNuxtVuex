@@ -14,6 +14,7 @@ export default {
     onNotification: true,
     isThemeDark: true,
     isThemeRed: false,
+    isView: true,
     showMenuRight: false,
     fixed: false,
     scrWidth: 0,

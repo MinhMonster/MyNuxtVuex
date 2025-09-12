@@ -94,9 +94,16 @@ export default {
       isFormLoginRegister: "isFormLoginRegister",
       isThemeDark: "isThemeDark",
       isThemeRed: "isThemeRed",
+      isView: "isView",
     }),
     isLogin() {
       return this.token && this.user;
+    },
+    isAdmin() {
+      return this.isLogin && this.user.admin;
+    },
+    isViewAccount() {
+      return this.isAdmin && this.isView;
     },
     isMobile() {
       return this.isMb
