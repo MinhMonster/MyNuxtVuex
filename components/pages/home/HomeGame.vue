@@ -91,59 +91,7 @@ export default {
     },
   },
   data() {
-    return {
-      gameList: [
-        // {
-        //   title: "Shop Nick Mới",
-        //   path: "https://shopnick.online",
-        //   image:
-        //     "https://muabannick.pro/images/banners/banner-shopnickonline.png",
-        //   numberAccount: "90",
-        //   sold: "69",
-        //   target: true,
-        // },
-        {
-          title: "Avatar XS.DKỳ",
-          path: "/teamobi/avatar",
-          image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
-          numberAccount: "90",
-          sold: "69",
-        },
-        {
-          title: "Nick Ninja VIP",
-          path: "/teamobi/ninja-school/nick-vip",
-          image:
-            "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
-          numberAccount: "5245",
-          sold: "5144",
-        },
-        {
-          title: "Nick Ninja Giá Rẻ",
-          path: "/teamobi/ninja-school/nick-gia-re",
-          image:
-            "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
-          numberAccount: "7481",
-          sold: "7185",
-        },
-
-        {
-          title: "Sự kiện Hằng ngày",
-          path: "/events/daily",
-          image:
-            "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
-          numberAccount: "5245",
-          sold: "5144",
-        },
-
-        {
-          title: "Ngọc Rồng Online",
-          path: "/teamobi/ngoc-rong",
-          image: "https://muabannick.pro//images/banners/banner_nro_min.jpg",
-          numberAccount: "515",
-          sold: "438",
-        },
-      ],
-    };
+    return {};
   },
   computed: {
     ...mapState("home/users", ["token", "user"]),
@@ -163,22 +111,93 @@ export default {
         {
           title: this.isLogin ? "Tài Khoản" : "Đăng Nhập",
           path: "/account/profile",
-          image: this.isLogin ? "/images/account.jpg" : "/images/login.jpg",
+          image: this.isThemeRed
+            ? (this.isLogin ? "/images/banners/account-red.png" : "/images//banners/login-red.png")
+            : (this.isLogin ? "/images/banners/account.jpg" : "/images/banners/login.jpg"),
         },
+
         {
           title: "Nạp Tiền từ ATM MOMO",
           path: "/account/wallet/deposit/vnd",
-          image: "/images/topup.png",
+          image: this.isThemeRed
+            ? "/images/banners/top-up-red.png"
+            : "/images/banners/top-up.png",
         },
         {
           title: "Nạp Tiền từ Thẻ Cào",
           path: "/account/wallet/deposit/card",
-          image: "/images/top-up-card.png",
+          image: this.isThemeRed
+            ? "/images/banners/top-up-card-red.png"
+            : "/images/banners/top-up-card.png",
         },
         {
           title: "Lịch Sử Mua Nick",
           path: "/account/history",
-          image: "/images/history-buy-account.png",
+          image: this.isThemeRed
+            ? "/images/banners/history-buy-account-red.png"
+            : "/images/banners/history-buy-account.png",
+        },
+      ];
+    },
+    gameList() {
+      return [
+        // {
+        //   title: "Shop Nick Mới",
+        //   path: "https://shopnick.online",
+        //   image:
+        //     "https://muabannick.pro/images/banners/banner-shopnickonline.png",
+        //   numberAccount: "90",
+        //   sold: "69",
+        //   target: true,
+        // },
+        {
+          title: "Avatar XS.DKỳ",
+          path: "/teamobi/avatar",
+          image: this.isThemeDark
+            ? "https://muabannick.pro/images/banners/banner_avatar_min.jpg"
+            : this.isThemeRed
+            ? "/images/banners/avatar-red.png"
+            : "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
+        },
+        {
+          title: "Nick Ninja VIP",
+          path: "/teamobi/ninja-school/nick-vip",
+          image: this.isThemeDark
+            ? "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg"
+            : this.isThemeRed
+            ? "/images/banners/ninja-vip-red.png"
+            : "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
+        },
+        {
+          title: "Nick Ninja Giá Rẻ",
+          path: "/teamobi/ninja-school/nick-gia-re",
+          image: this.isThemeDark
+            ? "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg"
+            : this.isThemeRed
+            ? "/images/banners/ninja-cheap-red.png"
+            : "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
+        },
+
+        {
+          title: "Sự kiện Hằng ngày",
+          path: "/events/daily",
+          image: this.isThemeDark
+            ? "https://muabannick.pro/images/banners/banner_daily_events_min.jpg"
+            : this.isThemeRed
+            ? "/images/banners/event-red.png"
+            : "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
+          numberAccount: "5245",
+          sold: "5144",
+        },
+
+        {
+          title: "Ngọc Rồng Online",
+          path: "/teamobi/ngoc-rong",
+          image: this.isThemeDark
+            ? "https://muabannick.pro//images/banners/banner_nro_min.jpg"
+            : this.isThemeRed
+            ? "/images/banners/ngoc-rong-red.png"
+            : "https://muabannick.pro//images/banners/banner_nro_min.jpg",
         },
       ];
     },

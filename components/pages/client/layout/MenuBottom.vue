@@ -15,7 +15,7 @@
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
-      <div class="sub-menu-buttom" @click="isThemeDark = !isThemeDark">
+      <div class="sub-menu-buttom" @click="changeTheme()">
         <div class="footer_icon theme">
           <BaseSvg class="icon-menu" id="theme-light-dark" title="Giao Diện" aria-label="Giao Diện"
             name="theme-light-dark" />
@@ -51,9 +51,16 @@ export default {
     })
   },
   methods: {
-    // changeTheme() {
-    //   this.isThemeDark = !this.isThemeDark;
-    // },
+    changeTheme() {
+
+      if(this.isThemeDark){
+        this.isThemeDark = false;
+        this.isThemeRed = true;
+      }else{
+        this.isThemeDark = true;
+        this.isThemeRed = false;
+      }
+    },
     nextPath(path) {
       if (this.path === path) {
         this.reset();

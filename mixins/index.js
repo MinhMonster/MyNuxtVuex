@@ -92,7 +92,8 @@ export default {
       showLoginRegister: "showLoginRegister",
       showRegister: "showRegister",
       isFormLoginRegister: "isFormLoginRegister",
-      isThemeDark: "isThemeDark"
+      isThemeDark: "isThemeDark",
+      isThemeRed: "isThemeRed",
     }),
     isLogin() {
       return this.token && this.user;
@@ -105,9 +106,6 @@ export default {
     },
     isTablet() {
       return this.is_tablet
-    },
-    isDark() {
-      return this.isThemeDark
     },
     heightHomeLeft() {
       return this.heightHomeRight

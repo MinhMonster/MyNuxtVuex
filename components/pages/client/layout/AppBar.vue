@@ -48,7 +48,7 @@ export default {
     };
   },
   watch: {
-    isDark: {
+    isThemeDark: {
       async handler(newValue, oldValue) {
         this.getLogo();
       },
@@ -92,9 +92,11 @@ export default {
       }
     },
     getLogo() {
-      this.logo = this.isDark
+      this.logo = this.isThemeDark
         ? "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png"
-        : "https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200029.png";
+        : this.isThemeRed
+        ? "/images/logo-red.png"
+        : "https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200";
     },
   },
 };

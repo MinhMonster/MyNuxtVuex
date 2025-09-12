@@ -1,5 +1,5 @@
 <template>
-  <v-app :class="{ 'theme-dark': isThemeDark }">
+  <v-app :class="`${isThemeDark ? 'theme-dark' : (isThemeRed ? 'theme-red' : '')}`">
     <AppBar />
     <v-main id="main" class="bg-website">
       <v-container
