@@ -11,6 +11,7 @@ export default ({ store, req }) => {
       "home.users.authenticated",
       "global.isThemeDark",
       "global.isThemeRed",
+      "global.isView",
     ],
     storage: {
       getItem: (key) => {

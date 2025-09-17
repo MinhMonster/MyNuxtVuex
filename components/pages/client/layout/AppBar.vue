@@ -1,39 +1,41 @@
 <template>
-  <v-app-bar :clipped-right="clipped" fixed app style="height: 50px">
-    <div class="header-content">
-      <div class="header-user">
-        <div class="header-logo" @click="nextHome()">
-          <img :src="logo" alt="Logo" />
+  <client-only>
+    <v-app-bar :clipped-right="clipped" fixed app style="height: 50px">
+      <div class="header-content">
+        <div class="header-user">
+          <div class="header-logo" @click="nextHome()">
+            <img :src="logo" alt="Logo" />
+          </div>
         </div>
       </div>
-    </div>
 
-    <v-spacer />
+      <v-spacer />
 
-    <div class="header-menu" @click.stop="showMenuRight = !showMenuRight">
-      <client-only>
-        <div class="login-btn">
-          <span @click="openMenu()"
-            >{{ isLogin ? user.name : "Tài khoản" }}
-          </span>
-          <BaseSvg
-            v-if="!showMenuRight"
-            name="down"
-            id="btn-down"
-            title="Open"
-            aria-label="Open"
-          />
-          <BaseSvg
-            v-else
-            name="up"
-            id="btn-up"
-            title="Close"
-            aria-label="Close"
-          />
-        </div>
-      </client-only>
-    </div>
-  </v-app-bar>
+      <div class="header-menu" @click.stop="showMenuRight = !showMenuRight">
+        <client-only>
+          <div class="login-btn">
+            <span @click="openMenu()"
+              >{{ isLogin ? user.name : "Tài khoản" }}
+            </span>
+            <BaseSvg
+              v-if="!showMenuRight"
+              name="down"
+              id="btn-down"
+              title="Open"
+              aria-label="Open"
+            />
+            <BaseSvg
+              v-else
+              name="up"
+              id="btn-up"
+              title="Close"
+              aria-label="Close"
+            />
+          </div>
+        </client-only>
+      </div>
+    </v-app-bar>
+  </client-only>
 </template>
 
 <script>

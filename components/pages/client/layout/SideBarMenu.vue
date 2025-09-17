@@ -167,7 +167,7 @@ import { mapFields } from "vuex-map-fields";
 export default {
   // components: { ButtonLoginFacebook },
   computed: {
-    ...mapState("home/users", ["token", "user"]),
+    // ...mapState("home/users", ["token", "user"]),
     ...mapFields("global", {
       isNotification: "isNotification",
     }),
