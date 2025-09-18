@@ -5,17 +5,17 @@
     <img src="/icon/icon-next-right.gif" /> Số tiền:
     <span class="sms"
       >{{
-        account.saleOff
-          ? cash_atm(price * (1 - account.saleOff / 100))
+        account.active_discount
+          ? cash_atm(price * (1 - account.active_discount / 100))
           : cash_atm(price)
       }}
       Vnđ </span
     ><br />
     <img src="/icon/icon-next-right.gif" /> ND:
     <span class="sms"
-      >Mua Nick {{ game }} {{ format_number(account.ID) }} & SĐT
+      >Mua Nick {{ game_name(accountType) }} {{ format_number(account.id) }} & SĐT
       <ButtonCoppy
-        :content="`Mua Nick ${game} ${format_number(account.ID)} & SĐT`"
+        :content="`Mua Nick ${game_name(accountType)} ${format_number(account.id)} & SĐT`"
       ></ButtonCoppy></span
     ><br />
     <img src="/icon/icon-next-right.gif" /> Chuyển xong nhắn tin cho Admin nhận
@@ -40,20 +40,8 @@ export default {
     },
   },
   computed: {
-    game() {
-      switch (this.accountType) {
-        case "Ninja School Online":
-          return "Ninja";
-        case "Avatar":
-          return "Avatar";
-        case "Ngọc Rồng Online":
-          return "NRO";
-        default:
-          return "";
-      }
-    },
     price() {
-      return this.account.giatien || this.account.price;
+      return this.account.selling_price || this.account.price;
     },
   },
 };

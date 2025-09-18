@@ -93,107 +93,62 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
           break;
       }
     }
-    if (code && code === 401) {
-      switch (layout) {
-        case "clientLayout":
-          $swal
-            .fire({
-              title: response.data.message,
-              text: response.data.error_content,
-              confirmButtonColor: "#F64E60",
-              cancelButtonColor: "#a4a4a4",
-              showCancelButton: true,
-              cancelButtonText: "Bỏ qua",
-              confirmButtonText: "Đăng nhập",
-              customClass: customClassSwal
-            })
-            .then(async (result) => {
-              store.dispatch("home/users/logout");
-              if (result.isConfirmed) {
-                store.dispatch("global/openModalLogin");
-              } else {
-                redirect('/')
-              }
-            });
-
-          break;
-      }
-    }
-    if (code && code === 404) {
-      switch (layout) {
-        case "clientLayout":
-          redirect('/404')
-          if (response.data.message) {
-            $swal.fire({
-              title: response.data.message,
-              html: response.data.error_content,
-              icon: "error",
-              customClass: customClassSwal
-            });
-          }
-          break;
-      }
-    }
-    if (code && code === 422) {
-
-      switch (layout) {
-        case "clientLayout":
-          $swal.fire({
-            title: response.data.message,
-            html: response.data.error_content,
-            icon: "error",
-            customClass: customClassSwal
-          });
-
-
-          break;
-      }
-
-      const errors = response.data.errors;
-
-      if (response.data.errors) {
-        store.dispatch("global/setValidationErrors", errors ? errors || {} : {});
-
-      }
-      if (!response.data.errors) {
-        store.dispatch("global/setValidationErrors", {});
-      }
-
-      // const errors = response.data.errors;
-
-      // if (errors && errors.length > 0) {
-      //   errors.config = response.config;
-
-      //   const errorMessage =
-      //     response.config.toastErrorMessage ||
-      //     _.get(errors[0], "message") ||
-      //     GLOBAL_TOAST_ERROR_MESSAGE;
-      //   if (!response.config.hideToastError) {
-      //     store._vm.$nuxt.$toast.error(errorMessage);
-      //   }
-
-      //   // const findError = errors.find(
-      //   //   (item) => item.error_messages && item.code === 422
-      //   // );
-      //   const findError = errors.find(
-      //     (item) => item.error_messages && item.code === 422
-      //   );
-      //   store.dispatch(
-      //     "global/setValidationErrors",
-      //     findError ? findError.error_messages || {} : {}
-      //   );
-      // }
-
-    }
-
   });
 
   api.onError(error => {
     const code = parseInt(error.response && error.response.status)
+    const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
     // const code = parseInt(error.response && error.response.status)
-
+    console.log(error.response);
+    const isThemeDark = store.state.global.isThemeDark;
+    const customClassSwal = {
+      container: isThemeDark ? "swal-dark" : "",
+    }
     if (code === 400) {
-      redirect('/400')
+      $swal.fire({
+        title: "Đã có lỗi xảy ra",
+        html: "Hãy liên hện Admin để kiểm tra <br/> Xin cảm ơn!",
+        icon: "error",
+        customClass: customClassSwal
+      });
+    }
+
+    if (code && code === 404) {
+      switch (layout) {
+        case "clientLayout":
+          redirect('/404')
+          break;
+      }
+    }
+
+
+    if (code === 409) {
+      $swal.fire({
+        title: "Tài khoản này đã bán",
+        html: "Hãy chọn mua Tài khoản khác <br/> Cảm ơn bạn nhiều nhé ❤️",
+        icon: "error",
+        customClass: customClassSwal
+      }).then(() => {
+        window.history.back();
+      });
+    }
+
+    if (code === 401 || code === 419) {
+      switch (layout) {
+        case "clientLayout":
+          store.dispatch("home/users/logout");
+          break;
+      }
+    }
+
+    if (code === 422) {
+      const errors = error.response.data.errors;
+      if (errors) {
+        store.dispatch("global/setValidationErrors", errors ? errors || {} : {});
+
+      } else {
+        store.dispatch("global/setValidationErrors", {});
+      }
     }
 
   })

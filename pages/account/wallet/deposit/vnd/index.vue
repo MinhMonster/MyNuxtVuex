@@ -147,11 +147,11 @@ export default {
 
     async submit() {
       this.isLoading = true;
-      const res = await this.depositVnd({
-        input: this.money,
-      });
+      const res = await this.depositVnd(this.money);
       this.isLoading = false;
-      const history = res.data.depositVnd;
+      console.log("res", res);
+
+      const history = res?.data?.response;
 
       if (history) {
         await this.showModalDetail(history);
@@ -160,6 +160,7 @@ export default {
         this.historyWalletDepositVnds();
       }
     },
+
     setMoneyOut(name, value) {
       this.money.amount = value;
       if (value < 10000) {
@@ -187,10 +188,10 @@ export default {
     },
     resetInput() {
       this.money = {
-        walletType: null,
+        bank_name: null,
         amount: "",
-        bankAccountName: "",
-        bankAccountNumber: "",
+        account_holder_name: "",
+        account_number: "",
       };
       this.moneyReceived = 0;
     },

@@ -4,7 +4,7 @@
       <tr>
         <th class="info-nick w-50">Mã Số:</th>
         <td class="mua-nick w-50">
-          <span>{{ format_number(account.ID) }}</span>
+          <span>{{ format_number(account.id) }}</span>
         </td>
       </tr>
 
@@ -18,7 +18,7 @@
       <tr>
         <th class="info-nick">Tên game:</th>
         <td class="mua-nick">
-          <span>{{ game }}</span>
+          <span>{{ gameName }}</span>
         </td>
       </tr>
 
@@ -34,7 +34,7 @@
           ATM-MOMO:
           <template v-if="hasDiscount">
             <br />
-            <p class="text-danger">(Giảm giá: {{ account.saleOff }}%)</p>
+            <p class="text-danger">(Giảm giá: {{ account.active_discount }}%)</p>
           </template>
         </th>
         <td class="mua-nick">
@@ -59,22 +59,34 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    game: {
+    accountType: {
       type: String,
       default: "",
     },
   },
   computed: {
     price() {
-      return this.account.giatien || this.account.price || 0;
+      return this.account.selling_price || this.account.price || 0;
     },
     hasDiscount() {
-      return this.account.saleOff > 0;
+      return this.account.active_discount > 0;
     },
     discountedPrice() {
       return this.hasDiscount
-        ? this.price * (1 - this.account.saleOff / 100)
+        ? this.price * (1 - this.account.active_discount / 100)
         : this.price;
+    },
+    gameName() {
+      switch (this.accountType) {
+        case "ninja":
+          return "Ninja School Online";
+        case "avatar":
+          return "Avatar";
+        case "ngocrong":
+          return "Ngọc Rồng Online";
+        default:
+          return "";
+      }
     },
   },
 };

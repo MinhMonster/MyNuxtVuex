@@ -60,10 +60,10 @@ export default {
   computed: {
     ...mapState("home/users", ["user"]),
     content() {
-      return `NAP MBN ${this.user.id + " " + this.history.ID} `;
+      return `NAP MBN ${this.user.id + " " + this.history.id} `;
     },
     amount() {
-      return Number(this.history.moneyAmount);
+      return Number(this.history.amount);
     }
   },
 };

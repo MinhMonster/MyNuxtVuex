@@ -3,18 +3,23 @@
     <div id="next-top" class="title text-center">
       Hướng dẫn nạp tiền qua {{ history.walletType }}
     </div>
-    <small id="fileHelp" class="form-text text-muted"
-      >Hãy chuyển tiền cho Admin để
-      <v-btn color="success" class="pd-5px btn-sm">Hoàn thành</v-btn>
-      giao dịch nạp tiền này.</small
-    >
+    <p class="form-text text-muted">
+      Hãy chuyển tiền cho Admin để
+      <v-btn
+        color="success"
+        style="height: 24px !important"
+        class="pd-5px btn-sm"
+        >Hoàn thành</v-btn
+      >
+      giao dịch nạp tiền này.
+    </p>
     <div class="info-atm-momo">
       <img src="/icon/icon-next-right.gif" /> Bạn Chuyển tiền cho Admin:<br />
       <img src="/icon/icon-next-right.gif" />
-      {{ history.walletType }}:
+      {{ history.bank_name }}:
       <span class="sms">
-        {{ numberWalletAdmin(history.walletType) }}
-        <ButtonCoppy :content="numberWalletAdmin(history.walletType)" />
+        {{ numberWalletAdmin(history.bank_name) }}
+        <ButtonCoppy :content="numberWalletAdmin(history.bank_name)" />
       </span>
       <small v-if="history.walletType !== 'Ví MOMO'" class="text-italic">
         <span class="sms">*</span>STK là chữ na ae

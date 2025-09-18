@@ -1,6 +1,6 @@
 <template>
-  <v-col v-if="accountAvatar" cols="12" sm="6" md="4">
-    <AccountAvatarCardInfo :account-avatar="accountAvatar"></AccountAvatarCardInfo>
+  <v-col v-if="account" cols="12" sm="6" md="4">
+    <AccountAvatarCardInfo :account="account"></AccountAvatarCardInfo>
   </v-col>
 </template>
 
@@ -10,7 +10,7 @@ import AccountAvatarCardInfo from "@/components/pages/client/game/avatars/Accoun
 export default {
   components: { AccountAvatarCardInfo },
   props: {
-    accountAvatar: {
+    account: {
       type: Object,
       default: () => {},
     },

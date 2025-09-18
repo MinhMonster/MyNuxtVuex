@@ -312,6 +312,7 @@ export default {
       }
     },
 
+
     typeNinja(type) {
       switch (type) {
         case "3":
@@ -323,14 +324,23 @@ export default {
       }
     },
 
-    class_status(status) {
+    getStatus(status) {
       switch (status) {
-        case "Chờ Duyệt":
-          return "warning";
-        case "Thành Công":
-          return "success";
-        case "Thất Bại":
-          return "danger";
+        case "pending":
+          return {
+            color: "warning",
+            text: "Chờ duyệt"
+          };
+        case "success":
+          return {
+            color: "success",
+            text: "Thành Công"
+          };
+        case "failed":
+          return {
+            color: "error",
+            text: "Thất bại"
+          };;
       }
     },
 
@@ -343,6 +353,18 @@ export default {
         case "VietcomBank":
           return "MuaBanNick";
       }
-    }
+    },
+    game_name(accountType) {
+      switch (accountType) {
+        case "ninja":
+          return "Ninja";
+        case "avatar":
+          return "Avatar";
+        case "ngocrong":
+          return "NRO";
+        default:
+          return "";
+      }
+    },
   },
 };

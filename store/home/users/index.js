@@ -39,10 +39,7 @@ export default {
     async login({ commit }, payload) {
       try {
         const response = await this.$repositories.homeUsers.login(payload);
-        commit(
-          AUTH_SUCCESS,
-          response.data
-        );
+        commit(AUTH_SUCCESS, response.data);
       } catch { }
     },
     async loginFb({ commit },) {
@@ -73,7 +70,7 @@ export default {
     async fetchUser({ commit }) {
       try {
         const response = await this.$repositories.homeUsers.fetchUser();
-        const userInfo = response.data.userInfo;
+        const userInfo = response.data.user;
         if (userInfo) {
           commit(SET_USER_INFO, userInfo);
         } else {
@@ -83,54 +80,30 @@ export default {
     },
     async buyAccount({ commit, state }, payload) {
       try {
-        if (payload.game === "Ninja School Online") {
-          const response = await this.$repositories.homeUsers.buyAccountNinja({
-            input: {
-              id: payload.id
-            }
-          });
-          return response.data.buyAccountNinja
-
-        } else if (payload.game === "Avatar") {
-          const response = await this.$repositories.homeUsers.buyAccountAvatar({
-            input: {
-              id: payload.id
-            }
-          });
-          return response.data.buyAccountAvatar
-        } else if (payload.game === "Ngọc Rồng Online") {
-          const response = await this.$repositories.homeUsers.buyAccountDragonBall({
-            input: {
-              id: payload.id
-            }
-          });
-          return response.data.buyAccountDragonBall
-        }
-
+        const res = await this.$repositories.homeUsers.buyAccount(payload);
+        return res.data
       } catch { }
     },
-    
+
     async historyBuyAccount({ commit, state }, id) {
       try {
-        const response = await this.$repositories.homeUsers.historyBuyAccount(id);
-
-        commit(SET_STATE, { historyBuyAccount: response.data.historyBuyAccount });
+        const res = await this.$repositories.homeUsers.historyBuyAccount(id);
+        commit(SET_STATE, { historyBuyAccount: res.data.response });
 
       } catch { }
     },
     async historyBuyAccounts({ commit, state }) {
       try {
-        const response = await this.$repositories.homeUsers.historyBuyAccounts({ input: state.query });
-        commit(SET_STATE, { historyBuyAccounts: response.data.historyBuyAccounts });
-        commit(SET_STATE, { historyMeta: response.data.pagy });
-
+        const res = await this.$repositories.homeUsers.historyBuyAccounts({ input: state.query });
+        commit(SET_STATE, { historyBuyAccounts: res.data.response.data });
+        commit(SET_STATE, { historyMeta: res.data.response.meta });
       } catch { }
     },
     async historyChangeMoneys({ commit, state }) {
       try {
         const response = await this.$repositories.homeUsers.historyChangeMoneys({ input: state.query });
-        commit(SET_STATE, { historyChangeMoneys: response.data.historyChangeMoneys });
-        commit(SET_STATE, { historyMeta: response.data.pagy });
+        commit(SET_STATE, { historyChangeMoneys: response.data.response.data });
+        commit(SET_STATE, { historyMeta: response.data.response.meta });
 
       } catch { }
     },
@@ -165,8 +138,8 @@ export default {
     async historyWalletDepositVnds({ commit, state }) {
       try {
         const response = await this.$repositories.homeUsers.historyWalletDepositVnds({ input: state.query });
-        commit(SET_STATE, { historyWalletDepositVnds: response.data.historyWalletDepositVnds });
-        commit(SET_STATE, { historyMeta: response.data.pagy });
+        commit(SET_STATE, { historyWalletDepositVnds: response.data.response.data });
+        commit(SET_STATE, { historyMeta: response.data.response.meta });
 
       } catch { }
     },
@@ -190,13 +163,13 @@ export default {
     resetQuery({ commit }) {
       commit(SET_QUERY, {
         page: 1,
-        perPage: 24,
+        perPage: 15,
         q: {},
       });
     },
 
     async logout({ commit }) {
-      await this.$repositories.homeUsers.logout();
+      // await this.$repositories.homeUsers.logout();
       commit(AUTH_LOGOUT);
     },
   },

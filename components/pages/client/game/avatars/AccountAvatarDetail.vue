@@ -1,32 +1,31 @@
 
 <template>
   <client-only>
-    <v-row v-if="accountAvatar.ID">
+    <v-row v-if="account.id">
       <v-col cols="12" sm="12" md="6" lg="6">
         <div class="title">
           <center>
             <h3>
               Nick Avatar - Mã Số:
               <span
-                ><strong>{{ format_number(accountAvatar.ID) }}</strong></span
+                ><strong>{{ format_number(account.id) }}</strong></span
               >
             </h3>
           </center>
         </div>
         <AccountAvatarTL
-          v-if="isMobile || accountAvatar.full"
-          :account-avatar="accountAvatar"
+          :account="account"
           :isDetail="true"
         />
-        <VueSlickCarousel
-          v-else-if="accountAvatar.images"
+        <!-- <VueSlickCarousel
+          v-else-if="account.images"
           :initialSlide="0"
           :slidesToShow="1"
           :arrows="true"
           :dots="true"
         >
           <div
-            v-for="(image, index) in accountAvatar.images"
+            v-for="(image, index) in account.images"
             :key="index"
             :src="image"
             alt=""
@@ -44,13 +43,13 @@
               class="image-account"
             />
           </div>
-        </VueSlickCarousel>
+        </VueSlickCarousel> -->
       </v-col>
       <v-col cols="12" sm="12" md="6" lg="6">
         <v-row>
           <v-col cols="12" sm="12" md="12">
             <AccountAvatarInfo
-              :account-avatar="accountAvatar"
+              :account="account"
             ></AccountAvatarInfo>
           </v-col>
         </v-row>
@@ -63,18 +62,18 @@
           <v-col cols="12" sm="12" md="6" lg="4">
             <div class="fileItemWrapper">
               <img
-                v-if="accountAvatar.images[0].includes('muabannick.pro')"
-                :src="accountAvatar.images[0]"
+                v-if="account.images[0].includes('muabannick.pro')"
+                :src="account.images[0]"
                 alt=""
                 class="image-ninja"
-                :class="{ full: accountAvatar.full }"
+                :class="{ full: account.is_full_image }"
               />
               <img
                 v-else
-                :src="`https://muabannick.pro${accountAvatar.images[0]}`"
+                :src="`https://muabannick.pro${account.images[0]}`"
                 alt=""
                 class="image-ninja"
-                :class="{ full: accountAvatar.full }"
+                :class="{ full: account.is_full_image }"
               />
             </div>
           </v-col>
@@ -102,7 +101,7 @@
             </div>
           </v-col>
         </v-row>
-        <GroupBtnBuyAccount :account="accountAvatar" account-type="Avatar" />
+        <GroupBtnBuyAccount :account="account" account-type="avatar" />
       </v-col>
 
     </v-row>
@@ -118,14 +117,14 @@ import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccoun
 export default {
   components: { AccountAvatarInfo, AccountAvatarTL, GroupBtnBuyAccount },
   props: {
-    accountAvatar: {
+    account: {
       type: Object,
       default: () => {},
     },
   },
   computed: {
     images() {
-      const images = this.accountAvatar.images.filter((image, index) => {
+      const images = this.account.images.filter((image, index) => {
         return index != 0;
       });
       return images;

@@ -10,52 +10,52 @@
       reload
       @reload="fetchHistory()"
     >
-      <template v-if="user && ready && history" #body>
+      <template v-if="user && ready && history?.id" #body>
         <div class="table-responsive">
           <table class="table">
             <tbody>
               <tr>
-                <th class="info-nick w-50" style="">Game</th>
+                <th class="info-nick w-50">Game</th>
                 <td class="mua-nick w-50">
-                  <span>{{ history.accountType }}</span>
+                  <span>{{ game_name(history.account_type) }}</span>
                 </td>
               </tr>
               <tr>
                 <th class="info-nick" style="">Mã Số</th>
                 <td class="mua-nick">
-                  <span>{{ format_number(history.accountId) }}</span>
+                  <span>{{ format_number(history.account_id) }}</span>
                 </td>
               </tr>
               <tr>
                 <th class="info-nick" style="">Tài Khoản</th>
                 <td class="mua-nick break-all">
-                  <span>{{ history.accountName }} </span>
+                  <span>{{ history?.accountName }} </span>
                 </td>
               </tr>
               <tr>
                 <th class="info-nick" style="">Mật khẩu</th>
                 <td class="mua-nick">
-                  <span>{{ history.accountPassword }} </span>
+                  <span>{{ history?.accountPassword }} </span>
                 </td>
               </tr>
               <tr v-if="history.accountCode">
                 <th class="info-nick" style="">Mã chuyển sim</th>
                 <td class="mua-nick">
-                  <span>{{ history.accountCode }}</span>
+                  <span>{{ history?.accountCode }}</span>
                 </td>
               </tr>
 
               <tr>
                 <th class="info-nick" style="">Giá Bán</th>
                 <td class="mua-nick">
-                  <span>{{ format_number(history.accountCash) }} VNĐ</span>
+                  <span>{{ format_number(history.price) }} VNĐ</span>
                 </td>
               </tr>
 
               <tr>
                 <th class="info-nick" style="">Ngày thực hiện</th>
                 <td class="mua-nick">
-                  <span> {{ history.buyAt }}</span>
+                  <span> {{ history.purchased_at }}</span>
                 </td>
               </tr>
 
@@ -69,8 +69,8 @@
               <tr>
                 <td class="mua-nick text-left" colspan="2">
                   <span>
-                    <template v-if="!history.accountCode">
-                      <p v-if="history.accountType === 'Ngọc Rồng'" class="sms">
+                    <template v-if="!history?.accountCode">
+                      <p v-if="history.accountType === 'ngocrong'" class="sms">
                         Nick Ngọc Rồng trên Web đều là đăng ký ảo. Các bạn chỉ
                         cần đổi mật khẩu là xong.
                       </p>
@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import mixins from "@/mixins/index";
 import Loading from "@/components/global/molecules/common/Loading";
 import HomePage from "@/components/pages/home/HomePage";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
@@ -130,7 +131,7 @@ const { mapState, mapActions } = createNamespacedHelpers("home/users");
 export default {
   middleware: ["authentication"],
   layout: "clientLayout",
-
+  mixins: [mixins],
   components: {
     Loading,
     HomePage,

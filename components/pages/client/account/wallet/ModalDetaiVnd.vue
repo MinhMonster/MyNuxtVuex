@@ -14,47 +14,32 @@
             <table class="table">
               <tbody>
                 <tr>
-                  <th class="info-nick w-50" style="">Mã giao dịch</th>
-                  <td class="mua-nick w-50">
-                    <span>{{ format_number(history.ID) }}</span>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="info-nick" style="">Số tiền nạp</th>
-                  <td class="mua-nick break-all">
-                    <span>{{ format_number(history.moneyAmount) }} đ </span>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="info-nick" style="">
-                    Tiền nhận trên Web
-                  </th>
+                  <th class="info-nick" style="width: 30%">Mã giao dịch</th>
                   <td class="mua-nick">
-                    <span>{{ format_number(history.moneyReceived) }} đ </span>
+                    <span>{{ format_number(history.id) }}</span>
                   </td>
                 </tr>
-
+                <tr>
+                  <th class="info-nick" style="width: 30%">Số tiền nạp</th>
+                  <td class="mua-nick break-all">
+                    <span>{{ format_number(history.amount) }} đ </span>
+                  </td>
+                </tr>
                 <tr>
                   <th class="info-nick" style="">Ngày thực hiện</th>
                   <td class="mua-nick">
-                    <span> {{ history.depositAt }}</span>
+                    <span> {{ history.transaction_at }}</span>
                   </td>
                 </tr>
 
                 <tr>
                   <th class="info-nick" style="">Trạng Thái</th>
                   <td class="mua-nick">
-                    <v-btn
-                      :color="class_status(history.depositState)"
-                      class="btn-sm pd-5px"
-                      :class="history.depositState === 'Thất Bại' ? 'text-white' : 'text-black'"
-                    >
-                      {{ history.depositState }}
-                    </v-btn>
+                    <Status :value="history.status"></Status>
                   </td>
                 </tr>
 
-                <tr v-if="history.depositState === 'Chờ Duyệt'">
+                <tr v-if="history.status !== 'success'">
                   <td class="mua-nick text-left instruction" colspan="2">
                     <HistoryInstructionBankByQR :history="history" />
                   </td>
@@ -71,11 +56,13 @@
 <script>
 import ModalPayload from "@/components/common/ModalPayload";
 import HistoryInstructionBankByQR from "@/components/pages/client/account/wallet/HistoryInstructionBankByQR";
+import Status from "@/components/global/molecules/common/Status";
 
 export default {
   components: {
     ModalPayload,
     HistoryInstructionBankByQR,
+    Status,
   },
   props: {
     history: {

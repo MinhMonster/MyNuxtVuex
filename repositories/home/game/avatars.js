@@ -1,4 +1,4 @@
-const resource = '/apis/game/avatars'
+const resource = '/avatars'
 const headers = {
   headers: {
     "Content-Type": "multipart/form-data"
@@ -6,13 +6,13 @@ const headers = {
 }
 export default ($api) => ({
   fetchAccountAvatars(payload) {
-    return $api.get(`${resource}/fetchAccountAvatars.php`,
+    return $api.get(`${resource}`,
       { params: { input: payload.input } },
       {
         hideLoading: true
       });
   },
-  fetchAccountAvatar(payload) {
-    return $api.get(`${resource}/fetchAccountAvatar.php`, payload)
+  fetchAccountAvatar(id) {
+    return $api.get(`${resource}/${id}`)
   },
 })

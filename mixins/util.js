@@ -1,0 +1,40 @@
+import { mapFields } from "vuex-map-fields";
+
+export default {
+
+  data() {
+    return {
+    }
+  },
+  computed: {
+    ...mapFields("global", {
+      isFilter: "isFilter",
+    }),
+    path() {
+      return this.$route.path
+    }
+  },
+
+  methods: {
+    columnsValue(type, value) {
+      // return value
+
+      switch (type) {
+        case 'number':
+          return this.format_number(value);
+        case 'class-ninja':
+          return this.classNinja(value);
+        case 'server-ninja':
+          return this.serverNinja(value);
+        case 'type-ninja':
+          return this.typeNinja(value);
+        // case 'status-ninja':
+        //   return this.statusNinja(value);
+        case 'deleted_at':
+          return this.deletedAt(value);
+        default:
+          return value
+      }
+    },
+  },
+}

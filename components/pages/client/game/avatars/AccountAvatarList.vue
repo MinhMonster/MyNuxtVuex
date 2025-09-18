@@ -5,22 +5,22 @@
   >
     <Loading></Loading>
   </div>
-  <div v-else  id="list-avatar">
+  <div v-else id="list-avatar">
     <v-row class="text-center account">
       <AccountAvatarCard
-        v-for="(avatar, index) in accountAvatars"
+        v-for="(account, index) in accounts"
         :key="index"
-        :account-avatar="avatar"
+        :account="account"
       ></AccountAvatarCard>
     </v-row>
-    <div v-if="!accountAvatars.length" class="account-empty mt-4">
+    <div v-if="!accounts.length" class="account-empty mt-4">
       <h1 class="text-center bold text-danger">
         Không tìm thấy Tài khoản nào!
       </h1>
     </div>
     <Pagination
-      v-if="metaAvatars && metaAvatars.pages > 1"
-      :meta="metaAvatars"
+      v-if="meta && meta.pages > 1"
+      :meta="meta"
       @change="onChange"
     ></Pagination>
   </div>

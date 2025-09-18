@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div v-if="accountAvatar">
+    <div v-if="account">
       <div class="title text-center">
         <h3>Thông tin chi tiết</h3>
       </div>
@@ -9,20 +9,20 @@
         <tbody>
           <tr>
             <th class="info-nick">Đất</th>
-            <td class="mua-nick">{{ accountAvatar.dat }}</td>
+            <td class="mua-nick">{{ account.land }}</td>
           </tr>
           <tr>
             <th class="info-nick">Gà</th>
-            <td class="mua-nick">{{ accountAvatar.ga }}</td>
+            <td class="mua-nick">{{ account.pets }}</td>
           </tr>
           <tr>
             <th class="info-nick">Cá</th>
-            <td class="mua-nick">{{ accountAvatar.ca }}</td>
+            <td class="mua-nick">{{ account.fish }}</td>
           </tr>
           <tr>
             <th class="info-nick detail">Chi tiết</th>
             <td class="mua-nick">
-              <span v-html="accountAvatar.thongtin"></span>
+              <span v-html="account.description"></span>
             </td>
           </tr>
           <tr>
@@ -32,15 +32,15 @@
               <template v-if="hasDiscount">
                 <br />
                 <p class="text-danger">
-                  (Giảm giá: {{ accountAvatar.saleOff }}%)
+                  (Giảm giá: {{ account.active_discount }}%)
                 </p>
               </template>
             </th>
             <td class="mua-nick">
-              <span>{{ format_number(accountAvatar.price) }} Card</span>
+              <span>{{ format_number(account.selling_price) }} Card</span>
               <div class="divider"></div>
               <span :class="{ 'text-line-middel text-danger': hasDiscount }">
-                {{ cash_atm(accountAvatar.price) }} ATM - MOMO
+                {{ cash_atm(account.selling_price) }} ATM - MOMO
               </span>
               <template v-if="hasDiscount">
                 <div class="divider"></div>
@@ -50,8 +50,7 @@
           </tr>
         </tbody>
       </table>
-
-      <GroupBtnBuyAccount :account="accountAvatar" account-type="Avatar" />
+      <GroupBtnBuyAccount :account="account" account-type="avatar" />
     </div>
   </client-only>
 </template>
@@ -64,18 +63,20 @@ export default {
     GroupBtnBuyAccount,
   },
   props: {
-    accountAvatar: {
+    account: {
       type: Object,
       default: () => ({}),
     },
   },
   computed: {
     hasDiscount() {
-      return this.accountAvatar?.saleOff > 0;
+      return this.account?.active_discount > 0;
     },
     discountedPrice() {
-      if (!this.hasDiscount) return this.accountAvatar.price;
-      return this.accountAvatar.price * (1 - this.accountAvatar.saleOff / 100);
+      if (!this.hasDiscount) return this.account.selling_price;
+      return (
+        this.account.selling_price * (1 - this.account.active_discount / 100)
+      );
     },
   },
 };

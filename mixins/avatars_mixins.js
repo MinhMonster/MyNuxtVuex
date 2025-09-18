@@ -8,10 +8,10 @@ export default {
       isLoadingSearch: "isLoadingSearch"
     }),
     ...mapFields("home/game/avatars", {
-      accountAvatars: "accountAvatars",
-      accountAvatar: "accountAvatar",
-      metaAvatars: "metaAvatars",
-      pages: "metaAvatars.pages",
+      accounts: "accounts",
+      account: "account",
+      meta: "meta",
+      pages: "meta.pages",
       query: "query",
       cash: "query.q.cash",
       id: "query.q.id",
@@ -161,11 +161,11 @@ export default {
       );
     },
     async nextAvatarId() {
-      if (this.accountAvatar && this.accountAvatar.ID) {
-        const element = document.getElementById(this.accountAvatar.ID);
+      if (this.account && this.account.id) {
+        const element = document.getElementById(this.account.id);
         if (element) {
           await element.scrollIntoView();
-          this.accountAvatar = null;
+          this.account = null;
         }
       }
     },

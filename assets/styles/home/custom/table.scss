@@ -20,3 +20,83 @@
     }
   }
 }
+
+#home-page {
+  .table.table-striped {
+    tbody>tr:nth-of-type(odd) {
+      color: #9f5424;
+      border: 1px solid #663019;
+      background: #ffcf9c;
+    }
+
+  }
+
+  thead {
+    th {
+      padding: 6px 3px !important;
+      height: 32px;
+
+      &.trading-code {
+        width: 10% !important;
+        min-width: 60px;
+        vertical-align: middle !important;
+        text-align: center;
+      }
+
+      &.holder-action {
+        width: 10% !important;
+        min-width: 60px;
+        vertical-align: middle !important;
+        text-align: center;
+      }
+
+      &.info-history {
+        // width: 80% !important;
+        min-width: 100px;
+        // vertical-align: middle !important;
+        // text-align: left;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 6px 3px !important;
+
+        .col-sm-12,
+        .col-md-6,
+        .col-lg-3 {
+          padding: 3px 15px;
+        }
+      }
+    }
+  }
+
+  table.table {
+    &.table-striped>tbody>tr:nth-of-type(odd) {
+      color: #9f5424;
+      border: 1px solid #663019;
+      background: #ffcf9c;
+    }
+
+
+
+
+  }
+}
+
+.v-data-table>.v-data-table__wrapper>table>tbody>tr:nth-child(even) {
+  background: none !important;
+  color: #663019;
+}
+
+.base-table {
+
+  .v-data-table>.v-data-table__wrapper>table>tbody>tr>th,
+  .v-data-table>.v-data-table__wrapper>table>thead>tr>th,
+  .v-data-table>.v-data-table__wrapper>table>tfoot>tr>th {
+    color: #ffcf9c !important;
+    font-size: 14px !important;
+  }
+}

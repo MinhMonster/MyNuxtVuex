@@ -29,18 +29,18 @@
         </a>
       </div>
     </v-col>
-    <ModalBuyAccount ref="modal" :account="account" :game="accountType">
+    <ModalBuyAccount ref="modal" :account="account" :account-type="accountType">
       <template #account-info>
         <TableAccountNinja
-          v-if="accountType === 'Ninja School Online'"
+          v-if="accountType === 'ninja'"
           :account="account"
         />
         <TableAccountAvatar
-          v-if="accountType === 'Avatar'"
+          v-if="accountType === 'avatar'"
           :account="account"
         />
         <TableAccountDragonBall
-          v-if="accountType === 'Ngọc Rồng Online'"
+          v-if="accountType === 'ngocrong'"
           :account="account"
         />
       </template>

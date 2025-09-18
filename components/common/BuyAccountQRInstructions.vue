@@ -51,9 +51,9 @@ export default {
   computed: {
     game() {
       switch (this.accountType) {
-        case "Ninja School Online":
+        case "ninja":
           return "Ninja";
-        case "Avatar":
+        case "avatar":
           return "Avatar";
         case "Ngọc Rồng Online":
           return "NRO";
@@ -62,7 +62,7 @@ export default {
       }
     },
     price() {
-      return this.account.giatien || this.account.price;
+      return this.account.selling_price;
     },
     amount() {
       return this.cash_atm_no_format(
@@ -73,7 +73,7 @@ export default {
     },
     content() {
       return `Mua Nick ${this.game} ${this.format_number(
-        this.account.ID
+        this.account.id
       )} & SĐT`;
     },
   },

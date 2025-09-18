@@ -4,7 +4,7 @@
       <tr>
         <th class="info-nick w-50">Mã Số:</th>
         <td class="mua-nick w-50">
-          <span>{{ format_number(account.ID) }}</span>
+          <span>{{ format_number(account.id) }}</span>
         </td>
       </tr>
       <tr>
@@ -28,7 +28,7 @@
       <tr>
         <th class="info-nick">Chi tiết:</th>
         <td class="mua-nick">
-          <span> {{ account.thongtin }} </span>
+          <span v-html="account.description"></span>
         </td>
       </tr>
     </tbody>

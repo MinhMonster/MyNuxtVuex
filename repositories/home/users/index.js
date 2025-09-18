@@ -1,4 +1,4 @@
-const resource = '/apis/users'
+const resource = ''
 const headers = {
   headers: {
     "Content-Type": "multipart/form-data"
@@ -6,52 +6,44 @@ const headers = {
 }
 export default ($api) => ({
   login(payload) {
-    return $api.post(`${resource}/login.php`, payload);
+    return $api.post(`${resource}/login`, payload);
   },
   loginFb() {
     return $api.get(`/login.php`);
   },
   logout() {
-    return $api.get(`${resource}/logout.php`);
+    return $api.get(`${resource}/logout`);
   },
   register(payload) {
-    return $api.post(`${resource}/register.php`, payload);
+    return $api.post(`${resource}/register`, payload);
   },
   getToken() {
-    return $api.get(`${resource}/getToken.php`,)
+    return $api.get(`${resource}/getToken.php`)
   },
   fetchUser() {
-    return $api.get(`${resource}/fetchUser.php`,)
+    return $api.get(`${resource}/user`)
   },
   historyBuyAccounts(payload) {
-    return $api.get(`${resource}/history/historyBuyAccounts.php`, { params: { input: payload.input } },)
+    return $api.get(`${resource}/account-purchase-histories`, { params: { input: payload.input } },)
   },
-  historyBuyAccount(payload) {
-    return $api.get(`${resource}/history/historyBuyAccount.php?id=${payload}`)
+  historyBuyAccount(id) {
+    return $api.get(`${resource}/account-purchase-histories/${id}`)
   },
-  buyAccountNinja(payload) {
-    return $api.post(`${resource}/buy/buyAccountNinja.php`, payload)
-
-  },
-  buyAccountAvatar(payload) {
-    return $api.post(`${resource}/buy/buyAccountAvatar.php`, payload)
-
-  },
-  buyAccountDragonBall(payload) {
-    return $api.post(`${resource}/buy/buyAccountDragonBall.php`, payload)
+  buyAccount(payload) {
+    return $api.post(`${resource}/account-purchase`, payload)
 
   },
   historyChangeMoneys(payload) {
-    return $api.get(`${resource}/history/historyChangeMoneys.php`, { params: { input: payload.input } },)
+    return $api.get(`${resource}/account/transactions`, { params: { input: payload.input } },)
   },
   depositVnd(payload) {
-    return $api.post(`${resource}/wallet/depositVnd.php`, payload,)
+    return $api.post(`${resource}/top-up/bank`, payload)
   },
   depositCard(payload) {
     return $api.post(`${resource}/wallet/depositCard.php`, payload,)
   },
   historyWalletDepositVnds(payload) {
-    return $api.get(`${resource}/history/historyWalletDepositVnds.php`, { params: { input: payload.input } },)
+    return $api.get(`${resource}/top-up/bank/histories`, { params: { input: payload.input } },)
   },
   fetchHistoryWalletDepositVnd(payload) {
     return $api.get(`${resource}/wallet/fetchHistoryDepositVnd.php?id=${payload}`)

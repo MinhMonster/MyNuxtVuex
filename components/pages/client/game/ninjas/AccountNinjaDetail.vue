@@ -1,20 +1,20 @@
 <template>
   <client-only>
-    <v-row v-if="accountNinja.ID">
+    <v-row v-if="accountNinja.id">
       <v-col cols="12" sm="12" md="8" lg="8">
         <div class="title">
           <center>
             <h3>
               Nick Ninja - Mã Số:
               <span
-                ><strong>{{ format_number(accountNinja.ID) }}</strong></span
+                ><strong>{{ format_number(accountNinja.id) }}</strong></span
               >
             </h3>
           </center>
         </div>
         <AccountNinjaTL v-if="isMobile" :account-ninja="accountNinja" />
         <VueSlickCarousel
-          v-else-if="accountNinja.hinhanh"
+          v-else-if="accountNinja.images"
           :initialSlide="0"
           :slidesToShow="1"
           :arrows="true"
@@ -25,7 +25,7 @@
             :account-ninja="accountNinja"
           /> -->
           <div
-            v-for="(image, index) in accountNinja.hinhanh"
+            v-for="(image, index) in accountNinja.images"
             :key="index"
             :src="image"
             alt=""
@@ -34,17 +34,17 @@
               v-if="image.includes('muabannick.pro')"
               :image="image"
               :index="index"
-              :images="accountNinja.hinhanh"
+              :images="accountNinja.images"
               class="image-ninja"
-              :class="{ full: index == 0 && accountNinja.full }"
+              :class="{ full: index == 0 && accountNinja.is_full_image }"
             />
             <ViewImage
               v-else
               :image="`https://muabannick.pro${image}`"
               :index="index"
-              :images="accountNinja.hinhanh"
+              :images="accountNinja.images"
               class="image-ninja"
-              :class="{ full: index == 0 && accountNinja.full }"
+              :class="{ full: index == 0 && accountNinja.is_full_image }"
             />
           </div>
         </VueSlickCarousel>
@@ -68,7 +68,7 @@
         </div>
         <v-row>
           <v-col
-            v-for="(image, index) in accountNinja.hinhanh"
+            v-for="(image, index) in accountNinja.images"
             :key="index"
             cols="12"
             sm="12"
@@ -80,24 +80,24 @@
                 v-if="image.includes('muabannick.pro')"
                 :image="image"
                 :index="index"
-                :images="accountNinja.hinhanh"
+                :images="accountNinja.images"
                 class="image-ninja"
-                :class="{ full: index == 0 && accountNinja.full }"
+                :class="{ full: index == 0 && accountNinja.is_full_image }"
               />
               <ViewImage
                 v-else
                 :image="`https://muabannick.pro${image}`"
                 :index="index"
-                :images="accountNinja.hinhanh"
+                :images="accountNinja.images"
                 class="image-ninja"
-                :class="{ full: index == 0 && accountNinja.full }"
+                :class="{ full: index == 0 && accountNinja.is_full_image }"
               />
             </div>
           </v-col>
         </v-row>
         <GroupBtnBuyAccount
           :account="accountNinja"
-          account-type="Ninja School Online"
+          account-type="ninja"
         />
       </v-col>
     </v-row>

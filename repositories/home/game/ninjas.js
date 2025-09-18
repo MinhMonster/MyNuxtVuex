@@ -1,4 +1,4 @@
-const resource = '/apis/game/ninjas'
+const resource = '/ninjas'
 const headers = {
   headers: {
     "Content-Type": "multipart/form-data"
@@ -6,13 +6,13 @@ const headers = {
 }
 export default ($api) => ({
   fetchAccountNinjas(payload) {
-    return $api.get(`${resource}/fetchAccountNinjas.php`,
+    return $api.get(`${resource}`,
       { params: { input: payload.input } },
       {
         hideLoading: true
       });
   },
-  fetchAccountNinja(payload) {
-    return $api.get(`${resource}/fetchAccountNinja.php`, payload)
+  fetchAccountNinja(id) {
+    return $api.get(`${resource}/${id}`)
   },
 })

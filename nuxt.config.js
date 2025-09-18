@@ -76,12 +76,12 @@ export default {
 
   ],
   axios: {
-    baseURL: process.env.API_BASE_URL || 'https://muabannick.pro'
+    baseURL: process.env.API_BASE_MMS_URL || 'https://muabannick.pro'
   },
   env: {
     // nodeEnv: process.env.NODE_ENV || "development",
     apiUrl:
-      process.env.API_BASE_URL,
+      process.env.API_BASE_MMS_URL,
   },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
