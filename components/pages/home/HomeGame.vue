@@ -17,7 +17,7 @@
             <HomeSlider />
           </v-col>
         </v-row>
-        <div class="mt-3" id="dich-vu-game">
+        <div class="mt-3" id="account">
           <div class="title text-center text-underline">TÀI KHOẢN</div>
           <v-row class="text-center account mb-1">
             <AccountCard
@@ -27,6 +27,16 @@
             ></AccountCard>
           </v-row>
         </div>
+        <!-- <div class="mt-3" id="service">
+          <div class="title text-center text-underline">DỊCH VỤ</div>
+          <v-row class="text-center account mb-1">
+            <AccountCard
+              v-for="(game, index) in serviceList"
+              :key="index"
+              :game="game"
+            ></AccountCard>
+          </v-row>
+        </div> -->
         <div class="mt-3" id="dich-vu-game">
           <div class="title text-center text-underline">DỊCH VỤ GAME</div>
           <v-row class="text-center account mb-1">
@@ -136,6 +146,17 @@ export default {
           image: this.isThemeRed
             ? "/images/banners/history-buy-account-red.png"
             : "/images/banners/history-buy-account.png",
+        },
+      ];
+    },
+    serviceList() {
+      return [
+        {
+          title: "Cài đặt ChatGPT Plus",
+          path: "/account/history",
+          image: this.isThemeRed
+            ? "/images/banners/history-buy-account-red.png"
+            : "/images/banners/chatgpt.png",
         },
       ];
     },

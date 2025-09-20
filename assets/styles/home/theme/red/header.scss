@@ -26,13 +26,13 @@
 
     .v-main__wrap {
       .container.client-main {
-        background: #3f474c;
+        background: #000;
         background-size: cover;
-        background-image: url('/images/bgs/bg-red.jpg') !important;
+        // background-image: url('/images/bgs/bg-red.jpg') !important;
 
-        @media (max-width: 599px) {
-          background-image: url('/images/bgs/bg-red.jpg') !important;
-        }
+        // @media (max-width: 599px) {
+        //   background-image: url('/images/bgs/bg-red.jpg') !important;
+        // }
       }
 
       #home-page {
