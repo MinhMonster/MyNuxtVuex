@@ -29,7 +29,7 @@
         <input type="checkbox" id="remember" checked />
         <label for="remember">Lưu đăng nhập</label>
       </div>
-      <span @click="showModalLoginRegister('register')">Đăng Ký</span>
+      <span class="login-btn text-white" @click="showModalLoginRegister('register')">Đăng Ký</span>
     </div>
     <input type="hidden" id="confirm" name="confirm" />
     <div class="field submit">
@@ -218,7 +218,7 @@ form {
 
     span {
       white-space: nowrap;
-      color: #4158d0 !important;
+      // color: #4158d0 !important;
       cursor: pointer;
     }
   }

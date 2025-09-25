@@ -9,7 +9,7 @@
       reload
       @reload="onPageChange(queryPage)"
     >
-      <template v-if="token && user && ready && histories" #body>
+      <template v-if="isLogin && ready && histories" #body>
         <div class="table-responsive">
           <table
             style="font-size: 14px"

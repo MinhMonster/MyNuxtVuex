@@ -9,7 +9,7 @@
       reload
       @reload="fetchAccount()"
     >
-      <template v-if="token && user && ready" #body>
+      <template v-if="isLogin && ready" #body>
         <div class="account-body">
           <table class="table text-center">
             <tbody>
