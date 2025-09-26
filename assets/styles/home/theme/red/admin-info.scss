@@ -1,0 +1,17 @@
+.theme-dark {
+  .bg-website .v-main__wrap #home-page {
+    .admin-info {
+      .page-body {
+        &.no-border {
+          border: none !important;
+          .title {
+            text-shadow: none;
+            text-align: left !important;
+          }
+        }
+      }
+    }
+  }
+
+
+}

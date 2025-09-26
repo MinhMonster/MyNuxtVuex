@@ -15,7 +15,7 @@
           color="warning"
           id="btn-close-notification"
           title="Đóng Thông Báo Trong 2 Giờ"
-          class="text-black mgr-5px"
+          class="text-black mgr-5px btn-sm"
           aria-label="Đóng Thông Báo Trong 2 Giờ"
           @click="setNotification(), $refs.modal.close()"
         >

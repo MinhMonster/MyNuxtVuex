@@ -4,7 +4,16 @@
       opacity: 0.7 !important;
     }
   }
+}
 
+.admin-view-account {
+  .v-overlay {
+    display: none !important;
+
+    &v-overlay--active .v-overlay__scrim {
+      pointer-events: none !important;
+    }
+  }
 }
 
 @media (min-width: 768px) {

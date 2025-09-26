@@ -51,8 +51,9 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
     //check theme dark
     const isThemeDark = store.state.global.isThemeDark;
+    const isThemeRed = store.state.global.isThemeRed;
     const customClassSwal = {
-      container: isThemeDark ? "swal-dark" : "",
+      container: isThemeDark ? "swal-dark" : (isThemeRed ? "swal-red" : ""),
     }
 
     // store.dispatch("removeRequest", response.config.id);

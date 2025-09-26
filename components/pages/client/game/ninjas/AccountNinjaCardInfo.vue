@@ -1,53 +1,49 @@
 <template>
-  <div class="account-info">
-    <AccountNinjaTL :account-ninja="accountNinja" />
-    <v-row class="account-body">
-      <v-col cols="12"
-        ><span class="account-thongtin break-line-1"
-          >Lv: {{ accountNinja.level }}, {{ accountNinja.thongtin }}</span
-        ></v-col
-      >
-      <v-col cols="3"
-        ><span class="account-code"
-          >Mã Số <br />{{ format_number(accountNinja.ID) }}</span
-        ></v-col
-      >
-      <v-col cols="3"
-        ><span class="account-class"
-          >Lớp<br />
-          {{ classNinja(accountNinja.class) }}</span
-        ></v-col
-      >
-      <v-col cols="6"
-        ><span class="account-server"
-          >Máy chủ <br />{{ serverNinja(accountNinja.server) }}</span
-        ></v-col
-      >
-      <v-col cols="6">
-        <span v-if="accountNinja.saleOff" class="account-cash has-sale">
-          <span class="bg-danger sale-off">
-            {{ "-" + accountNinja.saleOff + "% " }}</span
-          >
-          <span class="text-center cash-sale">
-            {{
-              " " +
-              cash_atm(accountNinja.giatien * (1 - accountNinja.saleOff / 100))
-            }}
-            Vnđ</span
-          >
-        </span>
+  <client-only>
+    <div class="account-info">
+      <AccountNinjaTL :account-ninja="accountNinja" />
+      <v-row v-if="!isViewAccount" class="account-body">
+        <v-col cols="12"
+          ><span class="account-thongtin break-line-1"
+            >Lv: {{ accountNinja.level }}, {{ accountNinja.thongtin }}</span
+          ></v-col
+        >
+        <v-col cols="3"
+          ><span class="account-code"
+            >Mã Số <br />{{ format_number(accountNinja.ID) }}</span
+          ></v-col
+        >
+        <v-col cols="3"
+          ><span class="account-class"
+            >Lớp<br />
+            {{ classNinja(accountNinja.class) }}</span
+          ></v-col
+        >
+        <v-col cols="6"
+          ><span class="account-server"
+            >Máy chủ <br />{{ serverNinja(accountNinja.server) }}</span
+          ></v-col
+        >
+        <v-col cols="6">
+          <span v-if="accountNinja.saleOff" class="account-cash has-sale">
+            <span class="bg-danger sale-off">
+              {{ "-" + accountNinja.saleOff + "% " }}</span
+            >
+            <span class="cash-sale"> {{ format_number(accountNinja.priceSalling) }} Vnđ </span>
+          </span>
 
-        <span v-else class="account-cash">
-          {{ cash_atm(accountNinja.giatien) }} Vnđ
-        </span>
-      </v-col>
-      <v-col cols="6">
-        <nuxt-link :to="`/teamobi/ninja-school/${this.accountNinja.ID}`">
-          <span class="account-buy"> Xem Nick</span>
-        </nuxt-link>
-      </v-col>
-    </v-row>
-  </div>
+          <span v-else class="account-cash">
+            {{ format_number(accountNinja.price) }} Vnđ
+          </span>
+        </v-col>
+        <v-col cols="6">
+          <nuxt-link :to="`/teamobi/ninja-school/${this.accountNinja.ID}`">
+            <span class="account-buy"> Xem Nick</span>
+          </nuxt-link>
+        </v-col>
+      </v-row>
+    </div>
+  </client-only>
 </template>
 
 <script>

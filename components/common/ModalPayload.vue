@@ -2,7 +2,7 @@
   <v-dialog
     v-if="dialog"
     v-model="dialog"
-    :id="`${isDark ? 'theme-dark' : 'alb'}`"
+    :id="`${isThemeDark ? 'theme-dark' : (isThemeRed ? 'theme-red' : 'alb')}`"
     :title="title"
     scrollable
     :size="size"

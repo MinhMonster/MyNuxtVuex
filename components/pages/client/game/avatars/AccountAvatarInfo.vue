@@ -32,19 +32,19 @@
               <template v-if="hasDiscount">
                 <br />
                 <p class="text-danger">
-                  (Giảm giá: {{ accountAvatar.saleOff }}%)
+                  (Giảm giá: ~{{ accountAvatar.saleOff }}%)
                 </p>
               </template>
             </th>
             <td class="mua-nick">
-              <span>{{ format_number(accountAvatar.price) }} Card</span>
-              <div class="divider"></div>
+              <!-- <span>{{ format_number(accountAvatar.price) }} Card</span>
+              <div class="divider"></div> -->
               <span :class="{ 'text-line-middel text-danger': hasDiscount }">
-                {{ cash_atm(accountAvatar.price) }} ATM - MOMO
+                {{ format_number(accountAvatar.price) }} Vnd
               </span>
               <template v-if="hasDiscount">
                 <div class="divider"></div>
-                <span>{{ cash_atm(discountedPrice) }} ATM - MOMO</span>
+                <span>{{ format_number(accountAvatar.priceSalling) }} Vnđ</span>
               </template>
             </td>
           </tr>
@@ -85,13 +85,6 @@ export default {
 .title {
   color: #1e5b7e;
   margin-bottom: 10px;
-}
-
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: #a4a4a4;
-  margin: 5px 0;
 }
 
 th.info-nick {

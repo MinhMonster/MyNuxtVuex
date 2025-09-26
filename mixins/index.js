@@ -92,10 +92,18 @@ export default {
       showLoginRegister: "showLoginRegister",
       showRegister: "showRegister",
       isFormLoginRegister: "isFormLoginRegister",
-      isThemeDark: "isThemeDark"
+      isThemeDark: "isThemeDark",
+      isThemeRed: "isThemeRed",
+      isView: "isView",
     }),
     isLogin() {
       return this.token && this.user;
+    },
+    isAdmin() {
+      return this.isLogin && this.user.admin;
+    },
+    isViewAccount() {
+      return this.isAdmin && this.isView;
     },
     isMobile() {
       return this.isMb
@@ -105,9 +113,6 @@ export default {
     },
     isTablet() {
       return this.is_tablet
-    },
-    isDark() {
-      return this.isThemeDark
     },
     heightHomeLeft() {
       return this.heightHomeRight
