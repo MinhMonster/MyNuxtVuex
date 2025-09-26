@@ -206,7 +206,7 @@ const formModalAvatar =
     },
 
     {
-      title: "Giá Bán (Card)",
+      title: "Giá Bán (Vnd)",
       type: "cash",
       value: 'giatien',
       cols: 6,
@@ -214,7 +214,7 @@ const formModalAvatar =
       md: 6
     },
     {
-      title: "Giá Bán (Vnđ)",
+      title: "Giá Sale (Vnđ)",
       type: "cash_sale_off",
       value: 'giatien',
       cols: 6,

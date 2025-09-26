@@ -24,7 +24,7 @@
           :label="form.title"
           :disabled="true"
           :value="
-            cash_atm(
+            format_number(
               dataForm[`${form.value}`] * (1 - (dataForm['saleOff'] || 0) / 100)
             )
           "

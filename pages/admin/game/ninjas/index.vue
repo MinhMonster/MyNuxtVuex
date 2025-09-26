@@ -33,7 +33,7 @@
               </nuxt-link>
             </template>
             <template #giatien="props">
-              {{ cash_atm(props.row.giatien * (1 - props.row.saleOff / 100)) }}
+              {{ format_number(props.row.giatien * (1 - props.row.saleOff / 100)) }}
             </template>
             <template #gianhap="props">
               <span class="text-danger">{{
