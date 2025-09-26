@@ -1,42 +1,42 @@
 <template>
-  <client-only>
-    <v-app
-      :class="`${isThemeDark ? 'theme-dark' : isThemeRed ? 'theme-red' : ''}${
-        isViewAccount ? ' admin-view-account' : ''
-      }`"
-    >
+  <v-app
+    :class="`${isThemeDark ? 'theme-dark' : isThemeRed ? 'theme-red' : ''}${
+      isViewAccount ? ' admin-view-account' : ''
+    }`"
+  >
+    <client-only>
       <AppBar />
-      <v-main id="main" class="bg-website">
-        <v-container
-          class="client-main scroll-y"
-          :style="styleMain"
-          v-on:wheel="scroll()"
-          v-on:scroll="scroll()"
-        >
-          <Nuxt />
-        </v-container>
-      </v-main>
-      <MenuBottom />
-      <MenuRight />
-      <ModalLogin />
+    </client-only>
+    <v-main id="main" class="bg-website">
+      <v-container
+        class="client-main scroll-y"
+        :style="styleMain"
+        v-on:wheel="scroll()"
+        v-on:scroll="scroll()"
+      >
+        <Nuxt />
+      </v-container>
+    </v-main>
+    <MenuBottom />
+    <MenuRight />
+    <ModalLogin />
 
-      <template v-if="isShowButton">
-        <!-- <div class="change-theme">
+    <template v-if="isShowButton">
+      <!-- <div class="change-theme">
         <BaseSvg name="theme-light-dark" @click="changeTheme()" />
       </div> -->
-        <div v-if="isAdmin" class="view-account">
-          <BaseSvg v-if="!isView" name="eye" @click="changeView()" />
-          <BaseSvg v-else name="eye-off" @click="changeView()" />
-        </div>
-        <div class="next-top">
-          <BaseSvg name="next-top" @click="nextTop()" />
-        </div>
-        <div class="next-bottom">
-          <BaseSvg name="next-bottom" @click="nextBottom()" />
-        </div>
-      </template>
-    </v-app>
-  </client-only>
+      <div v-if="isAdmin" class="view-account">
+        <BaseSvg v-if="!isView" name="eye" @click="changeView()" />
+        <BaseSvg v-else name="eye-off" @click="changeView()" />
+      </div>
+      <div class="next-top">
+        <BaseSvg name="next-top" @click="nextTop()" />
+      </div>
+      <div class="next-bottom">
+        <BaseSvg name="next-bottom" @click="nextBottom()" />
+      </div>
+    </template>
+  </v-app>
 </template>
 
 <script>
