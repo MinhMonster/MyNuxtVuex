@@ -40,11 +40,11 @@
               <!-- <span>{{ format_number(accountAvatar.price) }} Card</span>
               <div class="divider"></div> -->
               <span :class="{ 'text-line-middel text-danger': hasDiscount }">
-                {{ cash_atm(accountAvatar.price) }} Vnd
+                {{ format_number(accountAvatar.price) }} Vnd
               </span>
               <template v-if="hasDiscount">
                 <div class="divider"></div>
-                <span>{{ cash_atm(discountedPrice) }} Vnđ</span>
+                <span>{{ format_number(accountAvatar.priceSalling) }} Vnđ</span>
               </template>
             </td>
           </tr>

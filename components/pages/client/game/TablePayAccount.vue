@@ -39,12 +39,12 @@
         </th>
         <td class="mua-nick">
           <span :class="hasDiscount ? 'text-line-middel text-danger' : ''">
-            {{ cash_atm(price) }} Vnđ
+            {{ format_number(price) }} Vnđ
           </span>
 
           <template v-if="hasDiscount">
             <div class="divider"></div>
-            <span>{{ cash_atm(discountedPrice) }} Vnđ</span>
+            <span>{{ format_number(priceSalling) }} Vnđ</span>
           </template>
         </td>
       </tr>
@@ -66,15 +66,13 @@ export default {
   },
   computed: {
     price() {
-      return this.account.giatien || this.account.price || 0;
+      return this.account.price || this.account.giatien || 0;
+    },
+    priceSalling() {
+      return this.account.priceSalling || this.account.giatien || 0;
     },
     hasDiscount() {
       return this.account.saleOff > 0;
-    },
-    discountedPrice() {
-      return this.hasDiscount
-        ? this.price * (1 - this.account.saleOff / 100)
-        : this.price;
     },
   },
 };

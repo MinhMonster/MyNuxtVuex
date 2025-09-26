@@ -14,7 +14,7 @@
             <tr>
               <th class="trading-code">Mã GD</th>
               <th class="info-history">Tiền nạp</th>
-              <th v-if="!isMobile" class="info-history">Tiền cộng</th>
+              <!-- <th v-if="!isMobile" class="info-history">Tiền cộng</th> -->
               <th v-if="!isMobile" class="info-history">Thời gian</th>
               <th class="info-history">Trạng thái</th>
               <th class="holder-action">Chi tiết</th>
@@ -26,9 +26,9 @@
               <td class="text-middle">
                 {{ format_number(history.moneyAmount) }} đ
               </td>
-              <td v-if="!isMobile" class="text-middle">
+              <!-- <td v-if="!isMobile" class="text-middle">
                 {{ format_number(history.moneyReceived) }} đ
-              </td>
+              </td> -->
               <td v-if="!isMobile" class="text-middle">
                 {{ history.depositAt }}
               </td>

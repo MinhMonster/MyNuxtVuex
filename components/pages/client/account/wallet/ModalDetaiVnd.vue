@@ -25,14 +25,14 @@
                     <span>{{ format_number(history.moneyAmount) }} đ </span>
                   </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <th class="info-nick" style="">
                     Tiền nhận trên Web
                   </th>
                   <td class="mua-nick">
                     <span>{{ format_number(history.moneyReceived) }} đ </span>
                   </td>
-                </tr>
+                </tr> -->
 
                 <tr>
                   <th class="info-nick" style="">Ngày thực hiện</th>
