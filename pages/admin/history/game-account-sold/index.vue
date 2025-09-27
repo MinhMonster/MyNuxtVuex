@@ -22,8 +22,8 @@
             }"
           >
             <template #action="props">
-              <v-btn light icon @click="showModal(props.row)">
-                <v-icon>mdi-pencil-box-multiple-outline</v-icon>
+              <v-btn light icon @click="showActions(props.row)">
+                <v-icon>mdi-dots-vertical</v-icon>
               </v-btn>
             </template>
           </AdminBaseTable>
@@ -33,18 +33,25 @@
         ref="modal"
         :title="'ID: ' + format_number(queryGameAccountSold.idnick)"
         :id="queryGameAccountSold.ID"
-        height="500px"
+        :min-height="update === 'info' ? '280px' : '100px'"
         module="admin/histories/game_account_sold"
         repository="adminGameAccountSold"
         :store="{
           state: 'queryGameAccountSold',
           module: 'admin.histories.game_account_sold',
-          form: 'formAccountSold',
+          form: update === 'info' ? 'formAccountSold' : 'formAccountPrice',
           // action: 'fetchGameAccountSold',
           update: 'updateGameAccountSold',
         }"
         @updated="fetchData()"
       />
+      <ActionsModal
+        ref="modalActions"
+        :item="history"
+        @updateInfo="showUpdateInfo"
+        @updatePrice="updatePrice"
+        @onDelete="onDelete"
+      ></ActionsModal>
     </template>
   </NavAdmin>
 </template>
@@ -54,13 +61,14 @@ import { mapFields } from "vuex-map-fields";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 import FormModal from "@/components/pages/admin/base/modal/FormModal";
-
+import ActionsModal from "@/components/pages/admin/histories/game_account_sold/ActionsModal";
 export default {
   layout: "adminDev",
   components: {
     NavAdmin,
     AdminBaseTable,
     FormModal,
+    ActionsModal,
   },
   name: "AdminSoldNinjas",
   data() {
@@ -76,21 +84,23 @@ export default {
           },
         },
         {
-          key: "action",
-          label: "Actions",
-          type: "actions",
+          key: "idnick",
+          label: "ID Nick",
+          type: "number",
+          copy: true,
           attributes: {
             style: {
-              minWidth: "50px",
+              minWidth: "100px",
             },
           },
         },
         {
           key: "taikhoan",
           label: "Account",
+          copy: true,
           attributes: {
             style: {
-              minWidth: "150px",
+              minWidth: "170px",
             },
           },
         },
@@ -105,12 +115,12 @@ export default {
           },
         },
         {
-          key: "idnick",
-          label: "ID Nick",
+          key: "gianhap",
+          label: "Cost",
           type: "number",
           attributes: {
             style: {
-              minWidth: "100px",
+              minWidth: "120px",
             },
           },
         },
@@ -145,7 +155,21 @@ export default {
             },
           },
         },
+        {
+          key: "action",
+          label: "Actions",
+          type: "actions",
+          fixed: "right",
+          attributes: {
+            style: {
+              minWidth: "30px",
+            },
+          },
+        },
       ],
+      history: null,
+      isShowActions: false,
+      update: "info",
     };
   },
   computed: {
@@ -155,15 +179,55 @@ export default {
   },
   async mounted() {},
   methods: {
-    showModal(row) {
+    showUpdateInfo(row) {
+      this.update = "info";
+      this.$refs.modal.dialog = true;
+      this.queryGameAccountSold = row;
+    },
+    updatePrice(row) {
+      this.update = "price";
       this.$refs.modal.dialog = true;
       this.queryGameAccountSold = row;
     },
     fetchData() {
       this.$refs.table.fetchData();
     },
+    async showActions(history) {
+      this.history = history;
+      this.$refs.modalActions.show();
+    },
+    async onDelete(history) {
+      this.$swal
+        .fire({
+          title: `Delete ID: ${history.ID} ?`,
+          text: "",
+          icon: "question",
+          type: "warning",
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Accept",
+          cancelButtonText: "Cancel",
+          timer: 5000,
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            try {
+              const res =
+                await this.$repositories.adminGameAccountSold.destroyGameAccountSold(
+                  history.ID
+                );
+              if (res.data.code === 200) {
+                await this.$toasted.success(res.data.message);
+                this.fetchData();
+              }
+            } catch (e) {
+              console.log(e);
+            }
+          }
+        });
+    },
   },
 };
 </script>
-
-</style>

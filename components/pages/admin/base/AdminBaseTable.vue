@@ -2,13 +2,40 @@
   <div class="base-tale">
     <div v-if="!noTotal" class="d-flex" align="center">
       <div>
-        <v-card-title class="mgl--15px"
+        <v-card-title class="mgl--15px nowrap"
           >Record: {{ format_number(count) }}
         </v-card-title>
       </div>
       <v-spacer />
-      <div class="mgr--15px right middle">
-        <v-card-title>Total: {{ format_number(sum_value) }} Đ </v-card-title>
+      <div class="mgr--5px mgt--10px right middle">
+        <v-card-title class="right nowrap">
+          <v-row>
+            <v-col
+              v-if="sum_value"
+              cols="12"
+              md="4"
+              class="text-right text-20-500"
+            >
+              Total: {{ format_number(sum_value) }} Đ
+            </v-col>
+            <v-col
+              v-if="cost_value"
+              cols="12"
+              md="4"
+              class="text-right text-20-500"
+            >
+              Cost: {{ format_number(cost_value) }} Đ
+            </v-col>
+            <v-col
+              v-if="profit_value"
+              cols="12"
+              md="4"
+              class="text-right text-20-500"
+            >
+              Profit: {{ format_number(profit_value) }} Đ
+            </v-col>
+          </v-row>
+        </v-card-title>
       </div>
     </div>
     <FormSearchAdmin
@@ -30,6 +57,10 @@
         <slot :name="column.key" :row="row" :value="value">
           <span v-html="columnsValue(column.type, value)" v-bind:key="index">
           </span>
+          <ButtonCoppy
+            v-if="column?.copy"
+            :content="getValue(row, column)"
+          ></ButtonCoppy>
         </slot>
       </template>
     </BaseTable>
@@ -38,12 +69,14 @@
 <script>
 import FormSearchAdmin from "@/components/pages/admin/Shared/form/FormSearchAdmin";
 import BaseTable from "@/components/base/BaseTable";
+import ButtonCoppy from "@/components/common/ButtonCoppy";
 import { mapState } from "vuex";
 
 export default {
   components: {
     FormSearchAdmin,
     BaseTable,
+    ButtonCoppy,
   },
   props: {
     store: {
@@ -168,6 +201,31 @@ export default {
         }
         return get(this.response, "sum_value", 0);
       },
+      cost_value(state) {
+        if (this.haveStore) {
+          // const data
+          return _.get(
+            state,
+            this.store.module + "." + this.store.state + ".response.cost_value",
+            0
+          );
+        }
+        return get(this.response, "cost_value", 0);
+      },
+      profit_value(state) {
+        if (this.haveStore) {
+          // const data
+          return _.get(
+            state,
+            this.store.module +
+              "." +
+              this.store.state +
+              ".response.profit_value",
+            0
+          );
+        }
+        return get(this.response, "profit_value", 0);
+      },
       //   computed: {
       // ...mapFields("admin/histories/game_account_sold", {
       //   count: "queryGameAccountSolds.response.count",
@@ -250,10 +308,10 @@ export default {
             this.store.state
           );
         // console.log("stateParamDefault", this.stateParamDefault);
-        const repositoryKey = this.repositories ? this.$repositories_mimifood : this.$repositories;
-        const result = await repositoryKey[this.repository][
-          this.store.action
-        ]({
+        const repositoryKey = this.repositories
+          ? this.$repositories_mimifood
+          : this.$repositories;
+        const result = await repositoryKey[this.repository][this.store.action]({
           input: Object.assign(dataSearch, this.stateParamDefault),
         });
 

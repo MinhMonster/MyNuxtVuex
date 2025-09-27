@@ -5,7 +5,7 @@ export default {
   namespaced: true,
   state: () => ({
     ready: false,
-    isFilter: false,
+    isFilter: true,
     sidebarActive: true,
     customerDetailsActive: true,
     token: null,

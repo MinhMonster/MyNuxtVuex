@@ -1,10 +1,29 @@
 <template>
-  <v-dialog v-if="dialog" v-model="dialog" :title="title" scrollable :size="size" :width="width" :max-width="maxWidth"
-    :height="height" :max-height="maxHeight" :content-class="classDiglog" @hide="close()" class="modal-content"
-    aria-labelledby="labeldiv">
+  <v-dialog
+    v-if="dialog"
+    v-model="dialog"
+    :title="title"
+    scrollable
+    :size="size"
+    :width="width"
+    :max-width="maxWidth"
+    :height="height"
+    :max-height="maxHeight"
+    :content-class="classDiglog"
+    @hide="close()"
+    class="modal-content"
+    aria-labelledby="labeldiv"
+  >
     <v-card>
-      <v-btn icon class="btn-sm text-white bold bg-danger close" id="btn-close-modal" title="Đóng" aria-label="Đóng"
-        @click="close()">
+      <v-btn
+        v-if="isIconClose"
+        icon
+        class="btn-sm text-white bold bg-danger close"
+        id="btn-close-modal"
+        title="Đóng"
+        aria-label="Đóng"
+        @click="close()"
+      >
         <v-icon>mdi-close</v-icon>
       </v-btn>
       <v-card-title class="title-modal text-menu-main bold">
@@ -26,8 +45,14 @@
                 <slot name="footer-button"></slot>
               </div>
               <div v-if="isBtnClose" class="text-right right w-100">
-                <v-btn color="red" class="btn-sm text-white bold bg-danger" id="btn-close-modal" title="Đóng"
-                  aria-label="Đóng" @click="close()">
+                <v-btn
+                  color="red"
+                  class="btn-sm text-white bold bg-danger"
+                  id="btn-close-modal"
+                  title="Đóng"
+                  aria-label="Đóng"
+                  @click="close()"
+                >
                   {{ textClose }}
                 </v-btn>
               </div>
@@ -100,6 +125,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    isIconClose: {
+      type: Boolean,
+      default: true,
+    },
   },
   methods: {
     show() {
@@ -127,11 +156,13 @@ export default {
     border-right: 2px solid #663019;
     // background: #e28637 url(https://muabannick.pro/images/header/bg_top.png)
     //   repeat-x;
-    background-image: linear-gradient(180deg,
-        #561d00,
-        #e28637 9%,
-        #e28637 58%,
-        #e28637);
+    background-image: linear-gradient(
+      180deg,
+      #561d00,
+      #e28637 9%,
+      #e28637 58%,
+      #e28637
+    );
 
     border-bottom: none;
     display: flex;

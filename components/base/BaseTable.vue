@@ -7,7 +7,7 @@
             v-for="(column, indexColumn) in columns"
             :key="indexColumn"
             v-bind="column.attributes"
-            class="text-left"
+            :class="['text-left', getStickyClass(column)]"
           >
             {{ column.label }}
           </th>
@@ -19,6 +19,7 @@
             v-for="(column, indexColumn) in columns"
             :key="indexColumn"
             v-bind="column.attributes"
+            :class="getStickyClass(column)"
           >
             <slot
               :name="column.key"
@@ -27,6 +28,10 @@
               :value="`${getValue(record, column)}`"
             >
               {{ valueCustom(record, column) }}
+              <ButtonCoppy
+                v-if="isCopy(column)"
+                :content="getValue(row, column)"
+              ></ButtonCoppy>
             </slot>
             <!-- <template #[column.key]="{ record }">
               <slot
@@ -51,10 +56,12 @@
 
 <script>
 import Pagination from "@/components/global/molecules/common/Pagination";
+import ButtonCoppy from "@/components/common/ButtonCoppy";
 
 export default {
   components: {
     Pagination,
+    ButtonCoppy,
   },
   props: {
     data: {
@@ -86,6 +93,16 @@ export default {
     valueCustom(row, column) {
       const value = this.getValue(row, column);
       return this.columnsValue(column.type, value);
+    },
+    getStickyClass(column) {
+      const fixed = column.fixed;
+      if (["left", "right"].includes(fixed)) {
+        return `sticky-column-${fixed}`;
+      }
+      return "";
+    },
+    isCopy(column) {
+      return column?.copy;
     },
     onChange(page) {
       this.$emit("onChange", page);
@@ -223,5 +240,17 @@ element.style {
 
 #admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
   padding: 0px 10px;
+}
+
+.sticky-column-left {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+.sticky-column-right {
+  position: sticky;
+  right: 0;
+  z-index: 2;
 }
 </style>

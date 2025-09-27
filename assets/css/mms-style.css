@@ -4518,6 +4518,7 @@ meter.metter-authir::-webkit-meter-optimum-value {
 .nowrap {
   display: flex;
   flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 /* css flex */
