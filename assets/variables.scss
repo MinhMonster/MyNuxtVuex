@@ -6,6 +6,7 @@
 $color-theme-dark: #a937ed;
 $color-boder: #b549cc;
 $color-theme-red: #FF0000;
+$color-theme-blue: #355C8A;
 
 
 
@@ -14,7 +15,8 @@ $border-theme-dark: 1px solid $color-boder;
 $border-theme-dark-2: 2px solid $color-boder;
 $border-theme-red: 1px solid $color-theme-red;
 $border-theme-red-2: 2px solid $color-theme-red;
-
+$border-theme-blue: 1px solid $color-theme-blue;
+$border-theme-blue-2: 2px solid $color-theme-blue;
 
 $text-shadow-theme-dark: $color-theme-dark 0px 0px 5px,
   $color-theme-dark 0px 0px 0px,
@@ -46,6 +48,18 @@ $text-shadow-topic-theme-red: $color-theme-red 0px 0px 2px,
   $color-theme-red 0px 0px 0px,
   $color-theme-red 0px 0px 0px,
   $color-theme-red 0px 0px 0px;
+
+$text-shadow-theme-blue: $color-theme-blue 0px 0px 5px,
+  $color-theme-blue 0px 0px 0px,
+  $color-theme-blue 0px 0px 0px,
+  $color-theme-blue 0px 0px 0px,
+  $color-theme-blue 0px 0px 0px;
+
+$text-shadow-topic-theme-blue: $color-theme-blue 0px 0px 2px,
+  $color-theme-blue 0px 0px 0px,
+  $color-theme-blue 0px 0px 0px,
+  $color-theme-blue 0px 0px 0px,
+  $color-theme-blue 0px 0px 0px;
 // $title-text-shadow: $color-theme-dark 0px 0px 5px,
 //   $color-theme-dark 0px 0px 5px,
 //   $color-theme-dark 0px 0px 0px,
