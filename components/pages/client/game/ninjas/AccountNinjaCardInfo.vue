@@ -37,7 +37,7 @@
           </span>
         </v-col>
         <v-col cols="6">
-          <nuxt-link :to="`/teamobi/ninja-school/${this.accountNinja.ID}`">
+          <nuxt-link :to="`${queryPath}/${accountNinja.ID}`">
             <span class="account-buy"> Xem Nick</span>
           </nuxt-link>
         </v-col>
@@ -55,6 +55,10 @@ export default {
     accountNinja: {
       type: Object,
       default: () => {},
+    },
+    queryPath: {
+        type: String,
+        default: "/teamobi/ninja-school",
     },
   },
   methods: {

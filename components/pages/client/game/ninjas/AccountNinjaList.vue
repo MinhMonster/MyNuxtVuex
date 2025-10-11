@@ -8,6 +8,7 @@
         v-for="(ninja, index) in accountNinjas"
         :key="index"
         :account-ninja="ninja"
+        :query-path="queryPath"
       ></AccountNinjaCard>
     </v-row>
     <div v-if="isLoading" class="center mgt--50px mgb--50px">
@@ -45,6 +46,10 @@ export default {
     type: {
       type: String,
       default: null,
+    },
+    queryPath: {
+      type: String,
+      default: "/teamobi/ninja-school",
     },
   },
   data() {

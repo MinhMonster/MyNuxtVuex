@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="6" :sm="isTablet ? 3 : 4" md="4">
+  <v-col cols="6" md="4">
     <a v-if="game.target" :href="game.path" target="_blank">
       <div class="account-info">
         <ImageCard :game="game" ratio="1/1"/>

@@ -1,6 +1,6 @@
 <template>
   <v-col v-if="accountNinja" cols="12" sm="6" md="6" lg="4">
-    <AccountNinjaCardInfo :account-ninja="accountNinja"></AccountNinjaCardInfo>
+    <AccountNinjaCardInfo :account-ninja="accountNinja" :query-path="queryPath"></AccountNinjaCardInfo>
   </v-col>
 </template>
 
@@ -13,7 +13,11 @@ export default {
     accountNinja: {
       type: Object,
       default: () => {}
-    }
+    },
+    queryPath: {
+      type: String,
+      default: "/teamobi/ninja-school",
+    },
   }
 };
 </script>
