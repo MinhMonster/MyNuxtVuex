@@ -1,0 +1,82 @@
+<template>
+  <client-only>
+    <HomePage
+      title="Nick Ninja School VIP"
+      :loading="!ready"
+      goBack
+      reload
+      @reload="reload('VIP')"
+      notBoder
+    >
+      <template v-if="ready" #body>
+        <div class="mt-4">
+          <AccountNinjaSearch
+            type="VIP"
+            query-path="/acc"
+            @search="search()"
+            @reset="reset('VIP')"
+          ></AccountNinjaSearch>
+          <AccountNinjaList type="VIP"></AccountNinjaList>
+        </div>
+      </template>
+    </HomePage>
+  </client-only>
+</template>
+
+<script>
+import HomePage from "@/components/pages/home/HomePage";
+import AccountNinjaSearch from "@/components/pages/client/game/ninjas/AccountNinjaSearch";
+import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
+import ninjas_mixins from "@/mixins/ninjas_mixins";
+
+export default {
+  layout: "clientLayout",
+  mixins: [ninjas_mixins],
+
+  components: {
+    HomePage,
+    AccountNinjaSearch,
+    AccountNinjaList,
+  },
+  computed: {},
+  async mounted() {
+    this.reload("VIP");
+  },
+  data() {
+    return {
+      title:
+        "NickNinja.Vn - Shop Nick Ninja School Online Tự Động - Shop Mua Bán Nick Ninja School Online VIP Giá Rẻ, Uy Tín Nhất MXH",
+      description:
+        "WEB Mua Bán Nick Ninja School, Tài Khoản Ninja School, Dịch Vụ Game Ninja School, Shop Nick Ninja School, Shop Nick Nso, Mua Bán Acc Ninja School, Shop Acc Ninja School của TeaMobi - Uy Tín - Giá rẻ",
+    };
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: "description", name: "description", content: this.description },
+        { property: "og:title", content: this.title },
+        { property: "og:description", content: this.description },
+        {
+          property: "og:image",
+          content: "/images/banners/banner_ninja_vip_min.jpg",
+        },
+        {
+          property: "og:image:alt",
+          content: "Shop Nick Ninja School Online VIP - NSO",
+        },
+        {
+          name: "keywords",
+          content:
+            "nick ninja, shop nick ninja, mua nick ninja, mua nick ninja school, shop nick ninja school, shop acc ninja, nick ninja teamobi, shop nick ninja teamobi, nick ninja gia re, nick ninja vip",
+        },
+      ],
+    };
+  },
+};
+</script>
+<style lang="scss" scoped>
+#home-page {
+  max-width: 1400px !important;
+}
+</style>

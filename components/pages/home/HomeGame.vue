@@ -181,7 +181,7 @@ export default {
         // },
         {
           title: "Danh Sách Nick",
-          path: "/teamobi/ninja-school/nick-vip",
+          path: "/acc",
           image: this.isThemeDark
             ? "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg"
             : this.isThemeRed
