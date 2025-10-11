@@ -53,7 +53,7 @@ export default {
     title() {
       return `Mã Số: ${this.format_number(
         this.accountId
-      )} - Nick Avatar - MuaBanNick.Pro`;
+      )} - Nick Avatar - NickNinja.Vn`;
     },
   },
   mounted() {

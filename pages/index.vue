@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       title:
-        "MuaBanNick.Pro - Shop Nick Tự Động - Shop Mua Bán Nick Ninja School Online, Ngọc Rồng Online, Avatar, Đại Tây Du Giá Rẻ, Uy Tín Nhất MXH",
+        "NickNinja.Vn - Shop Nick Tự Động - Shop Mua Bán Nick Ninja School Online, Ngọc Rồng Online, Avatar, Đại Tây Du Giá Rẻ, Uy Tín Nhất MXH",
       description:
         "WEB Mua Bán Nick Game, Tài Khoản Game, Account Game, Dịch Vụ Game Online, Nick Ninja School - Nso, Nick Ngọc Rồng - Nro, Nick Avatar SX Diệu Kỳ (2x) của TeaMobi - Uy Tín - Giá rẻ",
     };
@@ -57,7 +57,7 @@ export default {
         { property: "og:image", content: "/banner.jpg" },
         {
           property: "og:image:alt",
-          content: "MuaBanNick.Pro - Shop Nick Tự Động",
+          content: "NickNinja.Vn - Shop Nick Tự Động",
         },
         {
           name: "keywords",
