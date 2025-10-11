@@ -19,10 +19,10 @@
             <v-col cols="12" sm="6" class="middle custom-field-input mb-2">
               <div class="field">
                 <form-validator name="amount">
-                  <label for="amount" class="form-label"
+                  <!-- <label for="amount" class="form-label"
                     >Số tiền nạp
                     <small>(<span style="color: red">*</span>)</small></label
-                  >
+                  > -->
                   <BaseInputCash
                     v-model="money.amount"
                     placeholder="Nhập số tiền cần nạp..."
@@ -31,7 +31,7 @@
                   />
                 </form-validator></div
             ></v-col>
-            <v-col cols="12" sm="6" class="middle custom-field-input mb-2">
+            <!-- <v-col cols="12" sm="6" class="middle custom-field-input mb-2">
               <div class="field">
                 <form-validator name="out">
                   <label for="out" class="form-label">Thực nhận +20%</label>
@@ -45,9 +45,9 @@
                   />
                 </form-validator>
               </div>
-            </v-col>
-            <v-col cols="12">
-              <div class="field submit mt-8">
+            </v-col> -->
+            <v-col cols="12" sm="6">
+              <div class="field submit mt-2">
                 <v-btn size="sm" class="btn-login" @click="submit()">
                   <Loading v-if="isLoading" button></Loading>
                   <span v-else> Tạo giao dịch nạp tiền </span>

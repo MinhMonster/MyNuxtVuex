@@ -3,9 +3,9 @@
     <div class="text-main text-18-700"><u>Ghi chú:</u></div>
     <div class="text-13-500">
       <div>
-        - Nạp thẻ tự động không trừ chiết khấu.<br />
+        - Nạp thẻ tự động chiết khấu 20%.<br />
         <span class="title text-13-500">
-          - Ví dụ: nạp 100k Card = 100k Shop.
+          - Ví dụ: nạp 100k Card = 80k Shop.
         </span>
       </div>
       <div>
