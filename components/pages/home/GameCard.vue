@@ -2,7 +2,7 @@
   <v-col cols="6" :sm="isTablet ? 3 : 4" md="4">
     <a v-if="game.target" :href="game.path" target="_blank">
       <div class="account-info">
-        <ImageCard :game="game" />
+        <ImageCard :game="game" ratio="1/1"/>
         <v-row class="account-body">
           <v-col cols="12"
             ><v-btn
@@ -17,7 +17,7 @@
     </a>
     <nuxt-link v-else :to="game.path">
       <div class="account-info">
-        <ImageCard :game="game" />
+        <ImageCard :game="game" ratio="1/1"/>
         <v-row class="account-body">
           <v-col cols="12"
             ><v-btn

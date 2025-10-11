@@ -37,7 +37,14 @@ export default {
                     : this.isShowNoti
                       ? "/images/banners/banner-red.png"
                       : "/images/banners/banner-red.png"
-                ) : (
+                ) : this.isThemeBlue
+                ? (
+                  this.isMobile
+                    ? "/images/banners/banner.png"
+                    : this.isShowNoti
+                      ? "/images/banners/banner.png"
+                      : "/images/banners/banner.png"
+                ): (
                   this.isMobile
                     ? "https://muabannick.pro/images/banners/banner-mobile.jpg"
                     : this.isShowNoti

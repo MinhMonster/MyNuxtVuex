@@ -55,10 +55,10 @@ export default {
 
       if(this.isThemeDark){
         this.isThemeDark = false;
-        this.isThemeRed = true;
+        this.isThemeBlue = true;
       }else{
         this.isThemeDark = true;
-        this.isThemeRed = false;
+        this.isThemeBlue = false;
       }
     },
     nextPath(path) {

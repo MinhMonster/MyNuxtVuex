@@ -101,6 +101,8 @@ export default {
         ? "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png"
         : this.isThemeRed
         ? "/images/logo-red.png"
+        : this.isThemeBlue
+        ? "/images/logo.png"
         : "https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200";
     },
   },

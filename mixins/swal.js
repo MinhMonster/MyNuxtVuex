@@ -4,7 +4,7 @@ export default {
     async showSwal(input) {
       const customClass = {
         customClass: {
-          container: this.isThemeDark ? "swal-dark" : (this.isThemeRed ? "swal-red" : ""),
+          container: this.isThemeDark ? "swal-dark" : (this.isThemeRed ? "swal-red" : (this.isThemeBlue ?  "swal-blue" : "")),
         }
       }
       const setting = Object.assign(input, customClass);
