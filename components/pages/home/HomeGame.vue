@@ -192,7 +192,7 @@ export default {
         },
         {
           title: "GD Trung Gian",
-          path: "/teamobi/avatar",
+          path: "/services/giao-dich-trung-gian",
           image: this.isThemeDark
             ? "https://muabannick.pro/images/banners/banner_avatar_min.jpg"
             : this.isThemeRed

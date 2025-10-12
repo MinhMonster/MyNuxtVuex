@@ -157,7 +157,7 @@ export default {
         overflow: hidden;
 
         .page-info {
-          min-height: calc(100vh - 165px);
+          min-height: calc(100vh - 125px);
         }
       }
 
