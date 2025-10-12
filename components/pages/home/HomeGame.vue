@@ -225,24 +225,20 @@ export default {
         //   sold: "5144",
         // },
 
-        {
-          title: "Ngọc Rồng Online",
-          path: "/teamobi/ngoc-rong",
-          image: this.isThemeDark
-            ? "https://muabannick.pro//images/banners/banner_nro_min.jpg"
-            : this.isThemeRed
-            ? "/images/banners/ngoc-rong-red.png"
-            : "https://muabannick.pro//images/banners/banner_nro_min.jpg",
-        },
         // {
-        //   title: "Nạp Lượng, Carot",
-        //   path: "/services/nap-luong-carot",
+        //   title: "Ngọc Rồng Online",
+        //   path: "/teamobi/ngoc-rong",
         //   image: this.isThemeDark
-        //     ? "/images/banners/carot.png"
+        //     ? "https://muabannick.pro//images/banners/banner_nro_min.jpg"
         //     : this.isThemeRed
-        //     ? "/images/banners/carot.png"
-        //     : "/images/banners/carot.png",
+        //     ? "/images/banners/ngoc-rong-red.png"
+        //     : "https://muabannick.pro//images/banners/banner_nro_min.jpg",
         // },
+        {
+          title: "GD Trung Gian",
+          path: "/services/giao-dich-trung-gian",
+          image: "/images/banners/gdtg.png",
+        },
       ];
     },
   },
