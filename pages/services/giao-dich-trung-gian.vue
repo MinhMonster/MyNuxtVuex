@@ -13,7 +13,7 @@
       </template>
 
       <template #table>
-        <GdtgTable :histories="histories" @show="showModalDetail" />
+        <GdtgTable :histories="histories" />
       </template>
     </HomePage>
   </client-only>
@@ -54,15 +54,9 @@ export default {
         },
         {
           from: "300001",
-          to: "999999",
+          to: "1999999",
           fee: "20000",
           fee_2: "30000",
-        },
-        {
-          from: "1000000",
-          to: "1999999",
-          fee: "25000",
-          fee_2: "35000",
         },
         {
           from: "2000000",
@@ -93,6 +87,12 @@ export default {
           to: "9999999",
           fee: "75000",
           fee_2: "100000",
+        },
+        {
+          type: "other",
+          from: ">= 10 Triệu đồng",
+          fee: "1",
+          fee_2: "1",
         },
       ],
     };

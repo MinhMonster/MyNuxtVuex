@@ -22,16 +22,29 @@
             </thead>
             <tbody v-if="histories.length">
               <tr v-for="(history, index) in histories" :key="index">
-                <td class="text-middle">
-                  {{ format_number(history.from) }} ->
-                  {{ format_number(history.to) }} đ
-                </td>
-                <td class="text-middle text-success">
-                  {{ format_number(history.fee) }} đ
-                </td>
-                <td class="text-middle text-warning">
-                  {{ format_number(history.fee_2) }} đ
-                </td>
+                <template v-if="history.type === 'other'">
+                  <td class="text-middle">
+                    {{ history.from }}
+                  </td>
+                  <td class="text-middle text-success">
+                    {{ history.fee }}% Giá trị
+                  </td>
+                  <td class="text-middle text-warning">
+                    {{ history.fee_2 }}% Giá trị
+                  </td>
+                </template>
+                <template v-else>
+                  <td class="text-middle">
+                    {{ format_number(history.from) }} ->
+                    {{ format_number(history.to) }} đ
+                  </td>
+                  <td class="text-middle text-success">
+                    {{ format_number(history.fee) }} đ
+                  </td>
+                  <td class="text-middle text-warning">
+                    {{ format_number(history.fee_2) }} đ
+                  </td>
+                </template>
               </tr>
             </tbody>
           </table>
