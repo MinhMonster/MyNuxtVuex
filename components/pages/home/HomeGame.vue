@@ -220,6 +220,15 @@ export default {
             ? "/images/banners/ngoc-rong-red.png"
             : "https://muabannick.pro//images/banners/banner_nro_min.jpg",
         },
+        {
+          title: "Nạp Lượng, Carot",
+          path: "/services/nap-luong-carot",
+          image: this.isThemeDark
+            ? "/images/banners/carot.png"
+            : this.isThemeRed
+            ? "/images/banners/carot.png"
+            : "/images/banners/carot.png",
+        },
       ];
     },
   },
