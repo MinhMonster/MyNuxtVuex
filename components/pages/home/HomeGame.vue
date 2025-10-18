@@ -204,7 +204,7 @@ export default {
 
         {
           title: "Nạp Lượng, Carot",
-          path: "/teamobi/ninja-school/nick-gia-re",
+          path: "/services/nap-luong-carot",
           image: this.isThemeDark
             ? "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg"
             : this.isThemeRed

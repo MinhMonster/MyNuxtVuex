@@ -1,7 +1,7 @@
 <template>
   <VietQR
     bankId="MB"
-    accountNo="MuaBanNick"
+    :accountNo="accountNo"
     :amount="amount"
     :addInfo="addInfo"
   >
@@ -16,6 +16,7 @@ import VietQR from "~/components/QR/VietQR.vue";
 export default {
   name: "VietQRMB",
   props: {
+    accountNo: { type: [Number, String], default: "MuaBanNick" },
     amount: { type: Number, default: 0 },
     addInfo: { type: String, default: "" },
   },
