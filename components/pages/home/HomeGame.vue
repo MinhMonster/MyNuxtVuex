@@ -226,7 +226,7 @@ export default {
         },
         {
           title: "HD Mua Nick",
-          path: "/teamobi/ngoc-rong",
+          path: "/guides/huong-dan-mua-nick-ninja-school",
           image: this.isThemeDark
             ? "https://muabannick.pro//images/banners/banner_nro_min.jpg"
             : this.isThemeRed
