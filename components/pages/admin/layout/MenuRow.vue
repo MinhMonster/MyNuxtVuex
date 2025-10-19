@@ -108,6 +108,11 @@ export default {
         },
         {
           icon: "mdi-image",
+          title: "Carots",
+          to: "/admin/history/carots",
+        },
+        {
+          icon: "mdi-image",
           title: "Mimi Food",
           to: "/admin/mimifood",
         },
