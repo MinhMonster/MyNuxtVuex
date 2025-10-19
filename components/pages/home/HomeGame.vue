@@ -118,42 +118,72 @@ export default {
     },
     accountList() {
       return [
+        // {
+        //   title: this.isLogin ? "Tài Khoản" : "Đăng Nhập",
+        //   path: "/account/profile",
+        //   image: this.isThemeRed
+        //     ? this.isLogin
+        //       ? "/images/banners/account-red.png"
+        //       : "/images//banners/login-red.png"
+        //     : this.isThemeBlue
+        //     ? this.isLogin
+        //       ? "/images/banners/account.png"
+        //       : "/images//banners/login.png"
+        //     : this.isLogin
+        //     ? "/images/banners/account.jpg"
+        //     : "/images/banners/login.jpg",
+        // },
+
+        // {
+        //   title: "Nạp Tiền từ ATM MOMO",
+        //   path: "/account/wallet/deposit/vnd",
+        //   image: this.isThemeRed
+        //     ? "/images/banners/top-up-red.png"
+        //     : this.isThemeBlue
+        //     ? "/images/banners/topUp.png"
+        //     : "/images/banners/top-up.png",
+        // },
+        // {
+        //   title: "Nạp Tiền từ Thẻ Cào",
+        //   path: "/account/wallet/deposit/card",
+        //   image: this.isThemeRed
+        //     ? "/images/banners/top-up-card-red.png"
+        //     : this.isThemeBlue
+        //     ? "/images/banners/topUpCard.png"
+        //     : "/images/banners/top-up-card.png",
+        // },
+        // {
+        //   title: "Lịch Sử Mua Nick",
+        //   path: "/account/history",
+        //   image: this.isThemeRed
+        //     ? "/images/banners/history-buy-account-red.png"
+        //     : this.isThemeBlue
+        //     ? "/images/banners/history.png"
+        //     : "/images/banners/history-buy-account.png",
+        // },
+
         {
           title: this.isLogin ? "Tài Khoản" : "Đăng Nhập",
           path: "/account/profile",
-          image: this.isThemeRed
-            ? (this.isLogin ? "/images/banners/account-red.png" : "/images//banners/login-red.png")
-            : this.isThemeBlue
-            ? (this.isLogin ? "/images/banners/account.png" : "/images//banners/login.png")
-            : (this.isLogin ? "/images/banners/account.jpg" : "/images/banners/login.jpg"),
+          image: this.isLogin
+            ? "/images/banners/account.png"
+            : "/images//banners/login.png",
         },
 
         {
           title: "Nạp Tiền từ ATM MOMO",
           path: "/account/wallet/deposit/vnd",
-          image: this.isThemeRed
-            ? "/images/banners/top-up-red.png"
-            : this.isThemeBlue
-            ? "/images/banners/topUp.png"
-            : "/images/banners/top-up.png",
+          image: "/images/banners/topUp.png",
         },
         {
           title: "Nạp Tiền từ Thẻ Cào",
           path: "/account/wallet/deposit/card",
-          image: this.isThemeRed
-            ? "/images/banners/top-up-card-red.png"
-            : this.isThemeBlue
-            ? "/images/banners/topUpCard.png"
-            : "/images/banners/top-up-card.png",
+          image: "/images/banners/topUpCard.png",
         },
         {
           title: "Lịch Sử Mua Nick",
           path: "/account/history",
-          image: this.isThemeRed
-            ? "/images/banners/history-buy-account-red.png"
-            : this.isThemeBlue
-            ? "/images/banners/history.png"
-            : "/images/banners/history-buy-account.png",
+          image: "/images/banners/history.png",
         },
       ];
     },
@@ -170,86 +200,104 @@ export default {
     },
     gameList() {
       return [
+        //         {
+        //           title: "Danh Sách Nick",
+        //           path: "/acc",
+        //           image: this.isThemeDark
+        //             ? "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg"
+        //             : this.isThemeRed
+        //             ? "/images/banners/ninja-vip-red.png"
+        //             : this.isThemeBlue
+        //             ? "/images/banners/ds-nick-ninja.png"
+        //             : "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
+        //         },
+        //         {
+        //           title: "GD Trung Gian",
+        //           path: "/services/giao-dich-trung-gian",
+        //           image: this.isThemeDark
+        //             ? "https://muabannick.pro/images/banners/banner_avatar_min.jpg"
+        //             : this.isThemeRed
+        //             ? "/images/banners/avatar-red.png"
+        //             : this.isThemeBlue
+        //             ? "/images/banners/gdtg.png"
+        //             : "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
+        //         },
+
+        //         {
+        //           title: "Nạp Lượng, Carot",
+        //           path: "/services/nap-luong-carot",
+        //           image: this.isThemeDark
+        //             ? "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg"
+        //             : this.isThemeRed
+        //             ? "/images/banners/ninja-cheap-red.png"
+        //             : this.isThemeBlue
+        //             ? "/images/banners/carot.png"
+        //             : "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
+        //         },
         // {
-        //   title: "Shop Nick Mới",
-        //   path: "https://shopnick.online",
-        //   image:
-        //     "https://muabannick.pro/images/banners/banner-shopnickonline.png",
-        //   numberAccount: "90",
-        //   sold: "69",
-        //   target: true,
-        // },
+        //           title: "Bán Xu Ninja",
+        //           path: "/services/mua-ban-xu-ninja-school",
+        //           image: this.isThemeDark
+        //             ? "https://muabannick.pro//images/banners/banner_nro_min.jpg"
+        //             : this.isThemeRed
+        //             ? "/images/banners/ngoc-rong-red.png"
+        //             :  this.isThemeBlue
+        //             ? "/images/banners/ban-xu-ninja.png"
+        //             : "https://muabannick.pro//images/banners/banner_nro_min.jpg",
+        //         },
+        //         {
+        //           title: "HD Mua Nick",
+        //           path: "/guides/huong-dan-mua-nick-ninja-school",
+        //           image: this.isThemeDark
+        //             ? "https://muabannick.pro//images/banners/banner_nro_min.jpg"
+        //             : this.isThemeRed
+        //             ? "/images/banners/ngoc-rong-red.png"
+        //             :  this.isThemeBlue
+        //             ? "/images/banners/hd-mua-nick.png"
+        //             : "https://muabannick.pro//images/banners/banner_nro_min.jpg",
+        //         },
+        //         {
+        //           title: "HD - Thủ Thuật",
+        //           path: "/topics",
+        //           image: this.isThemeDark
+        //             ? "https://muabannick.pro/images/banners/banner_daily_events_min.jpg"
+        //             : this.isThemeRed
+        //             ? "/images/banners/event-red.png"
+        //             : this.isThemeBlue
+        //             ? "/images/banners/hd-thu-thuat.png"
+        //             : "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
+        //         },
         {
           title: "Danh Sách Nick",
           path: "/acc",
-          image: this.isThemeDark
-            ? "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg"
-            : this.isThemeRed
-            ? "/images/banners/ninja-vip-red.png"
-            : this.isThemeBlue
-            ? "/images/banners/ds-nick-ninja.png"
-            : "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
+          image: "/images/banners/ds-nick-ninja.png",
         },
         {
           title: "GD Trung Gian",
           path: "/services/giao-dich-trung-gian",
-          image: this.isThemeDark
-            ? "https://muabannick.pro/images/banners/banner_avatar_min.jpg"
-            : this.isThemeRed
-            ? "/images/banners/avatar-red.png"
-            : this.isThemeBlue
-            ? "/images/banners/gdtg.png"
-            : "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
+          image: "/images/banners/gdtg.png",
         },
 
         {
           title: "Nạp Lượng, Carot",
           path: "/services/nap-luong-carot",
-          image: this.isThemeDark
-            ? "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg"
-            : this.isThemeRed
-            ? "/images/banners/ninja-cheap-red.png"
-            : this.isThemeBlue
-            ? "/images/banners/carot.png"
-            : "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
+          image: "/images/banners/carot.png",
         },
-{
+        {
           title: "Bán Xu Ninja",
-          path: "/teamobi/ngoc-rong",
-          image: this.isThemeDark
-            ? "https://muabannick.pro//images/banners/banner_nro_min.jpg"
-            : this.isThemeRed
-            ? "/images/banners/ngoc-rong-red.png"
-            :  this.isThemeBlue
-            ? "/images/banners/ban-xu-ninja.png"
-            : "https://muabannick.pro//images/banners/banner_nro_min.jpg",
+          path: "/services/mua-ban-xu-ninja-school",
+          image: "/images/banners/ban-xu-ninja.png",
         },
         {
           title: "HD Mua Nick",
           path: "/guides/huong-dan-mua-nick-ninja-school",
-          image: this.isThemeDark
-            ? "https://muabannick.pro//images/banners/banner_nro_min.jpg"
-            : this.isThemeRed
-            ? "/images/banners/ngoc-rong-red.png"
-            :  this.isThemeBlue
-            ? "/images/banners/hd-mua-nick.png"
-            : "https://muabannick.pro//images/banners/banner_nro_min.jpg",
+          image: "/images/banners/hd-mua-nick.png",
         },
         {
           title: "HD - Thủ Thuật",
-          path: "/events/daily",
-          image: this.isThemeDark
-            ? "https://muabannick.pro/images/banners/banner_daily_events_min.jpg"
-            : this.isThemeRed
-            ? "/images/banners/event-red.png"
-            : this.isThemeBlue
-            ? "/images/banners/hd-thu-thuat.png"
-            : "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
-          numberAccount: "5245",
-          sold: "5144",
+          path: "/topics",
+          image: "/images/banners/hd-thu-thuat.png",
         },
-
-
       ];
     },
   },

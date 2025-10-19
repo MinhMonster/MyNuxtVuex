@@ -2,7 +2,7 @@
   <v-dialog
     v-if="dialog"
     v-model="dialog"
-    :id="`${isThemeDark ? 'theme-dark' : (isThemeRed ? 'theme-red' : (isThemeBlue ? 'theme-blue' :  ''))}`"
+    id="theme-blue"
     :title="title"
     scrollable
     :size="size"
@@ -15,6 +15,7 @@
     class="modal-content"
     aria-labelledby="labeldiv"
   >
+    <!-- :id="`${isThemeDark ? 'theme-dark' : (isThemeRed ? 'theme-red' : (isThemeBlue ? 'theme-blue' :  ''))}`" -->
     <v-card>
       <BaseSvg
         :disabled="disabledClose"

@@ -1,9 +1,8 @@
 <template>
-    <v-app
-      :class="`${isThemeDark ? 'theme-dark' : (isThemeRed ? 'theme-red' : (isThemeBlue  ?  'theme-blue' : ''))}${
+  <v-app :class="`theme-blue ${isViewAccount ? ' admin-view-account' : ''}`">
+    <!-- :class="`${isThemeDark ? 'theme-dark' : (isThemeRed ? 'theme-red' : (isThemeBlue  ?  'theme-blue' : ''))}${
         isViewAccount ? ' admin-view-account' : ''
-      }`"
-    >
+      }`" -->
     <client-only>
       <AppBar />
     </client-only>

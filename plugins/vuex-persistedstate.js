@@ -9,9 +9,9 @@ export default ({ store, req }) => {
       "home.users.token",
       "home.users.user",
       "home.users.authenticated",
-      "global.isThemeDark",
-      "global.isThemeRed",
-      "global.isThemeBlue",
+      // "global.isThemeDark",
+      // "global.isThemeRed",
+      // "global.isThemeBlue",
       "global.isView",
     ],
     storage: {
