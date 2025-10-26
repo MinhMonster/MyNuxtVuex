@@ -122,8 +122,12 @@ export default {
           title: this.isLogin ? "Tài Khoản" : "Đăng Nhập",
           path: "/account/profile",
           image: this.isThemeRed
-            ? (this.isLogin ? "/images/banners/account-red.png" : "/images//banners/login-red.png")
-            : (this.isLogin ? "/images/banners/account.jpg" : "/images/banners/login.jpg"),
+            ? this.isLogin
+              ? "/images/banners/account-red.png"
+              : "/images//banners/login-red.png"
+            : this.isLogin
+            ? "/images/banners/account.jpg"
+            : "/images/banners/login.jpg",
         },
 
         {
@@ -198,18 +202,28 @@ export default {
             ? "/images/banners/ninja-cheap-red.png"
             : "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
         },
-
         {
-          title: "Sự kiện Hằng ngày",
-          path: "/events/daily",
-          image: this.isThemeDark
-            ? "https://muabannick.pro/images/banners/banner_daily_events_min.jpg"
-            : this.isThemeRed
-            ? "/images/banners/event-red.png"
-            : "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
-          numberAccount: "5245",
-          sold: "5144",
+          title: "Nạp Lượng, Carot",
+          path: "/services/nap-luong-carot",
+          image: "/images/banners/carot.png",
         },
+        {
+          title: "Bán Xu Ninja",
+          path: "/services/mua-ban-xu-ninja-school",
+          image: "/images/banners/xu-ninja.png",
+        },
+
+        // {
+        //   title: "Sự kiện Hằng ngày",
+        //   path: "/events/daily",
+        //   image: this.isThemeDark
+        //     ? "https://muabannick.pro/images/banners/banner_daily_events_min.jpg"
+        //     : this.isThemeRed
+        //     ? "/images/banners/event-red.png"
+        //     : "https://muabannick.pro/images/banners/banner_daily_events_min.jpg",
+        //   numberAccount: "5245",
+        //   sold: "5144",
+        // },
 
         {
           title: "Ngọc Rồng Online",
@@ -220,15 +234,15 @@ export default {
             ? "/images/banners/ngoc-rong-red.png"
             : "https://muabannick.pro//images/banners/banner_nro_min.jpg",
         },
-        {
-          title: "Nạp Lượng, Carot",
-          path: "/services/nap-luong-carot",
-          image: this.isThemeDark
-            ? "/images/banners/carot.png"
-            : this.isThemeRed
-            ? "/images/banners/carot.png"
-            : "/images/banners/carot.png",
-        },
+        // {
+        //   title: "Nạp Lượng, Carot",
+        //   path: "/services/nap-luong-carot",
+        //   image: this.isThemeDark
+        //     ? "/images/banners/carot.png"
+        //     : this.isThemeRed
+        //     ? "/images/banners/carot.png"
+        //     : "/images/banners/carot.png",
+        // },
       ];
     },
   },

@@ -15,4 +15,10 @@ export default ($api) => ({
   fetchAccountNinja(payload) {
     return $api.get(`${resource}/fetchAccountNinja.php`, payload)
   },
+  fetchXuNinjaPrices(payload) {
+    return $api.get(`${resource}/fetchXuNinjaPrices.php`,
+      {
+        hideLoading: true
+      });
+  },
 })
