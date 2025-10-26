@@ -23,6 +23,7 @@ export default {
     historyWalletDepositCard: {},
     historyWalletDepositCards: [],
     historyBuyCarots: [],
+    historyBuyXuNinjas: [],
     historyMeta: {},
     pageSave: 1,
     query: {
@@ -189,6 +190,20 @@ export default {
       try {
         const response = await this.$repositories.homeUsers.fetchHistoryBuyCarots({ input: state.query });
         commit(SET_STATE, { historyBuyCarots: response.data.data });
+        commit(SET_STATE, { historyMeta: response.data.pagy });
+
+      } catch { }
+    },
+    async buyXuNinja({ commit }, payload) {
+      try {
+        const response = await this.$repositories.homeUsers.buyXuNinja(payload);
+        return response
+      } catch { }
+    },
+    async fetchHistoryBuyXuNinjas({ commit, state }) {
+      try {
+        const response = await this.$repositories.homeUsers.fetchHistoryBuyXuNinjas({ input: state.query });
+        commit(SET_STATE, { historyBuyXuNinjas: response.data.data });
         commit(SET_STATE, { historyMeta: response.data.pagy });
 
       } catch { }
