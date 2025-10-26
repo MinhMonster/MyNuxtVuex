@@ -309,7 +309,7 @@ export default {
     this.reload();
   },
   methods: {
-    ...mapActions(["buyCarot", "fetchHistoryBuyCarots", "setQuery"]),
+    ...mapActions(["fetchUser", "buyCarot", "fetchHistoryBuyCarots", "setQuery"]),
     reload() {
       if (this.isLogin) {
         this.onPageChange(this.pageSave);
@@ -371,7 +371,8 @@ export default {
         await this.showModalDetail(history);
         await this.resetInput();
         await this.setQuery({ page: 1 });
-        this.fetchHistoryBuyCarots();
+        await this.fetchHistoryBuyCarots();
+        this.fetchUser();
       }
     },
     showModalDetail(history) {
