@@ -3,7 +3,7 @@
     <div id="menu-bottom">
       <ModalSupport />
 
-      <ModalGame />
+      <!-- <ModalGame /> -->
 
       <div class="sub-menu-buttom" @click="nextPath('/')">
         <div class="footer_icon home">
@@ -15,18 +15,18 @@
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
-      <div class="sub-menu-buttom" @click="changeTheme()">
+      <!-- <div class="sub-menu-buttom" @click="changeTheme()">
         <div class="footer_icon theme">
           <BaseSvg class="icon-menu" id="theme-light-dark" title="Giao Diện" aria-label="Giao Diện"
             name="theme-light-dark" />
         </div>
         <span class="title-menu-buttom">Giao Diện</span>
-      </div>
-      <div class="sub-menu-buttom" @click="nextPath('/topics')">
+      </div> -->
+      <div class="sub-menu-buttom" @click="nextPath('/guides/huong-dan-mua-nick-ninja-school')">
         <div class="footer_icon service">
-          <BaseSvg class="icon-menu" id="btn-topics" title="Bài Đăng" aria-label="Bài Đăng" name="book" />
+          <BaseSvg class="icon-menu" id="btn-topics" title="Hướng Dẫn Mua Nick Ninja School" aria-label="Hướng Dẫn Mua Nick Ninja School" name="book" />
         </div>
-        <span class="title-menu-buttom">Bài Đăng</span>
+        <span class="title-menu-buttom">Hướng Dẫn</span>
       </div>
     </div>
   </client-only>
@@ -51,16 +51,16 @@ export default {
     })
   },
   methods: {
-    changeTheme() {
+    // changeTheme() {
 
-      if(this.isThemeDark){
-        this.isThemeDark = false;
-        this.isThemeBlue = true;
-      }else{
-        this.isThemeDark = true;
-        this.isThemeBlue = false;
-      }
-    },
+    //   if(this.isThemeDark){
+    //     this.isThemeDark = false;
+    //     this.isThemeBlue = true;
+    //   }else{
+    //     this.isThemeDark = true;
+    //     this.isThemeBlue = false;
+    //   }
+    // },
     nextPath(path) {
       if (this.path === path) {
         this.reset();

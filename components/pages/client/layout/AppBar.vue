@@ -1,6 +1,8 @@
 <template>
   <client-only>
     <v-app-bar :clipped-right="clipped" fixed app style="height: 50px">
+      <div id="top-shadow"></div>
+      <div id="bottom-shadow"></div>
       <div class="header-content">
         <div class="header-user">
           <div class="header-logo" @click="nextHome()">
@@ -51,13 +53,13 @@ export default {
       miniVariant: false,
     };
   },
-  watch: {
-    isThemeDark: {
-      async handler(newValue, oldValue) {
-        this.getLogo();
-      },
-    },
-  },
+  // watch: {
+  //   isThemeDark: {
+  //     async handler(newValue, oldValue) {
+  //       this.getLogo();
+  //     },
+  //   },
+  // },
   computed: {
     ...mapFields("global", {
       ready: "ready",
@@ -97,13 +99,14 @@ export default {
       }
     },
     getLogo() {
-      this.logo = this.isThemeDark
-        ? "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png"
-        : this.isThemeRed
-        ? "/images/logo-red.png"
-        : this.isThemeBlue
-        ? "/images/logo.png"
-        : "https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200";
+      // this.logo = this.isThemeDark
+      //   ? "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png"
+      //   : this.isThemeRed
+      //   ? "/images/logo-red.png"
+      //   : this.isThemeBlue
+      //   ? "/images/logo.png"
+      //   : "https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200";
+      this.logo = "/images/logo.png"
     },
   },
 };

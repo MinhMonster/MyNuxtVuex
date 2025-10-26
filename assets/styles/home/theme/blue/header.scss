@@ -28,6 +28,9 @@
       .container.client-main {
         background: #000;
         background-size: cover;
+        // background: #fafcfc url('/images/bgs/content-area-bg.png');
+        // border-bottom: 1px solid #ffffff;
+
         // background-image: url('/images/bgs/bg-blue.jpg') !important;
 
         // @media (max-width: 599px) {
@@ -222,6 +225,7 @@
       background: #171e28 !important;
       color: #f1f1f1;
       border: 1px solid #0F0F0F !important;
+
       &.bd-top {
         border: 1px solid #171e28 !important;
       }

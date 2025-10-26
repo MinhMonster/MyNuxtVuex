@@ -1,5 +1,24 @@
 .theme-blue {
   .v-app-bar {
     background: radial-gradient(circle at 20% 70%, #355C8A, #1A1C1D 28%, #1A1C1D 127%) !important;
+    // background-image: url('/images/bgs/header-bg.png') !important;
+
+    // #top-shadow {
+    //   background: url('/images/bgs/top-shadow.png') repeat-x;
+    //   width: 100%;
+    //   position: absolute;
+    //   top: 0px;
+    //   left: 0px;
+    //   height: 7px;
+    // }
+
+    // #bottom-shadow {
+    //   background: url('/images/bgs/bottom-shadow.png') repeat-x;
+    //   width: 100%;
+    //   position: absolute;
+    //   bottom: 0px;
+    //   left: 0px;
+    //   height: 4px;
+    // }
   }
 }

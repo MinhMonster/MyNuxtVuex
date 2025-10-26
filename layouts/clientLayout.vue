@@ -474,7 +474,7 @@ export default {
 
           &.info-history {
             //   // width: 80% !important;
-            min-width: 100px;
+            min-width: 80px;
             //   vertical-align: middle !important;
             //   text-align: left;
           }
