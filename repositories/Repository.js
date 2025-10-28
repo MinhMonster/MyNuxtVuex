@@ -20,6 +20,7 @@ import adminGameAccountSold from '~/repositories/admin/histories/game_account_so
 import adminBankDeposits from '~/repositories/admin/histories/bank_deposits'
 import adminSaleOffs from '~/repositories/admin/sale_offs'
 import adminCarots from '~/repositories/admin/histories/carots'
+import adminXuNinjas from '~/repositories/admin/histories/xu_ninjas'
 
 //admin events
 import adminDailyEvents from '~/repositories/admin/events/daily'
@@ -57,10 +58,11 @@ export default ($api) => ({
   // admin Game
   adminGameNinjas: adminGameNinjas($api),
   adminGameAvatars: adminGameAvatars($api),
-  adminGameAccountSold:adminGameAccountSold($api),
+  adminGameAccountSold: adminGameAccountSold($api),
   adminBankDeposits: adminBankDeposits($api),
   adminSaleOffs: adminSaleOffs($api),
   adminCarots: adminCarots($api),
+  adminXuNinjas: adminXuNinjas($api),
 
   //admin events
   adminDailyEvents: adminDailyEvents($api),

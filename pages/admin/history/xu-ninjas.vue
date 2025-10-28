@@ -13,13 +13,13 @@
           <!-- <v-card> -->
           <AdminBaseTable
             ref="table"
-            module="admin/histories/carots"
-            repository="adminCarots"
+            module="admin/histories/xu_ninjas"
+            repository="adminXuNinjas"
             :columns="columns"
             :store="{
-              state: 'queryCarots',
-              module: 'admin.histories.carots',
-              action: 'fetchCarots',
+              state: 'queryXuNinjas',
+              module: 'admin.histories.xu_ninjas',
+              action: 'fetchXuNinjas',
             }"
           >
             <template #status="props">
@@ -56,7 +56,7 @@ import { mapFields } from "vuex-map-fields";
 
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
-import ModalUpdateStatus from "@/components/pages/admin/histories/carots/ModalUpdateStatus";
+import ModalUpdateStatus from "@/components/pages/admin/histories/xu-ninjas/ModalUpdateStatus";
 import StatusBtn from "@/components/common/client/button/StatusBtn";
 import ActionsModal from "@/components/pages/admin/histories/carots/ActionsModal";
 
@@ -69,7 +69,7 @@ export default {
     StatusBtn,
     ActionsModal,
   },
-  name: "Carots",
+  name: "XuNinjas",
   data() {
     return {
       selected: {},
@@ -80,9 +80,9 @@ export default {
           type: "number",
           fixed: "left",
           attributes: {
-            align: "center",
             style: {
               minWidth: "50px",
+              textAlign: "center !important",
             },
           },
         },
@@ -111,24 +111,26 @@ export default {
           label: "Price",
           type: "number",
           attributes: {
+            align: "center",
             style: {
-              minWidth: "100px",
+              minWidth: "50px",
             },
           },
         },
         {
-          key: "game_type",
-          label: "Game",
+          key: "xu",
+          label: "Xu",
+          type: "number",
           attributes: {
             style: {
               minWidth: "80px",
+              textAlign: "center !important",
             },
           },
         },
         {
-          key: "username",
-          label: "Username",
-          copy: true,
+          key: "ingame",
+          label: "In Game",
           attributes: {
             style: {
               minWidth: "100px",
@@ -139,6 +141,7 @@ export default {
           key: "server",
           label: "Server",
           attributes: {
+            align: "center",
             style: {
               minWidth: "50px",
             },
@@ -149,8 +152,10 @@ export default {
           label: "ID User",
           copy: true,
           attributes: {
+            align: "center",
             style: {
               minWidth: "180px",
+              textAlign: "center !important",
             },
           },
         },
@@ -170,6 +175,7 @@ export default {
           attributes: {
             style: {
               minWidth: "150px",
+              textAlign: "center !important",
             },
           },
         },
@@ -235,5 +241,4 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
