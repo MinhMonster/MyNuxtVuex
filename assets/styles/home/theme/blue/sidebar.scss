@@ -1,0 +1,56 @@
+.theme-blue {
+
+  .rightbar-content {
+    border: none !important;
+    background: #0F0F0F !important;
+    // background-image: linear-gradient(129.4deg, #0F0F0F 25.38%, #0F0F0F 45.2%, #355C8A 58.96%, #355C8A 44.97%, #355C8A 25.49%, #0F0F0F 75.5%, #0F0F0F 90.52%) !important;
+    // background-image: linear-gradient(129.4deg, #0F0F0F 25.38%, #0F0F0F 45.2%, #355C8A 58.96%, #355C8A 44.97%, #355C8A 25.49%, #0F0F0F 75.5%, #0F0F0F 90.52%) !important;
+    // max-height: 810px;
+    border-radius: 4px;
+
+    .user-info-wrap {
+      border: none !important;
+      border-bottom: $border-theme-blue !important;
+      background: linear-gradient(180deg, #0F0F0F, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+      // text-shadow: $text-shadow-theme-dark;
+
+      .user-info button.v-btn--icon.v-size--default .v-icon {
+        height: 70px;
+        width: 70px;
+        font-size: 70px !important;
+        // text-shadow: $text-shadow-theme-dark;
+        color: #fff;
+      }
+
+      .member {
+        margin-top: 20px;
+
+        .text-main {
+          font-size: 20px;
+
+        }
+
+        .text-blue {
+          color: crimson !important;
+        }
+      }
+    }
+
+    .text-main {
+      color: #fff !important;
+
+    }
+
+    .member-nav {
+      button.bg-danger {
+        text-shadow: none;
+      }
+
+      .member-nav-name,
+      button {
+        // text-shadow: $text-shadow-theme-dark;
+      }
+    }
+
+  }
+}

@@ -2,7 +2,13 @@
   <div class="home-slider">
     <v-carousel hide-delimiters cycle :interval="5000">
       <v-carousel-item v-for="(item, i) in items" :key="i" cover eager>
-        <v-img :src="item.src" height="100%" @load="onLoadAvatar" @error="onErrorAvatar" eager />
+        <v-img
+          :src="item.src"
+          height="100%"
+          @load="onLoadAvatar"
+          @error="onErrorAvatar"
+          eager
+        />
       </v-carousel-item>
     </v-carousel>
   </div>
@@ -29,28 +35,35 @@ export default {
       get() {
         if (!this.itemsData) {
           return [
-            {
-              src: this.isThemeRed
-                ? (
-                  this.isMobile
-                    ? "/images/banners/banner-red.png"
-                    : this.isShowNoti
-                      ? "/images/banners/banner-red.png"
-                      : "/images/banners/banner-red.png"
-                ) : (
-                  this.isMobile
-                    ? "https://muabannick.pro/images/banners/banner-mobile.jpg"
-                    : this.isShowNoti
-                      ? "https://muabannick.pro/images/banners/muabannick_banner_min.png"
-                      : "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif"
-                )
-            },
+            // {
+            // src: this.isThemeRed
+            //   ? (
+            //     this.isMobile
+            //       ? "/images/banners/banner-red.png"
+            //       : this.isShowNoti
+            //         ? "/images/banners/banner-red.png"
+            //         : "/images/banners/banner-red.png"
+            //   ) : this.isThemeBlue
+            //   ? (
+            //     this.isMobile
+            //       ? "/images/banners/banner.png"
+            //       : this.isShowNoti
+            //         ? "/images/banners/banner.png"
+            //         : "/images/banners/banner.png"
+            //   ): (
+            //     this.isMobile
+            //       ? "https://muabannick.pro/images/banners/banner-mobile.jpg"
+            //       : this.isShowNoti
+            //         ? "https://muabannick.pro/images/banners/muabannick_banner_min.png"
+            //         : "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif"
+            //   )
+            // },
             // {
             //   src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
             // },
-            // {
-            //   src: "https://muabannick.pro/images/banners/banner_ny_min.gif",
-            // },
+            {
+              src: "/images/banners/banner.png",
+            },
           ];
         } else {
           return this.itemsData;

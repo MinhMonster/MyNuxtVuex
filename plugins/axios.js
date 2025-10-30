@@ -50,10 +50,12 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     store.dispatch("global/setValidationErrors", {});
 
     //check theme dark
-    const isThemeDark = store.state.global.isThemeDark;
-    const isThemeRed = store.state.global.isThemeRed;
+    // const isThemeDark = store.state.global.isThemeDark;
+    // const isThemeRed = store.state.global.isThemeRed;
+    // const isThemeBlue = store.state.global.isThemeBlue;
     const customClassSwal = {
-      container: isThemeDark ? "swal-dark" : (isThemeRed ? "swal-red" : ""),
+      container: "swal-blue",
+      // container: isThemeDark ? "swal-dark" : (isThemeRed ? "swal-red" : (isThemeBlue ? "swal-blue" : "")),
     }
 
     // store.dispatch("removeRequest", response.config.id);

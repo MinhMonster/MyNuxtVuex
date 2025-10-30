@@ -1,7 +1,7 @@
 .v-overlay {
   top: 0px !important;
 
-  + .v-application--wrap +.v-dialog__content {
+  +.v-application--wrap+.v-dialog__content {
     top: 0px !important;
   }
 }
@@ -26,10 +26,15 @@
       justify-content: space-between;
       align-items: center;
 
-      .header-logo img {
-        cursor: pointer;
-        width: 191.78px;
-        height: auto;
+      .header-logo {
+        margin: auto 0;
+        display: flex;
+
+        img {
+          cursor: pointer;
+          width: 191.78px;
+          height: auto;
+        }
       }
     }
   }

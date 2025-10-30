@@ -9,7 +9,7 @@
         name="support"
       />
     </div>
-    <span class="title-menu-buttom">Hỗ trợ</span>
+    <span class="title-menu-buttom">Admin</span>
     <ModalPayload ref="modal" :title="`Thông tin Admin`" size="md" hiddenFooter>
       <template #content>
         <div class="page-body">

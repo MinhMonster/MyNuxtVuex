@@ -51,7 +51,7 @@ export default {
     title() {
       return `Mã Số: ${this.format_number(
         this.accountId
-      )} - Nick Ninja School Online - MuaBanNick.Pro`;
+      )} - Nick Ninja School Online - NickNinja.Vn`;
     },
     imagenHead() {
       return _.get(this.accountNinja, "hinhanh[0]", "/banner.jpg");
@@ -83,7 +83,7 @@ export default {
       await this.resetAccountNinjas();
       if (this.accountNinja) {
         await this.setQuery({
-          perPage: 8,
+          perPage: 9,
           q: {
             giatien: this.accountNinja.giatien,
             id_other: this.accountNinja.ID,

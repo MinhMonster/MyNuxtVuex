@@ -2,7 +2,7 @@
   <v-row>
     <v-col cols="6">
       <div class="btn-buy-account" @click="showBank()">
-        <BaseSvg content="Mua bằng ATM" name="next-right" />
+        <BaseSvg content="Thanh Toán QR" name="next-right" />
       </div>
     </v-col>
     <v-col cols="6">

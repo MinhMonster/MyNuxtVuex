@@ -1,34 +1,34 @@
 <template>
   <v-row class="group-btn mt--6">
     <v-col cols="12" sm="12" md="2"></v-col>
-    <v-col cols="3" sm="3" md="2">
+    <v-col v-if="isChangeType" cols="3" sm="3" md="2">
       <div :class="{ 'nuxt-link-exact-active': isVip }">
         <v-btn
           class="btn active-btn w-100"
-          @click="nextPath('VIP', '/teamobi/ninja-school/nick-vip')"
+          @click="nextPath('VIP', `${queryPath}` + '/nick-vip')"
           >Nick VIP</v-btn
         >
       </div>
     </v-col>
-    <v-col cols="3" sm="3" md="2">
+    <v-col v-if="isChangeType" cols="3" sm="3" md="2">
       <div :class="{ 'nuxt-link-exact-active': isCheap }">
         <v-btn
           class="btn active-btn w-100"
-          @click="nextPath('cheap', '/teamobi/ninja-school/nick-gia-re')"
+          @click="nextPath('cheap', `${queryPath}` + '/nick-gia-re')"
           >Giá Rẻ</v-btn
         >
       </div>
     </v-col>
-    <v-col cols="3" sm="3" md="2">
+    <v-col v-if="isChangeType" cols="3" sm="3" md="2">
       <div :class="{ 'nuxt-link-exact-active': isAll }">
         <v-btn
           class="btn active-btn w-100"
-          @click="nextPath(null, '/teamobi/ninja-school')"
+          @click="nextPath(null, `${queryPath}`)"
           >Tất cả</v-btn
         >
       </div>
     </v-col>
-    <v-col cols="3" sm="3" md="2">
+    <v-col v-if="isChangeType" cols="3" sm="3" md="2">
       <v-btn
         class="btn btn-info search-btn text-white w-100"
         @click="isSearch = !isSearch"
@@ -47,12 +47,10 @@
           >
         </div>
         <div>
-              ⭐ Hỗ trợ
-              <span class="bold pointer text-danger"
-                >trả góp lên đến 1 tháng </span
-              >, Số tiền thanh toán và thời gian trả góp tùy thuộc vào giá trị
-              nick.
-            </div>
+          ⭐ Hỗ trợ
+          <span class="bold pointer text-danger">trả góp lên đến 1 tháng </span
+          >, Số tiền thanh toán và thời gian trả góp tùy thuộc vào giá trị nick.
+        </div>
         <!-- <div>
           ⭐ PR: Shop Mua Bán
           <span class="bold text-13-500"
@@ -119,6 +117,14 @@ export default {
       type: String,
       default: null,
     },
+    queryPath: {
+      type: String,
+      default: "/teamobi/ninja-school",
+    },
+    isChangeType: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -150,8 +156,8 @@ export default {
       return (
         this.path.includes("/nick-ninja/") ||
         this.path.includes("/nick-ninja.") ||
-        this.path == "/teamobi/ninja-school" ||
-        this.path == "/teamobi/ninja-school/"
+        this.path == this.queryPath ||
+        this.path == this.queryPath + "/"
       );
     },
   },

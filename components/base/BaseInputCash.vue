@@ -1,11 +1,11 @@
 <template>
   <input
-    v-model="formattedNumber"
+    :value="formattedNumber"
     :name="name"
     :label="label"
     :placeholder="placeholder"
     :disabled="disabled"
-    @input="formatInput"
+    @input="onInput"
   />
 </template>
 
@@ -18,41 +18,38 @@ export default {
     },
     value: {
       type: [String, Number],
+      default: "",
     },
     label: {
       type: [String, Number],
     },
-    placeholder: {
-      type: [String, Number],
-    },
+    placeholder: String,
     disabled: Boolean,
   },
   data() {
     return {
-      number: "",
-      formattedNumber: this.value,
+      formattedNumber: this.formatNumber(this.value),
     };
   },
   watch: {
-    value: {
-      async handler(newValue, oldValue) {
-        this.formattedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      },
+    value(newVal) {
+      this.formattedNumber = this.formatNumber(newVal);
     },
   },
-  created() {
-    this.formattedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    this.formatInput();
-  },
   methods: {
-    formatInput() {
-      const cleanedValue = this.formattedNumber.replace(/[^0-9]/g, "");
+    formatNumber(val) {
+      const num = (val || "").toString().replace(/[^0-9]/g, "");
+      return num ? num.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : "";
+    },
 
-      this.formattedNumber = cleanedValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    onInput(e) {
+      const raw = e.target.value.replace(/[^0-9]/g, "");
+      const formatted = this.formatNumber(raw);
+      this.formattedNumber = formatted;
+      e.target.value = formatted;
 
-      this.number = cleanedValue;
-
-      this.$emit("change", this.name, this.number);
+      this.$emit("input", raw);
+      this.$emit("change", this.name, raw);
     },
   },
 };

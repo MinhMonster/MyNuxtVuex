@@ -4,13 +4,14 @@ import cookie from "cookie";
 
 export default ({ store, req }) => {
   createPersistedState({
-    key: "MuaBanNickPro",
+    key: "NickNinjaVn",
     paths: [
       "home.users.token",
       "home.users.user",
       "home.users.authenticated",
-      "global.isThemeDark",
-      "global.isThemeRed",
+      // "global.isThemeDark",
+      // "global.isThemeRed",
+      // "global.isThemeBlue",
       "global.isView",
     ],
     storage: {

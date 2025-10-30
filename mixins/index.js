@@ -92,8 +92,9 @@ export default {
       showLoginRegister: "showLoginRegister",
       showRegister: "showRegister",
       isFormLoginRegister: "isFormLoginRegister",
-      isThemeDark: "isThemeDark",
-      isThemeRed: "isThemeRed",
+      // isThemeDark: "isThemeDark",
+      // isThemeRed: "isThemeRed",
+      // isThemeBlue: "isThemeBlue",
       isView: "isView",
     }),
     isLogin() {

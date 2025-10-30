@@ -29,23 +29,15 @@
             <span class="bg-danger sale-off">
               {{ "-" + accountNinja.saleOff + "% " }}</span
             >
-            <span class="text-center cash-sale">
-              {{
-                " " +
-                cash_atm(
-                  accountNinja.giatien * (1 - accountNinja.saleOff / 100)
-                )
-              }}
-              Vnđ</span
-            >
+            <span class="cash-sale"> {{ format_number(accountNinja.priceSalling) }} Vnđ </span>
           </span>
 
           <span v-else class="account-cash">
-            {{ cash_atm(accountNinja.giatien) }} Vnđ
+            {{ format_number(accountNinja.price) }} Vnđ
           </span>
         </v-col>
         <v-col cols="6">
-          <nuxt-link :to="`/teamobi/ninja-school/${this.accountNinja.ID}`">
+          <nuxt-link :to="`${queryPath}/${accountNinja.ID}`">
             <span class="account-buy"> Xem Nick</span>
           </nuxt-link>
         </v-col>
@@ -63,6 +55,10 @@ export default {
     accountNinja: {
       type: Object,
       default: () => {},
+    },
+    queryPath: {
+        type: String,
+        default: "/teamobi/ninja-school",
     },
   },
   methods: {
