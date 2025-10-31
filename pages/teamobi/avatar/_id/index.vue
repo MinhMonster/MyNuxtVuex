@@ -82,7 +82,7 @@ export default {
       await this.resetAccountAvatars();
       if (this.accountAvatar) {
         await this.setQuery({
-          perPage: 8,
+          perPage: 9,
           q: {
             giatien: this.accountAvatar.price,
             id_other: this.accountAvatar.ID,

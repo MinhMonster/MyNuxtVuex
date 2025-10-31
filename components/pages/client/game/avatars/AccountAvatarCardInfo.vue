@@ -34,9 +34,9 @@
             <span class="bg-danger sale-off">
               -{{ accountAvatar.saleOff }}%
             </span>
-            <span class="cash-sale"> {{ cash_atm(discountedPrice) }} Vnđ </span>
+            <span class="cash-sale"> {{ format_number(accountAvatar.priceSalling) }} Vnđ </span>
           </template>
-          <template v-else> {{ cash_atm(accountAvatar.price) }} Vnđ </template>
+          <template v-else> {{ format_number(accountAvatar.price) }} Vnđ </template>
         </span>
       </v-col>
       <v-col cols="6">
@@ -62,9 +62,6 @@ export default {
   computed: {
     hasDiscount() {
       return this.accountAvatar?.saleOff > 0;
-    },
-    discountedPrice() {
-      return this.accountAvatar.price * (1 - this.accountAvatar.saleOff / 100);
     },
   },
 };
