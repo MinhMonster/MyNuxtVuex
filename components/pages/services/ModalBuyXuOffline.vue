@@ -75,7 +75,7 @@ export default {
       default: () => {},
     },
     price: {
-      type: Number,
+      type: [String, Number],
       default: 0,
     },
   },
