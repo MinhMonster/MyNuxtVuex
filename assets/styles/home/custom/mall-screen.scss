@@ -1,0 +1,48 @@
+  @media (max-width: 380px) {
+
+    .v-application .title-page.title,
+    .text-main {
+      font-size: 14px !important;
+    }
+
+    .cash-sale,
+    .account-thongtin,
+    .account-cash,
+    .account-buy,
+    span,
+    th,
+    td,
+    strong,
+    div,
+    h3,
+    center,
+    .group-btn-input button.v-btn label,
+    .v-input,
+    .v-label {
+      font-size: 12px !important;
+    }
+
+    body,
+    .title-menu-buttom,
+    .content-main {
+      font-size: 10px !important;
+    }
+
+    .account-server,
+    .account-class,
+    .account-code {
+      font-size: 9px !important;
+    }
+
+    .base-svg svg {
+      width: 20px !important;
+      height: 20px !important;
+    }
+
+    .view-account .v-btn--icon.v-size--default,
+    .next-top .v-btn--icon.v-size--default,
+    .next-bottom .v-btn--icon.v-size--default {
+      height: 25px !important;
+      width: 25px !important;
+    }
+  }

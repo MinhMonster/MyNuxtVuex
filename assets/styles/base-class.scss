@@ -41,6 +41,9 @@ $margins: (
     .text-#{$fontSize}-#{$fontWeight} {
       font-size: #{$fontSize}px !important;
       font-weight: #{$fontWeight} !important;
+        @media (max-width: 370px) {
+          font-size: #{$fontSize * 0.84}px !important;
+        }
     }
   }
 }
