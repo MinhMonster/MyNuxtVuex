@@ -53,10 +53,18 @@
             </div>
             <div>
               ⭐ Hỗ trợ
-              <span class="bold pointer text-danger"
-                >Trả góp, Cọc nick lên đến 2 tháng </span
-              >, Số tiền thanh toán và thời gian trả góp tùy thuộc vào giá trị
-              nick.
+              <span>Trả góp lên đến 1 tháng </span>, Số tiền thanh toán và thời
+              gian trả góp tùy thuộc vào giá trị nick.
+            </div>
+            <div>
+              ⭐ Xem
+              <nuxt-link
+                to="/guides/huong-dan-mua-nick"
+                class="bold pointer text-danger"
+              >
+                Hướng Dẫn Mua Nick</nuxt-link
+              >
+              để biết cách mua nick được nhanh chóng nhé các bạn.
             </div>
             <!-- <div>
               ⭐ PR: Shop Mua Bán

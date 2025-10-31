@@ -97,6 +97,8 @@ export default {
   },
 
   async mounted() {
+    this.isThemeDark = true;
+    this.isThemeRed = false;
     if (this.token) {
       await this.fetchUser();
     }
@@ -157,7 +159,7 @@ export default {
         overflow: hidden;
 
         .page-info {
-          min-height: calc(100vh - 165px);
+          min-height: calc(100vh - 125px);
         }
       }
 

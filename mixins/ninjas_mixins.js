@@ -341,10 +341,10 @@ export default {
           text: "Sv679 - Tone + Sanzu + Fukiya",
           value: "6",
         },
-        {
-          text: "Sv8 - Sensha",
-          value: "8",
-        },
+        // {
+        //   text: "Sv8 - Sensha",
+        //   value: "8",
+        // },
       ],
     };
   },
