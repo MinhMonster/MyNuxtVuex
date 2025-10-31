@@ -10,11 +10,13 @@ export default {
     metaNinjas: {},
     countNinjas: "",
     accountNinja: {},
+    xuNinjaPrices: [],
     query: {
       page: 1,
-      perPage: 24,
+      perPage: 36,
       q: {
         id: null,
+        ingame: null,
         level: null,
         cash: null,
         class: null,
@@ -51,6 +53,9 @@ export default {
       state.metaNinjas = payload.pagy
       state.countNinjas = payload.count
     },
+    SET_XU_NINJA_PRICES(state, payload) {
+      state.xuNinjaPrices = payload
+    },
     RESET_NINJAS(state) {
       state.accountNinjas = [];
       state.metaNinjas = {}
@@ -71,6 +76,12 @@ export default {
       try {
         const res = await this.$repositories.gameNinjas.fetchAccountNinjas({ input: state.query })
         commit('SET_NINJAS', res.data)
+      } catch (error) { }
+    },
+    async fetchXuNinjaPrices({ commit, state }) {
+      try {
+        const res = await this.$repositories.gameNinjas.fetchXuNinjaPrices({ input: state.query })
+        commit('SET_XU_NINJA_PRICES', res.data.data)
       } catch (error) { }
     },
     async fetchAccountNinja({ commit }, payload) {
@@ -96,9 +107,10 @@ export default {
       const type = payload ? payload : null;
       commit(SET_QUERY, {
         page: 1,
-        perPage: 24,
+        perPage: 36,
         q: {
           id: null,
+          ingame: null,
           level: null,
           cash: null,
           class: null,

@@ -1,0 +1,28 @@
+.theme-red {
+  .home-slider {
+    .v-carousel {
+      height: auto !important;
+      border: $border-theme-red !important;
+    }
+
+  }
+
+  .slick-arrow,
+  .slick-arrow:hover {
+
+
+    &.slick-next,
+    &.slick-prev,
+    &.slick-prev::before,
+    &.slick-next::before {
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 15%, #FF0000, #0F0F0F 72%) !important;
+      border: 1px solid #FF0000 !important;
+      box-shadow: #0f0f0f 0px 0px 1px inset, #FF0000 0px 1px 2px;
+    }
+
+  }
+}

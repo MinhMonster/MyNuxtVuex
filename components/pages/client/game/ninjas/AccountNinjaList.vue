@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div v-if="isLoadingSearch" class="center mgt--50px mgb--50px loading-resoult">
+    <Loading></Loading>
+  </div>
+  <div v-else>
     <v-row class="text-center account">
       <AccountNinjaCard
         v-for="(ninja, index) in accountNinjas"
@@ -16,15 +19,17 @@
       </h1>
     </div>
     <div class="btn-next-more">
-      <v-btn
+      <BaseSvg
         v-if="isShowNext && accountNinjas.length && !isLoading"
+        button
+        name="skip"
+        :content="` Xem Thêm Nick Ninja ${
+          type == 'cheap' ? 'Giá Rẻ' : type ?? ''
+        }`"
         variant="danger"
         class="flex mt-3 mb-1"
         @click="onChange()"
-      >
-        <v-icon>mdi-skip-next</v-icon>
-        Xem Thêm Nick Ninja {{ type ? type : null }}
-      </v-btn>
+      />
     </div>
   </div>
 </template>
@@ -32,13 +37,9 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-import mixins from "@/mixins/index";
 import AccountNinjaCard from "@/components/pages/client/game/ninjas/AccountNinjaCard";
 import Loading from "@/components/global/molecules/common/Loading";
 export default {
-  name: "AccountNinjaList",
-  mixins: [mixins],
-
   components: { AccountNinjaCard, Loading },
   props: {
     type: {
@@ -51,12 +52,23 @@ export default {
       isLoading: false,
     };
   },
-  async mounted() {},
+  // watch: {
+  //   isLoadingSearch: {
+  //     async handler(newValue, oldValue) {
+  //       if (this.isMobile) {
+  //         this.nextFormSearch();
+  //       }
+  //     },
+  //   },
+  // },
   computed: {
     ...mapFields("home/game/ninjas", {
       accountNinjas: "accountNinjas",
       page: "query.page",
       pages: "metaNinjas.pages",
+    }),
+    ...mapFields("global", {
+      isLoadingSearch: "isLoadingSearch",
     }),
     isShowNext() {
       return this.page < this.pages;
@@ -75,6 +87,14 @@ export default {
       await this.fetchAccountNinjas();
       this.isLoading = false;
     },
+    // nextFormSearch() {
+    //   const element = document.getElementById("resoults");
+    //   if (element) {
+    //     setTimeout(() => {
+    //       element.scrollIntoView();
+    //     }, 100);
+    //   }
+    // },
   },
 };
 </script>

@@ -5,6 +5,7 @@
       ref="modal"
       :title="`XÁC NHẬN MUA TÀI KHOẢN`"
       :text-close="`Hủy`"
+      :disabled-close="isLoading"
       size="md"
       @hide="close()"
     >
@@ -22,7 +23,7 @@
               <slot name="account-info"></slot>
             </v-window-item>
           </v-window>
-          <v-radio-group v-model="isBuy"> 
+          <v-radio-group v-model="isBuy">
             <v-radio
               name="some-radios"
               value="wallet"
@@ -31,17 +32,13 @@
             <v-radio
               name="some-radios"
               value="atm-momo"
-              label="Thanh toán bằng Atm - Momo"
+              label="Thanh toán bằng chuyển khoản"
             ></v-radio>
           </v-radio-group>
 
           <v-row v-if="isBuy == 'atm-momo'">
             <v-col cols="12" sm="12" md="12">
-              <AccountNumbeAdmin />
-            </v-col>
-
-            <v-col cols="12" sm="12" md="12">
-              <BuyAccountInstructions :account="account" :account-type="game" />
+              <BuyAccountQRInstructions :account="account" :account-type="game" />
             </v-col>
           </v-row>
         </div>
@@ -51,21 +48,28 @@
           Bạn chưa Đăng nhập. Hãy Đăng nhập để mua.
         </div>
         <div v-else-if="Number(user.cash) < price" class="color-main mgb-10px">
-          Số dư không đủ. Hãy nạp thêm tiền để mua.
+          Số dư không đủ. Bạn còn thiếu: <span class="text-danger text-bold">{{format_number(price - Number(user.cash))}} </span>Vnđ
         </div>
       </template>
       <template #footer-button>
-        <v-btn v-if="!user" size="sm" color="success" to="/login"
+        <v-btn
+          v-if="!user"
+          size="sm"
+          color="success"
+          class="btn-sm"
+          @click="openModalLogin()"
           ><span>Đăng nhập</span></v-btn
         >
         <v-btn
           v-else-if="Number(user.cash) < price"
+          size="sm"
           color="success"
-          to="/account/wallet/deposit/vnd"
+          class="btn-sm text-black"
+          @click="$router.push('/account/wallet/deposit/vnd')"
           ><span>Nap tiền</span></v-btn
         >
 
-        <v-btn v-else color="success" class="btn-buy" @click="buyNow()">
+        <v-btn v-else color="success" :disabled="isLoading" class="btn-buy btn-sm" @click="buyNow()">
           <Loading v-if="isLoading" button></Loading>
           <span v-else> Thanh Toán </span>
         </v-btn>
@@ -73,24 +77,19 @@
     </ModalPayload>
   </div>
 </template>
-  
+
 <script>
 import { mapActions, mapState } from "vuex";
-import mixins from "@/mixins/index";
 import Loading from "@/components/global/molecules/common/Loading";
 import ModalPayload from "@/components/common/ModalPayload";
-import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
-import BuyAccountInstructions from "@/components/common/BuyAccountInstructions";
+import BuyAccountQRInstructions from "@/components/common/BuyAccountQRInstructions";
 import TablePayAccount from "@/components/pages/client/game/TablePayAccount";
 
 export default {
-  mixins: [mixins],
-
   components: {
     Loading,
     ModalPayload,
-    AccountNumbeAdmin,
-    BuyAccountInstructions,
+    BuyAccountQRInstructions,
     TablePayAccount,
   },
   props: {
@@ -110,15 +109,20 @@ export default {
       isLoading: false,
     };
   },
-  async mounted() {},
   computed: {
     ...mapState("home/users", ["token", "user"]),
     price() {
-      return this.account.giatien || this.account.price;
+      return this.account.priceSalling || this.account.price || this.account.giatien;
     },
   },
   methods: {
     ...mapActions("home/users", ["buyAccount"]),
+    openModalLogin() {
+      this.$refs.modal.close();
+      setTimeout(() => {
+        this.showModalLoginRegister("login");
+      }, 200);
+    },
 
     async buyNow() {
       this.isLoading = true;
@@ -141,7 +145,7 @@ export default {
   },
 };
 </script>
-  
+
   <style lang="scss" scoped>
 th.info-nick {
   width: 50%;

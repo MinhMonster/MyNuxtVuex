@@ -2,8 +2,8 @@
   <table class="table">
     <tbody class="panel">
       <tr>
-        <th class="info-nick">Mã Số</th>
-        <td class="mua-nick">
+        <th class="info-nick w-50">Mã Số</th>
+        <td class="mua-nick w-50">
           <span>{{ format_number(account.ID) }}</span>
         </td>
       </tr>
@@ -35,11 +35,8 @@
   </table>
 </template>
 <script>
-import mixins from "@/mixins/index";
 
 export default {
-  mixins: [mixins],
-
   props: {
     account: {
       type: Object,

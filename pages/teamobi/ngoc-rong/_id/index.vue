@@ -21,17 +21,17 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import HomePage from "@/components/pages/home/HomePage";
 import AccountDragonBallDetail from "@/components/pages/client/game/dragon_balls/AccountDragonBallDetail";
 import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/AccountDragonBallList";
 
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
+import mixins from "@/mixins/index";
 
 export default {
-  layout: "clientLayout",
   mixins: [mixins],
+  layout: "clientLayout",
   components: {
     HomePage,
     AccountDragonBallDetail,
@@ -40,7 +40,6 @@ export default {
 
   computed: {
     ...mapFields("global", {
-      screenMobile: "screenMobile",
       ready: "ready",
     }),
     ...mapFields("home/game/dragon_balls", {

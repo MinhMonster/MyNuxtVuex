@@ -5,14 +5,15 @@
       :loading="!ready"
       goBack
       reload
-      @reload="reloadNinja('cheap')"
+      @reload="reload('cheap')"
       notBoder
     >
       <template v-if="ready" #body>
         <div class="mt-4">
           <AccountNinjaSearch
             type="cheap"
-            @search="searchNinjas()"
+            @search="search()"
+            @reset="reset('cheap')"
           ></AccountNinjaSearch>
           <AccountNinjaList type="cheap"></AccountNinjaList>
         </div>
@@ -37,17 +38,15 @@ export default {
     AccountNinjaSearch,
     AccountNinjaList,
   },
-  computed: {},
   async mounted() {
-    this.getAccountNinjas("cheap");
+    this.reload("cheap");
   },
-  methods: {},
   data() {
     return {
       title:
         "MuaBanNick.Pro - Shop Nick Ninja School Online Tự Động - Shop Mua Bán Nick Ninja School Online Giá Rẻ, Uy Tín Nhất MXH",
       description:
-        "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
+        "WEB Mua Bán Nick Ninja School, Tài Khoản Ninja School, Dịch Vụ Game Ninja School, Shop Nick Ninja School, Shop Nick Nso, Mua Bán Acc Ninja School, Shop Acc Ninja School của TeaMobi - Uy Tín - Giá rẻ",
     };
   },
   head() {
@@ -64,6 +63,11 @@ export default {
         {
           property: "og:image:alt",
           content: "Shop Nick Ninja School Online Giá Rẻ - NSO",
+        },
+        {
+          name: "keywords",
+          content:
+            "nick ninja, shop nick ninja, mua nick ninja, mua nick ninja school, shop nick ninja school, shop acc ninja, nick ninja teamobi, shop nick ninja teamobi, nick ninja gia re, nick ninja vip",
         },
       ],
     };

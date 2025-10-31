@@ -1,68 +1,80 @@
-
 <template>
   <client-only>
     <div v-if="accountNinja">
-      <div class="title">
-        <center><h3>Thông tin chi tiết</h3></center>
+      <div v-if="isMobile" class="text-center text-danger bold">
+        <BaseSvg name="next-bottom" />
+        Xem thêm ảnh nick chi tiết ở bên dưới
+        <BaseSvg name="next-bottom" />
+      </div>
+      <div v-if="!isMobile || !accountNinja.full" class="title">
+        <center>
+          <h3>Thông tin chi tiết</h3>
+        </center>
       </div>
 
       <table class="table text-center">
         <tbody>
-          <tr>
-            <th class="info-nick">Class</th>
-            <td class="mua-nick">
-              <span>{{ classNinja(accountNinja.class) }}</span>
-            </td>
-          </tr>
+          <template v-if="!isMobile || !accountNinja.full">
+            <tr>
+              <td colspan="2" style="padding: 0">
+                <table style="width: 100%">
+                  <tr>
+                    <th class="info-nick bd-top" style="width: 25%">Class</th>
+                    <td class="mua-nick bd-top" style="width: 25%">
+                      <span>{{ classNinja(accountNinja.class) }}</span>
+                    </td>
+                    <th class="info-nick bd-top" style="width: 25%">Cấp độ</th>
+                    <td class="mua-nick bd-top-left" style="width: 25%">
+                      <span>{{ accountNinja.level }}</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
-          <tr>
-            <th class="info-nick" style="">Level</th>
-            <td class="mua-nick">
-              <span> {{ accountNinja.level }}</span>
-            </td>
-          </tr>
+            <tr>
+              <th class="info-nick" style="">Vũ Khí</th>
+              <td class="mua-nick">
+                <span>{{ accountNinja.vukhi }}</span>
+              </td>
+            </tr>
 
-          <tr>
-            <th class="info-nick" style="">Vũ Khí</th>
-            <td class="mua-nick">
-              <span>{{ accountNinja.vukhi }}</span>
-            </td>
-          </tr>
+            <!-- <tr>
+              <th class="info-nick" style="">Đồ</th>
+              <td class="mua-nick">
+                <span>{{ accountNinja.do }}</span>
+              </td>
+            </tr> -->
 
-          <tr>
-            <th class="info-nick" style="">Đồ</th>
-            <td class="mua-nick">
-              <span>{{ accountNinja.do }}</span>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="info-nick" style="">Server</th>
-            <td class="mua-nick">
-              <span>{{ serverNinja(accountNinja.server) }}</span>
-            </td>
-          </tr>
-          <tr>
-            <th class="info-nick" style="">Chi tiết</th>
-            <td class="mua-nick">
-              <span>{{ accountNinja.thongtin }} </span>
-            </td>
-          </tr>
+            <tr>
+              <th class="info-nick" style="">Máy Chủ</th>
+              <td class="mua-nick">
+                <span>{{ serverNinja(accountNinja.server) }}</span>
+              </td>
+            </tr>
+            <tr>
+              <th class="info-nick" style="">Chi tiết</th>
+              <td class="mua-nick">
+                <span>{{ accountNinja.thongtin }} </span>
+              </td>
+            </tr>
+          </template>
           <tr>
             <th class="info-nick" style="">
               <div style="margin: 10px"></div>
-
               Giá Bán
               <br />
-              {{
-                accountNinja.saleOff
-                  ? "(Giảm giá: " + accountNinja.saleOff + "%)"
-                  : ""
-              }}
+              <span class="text-danger">
+                {{
+                  accountNinja.saleOff
+                    ? "(Giảm giá: ~" + accountNinja.saleOff + "%)"
+                    : ""
+                }}
+              </span>
             </th>
             <td class="mua-nick">
-              <span>{{ format_number(accountNinja.giatien) }} Card </span>
-              <div
+              <!-- <span>{{ format_number(accountNinja.giatien) }} Card </span> -->
+              <!-- <div
                 style="
                   width: 100%;
                   height: 1px;
@@ -70,46 +82,37 @@
                   margin-top: 5px;
                   margin-bottom: 5px;
                 "
-              ></div>
-              <span :class="{ 'text-line-middel': accountNinja.saleOff }"
-                >{{ cash_atm(accountNinja.giatien) }} ATM - MOMO</span
+              ></div> -->
+              <span
+                :class="{
+                  'text-line-middel text-danger': accountNinja.saleOff,
+                }"
               >
-              <div
-                v-if="accountNinja.saleOff"
-                style="
-                  width: 100%;
-                  height: 1px;
-                  background-color: #a4a4a4;
-                  margin-top: 5px;
-                  margin-bottom: 5px;
-                "
-              ></div>
-              <span v-if="accountNinja.saleOff"
-                >{{
-                  cash_atm(
-                    accountNinja.giatien * (1 - accountNinja.saleOff / 100)
-                  )
-                }}
-                ATM - MOMO
+                {{ format_number(accountNinja.price) }} Vnđ
               </span>
+              <template v-if="accountNinja.saleOff">
+                <div class="divider"></div>
+                <span>
+                  {{ format_number(accountNinja.priceSalling) }} Vnđ
+                </span>
+              </template>
             </td>
           </tr>
         </tbody>
       </table>
-      <GroupBtnBuyAccount :account="accountNinja" account-type="Ninja School Online" />
+      <GroupBtnBuyAccount
+        :account="accountNinja"
+        account-type="Ninja School Online"
+      />
     </div>
   </client-only>
 </template>
-  
-  <script>
-import mixins from "@/mixins/index";
+
+<script>
 import AccountNinjaCard from "@/components/pages/client/game/ninjas/AccountNinjaCard";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  name: "AccountNinjaList",
-  mixins: [mixins],
-
   components: { AccountNinjaCard, GroupBtnBuyAccount },
   props: {
     accountNinja: {
@@ -124,8 +127,6 @@ export default {
       isBank: false,
     };
   },
-  async mounted() {},
-  computed: {},
   methods: {
     buyNow() {
       this.isShow = true;
@@ -133,15 +134,17 @@ export default {
   },
 };
 </script>
-  
-  <style lang="scss" scoped>
+
+<style lang="scss" scoped>
 .title {
   color: #1e5b7e;
   margin-bottom: 10px;
 }
+
 table.table tbody {
   // border: 1px solid #663019;
 }
+
 th.info-nick {
   width: 50%;
   padding: 7px;
@@ -149,6 +152,7 @@ th.info-nick {
   border: 1px solid #663019;
   background: #e28637;
 }
+
 .btn-buy-account,
 .mua-nick {
   cursor: pointer;
@@ -156,6 +160,7 @@ th.info-nick {
   color: #663019;
   border: 1px solid #663019;
   background: #ffcf9c;
+
   .v-btn {
     font-weight: 400;
   }
@@ -165,10 +170,12 @@ th.info-nick {
   color: #ffcf9c;
   border: 1px solid #663019;
   background: #e28637;
+
   .v-btn {
     color: #ffcf9c;
   }
 }
+
 .btn-buy-account,
 .btn-buy-account-hover,
 .mua-nick {
@@ -176,11 +183,23 @@ th.info-nick {
   border-radius: 3px !important;
   text-align: center;
 }
+
 .table td {
   padding: 5px;
   vertical-align: top;
-  border: 1px solid #e28637;
+  border: 0px solid #e28637;
+  .bd-top-left {
+    border-top-width: 1px !important;
+    border-left-width: 0px !important;
+    border-bottom-width: 0px !important;
+    border-right-width: 1px !important;
+    // border: 0px !important;
+  }
+  .bd-top {
+    border-top-width: 1px !important;
+  }
 }
+
 .mua-nick span {
   font-size: 14px;
   font-weight: 400;
@@ -201,6 +220,7 @@ th.info-nick {
     .modal-title {
       color: #561d00;
     }
+
     .close {
       display: flex !important;
       color: #663019;
@@ -228,11 +248,13 @@ th.info-nick {
   .modal-dialog-scrollable .modal-content {
     overflow: visible;
   }
+
   .modal-body {
     position: relative;
     border: 2px solid #561d00;
     background: #ffcf9c;
     padding: 10px;
+
     .modal-info {
       border-radius: 4px;
       position: relative;
@@ -240,16 +262,20 @@ th.info-nick {
       color: #663019;
       border: 1px solid #663019;
       background: #ffefa3;
+
       .tab-content {
         padding: 5px;
       }
+
       .form-group {
         padding: 5px;
         margin-bottom: 0px;
       }
+
       .nav-tabs {
         .nav-item {
           width: 50%;
+
           .nav-link {
             border: none;
             color: #663019;
@@ -264,12 +290,15 @@ th.info-nick {
           }
         }
       }
+
       .row {
         padding: 0;
         margin: 0px;
+
         .col-md-6 {
           margin: 0px;
           padding: 0px;
+
           .info-atm-momo {
             border: 1px solid #663019;
             background: #ffcf9c;
@@ -282,6 +311,7 @@ th.info-nick {
       }
     }
   }
+
   .modal-footer {
     border: 2px solid #663019;
     background: #e28637;
@@ -291,6 +321,7 @@ th.info-nick {
     //   background: #663019;
     // }
   }
+
   // .custom-control-input:checked ~ .custom-control-label::before {
   //   color: #fff;
   //   border-color: #663019;
@@ -299,6 +330,7 @@ th.info-nick {
   .custom-control-label::before {
     top: 0;
   }
+
   .custom-control-label::after {
     top: 0;
   }

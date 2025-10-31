@@ -37,16 +37,69 @@
         <!-- <v-icon>mdi-filter-multiple-outline </v-icon> -->
       </v-btn>
     </v-col>
+    <v-col cols="12">
+      <div class="page-body mg--6px">
+        <div>
+          ⭐ Sở hữu <span class="bold text-13-500">Nick Ninja</span> chỉ sau
+          30s-5p thanh toán. Tất cả đều có Sim đăng ký.
+          <span class="bold pointer text-danger" @click="$refs.modal.show()"
+            >Xem HD Chuyển Sim</span
+          >
+        </div>
+        <div>
+          ⭐ Hỗ trợ
+          <span>trả góp lên đến 1 tháng </span>, Số tiền thanh toán và thời gian
+          trả góp tùy thuộc vào giá trị nick.
+        </div>
+        <div>
+          ⭐ Xem <nuxt-link to='/guides/huong-dan-mua-nick' class="bold pointer text-danger">
+            Hướng Dẫn Mua Nick</nuxt-link> để biết cách mua nick được nhanh chóng nhé các bạn.
+        </div>
+        <!-- <div>
+          ⭐ PR: Shop Mua Bán
+          <span class="bold text-13-500"
+            ><a
+              href="https://shopnick.online/teamobi/avatar"
+              target="_blank"
+              title="ShopNick.Online | Shop Nick Avatar DK (2x) của TeaMobi"
+              class="link"
+              >Nick Avatar</a
+            > </span
+          >,
+          <span class="bold text-13-500">
+            <a
+              target="_blank"
+              href="https://shopnick.online/teamobi/ninja-school"
+              title="ShopNick.Online | Shop Nick Ninja School của TeaMobi"
+              class="link"
+              >Nick Ninja</a
+            >
+          </span>
+          Uy Tín của Admin Đỗ Minh tại
+          <span class="bold text-13-500">
+            <a
+              target="_blank"
+              href="https://shopnick.online"
+              title="ShopNick.Online | Shop Nick Avatar DK (2x), Ninja School của TeaMobi"
+              class="link"
+              >ShopNick.Online</a
+            >.
+          </span>
+        </div> -->
+      </div>
+    </v-col>
     <v-col v-if="isSearch" cols="12">
       <FormSearch
         :type="type"
         @close="isShow = false"
         @search="$emit('search')"
+        @reset="$emit('reset')"
       ></FormSearch>
     </v-col>
-    <v-col v-if="isQuery" cols="12">
+    <v-col v-if="isQuery && !isLoadingSearch" cols="12">
       <div class="title text-center text-danger">Kết quả tìm kiếm...</div>
     </v-col>
+    <ModalChangeAccountRegister ref="modal" />
   </v-row>
 </template>
 
@@ -55,12 +108,14 @@ import ninjas_mixins from "@/mixins/ninjas_mixins";
 import { mapFields } from "vuex-map-fields";
 import FormValidator from "@/components/global/form/FormValidator";
 import FormSearch from "@/components/pages/client/game/ninjas/FormSearch";
+import ModalChangeAccountRegister from "@/components/pages/client/game/ModalChangeAccountRegister";
+
 // import { mapActions } from "vuex";
 
 export default {
   mixins: [ninjas_mixins],
 
-  components: { FormValidator, FormSearch },
+  components: { FormValidator, FormSearch, ModalChangeAccountRegister },
   props: {
     type: {
       type: String,
@@ -72,16 +127,12 @@ export default {
       isSearch: true,
     };
   },
-  created() {},
-
   computed: {
     ...mapFields("global", {
       ready: "ready",
+      isLoadingSearch: "isLoadingSearch",
     }),
-    path() {
-      const path = this.$route.path;
-      return path;
-    },
+
     isQuery() {
       const query = this.$route.query;
       return !_.isEmpty(query);
@@ -106,12 +157,11 @@ export default {
       );
     },
   },
-  mounted() {},
   methods: {
     async nextPath(type, path) {
       await this.$router.push(path);
       if (this.type !== type) return;
-      this.reloadNinja(this.type);
+      this.reload(this.type);
     },
   },
 };

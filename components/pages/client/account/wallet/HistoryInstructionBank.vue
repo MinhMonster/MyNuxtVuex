@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="pd-5px">
     <div id="next-top" class="title text-center">
       Hướng dẫn nạp tiền qua {{ history.walletType }}
     </div>
     <small id="fileHelp" class="form-text text-muted"
       >Hãy chuyển tiền cho Admin để
-      <v-btn color="success" class="text-white pd-5px">Hoàn thành</v-btn>
+      <v-btn color="success" class="pd-5px btn-sm">Hoàn thành</v-btn>
       giao dịch nạp tiền này.</small
     >
     <div class="info-atm-momo">
@@ -16,6 +16,9 @@
         {{ numberWalletAdmin(history.walletType) }}
         <ButtonCoppy :content="numberWalletAdmin(history.walletType)" />
       </span>
+      <small v-if="history.walletType !== 'Ví MOMO'" class="text-italic">
+        <span class="sms">*</span>STK là chữ na ae
+      </small>
       <br />
       <img src="/icon/icon-next-right.gif" /> Người nhận:
       <span class="sms">Đỗ Công Minh</span> <br />
@@ -32,14 +35,12 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 import ButtonCoppy from "@/components/common/ButtonCoppy";
 import AdminInbox from "@/components/common/client/AdminInbox";
 
-import mixins from "@/mixins/index";
-
 export default {
-  mixins: [mixins],
-
   components: {
     ButtonCoppy,
     AdminInbox,
@@ -49,10 +50,14 @@ export default {
       type: Object,
       default: () => {},
     },
-    user: {
-      type: Object,
-      default: () => {},
-    },
+  },
+  computed: {
+    ...mapState("home/users", ["user"]),
   },
 };
 </script>
+<style lang="scss" scoped>
+div.info-atm-momo {
+  border: none !important;
+}
+</style>

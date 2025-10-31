@@ -9,6 +9,9 @@ import homeTopics from '~/repositories/home/topics'
 
 import clientDailyEvents from '~/repositories/home/events/daily'
 
+// setting
+import settings from '~/repositories/home/settings'
+
 
 
 export default ($api) => ({
@@ -21,5 +24,7 @@ export default ($api) => ({
   homeTopics: homeTopics($api),
 
   clientDailyEvents: clientDailyEvents($api),
-
+  
+  // setting
+  settings: settings($api),
 })

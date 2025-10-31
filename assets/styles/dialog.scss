@@ -4,18 +4,33 @@
       opacity: 0.7 !important;
     }
   }
+}
 
+.admin-view-account {
+  .v-overlay {
+    display: none !important;
+
+    &v-overlay--active .v-overlay__scrim {
+      pointer-events: none !important;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .image-zoom.v-dialog:not(.v-dialog--fullscreen) {
+    max-height: calc(100vh - 80px) !important;
+  }
 }
 
 .v-dialog {
-  margin: 10px !important;
+  margin: 15px !important;
 
   &.v-dialog--active {
     overflow: visible;
   }
 
   .v-card__title.title-modal {
-    color: #663019;
+    color: #663019 !important;
     border-left: 2px solid #663019;
     border-right: 2px solid #663019;
     // background: #e28637 url(https://muabannick.pro/images/header/bg_top.png)
@@ -47,6 +62,36 @@
       border: 2px solid #561d00;
       background: #ffcf9c;
       padding: 10px !important;
+
+      &.modal-zoom {
+        padding: 0 !important;
+
+        .row {
+          margin: 0;
+        }
+
+        .col-12 {
+          padding: 0px;
+        }
+
+        @media (min-width: 768px) {
+          .col-sm-6 {
+            padding: 0px 3px !important;
+          }
+        }
+      }
+
+      .field {
+        height: 50px;
+
+        .validation {
+          margin-top: -2px !important;
+          min-height: 30px;
+          margin-bottom: 10px !important;
+        }
+      }
+
+
     }
   }
 
@@ -197,6 +242,10 @@
   .red--text {
     color: red !important;
     caret-color: red !important;
+  }
+
+  .info-atm-momo {
+    padding: 5px;
   }
 
 }

@@ -31,11 +31,9 @@
 import HomePage from "@/components/pages/home/HomePage";
 import { mapFields } from "vuex-map-fields";
 
-// import ninjas_mixins from "@/mixins/ninjas_mixins";
 
 export default {
   layout: "clientLayout",
-  // mixins: [ninjas_mixins],
 
   components: {
     HomePage,

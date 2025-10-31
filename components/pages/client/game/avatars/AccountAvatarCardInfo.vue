@@ -1,11 +1,10 @@
 <template>
-  <div class="account-info">
+  <div :id="accountAvatar.ID" class="account-info">
     <AccountAvatarTL :account-avatar="accountAvatar" />
     <v-row class="account-body">
-      <v-col cols="12"
-        ><span class="account-thongtin break-line-1">
-          Thông tin:
-          {{ accountAvatar.thongtin }}
+      <v-col cols="12">
+        <span class="account-thongtin break-line-1">
+          Thông tin: {{ accountAvatar.thongtin }}
         </span>
       </v-col>
       <v-col cols="3"
@@ -29,14 +28,20 @@
           >Cá <br />{{ accountAvatar.ca }}</span
         ></v-col
       >
-      <v-col cols="6"
-        ><span class="account-cash"
-          >{{ format_number(accountAvatar.price) }} Card</span
-        ></v-col
-      >
       <v-col cols="6">
-        <nuxt-link :to="`/teamobi/avatar/${this.accountAvatar.ID}`">
-          <span class="account-buy"> Xem Nick</span>
+        <span :class="['account-cash', { 'has-sale': hasDiscount }]">
+          <template v-if="hasDiscount">
+            <span class="bg-danger sale-off">
+              -{{ accountAvatar.saleOff }}%
+            </span>
+            <span class="cash-sale"> {{ format_number(accountAvatar.priceSalling) }} Vnđ </span>
+          </template>
+          <template v-else> {{ format_number(accountAvatar.price) }} Vnđ </template>
+        </span>
+      </v-col>
+      <v-col cols="6">
+        <nuxt-link :to="`/teamobi/avatar/${accountAvatar.ID}`">
+          <span class="account-buy">Xem Nick</span>
         </nuxt-link>
       </v-col>
     </v-row>
@@ -44,25 +49,19 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvatarTL";
 
 export default {
-  mixins: [mixins],
-  name: "accountAvatarCardInfo",
   components: { AccountAvatarTL },
   props: {
     accountAvatar: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
   },
-  created() {},
-
-  computed: {},
-  methods: {
-    async viewAaccount() {
-      await this.$router.push(`/teamobi/avatar/${this.accountAvatar.ID}`);
+  computed: {
+    hasDiscount() {
+      return this.accountAvatar?.saleOff > 0;
     },
   },
 };
@@ -82,9 +81,31 @@ export default {
 .account-info {
   width: 100%;
   background: #ffefa3;
-  border-radius: 5px;
+  border-radius: 4px;
   border: 1px solid #663019;
   text-align: center;
+  overflow: hidden;
+
+  ::v-deep {
+    .fileItemWrapper {
+      padding: 6px;
+      img {
+        border-radius: 7px;
+      }
+    }
+  }
+
+  .sale-off {
+    width: 40px;
+  }
+
+  .cash-sale {
+    width: calc(100% - 40px);
+  }
+
+  .bg-danger.sale-off {
+    background: #a21d0a !important;
+  }
 
   .account-thongtin,
   .account-cash,
@@ -93,7 +114,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     background: #e28637;
     color: #ffcf9c;
     border: 1px solid #663019;
@@ -102,31 +122,8 @@ export default {
     border-radius: 3px;
     padding: 3px;
     line-height: 25px;
+    text-align: center;
   }
-  // .account-thongtin {
-  //   max-height: 30px;
-  //   overflow: hidden;
-  // }
-  // .text-thongtin {
-  //   width: 70px;
-  //   max-height: 30px;
-  //   display: -webkit-box !important;
-  //   -webkit-line-clamp: 1 !important;
-  //   -webkit-box-orient: vertical !important;
-  //   overflow: hidden !important;
-  //   text-overflow: ellipsis !important;
-  //   word-break: break-word !important;
-  // }
-  // .full-info {
-  //   width: calc(100% - 70px);
-  //   text-align: left;
-  //   max-height: 30px;
-  //   overflow: hidden;
-  // }
-  // .account-cash{
-  //   background: #ffcf9c;
-  //   color: #663019;
-  // }
 
   .account-code,
   .account-class,
@@ -138,11 +135,4 @@ export default {
     line-height: 1.42857143;
   }
 }
-// ::v-deep {
-// @media (min-width: 1300px) {
-//   .v-main__wrap .container {
-//     max-width: 100% !important;
-//   }
-// }
-// }
 </style>

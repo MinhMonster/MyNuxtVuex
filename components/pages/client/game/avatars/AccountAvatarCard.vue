@@ -1,16 +1,13 @@
 <template>
-  <v-col v-if="accountAvatar" cols="12" sm="6" md="4" lg="3">
+  <v-col v-if="accountAvatar" cols="12" sm="6" md="4">
     <AccountAvatarCardInfo :account-avatar="accountAvatar"></AccountAvatarCardInfo>
   </v-col>
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import AccountAvatarCardInfo from "@/components/pages/client/game/avatars/AccountAvatarCardInfo";
 
 export default {
-  mixins: [mixins],
-  name: "AccountNinjaCard",
   components: { AccountAvatarCardInfo },
   props: {
     accountAvatar: {
@@ -18,10 +15,6 @@ export default {
       default: () => {},
     },
   },
-  created() {},
-
-  computed: {},
-  methods: {},
 };
 </script>
 

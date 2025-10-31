@@ -1,0 +1,36 @@
+.v-overlay {
+  top: 0px !important;
+
+  + .v-application--wrap +.v-dialog__content {
+    top: 0px !important;
+  }
+}
+
+.v-app-bar {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: radial-gradient(circle at 50% 100%,
+      #e28637,
+      #9f5424 58%,
+      #561d00 127%);
+
+  .v-toolbar__content {
+    height: 50px !important;
+    padding: 5px 5px;
+
+    .header-user {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .header-logo img {
+        cursor: pointer;
+        width: 191.78px;
+        height: auto;
+      }
+    }
+  }
+}

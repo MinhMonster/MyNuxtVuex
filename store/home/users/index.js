@@ -14,7 +14,6 @@ export default {
     sidebarActive: true,
     token: null,
     authenticated: false,
-    authErrorMessage: null,
     user: null,
     historyBuyAccount: {},
     historyBuyAccounts: [],
@@ -23,6 +22,8 @@ export default {
     historyWalletDepositVnds: [],
     historyWalletDepositCard: {},
     historyWalletDepositCards: [],
+    historyBuyCarots: [],
+    historyBuyXuNinjas: [],
     historyMeta: {},
     pageSave: 1,
     query: {
@@ -110,39 +111,7 @@ export default {
 
       } catch { }
     },
-    // async buyAccountNinja({ commit, state }, payload) {
-    //   try {
-    //     const response = await this.$repositories.homeUsers.buyAccountNinja({
-    //       input: {
-    //         id: payload
-    //       }
-    //     });
-    //     return response.data.buyAccountNinja
 
-    //   } catch { }
-    // },
-    // async buyAccountAvatar({ commit, state }, payload) {
-    //   try {
-    //     const response = await this.$repositories.homeUsers.buyAccountAvatar({
-    //       input: {
-    //         id: payload
-    //       }
-    //     });
-    //     return response.data.buyAccountAvatar
-
-    //   } catch { }
-    // },
-    // async buyAccountDragonBall({ commit, state }, payload) {
-    //   try {
-    //     const response = await this.$repositories.homeUsers.buyAccountDragonBall({
-    //       input: {
-    //         id: payload
-    //       }
-    //     });
-    //     return response.data.buyAccountDragonBall
-
-    //   } catch { }
-    // },
     async historyBuyAccount({ commit, state }, id) {
       try {
         const response = await this.$repositories.homeUsers.historyBuyAccount(id);
@@ -211,6 +180,34 @@ export default {
 
       } catch { }
     },
+    async buyCarot({ commit }, payload) {
+      try {
+        const response = await this.$repositories.homeUsers.buyCarot(payload);
+        return response
+      } catch { }
+    },
+    async fetchHistoryBuyCarots({ commit, state }) {
+      try {
+        const response = await this.$repositories.homeUsers.fetchHistoryBuyCarots({ input: state.query });
+        commit(SET_STATE, { historyBuyCarots: response.data.data });
+        commit(SET_STATE, { historyMeta: response.data.pagy });
+
+      } catch { }
+    },
+    async buyXuNinja({ commit }, payload) {
+      try {
+        const response = await this.$repositories.homeUsers.buyXuNinja(payload);
+        return response
+      } catch { }
+    },
+    async fetchHistoryBuyXuNinjas({ commit, state }) {
+      try {
+        const response = await this.$repositories.homeUsers.fetchHistoryBuyXuNinjas({ input: state.query });
+        commit(SET_STATE, { historyBuyXuNinjas: response.data.data });
+        commit(SET_STATE, { historyMeta: response.data.pagy });
+
+      } catch { }
+    },
     resetHistoryBuyAccount({ commit }) {
       commit(SET_QUERY, {
         historyBuyAccount: null
@@ -227,20 +224,10 @@ export default {
         q: {},
       });
     },
-    async authRequest({ commit }, authData) {
-      // try {
-      // const resp = await this.$repositories.globalAuth.agencyLogin(payload);
-      // const authData = resp.data.data.loginAgency;
-      if (authData.status = "success") {
-        commit(AUTH_SUCCESS, authData);
-      } else {
-        commit(AUTH_ERROR, false);
-      }
-    },
+
     async logout({ commit }) {
       await this.$repositories.homeUsers.logout();
       commit(AUTH_LOGOUT);
-      window.location.href = "/login";
     },
   },
   mutations: {
@@ -262,12 +249,10 @@ export default {
     AUTH_SUCCESS(state, authData) {
       state.token = authData.token;
       state.authenticated = true;
-      state.authErrorMessage = null;
     },
     AUTH_ERROR(state, payload) {
       state.token = null;
       state.authenticated = false;
-      state.authErrorMessage = payload;
     },
     AUTH_LOGOUT(state) {
       state.authenticated = false;

@@ -15,31 +15,31 @@
           <table class="table">
             <tbody>
               <tr>
-                <th class="info-nick" style="width: 30%">Game</th>
-                <td class="mua-nick">
+                <th class="info-nick w-50" style="">Game</th>
+                <td class="mua-nick w-50">
                   <span>{{ history.accountType }}</span>
                 </td>
               </tr>
               <tr>
-                <th class="info-nick" style="width: 30%">Mã Số</th>
+                <th class="info-nick" style="">Mã Số</th>
                 <td class="mua-nick">
                   <span>{{ format_number(history.accountId) }}</span>
                 </td>
               </tr>
               <tr>
-                <th class="info-nick" style="width: 30%">Tài Khoản</th>
+                <th class="info-nick" style="">Tài Khoản</th>
                 <td class="mua-nick break-all">
                   <span>{{ history.accountName }} </span>
                 </td>
               </tr>
               <tr>
-                <th class="info-nick" style="width: 30%">Mật khẩu</th>
+                <th class="info-nick" style="">Mật khẩu</th>
                 <td class="mua-nick">
                   <span>{{ history.accountPassword }} </span>
                 </td>
               </tr>
               <tr v-if="history.accountCode">
-                <th class="info-nick" style="width: 30%">Mã chuyển sim</th>
+                <th class="info-nick" style="">Mã chuyển sim</th>
                 <td class="mua-nick">
                   <span>{{ history.accountCode }}</span>
                 </td>
@@ -90,8 +90,11 @@
                         {{ history.accountCode }}</span
                       >
                       <ButtonCoppy
-                        :content="`GO SIMMOI
-                      ${history.accountName} ${history.accountCode}`"
+                        :content="`${
+                          'GO SIMMOI ' +
+                          history.accountName +
+                          history.accountCode
+                        }`"
                       ></ButtonCoppy
                       ><br />
                       <img src="/icon/icon-next-right.gif" />
@@ -123,11 +126,10 @@ import AdminInbox from "@/components/common/client/AdminInbox";
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("home/users");
-import mixins from "@/mixins/index";
 
 export default {
+  middleware: ["authentication"],
   layout: "clientLayout",
-  mixins: [mixins],
 
   components: {
     Loading,
@@ -158,11 +160,7 @@ export default {
     },
     async fetchHistory() {
       this.ready = false;
-      if (!this.token) {
-        this.$router.push("/login");
-      } else {
-        await this.historyBuyAccount(this.historyId);
-      }
+      await this.historyBuyAccount(this.historyId);
       this.ready = true;
     },
     goBack() {

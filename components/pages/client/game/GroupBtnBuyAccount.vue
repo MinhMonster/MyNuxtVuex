@@ -1,28 +1,22 @@
 <template>
   <v-row>
     <v-col cols="6">
-      <div class="c-font-uppercase btnCheckAccount ajax" @click="showModal()">
-        <div class="btn-buy-account">
-          <v-btn icon class="text-main">
-            <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Mua Ngay
-          </v-btn>
-        </div>
+      <div class="btn-buy-account" @click="showBank()">
+        <BaseSvg content="Thanh Toán QR" name="next-right" />
       </div>
     </v-col>
     <v-col cols="6">
-      <div class="btn-buy-account-hover" @click="showBank()">
-        <v-btn icon>
-          <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>ATM-MOMO
-        </v-btn>
+      <div class="c-font-uppercase btnCheckAccount ajax" @click="showModal()">
+        <div class="btn-buy-account-hover">
+          <BaseSvg content="Thanh Toán" class="text-main" name="next-right" />
+        </div>
       </div>
     </v-col>
 
     <v-col cols="6">
       <a href="https://zalo.me/0961646828" target="_blank">
         <div class="btn-buy-account-hover">
-          <v-btn icon>
-            <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Inbox Zalo
-          </v-btn>
+          <BaseSvg content="Inbox Zalo" name="next-right" />
         </div>
       </a>
     </v-col>
@@ -30,9 +24,7 @@
       <div class="c-font-uppercase btnCheckAccount ajax">
         <a href="https://messenger.com/t/minh.docong.7" target="_blank">
           <div class="btn-buy-account">
-            <v-btn icon class="text-main">
-              <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>Messenger
-            </v-btn>
+            <BaseSvg content="Messenger" class="text-main" name="next-right" />
           </div>
         </a>
       </div>
@@ -53,8 +45,8 @@
         />
       </template>
     </ModalBuyAccount>
-    <ModalBuyAccountBank
-      ref="modalBuyAccountBank"
+    <ModalBuyAccountVietQR
+      ref="ModalBuyAccountVietQR"
       :account="account"
       :account-type="accountType"
     />
@@ -65,7 +57,7 @@
 
 <script>
 import ModalBuyAccount from "@/components/pages/client/game/ModalBuyAccount";
-import ModalBuyAccountBank from "@/components/pages/client/game/ModalBuyAccountBank";
+import ModalBuyAccountVietQR from "@/components/pages/client/game/ModalBuyAccountVietQR";
 import TableAccountNinja from "@/components/pages/client/game/ninjas/TableAccountNinja";
 import TableAccountAvatar from "@/components/pages/client/game/avatars/TableAccountAvatar";
 import TableAccountDragonBall from "@/components/pages/client/game/dragon_balls/TableAccountDragonBall";
@@ -75,7 +67,7 @@ export default {
 
   components: {
     ModalBuyAccount,
-    ModalBuyAccountBank,
+    ModalBuyAccountVietQR,
     TableAccountNinja,
     TableAccountAvatar,
     TableAccountDragonBall,
@@ -90,20 +82,12 @@ export default {
       default: "",
     },
   },
-  data() {
-    return {
-      isShow: false,
-      isBank: false,
-    };
-  },
-  async mounted() {},
-  computed: {},
   methods: {
     showModal() {
       this.$refs.modal.show();
     },
     showBank() {
-      this.$refs.modalBuyAccountBank.show();
+      this.$refs.ModalBuyAccountVietQR.show();
     },
   },
 };

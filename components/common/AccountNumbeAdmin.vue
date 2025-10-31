@@ -10,16 +10,13 @@
     <ButtonCoppy :content="`0961646828`"></ButtonCoppy><br />
 
     <img src="/icon/icon-next-right.gif" /> MB Bank:
-    <span class="sms">8330105578888</span>
-    <ButtonCoppy :content="'8330105578888'"></ButtonCoppy><br />
-
-    <img src="/icon/icon-next-right.gif" /> VietinBank:
-    <span class="sms">107006711803</span>
-    <ButtonCoppy :content="'107006711803'"></ButtonCoppy><br />
+    <span class="sms">MuaBanNick</span>
+    <ButtonCoppy :content="'MuaBanNick'"></ButtonCoppy><br />
 
     <img src="/icon/icon-next-right.gif" /> VietcomBank:
-    <span class="sms">0541000311219</span>
-    <ButtonCoppy :content="'0541000311219'"></ButtonCoppy><br />
+    <span class="sms">MuaBanNick</span>
+    <ButtonCoppy :content="'MuaBanNick'"></ButtonCoppy><br />
+    <small class="text-italic"><span class="sms">*</span>STK là chữ <span class="sms">MuaBanNick</span> nhé ae ^^</small>
   </div>
 </template>
 <script>
@@ -31,7 +28,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .info-atm-momo {
-  min-height: 195px;
+  // min-height: 195px;
   .title {
     font-size: 15px !important;
     font-weight: 500;

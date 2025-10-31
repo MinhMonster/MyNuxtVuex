@@ -8,16 +8,11 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("home/users");
+const { mapActions } = createNamespacedHelpers("home/users");
 
 export default {
-  computed: {
-    ...mapState(["token", "user"]),
-  },
   methods: {
     ...mapActions(["loginFb"]),
   },
 };
 </script>
-<style lang="scss" scoped>
-</style>

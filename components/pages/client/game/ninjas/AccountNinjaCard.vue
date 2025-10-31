@@ -1,27 +1,20 @@
 <template>
-  <v-col v-if="accountNinja" cols="12" sm="6" md="4" lg="3">
+  <v-col v-if="accountNinja" cols="12" sm="6" md="6" lg="4">
     <AccountNinjaCardInfo :account-ninja="accountNinja"></AccountNinjaCardInfo>
   </v-col>
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import AccountNinjaCardInfo from "@/components/pages/client/game/ninjas/AccountNinjaCardInfo";
 
 export default {
-  mixins: [mixins],
-  name: "AccountNinjaCard",
   components: { AccountNinjaCardInfo },
   props: {
     accountNinja: {
       type: Object,
-      default: () => {},
-    },
-  },
-  created() {},
-
-  computed: {},
-  methods: {},
+      default: () => {}
+    }
+  }
 };
 </script>
 

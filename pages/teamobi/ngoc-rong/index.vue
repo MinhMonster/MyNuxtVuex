@@ -24,7 +24,6 @@ import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import AccountDragonBallSearch from "@/components/pages/client/game/dragon_balls/AccountDragonBallSearch";
 import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/AccountDragonBallList";
-import Loading from "@/components/global/molecules/common/Loading";
 
 export default {
   layout: "clientLayout",
@@ -33,7 +32,6 @@ export default {
     HomePage,
     AccountDragonBallSearch,
     AccountDragonBallList,
-    Loading,
   },
   computed: {
     ...mapFields("global", {
