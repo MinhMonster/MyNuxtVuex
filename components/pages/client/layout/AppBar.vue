@@ -46,7 +46,7 @@ export default {
   name: "AppBar",
   data() {
     return {
-      logo: "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png",
+      logo: "/logo.png",
       clipped: true,
       miniVariant: false,
     };
@@ -97,11 +97,9 @@ export default {
       }
     },
     getLogo() {
-      this.logo = this.isThemeDark
-        ? "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png"
-        : this.isThemeRed
-        ? "/images/logo-red.png"
-        : "https://muabannick.pro/files/uploads/images/logo/logo_warning-min-1707200";
+      this.logo = this.isDark
+        ? "/logo.png"
+        : "/logo.png";
     },
   },
 };

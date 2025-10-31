@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       title:
-        "MuaBanNick.Pro - Shop Nick Avatar SX Diệu Kỳ (2x) - Shop Mua Bán Acc Avatar SX Diệu Kỳ (2x) VIP Giá Rẻ của TeaMobi Uy Tín Nhất MXH",
+        "HeHeHe.Vn - Shop Nick Avatar SX Diệu Kỳ (2x) - Shop Mua Bán Acc Avatar SX Diệu Kỳ (2x) VIP Giá Rẻ của TeaMobi Uy Tín Nhất MXH",
       description:
         "WEB Mua Bán Nick Avatar DK (2x), Mua Bán Acc Avatar DK, Shop Acc Avatar DK (2x), Shop Nick Avatar DK (2x) của TeaMobi - Uy Tín - Giá rẻ",
     };
