@@ -22,6 +22,8 @@ export default {
     historyWalletDepositVnds: [],
     historyWalletDepositCard: {},
     historyWalletDepositCards: [],
+    historyBuyCarots: [],
+    historyBuyXuNinjas: [],
     historyMeta: {},
     pageSave: 1,
     query: {
@@ -109,7 +111,7 @@ export default {
 
       } catch { }
     },
-    
+
     async historyBuyAccount({ commit, state }, id) {
       try {
         const response = await this.$repositories.homeUsers.historyBuyAccount(id);
@@ -174,6 +176,34 @@ export default {
       try {
         const response = await this.$repositories.homeUsers.fetchHistoryWalletDepositCards({ input: state.query });
         commit(SET_STATE, { historyWalletDepositCards: response.data.historyWalletDepositCards });
+        commit(SET_STATE, { historyMeta: response.data.pagy });
+
+      } catch { }
+    },
+    async buyCarot({ commit }, payload) {
+      try {
+        const response = await this.$repositories.homeUsers.buyCarot(payload);
+        return response
+      } catch { }
+    },
+    async fetchHistoryBuyCarots({ commit, state }) {
+      try {
+        const response = await this.$repositories.homeUsers.fetchHistoryBuyCarots({ input: state.query });
+        commit(SET_STATE, { historyBuyCarots: response.data.data });
+        commit(SET_STATE, { historyMeta: response.data.pagy });
+
+      } catch { }
+    },
+    async buyXuNinja({ commit }, payload) {
+      try {
+        const response = await this.$repositories.homeUsers.buyXuNinja(payload);
+        return response
+      } catch { }
+    },
+    async fetchHistoryBuyXuNinjas({ commit, state }) {
+      try {
+        const response = await this.$repositories.homeUsers.fetchHistoryBuyXuNinjas({ input: state.query });
+        commit(SET_STATE, { historyBuyXuNinjas: response.data.data });
         commit(SET_STATE, { historyMeta: response.data.pagy });
 
       } catch { }

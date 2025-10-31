@@ -15,12 +15,12 @@
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
-      <div class="sub-menu-buttom" @click="changeTheme()">
+      <div class="sub-menu-buttom" @click="nextPath('/guides/huong-dan-mua-nick')">
         <div class="footer_icon theme">
-          <BaseSvg class="icon-menu" id="theme-light-dark" title="Giao Diện" aria-label="Giao Diện"
-            name="theme-light-dark" />
+          <BaseSvg class="icon-menu" id="theme-light-dark" title="Hướng dẫn Mua Nick" aria-label="Hướng dẫn Mua Nick"
+            name="gesture-tap-button" />
         </div>
-        <span class="title-menu-buttom">Giao Diện</span>
+        <span class="title-menu-buttom">H.D MUA</span>
       </div>
       <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
