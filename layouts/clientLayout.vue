@@ -97,6 +97,8 @@ export default {
   },
 
   async mounted() {
+    this.isThemeDark = true;
+    this.isThemeRed = false;
     if (this.token) {
       await this.fetchUser();
     }
