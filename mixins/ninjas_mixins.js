@@ -62,12 +62,10 @@ export default {
     },
     async setQueryNinja(type) {
       await this.resetQuery(type);
+      const { page, perPage, ...q } = this.queryObject;
       await this.setQuery({
-        page: this.queryObject.page || null,
-        q: {
-          ...this.queryObject,
-          type: type || null
-        }
+        page: page || null,
+        q,
       });
       this.syncQueryToUrl();
     },

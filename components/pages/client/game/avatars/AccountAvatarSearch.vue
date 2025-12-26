@@ -186,9 +186,21 @@
 import avatars_mixins from "@/mixins/avatars_mixins";
 import GroupBtnSearch from "@/components/common/client/button/GroupBtnSearch";
 import ModalChangeAccountRegister from "@/components/pages/client/game/ModalChangeAccountRegister";
+import {
+  sexOptions,
+  cashOptions,
+  farmOptions,
+} from "@/utils/queryAvatarOptions";
 
 export default {
   mixins: [avatars_mixins],
   components: { GroupBtnSearch, ModalChangeAccountRegister },
+  data() {
+    return {
+      sexOptions,
+      cashOptions,
+      farmOptions,
+    };
+  },
 };
 </script>

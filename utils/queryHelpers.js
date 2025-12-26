@@ -49,3 +49,19 @@ export function buildQueryString(queryFieldConfig) {
     })
     .join("");
 }
+
+export function cleanQuery(query) {
+  const cleaned = {
+    ...query,
+    q: { ...query.q },
+  };
+
+  Object.keys(cleaned.q).forEach((key) => {
+    const value = cleaned.q[key];
+    if (value === null || value === undefined || value === "") {
+      delete cleaned.q[key];
+    }
+  });
+
+  return cleaned;
+}

@@ -1,4 +1,5 @@
 import { getField, updateField } from "vuex-map-fields";
+import { cleanQuery } from "@/utils/queryHelpers";
 
 const SET_STATE = "SET_STATE";
 const SET_QUERY = "SET_QUERY";
@@ -101,11 +102,3 @@ const defaultQuery = (type = null) => ({
     type
   }
 });
-
-function cleanQuery(query) {
-  const q = { ...query, q: { ...query.q } };
-  Object.keys(q.q).forEach(key => {
-    if (q.q[key] === null || q.q[key] === undefined) delete q.q[key];
-  });
-  return q;
-}
