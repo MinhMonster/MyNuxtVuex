@@ -65,7 +65,10 @@ export default {
       const { page, perPage, ...q } = this.queryObject;
       await this.setQuery({
         page: page || null,
-        q,
+        q: {
+          ...q,
+          type: type || null
+        }
       });
       this.syncQueryToUrl();
     },
