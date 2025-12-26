@@ -17,7 +17,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     htmlAttrs: {
-      lang: 'en'
+      lang: 'vi'
     },
     meta: [
       { charset: 'utf-8' },
@@ -29,20 +29,51 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-        {
-          src: 'https://www.googletagmanager.com/gtag/js?id=AW-11265837402',
-          async: true,
-        },
-        {
-          children: `
+      {
+        src: 'https://www.googletagmanager.com/gtag/js?id=AW-11265837402',
+        async: true,
+      },
+      {
+        children: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-11265837402');
           `,
-          type: 'text/javascript'
-        }
-      ]
+        type: 'text/javascript'
+      },
+      {
+        async: true,
+        customElement: 'amp-analytics',
+        src: 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js',
+      },
+    ]
+  },
+  hooks: {
+    'render:route': (url, result) => {
+      if (url.includes('/amp')) {
+        result.html = result.html.replace(
+          '</body>',
+          `
+          <!-- Google tag (gtag.js) for AMP -->
+          <amp-analytics type="gtag" data-credentials="include">
+            <script type="application/json">
+              {
+                "vars": {
+                  "gtag_id": "G-EYXLZ4SE11",
+                  "config": {
+                    "G-EYXLZ4SE11": { "groups": "default" }
+                  }
+                },
+                "triggers": {}
+              }
+            </script>
+          </amp-analytics>
+          </body>
+          `
+        )
+      }
+    },
   },
   // generate: {
   //   routes: async () => {
