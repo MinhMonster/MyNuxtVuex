@@ -156,6 +156,7 @@ import Pagination from "@/components/global/molecules/common/Pagination";
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import ninjas_mixins from "@/mixins/ninjas_mixins";
+import { serverOptions } from "@/utils/queryNinjaOptions";
 
 export default {
   mixins: [ninjas_mixins],
@@ -180,6 +181,7 @@ export default {
   },
   data() {
     return {
+      serverOptions,
       title: "Mua Bán Xu Ninja School",
       card: {
         server: null,
@@ -301,10 +303,13 @@ export default {
     this.reload();
   },
   methods: {
-    ...mapActions("home/users", ["fetchUser", "buyXuNinja", "fetchHistoryBuyXuNinjas", "setQuery"]),
-    ...mapActions("home/game/ninjas", [
-      "fetchXuNinjaPrices",
+    ...mapActions("home/users", [
+      "fetchUser",
+      "buyXuNinja",
+      "fetchHistoryBuyXuNinjas",
+      "setQuery",
     ]),
+    ...mapActions("home/game/ninjas", ["fetchXuNinjaPrices"]),
     async reload() {
       this.fetchXuNinjaPrices();
       if (this.isLogin) {
