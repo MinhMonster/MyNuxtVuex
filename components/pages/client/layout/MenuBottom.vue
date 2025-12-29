@@ -15,12 +15,12 @@
         </div>
         <span class="title-menu-buttom">Trang chủ</span>
       </div>
-      <div class="sub-menu-buttom" @click="isThemeDark = !isThemeDark">
+      <div class="sub-menu-buttom" @click="nextPath('/guides/huong-dan-mua-nick')">
         <div class="footer_icon theme">
-          <BaseSvg class="icon-menu" id="theme-light-dark" title="Giao Diện" aria-label="Giao Diện"
-            name="theme-light-dark" />
+          <BaseSvg class="icon-menu" id="theme-light-dark" title="Hướng dẫn Mua Nick" aria-label="Hướng dẫn Mua Nick"
+            name="gesture-tap-button" />
         </div>
-        <span class="title-menu-buttom">Giao Diện</span>
+        <span class="title-menu-buttom">H.D MUA</span>
       </div>
       <div class="sub-menu-buttom" @click="nextPath('/topics')">
         <div class="footer_icon service">
@@ -51,9 +51,16 @@ export default {
     })
   },
   methods: {
-    // changeTheme() {
-    //   this.isThemeDark = !this.isThemeDark;
-    // },
+    changeTheme() {
+
+      if(this.isThemeDark){
+        this.isThemeDark = false;
+        this.isThemeRed = true;
+      }else{
+        this.isThemeDark = true;
+        this.isThemeRed = false;
+      }
+    },
     nextPath(path) {
       if (this.path === path) {
         this.reset();

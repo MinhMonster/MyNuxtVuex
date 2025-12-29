@@ -25,9 +25,11 @@
       >
 
       <v-col cols="6"
-        ><span class="account-cash"
+        >
+        <span class="account-cash"
           >{{ format_number(account.price) }} Card</span
-        ></v-col
+        >
+        </v-col
       >
       <v-col cols="6">
         <nuxt-link :to="`/teamobi/ngoc-rong/${this.account.ID}`">

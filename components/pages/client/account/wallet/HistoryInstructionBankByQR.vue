@@ -8,6 +8,7 @@
     >
       <VietQRMB :amount="amount" :addInfo="content">
       <template #info>
+        <div>*Nếu QR lỗi, hãy chuyển khoản theo thông tin sau:</div>
         <img src="/icon/icon-next-right.gif" /> Ngân hàng:<span class="sms">
           MB Bank</span
         ><br />

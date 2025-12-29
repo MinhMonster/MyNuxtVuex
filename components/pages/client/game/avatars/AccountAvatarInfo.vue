@@ -44,7 +44,7 @@
               </span>
               <template v-if="hasDiscount">
                 <div class="divider"></div>
-                <span>{{ cash_atm(discountedPrice) }} ATM - MOMO</span>
+                <span>{{ format_number(accountAvatar.priceSalling) }} Vnđ</span>
               </template>
             </td>
           </tr>
@@ -86,13 +86,6 @@ export default {
 .title {
   color: #1e5b7e;
   margin-bottom: 10px;
-}
-
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: #a4a4a4;
-  margin: 5px 0;
 }
 
 th.info-nick {

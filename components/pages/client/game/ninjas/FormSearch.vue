@@ -1,61 +1,8 @@
 <template>
   <div class="form-search">
     <div class="page-body">
-      <form @submit.prevent="search()">
+      <form @submit.prevent="search">
         <v-row>
-          <v-col cols="6" sm="3" md="3" lg="2">
-            <div class="field v-input form-input">
-              <select v-model="level" class="" @change="search">
-                <option
-                  v-for="(option, index) in levelOptions"
-                  :key="index"
-                  :value="option.value"
-                >
-                  {{ option.text }}
-                </option>
-              </select>
-            </div>
-          </v-col>
-          <v-col cols="6" sm="3" md="3" lg="2">
-            <div class="field v-input form-input">
-              <select v-model="cash" class="" @change="search">
-                <option
-                  v-for="(option, index) in cashOptions"
-                  :key="index"
-                  :value="option.value"
-                >
-                  {{ option.text }}
-                </option>
-              </select>
-            </div>
-          </v-col>
-          <v-col cols="6" sm="3" md="3" lg="2">
-            <div class="field v-input form-input">
-              <select v-model="server" class="" @change="search">
-                <option
-                  v-for="(server, sv) in serverOptions"
-                  :key="sv"
-                  :value="server.value"
-                >
-                  {{ server.text }}
-                </option>
-              </select>
-            </div>
-          </v-col>
-          <v-col cols="6" sm="3" md="3" lg="2">
-            <div class="field v-input form-input">
-              <select v-model="classNinjas" class="" @change="search">
-                <option
-                  v-for="(option, index) in classOptions"
-                  :key="index"
-                  :value="option.value"
-                >
-                  {{ option.text }}
-                </option>
-              </select>
-            </div>
-          </v-col>
-
           <v-col cols="6" sm="3" md="3" lg="2">
             <div class="field group-btn-input flex">
               <v-btn color="white" class="w-20">
@@ -63,7 +10,7 @@
               </v-btn>
               <input
                 v-model="id"
-                @change="search"
+                @change="onChange"
                 id="id"
                 type="number"
                 placeholder="Mã số nick..."
@@ -78,12 +25,78 @@
               </v-btn>
               <input
                 v-model="ingame"
-                @change="search"
+                @change="onChange"
                 id="ingame"
                 type="text"
                 placeholder="Tên nhân vật..."
                 class="v-input form-input"
               />
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="3" lg="2">
+            <div class="field v-input form-input">
+              <select v-model="level" @change="onChange">
+                <option
+                  v-for="(option, index) in levelOptions"
+                  :key="index"
+                  :value="option.value"
+                >
+                  {{ option.text }}
+                </option>
+              </select>
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="3" lg="2">
+            <div class="field v-input form-input">
+              <select v-model="cash" @change="onChange">
+                <option
+                  v-for="(option, index) in cashOptions"
+                  :key="index"
+                  :value="option.value"
+                >
+                  {{ option.text }}
+                </option>
+              </select>
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="3" lg="2">
+            <div class="field v-input form-input">
+              <select v-model="server" @change="onChange">
+                <option
+                  v-for="(server, sv) in serverOptions"
+                  :key="sv"
+                  :value="server.value"
+                >
+                  {{ server.text }}
+                </option>
+              </select>
+            </div>
+          </v-col>
+          <v-col cols="6" sm="3" md="3" lg="2">
+            <div class="field v-input form-input">
+              <select v-model="classNinjas" @change="onChange">
+                <option
+                  v-for="(option, index) in classOptions"
+                  :key="index"
+                  :value="option.value"
+                >
+                  {{ option.text }}
+                </option>
+              </select>
+            </div>
+          </v-col>
+
+          <v-col cols="6" sm="3" md="3" lg="2">
+            <div class="field v-input form-input">
+              <select v-model="family" @change="onChange">
+                <option
+                  v-for="(family, fm) in familyOptions"
+                  :key="fm"
+                  :value="family.value"
+                >
+                  {{ family.text }}
+                </option>
+              </select>
             </div>
           </v-col>
           <GroupBtnSearch @search="search" @reset="$emit('reset')" />
@@ -94,16 +107,38 @@
 </template>
 <script>
 import ninjas_mixins from "@/mixins/ninjas_mixins";
-import Loading from "@/components/global/molecules/common/Loading";
 import GroupBtnSearch from "@/components/common/client/button/GroupBtnSearch";
+import {
+  levelOptions,
+  cashOptions,
+  classOptions,
+  serverOptions,
+  familyOptions,
+} from "@/utils/queryNinjaOptions";
 
 export default {
   mixins: [ninjas_mixins],
-  components: { Loading, GroupBtnSearch },
+  components: { GroupBtnSearch },
   props: {
     type: {
       type: String,
       default: null,
+    },
+  },
+  data() {
+    return {
+      levelOptions,
+      cashOptions,
+      classOptions,
+      serverOptions,
+      familyOptions,
+    };
+  },
+  methods: {
+    onChange() {
+      this.$nextTick(() => {
+        this.search();
+      });
     },
   },
 };

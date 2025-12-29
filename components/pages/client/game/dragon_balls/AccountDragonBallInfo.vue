@@ -36,12 +36,11 @@
           </tr>
           <tr>
             <th class="info-nick" style="">
-              <div style="margin: 10px"></div>
-
+              <!-- <div style="margin: 10px"></div> -->
               Giá Bán
             </th>
             <td class="mua-nick">
-              <span>{{ format_number(account.price) }} Card </span>
+              <!-- <span>{{ format_number(account.price) }} Card </span>
               <div
                 style="
                   width: 100%;
@@ -50,8 +49,8 @@
                   margin-top: 5px;
                   margin-bottom: 5px;
                 "
-              ></div>
-              <span>{{ cash_atm(account.price) }} ATM - MOMO</span>
+              ></div> -->
+              <span>{{ cash_atm(account.price) }} Vnđ</span>
             </td>
           </tr>
         </tbody>
@@ -60,7 +59,7 @@
     </div>
   </client-only>
 </template>
-  
+
   <script>
 import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
@@ -86,7 +85,7 @@ export default {
   },
 };
 </script>
-  
+
   <style lang="scss" scoped>
 .title {
   color: #1e5b7e;

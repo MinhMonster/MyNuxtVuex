@@ -22,16 +22,16 @@
         </td>
       </tr>
 
-      <tr>
+      <!-- <tr>
         <th class="info-nick">Giá tiền:</th>
         <td class="mua-nick">
           <span>{{ format_number(price) }} Card</span>
         </td>
-      </tr>
+      </tr> -->
 
       <tr>
         <th class="info-nick">
-          ATM-MOMO:
+          Giá tiền:
           <template v-if="hasDiscount">
             <br />
             <p class="text-danger">(Giảm giá: {{ account.active_discount }}%)</p>
@@ -39,12 +39,12 @@
         </th>
         <td class="mua-nick">
           <span :class="hasDiscount ? 'text-line-middel text-danger' : ''">
-            {{ cash_atm(price) }} ATM - MOMO
+            {{ format_number(price) }} Vnđ
           </span>
 
           <template v-if="hasDiscount">
             <div class="divider"></div>
-            <span>{{ cash_atm(discountedPrice) }} ATM - MOMO</span>
+            <span>{{ format_number(priceSalling) }} Vnđ</span>
           </template>
         </td>
       </tr>
@@ -66,15 +66,13 @@ export default {
   },
   computed: {
     price() {
-      return this.account.selling_price || this.account.price || 0;
+      return this.account.price || this.account.giatien || 0;
+    },
+    priceSalling() {
+      return this.account.priceSalling || this.account.giatien || 0;
     },
     hasDiscount() {
       return this.account.active_discount > 0;
-    },
-    discountedPrice() {
-      return this.hasDiscount
-        ? this.price * (1 - this.account.active_discount / 100)
-        : this.price;
     },
     gameName() {
       switch (this.accountType) {
@@ -93,10 +91,4 @@ export default {
 </script>
 
 <style scoped>
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: #a4a4a4;
-  margin: 5px 0;
-}
 </style>

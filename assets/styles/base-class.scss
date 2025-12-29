@@ -52,6 +52,9 @@ $margins: (
     .text-#{$fontSize}-#{$fontWeight} {
       font-size: #{$fontSize}px !important;
       font-weight: #{$fontWeight} !important;
+        @media (max-width: 370px) {
+          font-size: #{$fontSize * 0.84}px !important;
+        }
     }
   }
 }
@@ -97,4 +100,15 @@ $margins: (
 
 .pointer {
   cursor: pointer;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #a4a4a4;
+  margin: 5px 0;
+}
+
+.text-bold {
+  font-weight: bold;
 }

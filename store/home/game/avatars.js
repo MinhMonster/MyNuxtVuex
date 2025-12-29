@@ -1,4 +1,5 @@
 import { getField, updateField } from "vuex-map-fields";
+import { cleanQuery } from "@/utils/queryHelpers";
 
 const SET_STATE = "SET_STATE";
 const SET_QUERY = "SET_QUERY";
@@ -20,19 +21,13 @@ export default {
   mutations: {
     updateField,
     SET_QUERY(state, payload) {
-      state.query = {
-        ...state.query,
-        ..._.cloneDeep(payload),
-      };
+      state.query = { ...state.query, ...payload };
     },
     SET_PAGE(state) {
-      const page = _.cloneDeep(state.query.page)
-      state.query.page = page + 1;
+      state.query.page += 1;
     },
     SET_STATE(state, payload) {
-      _.each(payload, (value, key) => {
-        state[key] = value;
-      });
+      Object.assign(state, payload);
     },
     SET_ACCOUNTS(state, payload) {
       state.accounts = payload.data;
@@ -53,9 +48,12 @@ export default {
 
   actions: {
     async fetchAccountAvatars({ commit, state }) {
+      const filteredQuery = cleanQuery(state.query);
       try {
-        const res = await this.$repositories.gameAvatars.fetchAccountAvatars({ input: state.query })
-        commit('SET_ACCOUNTS', res.data.response)
+        const res = await this.$repositories.gameAvatars.fetchAccountAvatars({
+          input: filteredQuery,
+        });
+        commit("SET_AVATARS", res.data);
       } catch (error) { }
     },
     async fetchAccountAvatar({ commit }, payload) {
@@ -68,23 +66,23 @@ export default {
     setAccountAvatar({ commit }, payload) {
       commit('SET_ACCOUNT', payload);
     },
-    setQuery({ commit, state }, payload) {
+    setQuery({ commit }, payload) {
       commit(SET_QUERY, payload);
     },
-    setPage({ commit, state }, payload) {
-      commit(SET_PAGE, payload);
+    setPage({ commit }) {
+      commit("SET_PAGE");
     },
+
     resetAccountAvatars({ commit }) {
       commit('RESET_ACCOUNTS');
     },
     resetQuery({ commit }) {
-      commit(SET_QUERY, queryAvatar);
+      commit(SET_QUERY, defaultQueryAvatar());
     },
-
   },
-}
+};
 
-export const queryAvatar = {
+const defaultQueryAvatar = () => ({
   page: 1,
   perPage: 60,
   q: {
@@ -92,6 +90,6 @@ export const queryAvatar = {
     cash: null,
     username: null,
     sex: null,
-    farm: null
+    farm: null,
   },
-};
+});

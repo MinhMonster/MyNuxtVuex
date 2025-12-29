@@ -1,6 +1,12 @@
 <template>
-  <v-app :class="{ 'theme-dark': isThemeDark }">
-    <AppBar />
+  <v-app
+    :class="`${isThemeDark ? 'theme-dark' : isThemeRed ? 'theme-red' : ''}${
+      isViewAccount ? ' admin-view-account' : ''
+    }`"
+  >
+    <client-only>
+      <AppBar />
+    </client-only>
     <v-main id="main" class="bg-website">
       <v-container
         class="client-main scroll-y"
@@ -19,6 +25,10 @@
       <!-- <div class="change-theme">
         <BaseSvg name="theme-light-dark" @click="changeTheme()" />
       </div> -->
+      <div v-if="isAdmin" class="view-account">
+        <BaseSvg v-if="!isView" name="eye" @click="changeView()" />
+        <BaseSvg v-else name="eye-off" @click="changeView()" />
+      </div>
       <div class="next-top">
         <BaseSvg name="next-top" @click="nextTop()" />
       </div>
@@ -37,9 +47,11 @@ import ModalLogin from "@/components/pages/client/account/wallet/ModalLogin";
 import { mapFields } from "vuex-map-fields";
 
 import { mapState, mapActions } from "vuex";
+import mixins from "@/mixins/index";
 
 export default {
   name: "ClientLayout",
+  mixins: [mixins],
   components: {
     AppBar,
     MenuBottom,
@@ -68,9 +80,7 @@ export default {
     },
   },
   computed: {
-    ...mapState("home/users", ["token"]),
     ...mapFields("global", {
-      isThemeDark: "isThemeDark",
       showMenuRight: "showMenuRight",
     }),
 
@@ -87,6 +97,8 @@ export default {
   },
 
   async mounted() {
+    this.isThemeDark = true;
+    this.isThemeRed = false;
     if (this.token) {
       await this.fetchUser();
     }
@@ -103,6 +115,9 @@ export default {
     // changeTheme() {
     //   this.isThemeDark = !this.isThemeDark;
     // },
+    changeView() {
+      this.isView = !this.isView;
+    },
     scroll() {
       if (!this.isShowButton) {
         this.isShowButton = true;
@@ -127,6 +142,7 @@ export default {
     max-width: 1156px;
     margin: 0 auto;
   }
+
   #home-page {
     // height: calc(100vh - 145px);
     // top: 70px;
@@ -137,13 +153,16 @@ export default {
       background: #ffefa3;
       padding: 9px;
       border-radius: 4px;
+
       &.full-screen {
         min-height: calc(100vh - 145px);
         overflow: hidden;
+
         .page-info {
-          min-height: calc(100vh - 165px);
+          min-height: calc(100vh - 125px);
         }
       }
+
       .tab-scroll-hidden::-webkit-scrollbar {
         width: 0px;
         direction: ltr;
@@ -151,7 +170,9 @@ export default {
     }
   }
 }
+
 // .change-theme,
+.view-account,
 .next-top,
 .next-bottom {
   position: fixed;
@@ -159,14 +180,17 @@ export default {
   height: 30px;
   width: 30px;
   z-index: 10;
+
   svg {
     height: 26px;
     width: 26px;
+
     path {
       height: 26px;
       width: 26px;
     }
   }
+
   .v-btn--icon.v-size--default {
     height: 30px;
     width: 30px;
@@ -178,15 +202,22 @@ export default {
     );
   }
 }
+
 // .change-theme {
 //   bottom: 170px;
 // }
+.view-account {
+  bottom: 170px;
+}
+
 .next-top {
   bottom: 130px;
 }
+
 .next-bottom {
   bottom: 90px;
 }
+
 .theme--dark.v-application {
   background: radial-gradient(
     circle at 50% 100%,
@@ -197,6 +228,7 @@ export default {
   color: #ffffff;
   z-index: 2;
 }
+
 .bg-website {
   // background: #ffcf9c;
   background: #9f5424;
@@ -206,6 +238,7 @@ export default {
   // margin: 0 auto;
   // width: 100%;
 }
+
 // @media (min-width: 1300px) {
 ::v-deep {
   .v-main__wrap {
@@ -228,9 +261,11 @@ export default {
     .container.client-main {
       padding: 5px;
     }
+
     .btn-drop-menu-game.active {
       left: 30px;
     }
+
     .v-main__wrap {
       .container.client-main {
         top: 50px;
@@ -240,10 +275,12 @@ export default {
       }
     }
   }
+
   @media (min-width: 450px) {
     .btn-drop-menu-game.active {
       left: 40px;
     }
+
     .v-main__wrap {
       .container.client-main {
         width: calc(100% - 75px) !important;
@@ -251,10 +288,12 @@ export default {
       }
     }
   }
+
   @media (min-width: 340px) and (max-width: 399px) {
     .container.client-main {
       padding: 9px;
     }
+
     .v-main__wrap {
       .container.client-main {
         top: 50px;
@@ -264,6 +303,7 @@ export default {
           .page-body {
             &.full-screen {
               min-height: calc(100vh - 134px);
+
               .page-info {
                 min-height: calc(100vh - 155px);
                 // .col-12 {
@@ -276,6 +316,7 @@ export default {
       }
     }
   }
+
   @media (min-width: 300px) and (max-width: 499px) {
     .v-main__wrap {
       .container.client-main {
@@ -295,6 +336,7 @@ export default {
           .page-body {
             &.full-screen {
               min-height: calc(100vh - 200px) !important;
+
               .page-info {
                 min-height: calc(100vh - 180px) !important;
               }
@@ -348,22 +390,27 @@ export default {
   .slick-dots {
     bottom: 10px;
   }
+
   .slick-slide {
     padding: 6px;
     // border: 1px solid #663019;
     // height: calc(100% - 10px) !important;
     // border-radius: 3px !important;
   }
+
   @media (max-width: 400px) {
     .slick-slide {
       padding: 0px;
     }
+
     #home-page.page-body {
       padding: 6px;
     }
+
     #account-slider {
       padding: 9px;
     }
+
     .title-category {
       margin: 0 -9px !important;
       margin-top: -9px !important;
@@ -374,9 +421,11 @@ export default {
   .slick-arrow,
   .slick-arrow:hover {
     z-index: 2;
+
     &.slick-next {
       right: 15px;
     }
+
     &.slick-prev {
       left: 15px;
     }

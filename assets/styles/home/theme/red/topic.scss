@@ -1,0 +1,27 @@
+.theme-red {
+  #home-page {
+    .text-shadow {
+      // text-shadow: $text-shadow-topic-theme-dark !important;
+    }
+    .topic {
+      // text-shadow: $text-shadow-topic-theme-dark !important;
+
+      .title {
+        // text-shadow: $text-shadow-topic-theme-dark !important;
+      }
+    }
+
+    .topics {
+      // text-shadow: $text-shadow-topic-theme-dark !important;
+      .text-main {
+        color: #fff !important;
+
+      }
+
+      ul.topics-list li:nth-of-type(odd) {
+        background: #171e28 !important;
+      }
+    }
+
+  }
+}

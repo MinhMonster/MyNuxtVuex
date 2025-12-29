@@ -4,7 +4,6 @@
       <v-carousel-item v-for="(item, i) in items" :key="i" cover eager>
         <v-img
           :src="item.src"
-          height="100%"
           @load="onLoadAvatar"
           @error="onErrorAvatar"
           eager
@@ -36,8 +35,16 @@ export default {
         if (!this.itemsData) {
           return [
             {
-              src: this.isMobile
-                ? "https://muabannick.pro/images/banners/banner-mobile.jpg"
+              src: this.isThemeRed
+                ? this.isMobile
+                  ? "/images/banners/banner-red.png"
+                  : this.isShowNoti
+                  ? "/images/banners/banner-red.png"
+                  : "/images/banners/banner-red.png"
+                : this.isMobile
+                ? "https://muabannick.pro/images/banners/banner_600x220.gif"
+                : this.isTablet
+                ? "https://muabannick.pro/images/banners/banner_800x294.gif"
                 : this.isShowNoti
                 ? "https://muabannick.pro/images/banners/muabannick_banner_min.png"
                 : "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif",
@@ -69,13 +76,10 @@ export default {
       // }
     },
     onErrorAvatar(item) {
-      if (
-        item ==
-        "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif"
-      ) {
+      if (item.endsWith(".gif")) {
         this.items = [
           {
-            src: "https://muabannick.pro/images/banners/muabannick_banner_min.png",
+            src: "https://muabannick.pro/images/banners/banner-800x294.jpg",
           },
         ];
       }
@@ -92,9 +96,9 @@ export default {
       border-radius: 3px;
 
       .v-carousel__item {
+        aspect-ratio: 600 / 220;
+        width: 100%;
         height: auto !important;
-        min-height: 150px;
-        max-height: 320px;
       }
     }
   }

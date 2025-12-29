@@ -2,6 +2,7 @@
   <div v-if="account" class="info-atm-momo">
     <VietQRMB :amount="amount" :addInfo="content">
       <template #info>
+        <div>*Nếu QR lỗi, hãy chuyển khoản theo thông tin sau:</div>
         <img src="/icon/icon-next-right.gif" /> Ngân hàng:<span class="sms">
           MB Bank</span
         ><br />
@@ -65,11 +66,7 @@ export default {
       return this.account.selling_price;
     },
     amount() {
-      return this.cash_atm_no_format(
-        this.account.saleOff
-          ? this.price * (1 - this.account.saleOff / 100)
-          : this.price
-      );
+      return this.price;
     },
     content() {
       return `Mua Nick ${this.game} ${this.format_number(

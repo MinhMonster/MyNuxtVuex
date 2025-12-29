@@ -79,7 +79,7 @@ export default {
       await this.resetAccountNinjas();
       if (this.accountNinja) {
         await this.setQuery({
-          perPage: 8,
+          perPage: 9,
           q: {
             giatien: this.accountNinja.giatien,
             id_other: this.accountNinja.id,

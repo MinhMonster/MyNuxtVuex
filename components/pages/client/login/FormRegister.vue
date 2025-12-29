@@ -6,7 +6,7 @@
         <div class="field">
           <form-validator name="name">
             <input
-              v-model="user.name"
+              v-model="input.name"
               id="name"
               type="text"
               placeholder=" "
@@ -25,7 +25,7 @@
         <div class="field">
           <form-validator name="password">
             <input
-              v-model="user.password"
+              v-model="input.password"
               type="password"
               placeholder=" "
               class="v-input form-input"
@@ -57,7 +57,7 @@
         <div class="field">
           <form-validator name="phone">
             <input
-              v-model="user.phone"
+              v-model="input.phone"
               type="text"
               placeholder=" "
               class="v-input form-input"
@@ -73,7 +73,7 @@
         <div class="field">
           <form-validator name="email">
             <input
-              v-model="user.email"
+              v-model="input.email"
               type="text"
               placeholder=" "
               class="v-input form-input"
@@ -93,7 +93,7 @@
         <input type="checkbox" id="remember" checked />
         <label for="remember">Lưu đăng nhập</label>
       </div>
-      <span @click="showModalLoginRegister('login')">Đăng Nhập</span>
+      <span class="login-btn text-white" @click="showModalLoginRegister('login')">Đăng Nhập</span>
     </div>
     <input type="hidden" id="confirm" name="confirm" />
     <div class="field submit">
@@ -120,7 +120,7 @@ export default {
   data() {
     return {
       isLoading: false,
-      user: {
+      input: {
         name: "",
         password: "",
         password_confirmation: "",
@@ -285,7 +285,7 @@ form {
     }
     span {
       white-space: nowrap;
-      color: #4158d0 !important;
+      // color: #4158d0 !important;
       cursor: pointer;
     }
   }

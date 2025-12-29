@@ -32,7 +32,7 @@
             <v-radio
               name="some-radios"
               value="atm-momo"
-              label="Thanh toán bằng Atm - Momo"
+              label="Thanh toán bằng chuyển khoản"
             ></v-radio>
           </v-radio-group>
 
@@ -48,7 +48,7 @@
           Bạn chưa Đăng nhập. Hãy Đăng nhập để mua.
         </div>
         <div v-else-if="Number(user.cash) < price" class="color-main mgb-10px">
-          Số dư không đủ. Hãy nạp thêm tiền để mua.
+          Số dư không đủ. Bạn còn thiếu: <span class="text-danger text-bold">{{format_number(price - Number(user.cash))}} </span>Vnđ
         </div>
       </template>
       <template #footer-button>
@@ -62,9 +62,10 @@
         >
         <v-btn
           v-else-if="Number(user.cash) < price"
+          size="sm"
           color="success"
-          class="btn-sm"
-          to="/account/wallet/deposit/vnd"
+          class="btn-sm text-black"
+          @click="$router.push('/account/wallet/deposit/vnd')"
           ><span>Nap tiền</span></v-btn
         >
 

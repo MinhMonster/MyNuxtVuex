@@ -62,18 +62,19 @@
           <tr>
             <th class="info-nick" style="">
               <div style="margin: 10px"></div>
-
               Giá Bán
               <br />
-              {{
-                accountNinja.active_discount
-                  ? "(Giảm giá: " + accountNinja.active_discount + "%)"
-                  : ""
-              }}
+              <span class="text-danger">
+                {{
+                  accountNinja.saleOff
+                    ? "(Giảm giá: ~" + accountNinja.saleOff + "%)"
+                    : ""
+                }}
+              </span>
             </th>
             <td class="mua-nick">
-              <span>{{ format_number(accountNinja.selling_price) }} Card </span>
-              <div
+              <!-- <span>{{ format_number(accountNinja.giatien) }} Card </span> -->
+              <!-- <div
                 style="
                   width: 100%;
                   height: 1px;
@@ -81,32 +82,20 @@
                   margin-top: 5px;
                   margin-bottom: 5px;
                 "
-              ></div>
+              ></div> -->
               <span
                 :class="{
                   'text-line-middel text-danger': accountNinja.active_discount,
                 }"
-                >{{ cash_atm(accountNinja.selling_price) }} ATM - MOMO</span
               >
-              <div
-                v-if="accountNinja.active_discount"
-                style="
-                  width: 100%;
-                  height: 1px;
-                  background-color: #a4a4a4;
-                  margin-top: 5px;
-                  margin-bottom: 5px;
-                "
-              ></div>
-              <span v-if="accountNinja.active_discount"
-                >{{
-                  cash_atm(
-                    accountNinja.selling_price *
-                      (1 - accountNinja.active_discount / 100)
-                  )
-                }}
-                ATM - MOMO
+                {{ format_number(accountNinja.price) }} Vnđ
               </span>
+              <template v-if="accountNinja.saleOff">
+                <div class="divider"></div>
+                <span>
+                  {{ format_number(accountNinja.priceSalling) }} Vnđ
+                </span>
+              </template>
             </td>
           </tr>
         </tbody>
