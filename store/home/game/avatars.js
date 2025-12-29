@@ -11,11 +11,11 @@ export default {
     meta: {},
     count: "",
     account: {},
-    query: queryAvatar
+    query: defaultQueryAvatar
   }),
 
   getters: {
-    getField,
+    getField
   },
 
   mutations: {
@@ -31,19 +31,18 @@ export default {
     },
     SET_ACCOUNTS(state, payload) {
       state.accounts = payload.data;
-      state.meta = payload.meta
-      state.count = payload.count
+      state.meta = payload.meta;
+      state.count = payload.count;
     },
     RESET_ACCOUNTS(state) {
       state.accounts = [];
-      state.meta = {}
-      state.count = ""
+      state.meta = {};
+      state.count = "";
     },
 
     SET_ACCOUNT(state, payload) {
-      state.account = payload
-    },
-
+      state.account = payload;
+    }
   },
 
   actions: {
@@ -51,20 +50,22 @@ export default {
       const filteredQuery = cleanQuery(state.query);
       try {
         const res = await this.$repositories.gameAvatars.fetchAccountAvatars({
-          input: filteredQuery,
+          input: filteredQuery
         });
-        commit("SET_AVATARS", res.data);
+        commit("SET_ACCOUNTS", res.data.response);
       } catch (error) { }
     },
     async fetchAccountAvatar({ commit }, payload) {
       try {
-        const res = await this.$repositories.gameAvatars.fetchAccountAvatar(payload)
-        commit('SET_ACCOUNT', res.data.response)
+        const res = await this.$repositories.gameAvatars.fetchAccountAvatar(
+          payload
+        );
+        commit("SET_ACCOUNT", res.data.response);
       } catch (error) { }
     },
 
     setAccountAvatar({ commit }, payload) {
-      commit('SET_ACCOUNT', payload);
+      commit("SET_ACCOUNT", payload);
     },
     setQuery({ commit }, payload) {
       commit(SET_QUERY, payload);
@@ -74,12 +75,12 @@ export default {
     },
 
     resetAccountAvatars({ commit }) {
-      commit('RESET_ACCOUNTS');
+      commit("RESET_ACCOUNTS");
     },
     resetQuery({ commit }) {
       commit(SET_QUERY, defaultQueryAvatar());
-    },
-  },
+    }
+  }
 };
 
 const defaultQueryAvatar = () => ({
@@ -90,6 +91,6 @@ const defaultQueryAvatar = () => ({
     cash: null,
     username: null,
     sex: null,
-    farm: null,
-  },
+    farm: null
+  }
 });

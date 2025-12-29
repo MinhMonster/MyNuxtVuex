@@ -1,20 +1,95 @@
 <template>
-  <v-col v-if="accountNinja" cols="12" sm="6" md="6" lg="4">
-    <AccountNinjaCardInfo :account-ninja="accountNinja"></AccountNinjaCardInfo>
+  <v-col v-if="account" cols="12" sm="6" md="6" lg="4">
+    <div class="account-info">
+      <AccountNinjaTL :account-ninja="account" />
+      <v-row class="account-body">
+        <v-col cols="12">
+          <span class="account-thongtin break-line-1">
+            Lv: {{ account.level }}, {{ account.thongtin }}
+          </span>
+        </v-col>
+
+        <v-col v-for="item in infoItems" :key="item.key" :cols="item.cols">
+          <span class="account-meta">
+            {{ item.label }}<br />
+            {{ item.value }}
+          </span>
+        </v-col>
+        <v-col cols="6">
+          <span class="account-cash" :class="{ 'has-sale': hasDiscount }">
+            <template v-if="hasDiscount">
+              <span class="bg-danger sale-off">
+                -{{ account.active_discount }}%
+              </span>
+              <span class="cash-sale"> {{ finalPrice }} Vnđ </span>
+            </template>
+
+            <template v-else> {{ finalPrice }} Vnđ </template>
+          </span>
+        </v-col>
+        <v-col cols="6">
+          <nuxt-link :to="detailLink">
+            <span class="account-buy">Xem Nick</span>
+          </nuxt-link>
+        </v-col>
+      </v-row>
+    </div>
   </v-col>
 </template>
 
 <script>
-import AccountNinjaCardInfo from "@/components/pages/client/game/ninjas/AccountNinjaCardInfo";
+import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL";
 
 export default {
-  components: { AccountNinjaCardInfo },
+  name: "AccountNinjaCard",
+
+  components: {
+    AccountNinjaTL,
+  },
+
   props: {
-    accountNinja: {
+    account: {
       type: Object,
-      default: () => {}
-    }
-  }
+      required: true,
+    },
+  },
+
+  computed: {
+    hasDiscount() {
+      return this.account.active_discount > 0;
+    },
+
+    finalPrice() {
+      return this.format_number(this.account.price);
+    },
+
+    detailLink() {
+      return `/teamobi/ninja-school/${this.account.id}`;
+    },
+
+    infoItems() {
+      return [
+        {
+          key: "code",
+          cols: 3,
+          label: "Mã số",
+          value: this.format_number(this.account.id),
+        },
+        {
+          key: "class",
+          cols: 3,
+          label: "Lớp",
+          value: this.classNinja(this.account.class),
+        },
+        {
+          key: "server",
+          cols: 6,
+          label: "Máy chủ",
+          value: this.serverNinja(this.account.server),
+        },
+      ];
+    },
+  },
 };
 </script>
 
@@ -90,5 +165,60 @@ export default {
 .col-2,
 .col-1 {
   padding: 6px;
+}
+.account-body {
+  padding: 15px;
+
+  :deep(.v-col) {
+    padding: 3px;
+    border-radius: 3px;
+  }
+}
+
+.account-info {
+  width: 100%;
+  background: #ffefa3;
+  border-radius: 5px;
+  border: 1px solid #663019;
+  text-align: center;
+  overflow: hidden;
+
+  .account-thongtin,
+  .account-cash,
+  .account-buy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 25px;
+    color: #ffcf9c;
+    background: #e28637;
+    border: 1px solid #663019;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .account-meta {
+    font-size: 11px;
+    font-weight: 600;
+    color: #663019;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+}
+
+.sale-off {
+  width: 40px;
+}
+
+.cash-sale {
+  width: calc(100% - 40px);
+}
+
+.bg-danger.sale-off {
+  background: #a21d0a !important;
 }
 </style>

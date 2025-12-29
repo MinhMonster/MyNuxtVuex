@@ -69,7 +69,7 @@ export default {
   border-radius: 5px;
   border: 1px solid #663019;
   text-align: center;
-  overflow:hidden;
+  overflow: hidden;
 
   .account-thongtin,
   .account-cash,
@@ -90,6 +90,7 @@ export default {
     height: 30px;
   }
 
+  .account-meta,
   .account-code,
   .account-class,
   .account-server {

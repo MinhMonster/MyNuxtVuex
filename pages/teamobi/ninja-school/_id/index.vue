@@ -1,8 +1,8 @@
 <template>
   <client-only>
     <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
-      <template v-if="accountNinja && accountNinja.id && ready" #body>
-        <AccountNinjaDetail :account-ninja="accountNinja"></AccountNinjaDetail>
+      <template v-if="account && account.id && ready" #body>
+        <AccountNinjaDetail :account="account"></AccountNinjaDetail>
       </template>
       <template #table>
         <div class="page-body bg-none mt--2">
@@ -42,7 +42,7 @@ export default {
       ready: "ready",
     }),
     ...mapFields("home/game/ninjas", {
-      accountNinja: "accountNinja",
+      account: "accountNinja",
       accountNinjas: "accountNinjas",
     }),
     accountId() {
@@ -54,7 +54,7 @@ export default {
       )} - Nick Ninja School Online - MuaBanNick.Pro`;
     },
     imagenHead() {
-      return _.get(this.accountNinja, "images[0]", "/banner.jpg");
+      return _.get(this.account, "images[0]", "/banner.jpg");
     },
   },
   async mounted() {
@@ -77,12 +77,12 @@ export default {
 
       await this.resetQuery();
       await this.resetAccountNinjas();
-      if (this.accountNinja) {
+      if (this.account) {
         await this.setQuery({
           perPage: 9,
           q: {
-            giatien: this.accountNinja.giatien,
-            id_other: this.accountNinja.id,
+            price: this.account.price,
+            id_other: this.account.id,
           },
         });
         await this.fetchAccountNinjas();

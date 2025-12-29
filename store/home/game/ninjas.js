@@ -8,7 +8,7 @@ export default {
   namespaced: true,
   state: () => ({
     accountNinjas: [],
-    metaNinjas: {},
+    meta: {},
     countNinjas: "",
     accountNinja: {},
     xuNinjaPrices: [],
@@ -16,7 +16,7 @@ export default {
   }),
 
   getters: {
-    getField,
+    getField
   },
 
   mutations: {
@@ -33,12 +33,12 @@ export default {
     SET_NINJAS(state, payload) {
       const accountNinjas = _.cloneDeep(state.accountNinjas);
       state.accountNinjas = accountNinjas.concat(payload.data);
-      state.metaNinjas = payload.meta
-      state.countNinjas = payload.count
+      state.meta = payload.meta;
+      state.countNinjas = payload.count;
     },
     RESET_NINJAS(state) {
       state.accountNinjas = [];
-      state.metaNinjas = {};
+      state.meta = {};
       state.countNinjas = "";
     },
 
@@ -51,25 +51,31 @@ export default {
     async fetchAccountNinjas({ commit, state }) {
       const filteredQuery = cleanQuery(state.query);
       try {
-        const res = await this.$repositories.gameNinjas.fetchAccountNinjas({ input: filteredQuery })
-        commit('SET_NINJAS', res.data)
+        const res = await this.$repositories.gameNinjas.fetchAccountNinjas({
+          input: filteredQuery
+        });
+        commit("SET_NINJAS", res.data.response);
       } catch (error) { }
     },
     async fetchXuNinjaPrices({ commit, state }) {
       try {
-        const res = await this.$repositories.gameNinjas.fetchXuNinjaPrices({ input: state.query })
-        commit('SET_XU_NINJA_PRICES', res.data.data)
+        const res = await this.$repositories.gameNinjas.fetchXuNinjaPrices({
+          input: state.query
+        });
+        commit("SET_XU_NINJA_PRICES", res.data.data);
       } catch (error) { }
     },
     async fetchAccountNinja({ commit }, payload) {
       try {
-        const res = await this.$repositories.gameNinjas.fetchAccountNinja(payload)
-        commit('SET_NINJA', res.data.response)
+        const res = await this.$repositories.gameNinjas.fetchAccountNinja(
+          payload
+        );
+        commit("SET_NINJA", res.data.response);
       } catch (error) { }
     },
 
     setAccountNinja({ commit }, payload) {
-      commit('SET_NINJA', payload);
+      commit("SET_NINJA", payload);
     },
     setQuery({ commit }, payload) {
       commit(SET_QUERY, payload);
@@ -82,7 +88,7 @@ export default {
     },
     resetQuery({ commit }, type = null) {
       commit(SET_QUERY, defaultQuery(type));
-    },
+    }
   }
 };
 

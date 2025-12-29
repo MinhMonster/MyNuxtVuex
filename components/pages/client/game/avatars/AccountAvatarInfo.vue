@@ -25,29 +25,7 @@
               <span v-html="account.description"></span>
             </td>
           </tr>
-          <tr>
-            <th class="info-nick">
-              <div style="margin: 10px"></div>
-              Giá Bán
-              <template v-if="hasDiscount">
-                <br />
-                <p class="text-danger">
-                  (Giảm giá: {{ account.active_discount }}%)
-                </p>
-              </template>
-            </th>
-            <td class="mua-nick">
-              <span>{{ format_number(account.selling_price) }} Card</span>
-              <div class="divider"></div>
-              <span :class="{ 'text-line-middel text-danger': hasDiscount }">
-                {{ cash_atm(account.selling_price) }} ATM - MOMO
-              </span>
-              <template v-if="hasDiscount">
-                <div class="divider"></div>
-                <span>{{ format_number(accountAvatar.priceSalling) }} Vnđ</span>
-              </template>
-            </td>
-          </tr>
+          <PriceAccount :account="account" />
         </tbody>
       </table>
       <GroupBtnBuyAccount :account="account" account-type="avatar" />
@@ -57,10 +35,12 @@
 
 <script>
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
+import PriceAccount from "@/components/common/client/table/PriceAccount";
 
 export default {
   components: {
     GroupBtnBuyAccount,
+    PriceAccount,
   },
   props: {
     account: {

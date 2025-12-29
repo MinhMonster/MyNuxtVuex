@@ -1,14 +1,17 @@
 <template>
-  <div v-if="isLoadingSearch" class="center mgt--50px mgb--50px loading-resoult">
+  <div
+    v-if="isLoadingSearch"
+    class="center mgt--50px mgb--50px loading-resoult"
+  >
     <Loading></Loading>
   </div>
   <div v-else>
     <v-row class="text-center account">
       <AccountNinjaCard
-        v-for="(ninja, index) in accountNinjas"
+        v-for="(account, index) in accountNinjas"
         :key="index"
-        :account-ninja="ninja"
-      ></AccountNinjaCard>
+        :account="account"
+      />
     </v-row>
     <div v-if="isLoading" class="center mgt--50px mgb--50px">
       <Loading></Loading>
@@ -65,7 +68,7 @@ export default {
     ...mapFields("home/game/ninjas", {
       accountNinjas: "accountNinjas",
       page: "query.page",
-      pages: "metaNinjas.pages",
+      pages: "meta.pages",
     }),
     ...mapFields("global", {
       isLoadingSearch: "isLoadingSearch",

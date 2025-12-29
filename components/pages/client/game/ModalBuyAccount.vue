@@ -38,7 +38,10 @@
 
           <v-row v-if="isBuy == 'atm-momo'">
             <v-col cols="12" sm="12" md="12">
-              <BuyAccountQRInstructions :account="account" :account-type="accountType" />
+              <BuyAccountQRInstructions
+                :account="account"
+                :account-type="accountType"
+              />
             </v-col>
           </v-row>
         </div>
@@ -48,7 +51,10 @@
           Bạn chưa Đăng nhập. Hãy Đăng nhập để mua.
         </div>
         <div v-else-if="Number(user.cash) < price" class="color-main mgb-10px">
-          Số dư không đủ. Bạn còn thiếu: <span class="text-danger text-bold">{{format_number(price - Number(user.cash))}} </span>Vnđ
+          Số dư không đủ. Bạn còn thiếu:
+          <span class="text-danger text-bold"
+            >{{ format_number(price - Number(user.cash)) }} </span
+          >Vnđ
         </div>
       </template>
       <template #footer-button>
@@ -118,7 +124,7 @@ export default {
   computed: {
     ...mapState("home/users", ["token", "user"]),
     price() {
-      return this.account.selling_price || this.account.price;
+      return this.account.price;
     },
   },
   methods: {

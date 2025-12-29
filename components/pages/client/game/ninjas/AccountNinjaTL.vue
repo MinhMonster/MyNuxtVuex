@@ -80,7 +80,7 @@
 
         <span
           v-if="accountNinja.yoroi"
-          class="account-tl text-13-450"
+          class="account-tl bg-equip text-13-450"
           style="left: 44.5%; top: 62%"
           >{{ accountNinja.yoroi }}</span
         >
@@ -199,7 +199,7 @@
 </template>
 <script>
 export default {
-  name: "AccountNinjaCardInfo",
+  name: "AccountNinjaTL",
   components: {},
   props: {
     accountNinja: {

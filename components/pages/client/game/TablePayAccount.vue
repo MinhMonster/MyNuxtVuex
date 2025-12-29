@@ -28,32 +28,18 @@
           <span>{{ format_number(price) }} Card</span>
         </td>
       </tr> -->
-
-      <tr>
-        <th class="info-nick">
-          Giá tiền:
-          <template v-if="hasDiscount">
-            <br />
-            <p class="text-danger">(Giảm giá: {{ account.active_discount }}%)</p>
-          </template>
-        </th>
-        <td class="mua-nick">
-          <span :class="hasDiscount ? 'text-line-middel text-danger' : ''">
-            {{ format_number(price) }} Vnđ
-          </span>
-
-          <template v-if="hasDiscount">
-            <div class="divider"></div>
-            <span>{{ format_number(priceSalling) }} Vnđ</span>
-          </template>
-        </td>
-      </tr>
+      <PriceAccount :account="account" />
     </tbody>
   </table>
 </template>
 
 <script>
+import PriceAccount from "@/components/common/client/table/PriceAccount";
+
 export default {
+  components: {
+    PriceAccount,
+  },
   props: {
     account: {
       type: Object,
@@ -65,15 +51,6 @@ export default {
     },
   },
   computed: {
-    price() {
-      return this.account.price || this.account.giatien || 0;
-    },
-    priceSalling() {
-      return this.account.priceSalling || this.account.giatien || 0;
-    },
-    hasDiscount() {
-      return this.account.active_discount > 0;
-    },
     gameName() {
       switch (this.accountType) {
         case "ninja":

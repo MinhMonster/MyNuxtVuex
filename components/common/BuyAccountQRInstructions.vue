@@ -63,7 +63,7 @@ export default {
       }
     },
     price() {
-      return this.account.selling_price;
+      return this.account.price;
     },
     amount() {
       return this.price;
