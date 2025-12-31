@@ -41,7 +41,7 @@
         <div class="field">
           <form-validator name="password_confirmation">
             <input
-              v-model="user.password_confirmation"
+              v-model="input.password_confirmation"
               type="password"
               placeholder=" "
               class="v-input form-input"
@@ -141,7 +141,7 @@ export default {
     ...mapActions(["register", "loginFb"]),
     async registerUser() {
       this.isLoading = true;
-      const res = await this.register(this.user);
+      const res = await this.register(this.input);
       if (this.token) {
         this.$router.push("/account/profile");
         this.$emit("close");

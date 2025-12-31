@@ -3,7 +3,7 @@
     <div class="field">
       <form-validator name="email">
         <input
-          v-model="user.email"
+          v-model="input.email"
           type="text"
           class="v-input"
           placeholder="Tài Khoản"
@@ -15,7 +15,7 @@
     <div class="field">
       <form-validator name="password">
         <input
-          v-model="user.password"
+          v-model="input.password"
           type="password"
           class="v-input"
           placeholder="Mật khẩu"
@@ -28,7 +28,11 @@
         <input type="checkbox" id="remember" checked />
         <label for="remember">Lưu đăng nhập</label>
       </div>
-      <span class="login-btn text-white" @click="showModalLoginRegister('register')">Đăng Ký</span>
+      <span
+        class="login-btn text-white"
+        @click="showModalLoginRegister('register')"
+        >Đăng Ký</span
+      >
     </div>
     <input type="hidden" id="confirm" name="confirm" />
     <div class="field submit">
@@ -56,7 +60,7 @@ export default {
   data() {
     return {
       isLoading: false,
-      user: {
+      input: {
         email: "",
         password: "",
       },
@@ -77,7 +81,7 @@ export default {
     ...mapActions(["login", "logout", "fetchUser", "loginFb"]),
     async loginUser() {
       this.isLoading = true;
-      const res = await this.login(this.user);
+      const res = await this.login(this.input);
       if (this.token) {
         this.fetchUser();
         this.$emit("close");

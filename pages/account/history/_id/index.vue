@@ -10,7 +10,7 @@
       reload
       @reload="fetchHistory()"
     >
-      <template v-if="user && ready && history?.id" #body>
+      <template v-if="ready && history" #body>
         <div class="table-responsive">
           <table class="table">
             <tbody>
@@ -29,19 +29,19 @@
               <tr>
                 <th class="info-nick" style="">Tài Khoản</th>
                 <td class="mua-nick break-all">
-                  <span>{{ history?.accountName }} </span>
+                  <span>{{ account?.username }} </span>
                 </td>
               </tr>
               <tr>
                 <th class="info-nick" style="">Mật khẩu</th>
                 <td class="mua-nick">
-                  <span>{{ history?.accountPassword }} </span>
+                  <span>{{ account?.password || "Đang cập nhật" }} </span>
                 </td>
               </tr>
-              <tr v-if="history.accountCode">
+              <tr>
                 <th class="info-nick" style="">Mã chuyển sim</th>
                 <td class="mua-nick">
-                  <span>{{ history?.accountCode }}</span>
+                  <span>{{ transferPin || "Đang cập nhật" }}</span>
                 </td>
               </tr>
 
@@ -69,37 +69,31 @@
               <tr>
                 <td class="mua-nick text-left" colspan="2">
                   <span>
-                    <template v-if="!history?.accountCode">
+                    <template
+                      v-if="!transferPin && history.accountt_ype === 'ngocrong'"
+                    >
                       <p v-if="history.accountType === 'ngocrong'" class="sms">
                         Nick Ngọc Rồng trên Web đều là đăng ký ảo. Các bạn chỉ
                         cần đổi mật khẩu là xong.
                       </p>
                     </template>
-                    <template
-                      v-else-if="history.accountCode === 'Đang cập nhật'"
-                      ><p class="sms">
-                        Chờ Admin cập nhật cú pháp Chuyển sim
-                      </p></template
-                    >
+                    <template v-else-if="!transferPin">
+                      <p class="sms">Chờ Admin cập nhật cú pháp Chuyển sim</p>
+                    </template>
                     <template v-else>
                       <div class="bold">Hướng dẫn chuyển sim đăng ký:</div>
                       Dùng Sim Đăng Ký Mới soạn:<br />
 
                       <span class="sms"
-                        >GO SIMMOI {{ history.accountName }}
-                        {{ history.accountCode }}</span
+                        >GO SIMMOI {{ account?.username }}
+                        {{ transferPin }}</span
                       >
                       <ButtonCoppy
                         :content="`${
-                          'GO SIMMOI ' +
-                          history.accountName +
-                          history.accountCode
+                          'GO SIMMOI ' + account?.username + ' ' + transferPin
                         }`"
-                      ></ButtonCoppy
-                      ><br />
-                      <img src="/icon/icon-next-right.gif" />
-                      <img src="/icon/icon-next-right.gif" />
-                      <img src="/icon/icon-next-right.gif" />
+                      >
+                      </ButtonCoppy>
                       gửi <span class="sms">+6020</span><br /><br />
                     </template>
                     Lưu ý: Đổi MK ngay sau khi cập nhật. <br />
@@ -148,6 +142,12 @@ export default {
     ...mapState(["token", "user"]),
     historyId() {
       return _.cloneDeep(this.$route.params.id);
+    },
+    account() {
+      return this.history?.account || null;
+    },
+    transferPin() {
+      return this.account?.transfer_pin || null;
     },
   },
   mounted() {
