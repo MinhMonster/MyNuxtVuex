@@ -16,13 +16,13 @@
                 <tr>
                   <th class="info-nick w-50" style="">Mã GD</th>
                   <td class="mua-nick w-50">
-                    <span>{{ format_number(history.ID) }}</span>
+                    <span>{{ format_number(history.id) }}</span>
                   </td>
                 </tr>
                 <tr>
                   <th class="info-nick" style="">Tên nhân vật</th>
                   <td class="mua-nick">
-                    <span> {{ history.ingame }}</span>
+                    <span> {{ history.character_name }}</span>
                   </td>
                 </tr>
                 <tr>
@@ -46,7 +46,7 @@
                 <tr>
                   <th class="info-nick" style="">Xu nhận</th>
                   <td class="mua-nick">
-                    <span>{{ format_number(history.xu) }} xu </span>
+                    <span>{{ format_number(history.coin) }} xu </span>
                   </td>
                 </tr>
                 <tr>
@@ -58,27 +58,39 @@
 
                 <tr>
                   <th class="info-nick" style="">Trạng Thái</th>
-                  <td class="mua-nick">
+                  <td class="text-middle">
                     <v-btn
-                      :color="history.status.value"
+                      :color="
+                        history.status === 'failed'
+                          ? 'red'
+                          : 'pending'
+                          ? 'warning'
+                          : 'green'
+                      "
                       class="btn-sm pd-5px"
                       :class="
-                        history.status.text === 'danger'
+                        history.status === 'failed'
                           ? 'text-white'
                           : 'text-black'
                       "
                     >
-                      {{ history.status.text }}
+                      {{
+                        history.status === "failed"
+                          ? "Thất bại"
+                          : "pending"
+                          ? "Chờ xử lý"
+                          : "Thành công"
+                      }}
                     </v-btn>
                   </td>
                 </tr>
 
-                <tr v-if="history.status.value === 'warning'">
+                <tr v-if="history.status === 'pending'">
                   <td class="mua-nick text-left instruction" colspan="2">
                     <div class="pd-5px">
                       <img src="/icon/icon-next-right.gif" /> Bạn vui lòng liên
                       hệ Admin kèm Mã GD:
-                      <span class="text-danger">#{{ history.ID }}</span> để nhận
+                      <span class="text-danger">#{{ history.id }}</span> để nhận
                       xu nhé!
                       <GroupBtnInbox />
                     </div>

@@ -3,11 +3,13 @@
 import gameNinjas from '~/repositories/home/game/ninjas'
 import gameAvatars from '~/repositories/home/game/avatars'
 import gameDragonBalls from '~/repositories/home/game/dragon_balls'
+import gameNinjaCoin from '~/repositories/home/game/ninja-coin'
 
 import homeUsers from '~/repositories/home/users'
 import homeTopics from '~/repositories/home/topics'
 
 import clientDailyEvents from '~/repositories/home/events/daily'
+
 
 // setting
 import settings from '~/repositories/home/settings'
@@ -20,11 +22,13 @@ export default ($api) => ({
   gameNinjas: gameNinjas($api),
   gameAvatars: gameAvatars($api),
   gameDragonBalls: gameDragonBalls($api),
+  gameNinjaCoin: gameNinjaCoin($api),
+
   homeUsers: homeUsers($api),
   homeTopics: homeTopics($api),
 
   clientDailyEvents: clientDailyEvents($api),
-  
+
   // setting
   settings: settings($api),
 })

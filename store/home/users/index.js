@@ -167,20 +167,6 @@ export default {
 
       } catch { }
     },
-    async buyXuNinja({ commit }, payload) {
-      try {
-        const response = await this.$repositories.homeUsers.buyXuNinja(payload);
-        return response
-      } catch { }
-    },
-    async fetchHistoryBuyXuNinjas({ commit, state }) {
-      try {
-        const response = await this.$repositories.homeUsers.fetchHistoryBuyXuNinjas({ input: state.query });
-        commit(SET_STATE, { historyBuyXuNinjas: response.data.data });
-        commit(SET_STATE, { historyMeta: response.data.pagy });
-
-      } catch { }
-    },
     resetHistoryBuyAccount({ commit }) {
       commit(SET_QUERY, {
         historyBuyAccount: null

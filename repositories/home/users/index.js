@@ -48,12 +48,6 @@ export default ($api) => ({
   fetchHistoryBuyCarots(payload) {
     return $api.get(`${resource}/services/fetchHistoryBuyCarots.php?`, { params: { input: payload.input } },)
   },
-  buyXuNinja(payload) {
-    return $api.post(`${resource}/services/buyXuNinja.php`, payload,)
-  },
-  fetchHistoryBuyXuNinjas(payload) {
-    return $api.get(`${resource}/services/fetchHistoryBuyXuNinjas.php?`, { params: { input: payload.input } },)
-  },
   historyWalletDepositVnds(payload) {
     return $api.get(`${resource}/top-up/bank/histories`, { params: { input: payload.input } },)
   },

@@ -47,13 +47,13 @@
             </v-col>
             <v-col cols="12" sm="6" class="middle">
               <div class="field">
-                <form-validator name="ingame">
+                <form-validator name="character_name">
                   <label class="form-label"
                     >Tên nhân vật
                     <small>(<span style="color: red">*</span>)</small></label
                   >
                   <input
-                    v-model="card.ingame"
+                    v-model="card.character_name"
                     type="text"
                     placeholder="Nhập tên nhân vật nhận xu..."
                     class="v-input form-input"
@@ -114,7 +114,7 @@
       </template>
 
       <template #table>
-        <XuPriceTable :cards="xuNinjaPrices" />
+        <XuPriceTable :cards="ninjaCoinPrices" />
         <ModalBuyXuOffline
           ref="modalBuyOffline"
           :history="card"
@@ -185,7 +185,7 @@ export default {
       title: "Mua Bán Xu Ninja School",
       card: {
         server: null,
-        ingame: null,
+        character_name: null,
         amount: "",
       },
       history: {},
@@ -292,10 +292,12 @@ export default {
   },
   computed: {
     ...mapFields("global", { ready: "ready" }),
-    ...mapFields("home/game/ninjas", { xuNinjaPrices: "xuNinjaPrices" }),
-    ...mapFields("home/users", {
+    ...mapFields("home/game/ninja-coin", {
+      ninjaCoinPrices: "ninjaCoinPrices",
       histories: "historyBuyXuNinjas",
       historyMeta: "historyMeta",
+    }),
+    ...mapFields("home/users", {
       pageSave: "pageSave",
     }),
   },
@@ -303,13 +305,12 @@ export default {
     this.reload();
   },
   methods: {
-    ...mapActions("home/users", [
-      "fetchUser",
+    ...mapActions("home/users", ["fetchUser", "setQuery"]),
+    ...mapActions("home/game/ninja-coin", [
+      "fetchXuNinjaPrices",
       "buyXuNinja",
       "fetchHistoryBuyXuNinjas",
-      "setQuery",
     ]),
-    ...mapActions("home/game/ninjas", ["fetchXuNinjaPrices"]),
     async reload() {
       this.fetchXuNinjaPrices();
       if (this.isLogin) {
@@ -330,18 +331,18 @@ export default {
     checkValid() {
       console.log(this.card, this.card.amount);
 
-      const validIngame =
+      const validCharacterName =
         /^(?:[a-zA-Z0-9]{1,10}|[a-zA-Z0-9]{1,10}_[a-zA-Z0-9]{2})$/.test(
-          this.card.ingame
+          this.card.character_name
         );
       const validations = [
         { condition: !this.card.server, message: "Bạn chưa chọn Server" },
         {
-          condition: !this.card.ingame,
+          condition: !this.card.character_name,
           message: "Bạn chưa nhập Tên nhân vật",
         },
         {
-          condition: this.card.ingame && !validIngame,
+          condition: this.card.character_name && !validCharacterName,
           message: "Tên nhân vật nhận xu không hợp lệ!",
         },
         { condition: !this.card.amount, message: "Bạn chưa nhập số tiền" },
@@ -376,9 +377,7 @@ export default {
         return;
       }
       this.isLoading = true;
-      const res = await this.buyXuNinja({
-        input: this.card,
-      });
+      const res = await this.buyXuNinja(this.card);
       this.isLoading = false;
       const history = res.data.data;
       if (history) {
@@ -398,7 +397,7 @@ export default {
     resetInput() {
       this.card = {
         server: null,
-        ingame: null,
+        character_name: null,
         amount: "",
       };
       this.xuReceived = "Bạn chưa nhập số tiền";
@@ -427,7 +426,7 @@ export default {
       const selectedValue = event.target.value;
 
       // 2️⃣ Tìm thông tin option tương ứng
-      this.amountSelected = this.xuNinjaPrices.find(
+      this.amountSelected = this.ninjaCoinPrices.find(
         (opt) => opt.server == selectedValue
       );
       this.setMoneyOut();
