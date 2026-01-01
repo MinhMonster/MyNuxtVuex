@@ -44,7 +44,7 @@
                 pill
                 @click="removeFile(index)"
               >
-                <i class="mdi mdi-close-thick"></i>
+                <i class="mdi mdi-close-thick text-white"></i>
               </b-button>
               <div class="fileIcon">
                 <img v-if="file.url" :src="file.url" />

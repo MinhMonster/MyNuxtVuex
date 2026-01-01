@@ -1,66 +1,60 @@
 <template>
-  <client-only>
-    <div>
-      <div id="body-admin">
-        <form @submit.prevent="create()">
-          <NinjaForm></NinjaForm>
-          <br />
-          <div class="d-flex">
-            <v-spacer />
-            <div class="text-right">
-              <v-btn type="submit" color="" to="/admin/game/ninjas">
-                Trở Về
-              </v-btn>
-              <v-btn type="submit" color="primary"> Thêm </v-btn>
-            </div>
-          </div>
-        </form>
+  <NavAdmin
+    :title="
+      !isCopy
+        ? 'New Account Ninja School'
+        : `${'Copy Account Ninja School ' + $route.query.copy}`
+    "
+    goBack
+    next-page
+    reload
+    @reload="!isCopy ? $refs.form.resetForm() : $refs.form.fetchData()"
+  >
+    <template #body>
+      <div id="body-admin" class="mt-2">
+        <AdminBaseForm
+          ref="form"
+          module="admin/game/ninjas"
+          repository="adminGameNinjas"
+          :id="isCopy ? $route.query.copy : null"
+          :store="{
+            state: 'queryNinja',
+            module: 'admin.game.ninjas',
+            form: 'formNinja',
+            action: 'fetchAccountNinja',
+            create: 'createAccountNinja',
+          }"
+        ></AdminBaseForm>
       </div>
-    </div>
-  </client-only>
+    </template>
+  </NavAdmin>
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
-import NinjaForm from "@/components/pages/admin/game/ninjas/form/NinjaForm.vue";
-import mixins from "@/mixins/index";
+import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
+import AdminBaseForm from "@/components/pages/admin/base/AdminBaseForm";
 
 export default {
-  mixins: [mixins],
   components: {
-    NinjaForm,
+    NavAdmin,
+    AdminBaseForm,
   },
   layout: "adminDev",
+  name: "NewAccountNinja",
   props: {},
   data() {
     return {
-      titel: `Admin: New Account Ninja`,
+      isCopy: false,
     };
   },
-  methods: {
-    ...mapActions("admin/game/ninjas", ["createAccountNinja"]),
-    async create() {
-      try {
-        const res = await this.createAccountNinja();
-        if (res.data.code === 200) {
-          this.$toasted.success(res.data.message);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    },
+  async created() {
+    const query = this.$route.query;
+    if (query.copy) {
+      this.isCopy = true;
+    }
   },
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>
-::v-deep {
-  .CodeMirror {
-    height: 500px;
-    resize: horizontal;
-  }
-  .CodeMirror-wrap pre {
-    word-break: break-word;
-  }
-}
 </style>

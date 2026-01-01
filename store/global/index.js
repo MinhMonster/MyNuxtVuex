@@ -5,6 +5,7 @@ export default {
   namespaced: true,
   state: () => ({
     ready: false,
+    isFilter: true,
     sidebarActive: true,
     customerDetailsActive: true,
     token: null,
@@ -37,7 +38,6 @@ export default {
   }),
   getters: {
     getField,
-
   },
   actions: {
     setScreenMobile({ commit }, payload) {
@@ -62,21 +62,41 @@ export default {
       //     },
       //     timeout: 300000,
       //   };
+      console.log("fileUpload", payload);
+
       try {
-        const result = await this.$repositories.adminUploads.upload(payload)
-        return result;
+        if (payload.route_path.includes('mimifood')) {
+          return await this.$repositories_mimifood.mimiFoodFiles.uploads(payload)
+        } else {
+          return await this.$repositories.adminUploads.upload(payload)
+        }
       } catch (err) {
       };
     },
     async fetchFiles({ commit }, payload) {
-      return await this.$repositories.adminUploads.fetchFiles(
-        payload
-      );
+      if (payload.route_path.includes('mimifood')) {
+        const res = await this.$repositories_mimifood.mimiFoodFiles.fetchFiles(
+          payload
+        );
+        return res.data.response.data;
+      } else {
+        const res = await this.$repositories.adminUploads.fetchFiles(
+          payload.folder
+        );
+        return res.data.files;
+      }
     },
     async deleteFile({ commit }, payload) {
-      return await this.$repositories.adminUploads.deleteFile(
-        payload
-      );
+      if (payload.route_path.includes('mimifood')) {
+        return await this.$repositories_mimifood.mimiFoodFiles.deleteFile(
+          payload.file.id
+        );
+      } else {
+        return await this.$repositories.adminUploads.deleteFile(
+          payload.file
+        );
+      }
+
     },
   },
   mutations: {

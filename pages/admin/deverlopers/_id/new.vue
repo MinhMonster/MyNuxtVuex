@@ -78,7 +78,6 @@ export default {
   },
   methods: {
     ...mapActions("admin/deverlopers", [
-      "get_deverlopers",
       "get_deverloper",
       "setNew",
     ]),

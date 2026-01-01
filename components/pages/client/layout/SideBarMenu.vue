@@ -107,12 +107,12 @@
             <template v-if="token && user && user.admin">
               <div class="h-line"></div>
               <div class="member-nav-item">
-                <nuxt-link to="/admin/game/ninjas">
+                <a href="/admin/login">
                   <v-btn icon>
                     <v-icon>mdi-cog-outline</v-icon>
                   </v-btn>
                   <span class="member-nav-name">Quản lý: Admin</span>
-                </nuxt-link>
+                </a>
               </div>
             </template>
           </div>

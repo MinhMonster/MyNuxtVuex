@@ -23,12 +23,8 @@
 </template>
 
 <script>
-// import { ValidationProvider } from "vee-validate";
-
 export default {
-  components: {
-    // ValidationProvider,
-  },
+  components: {},
   props: {
     user: {
       type: Object,
@@ -37,15 +33,11 @@ export default {
   },
   data() {
     return {
-      // user: "",
       rules: {
         required: (value) => !!value || "Không được để trống.",
       },
     };
   },
   name: "FormLogin",
-  created() {},
-  methods: {},
-  computed: {},
 };
 </script>

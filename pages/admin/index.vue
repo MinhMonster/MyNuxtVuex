@@ -4,7 +4,17 @@
 
 <script>
 export default {
+  components: {},
   layout: "adminDev",
-  name: "IndexPage",
+  name: "IndexAdmin",
+  props: {},
+  data() {
+    return {};
+  },
+  async mounted() {},
+  computed: {},
+  methods: {},
 };
 </script>
+<style >
+</style>

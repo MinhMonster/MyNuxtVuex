@@ -69,18 +69,43 @@ export default {
 
     async fetchFolders({ commit }, payload) {
       try {
-        const res = await this.$repositories.adminFolders.fetchFolders()
-        commit('SET_FOLDERS', res.data.folders)
+        console.log("payload", payload);
+        let folders = [];
+        if (payload.includes('mimifood')) {
+          const res = await this.$repositories_mimifood.mimiFoodFolders.adminFetchFolders()
+          folders = res.data.response.data;
+        } else {
+          const res = await this.$repositories.adminFolders.fetchFolders();
+          folders = res.data.folders;
+        }
+
+        commit('SET_FOLDERS', folders)
       } catch (error) { }
     },
     async createFolder({ commit }, payload) {
       try {
-        return await this.$repositories.adminFolders.createFolder(payload)
+        if (payload.route_path.includes('mimifood')) {
+          return await this.$repositories_mimifood.mimiFoodFolders.adminCreateFolder({
+            name: payload.name,
+            parent_id: payload.parent_id
+
+          })
+        } else {
+          return await this.$repositories.adminFolders.createFolder(payload)
+        }
+
       } catch (error) { }
     },
     async editNameFolder({ commit }, payload) {
       try {
-        return await this.$repositories.adminFolders.editNameFolder(payload)
+        if (payload.route_path.includes('mimifood')) {
+          return await this.$repositories_mimifood.mimiFoodFolders.adminUpdateFolder({
+            name: payload.name,
+            id: payload.folder.id
+          })
+        } else {
+          return await this.$repositories.adminFolders.editNameFolder(payload)
+        }
       } catch (error) { }
     },
 

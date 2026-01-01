@@ -1,48 +1,42 @@
 <template>
-  <client-only>
-    <div>
-      <v-card-title>Bài viết mới</v-card-title>
+  <NavAdmin
+    title="Create Topic"
+    goBack
+    next-page
+    reload
+    @reload="$refs.form.resetForm()"
+  >
+    <template #body>
       <div id="body-admin">
-        <form @submit.prevent="create()">
-          <TopicForm label="Bài viết mới"></TopicForm>
-          <div class="text-right">
-            <v-btn type="submit" color="" to="/admin/topics"> Trở Về </v-btn>
-            <v-btn type="submit" color="primary"> Thêm mới </v-btn>
-          </div>
-        </form>
+        <AdminBaseForm
+          ref="form"
+          module="admin/topics"
+          repository="adminTopics"
+          :id="$route.params.id"
+          :store="{
+            state: 'queryTopic',
+            module: 'admin.topics',
+            form: 'formTopic',
+            create: 'adminCreateTopic',
+          }"
+          :multipleImages="false"
+        ></AdminBaseForm>
       </div>
-    </div>
-  </client-only>
+    </template>
+  </NavAdmin>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-import TopicForm from "@/components/pages/admin/topics/form/TopicForm.vue";
+import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
+import AdminBaseForm from "@/components/pages/admin/base/AdminBaseForm";
 
 export default {
-  components: { TopicForm },
+  components: { NavAdmin, AdminBaseForm },
   layout: "adminDev",
-
-  data() {
-    return {
-      input: {},
-    };
-  },
-
-  mounted() {
-    this.newTopic();
-  },
-  methods: {
-    ...mapActions("admin/topics", ["createTopic", "newTopic"]),
-
-    async create() {
-      try {
-        console.log("create");
-        await this.createTopic();
-      } catch (e) {
-        console.log(e);
-      }
-    },
-  },
+  name: "CreateTopic",
+  props: {},
+  computed: {},
+  async mounted() {},
+  methods: {},
 };
 </script>

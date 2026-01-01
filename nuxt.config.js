@@ -7,61 +7,63 @@ export default {
   // mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'MuaBanNick.Pro - %s',
-    title: 'Hệ thống bán Nick tự động. Shop Game TeaMobile. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín Nhất MXH',
+    titleTemplate: ' %s',
+    title: 'Administrator',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Hệ thống bán Nick tự động 100%. Giảm 10% tất cả các Nick trên Shop. Shop Mua Bán Nick Ninja School, Ngọc Rồng, Avatar Uy Tín - Giá Rẻ- An Toàn Nhất MXH' },
+      { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
-      { name: 'keywords', content: 'nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja,  shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, ' },
-      { property: 'og:image', content: '/banner.jfif' },
-      { property: 'og:description', content: 'MuaBanNick.Pro - Shop Mua Bán Nick Ninja School Online, Ngọc Rồng Online, Avatar Tự Động' }
+      { property: 'og:image', content: '/setting.ico' },
+      { property: 'og:description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/setting.ico' }
     ]
-  ,
-  
+    ,
+
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    "@/assets/css/mms-style.css",
+    // "@/assets/css/mms-style.css",
     "@/assets/styles/common.scss",
-    "@/assets/styles/home/_ckeditor.scss",
-    "@/assets/styles/home/account.scss",
+    // "@/assets/styles/home/_ckeditor.scss",
+    // "@/assets/styles/home/account.scss",
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: "@/plugins/vuex-persistedstate", ssr: false },
     "@/plugins/axios",
+    "@/plugins/axios_mimifood",
+
     // "@/plugins/vue-sweetalert",
 
     '~/plugins/repositories.js',
+    '~/plugins/repositories_mimifood.js',
     { src: "@/plugins/vue-infinite-scroll", ssr: false },
     { src: "@/plugins/vue-codemirror", ssr: false },
     { src: "@/plugins/vue-slick-carousel" },
     { src: "@/plugins/vue-clipboard2", ssr: false },
+    { src: '@/plugins/mixins', },
 
-    // "~/plugins/axios",
-    // "~/plugins/vee-validate",  
+    // "~/plugins/vee-validate",
     // { src: "@/plugins/vee-validate", ssr: false },
     // "~/apis/modules/admin",
 
 
   ],
   axios: {
-    baseURL: process.env.API_BASE_URL || 'https://muabannick.pro'
+    baseURL: process.env.API_BASE_URL || 'https://muabannick.pro',
   },
   env: {
     // nodeEnv: process.env.NODE_ENV || "development",
-    apiUrl:
-      process.env.API_BASE_URL,
+    apiUrl: process.env.API_BASE_URL,
+    apiMimiFoodUrl: process.env.API_BASE_MIMIFOOD_URL,
   },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

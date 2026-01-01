@@ -9,8 +9,6 @@ const ADD_REQUEST = "ADD_REQUEST";
 const REMOVE_REQUEST = "REMOVE_REQUEST";
 const DISABLE_LOADING = "DISABLE_LOADING";
 
-
-
 export default {
   state() {
     return {
@@ -49,5 +47,4 @@ export default {
     HOUS: HomeUser,
 
   },
-  
 };

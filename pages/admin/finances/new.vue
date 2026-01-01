@@ -32,18 +32,6 @@ import FinanceForm from "@/components/pages/admin/finances/form/FinanceForm.vue"
 export default {
   components: { FinanceForm },
   layout: "adminDev",
-  head() {
-    return {
-      title: "New Finance",
-      meta: [
-        {
-          hid: "New finance",
-          name: "New finance",
-          content: "New finance",
-        },
-      ],
-    };
-  },
   name: "NewFinance",
   data() {
     return {
@@ -59,7 +47,7 @@ export default {
 
   created() {},
   methods: {
-    ...mapActions("admin/finances/edit", ["get_finances", "new", setFinances]),
+    ...mapActions("admin/finances/edit", ["get_finances", "new"]),
     async create() {
       const formData = new FormData();
       formData.append("title", this.finance.title);

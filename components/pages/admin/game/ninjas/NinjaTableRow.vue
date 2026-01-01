@@ -17,6 +17,12 @@
     <td class="text-center">
       {{ typeNinja(ninja.loainick) }}
     </td>
+    <td
+      class="text-center"
+      :class="`${ninja.status == 'yes' ? 'text-primary' : 'text-danger'}`"
+    >
+      {{ statusNinja(ninja.status) }}
+    </td>
     <td class="text-center">
       <v-btn light icon :to="`/admin/game/ninjas/${ninja.ID}`">
         <v-icon>mdi-pencil-box-multiple-outline</v-icon>

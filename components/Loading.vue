@@ -1,6 +1,9 @@
 <template>
-  <div v-if="visible" class="loading" :class="{ hidden: hidden }">
-    <svg version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+  <div v-if="visible" class="loading-template" :class="{ hidden: hidden }">
+    <div class="svg">
+      <Loading />
+    </div>
+    <!-- <svg version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
       <path fill="#fff" d="M31.6,3.5C5.9,13.6-6.6,42.7,3.5,68.4c10.1,25.7,39.2,38.3,64.9,28.1l-3.1-7.9c-21.3,8.4-45.4-2-53.8-23.3
         c-8.4-21.3,2-45.4,23.3-53.8L31.6,3.5z">
         <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="2s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform>
@@ -13,12 +16,17 @@
         L82,35.7z">
         <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="2s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform>
       </path>
-    </svg>
+    </svg> -->
   </div>
 </template>
 
 <script>
+import Loading from "@/components/pages/admin/layout/Loading.vue";
+
 export default {
+  components: {
+    Loading,
+  },
   data: () => ({
     visible: false,
     hidden: true,
@@ -28,8 +36,7 @@ export default {
       return this.$store.state.requests;
     },
   },
-  mouted(){
-  },
+  mouted() {},
   watch: {
     "requests.length"(value) {
       if (value > 0) {
@@ -56,17 +63,17 @@ export default {
 };
 </script>
 <style>
-.loading{
+.loading-template {
   z-index: 100000;
   position: fixed;
   background-color: #333;
-  opacity: 0.5;
+  opacity: 0.8;
   height: 100vh;
   width: 100%;
 
 }
 
-.loading svg{
+.loading-template .svg {
   z-index: 100000;
   position: fixed;
   background-color: #333;

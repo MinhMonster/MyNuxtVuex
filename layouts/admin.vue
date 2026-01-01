@@ -205,9 +205,9 @@ export default {
 };
 </script>
 <style>
-@import "~/assets/css/admin-style.css";
-@import "~/assets/css/mms-style.css";
-.bg-default {
+/* @import "~/assets/css/admin-style.css"; */
+/* @import "~/assets/css/mms-style.css"; */
+/* .bg-default {
   background: #f0f2f5;
   color: #333;
 }
@@ -216,7 +216,6 @@ export default {
   color: #333;
   padding-left: 10px;
   height: 40px;
-  /* margin-top: 10px; */
 }
 
 #admin label {
@@ -233,7 +232,6 @@ export default {
 }
 
 #admin .v-text-field__slot {
-  /* margin-top: 10px; */
 }
 #admin .v-text-field .v-label--active {
   max-width: 100%;
@@ -242,7 +240,6 @@ export default {
 }
 
 #admin .v-input__control {
-  /* margin-bottom: 10px; */
 }
 
 #admin .quillWrapper {
@@ -259,5 +256,5 @@ export default {
 
 #admin .v-navigation-drawer--mini-variant .sub-menu {
   margin-left: 0px;
-}
+} */
 </style>

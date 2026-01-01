@@ -1,0 +1,25 @@
+#admin {
+
+  //   ::deep {
+  .v-btn:not(.v-btn--round).v-size--default {
+    min-width: 32px !important;
+    margin: 0 !important;
+    span {
+      padding: 0 5px;
+    }
+  }
+  .theme--light.v-btn.v-btn--disabled.v-btn--has-bg {
+    background-color: gray !important;
+  }
+
+  //   }
+
+  .v-btn--icon.v-size--default {
+    .v-icon {
+      &.mdi.mdi-content-copy {
+        color: #555;
+      }
+    }
+  }
+
+}

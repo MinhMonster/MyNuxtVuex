@@ -83,10 +83,17 @@ export default {
       await this.fetchUser();
     }
     this.setScreenMobile(this.isScreenMobile);
+    // this.$nextTick(function () {
+    //   this.nextPath();
+    // });
+    // window.addEventListener("click", this.nextPath());
     this.$nextTick(function () {
-      this.nextPath();
+      this.onResize();
     });
-    window.addEventListener("click", this.nextPath());
+    window.addEventListener("resize", this.onResize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
   },
   methods: {
     ...mapActions("home/users", ["logout", "fetchUser"]),
@@ -100,10 +107,10 @@ export default {
       const element = document.getElementById("next-bottom");
       element.scrollIntoView();
     },
-    nextPath() {
-      const path = this.$route.path;
-      this.setPath(path);
-    },
+    // nextPath() {
+    //   const path = this.$route.path;
+    //   this.setPath(path);
+    // },
   },
 };
 </script>

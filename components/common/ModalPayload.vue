@@ -1,27 +1,88 @@
-
 <template>
-  <b-modal ref="modal" :title="title" scrollable :size="size" @hide="close()">
-    <div class="modal-info">
-      <slot name="content"></slot>
-    </div>
-    <template #modal-footer="{ hide }">
+  <v-dialog
+    v-if="dialog"
+    v-model="dialog"
+    :title="title"
+    scrollable
+    :size="size"
+    :width="width"
+    :max-width="maxWidth"
+    :height="height"
+    :max-height="maxHeight"
+    :content-class="classDiglog"
+    @hide="close()"
+    class="modal-content"
+    aria-labelledby="labeldiv"
+  >
+    <v-card>
+      <v-btn
+        v-if="isIconClose"
+        icon
+        class="btn-sm text-white bold bg-danger close"
+        id="btn-close-modal"
+        title="Đóng"
+        aria-label="Đóng"
+        @click="close()"
+      >
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+      <v-card-title class="title-modal text-menu-main bold">
+        {{ title }}
+      </v-card-title>
+      <v-card-text class="modal-body" :class="classContent">
+        <div class="base-dialog">
+          <div class="base-dialog-bg">
+            <slot name="content"></slot>
+          </div>
+        </div>
+      </v-card-text>
+      <v-card-actions v-if="!hiddenFooter">
+        <div class="text-right right w-100">
+          <div class="flex-columns">
+            <slot name="footer-content"></slot>
+            <div class="flex right gap-5px">
+              <div class="text-right right w-100">
+                <slot name="footer-button"></slot>
+              </div>
+              <div v-if="isBtnClose" class="text-right right w-100">
+                <v-btn
+                  color="red"
+                  class="btn-sm text-white bold bg-danger"
+                  id="btn-close-modal"
+                  title="Đóng"
+                  aria-label="Đóng"
+                  @click="close()"
+                >
+                  {{ textClose }}
+                </v-btn>
+              </div>
+            </div>
+          </div>
+        </div>
+      </v-card-actions>
+    </v-card>
+    <!-- <template #modal-footer="{ hide }">
       <div class="flex-columns">
         <slot name="footer-content"></slot>
         <div class="flex right gap-5px">
           <slot name="footer-button"></slot>
-          <b-button size="sm" variant="danger" @click="hide()">
+          <v-btn size="sm" color="danger" @click="hide()">
             {{ textClose }}
-          </b-button>
+          </v-btn>
         </div>
       </div>
-    </template>
-  </b-modal>
+    </template> -->
+  </v-dialog>
 </template>
-  
+
 <script>
 export default {
   name: "ModalPayload",
-
+  data() {
+    return {
+      dialog: false,
+    };
+  },
   props: {
     title: {
       type: String,
@@ -35,21 +96,55 @@ export default {
       type: String,
       default: "lg",
     },
+    height: {
+      type: String,
+      default: "auto",
+    },
+    maxHeight: {
+      type: String,
+      default: "90vh !important",
+    },
+    width: {
+      type: String,
+      default: "500px",
+    },
+    maxWidth: {
+      type: String,
+      default: "500px",
+    },
+    classContent: {
+      type: String,
+      default: "",
+    },
+    classDiglog: {
+      type: String,
+      default: "",
+    },
+    hiddenFooter: Boolean,
+    isBtnClose: {
+      type: Boolean,
+      default: true,
+    },
+    isIconClose: {
+      type: Boolean,
+      default: true,
+    },
   },
-  mounted() {},
-  computed: {},
   methods: {
     show() {
-      this.$refs.modal.show();
+      this.dialog = true;
+      // this.$refs.modal.show();
     },
     close() {
+      this.dialog = false;
+      // this.$refs.modal.hide();
       this.$emit("hide");
     },
   },
 };
 </script>
-  
-  <style lang="scss" scoped>
+
+<style lang="scss" scoped>
 .title {
   color: #1e5b7e;
   margin-bottom: 10px;
@@ -59,8 +154,16 @@ export default {
   .modal-header {
     border-left: 2px solid #663019;
     border-right: 2px solid #663019;
-    background: #e28637 url(https://muabannick.pro/images/header/bg_top.png)
-      repeat-x;
+    // background: #e28637 url(https://muabannick.pro/images/header/bg_top.png)
+    //   repeat-x;
+    background-image: linear-gradient(
+      180deg,
+      #561d00,
+      #e28637 9%,
+      #e28637 58%,
+      #e28637
+    );
+
     border-bottom: none;
     display: flex;
     justify-content: center;
@@ -71,6 +174,7 @@ export default {
       color: #561d00;
       text-transform: uppercase;
     }
+
     .close {
       display: flex !important;
       color: var(--danger);
@@ -100,11 +204,13 @@ export default {
   .modal-dialog-scrollable .modal-content {
     overflow: visible;
   }
+
   .modal-body {
     position: relative;
-    border: 2px solid #561d00;
-    background: #ffcf9c;
+    // border: 2px solid #561d00;
+    // background: #ffcf9c;
     padding: 10px;
+
     .modal-info {
       border-radius: 4px;
       position: relative;
@@ -114,6 +220,7 @@ export default {
       // background: #ffefa3;
     }
   }
+
   .modal-footer {
     border: 2px solid #663019;
     background: #e28637;

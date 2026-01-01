@@ -1,0 +1,38 @@
+#admin {
+
+  .bg-editor {
+    .v-input__slot {
+      .v-select__slot {
+        .v-select__selections {
+          margin-left: 0px;
+          border: 1px solid #a4a4a4;
+
+          input {
+            border: none;
+          }
+        }
+
+        .v-input__append-inner {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .v-menu__content {
+    .v-select-list {
+      .v-list-item {
+        &.v-list-item--active {
+          .v-list-item__content {
+            color: #fff;
+
+            .v-list-item__title {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

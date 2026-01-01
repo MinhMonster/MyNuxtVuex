@@ -41,7 +41,7 @@
     <div id="next-bottom"></div>
   </div>
 </template>
-  
+
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 
@@ -106,7 +106,7 @@ export default {
   },
   data() {
     return {
-      isMobile: false,
+      // isMobile: false,
     };
   },
   async mounted() {

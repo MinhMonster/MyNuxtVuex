@@ -108,23 +108,6 @@ export default {
       isMobile: false,
     };
   },
-  async mounted() {
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", this.onResize);
-  },
-  computed: {},
-  methods: {
-    onResize() {
-      const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    },
-  },
 };
 </script>
   
