@@ -73,9 +73,7 @@ export default {
     ...mapState("home/users", ["user"]),
     content() {
       return `Mua Xu Ninja  ${
-        this.history.ingame +
-        " Sv" +
-        this.history.server
+        this.history.character_name + " Sv" + this.history.server
       } `;
     },
     amount() {

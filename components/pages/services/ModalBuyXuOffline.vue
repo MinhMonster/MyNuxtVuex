@@ -16,7 +16,7 @@
                 <tr>
                   <th class="info-nick" style="">Tên nhân vật</th>
                   <td class="mua-nick">
-                    <span> {{ history.ingame }}</span>
+                    <span> {{ history.character_name }}</span>
                   </td>
                 </tr>
                 <tr>
