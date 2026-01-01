@@ -28,6 +28,10 @@
               :value="`${getValue(record, column)}`"
             >
               {{ valueCustom(record, column) }}
+              <ButtonCoppy
+                v-if="isCopy(column)"
+                :content="getValue(row, column)"
+              ></ButtonCoppy>
             </slot>
             <!-- <template #[column.key]="{ record }">
               <slot
@@ -52,10 +56,12 @@
 
 <script>
 import Pagination from "@/components/global/molecules/common/Pagination";
+import ButtonCoppy from "@/components/common/ButtonCoppy";
 
 export default {
   components: {
     Pagination,
+    ButtonCoppy,
   },
   props: {
     data: {
@@ -94,6 +100,9 @@ export default {
         return `sticky-column-${fixed}`;
       }
       return "";
+    },
+    isCopy(column) {
+      return column?.copy;
     },
     onChange(page) {
       this.$emit("onChange", page);

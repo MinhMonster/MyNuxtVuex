@@ -143,12 +143,12 @@ const formNinja =
       value: 'character_name'
     },
     {
-      title: "Giá Bán (Card)",
+      title: "Giá Bán (Vnd)",
       type: "cash",
       value: 'selling_price'
     },
     {
-      title: "Giá Bán (Vnđ)",
+      title: "Giá Sale (Vnđ)",
       type: "cash_sale_off",
       value: 'selling_price',
     },
@@ -266,19 +266,43 @@ const formNinja =
       value: 'eye'
     },
     {
+      title: "Thú cữoi",
+      type: "text",
+      value: 'mounts',
+      cols: 12,
+      sm: 12,
+      md: 12,
+      lg: 12
+    },
+    {
       title: "Phân thân",
       type: "text",
       value: 'clone'
     },
     {
-      title: "Thú cữoi",
-      type: "text",
-      value: 'mounts'
-    },
-    {
       title: "Cải trang",
       type: "text",
       value: 'disguise'
+    },
+    {
+      title: "Cải trang 2",
+      type: "text",
+      value: 'disguise_2'
+    },
+    {
+      title: "Pet",
+      type: "text",
+      value: 'pet'
+    },
+    {
+      title: "Mặt nạ",
+      type: "text",
+      value: 'mask'
+    },
+        {
+      title: "Gậy",
+      type: "text",
+      value: 'stick'
     },
     {
       title: "Yên",
@@ -294,6 +318,21 @@ const formNinja =
       title: "Bánh",
       type: "text",
       value: 'cake'
+    },
+    {
+      title: "Ngọc 1",
+      type: "text",
+      value: 'gem_1'
+    },
+     {
+      title: "Ngọc 2",
+      type: "text",
+      value: 'gem_2'
+    },
+     {
+      title: "Ngọc 3",
+      type: "text",
+      value: 'gem_3'
     },
     // {
     //   title: "Sim",
@@ -352,7 +391,7 @@ const formModalNinja =
       md: 6
     },
     {
-      title: "Giá Bán (Card)",
+      title: "Giá Bán (Vnd)",
       type: "cash",
       value: 'selling_price',
       cols: 6,
@@ -361,7 +400,7 @@ const formModalNinja =
       md: 6
     },
     {
-      title: "Giá Bán (Vnđ)",
+      title: "Giá Sale (Vnđ)",
       type: "cash_sale_off",
       value: 'selling_price',
       cols: 6,

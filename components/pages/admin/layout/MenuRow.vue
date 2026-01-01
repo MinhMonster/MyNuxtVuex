@@ -113,6 +113,16 @@ export default {
         },
         {
           icon: "mdi-image",
+          title: "Carots",
+          to: "/admin/history/carots",
+        },
+        {
+          icon: "mdi-image",
+          title: "Xu Ninjas",
+          to: "/admin/history/xu-ninjas",
+        },
+        {
+          icon: "mdi-image",
           title: "Mimi Food",
           to: "/admin/mms",
         },

@@ -1,6 +1,6 @@
 <template>
   <NavAdmin
-    title="Game Accoutn Solds"
+    title="Bank Deposits"
     goBack
     next-page
     filter
@@ -10,84 +10,96 @@
     <template #body>
       <v-row>
         <v-col cols="12" md="12" sm="12">
+          <!-- <v-card> -->
           <AdminBaseTable
             ref="table"
-            module="admin/histories/game_account_sold"
-            repository="adminGameAccountSold"
+            module="admin/histories/xu_ninjas"
+            repository="adminXuNinjas"
             :columns="columns"
             :store="{
-              state: 'queryGameAccountSolds',
-              module: 'admin.histories.game_account_sold',
-              action: 'fetchGameAccountSolds',
+              state: 'queryXuNinjas',
+              module: 'admin.histories.xu_ninjas',
+              action: 'fetchXuNinjas',
             }"
           >
+            <template #status="props">
+              <div @click="confirm(props.row)">
+                <StatusBtn :status="props.row.status" />
+              </div>
+            </template>
             <template #action="props">
               <v-btn light icon @click="showActions(props.row)">
                 <v-icon>mdi-dots-vertical</v-icon>
               </v-btn>
             </template>
           </AdminBaseTable>
+          <!-- </v-card> -->
         </v-col>
       </v-row>
-      <FormModal
-        ref="modal"
-        :title="'ID: ' + format_number(queryGameAccountSold.idnick)"
-        :id="queryGameAccountSold.ID"
-        :min-height="update === 'info' ? '280px' : '100px'"
-        module="admin/histories/game_account_sold"
-        repository="adminGameAccountSold"
-        :store="{
-          state: 'queryGameAccountSold',
-          module: 'admin.histories.game_account_sold',
-          form: update === 'info' ? 'formAccountSold' : 'formAccountPrice',
-          // action: 'fetchGameAccountSold',
-          update: 'updateGameAccountSold',
-        }"
-        @updated="fetchData()"
-      />
       <ActionsModal
         ref="modalActions"
         :item="history"
-        @updateInfo="showUpdateInfo"
-        @updatePrice="updatePrice"
+        @updateStatus="updateStatus"
         @onDelete="onDelete"
       ></ActionsModal>
+      <ModalUpdateStatus
+        ref="modal"
+        :record="selected"
+        @confirmed="fetchData()"
+      />
     </template>
   </NavAdmin>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
+
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
-import FormModal from "@/components/pages/admin/base/modal/FormModal";
-import ActionsModal from "@/components/pages/admin/histories/game_account_sold/ActionsModal";
+import ModalUpdateStatus from "@/components/pages/admin/histories/xu-ninjas/ModalUpdateStatus";
+import StatusBtn from "@/components/common/client/button/StatusBtn";
+import ActionsModal from "@/components/pages/admin/histories/carots/ActionsModal";
+
 export default {
   layout: "adminDev",
   components: {
     NavAdmin,
     AdminBaseTable,
-    FormModal,
+    ModalUpdateStatus,
+    StatusBtn,
     ActionsModal,
   },
-  name: "AdminSoldNinjas",
+  name: "XuNinjas",
   data() {
     return {
+      selected: {},
       columns: [
         {
-          key: "ID",
+          key: "id",
           label: "ID",
+          type: "number",
+          fixed: "left",
           attributes: {
             style: {
-              width: "50px",
+              minWidth: "50px",
+              textAlign: "center !important",
             },
           },
         },
         {
-          key: "idnick",
-          label: "ID Nick",
+          key: "status",
+          label: "Status",
+          attributes: {
+            style: {
+              minWidth: "80px",
+            },
+          },
+        },
+
+        {
+          key: "amount",
+          label: "Amount",
           type: "number",
-          copy: true,
           attributes: {
             style: {
               minWidth: "100px",
@@ -95,41 +107,55 @@ export default {
           },
         },
         {
-          key: "taikhoan",
-          label: "Account",
-          copy: true,
-          attributes: {
-            style: {
-              minWidth: "170px",
-            },
-          },
-        },
-        {
-          key: "giatien",
+          key: "price",
           label: "Price",
           type: "number",
           attributes: {
+            align: "center",
             style: {
-              minWidth: "120px",
+              minWidth: "50px",
             },
           },
         },
         {
-          key: "gianhap",
-          label: "Cost",
+          key: "xu",
+          label: "Xu",
           type: "number",
           attributes: {
             style: {
-              minWidth: "120px",
+              minWidth: "80px",
+              textAlign: "center !important",
             },
           },
         },
         {
-          key: "type",
-          label: "Game",
+          key: "ingame",
+          label: "In Game",
           attributes: {
             style: {
-              minWidth: "150px",
+              minWidth: "100px",
+            },
+          },
+        },
+        {
+          key: "server",
+          label: "Server",
+          attributes: {
+            align: "center",
+            style: {
+              minWidth: "50px",
+            },
+          },
+        },
+        {
+          key: "uid",
+          label: "ID User",
+          copy: true,
+          attributes: {
+            align: "center",
+            style: {
+              minWidth: "180px",
+              textAlign: "center !important",
             },
           },
         },
@@ -142,16 +168,14 @@ export default {
             },
           },
         },
-        {
-          key: "uid",
-          label: "UID",
-        },
+
         {
           key: "time",
           label: "Time",
           attributes: {
             style: {
               minWidth: "150px",
+              textAlign: "center !important",
             },
           },
         },
@@ -168,29 +192,15 @@ export default {
         },
       ],
       history: null,
-      isShowActions: false,
-      update: "info",
     };
   },
-  computed: {
-    ...mapFields("admin/histories/game_account_sold", {
-      queryGameAccountSold: "queryGameAccountSold",
-    }),
-  },
-  async mounted() {},
   methods: {
-    showUpdateInfo(row) {
-      this.update = "info";
-      this.$refs.modal.dialog = true;
-      this.queryGameAccountSold = row;
-    },
-    updatePrice(row) {
-      this.update = "price";
-      this.$refs.modal.dialog = true;
-      this.queryGameAccountSold = row;
-    },
     fetchData() {
       this.$refs.table.fetchData();
+    },
+    updateStatus(row) {
+      this.selected = row;
+      this.$refs.modal.dialog = true;
     },
     async showActions(history) {
       this.history = history;
@@ -199,7 +209,7 @@ export default {
     async onDelete(history) {
       this.$swal
         .fire({
-          title: `Delete ID: ${history.ID} ?`,
+          title: `Delete ID: ${history.id} ?`,
           text: "",
           icon: "question",
           type: "warning",
@@ -216,7 +226,7 @@ export default {
             try {
               const res =
                 await this.$repositories.adminGameAccountSold.destroyGameAccountSold(
-                  history.ID
+                  history.id
                 );
               if (res.data.code === 200) {
                 await this.$toasted.success(res.data.message);
@@ -231,3 +241,4 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped></style>

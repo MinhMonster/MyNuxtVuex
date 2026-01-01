@@ -13,4 +13,13 @@
   }
 
   //   }
+
+  .v-btn--icon.v-size--default {
+    .v-icon {
+      &.mdi.mdi-content-copy {
+        color: #555;
+      }
+    }
+  }
+
 }

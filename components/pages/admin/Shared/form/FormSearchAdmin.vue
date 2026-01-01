@@ -7,7 +7,7 @@
           cols="12"
           sm="4"
           md="3"
-          lg="2"
+          lg="3"
           :key="key"
           v-show="item.show"
         >
@@ -20,6 +20,17 @@
               density="compact"
               :label="item.title"
               :placeholder="item.placeholder"
+              variant="outlined"
+            ></v-text-field>
+            <v-text-field
+              v-if="item.type === 'date'"
+              type="date"
+              v-model="item.value"
+              @change="changeData"
+              density="compact"
+              :label="item.title"
+              :placeholder="item.placeholder"
+              class="input-date"
               variant="outlined"
             ></v-text-field>
             <v-select
@@ -39,7 +50,7 @@
             <i class="fa fa-search"></i> Search
           </v-btn>
         </v-col>
-        <v-col cols="6" sm="3" md="2">
+        <v-col cols="6" sm="4" md="3">
           <v-btn
             class="btn btn-success btn-search text-white w-100"
             @click="reset()"

@@ -15,4 +15,7 @@ export default ($api) => ({
   updateGameAccountSold(payload) {
     return $api.post(`${resource}/updateGameAccountSold.php`, payload)
   },
+  destroyGameAccountSold(payload) {
+    return $api.get(`${resource}/destroyGameAccountSold.php`, { params: { id: payload } })
+  },
 })
