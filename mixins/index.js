@@ -262,58 +262,64 @@ export default {
 
     classNinja(type) {
       switch (type) {
-        case "1":
+        case 1:
           return "Đao";
-        case "2":
+        case 2:
           return "Kiếm";
-        case "3":
+        case 3:
           return "Tiêu";
-        case "4":
+        case 4:
           return "Cung";
-        case "5":
+        case 5:
           return "Quạt";
-        case "6":
+        case 6:
           return "Kunai";
-        case "7":
-          return "Chưa";
+        case 7:
+          return "Chưa vào lớp";
+        default:
+          return type;
       }
     },
 
     serverNinja(type) {
       switch (type) {
-        case "1":
+        case 1:
           return "Bokken";
-        case "2":
+        case 2:
           return "Shuriken + Tessen";
-        case "4":
+        case 4:
           return "Kunai";
-        case "5":
+        case 5:
           return "katana";
-        case "6":
-        case "7":
-        case "9":
+        case 6:
+        case 7:
+        case 9:
           return "Tone + Sanzu + Fukiya";
-        case "8":
+        case 8:
           return "SenSha";
+        default:
+          return type;
       }
     },
 
     serverNinjaNumber(type) {
       switch (type) {
-        case "1":
+        case 1:
           return "1";
-        case "2":
+        case 2:
           return "23";
-        case "4":
+        case 4:
           return "4";
-        case "5":
+        case 5:
           return "5";
-        case "6":
-        case "7":
-        case "9":
+        case 6:
+        case 7:
+        case 9:
           return "679";
-        case "8":
+        case 8:
           return "8";
+        default:
+          return type;
       }
     },
 

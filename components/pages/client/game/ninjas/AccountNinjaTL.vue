@@ -17,150 +17,156 @@
       />
       <template v-if="!accountNinja.is_full_image">
         <span
-          v-if="accountNinja.tl1"
+          v-if="accountNinja.tl_1"
           class="account-tl bg-equip text-13-450"
           style="right: 24%; top: 19%"
-          >{{ accountNinja.tl1 }}</span
+          >{{ accountNinja.tl_1 }}</span
         >
         <span
-          v-if="accountNinja.tl2"
+          v-if="accountNinja.tl_2"
           class="account-tl bg-equip text-13-450"
           style="right: 24%; top: 30.5%"
-          >{{ accountNinja.tl2 }}</span
+          >{{ accountNinja.tl_2 }}</span
         >
         <span
-          v-if="accountNinja.tl3"
+          v-if="accountNinja.tl_3"
           class="account-tl bg-equip text-13-450"
           style="right: 24%; top: 42%"
-          >{{ accountNinja.tl3 }}</span
+          >{{ accountNinja.tl_3 }}</span
         >
         <span
-          v-if="accountNinja.tl4"
+          v-if="accountNinja.tl_4"
           class="account-tl bg-equip text-13-450"
           style="right: 24%; top: 53%"
-          >{{ accountNinja.tl4 }}</span
+          >{{ accountNinja.tl_4 }}</span
         >
         <span
-          v-if="accountNinja.tl5"
+          v-if="accountNinja.tl_5"
           class="account-tl bg-equip text-13-450"
           style="right: 24%; top: 64%"
-          >{{ accountNinja.tl5 }}</span
+          >{{ accountNinja.tl_5 }}</span
         >
 
         <span
-          v-if="accountNinja.tl6"
+          v-if="accountNinja.tl_6"
           class="account-tl bg-equip text-13-450"
           style="left: 25%; top: 19%"
-          >{{ accountNinja.tl6 }}</span
+          >{{ accountNinja.tl_6 }}</span
         >
         <span
-          v-if="accountNinja.tl7"
+          v-if="accountNinja.tl_7"
           class="account-tl bg-equip text-13-450"
           style="left: 25%; top: 30.5%"
-          >{{ accountNinja.tl7 }}</span
+          >{{ accountNinja.tl_7 }}</span
         >
         <span
-          v-if="accountNinja.tl8"
+          v-if="accountNinja.tl_8"
           class="account-tl bg-equip text-13-450"
           style="left: 25%; top: 42%"
-          >{{ accountNinja.tl8 }}</span
+          >{{ accountNinja.tl_8 }}</span
         >
         <span
-          v-if="accountNinja.tl9"
+          v-if="accountNinja.tl_9"
           class="account-tl bg-equip text-13-450"
           style="left: 25%; top: 53%"
-          >{{ accountNinja.tl9 }}</span
+          >{{ accountNinja.tl_9 }}</span
         >
         <span
-          v-if="accountNinja.tl10"
+          v-if="accountNinja.tl_10"
           class="account-tl bg-equip text-13-450"
           style="left: 25%; top: 64%"
-          >{{ accountNinja.tl10 }}</span
+          >{{ accountNinja.tl_10 }}</span
         >
 
         <span
-          v-if="accountNinja.yoroi"
+          v-if="accountNinja.tl_11"
           class="account-tl bg-equip text-13-450"
           style="left: 44.5%; top: 62%"
-          >{{ accountNinja.yoroi }}</span
+          >{{ accountNinja.tl_11 }}</span
         >
 
         <span
-          v-if="accountNinja.eye"
+          v-if="accountNinja.tl_12"
           class="account-tl bg-equip text-13-450"
           style="left: 56.5%; top: 62%"
-          >{{ accountNinja.eye }}</span
+          >{{ accountNinja.tl_12 }}</span
         >
         <span
-          v-if="accountNinja.stick"
+          v-if="accountNinja.item_7"
           class="account-stick bg-equip text-13-450"
         >
-          {{ accountNinja.stick }}
+          {{ accountNinja.item_7 }}
         </span>
         <span
-          v-if="accountNinja.mask"
+          v-if="accountNinja.item_8"
           class="account-mask bg-equip text-13-450"
         >
-          {{ accountNinja.mask }}
-        </span>
-        <span v-if="accountNinja.pet" class="account-pet bg-equip text-13-450">
-          {{ accountNinja.pet }}
+          {{ accountNinja.item_8 }}
         </span>
         <span
-          v-if="accountNinja.disguise_2"
+          v-if="accountNinja.item_9"
+          class="account-pet bg-equip text-13-450"
+        >
+          {{ accountNinja.item_9 }}
+        </span>
+        <span
+          v-if="accountNinja.item_10"
           class="account-disguise-2 bg-equip text-13-450"
         >
-          {{ accountNinja.disguise_2 }}
+          {{ accountNinja.item_10 }}
         </span>
         <span
-          v-if="accountNinja.disguise"
+          v-if="accountNinja.item_11"
           class="account-disguise bg-equip text-13-450"
         >
-          {{ accountNinja.disguise }}
+          {{ accountNinja.item_11 }}
         </span>
         <span
-          v-if="accountNinja.clone"
+          v-if="accountNinja.item_12"
           class="account-clone bg-equip text-13-450"
         >
-          {{ accountNinja.clone }}
+          {{ accountNinja.item_12 }}
         </span>
-        <span v-if="accountNinja.mounts" class="account-mounts">
+        <span v-if="accountNinja.item_13" class="account-mounts">
           <span class="mounts-info bg-equip text-13-450">
-            {{ accountNinja.mounts }}
+            {{ accountNinja.item_13 }}
           </span>
         </span>
         <span
-          v-if="accountNinja.gem_3"
+          v-if="accountNinja.item_1"
           class="account-gem-3 bg-equip text-13-450"
         >
-          {{ accountNinja.gem_3 }}
+          {{ accountNinja.item_1 }}
         </span>
         <span
-          v-if="accountNinja.gem_2"
+          v-if="accountNinja.item_2"
           class="account-gem-2 bg-equip text-13-450"
         >
-          {{ accountNinja.gem_2 }}
+          {{ accountNinja.item_2 }}
         </span>
         <span
-          v-if="accountNinja.gem_1"
+          v-if="accountNinja.item_3"
           class="account-gem-1 bg-equip text-13-450"
         >
-          {{ accountNinja.gem_1 }}
+          {{ accountNinja.item_3 }}
         </span>
         <span
-          v-if="accountNinja.book"
+          v-if="accountNinja.item_4"
           class="account-book bg-equip text-13-450"
         >
-          {{ accountNinja.book >= 11 ? "Max" : accountNinja.book }} sách
+          {{ accountNinja.item_4 }}
         </span>
         <span
-          v-if="accountNinja.cake"
+          v-if="accountNinja.item_5"
           class="account-cake bg-equip text-13-450"
         >
-          {{ accountNinja.cake !== 20 ? accountNinja.cake : "Max" }} bánh
+          {{ accountNinja.item_5 }}
         </span>
-        <span v-if="accountNinja.yen" class="account-yen bg-equip text-13-450">
-          {{ accountNinja.yen }}
+        <span
+          v-if="accountNinja.item_6"
+          class="account-yen bg-equip text-13-450"
+        >
+          {{ accountNinja.item_6 }}
         </span>
         <span class="account-cash-atm text-bold">
           Lv: {{ accountNinja.level }}</span
@@ -169,7 +175,7 @@
           Sv: {{ serverNinjaNumber(accountNinja.server) }}
         </span>
 
-        <span class="account-ingame text-13-450">
+        <span class="account-ingame text-bold">
           @{{ accountNinja.character_name }}
         </span>
       </template>
