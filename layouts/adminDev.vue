@@ -141,10 +141,10 @@ export default {
   /* margin-top: 10px; */
 }
 
-#admin label {
+/* #admin label {
   color: #a4a4a4;
   padding-left: 10px;
-}
+} */
 #admin.v-application .primary--text {
   color: #333 !important;
   caret-color: #333 !important;

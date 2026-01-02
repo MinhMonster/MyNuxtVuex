@@ -194,7 +194,7 @@ const formNinja =
       value: 'level'
     },
     {
-      title: "Vũ Khí",
+      title: "V.Khí",
       type: "number",
       value: 'weapon'
     },
@@ -205,72 +205,284 @@ const formNinja =
     // },
     {
       title: "Thông tin",
-      type: "content-editer",
+      type: "text",
       value: 'description',
       cols: 12,
       sm: 12,
       md: 12,
       lg: 12
     },
+    //row 1
     {
-      title: "Vũ Khí",
-      type: "number",
-      value: 'tl_1'
-    },
-    {
-      title: "Dây chuyền",
-      type: "number",
-      value: 'tl_2'
-    },
-    {
-      title: "Nhẫn",
-      type: "number",
-      value: 'tl_3'
-    },
-    {
-      title: "Bội",
-      type: "number",
-      value: 'tl_4'
-    },
-    {
-      title: "Bùa",
-      type: "number",
-      value: 'tl_5'
-    },
-    {
-      title: "Yoroy",
-      type: "number",
-      value: 'tl_11'
+      title: "Item 7",
+      type: "text",
+      value: 'item_7',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
     },
     {
       title: "Nón",
       type: "number",
-      value: 'tl_6'
+      value: 'tl_6',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "",
+      type: "blank",
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "V.Khí",
+      type: "number",
+      value: 'tl_1',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "Item 1",
+      type: "text",
+      value: 'item_1',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
+    },
+
+    // row 2
+    {
+      title: "Item 8",
+      type: "text",
+      value: 'item_8',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
     },
     {
       title: "Áo",
       type: "number",
-      value: 'tl_7'
+      value: 'tl_7',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
     },
     {
-      title: "Găng",
+      title: "",
+      type: "blank",
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "D.chuyền",
       type: "number",
-      value: 'tl_8'
+      value: 'tl_2',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "Item 2",
+      type: "text",
+      value: 'item_2',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
+    },
+    // row 3
+    {
+      title: "Item 9",
+      type: "text",
+      value: 'item_9',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
     },
     {
       title: "Quần",
       type: "number",
-      value: 'tl_9'
+      value: 'tl_9',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "",
+      type: "blank",
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "Nhẫn",
+      type: "number",
+      value: 'tl_3',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "Item 3",
+      type: "text",
+      value: 'item_3',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
+    },
+    //row 4
+    {
+      title: "Item 10",
+      type: "text",
+      value: 'item_10',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
+    },
+    {
+      title: "Găng",
+      type: "number",
+      value: 'tl_8',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "",
+      type: "blank",
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "Bội",
+      type: "number",
+      value: 'tl_4',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+
+    {
+      title: "Item 4",
+      type: "text",
+      value: 'item_4',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
+    },
+    // row 5
+    {
+      title: "Item 11",
+      type: "text",
+      value: 'item_11',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
     },
     {
       title: "Giày",
       type: "number",
-      value: 'tl_10'
+      value: 'tl_10',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "",
+      type: "blank",
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "Bùa",
+      type: "number",
+      value: 'tl_5',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "Item 5",
+      type: "text",
+      value: 'item_5',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
+    },
+    // row 6
+    {
+      title: "Item 12",
+      type: "text",
+      value: 'item_12',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
+    },
+    {
+      title: "Yoroy",
+      type: "number",
+      value: 'tl_11',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "",
+      type: "blank",
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
     },
     {
       title: "Mắt",
       type: "number",
-      value: 'tl_12'
+      value: 'tl_12',
+      cols: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
+    },
+    {
+      title: "Item 6",
+      type: "text",
+      value: 'item_6',
+      cols: 3,
+      sm: 3,
+      md: 3,
+      lg: 3,
     },
     {
       title: "Thú cữoi",
@@ -281,71 +493,6 @@ const formNinja =
       md: 12,
       lg: 12
     },
-    {
-      title: "Phân thân",
-      type: "text",
-      value: 'item_12'
-    },
-    {
-      title: "Cải trang",
-      type: "text",
-      value: 'item_11'
-    },
-    {
-      title: "Cải trang 2",
-      type: "text",
-      value: 'item_10'
-    },
-    {
-      title: "Pet",
-      type: "text",
-      value: 'item_9'
-    },
-    {
-      title: "Mặt nạ",
-      type: "text",
-      value: 'item_8'
-    },
-    {
-      title: "Gậy",
-      type: "text",
-      value: 'item_7'
-    },
-    {
-      title: "Yên",
-      type: "text",
-      value: 'item_6'
-    },
-    {
-      title: "Sách",
-      type: "text",
-      value: 'item_4'
-    },
-    {
-      title: "Bánh",
-      type: "text",
-      value: 'item_5'
-    },
-    {
-      title: "Ngọc 1",
-      type: "text",
-      value: 'item_3'
-    },
-    {
-      title: "Ngọc 2",
-      type: "text",
-      value: 'item_2'
-    },
-    {
-      title: "Ngọc 3",
-      type: "text",
-      value: 'item_1'
-    },
-    // {
-    //   title: "Sim",
-    //   type: "text",
-    //   value: 'sim'
-    // },
   ]);
 
 
@@ -357,7 +504,7 @@ const formModalNinja =
     //   type: "number",
     //   value: 'ID',
     //   cols: 6,
-    //   lg: 4,
+    //    lg: 2,
     //   md: 4
     // },
     {
@@ -438,7 +585,7 @@ const formModalNinja =
     //   type: "number",
     //   value: 'sale_off',
     //   cols: 6,
-    //   lg: 4,
+    //    lg: 2,
     //   md: 4
     // },
 

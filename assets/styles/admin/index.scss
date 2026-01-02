@@ -1,5 +1,31 @@
 .container {
-  padding: 0 12px !important;
+  padding: 12px;
+  @media (max-width: 768px) {
+    padding: 4px !important;
+  }
+}
+
+.tab-account {
+  .tab-content {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-top: none;
+    @media (max-width: 768px) {
+      padding: 4px;
+    }
+  }
+}
+
+.row {
+  margin: 0 -12px;
+}
+
+form {
+  padding: 5px;
+  background: #ffffff;
+  @media (max-width: 768px) {
+    padding: 0px;
+  }
 }
 
 @import "~/assets/styles/admin/swal.scss";

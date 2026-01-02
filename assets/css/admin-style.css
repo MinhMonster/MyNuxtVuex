@@ -39,6 +39,7 @@
 }
 
 #admin .form-group {
+  margin-bottom: 0px;
   margin-top: 0px;
   padding: 0px;
 }
@@ -407,14 +408,14 @@ code {
 }
 
 
-#admin .bg-view,
+/* #admin .bg-view,
 #admin .bg-editor .ck.ck-editor__main>.ck-editor__editable,
 #admin .bg-editor input,
 #admin .bg-editor div.outline-format p.value-format {
   background: var(--admin-master) !important;
   color: var(--white);
   padding: 10px;
-}
+} */
 
 #admin .bg-editor .nav.nav-tabs .nav-item,
 #admin .bg-editor .ck.ck-button {
@@ -447,14 +448,14 @@ code {
 }
 
 /* #admin .item-value select, */
-#admin .bg-editor .v-select__slot,
+/* #admin .bg-editor .v-select__slot,
 #admin .bg-editor .v-text-field__slot {
   background: var(--admin-master) !important;
   padding: 10px;
   min-height: 50px !important;
   line-height: 50px;
   caret-color: #fff;
-}
+} */
 
 #admin .bg-editor .v-select__slot input {
   margin-left: 0px;
@@ -524,9 +525,9 @@ code {
 
 }
 
-#admin .bg-editor label {
+/* #admin .bg-editor label {
   margin: 10px;
-}
+} */
 
 #admin .col {
   padding: 0 10px;
@@ -539,13 +540,13 @@ code {
 }
 
 /* ck ck-color-grid */
-#admin .bg-editor .nav-tabs .nav-link.active,
+/* #admin .bg-editor .nav-tabs .nav-link.active,
 #admin .bg-editor .ck.ck-toolbar__items,
 #admin .bg-editor .ck.ck-reset {
   background: #212529;
   color: var(--white);
   padding: 10px;
-}
+} */
 
 #admin .bg-editor .nav.nav-tabs .nav-item a:hover,
 
@@ -609,11 +610,11 @@ code {
   border: #1976d2;
 } */
 
-.tab-account .tab-content {
+/* .tab-account .tab-content {
   padding: 10px;
   border: 1px solid #dee2e6;
   border-top: none;
-}
+} */
 
 .bg-ninja .ck.ck-content.ck-editor__editable.ck-rounded-corners {
   max-height: 50px !important;
