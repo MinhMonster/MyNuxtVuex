@@ -207,6 +207,7 @@ export default {
   computed: {
     // ...mapState("admin/folders", ["folders", "deleteMedia"]),
     ...mapFields("global", ["selectedImages"]),
+    ...mapFields("admin/folders", ["isUploadMms"]),
     selected: {
       get() {
         return _.cloneDeep(this.selectedImages);
@@ -217,17 +218,15 @@ export default {
     },
   },
   async mounted() {
-    await this.fetchFolders(this.$route.path);
+    await this.fetchFolders();
     await this.getFiles();
   },
   methods: {
-    ...mapActions("global", [
+    ...mapActions("global", ["setSelectedImages"]),
+    ...mapActions("admin/folders", [
       "fileUpload",
       "fetchFiles",
       "deleteFile",
-      "setSelectedImages",
-    ]),
-    ...mapActions("admin/folders", [
       "fetchFolders",
       "deleteMedia",
       "createFolder",
@@ -261,10 +260,8 @@ export default {
     },
     async getFiles() {
       this.images = await this.fetchFiles({
-        route_path: this.$route.path,
-        folder: this.$route.path.includes("mms")
-          ? this.folder_active
-          : this.folder_path,
+        // route_path: this.$route.path,
+        folder: this.isUploadMms ? this.folder_active : this.folder_path,
       });
     },
     async onDeleteFile(image) {
@@ -379,7 +376,7 @@ export default {
         const data = new FormData();
 
         this.files.forEach((file, index) => {
-          if (this.$route.path.includes("mms")) {
+          if (this.isUploadMms) {
             data.append(`files[]`, file);
           } else {
             data.append(`file_${index}`, file);
@@ -389,9 +386,7 @@ export default {
         const result = await this.fileUpload({
           route_path: this.$route.path,
           path: this.pathUpload,
-          folder: this.$route.path.includes("mms")
-            ? this.folder_active
-            : this.folder_path,
+          folder: this.isUploadMms ? this.folder_active : this.folder_path,
           data,
         });
         if (result.data.code && result.data.code === 200) {
@@ -428,7 +423,7 @@ export default {
       if (result && result.data && result.data.code === 200) {
         this.$toasted.success(result.data.message);
       }
-      await this.fetchFolders(this.$route.path);
+      await this.fetchFolders();
     },
     addImage(image) {
       if (this.isSelected(image, this.selectedImages)) {

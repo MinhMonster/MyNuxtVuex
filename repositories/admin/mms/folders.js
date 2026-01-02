@@ -1,4 +1,3 @@
-const resource = '/apis/admin/topics/'
 const baseResource = 'admin/folders'
 
 export default ($api_mms) => ({

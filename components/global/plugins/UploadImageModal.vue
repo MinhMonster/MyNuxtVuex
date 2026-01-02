@@ -114,7 +114,7 @@ export default {
       ) {
         this.$toasted.success(result.data.message);
       }
-      await this.fetchFolders(this.$route.path);
+      await this.fetchFolders();
     },
 
     selected(files) {
