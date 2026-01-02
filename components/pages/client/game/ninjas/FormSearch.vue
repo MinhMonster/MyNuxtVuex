@@ -9,9 +9,9 @@
                 <label for="id" class="w-100">Mã:</label>
               </v-btn>
               <input
-                v-model="id"
+                v-model="code"
                 @change="onChange"
-                id="id"
+                id="code"
                 type="number"
                 placeholder="Mã số nick..."
                 class="v-input form-input"

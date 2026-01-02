@@ -23,7 +23,7 @@
               <tr>
                 <th class="info-nick" style="">Mã Số</th>
                 <td class="mua-nick">
-                  <span>{{ format_number(history.account_id) }}</span>
+                  <span>{{ format_number(history.account_code) }}</span>
                 </td>
               </tr>
               <tr>

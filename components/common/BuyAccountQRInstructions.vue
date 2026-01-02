@@ -70,7 +70,7 @@ export default {
     },
     content() {
       return `Mua Nick ${this.game} ${this.format_number(
-        this.account.id
+        this.account.code
       )} & SĐT`;
     },
   },

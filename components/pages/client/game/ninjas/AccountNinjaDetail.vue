@@ -1,13 +1,13 @@
 <template>
   <client-only>
-    <v-row v-if="account.id">
+    <v-row v-if="account">
       <v-col cols="12" sm="12" md="8" lg="8">
         <div class="title">
           <center>
             <h3>
               Nick Ninja - Mã Số:
               <span
-                ><strong>{{ format_number(account.id) }}</strong></span
+                ><strong>{{ format_number(account.code) }}</strong></span
               >
             </h3>
           </center>

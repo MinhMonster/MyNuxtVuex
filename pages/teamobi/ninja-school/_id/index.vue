@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
-      <template v-if="account && account.id && ready" #body>
+      <template v-if="account && ready" #body>
         <AccountNinjaDetail :account="account"></AccountNinjaDetail>
       </template>
       <template #table>
@@ -82,7 +82,7 @@ export default {
           perPage: 9,
           q: {
             price: this.account.price,
-            id_other: this.account.id,
+            account_code: this.account.code,
           },
         });
         await this.fetchAccountNinjas();

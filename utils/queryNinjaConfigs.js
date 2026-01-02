@@ -1,10 +1,10 @@
 export const queryFieldConfig = (state) => [
   {
-    key: "id",
+    key: "code",
     type: "simple",
     routeType: "number",
     max: undefined,
-    value: () => state.id
+    value: () => state.code
   },
   {
     key: "ingame",

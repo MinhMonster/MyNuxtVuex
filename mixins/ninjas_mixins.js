@@ -16,7 +16,7 @@ export default {
       server: "query.q.server",
       level: "query.q.level",
       cash: "query.q.cash",
-      id: "query.q.id",
+      code: "query.q.code",
       ingame: "query.q.ingame",
       family: "query.q.family"
     }),

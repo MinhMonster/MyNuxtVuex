@@ -32,7 +32,7 @@
                       Game: {{ game_name(history.account_type) }}
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="2" :lg="3">
-                      Mã số: {{ format_number(history.account_id) }}
+                      Mã số: {{ format_number(history.account_code) }}
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="3" :lg="3">
                       Giá: {{ format_number(history.price) }} VNĐ

@@ -140,7 +140,7 @@ export default {
       this.isLoading = true;
 
       const res = await this.buyAccount({
-        account_id: this.account.id,
+        account_code: this.account.code,
         account_type: this.accountType,
       });
       if (res?.data?.id) {

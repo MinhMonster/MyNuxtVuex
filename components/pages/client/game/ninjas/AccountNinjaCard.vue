@@ -64,7 +64,7 @@ export default {
     },
 
     detailLink() {
-      return `/teamobi/ninja-school/${this.account.id}`;
+      return `/teamobi/ninja-school/${this.account.code}`;
     },
 
     infoItems() {
@@ -73,7 +73,7 @@ export default {
           key: "code",
           cols: 3,
           label: "Mã số",
-          value: this.format_number(this.account.id),
+          value: this.format_number(this.account.code),
         },
         {
           key: "class",
