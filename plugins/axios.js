@@ -114,11 +114,30 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       });
     }
 
-    if (code && code === 404) {
-      switch (layout) {
-        case "clientLayout":
-          redirect('/404')
-          break;
+    if (code === 404) {
+      console.log("ok", error);
+      const type = error.response.data.type || null;
+      if (type) {
+        $swal.fire({
+          title: "Tài khoản không tồn tại",
+          html: "Tài khoản không tồn tại hoặc đã bán!<br/> Hãy chọn Tài khoản khác nhé!<br/> Cảm ơn bạn nhiều ❤️",
+          icon: "error",
+          customClass: customClassSwal
+        });
+        switch (type) {
+          case 'account_ninja':
+            redirect('/teamobi/ninja-school')
+            break;
+          case 'account_avatar':
+            redirect('/teamobi/avatar')
+            break;
+        }
+      } else {
+        switch (layout) {
+          case "clientLayout":
+            redirect('/404')
+            break;
+        }
       }
     }
 

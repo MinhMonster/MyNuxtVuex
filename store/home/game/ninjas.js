@@ -66,6 +66,7 @@ export default {
       } catch (error) { }
     },
     async fetchAccountNinja({ commit }, payload) {
+      commit("SET_NINJA", null);
       try {
         const res = await this.$repositories.gameNinjas.fetchAccountNinja(
           payload

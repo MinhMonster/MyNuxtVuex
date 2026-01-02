@@ -124,7 +124,7 @@ export default {
     accountItems() {
       return [
         {
-          label: "Class",
+          label: "Lớp",
           value: this.classNinja(this.account.class),
         },
         {
@@ -133,12 +133,12 @@ export default {
         },
 
         {
-          label: "Server",
-          value: this.account.server,
+          label: "Máy chủ",
+          value: this.serverNinja(this.account.server),
         },
         {
           label: "Gia tộc",
-          value: this.account.family || "Không có",
+          value: this.account.is_family || false ? "Có" : "Không",
         },
         {
           label: "Mô tả",
