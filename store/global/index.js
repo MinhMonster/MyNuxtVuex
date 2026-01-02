@@ -66,7 +66,7 @@ export default {
 
       try {
         if (payload.route_path.includes('mms')) {
-          return await this.$mms.repositories_mms.mmsFiles.uploads(payload)
+          return await this.$repositories_mms.mmsFiles.uploads(payload)
         } else {
           return await this.$repositories.adminUploads.upload(payload)
         }
@@ -75,7 +75,7 @@ export default {
     },
     async fetchFiles({ commit }, payload) {
       if (payload.route_path.includes('mms')) {
-        const res = await this.$mms.repositories_mms.mmsFiles.fetchFiles(
+        const res = await this.$repositories_mms.mmsFiles.fetchFiles(
           payload
         );
         return res.data.response.data;
@@ -88,7 +88,7 @@ export default {
     },
     async deleteFile({ commit }, payload) {
       if (payload.route_path.includes('mms')) {
-        return await this.$mms.repositories_mms.mmsFiles.deleteFile(
+        return await this.$repositories_mms.mmsFiles.deleteFile(
           payload.file.id
         );
       } else {

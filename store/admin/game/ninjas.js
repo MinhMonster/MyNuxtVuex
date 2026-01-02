@@ -90,7 +90,7 @@ const queryNinjas = _.cloneDeep({
 });
 
 const queryNinja = _.cloneDeep({
-  id: "",
+  code: "",
   username: "",
   character_name: "",
   description: "",
@@ -104,33 +104,40 @@ const queryNinja = _.cloneDeep({
   server: "",
   weapon: "",
   type: "",
-  tl1: "",
-  tl2: "",
-  tl3: "",
-  tl4: "",
-  tl5: "",
-  tl6: "",
-  tl7: "",
-  tl8: "",
-  tl9: "",
-  tl10: "",
-  yoroi: "",
-  eye: "",
-  book: "",
-  cake: "",
-  yen: "",
-  clone: "",
-  disguise: "",
-  mounts: "",
+  tl_1: "",
+  tl_2: "",
+  tl_3: "",
+  tl_4: "",
+  tl_5: "",
+  tl_6: "",
+  tl_7: "",
+  tl_8: "",
+  tl_9: "",
+  tl_10: "",
+  tl_11: "",
+  tl_12: "",
+  item_1: "",
+  item_2: "",
+  item_3: "",
+  item_4: "",
+  item_5: "",
+  item_6: "",
+  item_7: "",
+  item_8: "",
+  item_9: "",
+  item_10: "",
+  item_11: "",
+  item_12: "",
+  item_13: "",
 });
 
 
 const formNinja =
   _.cloneDeep([
     {
-      title: "ID",
+      title: "Mã Nick",
       type: "number",
-      value: 'id'
+      value: 'code'
     },
     {
       title: "Tài Khoản",
@@ -208,67 +215,67 @@ const formNinja =
     {
       title: "Vũ Khí",
       type: "number",
-      value: 'tl1'
+      value: 'tl_1'
     },
     {
       title: "Dây chuyền",
       type: "number",
-      value: 'tl2'
+      value: 'tl_2'
     },
     {
       title: "Nhẫn",
       type: "number",
-      value: 'tl3'
+      value: 'tl_3'
     },
     {
       title: "Bội",
       type: "number",
-      value: 'tl4'
+      value: 'tl_4'
     },
     {
       title: "Bùa",
       type: "number",
-      value: 'tl5'
+      value: 'tl_5'
     },
     {
       title: "Yoroy",
       type: "number",
-      value: 'yoroi'
+      value: 'tl_11'
     },
     {
       title: "Nón",
       type: "number",
-      value: 'tl6'
+      value: 'tl_6'
     },
     {
       title: "Áo",
       type: "number",
-      value: 'tl7'
+      value: 'tl_7'
     },
     {
       title: "Găng",
       type: "number",
-      value: 'tl8'
+      value: 'tl_8'
     },
     {
       title: "Quần",
       type: "number",
-      value: 'tl9'
+      value: 'tl_9'
     },
     {
       title: "Giày",
       type: "number",
-      value: 'tl10'
+      value: 'tl_10'
     },
     {
       title: "Mắt",
       type: "number",
-      value: 'eye'
+      value: 'tl_12'
     },
     {
       title: "Thú cữoi",
       type: "text",
-      value: 'mounts',
+      value: 'item_13',
       cols: 12,
       sm: 12,
       md: 12,
@@ -277,62 +284,62 @@ const formNinja =
     {
       title: "Phân thân",
       type: "text",
-      value: 'clone'
+      value: 'item_12'
     },
     {
       title: "Cải trang",
       type: "text",
-      value: 'disguise'
+      value: 'item_11'
     },
     {
       title: "Cải trang 2",
       type: "text",
-      value: 'disguise_2'
+      value: 'item_10'
     },
     {
       title: "Pet",
       type: "text",
-      value: 'pet'
+      value: 'item_9'
     },
     {
       title: "Mặt nạ",
       type: "text",
-      value: 'mask'
+      value: 'item_8'
     },
-        {
+    {
       title: "Gậy",
       type: "text",
-      value: 'stick'
+      value: 'item_7'
     },
     {
       title: "Yên",
       type: "text",
-      value: 'yen'
+      value: 'item_6'
     },
     {
       title: "Sách",
       type: "text",
-      value: 'book'
+      value: 'item_4'
     },
     {
       title: "Bánh",
       type: "text",
-      value: 'cake'
+      value: 'item_5'
     },
     {
       title: "Ngọc 1",
       type: "text",
-      value: 'gem_1'
+      value: 'item_3'
     },
-     {
+    {
       title: "Ngọc 2",
       type: "text",
-      value: 'gem_2'
+      value: 'item_2'
     },
-     {
+    {
       title: "Ngọc 3",
       type: "text",
-      value: 'gem_3'
+      value: 'item_1'
     },
     // {
     //   title: "Sim",

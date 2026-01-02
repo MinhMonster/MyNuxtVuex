@@ -22,7 +22,7 @@
             state: 'queryNinja',
             module: 'admin.game.ninjas',
             form: 'formNinja',
-            // action: 'fetchAccountNinja',
+            action: 'fetchAccountNinja',
             create: 'createAccountNinja',
           }"
         ></AdminBaseForm>

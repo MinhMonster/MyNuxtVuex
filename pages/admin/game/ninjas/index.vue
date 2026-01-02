@@ -105,6 +105,18 @@ export default {
           fixed: "left",
           attributes: {
             align: "center",
+            style: {
+              minWidth: "60px",
+            },
+          },
+        },
+        {
+          key: "code",
+          label: "Code",
+          type: "number",
+          fixed: "left",
+          attributes: {
+            align: "center",
 
             style: {
               minWidth: "60px",
