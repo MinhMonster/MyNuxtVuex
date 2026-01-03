@@ -46,8 +46,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 th.info-nick {
-  width: 35%;
-  min-width: 120px;
+  width: 50%;
+  // min-width: 120px;
   padding: 7px;
   color: #ffcf9c;
   border: 1px solid #663019;
