@@ -1,8 +1,7 @@
 import { getField, updateField } from "vuex-map-fields";
 
 const UPDATE_ACTION = "UPDATE_ACTION";
-
-
+const SET_QUERY = "SET_QUERY";
 const UPDATE_SUM_CASH_REVENUES = "UPDATE_SUM_CASH_REVENUES";
 const UPDATE_SUM_CASH_EXPENSES = "UPDATE_SUM_CASH_EXPENSES";
 const UPDATE_INCOME = "UPDATE_INCOME";
@@ -12,8 +11,13 @@ export default {
   namespaced: true,
   state: () => ({
     folders: [],
+    metaFolders: {},
     media: {},
     isUploadMms: false,
+    query: {
+      page: 1,
+      perPage: 11,
+    }
   }),
 
   getters: {
@@ -35,11 +39,22 @@ export default {
   mutations: {
     updateField,
     SET_FOLDERS(state, payload) {
-      state.folders = payload
+      state.folders = payload.data
+      state.metaFolders = payload.meta
     },
 
     SET_finance(state, finance) {
       state.finance = finance
+    },
+    SET_PAGE(state) {
+      const page = _.cloneDeep(state.query.page)
+      state.query.page = page + 1;
+    },
+    SET_QUERY(state, payload) {
+      state.query = {
+        ...state.query,
+        ..._.cloneDeep(payload),
+      };
     },
   },
 
@@ -71,15 +86,17 @@ export default {
     async fetchFolders({ state, commit }) {
       try {
         let folders = [];
+        let meta = {};
         if (state.isUploadMms) {
-          const res = await this.$repositories_mms.mmsFolders.adminFetchFolders()
+          const res = await this.$repositories_mms.mmsFolders.adminFetchFolders({ input: state.query });
           folders = res.data.response.data;
+          meta = res.data.response.meta;
         } else {
           const res = await this.$repositories.adminFolders.fetchFolders();
           folders = res.data.folders;
         }
 
-        commit('SET_FOLDERS', folders)
+        commit('SET_FOLDERS', { data: folders, meta: meta });
       } catch (error) { }
     },
     async createFolder({ state }, payload) {
@@ -147,6 +164,9 @@ export default {
           payload.file
         );
       }
+    },
+    setQuery({ commit }, payload) {
+      commit(SET_QUERY, payload);
     },
 
   },

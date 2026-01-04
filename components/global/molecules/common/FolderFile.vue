@@ -20,32 +20,43 @@
       @change="onFileChange"
     />
     <div class="flex-row folder-show" :class="{ show: showFolder }">
-      <div v-if="folders.length" class="folderList scroll-y">
+      <div class="folderList scroll-y">
         <FolderImages :folder-active="folder_active" @setPath="setPath" />
-        <div
-          v-for="(folder, index) in folders"
-          :key="index"
-          class="pointer folder-item"
-          :class="{ hidden: !showFolder }"
-        >
-          <FolderCard
-            :folder="folder"
-            :folder-active="folder_active"
-            :folder-path="folder_path"
-            @setPath="setPath"
-            @editFolder="editFolder"
+        <div v-if="folders.length">
+          <div
+            v-for="(folder, index) in folders"
+            :key="index"
+            class="pointer folder-item"
+            :class="{ hidden: !showFolder }"
           >
-            <template #btn-up-down>
-              <BtnUpDown :folderShowList="folder_show_list" :folder="folder" />
-            </template>
-          </FolderCard>
-          <SubFolderCards
-            v-if="folder_show_list && folder_show_list.id == folder.id"
-            :folders="folder.sub_folders"
-            :folder-active="folder_active"
-            @setPath="setPath"
-            @editFolder="editFolder"
-          />
+            <FolderCard
+              :folder="folder"
+              :folder-active="folder_active"
+              :folder-path="folder_path"
+              @setPath="setPath"
+              @editFolder="editFolder"
+            >
+              <template #btn-up-down>
+                <BtnUpDown
+                  :folderShowList="folder_show_list"
+                  :folder="folder"
+                />
+              </template>
+            </FolderCard>
+            <SubFolderCards
+              v-if="folder_show_list && folder_show_list.id == folder.id"
+              :folders="folder.sub_folders"
+              :folder-active="folder_active"
+              @setPath="setPath"
+              @editFolder="editFolder"
+            />
+          </div>
+          <Pagination
+            v-if="metaFolders && metaFolders?.pages > 1"
+            class="w-100 scroll-x"
+            :meta="metaFolders"
+            @change="onChangeFolderPage"
+          ></Pagination>
         </div>
       </div>
       <div class="fileList scroll-y">
@@ -109,6 +120,7 @@ import FilePrivewCards from "@/components/Uploads/File/FilePrivewCards.vue";
 import EditFolderModal from "@/components/global/molecules/common/EditFolderModal.vue";
 import UpdateNameFolderModal from "@/components/global/molecules/common/upload/UpdateNameFolderModal";
 import BtnActionUpload from "@/components/Uploads/BtnActionUpload.vue";
+import Pagination from "@/components/global/molecules/common/Pagination";
 
 let WidgetCount = 0;
 export default {
@@ -124,6 +136,7 @@ export default {
     UpdateNameFolderModal,
     EditFolderModal,
     BtnActionUpload,
+    Pagination,
   },
   watch: {
     folder_active: {
@@ -136,10 +149,6 @@ export default {
   },
   props: {
     activated: {
-      type: Array,
-      default: () => [],
-    },
-    folders: {
       type: Array,
       default: () => [],
     },
@@ -207,7 +216,7 @@ export default {
   computed: {
     // ...mapState("admin/folders", ["folders", "deleteMedia"]),
     ...mapFields("global", ["selectedImages"]),
-    ...mapFields("admin/folders", ["isUploadMms"]),
+    ...mapFields("admin/folders", ["folders", "metaFolders", "isUploadMms"]),
     selected: {
       get() {
         return _.cloneDeep(this.selectedImages);
@@ -218,12 +227,14 @@ export default {
     },
   },
   async mounted() {
+    await this.setQuery({ page: 1 });
     await this.fetchFolders();
     await this.getFiles();
   },
   methods: {
     ...mapActions("global", ["setSelectedImages"]),
     ...mapActions("admin/folders", [
+      "setQuery",
       "fileUpload",
       "fetchFiles",
       "deleteFile",
@@ -240,6 +251,10 @@ export default {
     },
     getFolderPath(folder) {
       return folder ? folder.path : "/images/";
+    },
+    async onChangeFolderPage(page) {
+      await this.setQuery({ page: page });
+      await this.fetchFolders();
     },
     async setPath({ folder = null, isFolderPath = null }) {
       this.folder_active = folder;

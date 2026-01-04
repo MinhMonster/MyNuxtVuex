@@ -1,8 +1,8 @@
 const baseResource = 'admin/folders'
 
 export default ($api_mms) => ({
-  adminFetchFolders() {
-    return $api_mms.get(`${baseResource}`)
+  adminFetchFolders(payload) {
+    return $api_mms.get(`${baseResource}`,  { params: { input: payload.input } })
   },
   adminCreateFolder(payload) {
     return $api_mms.post(`${baseResource}/create`, payload)

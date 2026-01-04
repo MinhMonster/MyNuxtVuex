@@ -26,8 +26,6 @@
           </b-tab>
           <b-tab title="Manager Folder" class="manager-folder">
             <FolderFile
-              v-if="folders"
-              :folders="folders"
               :selectedImages="selectedImages"
               :activated="activated"
               @newFolder="newFolder"
@@ -47,10 +45,15 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="red" variant="text" class="text-white" @click="dialog = false">
+        <v-btn
+          color="red"
+          variant="text"
+          class="text-white"
+          @click="dialog = false"
+        >
           Close
         </v-btn>
-        <v-btn color="primary" variant="primary"  @click="saveSelected()">
+        <v-btn color="primary" variant="primary" @click="saveSelected()">
           Save
         </v-btn>
       </v-card-actions>
@@ -87,7 +90,6 @@ export default {
     image: {},
   }),
   computed: {
-    ...mapFields("admin/folders", ["folders"]),
     ...mapFields("global", ["selectedImages"]),
   },
   methods: {
