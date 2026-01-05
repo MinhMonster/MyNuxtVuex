@@ -66,37 +66,6 @@
               >
               để biết cách mua nick được nhanh chóng nhé các bạn.
             </div>
-            <!-- <div>
-              ⭐ PR: Shop Mua Bán
-              <span class="bold text-13-500"
-                ><a
-                  href="https://shopnick.online/teamobi/avatar"
-                  target="_blank"
-                  title="ShopNick.Online | Shop Nick Avatar DK (2x) của TeaMobi"
-                  class="link"
-                  >Nick Avatar</a
-                > </span
-              >,
-              <span class="bold text-13-500">
-                <a
-                  target="_blank"
-                  href="https://shopnick.online/teamobi/ninja-school"
-                  title="ShopNick.Online | Shop Nick Ninja School của TeaMobi"
-                  class="link"
-                  >Nick Ninja</a
-                >
-              </span>
-              Uy Tín của Admin Đỗ Minh tại
-              <span class="bold text-13-500">
-                <a
-                  target="_blank"
-                  href="https://shopnick.online"
-                  title="ShopNick.Online | Shop Nick Avatar DK (2x), Ninja School của TeaMobi"
-                  class="link"
-                  >ShopNick.Online</a
-                >.
-              </span>
-            </div> -->
           </div>
         </v-col>
       </v-row>

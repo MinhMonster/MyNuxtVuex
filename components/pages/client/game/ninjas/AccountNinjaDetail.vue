@@ -55,7 +55,10 @@
       <v-col cols="12" sm="12" md="4" lg="4">
         <v-row>
           <v-col cols="12" sm="12" md="12">
-            <AccountDetailCard :account="account" :items="accountItems" />
+            <AccountDetailCard
+              :account="account"
+              :account-infos="accountInfos"
+            />
           </v-col>
         </v-row>
       </v-col>
@@ -95,7 +98,7 @@
             </div>
           </v-col>
         </v-row>
-        <GroupBtnBuyAccount :account="account" account-type="ninja" />
+        <GroupBtnBuyAccount :account="account" :account-infos="accountInfos" />
       </v-col>
     </v-row>
   </client-only>
@@ -121,7 +124,7 @@ export default {
     },
   },
   computed: {
-    accountItems() {
+    accountInfos() {
       return [
         {
           label: "Lớp",

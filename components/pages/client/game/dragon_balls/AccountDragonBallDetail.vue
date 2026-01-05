@@ -78,15 +78,12 @@
             </div>
           </v-col>
         </v-row>
-        <GroupBtnBuyAccount
-          :account="account"
-          account-type="ngocrong"
-        />
+        <GroupBtnBuyAccount :account="account" />
       </v-col>
     </v-row>
   </client-only>
 </template>
-  
+
   <script>
 import AccountDragonBallInfo from "@/components/pages/client/game/dragon_balls/AccountDragonBallInfo";
 import AccountDragonBallTL from "@/components/pages/client/game/dragon_balls/AccountDragonBallTL";
@@ -106,7 +103,7 @@ export default {
   },
 };
 </script>
-  
+
   <style lang="scss" scoped>
 .fileItemWrapper {
   position: relative;

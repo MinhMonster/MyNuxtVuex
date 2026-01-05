@@ -29,12 +29,12 @@
         </a>
       </div>
     </v-col>
-    <ModalBuyAccount ref="modal" :account="account" :account-type="accountType"/>
-    <ModalBuyAccountVietQR
-      ref="ModalBuyAccountVietQR"
+    <ModalBuyAccount
+      ref="modal"
       :account="account"
-      :account-type="accountType"
+      :account-infos="accountInfos"
     />
+    <ModalBuyAccountVietQR ref="ModalBuyAccountVietQR" :account="account" />
   </v-row>
 </template>
 
@@ -46,7 +46,6 @@ import ModalBuyAccountVietQR from "@/components/pages/client/game/ModalBuyAccoun
 
 export default {
   name: "GroupBtnBuyAccount",
-
   components: {
     ModalBuyAccount,
     ModalBuyAccountVietQR,
@@ -56,9 +55,9 @@ export default {
       type: Object,
       default: () => {},
     },
-    accountType: {
-      type: String,
-      default: "",
+    accountInfos: {
+      type: Array,
+      default: () => [],
     },
   },
   methods: {

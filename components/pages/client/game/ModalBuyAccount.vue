@@ -17,10 +17,13 @@
           </v-tabs>
           <v-window v-model="tab">
             <v-window-item :value="0">
-              <AccountInfoTable :account="account" :items="gameInfos" />
+              <AccountInfoTable :account="account" :accountInfos="gameInfos" />
             </v-window-item>
             <v-window-item :value="1">
-              <AccountInfoTable :account="account" :items="accountInfos" />
+              <AccountInfoTable
+                :account="account"
+                :account-infos="accountInfos"
+              />
             </v-window-item>
           </v-window>
           <v-radio-group v-model="isBuy">
@@ -38,10 +41,7 @@
 
           <v-row v-if="isBuy == 'atm-momo'">
             <v-col cols="12" sm="12" md="12">
-              <BuyAccountQRInstructions
-                :account="account"
-                :account-type="accountType"
-              />
+              <BuyAccountQRInstructions :account="account" />
             </v-col>
           </v-row>
         </div>
@@ -98,6 +98,7 @@ import BuyAccountQRInstructions from "@/components/common/BuyAccountQRInstructio
 import AccountInfoTable from "@/components/common/client/table/AccountInfoTable.vue";
 
 export default {
+  name: "ModalBuyAccount",
   components: {
     Loading,
     ModalPayload,
@@ -109,9 +110,9 @@ export default {
       type: Object,
       default: () => {},
     },
-    accountType: {
-      type: String,
-      default: "ninja",
+    accountInfos: {
+      type: Array,
+      default: () => [],
     },
   },
   data() {
@@ -127,7 +128,7 @@ export default {
       return this.account.price;
     },
     gameName() {
-      switch (this.accountType) {
+      switch (this.account.account_type) {
         case "ninja":
           return "Ninja School Online";
         case "avatar":
@@ -154,92 +155,92 @@ export default {
         },
       ];
     },
-    accountInfos() {
-      switch (this.accountType) {
-        case "ninja":
-          return [
-            {
-              label: "Lớp",
-              value: this.classNinja(this.account.class),
-            },
-            {
-              label: "Cấp độ",
-              value: this.account.level,
-            },
+    // accountInfos() {
+    //   switch (this.account.account_type) {
+    //     case "ninja":
+    //       return [
+    //         {
+    //           label: "Lớp",
+    //           value: this.classNinja(this.account.class),
+    //         },
+    //         {
+    //           label: "Cấp độ",
+    //           value: this.account.level,
+    //         },
 
-            {
-              label: "Máy chủ",
-              value: this.serverNinja(this.account.server),
-            },
-            {
-              label: "Gia tộc",
-              value: this.account.is_family || false ? "Có" : "Không",
-            },
-            {
-              label: "Mô tả",
-              value: this.account.description,
-              html: true,
-            },
-          ];
-        case "avatar":
-          return [
-            {
-              label: "Giới tính",
-              value:
-                this.account.sex === 1
-                  ? "Nam"
-                  : this.account.sex === 2
-                  ? "Nữ"
-                  : "Gay",
-            },
-            {
-              label: "Đất",
-              value: this.account.land,
-            },
+    //         {
+    //           label: "Máy chủ",
+    //           value: this.serverNinja(this.account.server),
+    //         },
+    //         {
+    //           label: "Gia tộc",
+    //           value: this.account.is_family || false ? "Có" : "Không",
+    //         },
+    //         {
+    //           label: "Mô tả",
+    //           value: this.account.description,
+    //           html: true,
+    //         },
+    //       ];
+    //     case "avatar":
+    //       return [
+    //         {
+    //           label: "Giới tính",
+    //           value:
+    //             this.account.sex === 1
+    //               ? "Nam"
+    //               : this.account.sex === 2
+    //               ? "Nữ"
+    //               : "Gay",
+    //         },
+    //         {
+    //           label: "Đất",
+    //           value: this.account.land,
+    //         },
 
-            {
-              label: "Gà",
-              value: this.account.pets,
-            },
-            {
-              label: "Cá",
-              value: this.account.fish,
-            },
-            {
-              label: "Mô tả",
-              value: this.account.description,
-              html: true,
-            },
-          ];
-        case "ngocrong":
-          return [
-            {
-              label: "Sức mạnh",
-              value: tthis.account.power,
-            },
-            {
-              label: "Đệ tử",
-              value: this.account.practitioners,
-            },
+    //         {
+    //           label: "Gà",
+    //           value: this.account.pets,
+    //         },
+    //         {
+    //           label: "Cá",
+    //           value: this.account.fish,
+    //         },
+    //         {
+    //           label: "Mô tả",
+    //           value: this.account.description,
+    //           html: true,
+    //         },
+    //       ];
+    //     case "ngocrong":
+    //       return [
+    //         {
+    //           label: "Sức mạnh",
+    //           value: tthis.account.power,
+    //         },
+    //         {
+    //           label: "Đệ tử",
+    //           value: this.account.practitioners,
+    //         },
 
-            {
-              label: "Máy chủ",
-              value: this.account.server,
-            },
-            {
-              label: "Hành tinh",
-              value: this.planet,
-            },
-            {
-              label: "Mô tả",
-              value: this.account.description,
-              html: true,
-            },
-          ];
-        default:
-          return [];
-      }
-    },
+    //         {
+    //           label: "Máy chủ",
+    //           value: this.account.server,
+    //         },
+    //         {
+    //           label: "Hành tinh",
+    //           value: this.planet,
+    //         },
+    //         {
+    //           label: "Mô tả",
+    //           value: this.account.description,
+    //           html: true,
+    //         },
+    //       ];
+    //     default:
+    //       return [];
+    //   }
+    // },
   },
   methods: {
     ...mapActions("home/users", ["buyAccount"]),
@@ -255,7 +256,7 @@ export default {
 
       const res = await this.buyAccount({
         account_code: this.account.code,
-        account_type: this.accountType,
+        account_type: this.account.account_type,
       });
       if (res?.data?.id) {
         this.$router.push(`/account/history/${res?.data?.id}`);

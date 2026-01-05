@@ -2,9 +2,7 @@
   <client-only>
     <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
       <template v-if="account && account.id && ready" #body>
-        <AccountAvatarDetail
-          :account="account"
-        ></AccountAvatarDetail>
+        <AccountAvatarDetail :account="account"></AccountAvatarDetail>
       </template>
       <template #table>
         <div class="page-body bg-none mt--2">
@@ -47,12 +45,12 @@ export default {
       account: "account",
       accounts: "accounts",
     }),
-    accountId() {
-      return this.$route.params.id;
+    accountCode() {
+      return this.$route.params.code;
     },
     title() {
       return `Mã Số: ${this.format_number(
-        this.accountId
+        this.accountCode
       )} - Nick Avatar - MuaBanNick.Pro`;
     },
   },
@@ -71,7 +69,7 @@ export default {
     async fetchAccount() {
       this.ready = false;
 
-      await this.fetchAccountAvatar(this.accountId);
+      await this.fetchAccountAvatar(this.accountCode);
       this.ready = true;
 
       await this.setQuery({ page: this.queryPage });

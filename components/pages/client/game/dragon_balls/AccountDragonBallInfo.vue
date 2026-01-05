@@ -55,7 +55,7 @@
           </tr>
         </tbody>
       </table>
-      <GroupBtnBuyAccount :account="account" account-type="ngocrong" />
+      <GroupBtnBuyAccount :account="account" />
     </div>
   </client-only>
 </template>

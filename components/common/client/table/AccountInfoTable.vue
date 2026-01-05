@@ -1,7 +1,7 @@
 <template>
   <table class="table text-center">
     <tbody>
-      <tr v-for="(row, index) in items" :key="'row-' + index">
+      <tr v-for="(row, index) in accountInfos" :key="'row-' + index">
         <th class="info-nick">
           {{ row.label }}
         </th>
@@ -37,7 +37,7 @@ export default {
      *   { label, value, html: true }
      * ]
      */
-    items: {
+    accountInfos: {
       type: Array,
       required: true,
     },

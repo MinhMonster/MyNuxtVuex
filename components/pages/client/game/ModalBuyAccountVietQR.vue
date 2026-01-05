@@ -12,10 +12,7 @@
         <div class="page-body">
           <v-row>
             <v-col cols="12" sm="12" md="12">
-              <BuyAccountQRInstructions
-                :account="account"
-                :account-type="accountType"
-              />
+              <BuyAccountQRInstructions :account="account" />
             </v-col>
           </v-row>
         </div>
@@ -39,10 +36,6 @@ export default {
     account: {
       type: Object,
       default: () => {},
-    },
-    accountType: {
-      type: String,
-      default: "",
     },
   },
   methods: {

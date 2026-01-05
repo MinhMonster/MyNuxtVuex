@@ -13,44 +13,15 @@
             </h3>
           </center>
         </div>
-        <AccountAvatarTL
-          :account="account"
-          :isDetail="true"
-        />
-        <!-- <VueSlickCarousel
-          v-else-if="account.images"
-          :initialSlide="0"
-          :slidesToShow="1"
-          :arrows="true"
-          :dots="true"
-        >
-          <div
-            v-for="(image, index) in account.images"
-            :key="index"
-            :src="image"
-            alt=""
-          >
-            <img
-              v-if="image.includes('muabannick.pro')"
-              :src="image"
-              alt=""
-              class="image-account"
-            />
-            <img
-              v-else
-              :src="`https://muabannick.pro${image}`"
-              alt=""
-              class="image-account"
-            />
-          </div>
-        </VueSlickCarousel> -->
+        <AccountAvatarTL :account="account" :isDetail="true" />
       </v-col>
       <v-col cols="12" sm="12" md="6" lg="6">
         <v-row>
           <v-col cols="12" sm="12" md="12">
-            <AccountAvatarInfo
+            <AccountDetailCard
               :account="account"
-            ></AccountAvatarInfo>
+              :account-infos="accountInfos"
+            ></AccountDetailCard>
           </v-col>
         </v-row>
       </v-col>
@@ -101,21 +72,19 @@
             </div>
           </v-col>
         </v-row>
-        <GroupBtnBuyAccount :account="account" account-type="avatar" />
+        <GroupBtnBuyAccount :account="account" :account-infos="accountInfos"/>
       </v-col>
-
     </v-row>
-
   </client-only>
 </template>
 
   <script>
-import AccountAvatarInfo from "@/components/pages/client/game/avatars/AccountAvatarInfo";
+import AccountDetailCard from "@/components/common/client/account/AccountDetailCard";
 import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvatarTL";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  components: { AccountAvatarInfo, AccountAvatarTL, GroupBtnBuyAccount },
+  components: { AccountDetailCard, AccountAvatarTL, GroupBtnBuyAccount },
   props: {
     account: {
       type: Object,
@@ -128,6 +97,37 @@ export default {
         return index != 0;
       });
       return images;
+    },
+    accountInfos() {
+      return [
+        {
+          label: "Giới tính",
+          value:
+            this.account.sex === 1
+              ? "Nam"
+              : this.account.sex === 2
+              ? "Nữ"
+              : "Gay",
+        },
+        {
+          label: "Đất",
+          value: this.account.land,
+        },
+
+        {
+          label: "Gà",
+          value: this.account.pets,
+        },
+        {
+          label: "Cá",
+          value: this.account.fish,
+        },
+        {
+          label: "Mô tả",
+          value: this.account.description,
+          html: true,
+        },
+      ];
     },
   },
 };

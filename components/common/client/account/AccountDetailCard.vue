@@ -12,8 +12,8 @@
         </center>
       </div>
 
-      <AccountInfoTable :account="account" :items="items" />
-      <GroupBtnBuyAccount :account="account" account-type="ninja" />
+      <AccountInfoTable :account="account" :account-infos="accountInfos" />
+      <GroupBtnBuyAccount :account="account" :account-infos="accountInfos" />
     </div>
   </client-only>
 </template>
@@ -22,6 +22,7 @@
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 import AccountInfoTable from "@/components/common/client/table/AccountInfoTable.vue";
 export default {
+  name: "AccountDetailCard",
   components: {
     GroupBtnBuyAccount,
     AccountInfoTable,
@@ -31,7 +32,7 @@ export default {
       type: Object,
       default: () => {},
     },
-    items: {
+    accountInfos: {
       type: Array,
       default: () => [],
     },

@@ -44,14 +44,10 @@ export default {
       type: Object,
       default: () => {},
     },
-    accountType: {
-      type: String,
-      default: "",
-    },
   },
   computed: {
     game() {
-      switch (this.accountType) {
+      switch (this.account.account_type) {
         case "ninja":
           return "Ninja";
         case "avatar":
