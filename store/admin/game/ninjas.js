@@ -46,28 +46,30 @@ const queryNinjas = _.cloneDeep({
     value: 15
   },
   id: {
-    // title: "ID",
     placeholder: "ID",
     type: "text",
     show: true,
     value: ''
   },
+  code: {
+    placeholder: "code",
+    type: "text",
+    show: true,
+    value: ''
+  },
   username: {
-    // title: "Tài Khoản",
     placeholder: "Username",
     type: "text",
     show: true,
     value: ''
   },
   character_name: {
-    // title: "Tài Khoản",
     placeholder: "In Game",
     type: "text",
     show: true,
     value: ''
   },
   status: {
-    // title: "Tài Khoản",
     placeholder: "Trạng Thái",
     type: "select-options",
     show: true,

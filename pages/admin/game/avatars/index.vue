@@ -118,6 +118,17 @@ export default {
           },
         },
         {
+          key: "code",
+          label: "Mã",
+          type: "number",
+          fixed: "left",
+          attributes: {
+            style: {
+              minWidth: "80px",
+            },
+          },
+        },
+        {
           key: "username",
           label: "Account",
           attributes: {

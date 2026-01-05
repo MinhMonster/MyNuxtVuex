@@ -51,8 +51,13 @@ const queryAvatars = _.cloneDeep({
     value: 15
   },
   id: {
-    // title: "ID",
     placeholder: "ID",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  code: {
+    placeholder: "code",
     type: "text",
     show: true,
     value: ''
@@ -111,7 +116,7 @@ const queryAvatars = _.cloneDeep({
 
 const queryAvatar = _.cloneDeep({
 
-  ID: "",
+  code: "",
   username: "",
   land: "",
   pets: "",
@@ -128,9 +133,9 @@ const queryAvatar = _.cloneDeep({
 const formAvatar =
   _.cloneDeep([
     {
-      title: "ID",
+      title: "code",
       type: "number",
-      value: 'id'
+      value: 'code'
     },
     {
       title: "Tài khoản",
@@ -184,9 +189,7 @@ const formAvatar =
       type: "content-editer",
       value: 'description',
       cols: 12,
-      sm: 12,
       md: 12,
-      lg: 12
     },
 
   ]);
@@ -198,15 +201,12 @@ const formModalAvatar =
       type: "text",
       value: 'username',
       cols: 12,
-      lg: 12,
       md: 12
     },
     {
       title: "Discount",
       type: "cash",
       value: 'discount_percent',
-      cols: 6,
-      lg: 6,
       md: 6
     },
     {
@@ -214,40 +214,30 @@ const formModalAvatar =
       type: "text",
       disabled: true,
       value: 'active_discount',
-      cols: 6,
-      lg: 6,
       md: 6
     },
     {
       title: "Giá Bán (Vnd)",
       type: "cash",
       value: 'selling_price',
-      cols: 6,
-      lg: 6,
       md: 6
     },
     {
       title: "Giá Sale (Vnđ)",
       type: "cash_sale_off",
       value: 'selling_price',
-      cols: 6,
-      lg: 6,
       md: 6
     },
     {
       title: "Giá Nhập (Vnđ)",
       type: "cash",
       value: 'purchase_price',
-      cols: 6,
-      lg: 6,
       md: 6
     },
     {
       title: "Lợi Nhuận (Vnđ)",
       value: 'giatien',
       type: "profit",
-      cols: 6,
-      lg: 6,
       md: 6
     },
   ]);

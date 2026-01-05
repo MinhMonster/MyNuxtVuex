@@ -4,7 +4,7 @@
       <v-row>
         <v-col
           v-for="(item, key) in querySearch"
-          cols="12"
+          cols="6"
           sm="4"
           md="3"
           lg="3"
