@@ -156,12 +156,12 @@ export default {
     },
     onResize() {
       const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
+      if (screenWidth < 768) {
         this.isMb = true;
       } else {
         this.isMb = false;
       }
-      if (screenWidth < 768) {
+      if (screenWidth < 948) {
         this.is_tablet = true;
       } else {
         this.is_tablet = false;

@@ -30,7 +30,7 @@ const auth = createNamespacedHelpers("admin/auth");
 const client = createNamespacedHelpers("home/users");
 
 export default {
-  name: "Adminlayout",
+  name: "adminDev",
   middleware: ["authentication"],
   components: {
     MenuRow,
@@ -56,14 +56,10 @@ export default {
     ...auth.mapState(["authenticated"]),
     ...client.mapState(["user"]),
     is_game() {
-      return (
-        this.path.includes("game/")
-      );
+      return this.path.includes("game/");
     },
     is_deverloper() {
-      return (
-        this.path.includes("deverlopers/")
-      );
+      return this.path.includes("deverlopers/");
     },
     styleMain() {
       if (!this.showMenuLeft && !this.showMenuRight) {
@@ -98,9 +94,13 @@ export default {
 
     this.$nextTick(function () {
       this.onChangePath();
+      this.onResize();
     });
+    window.addEventListener("resize", this.onResize);
   },
-  destroyed() {},
+  destroyed() {
+    window.removeEventListener("resize", this.onResize);
+  },
   unMounted() {},
   methods: {
     onChangePath() {

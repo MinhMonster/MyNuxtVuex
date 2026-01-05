@@ -35,6 +35,8 @@ export default {
     screenMobile: true,
     oldPath: "/",
     nowPath: "/",
+    isMb: true,
+    is_tablet: false,
   }),
   getters: {
     getField,

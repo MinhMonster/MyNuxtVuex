@@ -168,39 +168,39 @@ export default {
 }
 
 // Animations
-@keyframes animate-top {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
+// @keyframes animate-top {
+//   0% {
+//     background-position: 200% 0;
+//   }
+//   100% {
+//     background-position: -200% 0;
+//   }
+// }
 
-@keyframes animate-right {
-  0% {
-    background-position: 0 200%;
-  }
-  100% {
-    background-position: 0 -200%;
-  }
-}
+// @keyframes animate-right {
+//   0% {
+//     background-position: 0 200%;
+//   }
+//   100% {
+//     background-position: 0 -200%;
+//   }
+// }
 
-@keyframes animate-bottom {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
+// @keyframes animate-bottom {
+//   0% {
+//     background-position: -200% 0;
+//   }
+//   100% {
+//     background-position: 200% 0;
+//   }
+// }
 
-@keyframes animate-left {
-  0% {
-    background-position: 0 -200%;
-  }
-  100% {
-    background-position: 0 200%;
-  }
-}
+// @keyframes animate-left {
+//   0% {
+//     background-position: 0 -200%;
+//   }
+//   100% {
+//     background-position: 0 200%;
+//   }
+// }
 </style>
