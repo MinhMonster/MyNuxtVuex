@@ -16,6 +16,7 @@ import adminDiscounts from '~/repositories/admin/discounts'
 import adminSettings from '~/repositories/admin/settings'
 import adminHistoriesBankDeposits from '~/repositories/admin/histories/bankDeposits'
 import adminHistoriesWalletTransactions from '~/repositories/admin/histories/walletTransactions'
+import adminHistoriesGameAccountSolds from '~/repositories/admin/histories/gameAccountSolds'
 
 export default ($api_mms) => ({
   // admin Auths
@@ -32,4 +33,5 @@ export default ($api_mms) => ({
   adminSettings: adminSettings($api_mms),
   adminHistoriesBankDeposits: adminHistoriesBankDeposits($api_mms),
   adminHistoriesWalletTransactions: adminHistoriesWalletTransactions($api_mms),
+  adminHistoriesGameAccountSolds: adminHistoriesGameAccountSolds($api_mms),
 })

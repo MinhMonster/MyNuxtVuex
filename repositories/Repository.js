@@ -15,7 +15,7 @@ import adminFolders from '~/repositories/admin/folders'
 // import adminGameNinjas from '~/repositories/admin/game/ninjas'
 
 // import adminGameAvatars from '~/repositories/admin/game/avatars'
-import adminGameAccountSold from '~/repositories/admin/histories/game_account_sold'
+// import adminGameAccountSold from '~/repositories/admin/histories/game_account_sold'
 // import adminBankDeposits from '~/repositories/admin/histories/bank_deposits'
 // import adminDiscounts from '~/repositories/admin/discounts'
 
@@ -28,8 +28,8 @@ import adminLearnLanguages from '~/repositories/admin/learn_languages'
 
 
 // Home Page
-import gameNinjas from '~/repositories/home/game/ninjas'
-import gameAvatars from '~/repositories/home/game/avatars'
+// import gameNinjas from '~/repositories/home/game/ninjas'
+// import gameAvatars from '~/repositories/home/game/avatars'
 import gameDragonBalls from '~/repositories/home/game/dragon_balls'
 
 import homeUsers from '~/repositories/home/users'
@@ -55,7 +55,7 @@ export default ($api) => ({
   // admin Game
   // adminGameNinjas: adminGameNinjas($api),
   // adminGameAvatars: adminGameAvatars($api),
-  adminGameAccountSold: adminGameAccountSold($api),
+  // adminGameAccountSold: adminGameAccountSold($api),
   // adminBankDeposits: adminBankDeposits($api),
   // adminDiscounts: adminDiscounts($api),
 

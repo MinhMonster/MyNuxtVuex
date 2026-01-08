@@ -8,9 +8,13 @@ export default enableResetStore({
     stateDefault: {
       queryGameAccountSolds: queryGameAccountSolds,
       queryGameAccountSold: queryGameAccountSold,
+      queryPriceGameAccountSold: queryPriceGameAccountSold
     },
+    columns: columns,
+    repositories: "repositories_mms",
     queryGameAccountSolds: queryGameAccountSolds,
     queryGameAccountSold: queryGameAccountSold,
+    queryPriceGameAccountSold: queryPriceGameAccountSold,
     formAccountSold: formAccountSold,
     formAccountPrice: formAccountPrice
 
@@ -50,7 +54,6 @@ const queryGameAccountSolds = _.cloneDeep({
     value: 15
   },
   type: {
-    title: "Game",
     placeholder: "Game",
     type: "select-options",
     show: true,
@@ -75,14 +78,12 @@ const queryGameAccountSolds = _.cloneDeep({
     ],
   },
   taikhoan: {
-    title: "Account Name",
     placeholder: "Account Name",
     type: "text",
     show: true,
     value: ''
   },
   idnick: {
-    title: "ID Account",
     placeholder: "ID Account",
     type: "text",
     show: true,
@@ -90,21 +91,18 @@ const queryGameAccountSolds = _.cloneDeep({
   },
 
   uid: {
-    title: "UID",
     placeholder: "UID",
     type: "text",
     show: true,
     value: ''
   },
   from_time: {
-    title: "From Time",
     placeholder: "From Time",
     type: "date",
     show: true,
     value: ''
   },
   to_time: {
-    title: "To Time",
     placeholder: "To Time",
     type: "date",
     show: true,
@@ -113,43 +111,41 @@ const queryGameAccountSolds = _.cloneDeep({
 });
 
 const queryGameAccountSold = _.cloneDeep({
-
-  ID: "",
-  taikhoan: "",
-  matkhau: "",
-  mapin: "",
+  id: "",
+  username: "",
+  password: "",
+  transfer_pin: "",
 });
 
-
+const queryPriceGameAccountSold = _.cloneDeep({
+  purchase_price: "",
+  selling_price: "",
+  note: "",
+  images: [],
+});
 
 const formAccountSold =
   _.cloneDeep([
     {
       title: "Tài Khoản",
       type: "text",
-      value: 'taikhoan',
+      value: 'username',
       cols: 12,
-      sm: 12,
       md: 12,
-      lg: 12
     },
     {
       title: "Mật Khẩu",
       type: "text",
-      value: 'matkhau',
+      value: 'password',
       cols: 12,
-      sm: 12,
       md: 12,
-      lg: 12
     },
     {
       title: "Mã Pin",
       type: "text",
-      value: 'mapin',
+      value: 'transfer_pin',
       cols: 12,
-      sm: 12,
       md: 12,
-      lg: 12
     },
   ]);
 
@@ -158,20 +154,120 @@ const formAccountPrice =
     {
       title: "Price",
       type: "cash",
-      value: 'giatien',
-      cols: 12,
-      sm: 12,
-      md: 12,
-      lg: 12
+      value: 'purchase_price',
+      md: 6,
     },
     {
       title: "Cost",
       type: "cash",
-      value: 'gianhap',
+      value: 'selling_price',
+      md: 6,
+    },
+    {
+      title: "Note",
+      type: "content-editer",
+      value: 'note',
       cols: 12,
-      sm: 12,
       md: 12,
-      lg: 12
+    },
+    {
+      title: "Images",
+      type: "images",
+      value: 'images',
+      cols: 12,
+      md: 12,
+    },
+  ]);
+
+const columns =
+  _.cloneDeep([
+    {
+      key: "id",
+      label: "ID",
+      attributes: {
+        style: {
+          width: "50px",
+        },
+      },
+    },
+    {
+      key: "account_code",
+      label: "Code",
+      type: "number",
+      copy: true,
+      attributes: {
+        style: {
+          minWidth: "100px",
+        },
+      },
+    },
+    {
+      key: "account.username",
+      label: "Account",
+      copy: true,
+      attributes: {
+        style: {
+          minWidth: "170px",
+        },
+      },
+    },
+    {
+      key: "selling_price",
+      label: "Price",
+      type: "number",
+      attributes: {
+        style: {
+          width: "100px",
+        },
+      },
+    },
+    {
+      key: "purchase_price",
+      label: "Cost",
+      type: "number",
+      attributes: {
+        style: {
+          width: "100px",
+        },
+      },
+    },
+    {
+      key: "account_type",
+      label: "Game",
+      attributes: {
+        style: {
+          minWidth: "150px",
+        },
+      },
+    },
+    {
+      key: "user.name",
+      label: "User",
+      attributes: {
+        style: {
+          minWidth: "150px",
+        },
+      },
+    },
+    {
+      key: "purchased_at",
+      label: "Time",
+      attributes: {
+        style: {
+          minWidth: "150px",
+        },
+      },
+    },
+    {
+      key: "action",
+      label: "Actions",
+      type: "actions",
+      fixed: "right",
+      attributes: {
+        style: {
+          minWidth: "30px",
+        },
+      },
     },
   ]);
 
