@@ -16,7 +16,7 @@
     </v-btn>
     <v-spacer />
     <div class="flex justify-end items-center">
-      <v-btn v-if="showMenuRight" icon>
+      <!-- <v-btn v-if="showMenuRight" icon>
         <v-icon>mdi-cursor-move</v-icon>:
       </v-btn>
       <br />
@@ -25,8 +25,8 @@
         v-model="checkedMove"
         color="blue"
         switch
-      />
-      <v-btn v-if="showMenuRight" icon>
+      /> -->
+      <!-- <v-btn v-if="showMenuRight" icon>
         <v-icon>mdi-pencil-box-multiple-outline</v-icon>:
       </v-btn>
       <v-switch
@@ -34,17 +34,17 @@
         v-model="checkedEdit"
         color="blue"
         switch
-      />
+      /> -->
       <v-btn color="red" icon @click="onLogout">
         <v-icon>mdi-power</v-icon>
       </v-btn>
-      <v-btn
+      <!-- <v-btn
         v-if="deverloper"
         icon
         @click.stop="showMenuRight = !showMenuRight"
       >
         <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      </v-btn> -->
     </div>
   </v-app-bar>
 </template>
@@ -53,7 +53,7 @@
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("admin/auth");
-const dev = createNamespacedHelpers("admin/deverlopers");
+// const dev = createNamespacedHelpers("admin/deverlopers");
 
 export default {
   name: "AppBar",
@@ -71,7 +71,7 @@ export default {
       checkedMove: "checkedMove",
       fixed: "fixed",
     }),
-    ...dev.mapState(["deverloper"]),
+    // ...dev.mapState(["deverloper"]),
   },
   methods: {
     ...mapActions(["logout"]),

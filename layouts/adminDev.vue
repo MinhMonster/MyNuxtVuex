@@ -8,7 +8,7 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <MenuRight />
+    <!-- <MenuRight /> -->
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
@@ -20,11 +20,11 @@ import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 import MenuRow from "@/components/pages/admin/layout/MenuRow";
 import MenuLeft from "@/components/pages/admin/layout/MenuLeft";
-import MenuRight from "@/components/pages/admin/layout/MenuRight";
+// import MenuRight from "@/components/pages/admin/layout/MenuRight";
 import AppBar from "@/components/pages/admin/layout/AppBar";
 
-const { mapState } = createNamespacedHelpers("admin/deverlopers");
-const auth = createNamespacedHelpers("admin/auth");
+// const { mapState } = createNamespacedHelpers("admin/deverlopers");
+// const auth = createNamespacedHelpers("admin/auth");
 const client = createNamespacedHelpers("home/users");
 
 export default {
@@ -33,14 +33,13 @@ export default {
   components: {
     MenuRow,
     MenuLeft,
-    MenuRight,
+    // MenuRight,
     AppBar,
   },
   data() {
     return {
       clipped: true,
       miniVariant: false,
-      title: "Admin",
     };
   },
 
@@ -50,14 +49,14 @@ export default {
       showMenuRight: "showMenuRight",
       fixed: "fixed",
     }),
-    ...mapState(["deverlopers", "deverloper"]),
+    // ...mapState(["deverlopers", "deverloper"]),
     ...client.mapState(["user"]),
-    is_game() {
-      return this.path.includes("game/");
-    },
-    is_deverloper() {
-      return this.path.includes("deverlopers/");
-    },
+    // is_game() {
+    //   return this.path.includes("game/");
+    // },
+    // is_deverloper() {
+    //   return this.path.includes("deverlopers/");
+    // },
     styleMain() {
       if (!this.showMenuLeft && !this.showMenuRight) {
         return { padding: "94px 0 36px" };
@@ -71,16 +70,16 @@ export default {
       return { padding: "94px 0 36px 300px" };
     },
   },
-  watch: {
-    path: {
-      handler(newValue, oldValue) {
-        this.onChangePath();
-      },
-    },
-  },
+  // watch: {
+  //   path: {
+  //     handler(newValue, oldValue) {
+  //       // this.onChangePath();
+  //     },
+  //   },
+  // },
   async mounted() {
     this.$nextTick(function () {
-      this.onChangePath();
+      // this.onChangePath();
       this.onResize();
     });
     window.addEventListener("resize", this.onResize);
@@ -90,13 +89,13 @@ export default {
   },
   unMounted() {},
   methods: {
-    onChangePath() {
-      if (!this.is_deverloper) {
-        const isDesktop = window.innerWidth > 1000;
-        this.showMenuLeft = isDesktop;
-        this.showMenuRight = isDesktop;
-      }
-    },
+    // onChangePath() {
+    //   if (!this.is_deverloper) {
+    //     const isDesktop = window.innerWidth > 1000;
+    //     this.showMenuLeft = isDesktop;
+    //     // this.showMenuRight = isDesktop;
+    //   }
+    // },
   },
   head() {
     return {

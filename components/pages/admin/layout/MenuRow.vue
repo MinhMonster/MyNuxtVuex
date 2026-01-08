@@ -12,7 +12,7 @@
         </v-btn>
       </v-slide-item>
       <v-slide-item
-        v-for="(item, i) in items"
+        v-for="(item, i) in menus"
         :key="i"
         v-slot="{ active, toggle }"
         :class="[$route.path.includes(`${item.to}`) ? 'v-btn--active' : '']"
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { menus } from '@/utils/admin/configs'
+
 export default {
   name: "MenuRow",
   components: {},
@@ -127,6 +129,7 @@ export default {
           to: "/admin/mms",
         },
       ],
+      menus
     };
   },
 };
