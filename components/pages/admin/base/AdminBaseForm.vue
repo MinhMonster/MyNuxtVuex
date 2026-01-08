@@ -106,15 +106,26 @@ export default {
     return {};
   },
   computed: {
+    repo() {
+      return this.convertToCamelCase(this.module);
+    },
+    storeModule() {
+      return this.convertToDot(this.module);
+    },
     ...mapState({
-      repositoryKey() {
-        return this[`$${this.repositories}`];
+      repositoryKey(state) {
+        const repositories = _.get(
+          state,
+          this.storeModule + ".repositories",
+          this.repositories
+        );
+        return this[`$${repositories}`];
       },
       stateQuery(state) {
-        return _.get(state, this.store.module + "." + this.store.state, {});
+        return _.get(state, this.storeModule + "." + this.store.state, {});
       },
       stateForms(state) {
-        return _.get(state, this.store.module + "." + this.store.form, []);
+        return _.get(state, this.storeModule + "." + this.store.form, []);
       },
       haveStore() {
         return !_.isEmpty(this.store);
@@ -174,9 +185,7 @@ export default {
     },
     async updateData() {
       try {
-        const result = await this.repositoryKey[this.repository][
-          this.store.update
-        ]({
+        const result = await this.repositoryKey[this.repo][this.store.update]({
           id: this.id,
           input: this.stateQuery,
         });

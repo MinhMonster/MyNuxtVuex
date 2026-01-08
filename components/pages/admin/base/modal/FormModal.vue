@@ -13,7 +13,7 @@
             <BaseGroupForm
               :data-form="dataForm"
               :forms="stateForms"
-              @updated="updateForm()"
+              @updated="updateForm"
             />
             <v-btn
               v-show="false"
@@ -150,10 +150,14 @@ export default {
       haveStore() {
         return !_.isEmpty(this.store);
       },
+      dataForm() {
+        const allowedFields = this.stateForms.map((f) => f.value);
+        const data = _.cloneDeep(this.stateQuery);
+        return Object.fromEntries(
+          Object.entries(data).filter(([key]) => allowedFields.includes(key))
+        );
+      },
     }),
-    dataForm() {
-      return _.cloneDeep(this.stateQuery);
-    },
   },
   mounted() {},
   methods: {
@@ -166,8 +170,8 @@ export default {
         this.resetDataForm();
       }
     },
-    updateForm() {
-      this.updateState(this.dataForm);
+    updateForm(data) {
+      this.updateState(data);
     },
     resetForm() {
       this.$store.dispatch(this.module + "/resetData", this.store.state);

@@ -17,7 +17,8 @@
       :disabled="true"
       :value="
         cash_atm(
-          dataForm[`${getName}`] * (1 - (dataForm['active_discount'] || 0) / 100)
+          dataForm[`${getName}`] *
+            (1 - (dataForm['active_discount'] || 0) / 100)
         )
       "
     />
@@ -62,18 +63,30 @@
         @input="updateForm()"
       ></ContentEditer>
     </div>
+    <div v-if="form.type === 'images'">
+      <label for="" class="content-editer">{{ form.title }}</label>
+      <ImageList
+        v-model="modelValue"
+        :name="getName"
+        :md="6"
+        @updated="onChangeImages"
+        class="images"
+      />
+    </div>
   </form-validator>
 </template>
 <script>
 import FormValidator from "@/components/pages/admin/Shared/form/FormValidator";
 import ContentEditer from "@/components/pages/admin/Shared/nuxt-editor/CkEditorNuxt.vue";
 import BaseInput from "@/components/pages/admin/base/BaseInput";
+import ImageList from "@/components/global/molecules/common/ImageList";
 
 export default {
   components: {
     FormValidator,
     ContentEditer,
     BaseInput,
+    ImageList,
   },
   name: "BaseGroupForm",
   props: {
@@ -109,38 +122,42 @@ export default {
       return path.includes("/new");
     },
     getName() {
-      return this.index != null && this.keyForm
-        ? `${this.keyForm}.[${this.index}].${this.form.value}`
-        : this.form.value;
+      if (this.index != null && this.keyForm) {
+        return `${this.keyForm}.${this.index}.${this.form.value}`;
+      }
+      return this.form.value || "";
     },
     modelValue: {
-  get() {
-    if (this.keyForm) {
-      return this.dataForm[this.keyForm][this.index]?.[this.form.value] ?? '';
-    }
-    return this.dataForm[this.getName] ?? '';
-  },
-  set(value) {
-    if (this.keyForm) {
-      // Nếu mảng chưa có phần tử tại index thì tạo mới
-      if (!this.dataForm[this.keyForm]) {
-        this.$set(this.dataForm, this.keyForm, []);
-      }
-      if (!this.dataForm[this.keyForm][this.index]) {
-        this.$set(`${this.dataForm}.${this.keyForm}`, this.index, {});
-      }
+      get() {
+        if (this.keyForm) {
+          return (
+            this.dataForm[this.keyForm][this.index]?.[this.form.value] ?? ""
+          );
+        }
+        return (
+          this.dataForm[this.getName] ?? (this.form.type === "images" ? [] : "")
+        );
+      },
+      set(value) {
+        if (this.keyForm) {
+          // Nếu mảng chưa có phần tử tại index thì tạo mới
+          if (!this.dataForm[this.keyForm]) {
+            this.$set(this.dataForm, this.keyForm, []);
+          }
+          if (!this.dataForm[this.keyForm][this.index]) {
+            this.$set(`${this.dataForm}.${this.keyForm}`, this.index, {});
+          }
 
-      this.$set(
-        this.dataForm[this.keyForm][this.index],
-        this.form.value,
-        value
-      );
-    } else {
-      this.$set(this.dataForm, this.getName, value);
-    }
-  },
-},
-
+          this.$set(
+            this.dataForm[this.keyForm][this.index],
+            this.form.value,
+            value
+          );
+        } else {
+          this.$set(this.dataForm, this.getName, value);
+        }
+      },
+    },
   },
   async mounted() {},
   methods: {
@@ -150,6 +167,10 @@ export default {
     },
     updateForm() {
       this.$emit("updated", this.dataForm);
+    },
+    onChangeImages(name, value) {
+      this.dataForm[name] = value || [];
+      this.updateForm();
     },
   },
 };
