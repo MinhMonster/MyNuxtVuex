@@ -1,32 +1,29 @@
 <template>
   <ModalPayload
     ref="modal"
-    :title="item?.taikhoan"
-    :text-close="`Hủy`"
+    title="Actions"
+    text-close="Hủy"
     :is-icon-close="false"
     width="300px"
     size="md"
     classContent="bg-white"
-    @hide="close()"
+    @hide="close"
   >
     <template #content>
-      <div class="pointer text-black" @click="updateInfo()">
-        <v-icon color="blue">mdi-lead-pencil</v-icon>
-        Update Info Account
-      </div>
-      <hr />
-      <div class="pointer text-black" @click="updatePrice()">
-        <v-icon color="blue">mdi-cash</v-icon>
-        Update Price
-      </div>
-      <hr />
-      <div class="pointer text-black" @click="onDelete()">
-        <v-icon color="red">mdi-delete</v-icon>
-        Delete
+      <div
+        v-for="action in actions"
+        :key="action.type"
+        class="action-item pointer text-black"
+        @click="emitAction(action)"
+      >
+        <v-icon :color="action.color">{{ action.icon }}</v-icon>
+        {{ action.label }}
+        <hr />
       </div>
     </template>
   </ModalPayload>
 </template>
+
 <script>
 import ModalPayload from "@/components/common/ModalPayload";
 
@@ -34,56 +31,37 @@ export default {
   components: { ModalPayload },
 
   props: {
-    label: {
-      type: String,
-      default: "Title Modal",
-    },
-    item: {
-      type: Object,
-      default: {},
+    value: Object,
+    actions: {
+      type: Array,
+      required: true,
     },
   },
-  data() {
-    return {
-      name: "",
-    };
+  watch: {
+    value(val) {
+      val ? this.$refs.modal.show() : this.$refs.modal.close();
+    },
   },
 
   methods: {
-    updateInfo() {
-      this.$emit("updateInfo", this.item);
-      this.close();
-    },
-    updatePrice() {
-      this.$emit("updatePrice", this.item);
-      this.close();
-    },
-    onDelete() {
-      this.$emit("onDelete", this.item);
-      this.close();
-    },
-    change() {
-      this.$emit("change", this.name);
-      this.$emit("closeModal");
-    },
-    show() {
-      this.$refs.modal.show();
-    },
     close() {
-      this.$refs.modal.close();
+      this.$emit("input", null);
+    },
+
+    emitAction(action) {
+      this.$emit("action", {
+        type: action.type,
+        item: this.value,
+      });
+
+      this.close();
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-// .v-card__title {
-//   padding: 10px;
-//   display: flex;
-//   justify-content: center;
-//   // color: rgba(0, 0, 0, 0.6) !important;
-// }
-// .v-divider {
-//   padding: 0;
-//   margin: 0;
-// }
+
+<style scoped>
+.action-item {
+  padding: 8px 0;
+}
 </style>

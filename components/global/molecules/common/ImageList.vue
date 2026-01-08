@@ -20,7 +20,6 @@
           v-for="(image, index) in images || []"
           :key="index"
           :cols="cols"
-          :sm="sm"
           :md="md"
         >
           <div class="fileItemWrapper">
