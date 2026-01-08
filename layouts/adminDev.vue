@@ -1,19 +1,17 @@
 <template>
   <v-app dark id="admin">
-    <client-only v-if="authenticated">
-      <MenuLeft />
-      <AppBar />
-      <MenuRow />
-      <v-main class="bg-white" :style="styleMain">
-        <v-container>
-          <Nuxt />
-        </v-container>
-      </v-main>
-      <MenuRight />
-      <v-footer :absolute="!fixed" app>
-        <span>&copy; {{ new Date().getFullYear() }}</span>
-      </v-footer>
-    </client-only>
+    <MenuLeft />
+    <AppBar />
+    <MenuRow />
+    <v-main class="bg-white" :style="styleMain">
+      <v-container>
+        <Nuxt />
+      </v-container>
+    </v-main>
+    <MenuRight />
+    <v-footer :absolute="!fixed" app>
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
   </v-app>
 </template>
 
@@ -53,7 +51,6 @@ export default {
       fixed: "fixed",
     }),
     ...mapState(["deverlopers", "deverloper"]),
-    ...auth.mapState(["authenticated"]),
     ...client.mapState(["user"]),
     is_game() {
       return this.path.includes("game/");
@@ -63,14 +60,15 @@ export default {
     },
     styleMain() {
       if (!this.showMenuLeft && !this.showMenuRight) {
-        return "padding: 94px 0px 36px";
-      } else if (this.showMenuLeft && this.showMenuRight) {
-        return "padding: 94px 300px 36px";
-      } else if (!this.showMenuLeft && this.showMenuRight) {
-        return "padding: 94px 300px 36px 0";
-      } else {
-        return "padding: 94px 0 36px 300px";
+        return { padding: "94px 0 36px" };
       }
+      if (this.showMenuLeft && this.showMenuRight) {
+        return { padding: "94px 300px 36px" };
+      }
+      if (!this.showMenuLeft && this.showMenuRight) {
+        return { padding: "94px 300px 36px 0" };
+      }
+      return { padding: "94px 0 36px 300px" };
     },
   },
   watch: {
@@ -79,44 +77,24 @@ export default {
         this.onChangePath();
       },
     },
-    authenticated: {
-      handler(newValue, oldValue) {
-        this.checkLogin();
-      },
-    },
   },
   async mounted() {
-    // if (!this.user || !this.user.admin) {
-    //   this.$router.push("/404");
-    // } else
-
-    await this.checkLogin();
-
     this.$nextTick(function () {
       this.onChangePath();
       this.onResize();
     });
     window.addEventListener("resize", this.onResize);
   },
-  destroyed() {
+  beforeDestroy() {
     window.removeEventListener("resize", this.onResize);
   },
   unMounted() {},
   methods: {
     onChangePath() {
       if (!this.is_deverloper) {
-        const body = document.querySelector("body");
-        if (body.clientWidth > 1000) {
-          this.showMenuLeft = true;
-          this.showMenuRight = true;
-        }
-        this.showMenuLeft = false;
-        this.showMenuRight = false;
-      }
-    },
-    checkLogin() {
-      if (!this.authenticated) {
-        this.$router.push("/admin/login");
+        const isDesktop = window.innerWidth > 1000;
+        this.showMenuLeft = isDesktop;
+        this.showMenuRight = isDesktop;
       }
     },
   },
