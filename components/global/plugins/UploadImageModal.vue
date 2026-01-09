@@ -2,18 +2,18 @@
   <v-dialog light v-model="dialog" persistent max-width="1250" class="modal">
     <template v-slot:activator="{ props }">
       <v-btn
-        v-if="icon == 'btn-icon'"
+        v-if="showIcon && icon == 'btn-icon'"
         v-bind="props"
         icon
         class="right primary"
-        @click="dialog = true"
+        @click="show()"
       >
         <v-icon>mdi-plus</v-icon>
       </v-btn>
       <i
-        v-if="icon == 'add-file'"
+        v-if="showIcon && icon == 'add-file'"
         class="display-4 text-muted mdi mdi-playlist-plus"
-        @click="dialog = true"
+        @click="show()"
       ></i>
     </template>
     <v-card class="modal-upload">
@@ -84,6 +84,10 @@ export default {
       type: String,
       default: "btn-icon",
     },
+    showIcon: {
+      type: Boolean,
+      default: true,
+    },
   },
   data: () => ({
     dialog: false,
@@ -100,9 +104,14 @@ export default {
       "updateNameFolder",
     ]),
     ...mapActions("global", ["setSelectedImages"]),
-
-    uploaded(files) {
+    show() {
+      this.dialog = true;
+    },
+    close() {
       this.dialog = false;
+    },
+    uploaded(files) {
+      this.close();
       this.$emit("onUploaded", files);
     },
 
@@ -134,7 +143,7 @@ export default {
     },
 
     saveSelected() {
-      this.dialog = false;
+      this.close();
       this.$emit("onUploaded", this.selectedImages);
       this.setSelectedImages([]);
     },

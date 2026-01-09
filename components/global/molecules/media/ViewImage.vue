@@ -3,7 +3,7 @@
     <div v-if="image" class="view-image">
       <img
         :src="image"
-        alt="Image Account Avatar"
+        alt="Image"
         title="Phóng to ảnh"
         class="image-account cursor-pointer"
         @click="$refs.modal.show()"
@@ -23,7 +23,7 @@
           <div class="scroll-x text-center">
             <img
               :src="url"
-              alt="Image Account Avatar"
+              alt="Image"
               class="image-account w-100"
               :style="{ width: percent + '%' }"
             />
@@ -206,7 +206,7 @@ export default {
     width: 100%;
     // margin-left: -10%;
     // height: 270px;
-    border-radius: 7px;
+    // border-radius: 7px;
     border: 1px solid #a4a4a4;
 
     &.full {

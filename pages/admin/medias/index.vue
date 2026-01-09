@@ -1,59 +1,67 @@
 <template>
-  <client-only>
-    <div>
-      <v-row align="center">
-        <v-col>
-          <v-card-title class="mgl--15px">Medias </v-card-title>
-        </v-col>
-        <v-col>
-          <UploadImageModal @onUploaded="onUploaded"></UploadImageModal>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="12" md="12" sm="12">
-          <v-card>
-            <v-simple-table class="table text-center mgb--10px">
-              <template v-slot:default>
-                <thead>
-                  <tr class="w-100">
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>Size</th>
-                    <th>Time</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <media-table-row
-                    v-for="image in files"
-                    :key="image.id"
-                    :image="image"
-                    @dropImage="dropImage(image)"
-                    class="table-center text-middle"
-                  ></media-table-row>
-                </tbody>
-              </template>
-            </v-simple-table>
-          </v-card>
-        </v-col>
-      </v-row>
-    </div>
-  </client-only>
+  <NavAdmin
+    title="Medias"
+    goBack
+    new-page
+    next-page
+    reload
+    @reload="$refs.table.fetchData()"
+    @newPage="$refs.modal.show()"
+  >
+    <template #body>
+      <AdminBaseTable
+        ref="table"
+        module="admin/folders/files"
+        :store="{
+          state: 'queryFiles',
+          action: 'fetchMedias',
+        }"
+      >
+        <template #fileName="{ row }">
+          <div class="d-flex align-items-start" :title="row.fileName">
+            <ViewImage
+              :image="row.url"
+              class="mr-2 border d-flex align-items-end justify-content-end"
+            />
+          </div>
+        </template>
+
+        <template #byteSize="{ row }">
+          {{ fileSizeFilter(row.byteSize) }}
+        </template>
+
+        <template #action="{ row }">
+          <v-btn light icon @click="dropImage(row)">
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+      </AdminBaseTable>
+      <UploadImageModal
+        ref="modal"
+        @onUploaded="$refs.table.fetchData()"
+        :show-icon="false"
+      ></UploadImageModal>
+    </template>
+  </NavAdmin>
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
 import mixins from "@/mixins/index";
 import MediaTableRow from "@/components/global/molecules/media/MediaTableRow.vue";
 import UploadImageModal from "@/components/global/plugins/UploadImageModal.vue";
+import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
+import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
+import ViewImage from "@/components/global/molecules/media/ViewImage";
 
 export default {
   mixins: [mixins],
   layout: "adminDev",
   components: {
+    NavAdmin,
+    AdminBaseTable,
     MediaTableRow,
     UploadImageModal,
+    ViewImage,
   },
   head() {
     return {
@@ -71,45 +79,19 @@ export default {
   data() {
     return {};
   },
-  async mounted() {
-    await this.fetchMedia();
-  },
-  computed: {
-    ...mapFields("admin/medias", ["medias"]),
-    month() {
-      return this.$route.params.month;
-    },
-    year() {
-      return this.$route.params.year;
-    },
-    files() {
-      return _.cloneDeep(this.medias);
-    },
-    // computedThumbnail() {
-    //   const image = _.get(
-    //     this.image,
-    //     "options.video_preview_url",
-    //     this.image.url
-    //   );
-    //   return {
-    //     backgroundImage: "url('" + image + "')",
-    //     backgroundRepeat: "no-repeat",
-    //     backgroundPosition: "center",
-    //     backgroundSize: "contain",
-    //     width: "50px",
-    //     height: "50px",
-    //     minWidth: "50px",
-    //   };
-    // },
-  },
+  async mounted() {},
+  computed: {},
   methods: {
-    ...mapActions("admin/medias", ["fetchMedia", "deleteMedia"]),
-
-    changeFinances(event) {
-      this.updatePositionFinances(event.moved.element.ID, event.moved.newIndex);
-    },
-    async onUploaded() {
-      await this.fetchMedia();
+    computedThumbnail(url) {
+      return {
+        backgroundImage: "url('" + url + "')",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "contain",
+        width: "50px",
+        height: "50px",
+        minWidth: "50px",
+      };
     },
     async dropImage(image) {
       this.$swal
@@ -122,11 +104,11 @@ export default {
         })
         .then(async (result) => {
           if (result.isConfirmed) {
-            const result = await this.deleteMedia(image.id);
-            if (result.data.code === 200) {
-              this.$toasted.success(result.data.message);
-              await this.fetchMedia();
-            }
+            // const result = await this.deleteMedia(image.id);
+            // if (result.data.code === 200) {
+            //   this.$toasted.success(result.data.message);
+            //   await this.fetchMedia();
+            // }
           }
         });
     },
