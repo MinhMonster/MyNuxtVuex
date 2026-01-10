@@ -35,7 +35,7 @@
                       Mã số: {{ format_number(history.account_code) }}
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="3" :lg="3">
-                      Giá: {{ format_number(history.price) }} VNĐ
+                      Giá: {{ format_number(history.selling_price) }} VNĐ
                     </v-col>
                     <v-col :cols="12" :sm="6" :md="4" :lg="3">
                       Time: {{ history.purchased_at }}

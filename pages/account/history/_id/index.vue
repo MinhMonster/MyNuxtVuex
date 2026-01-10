@@ -10,7 +10,7 @@
       reload
       @reload="fetchHistory()"
     >
-      <template v-if="ready && history" #body>
+      <template v-if="ready && history && account" #body>
         <div class="table-responsive">
           <AccountInfoTable :account="account" :account-infos="accountInfos">
             <template>
