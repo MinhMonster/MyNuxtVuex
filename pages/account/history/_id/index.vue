@@ -12,60 +12,8 @@
     >
       <template v-if="ready && history" #body>
         <div class="table-responsive">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th class="info-nick w-50">Game</th>
-                <td class="mua-nick w-50">
-                  <span>{{ game_name(history.account_type) }}</span>
-                </td>
-              </tr>
-              <tr>
-                <th class="info-nick" style="">Mã Số</th>
-                <td class="mua-nick">
-                  <span>{{ format_number(history.account_code) }}</span>
-                </td>
-              </tr>
-              <tr>
-                <th class="info-nick" style="">Tài Khoản</th>
-                <td class="mua-nick break-all">
-                  <span>{{ account?.username }} </span>
-                </td>
-              </tr>
-              <tr>
-                <th class="info-nick" style="">Mật khẩu</th>
-                <td class="mua-nick">
-                  <span>{{ account?.password || "Đang cập nhật" }} </span>
-                </td>
-              </tr>
-              <tr>
-                <th class="info-nick" style="">Mã chuyển sim</th>
-                <td class="mua-nick">
-                  <span>{{ transferPin || "Đang cập nhật" }}</span>
-                </td>
-              </tr>
-
-              <tr>
-                <th class="info-nick" style="">Giá Bán</th>
-                <td class="mua-nick">
-                  <span>{{ format_number(history.price) }} VNĐ</span>
-                </td>
-              </tr>
-
-              <tr>
-                <th class="info-nick" style="">Ngày thực hiện</th>
-                <td class="mua-nick">
-                  <span> {{ history.purchased_at }}</span>
-                </td>
-              </tr>
-
-              <tr>
-                <th class="info-nick" style="">Trạng Thái</th>
-                <td class="mua-nick">
-                  <span class="btn btn btn-success btn-xs">Thành công</span>
-                </td>
-              </tr>
-
+          <AccountInfoTable :account="account" :account-infos="accountInfos">
+            <template>
               <tr>
                 <td class="mua-nick text-left" colspan="2">
                   <span>
@@ -103,8 +51,8 @@
                   </span>
                 </td>
               </tr>
-            </tbody>
-          </table>
+            </template>
+          </AccountInfoTable>
         </div>
       </template>
     </HomePage>
@@ -117,6 +65,7 @@ import Loading from "@/components/global/molecules/common/Loading";
 import HomePage from "@/components/pages/home/HomePage";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
 import AdminInbox from "@/components/common/client/AdminInbox";
+import AccountInfoTable from "@/components/common/client/table/AccountInfoTable.vue";
 
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
@@ -131,6 +80,7 @@ export default {
     HomePage,
     ButtonCoppy,
     AdminInbox,
+    AccountInfoTable,
   },
   computed: {
     ...mapFields("global", { ready: "ready" }),
@@ -148,6 +98,44 @@ export default {
     },
     transferPin() {
       return this.account?.transfer_pin || null;
+    },
+    accountInfos() {
+      return [
+        {
+          label: "Game",
+          value: this.game_name(this.history.account_type),
+        },
+        {
+          label: "Mã Số",
+          value: this.format_number(this.history.account_code),
+        },
+        {
+          label: "Tài Khoản",
+          value: this.account?.username || "Đang cập nhật",
+        },
+        {
+          label: "Mật khẩu",
+          value: this.account?.password || "Đang cập nhật",
+        },
+        {
+          label: "Mã chuyển sim",
+          value: this.transferPin || "Đang cập nhật",
+          hidden: this.history.account_type === "ngocrong",
+        },
+        {
+          label: "Giá Bán",
+          value: `${this.format_number(this.history.selling_price)} Vnđ`,
+        },
+        {
+          label: "Ngày thực hiện",
+          value: this.history.purchased_at,
+        },
+        {
+          label: "Trạng Thái",
+          value: `<span class="btn btn-success btn-xs">Thành công</span>`,
+          html: true,
+        },
+      ];
     },
   },
   mounted() {

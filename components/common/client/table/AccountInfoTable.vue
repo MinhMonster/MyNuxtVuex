@@ -2,18 +2,22 @@
   <table class="table text-center">
     <tbody>
       <tr v-for="(row, index) in accountInfos" :key="'row-' + index">
-        <th class="info-nick">
-          {{ row.label }}
-        </th>
+        <template v-if="!row.hidden">
+          <th class="info-nick">
+            {{ row.label }}
+          </th>
 
-        <td class="mua-nick">
-          <span v-if="!row.html">
-            {{ row.value }}
-          </span>
-          <span v-else v-html="row.value"></span>
-        </td>
+          <td class="mua-nick">
+            <span v-if="!row.html">
+              {{ row.value }}
+            </span>
+            <span v-else v-html="row.value"></span>
+          </td>
+        </template>
       </tr>
-      <PriceAccount :account="account" />
+      <slot>
+        <PriceAccount :account="account" />
+      </slot>
     </tbody>
   </table>
 </template>

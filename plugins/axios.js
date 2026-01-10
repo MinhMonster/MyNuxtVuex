@@ -116,19 +116,19 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
 
     if (code === 404) {
       console.log("ok", error);
-      const type = error.response.data.type || null;
-      if (type) {
+      const account_type = error.response.data.account_type || null;
+      if (account_type) {
         $swal.fire({
           title: "Tài khoản không tồn tại",
           html: "Tài khoản không tồn tại hoặc đã bán!<br/> Hãy chọn Tài khoản khác nhé!<br/> Cảm ơn bạn nhiều ❤️",
           icon: "error",
           customClass: customClassSwal
         });
-        switch (type) {
-          case 'account_ninja':
+        switch (account_type) {
+          case 'ninja':
             redirect('/teamobi/ninja-school')
             break;
-          case 'account_avatar':
+          case 'avatar':
             redirect('/teamobi/avatar')
             break;
         }
