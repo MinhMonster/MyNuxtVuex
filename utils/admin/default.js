@@ -11,19 +11,15 @@ export const defaultPagy = _.cloneDeep({
 
 
 // Ninja
-export const typeNinjaOptions = _.cloneDeep([
+export const typeOptions = _.cloneDeep([
   {
     text: "Thường",
-    value: 3,
-  },
-  {
-    text: "VIP",
     value: 1,
   },
   {
-    text: "TTGT",
+    text: "VIP",
     value: 2,
-  }
+  },
 ]);
 
 export const serverNinjaOptions = _.cloneDeep([
@@ -125,6 +121,81 @@ export const typeSeleOffOptions = _.cloneDeep([
   {
     text: "Avatar",
     value: "avatar",
+  },
+]);
+
+
+export const serverNroOptions = _.cloneDeep([
+  {
+    text: "Vũ trụ 1",
+    value: 1,
+  },
+  {
+    text: "Vũ trụ 2",
+    value: 2,
+  },
+  {
+    text: "Vũ trụ 3",
+    value: 3,
+  },
+  {
+    text: "Vũ trụ 4",
+    value: 4,
+  },
+  {
+    text: "Vũ trụ 5",
+    value: 5,
+  },
+  {
+    text: "Vũ trụ 6",
+    value: 6,
+  },
+  {
+    text: "Vũ trụ 7",
+    value: 7,
+  },
+  {
+    text: "Vũ trụ 8",
+    value: 8,
+  },
+  {
+    text: "Vũ trụ 9",
+    value: 9,
+  },
+  {
+    text: "Vũ trụ 10",
+    value: 10,
+  },
+  {
+    text: "Vũ trụ 11",
+    value: 11,
+  },
+  {
+    text: "Vũ trụ 12",
+    value: 12,
+  },
+  {
+    text: "Vũ trụ 13",
+    value: 13,
+  },
+  {
+    text: "Vũ trụ 14",
+    value: 14,
+  },
+]);
+
+export const planetNroOptions = _.cloneDeep([
+  {
+    text: "Trái đất",
+    value: 1,
+  },
+  {
+    text: "Xayda",
+    value: 2,
+  },
+  {
+    text: "Namec",
+    value: 3,
   },
 ]);
 

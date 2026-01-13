@@ -64,6 +64,11 @@ export const menus = _.cloneDeep([
         title: "Avatar",
         to: "/admin/game/avatars",
       },
+      {
+        icon: "mdi-crystal-ball",
+        title: "Dragon Ball",
+        to: "/admin/game/dragon-balls",
+      },
     ]
   },
   {

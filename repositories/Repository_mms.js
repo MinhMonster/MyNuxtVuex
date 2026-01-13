@@ -12,6 +12,7 @@ import adminFoldersFiles from '~/repositories/admin/folders/files'
 //admin Game
 import adminGameNinjas from '~/repositories/admin/game/ninjas';
 import adminGameAvatars from '~/repositories/admin/game/avatars';
+import adminGameDragonBalls from '~/repositories/admin/game/dragonBalls';
 import adminDiscounts from '~/repositories/admin/discounts'
 import adminSettings from '~/repositories/admin/settings'
 import adminHistoriesBankDeposits from '~/repositories/admin/histories/bankDeposits'
@@ -30,6 +31,7 @@ export default ($api_mms) => ({
   // admin Game
   adminGameNinjas: adminGameNinjas($api_mms),
   adminGameAvatars: adminGameAvatars($api_mms),
+  adminGameDragonBalls: adminGameDragonBalls($api_mms),
   adminDiscounts: adminDiscounts($api_mms),
   adminSettings: adminSettings($api_mms),
   adminHistoriesBankDeposits: adminHistoriesBankDeposits($api_mms),
