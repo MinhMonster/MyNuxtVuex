@@ -50,7 +50,7 @@ export default {
 
     emitAction(action) {
       this.$emit("action", {
-        type: action.type,
+        action: action,
         item: this.value,
       });
 

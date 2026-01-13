@@ -5,17 +5,14 @@ const headers = {
   },
 }
 export default ($api) => ({
-  fetchAccountNinjas(payload) {
+  index(payload) {
     return $api.get(`${resource}`, { params: { input: payload.input } },
     )
   },
-  fetchAccountNinja(id) {
+  fetch(id) {
     return $api.get(`${resource}/${id}`)
   },
-  createAccountNinja(payload) {
-    return $api.post(`${resource}/modify`, payload)
-  },
-  updateAccountNinja(payload) {
+  modify(payload) {
     return $api.post(`${resource}/modify`, payload)
   },
   destroyAccountNinja(id) {

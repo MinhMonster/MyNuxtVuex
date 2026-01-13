@@ -16,7 +16,7 @@
       :label="form.title"
       :disabled="true"
       :value="
-        cash_atm(
+        format_number(
           dataForm[`${getName}`] *
             (1 - (dataForm['active_discount'] || 0) / 100)
         )

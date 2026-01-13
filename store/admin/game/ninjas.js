@@ -1,4 +1,4 @@
-import { defaultPagy, typeNinjaOptions, classNinjaOptions, serverNinjaOptions } from '@/utils/admin/default'
+import { defaultPagy, typeOptions, classNinjaOptions, serverNinjaOptions } from '@/utils/admin/default'
 import { enableResetStore } from '@/utils/admin/common'
 import { getField, updateField } from "vuex-map-fields";
 
@@ -6,14 +6,16 @@ export default enableResetStore({
   namespaced: true,
   state() {
     return {
+      repositories: "repositories_mms",
+      columns: columns,
       stateDefault: {
-        queryNinjas: queryNinjas,
-        queryNinja: queryNinja
+        queryItems: queryItems,
+        queryItem: queryItem
       },
-      queryNinjas: queryNinjas,
-      queryNinja: queryNinja,
-      formNinja: formNinja,
-      formModalNinja: formModalNinja
+      queryItems: queryItems,
+      queryItem: queryItem,
+      formItem: formItem,
+      formItemModal: formItemModal
     }
   },
 
@@ -28,12 +30,12 @@ export default enableResetStore({
   },
 });
 
-const queryNinjas = _.cloneDeep({
+const queryItems = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [],
     count: 0,
-    sum_value: 0
+    sums: []
   },
   page: {
     type: "text",
@@ -91,7 +93,7 @@ const queryNinjas = _.cloneDeep({
   },
 });
 
-const queryNinja = _.cloneDeep({
+const queryItem = _.cloneDeep({
   code: "",
   username: "",
   character_name: "",
@@ -134,7 +136,7 @@ const queryNinja = _.cloneDeep({
 });
 
 
-const formNinja =
+const formItem =
   _.cloneDeep([
     {
       title: "Mã Nick",
@@ -174,7 +176,7 @@ const formNinja =
     {
       title: "Loại Nick",
       type: "select-options",
-      options: typeNinjaOptions,
+      options: typeOptions,
       value: 'type'
     },
     {
@@ -436,16 +438,8 @@ const formNinja =
 
 
 
-const formModalNinja =
+const formItemModal =
   _.cloneDeep([
-    // {
-    //   title: "ID",
-    //   type: "number",
-    //   value: 'ID',
-    //   cols: 6,
-    //    lg: 2,
-    //   md: 4
-    // },
     {
       title: "Tài Khoản",
       type: "text",
@@ -491,18 +485,148 @@ const formModalNinja =
     },
     {
       title: "Lợi Nhuận (Vnđ)",
-      value: 'giatien',
+      value: 'selling_price',
       type: "profit",
       md: 6
     },
-    // {
-    //   title: "Giảm Giá (%)",
-    //   type: "number",
-    //   value: 'sale_off',
-    //   cols: 6,
-    //    lg: 2,
-    //   md: 4
-    // },
+  ]);
 
+const columns =
+  _.cloneDeep([
+    {
+      key: "id",
+      label: "ID",
+      type: "number",
+      fixed: "left",
+      attributes: {
+        align: "left",
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
+      key: "code",
+      label: "Code",
+      type: "number",
+      fixed: "left",
+      attributes: {
+        align: "center",
 
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
+      key: "username",
+      label: "Account",
+      attributes: {
+        style: {
+          minWidth: "150px",
+        },
+      },
+    },
+    {
+      key: "character_name",
+      label: "In Game",
+      attributes: {
+        style: {
+          minWidth: "150px",
+        },
+      },
+    },
+    {
+      key: "deleted_at",
+      label: "Status",
+      type: "deleted_at",
+      attributes: {
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
+      key: "class",
+      label: "Class",
+      type: "class-ninja",
+      attributes: {
+        style: {
+          minWidth: "70px",
+        },
+      },
+    },
+    {
+      key: "level",
+      label: "Level",
+      attributes: {
+        style: {
+          minWidth: "70px",
+        },
+      },
+    },
+    {
+      key: "server",
+      label: "Server",
+      type: "server-ninja",
+      attributes: {
+        style: {
+          minWidth: "150px",
+        },
+      },
+    },
+    {
+      key: "type",
+      label: "Type",
+      type: "type-ninja",
+      attributes: {
+        style: {
+          minWidth: "70px",
+        },
+      },
+    },
+    {
+      key: "selling_price",
+      label: "Price",
+      type: "cash_sale_off",
+      attributes: {
+        class: "text-right",
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
+      key: "price",
+      label: "Cost",
+      type: "number",
+      attributes: {
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
+      key: "profit",
+      label: "Profit",
+      type: "number",
+      attributes: {
+        class: "text-right",
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      type: "actions",
+      fixed: "right",
+      attributes: {
+        align: "center",
+        style: {
+          maxWidth: "60px",
+        },
+      },
+    },
   ]);

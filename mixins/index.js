@@ -94,7 +94,7 @@ export default {
       return this.$route.query?.copy ? true : false;
     },
     path() {
-      return this.$route.path;
+      return this.$route.path.replace(/\/+$/, "");
     },
     nowYear() {
       var year = this.currentYear
@@ -172,7 +172,7 @@ export default {
     },
     profit_atm(account) {
       const percent = 1 - (((account.active_discount || 0) / 100) || 0);
-      const profit = (account.selling_price * 0.85 * percent) - account.purchase_price;
+      const profit = (account.selling_price * percent) - account.purchase_price;
       return this.format_number(Math.round(profit / 10000).toFixed(0) * 10000)
     },
     time_10(time) {

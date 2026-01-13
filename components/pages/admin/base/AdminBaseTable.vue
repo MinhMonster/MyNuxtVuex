@@ -11,28 +11,35 @@
         <v-card-title class="right nowrap">
           <v-row>
             <v-col
-              v-if="sum_value"
+              v-if="sums['selling_price'] || null"
               cols="12"
               md="4"
               class="text-right text-20-500"
             >
-              Total: {{ format_number(sum_value) }} Đ
+              Total: {{ format_number(sums["selling_price"]) }} Đ
             </v-col>
             <v-col
-              v-if="cost_value"
+              v-if="sums['purchase_price'] || null"
               cols="12"
               md="4"
               class="text-right text-20-500"
             >
-              Cost: {{ format_number(cost_value) }} Đ
+              Cost: {{ format_number(sums["purchase_price"]) }} Đ
             </v-col>
             <v-col
-              v-if="profit_value"
+              v-if="
+                (sums['selling_price'] || null) &&
+                (sums['purchase_price'] || null)
+              "
               cols="12"
               md="4"
               class="text-right text-20-500"
             >
-              Profit: {{ format_number(profit_value) }} Đ
+              Profit:
+              {{
+                format_number(sums["selling_price"] - sums["purchase_price"])
+              }}
+              Đ
             </v-col>
           </v-row>
         </v-card-title>

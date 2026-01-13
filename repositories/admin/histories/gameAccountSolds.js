@@ -5,12 +5,12 @@ const headers = {
   },
 }
 export default ($api) => ({
-  fetchGameAccountSolds(payload) {
+  index(payload) {
     return $api.get(`${resource}`, { params: { input: payload.input } },
     )
   },
-  fetchGameAccountSold(payload) {
-    return $api.get(`${resource}/fetchGameAccountSold.php`, { params: { id: payload } })
+  fetch(id) {
+    return $api.get(`${resource}/${id}`)
   },
   update(payload) {
     return $api.post(`${resource}/${payload.id}/update`, payload.input)
@@ -18,7 +18,7 @@ export default ($api) => ({
   updateAccount(payload) {
     return $api.post(`${resource}/${payload.id}/update-account`, payload.input)
   },
-  destroyGameAccountSold(payload) {
+  destroy(payload) {
     return $api.get(`${resource}/destroyGameAccountSold.php`, { params: { id: payload } })
   },
 })

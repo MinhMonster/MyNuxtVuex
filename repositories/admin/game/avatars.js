@@ -5,17 +5,14 @@ const headers = {
   },
 }
 export default ($api) => ({
-  fetchAccountAvatars(payload) {
+  index(payload) {
     return $api.get(`${resource}`, { params: { input: payload.input } },
     )
   },
-  fetchAccountAvatar(id) {
+  fetch(id) {
     return $api.get(`${resource}/${id}`)
   },
-  createAccountAvatar(payload) {
-    return $api.post(`${resource}/modify`, payload)
-  },
-  updateAccountAvatar(payload) {
+  modify(payload) {
     return $api.post(`${resource}/modify`, payload)
   },
   destroyAccountAvatar(payload) {

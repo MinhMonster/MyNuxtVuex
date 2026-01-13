@@ -8,11 +8,11 @@ export default enableResetStore({
   state() {
     return {
       repositories: "repositories_mms",
+      columns: columns,
       stateDefault: {
         queryItems: queryItems,
         queryItem: queryItem,
       },
-      columns: columns,
       queryItems: queryItems,
       queryItem: queryItem,
       formItem: formItem,
@@ -243,7 +243,7 @@ const formItemModal =
     },
     {
       title: "Lợi Nhuận (Vnđ)",
-      value: 'giatien',
+      value: 'selling_price',
       type: "profit",
       md: 6
     },
@@ -258,7 +258,7 @@ const columns =
       type: "number",
       fixed: "left",
       attributes: {
-        align: "center",
+        align: "left",
         style: {
           minWidth: "80px",
         },
@@ -315,7 +315,7 @@ const columns =
       },
     },
     {
-      key: "selling_price",
+      key: "price",
       label: "Price",
       type: "number",
       attributes: {

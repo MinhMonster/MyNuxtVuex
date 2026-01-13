@@ -10,9 +10,6 @@ export default {
     ...mapFields("global", {
       isFilter: "isFilter",
     }),
-    path() {
-      return this.$route.path
-    }
   },
   methods: {
     columnsValue(type, value) {

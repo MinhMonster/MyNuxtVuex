@@ -1,65 +1,17 @@
 <template>
-  <NavAdmin
+  <AdminModify
     title="Update Account Avatar"
-    goBack
-    next-page
-    reload
-    @reload="$refs.form.fetchData()"
-    copy
-    @copy="$router.push(`/admin/game/avatars/new?copy=${$route.params.id}`)"
-  >
-    <template #body>
-      <div id="body-admin">
-        <AdminBaseForm
-          ref="form"
-          module="admin/game/avatars"
-          :repositories="repositories"
-          repository="adminGameAvatars"
-          :id="$route.params.id"
-          :store="{
-            state: 'queryAvatar',
-            module: 'admin.game.avatars',
-            form: 'formAvatar',
-            action: 'fetchAccountAvatar',
-            update: 'updateAccountAvatar',
-            delete: 'destroyAccountAvatar',
-            unDelete: 'unDestroyAccountAvatar',
-          }"
-        ></AdminBaseForm>
-      </div>
-    </template>
-  </NavAdmin>
+    module="admin/game/avatars"
+    isCanCopy
+  />
 </template>
 
 <script>
-import { mapState } from "vuex";
-import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
-import AdminBaseForm from "@/components/pages/admin/base/AdminBaseForm";
+import AdminModify from "@/components/base/AdminModify";
 
 export default {
-  components: {
-    NavAdmin,
-    AdminBaseForm,
-  },
   layout: "adminDev",
-  name: "UpdateAccountNinja",
-  props: {},
-  data() {
-    return {};
-  },
-  async mounted() {},
-  computed: {
-    ...mapState("admin/mms", ["repositories"]),
-  },
-  methods: {},
+  name: "UpdateAccounAvatar",
+  components: { AdminModify },
 };
 </script>
-<style >
-.CodeMirror {
-  height: 500px;
-  resize: horizontal;
-}
-.CodeMirror-wrap pre {
-  word-break: break-word;
-}
-</style>

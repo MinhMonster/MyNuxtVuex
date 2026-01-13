@@ -7,14 +7,16 @@ export default enableResetStore({
   namespaced: true,
   state() {
     return {
+      repositories: "repositories_mms",
+      columns: columns,
       stateDefault: {
-        queryAvatars: queryAvatars,
-        queryAvatar: queryAvatar,
+        queryItems: queryItems,
+        queryItem: queryItem,
       },
-      queryAvatars: queryAvatars,
-      queryAvatar: queryAvatar,
-      formAvatar: formAvatar,
-      formModalAvatar: formModalAvatar
+      queryItems: queryItems,
+      queryItem: queryItem,
+      formItem: formItem,
+      formItemModal: formItemModal
     }
 
   },
@@ -33,7 +35,7 @@ export default enableResetStore({
 });
 
 
-const queryAvatars = _.cloneDeep({
+const queryItems = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [],
@@ -114,7 +116,7 @@ const queryAvatars = _.cloneDeep({
   },
 });
 
-const queryAvatar = _.cloneDeep({
+const queryItem = _.cloneDeep({
 
   code: "",
   username: "",
@@ -130,7 +132,7 @@ const queryAvatar = _.cloneDeep({
   is_full_image: "0",
 });
 
-const formAvatar =
+const formItem =
   _.cloneDeep([
     {
       title: "code",
@@ -194,7 +196,7 @@ const formAvatar =
 
   ]);
 
-const formModalAvatar =
+const formItemModal =
   _.cloneDeep([
     {
       title: "Tài Khoản",
@@ -236,9 +238,130 @@ const formModalAvatar =
     },
     {
       title: "Lợi Nhuận (Vnđ)",
-      value: 'giatien',
+      value: 'selling_price',
       type: "profit",
       md: 6
+    },
+  ]);
+
+
+const columns =
+  _.cloneDeep([
+    {
+      key: "id",
+      label: "ID",
+      type: "number",
+      fixed: "left",
+      attributes: {
+        align: "left",
+        style: {
+          minWidth: "80px",
+        },
+      },
+    },
+    {
+      key: "code",
+      label: "Mã",
+      type: "number",
+      fixed: "left",
+      attributes: {
+        style: {
+          minWidth: "80px",
+        },
+      },
+    },
+    {
+      key: "username",
+      label: "Account",
+      attributes: {
+        style: {
+          minWidth: "150px",
+        },
+      },
+    },
+    {
+      key: "deleted_at",
+      label: "Status",
+      type: "deleted_at",
+      attributes: {
+        style: {
+          minWidth: "50px",
+        },
+      },
+    },
+    {
+      key: "land",
+      label: "Đất",
+      type: "number",
+      attributes: {
+        style: {
+          minWidth: "70px",
+        },
+      },
+    },
+    {
+      key: "pets",
+      label: "Gà",
+      type: "number",
+      attributes: {
+        style: {
+          minWidth: "70px",
+        },
+      },
+    },
+    {
+      key: "fish",
+      label: "Cá",
+      attributes: {
+        style: {
+          minWidth: "70px",
+        },
+      },
+    },
+    {
+      key: "price",
+      label: "Price",
+      type: "number",
+      attributes: {
+        class: "text-right",
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
+      key: "purchase_price",
+      label: "Cost",
+      type: "number",
+      attributes: {
+        // class: 'text-right',
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
+      key: "profit",
+      label: "Profit",
+      type: "number",
+      attributes: {
+        class: "text-right",
+        style: {
+          minWidth: "50px",
+        },
+      },
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      type: "actions",
+      fixed: "right",
+      attributes: {
+        align: "center",
+        style: {
+          maxWidth: "60px",
+        },
+      },
     },
   ]);
 

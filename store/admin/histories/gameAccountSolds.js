@@ -5,18 +5,19 @@ import { getField, updateField } from "vuex-map-fields";
 export default enableResetStore({
   namespaced: true,
   state: () => ({
-    stateDefault: {
-      queryGameAccountSolds: queryGameAccountSolds,
-      queryGameAccountSold: queryGameAccountSold,
-      queryPriceGameAccountSold: queryPriceGameAccountSold
-    },
     columns: columns,
     repositories: "repositories_mms",
-    queryGameAccountSolds: queryGameAccountSolds,
-    queryGameAccountSold: queryGameAccountSold,
-    queryPriceGameAccountSold: queryPriceGameAccountSold,
-    formAccountSold: formAccountSold,
-    formAccountPrice: formAccountPrice
+    stateDefault: {
+      queryItems: queryItems,
+      queryItem: queryItem,
+      queryPriceItem: queryPriceItem
+    },
+
+    queryItems: queryItems,
+    queryItem: queryItem,
+    queryPriceItem: queryPriceItem,
+    formAccount: formAccount,
+    formPriceItem: formPriceItem
 
 
   }),
@@ -34,7 +35,7 @@ export default enableResetStore({
 });
 
 
-const queryGameAccountSolds = _.cloneDeep({
+const queryItems = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [],
@@ -110,21 +111,21 @@ const queryGameAccountSolds = _.cloneDeep({
   },
 });
 
-const queryGameAccountSold = _.cloneDeep({
+const queryItem = _.cloneDeep({
   id: "",
   username: "",
   password: "",
   transfer_pin: "",
 });
 
-const queryPriceGameAccountSold = _.cloneDeep({
+const queryPriceItem = _.cloneDeep({
   purchase_price: "",
   selling_price: "",
   note: "",
   images: [],
 });
 
-const formAccountSold =
+const formAccount =
   _.cloneDeep([
     {
       title: "Tài Khoản",
@@ -149,7 +150,7 @@ const formAccountSold =
     },
   ]);
 
-const formAccountPrice =
+const formPriceItem =
   _.cloneDeep([
     {
       title: "Price",
@@ -259,7 +260,7 @@ const columns =
       },
     },
     {
-      key: "action",
+      key: "actions",
       label: "Actions",
       type: "actions",
       fixed: "right",

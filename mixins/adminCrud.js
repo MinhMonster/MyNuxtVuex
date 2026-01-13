@@ -110,8 +110,8 @@ export default {
         return this.stateQueryItems?.response?.count || 0;
 
       },
-      sum_value() {
-        return this.stateQueryItems?.response?.sum_value || 0;
+      sums() {
+        return this.stateQueryItems?.response?.sums || [];
       },
       cost_value(state) {
         return _.get(
@@ -218,38 +218,28 @@ export default {
       }
     },
 
-    async onDelete() {
-      this.$swal
-        .fire({
-          title: `Delete ID: ${this.itemId} ?`,
-          text: "",
-          icon: "question",
-          type: "warning",
-          showDenyButton: false,
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Accept",
-          cancelButtonText: "Cancel",
-          timer: 5000,
-          // closeOnConfirm: false,
-          // closeOnCancel: false
-        })
-        .then(async (result) => {
-          if (result.isConfirmed) {
-            try {
-              const res = await this.repositoryKey[this.repository][
-                this.store.delete
-              ](this.itemId);
-              // if (res.data.code === 200) {
-              //   await this.$toasted.success(res.data.message);
-              this.fetchData();
-              // }
-            } catch (e) {
-              console.log(e);
-            }
-          }
-        });
+    async onDelete($id = this.itemId) {
+      const result = await this.showSwal({
+        title: `Delete ID: ${$id} ?`,
+        text: "",
+        icon: "question",
+        type: "warning",
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Accept",
+        cancelButtonText: "Cancel",
+      });
+
+      if (result) {
+        try {
+          await this.repositoryKey[this.repo][this.store?.destroy || "destroy"]($id);
+          this.fetchDataIndex();
+        } catch (e) {
+          console.log(e);
+        }
+      }
     },
     async unDelete() {
       this.$swal
@@ -264,9 +254,9 @@ export default {
           cancelButtonColor: "#d33",
           confirmButtonText: "Accept",
           cancelButtonText: "Cancel",
-          timer: 5000,
-          // closeOnConfirm: false,
-          // closeOnCancel: false
+          customClass: {
+            container: 'admin-swal',
+          },
         })
         .then(async (result) => {
           if (result.isConfirmed) {
@@ -276,7 +266,7 @@ export default {
               ](this.itemId);
               // if (res.data.code === 200) {
               //   await this.$toasted.success(res.data.message);
-              this.fetchData();
+              this.fetchDataIndex();
               // }
             } catch (e) {
               console.log(e);
