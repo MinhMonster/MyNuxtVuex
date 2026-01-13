@@ -29,7 +29,7 @@
             >
               {{ valueCustom(record, column) }}
               <ButtonCoppy
-                v-if="isCopy(column)"
+                v-if="isCopyValue(column)"
                 :content="getValue(row, column)"
               ></ButtonCoppy>
             </slot>
@@ -101,7 +101,7 @@ export default {
       }
       return "";
     },
-    isCopy(column) {
+    isCopyValue(column) {
       return column?.copy;
     },
     onChange(page) {

@@ -90,6 +90,9 @@ export default {
     isTablet() {
       return this.is_tablet
     },
+    isQueryCopy() {
+      return this.$route.query?.copy ? true : false;
+    },
     path() {
       return this.$route.path;
     },
@@ -156,16 +159,8 @@ export default {
     },
     onResize() {
       const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 768) {
-        this.isMb = true;
-      } else {
-        this.isMb = false;
-      }
-      if (screenWidth < 948) {
-        this.is_tablet = true;
-      } else {
-        this.is_tablet = false;
-      }
+      this.isMb = screenWidth < 768;
+      this.is_tablet = screenWidth < 948;
     },
     format_number(number) {
       const number_toFixed = Number(number).toFixed(0);

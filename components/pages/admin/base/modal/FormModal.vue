@@ -9,7 +9,7 @@
         :style="{ 'min-height': minHeight, 'max-height': maxHeight }"
       >
         <div class="modal-body">
-          <form v-if="isForm" @submit.prevent="onUpdate()">
+          <form v-if="isForm" @submit.prevent="onModify()">
             <BaseGroupForm
               :data-form="dataForm"
               :forms="stateForms"
@@ -36,7 +36,7 @@
             type="submit"
             color="primary"
             class="text-white"
-            @click="onUpdate()"
+            @click="onModify()"
           >
             Submit
           </v-btn>
@@ -56,12 +56,11 @@
 </template>
 <script>
 import BaseGroupForm from "@/components/pages/admin/base/BaseGroupForm.vue";
-import BaseCheckBox from "@/components/pages/admin/base/form/BaseCheckBox";
-
-import { mapState } from "vuex";
+import adminCrud from "@/mixins/adminCrud";
 
 export default {
-  components: { BaseGroupForm, BaseCheckBox },
+  mixins: [adminCrud],
+  components: { BaseGroupForm },
   props: {
     title: {
       type: String,
@@ -69,33 +68,6 @@ export default {
       require: false,
     },
     subTitle: {
-      type: String,
-      default: "",
-      require: false,
-    },
-    id: {
-      type: [String, Number],
-      defualt: null,
-      require: false,
-    },
-    store: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-      required: true,
-    },
-    module: {
-      type: String,
-      default: "",
-      require: true,
-    },
-    repositories: {
-      type: String,
-      default: "repositories",
-      require: false,
-    },
-    repository: {
       type: String,
       default: "",
       require: false,
@@ -121,43 +93,8 @@ export default {
   data() {
     return {
       dialog: false,
-      cash: 0,
       isForm: true,
     };
-  },
-  computed: {
-    repo() {
-      return this.convertToCamelCase(this.module);
-    },
-    storeModule() {
-      return this.convertToDot(this.module);
-    },
-    ...mapState({
-      repositoryKey(state) {
-        const repositories = _.get(
-          state,
-          this.storeModule + ".repositories",
-          this.repositories
-        );
-        return this[`$${repositories}`];
-      },
-      stateQuery(state) {
-        return _.get(state, this.storeModule + "." + this.store.state, {});
-      },
-      stateForms(state) {
-        return _.get(state, this.storeModule + "." + this.store.form, []);
-      },
-      haveStore() {
-        return !_.isEmpty(this.store);
-      },
-      dataForm() {
-        const allowedFields = this.stateForms.map((f) => f.value);
-        const data = _.cloneDeep(this.stateQuery);
-        return Object.fromEntries(
-          Object.entries(data).filter(([key]) => allowedFields.includes(key))
-        );
-      },
-    }),
   },
   mounted() {},
   methods: {
@@ -169,65 +106,6 @@ export default {
       if (this.reset) {
         this.resetDataForm();
       }
-    },
-    updateForm(data) {
-      this.updateState(data);
-    },
-    resetForm() {
-      this.$store.dispatch(this.module + "/resetData", this.store.state);
-    },
-    resetDataForm() {
-      this.$store.dispatch(this.module + "/resetDataForm", this.store.state);
-    },
-
-    updateState(data) {
-      this.$store.dispatch(this.module + "/setState", {
-        stateName: this.store.state,
-        data: data,
-      });
-    },
-    // async showModal(row) {
-    //   this.dialog = true;
-    //   if (this.haveStore && this.store.action && row.ID) {
-    //     await this.fetchData();
-    //   }
-    // },
-    // async fetchData() {
-    //   console.log("okok");
-    //   try {
-    //     const result = await this.$repositories[this.repository][
-    //       this.store.action
-    //     ](this.id);
-
-    //     const data = result.data.response;
-    //     console.log("response", data);
-
-    //     if (data) {
-    //       this.updateState(data);
-    //     } else {
-    //       this.dialog = false;
-    //     }
-    //   } catch (error) {}
-    // },
-    async onUpdate() {
-      try {
-        const result = await this.repositoryKey[this.repo][this.store.update]({
-          id: this.id,
-          input: this.stateQuery,
-        });
-        const data = result.data;
-        // if (data.code === 200) {
-        // this.$toasted.success(data.message);
-        this.$emit("updated");
-
-        // if (this.id !== data.response.ID) {
-        //   this.$router.push(this.path.replace(this.id, data.response.ID));
-        // }
-        if (data.response) {
-          this.updateState(data.response);
-        }
-        // }
-      } catch (error) {}
     },
   },
 };
@@ -246,45 +124,5 @@ form {
 
 .v-card.v-sheet.theme--dark {
   border: 1px solid #a4a4a4;
-  /* border: 1px solid rgba(255, 255, 255, 0.12); */
 }
-
-/* .v-card.v-sheet.theme--dark {
-  background: #fff !important;
-} */
-// .v-card__title.title-modal {
-//   color: #fff;
-//   border-left: 2px solid #272727;
-//   border-right: 2px solid #272727;
-//   background: #333;
-//   border-bottom: none;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-// .v-dialog--scrollable > .v-card > .v-card__text {
-//   position: relative;
-//   border: 2px solid #272727;
-//   background: #f2f2f2;
-//   padding: 10px;
-//   .modal-body {
-//     background: #fff;
-//     height: auto;
-//     min-height: 100%;
-//     padding: 5px 1rem;
-//   }
-// }
-// .v-dialog > .v-card > .v-card__actions {
-//   border: 2px solid #272727 !important;
-//   background: #333;
-//   border-top: none;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: right;
-//   align-content: flex-end;
-//   padding: 6px 16px;
-//   button {
-//     // margin-left: 5px;
-//   }
-// }
 </style>

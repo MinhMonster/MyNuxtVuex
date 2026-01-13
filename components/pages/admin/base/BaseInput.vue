@@ -1,11 +1,11 @@
 <template>
   <v-text-field
-    v-model="formattedNumber"
+    :value="formattedNumber"
     :name="name"
     :label="label"
     :placeholder="placeholder"
     :disabled="disabled"
-    @input="formatInput"
+    @input="onInput"
   />
 </template>
 
@@ -13,55 +13,30 @@
 export default {
   name: "BaseInput",
   props: {
-    name: {
-      type: [String, Number],
-    },
-    value: {
-      type: [String, Number],
-    },
-    label: {
-      type: [String, Number],
-    },
-    placeholder: {
-      type: [String, Number],
-    },
-    errors: {
-      type: [String, Boolean, Array],
-    },
+    name: [String, Number],
+    value: [String, Number],
+    label: [String, Number],
+    placeholder: [String, Number],
     disabled: Boolean,
   },
-  data() {
-    return {
-      number: "",
-      formattedNumber: this.value.toString(),
-    };
-  },
-  watch: {
-    value: {
-      async handler(newValue, oldValue) {
-        this.formattedNumber = this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      },
+  computed: {
+    formattedNumber() {
+      const val = this.value ?? "";
+      return val
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
-  computed: {
-  },
-  created() {
-    this.formattedNumber = this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    this.formatInput();
-  },
   methods: {
-    formatInput() {
-      const cleanedValue = this.formattedNumber.replace(/[^0-9]/g, "");
+    onInput(val) {
+      const cleaned = val.replace(/[^0-9]/g, "");
 
-      this.formattedNumber = cleanedValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      // emit cho v-model
+      this.$emit("input", cleaned);
 
-      this.number = cleanedValue;
-
-      this.$emit("change", this.name, this.number);
+      // nếu vẫn cần name
+      this.$emit("change", this.name, cleaned);
     },
   },
 };
 </script>
-
-<style scoped lang="scss">
-</style>

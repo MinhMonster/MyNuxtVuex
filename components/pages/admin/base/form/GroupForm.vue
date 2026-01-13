@@ -8,7 +8,7 @@
         form.disabled || (is_create && (getName === 'ID' || getName === 'id'))
       "
       v-model="modelValue"
-      @change="onChange"
+      @change="updateForm"
     />
     <BaseInput
       v-if="form.type === 'cash_sale_off'"
@@ -161,10 +161,6 @@ export default {
   },
   async mounted() {},
   methods: {
-    onChange(name, value) {
-      this.dataForm[name] = value;
-      this.updateForm();
-    },
     updateForm() {
       this.$emit("updated", this.dataForm);
     },

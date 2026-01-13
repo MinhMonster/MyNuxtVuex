@@ -1,6 +1,6 @@
 <template>
   <client-only v-if="dataForm">
-    <form @submit.prevent="onUpdate()">
+    <form @submit.prevent="onModify()">
       <b-tabs class="tab-account">
         <b-tab title="Infomations" class="tab-scroll scroll-y">
           <BaseGroupForm
@@ -53,247 +53,19 @@
 import UploadImage from "@/components/pages/admin/topics/form/UploadImage";
 import ImageList from "@/components/global/molecules/common/ImageList";
 import BaseGroupForm from "@/components/pages/admin/base/BaseGroupForm.vue";
-import { mapState } from "vuex";
+import adminCrud from "@/mixins/adminCrud";
 
 export default {
+  mixins: [adminCrud],
   components: {
     BaseGroupForm,
     UploadImage,
     ImageList,
   },
   name: "AdminBaseForm",
-  props: {
-    id: {
-      type: [String, Number],
-      defualt: null,
-      require: false,
-    },
-    store: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-      required: true,
-    },
-    module: {
-      type: String,
-      default: "",
-      require: true,
-    },
-    repository: {
-      type: String,
-      default: "",
-      require: false,
-    },
-    repositories: {
-      type: String,
-      default: "repositories",
-      require: false,
-    },
-    images: {
-      type: String,
-      default: "images",
-      require: false,
-    },
-    multipleImages: {
-      type: Boolean,
-      default: () => {
-        return true;
-      },
-    },
-  },
-  data() {
-    return {};
-  },
-  computed: {
-    repo() {
-      return this.convertToCamelCase(this.module);
-    },
-    storeModule() {
-      return this.convertToDot(this.module);
-    },
-    ...mapState({
-      repositoryKey(state) {
-        const repositories = _.get(
-          state,
-          this.storeModule + ".repositories",
-          this.repositories
-        );
-        return this[`$${repositories}`];
-      },
-      stateQuery(state) {
-        return _.get(state, this.storeModule + "." + this.store.state, {});
-      },
-      stateForms(state) {
-        return _.get(state, this.storeModule + "." + this.store.form, []);
-      },
-      haveStore() {
-        return !_.isEmpty(this.store);
-      },
-    }),
-    dataForm() {
-      return _.cloneDeep(this.stateQuery);
-    },
-    is_create() {
-      const path = this.$route.path;
-      return path.includes("/new");
-    },
-    isDelete() {
-      const api = _.get(this.store, "delete", null);
-
-      return this.id && this.stateQuery.deleted_at === null && api;
-    },
-    isUnDelete() {
-      const api = _.get(this.store, "unDelete", null);
-      return this.id && this.stateQuery.deleted_at !== null && api;
-    },
-  },
   async mounted() {
     await this.resetForm();
-  },
-  methods: {
-    changeImage(images) {
-      this.dataForm.image = images[0] ?? "";
-      this.updateForm();
-    },
-    updateForm() {
-      this.updateState(this.dataForm);
-    },
-    resetForm() {
-      this.$store.dispatch(this.module + "/resetData", this.store.state);
-    },
-    updateState(data) {
-      this.$store.dispatch(this.module + "/setState", {
-        stateName: this.store.state,
-        data: data,
-      });
-    },
-    async fetchData() {
-      try {
-        const result = await this.repositoryKey[this.repository][
-          this.store.action
-        ](this.id);
-
-        const data = result.data.response;
-        console.log("data", result.data);
-        if (data) {
-          this.updateState(data);
-        } else {
-          this.$router.push(this.path.replace(this.id, ""));
-        }
-      } catch (error) {}
-    },
-    async updateData() {
-      try {
-        const result = await this.repositoryKey[this.repo][this.store.update]({
-          id: this.id,
-          input: this.stateQuery,
-        });
-        const data = result.data;
-        if (data.code === 200) {
-          this.$toasted.success(data.message);
-          if (this.id !== data.response.ID) {
-            this.$router.push(this.path.replace(this.id, data.response.ID));
-          }
-        }
-      } catch (error) {}
-    },
-    async createData() {
-      const payload = _.omit(this.stateQuery, "ID");
-
-      try {
-        const result = await this.repositoryKey[this.repository][
-          this.store.create
-        ]({
-          input: payload,
-        });
-        const data = result.data;
-        if (data.code === 200) {
-          this.$toasted.success(data.message);
-          this.$router.push(this.path.replace("new", ""));
-        }
-      } catch (error) {}
-    },
-    async onUpdate() {
-      try {
-        if (this.id && this.store.update) {
-          this.updateData();
-        } else {
-          this.createData();
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    },
-    async onDelete() {
-      this.$swal
-        .fire({
-          title: `Delete ID: ${this.id} ?`,
-          text: "",
-          icon: "question",
-          type: "warning",
-          showDenyButton: false,
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Accept",
-          cancelButtonText: "Cancel",
-          timer: 5000,
-          // closeOnConfirm: false,
-          // closeOnCancel: false
-        })
-        .then(async (result) => {
-          if (result.isConfirmed) {
-            try {
-              const res = await this.repositoryKey[this.repository][
-                this.store.delete
-              ](this.id);
-              // if (res.data.code === 200) {
-              //   await this.$toasted.success(res.data.message);
-              this.fetchData();
-              // }
-            } catch (e) {
-              console.log(e);
-            }
-          }
-        });
-    },
-    async unDelete() {
-      this.$swal
-        .fire({
-          title: `Un Delete ID: ${this.id}?`,
-          text: "",
-          icon: "question",
-          type: "warning",
-          showDenyButton: false,
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Accept",
-          cancelButtonText: "Cancel",
-          timer: 5000,
-          // closeOnConfirm: false,
-          // closeOnCancel: false
-        })
-        .then(async (result) => {
-          if (result.isConfirmed) {
-            try {
-              const res = await this.repositoryKey[this.repository][
-                this.store.unDelete
-              ](this.id);
-              // if (res.data.code === 200) {
-              //   await this.$toasted.success(res.data.message);
-              this.fetchData();
-              // }
-            } catch (e) {
-              console.log(e);
-            }
-          }
-        });
-    },
-  },
-  async created() {
-    if (this.haveStore && this.id) {
+    if (this.itemId) {
       await this.fetchData();
     }
   },

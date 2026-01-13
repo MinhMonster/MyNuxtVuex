@@ -39,18 +39,17 @@
       </div>
     </div>
     <FormSearchAdmin
-      v-if="haveStore"
       :module="module"
       :store-module="storeModule"
-      :store-state="storeState"
-      :state-query="stateQuery"
-      @search="fetchData"
+      :store-state="storeQueryItems"
+      :state-query="stateQueryItems"
+      @search="onChangePage"
     />
     <BaseTable
       :columns="stateColumns"
       :data="dataSource"
       :meta="meta"
-      @onChange="fetchData"
+      @onChange="onChangePage"
     >
       <template
         v-for="(column, index) in stateColumns"
@@ -72,151 +71,22 @@
 import FormSearchAdmin from "@/components/pages/admin/Shared/form/FormSearchAdmin";
 import BaseTable from "@/components/base/BaseTable";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
-import { mapState } from "vuex";
+import adminCrud from "@/mixins/adminCrud";
 
 export default {
+  mixins: [adminCrud],
   components: {
     FormSearchAdmin,
     BaseTable,
     ButtonCoppy,
   },
   props: {
-    store: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-      required: false,
-    },
-    module: {
-      type: String,
-      default: "",
-      require: false,
-    },
-    defaultParams: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-      require: false,
-    },
-    repository: {
-      type: String,
-      default: "",
-      require: false,
-    },
-    repositories: {
-      type: String,
-      default: "repositories",
-      require: false,
-    },
-    columns: {
-      type: Array,
-      default: () => [],
-    },
     noTotal: Boolean,
     params: {
       type: Array,
       default: () => [],
       require: false,
     },
-  },
-  data() {
-    return {
-      response: {},
-    };
-  },
-  computed: {
-    repo() {
-      return this.convertToCamelCase(this.module);
-    },
-    storeModule() {
-      return this.convertToDot(this.module);
-    },
-    storeState() {
-      return this.store?.state;
-    },
-    ...mapState({
-      stateModule(state) {
-        return _.get(state, this.storeModule);
-      },
-      repositoryKey(state) {
-        return this[`$${this.stateModule.repositories || this.repositories}`];
-      },
-      stateQuery(state) {
-        return this.stateModule[this.storeState] || {};
-      },
-      stateParamDefault(state) {
-        return this.params.length > 0
-          ? this.stateModule.paramDefaults || {}
-          : {};
-      },
-      haveStore() {
-        return !_.isEmpty(this.store);
-      },
-      meta() {
-        if (this.haveStore) {
-          return this.$store.getters[this.module + "/metaFilter"](
-            this.storeState
-          );
-        }
-        return get(this.response, "meta", defaultPagy);
-      },
-      dataSource() {
-        if (this.haveStore) {
-          return this.$store.getters[this.module + "/dataFilter"](
-            this.storeState
-          );
-        }
-        return get(this.response, "data", []);
-      },
-      count(state) {
-        if (this.haveStore) {
-          return this.stateQuery?.response?.count || 0;
-        }
-        return get(this.response, "count", 0);
-      },
-      sum_value(state) {
-        if (this.haveStore) {
-          return this.stateQuery?.response?.sum_value || 0;
-        }
-        return get(this.response, "sum_value", 0);
-      },
-      stateColumns(state) {
-        return this.stateModule.columns || this.columns;
-      },
-      cost_value(state) {
-        if (this.haveStore) {
-          // const data
-          return _.get(
-            state,
-            this.stateModule + "." + this.storeState + ".response.cost_value",
-            0
-          );
-        }
-        return get(this.response, "cost_value", 0);
-      },
-      profit_value(state) {
-        if (this.haveStore) {
-          // const data
-          return _.get(
-            state,
-            this.stateModule +
-              "." +
-              this.storeState +
-              ".response.profit_value",
-            0
-          );
-        }
-        return get(this.response, "profit_value", 0);
-      },
-      //   computed: {
-      // ...mapFields("admin/histories/game_account_sold", {
-      //   count: "queryGameAccountSolds.response.count",
-      //   sum_value: "queryGameAccountSolds.response.sum_value",
-      // }),
-      // },
-    }),
   },
   mounted() {},
   methods: {
@@ -233,56 +103,13 @@ export default {
       const value = this.getValue(row, column);
       return this.columnsValue(column.type, value);
     },
-    onChange(page) {
-      this.$emit("onChange", page);
-    },
-    async fetchData(page) {
-      if (this.haveStore) {
-        await this.$store.dispatch(this.module + "/setQueryPage", {
-          stateName: this.storeState,
-          data: page || this.stateQuery?.page?.value || 1,
-        });
-        this.fetchActions();
-      } else {
-      }
-    },
-    async fetchActions() {
-      try {
-        this.params.forEach((param, index) => {
-          this.$store.dispatch(this.module + "/setParamDefault", {
-            query: param.query,
-            data: param.value,
-          });
-        });
-
-        const { dataSearch, dataOrigin, dataRoute } =
-          await this.$store.dispatch(
-            this.module + "/convertDataSend",
-            this.storeState
-          );
-        // console.log("stateParamDefault", this.stateParamDefault);
-        const result = await this.repositoryKey[this.repo][this.store.action]({
-          input: Object.assign(dataSearch, this.stateParamDefault),
-        });
-
-        dataOrigin.response = result.data.response;
-        this.$store.dispatch(this.module + "/setState", {
-          stateName: this.storeState,
-          data: dataOrigin,
-          query: dataRoute,
-        });
-      } catch (error) {
-      }
-    },
   },
   async created() {
-    if (this.haveStore) {
-      await this.$store.dispatch(this.module + "/passDataFromQuery", {
-        stateName: this.storeState,
-        query: this.$route.query,
-      });
-      this.fetchActions();
-    }
+    await this.storeDispatch("passDataFromQuery", {
+      stateName: this.storeQueryItems,
+      query: this.$route.query,
+    });
+    this.fetchDataIndex();
   },
 };
 </script>

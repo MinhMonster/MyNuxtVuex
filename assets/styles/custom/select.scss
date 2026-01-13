@@ -83,7 +83,8 @@
   .bg-editor .ck.ck-reset {
     background: #212529;
     color: var(--white);
-    padding: 10px;
+    padding: 6px;
+    margin-bottom: 10px;
     @media (max-width: 768px) {
       padding: 6px;
     }

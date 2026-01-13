@@ -51,7 +51,7 @@ export default {
     ...mapActions(["authRequest", "login"]),
     async submit() {
       await this.login(this.user);
-      this.$router.push("/admin/game/ninjas");
+      this.$router.push("/admin");
     },
   },
 };
