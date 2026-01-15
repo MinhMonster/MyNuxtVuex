@@ -5,11 +5,11 @@ const headers = {
   },
 }
 export default ($api) => ({
-  fetchBankDeposits(payload) {
+  index(payload) {
     return $api.get(`${resource}`, { params: { input: payload.input } },
     )
   },
-  confirmBankDeposit(payload) {
+  confirm(payload) {
     return $api.post(`${resource}/update`, payload)
   },
 })

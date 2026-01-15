@@ -7,7 +7,7 @@
     filter
     @newPage="$router.push(path + '/new')"
     reload
-    @reload="$refs.table.fetchDataIndex()"
+    @reload="fetchDataIndex()"
   >
     <template #body>
       <AdminBaseTable ref="table" :module="module">
@@ -20,6 +20,11 @@
           >
             #{{ format_number(row.id) }}
           </nuxt-link>
+        </template>
+        <template #user="{ row }">
+          <div class="text-primary cursor-pointer" @click="showUser(row)">
+            {{ row.user.name }}
+          </div>
         </template>
         <template #actions="{ row }">
           <slot name="actions" :row="row">
@@ -38,7 +43,7 @@
         :id="stateQueryItem.id"
         :module="module"
         :store="modalConfig?.store"
-        @updated="$refs.table.fetchDataIndex()"
+        @updated="fetchDataIndex()"
       />
 
       <ActionsModal
@@ -47,6 +52,8 @@
         :actions="actions"
         @action="handleAction"
       />
+      <UserInfo ref="modalUser" :user="user" />
+      <slot></slot>
     </template>
   </NavAdmin>
 </template>
@@ -56,6 +63,7 @@ import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 import FormModal from "@/components/pages/admin/base/modal/FormModal";
 import ActionsModal from "@/components/base/ActionsModal";
+import UserInfo from "@/components/pages/admin/users/UserInfo";
 import adminCrud from "@/mixins/adminCrud";
 
 const DEFAULT_MODAL_CONFIG = {
@@ -77,11 +85,13 @@ export default {
     AdminBaseTable,
     FormModal,
     ActionsModal,
+    UserInfo,
   },
   data() {
     return {
       currentAction: null,
       actionItem: null,
+      user: {},
     };
   },
   props: {
@@ -117,6 +127,9 @@ export default {
     },
   },
   methods: {
+    fetchDataIndex() {
+      this.$refs.table.fetchDataIndex()
+    },
     async showModal(payload) {
       await this.updateStateQueryItem(payload);
       this.$nextTick(() => {
@@ -153,6 +166,10 @@ export default {
       }
 
       this.$emit("action", { action, item });
+    },
+    showUser(row) {
+      this.user = row.user;
+      this.$refs.modalUser.show();
     },
   },
 };

@@ -242,7 +242,7 @@ const columns =
       },
     },
     {
-      key: "user.name",
+      key: "user",
       label: "User",
       attributes: {
         style: {

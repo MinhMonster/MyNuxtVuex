@@ -7,7 +7,7 @@
       <v-btn icon class="close" color="red" @click="dialog = false">
         <v-icon>mdi-close</v-icon>
       </v-btn>
-      <v-card-text style="height: 305px">
+      <v-card-text style="height: auto">
         <div class="modal-body">
           <v-simple-table class="table" dark>
             <template v-slot:default>
@@ -27,18 +27,6 @@
                 <tr>
                   <th>Amount</th>
                   <td>{{ format_number(record.amount) }} đ</td>
-                </tr>
-                <tr>
-                  <th>Bank Name</th>
-                  <td>{{ record.bank_name }}</td>
-                </tr>
-                <tr>
-                  <th>Holder Name</th>
-                  <td>{{ record.account_holder_name }}</td>
-                </tr>
-                <tr>
-                  <th>Card Number</th>
-                  <td>{{ record.account_number }}</td>
                 </tr>
                 <tr>
                   <th>Time</th>
@@ -92,7 +80,7 @@ export default {
     async confirm(value) {
       try {
         const res =
-          await this.$repositories_mms.adminHistoriesBankDeposits.confirmBankDeposit({
+          await this.$repositories_mms.adminHistoriesBankDeposits.confirm({
             id: this.record.id,
             confirm: value,
           });

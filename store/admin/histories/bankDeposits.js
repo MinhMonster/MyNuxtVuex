@@ -2,23 +2,20 @@ import { defaultPagy } from '@/utils/admin/default'
 import { enableResetStore } from '@/utils/admin/common'
 import { getField, updateField } from "vuex-map-fields";
 
-const SET_STATE = "SET_STATE";
 export default enableResetStore({
   namespaced: true,
   state() {
     return {
-      stateDefault: {
-        queryBankDeposits: queryBankDeposits,
-        queryBankDeposit: queryBankDeposit,
-      },
       repositories: "repositories_mms",
       columns: columns,
-      queryBankDeposits: queryBankDeposits,
-      queryBankDeposit: queryBankDeposit,
+      stateDefault: {
+        queryItems: queryItems,
+        queryItem: queryItem,
+      },
+      queryItems: queryItems,
+      queryItem: queryItem,
     }
-
   },
-
 
   getters: {
     getField,
@@ -32,8 +29,7 @@ export default enableResetStore({
   },
 });
 
-
-const queryBankDeposits = _.cloneDeep({
+const queryItems = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [],
@@ -57,12 +53,6 @@ const queryBankDeposits = _.cloneDeep({
     show: true,
     value: ''
   },
-  // uid: {
-  //   placeholder: "UID",
-  //   type: "text",
-  //   show: true,
-  //   value: ''
-  // },
   status: {
     placeholder: "Status",
     type: "select-options",
@@ -89,7 +79,7 @@ const queryBankDeposits = _.cloneDeep({
   },
 });
 
-const queryBankDeposit = _.cloneDeep({
+const queryItem = _.cloneDeep({
 
   id: "",
   username: "",
