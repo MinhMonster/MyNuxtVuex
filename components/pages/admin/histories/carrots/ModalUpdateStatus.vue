@@ -92,7 +92,7 @@ export default {
   methods: {
     async confirm(value) {
       try {
-        const res = await this.$repositories.adminCarots.confirmCarot({
+        const res = await this.$repositories_mms.adminCarrots.confirm({
           input: {
             id: this.record.id,
             confirm: value,

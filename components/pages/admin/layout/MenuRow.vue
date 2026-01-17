@@ -115,8 +115,8 @@ export default {
         },
         {
           icon: "mdi-image",
-          title: "Carots",
-          to: "/admin/history/carots",
+          title: "Carrots",
+          to: "/admin/history/carrots",
         },
         {
           icon: "mdi-image",

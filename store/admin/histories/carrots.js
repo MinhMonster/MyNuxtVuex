@@ -6,14 +6,18 @@ export default enableResetStore({
   namespaced: true,
   state() {
     return {
-      repositories: "repositories_mms",
       columns: columns,
+      repositories: "repositories_mms",
       stateDefault: {
         queryItems: queryItems,
+        queryItem: queryItem,
       },
       queryItems: queryItems,
+      queryItem: queryItem,
     }
+
   },
+
 
   getters: {
     getField,
@@ -26,6 +30,7 @@ export default enableResetStore({
   actions: {
   },
 });
+
 
 const queryItems = _.cloneDeep({
   response: {
@@ -43,9 +48,15 @@ const queryItems = _.cloneDeep({
     show: false,
     value: 15
   },
-  user_id: {
+  id_nap: {
     // title: "ID",
-    placeholder: "User ID",
+    placeholder: "ID User",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  uid: {
+    placeholder: "UID",
     type: "text",
     show: true,
     value: ''
@@ -61,19 +72,36 @@ const queryItems = _.cloneDeep({
         value: null,
       },
       {
-        text: "Pending",
-        value: "pending",
+        text: "Warning",
+        value: "0",
       },
       {
         text: "Success",
-        value: "success",
+        value: "1",
       },
       {
         text: "Failed",
-        value: "failed",
+        value: "2",
       },
     ],
   },
+});
+
+const queryItem = _.cloneDeep({
+
+  id: "",
+  username: "",
+  dat: "",
+  ga: "",
+  ca: "",
+  mcs: "",
+  thongtin: "",
+  giatien: "",
+  gianhap: "",
+  sim: "",
+  hinhanh: [],
+  full: "0"
+
 });
 
 const columns =
@@ -82,22 +110,24 @@ const columns =
       key: "id",
       label: "ID",
       type: "number",
+      fixed: "left",
       attributes: {
+        align: "center",
         style: {
           minWidth: "50px",
         },
       },
     },
     {
-      key: "balance_before",
-      label: "Before",
-      type: "number",
+      key: "status",
+      label: "Status",
       attributes: {
         style: {
           minWidth: "80px",
         },
       },
     },
+
     {
       key: "amount",
       label: "Amount",
@@ -109,9 +139,18 @@ const columns =
       },
     },
     {
-      key: "balance_after",
-      label: "After",
+      key: "price",
+      label: "Price",
       type: "number",
+      attributes: {
+        style: {
+          minWidth: "100px",
+        },
+      },
+    },
+    {
+      key: "game_type",
+      label: "Game",
       attributes: {
         style: {
           minWidth: "80px",
@@ -119,11 +158,21 @@ const columns =
       },
     },
     {
-      key: "description",
-      label: "Description",
+      key: "username",
+      label: "Username",
+      copy: true,
       attributes: {
         style: {
-          minWidth: "80px",
+          minWidth: "100px",
+        },
+      },
+    },
+    {
+      key: "server",
+      label: "Server",
+      attributes: {
+        style: {
+          minWidth: "50px",
         },
       },
     },
@@ -132,16 +181,28 @@ const columns =
       label: "User",
       attributes: {
         style: {
-          minWidth: "100px",
+          minWidth: "150px",
         },
       },
     },
+
     {
       key: "created_at",
       label: "Time",
       attributes: {
         style: {
-          minWidth: "100px",
+          minWidth: "150px",
+        },
+      },
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      type: "actions",
+      fixed: "right",
+      attributes: {
+        style: {
+          minWidth: "30px",
         },
       },
     },

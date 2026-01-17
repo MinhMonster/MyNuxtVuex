@@ -19,12 +19,11 @@
 import AdminIndex from "@/components/base/AdminIndex";
 import FormConfirm from "@/components/pages/admin/histories/bank-deposits/FormConfirm";
 import StatusDeposit from "@/components/pages/admin/histories/bank-deposits/StatusDeposit";
-import UserInfo from "@/components/pages/admin/users/UserInfo";
 
 export default {
   layout: "adminDev",
   name: "BankDeposits",
-  components: { AdminIndex, FormConfirm, StatusDeposit, UserInfo },
+  components: { AdminIndex, FormConfirm, StatusDeposit },
   data() {
     return {
       selected: {},

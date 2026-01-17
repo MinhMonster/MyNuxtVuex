@@ -40,8 +40,8 @@ export const menus = _.cloneDeep([
     sub_menus: [
       {
         icon: "mdi-carrot",
-        title: "Carots",
-        to: "/admin/history/carots",
+        title: "Carrots",
+        to: "/admin/history/carrots",
       },
       {
         icon: "mdi-hand-coin-outline",

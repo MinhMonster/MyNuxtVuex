@@ -1,4 +1,4 @@
-const resource = '/admin/account-purchase-histories'
+const resource = '/admin/account-purchases'
 const headers = {
   headers: {
     "Content-Type": "multipart/form-data"

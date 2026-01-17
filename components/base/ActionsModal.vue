@@ -11,8 +11,8 @@
   >
     <template #content>
       <div
-        v-for="action in actions"
-        :key="action.type"
+        v-for="(action, index) in actions"
+        :key="index"
         class="action-item pointer text-black"
         @click="emitAction(action)"
       >

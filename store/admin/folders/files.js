@@ -6,11 +6,11 @@ export default enableResetStore({
   namespaced: true,
   state: () => ({
     stateDefault: {
-      queryFiles: queryFiles,
+      queryItems: queryItems,
     },
     columns: columns,
     repositories: "repositories_mms",
-    queryFiles: queryFiles,
+    queryItems: queryItems,
   }),
 
   getters: {
@@ -26,7 +26,7 @@ export default enableResetStore({
 });
 
 
-const queryFiles = _.cloneDeep({
+const queryItems = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [],

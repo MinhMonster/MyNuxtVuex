@@ -5,18 +5,11 @@
     new-page
     next-page
     reload
-    @reload="$refs.table.fetchData()"
+    @reload="$refs.table.fetchDataIndex()"
     @newPage="$refs.modal.show()"
   >
     <template #body>
-      <AdminBaseTable
-        ref="table"
-        module="admin/folders/files"
-        :store="{
-          state: 'queryFiles',
-          action: 'fetchMedias',
-        }"
-      >
+      <AdminBaseTable ref="table" module="admin/folders/files">
         <template #fileName="{ row }">
           <div class="d-flex align-items-start" :title="row.fileName">
             <ViewImage
@@ -38,7 +31,7 @@
       </AdminBaseTable>
       <UploadImageModal
         ref="modal"
-        @onUploaded="$refs.table.fetchData()"
+        @onUploaded="$refs.table.fetchDataIndex()"
         :show-icon="false"
       ></UploadImageModal>
     </template>
@@ -46,7 +39,6 @@
 </template>
 
 <script>
-import mixins from "@/mixins/index";
 import MediaTableRow from "@/components/global/molecules/media/MediaTableRow.vue";
 import UploadImageModal from "@/components/global/plugins/UploadImageModal.vue";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
@@ -54,8 +46,8 @@ import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 import ViewImage from "@/components/global/molecules/media/ViewImage";
 
 export default {
-  mixins: [mixins],
   layout: "adminDev",
+  name: "Medias",
   components: {
     NavAdmin,
     AdminBaseTable,
@@ -63,24 +55,6 @@ export default {
     UploadImageModal,
     ViewImage,
   },
-  head() {
-    return {
-      title: "Admin: Medias",
-      meta: [
-        {
-          hid: "Admin: Medias",
-          name: "Admin: Medias",
-          content: "Admin: Medias",
-        },
-      ],
-    };
-  },
-  name: "Medias",
-  data() {
-    return {};
-  },
-  async mounted() {},
-  computed: {},
   methods: {
     computedThumbnail(url) {
       return {
@@ -104,136 +78,10 @@ export default {
         })
         .then(async (result) => {
           if (result.isConfirmed) {
-            // const result = await this.deleteMedia(image.id);
-            // if (result.data.code === 200) {
-            //   this.$toasted.success(result.data.message);
-            //   await this.fetchMedia();
-            // }
+            this.$refs.table.fetchDataIndex();
           }
         });
     },
   },
 };
 </script>
-<style >
-#admin td ul li {
-  padding: 10px 0;
-}
-
-.list-group-item,
-.handle-items,
-.handle-li {
-  cursor: move;
-}
-
-/* .v-data-table > .v-data-table__wrapper > table > tbody > tr > td{
-  padding: 0px;
-} */
-
-.v-data-table > .v-data-table__wrapper > table > tbody > tr > td.padding-none,
-.v-data-table > .v-data-table__wrapper > table > thead > tr > th.padding-none {
-  padding: 0px !important;
-}
-
-.hidden-border {
-  border: none !important;
-}
-
-.v-data-table
-  > .v-data-table__wrapper
-  > table
-  > tbody
-  > tr
-  > td.padding-none
-  tr
-  td:last-child {
-  border-right: none !important;
-}
-.v-data-table
-  > .v-data-table__wrapper
-  > table
-  > tbody
-  > tr
-  > td.padding-none
-  tr
-  td:first-child {
-  border-left: none !important;
-}
-
-.v-data-table
-  > .v-data-table__wrapper
-  > table
-  > tbody
-  > tr
-  > td.padding-none
-  tr:last-child
-  td {
-  border-bottom: none !important;
-}
-
-.v-data-table
-  > .v-data-table__wrapper
-  > table
-  > tbody
-  > tr
-  > td.padding-none
-  tr:first-child
-  td {
-  border-top: none !important;
-}
-
-#admin
-  .v-data-table
-  > .v-data-table__wrapper
-  > table
-  > tbody
-  > tr:nth-child(even)
-  td {
-  background: white !important;
-}
-
-#admin .v-data-table > .v-data-table__wrapper > table > tbody > tr td {
-  border: none !important;
-}
-.theme--dark.v-data-table {
-  background: white;
-}
-
-/* tr.table-main {
-  border-bottom: 2px solid #333;
-} */
-
-/* tr.table-main > td {
-  border: 2px solid #333 !important;
-} */
-
-/* .sub-table tr td:first-child{
-  border-right: 2px solid #333 !important;;
-} */
-
-element.style {
-}
-/* #admin .table td {
-  border: 1px solid var(--admin-table-border);
-} */
-#admin td.bg-dark {
-  color: #333 !important;
-  font-weight: 800;
-  text-align: center;
-}
-
-.table.text-center tr,
-.table.text-center th,
-.table.text-center td {
-  text-align: center !important;
-}
-
-#admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
-  height: 25px;
-  font-size: 13.5px;
-}
-
-#admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
-  padding: 0 4px;
-}
-</style>

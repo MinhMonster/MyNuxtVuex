@@ -194,8 +194,8 @@ export default {
         }
       } catch (error) { }
     },
-    async onModify() {
-      const action = this.repositoryKey[this.repo][this.store.modify || 'modify'];
+    async onModify(method = null) {
+      const action = this.repositoryKey[this.repo][method || this.store.modify || 'modify'];
 
       try {
         const isUpdate = this.itemId && !this.isQueryCopy;
@@ -213,6 +213,16 @@ export default {
           this.$router.push(this.path.replace('new', ''));
         }
         this.$emit("updated", payload);
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    async executeAction(method = null) {
+      const action = this.repositoryKey[this.repo][method || this.store.modify || 'modify'];
+      try {
+        await action(this.stateQueryItem);
+        this.$emit("updated", this.stateQueryItem);
       } catch (e) {
         console.error(e);
       }

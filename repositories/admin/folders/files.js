@@ -5,6 +5,9 @@ const headers = {
   },
 }
 export default ($api) => ({
+  index(payload) {
+    return $api.post(`${baseResource}`, { params: { input: payload.input } })
+  },
   uploads(payload) {
     return $api.post(`${baseResource}/uploads?folder_id=${payload.folder ? payload.folder.id : null}`,
       payload.data,
@@ -13,9 +16,6 @@ export default ($api) => ({
   },
   fetchFiles(payload) {
     return $api.post(`${baseResource}${payload.folder ? `?folder_id=${payload.folder.id}` : ''}`)
-  },
-  fetchMedias(payload) {
-    return $api.post(`${baseResource}`, { params: { input: payload.input } })
   },
   deleteFile(id) {
     return $api.delete(`${baseResource}/${id}/delete`)

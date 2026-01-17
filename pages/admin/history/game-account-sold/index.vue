@@ -44,6 +44,7 @@ export default {
       modalConfigs: {
         updateAccount: {
           key: "account",
+          merge: [{ history_id: "id" }],
           store: { formItem: "formAccount", modify: "updateAccount" },
           style: { minHeight: "280px", width: "400px" },
         },

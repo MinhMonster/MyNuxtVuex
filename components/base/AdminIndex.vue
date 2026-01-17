@@ -21,6 +21,20 @@
             #{{ format_number(row.id) }}
           </nuxt-link>
         </template>
+        <template #status="{ row }">
+          <StatusBtn :status="row.status" />
+        </template>
+        <template #amount="{ row }">
+          <div v-if="row.direction === 'out'" class="text-danger">
+            - {{ format_number(row.amount) }}
+          </div>
+          <div v-else-if="row.direction === 'in'" class="text-success">
+            + {{ format_number(row.amount) }}
+          </div>
+          <div v-else>
+            {{ format_number(row.amount) }}
+          </div>
+        </template>
         <template #user="{ row }">
           <div class="text-primary cursor-pointer" @click="showUser(row)">
             {{ row.user.name }}
@@ -64,6 +78,7 @@ import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 import FormModal from "@/components/pages/admin/base/modal/FormModal";
 import ActionsModal from "@/components/base/ActionsModal";
 import UserInfo from "@/components/pages/admin/users/UserInfo";
+import StatusBtn from "@/components/common/client/button/StatusBtn";
 import adminCrud from "@/mixins/adminCrud";
 
 const DEFAULT_MODAL_CONFIG = {
@@ -86,6 +101,7 @@ export default {
     FormModal,
     ActionsModal,
     UserInfo,
+    StatusBtn,
   },
   data() {
     return {
@@ -128,7 +144,7 @@ export default {
   },
   methods: {
     fetchDataIndex() {
-      this.$refs.table.fetchDataIndex()
+      this.$refs.table.fetchDataIndex();
     },
     async showModal(payload) {
       await this.updateStateQueryItem(payload);
@@ -141,8 +157,32 @@ export default {
       this.actionItem = row;
     },
 
-    handleAction({ action, item }) {
+    mergeModalData(formData, item, mergeConfig = []) {
+      const merged = { ...formData };
+
+      mergeConfig.forEach((map) => {
+        Object.entries(map).forEach(([targetKey, sourceKey]) => {
+          merged[targetKey] = item?.[sourceKey];
+        });
+      });
+
+      return merged;
+    },
+
+    async handleAction({ action, item }) {
       this.currentAction = action;
+
+      if (action.method) {
+        const payload = {
+          id: item.id,
+          ...action.payload,
+        };
+
+        await this.updateStateQueryItem(payload);
+        await this.executeAction(action.method);
+        this.fetchDataIndex();
+        return;
+      }
 
       if (action.type === "onDelete") {
         this.onDelete(item.id);
@@ -151,7 +191,7 @@ export default {
 
       if (action.modal) {
         const config = this.modalConfigs[action.type];
-        const payload = config?.key ? item[config.key] : item;
+        let payload = config?.key ? item[config.key] : item;
         if (!payload) {
           this.showSwal({
             title: "Dữ liệu lỗi!",
@@ -161,6 +201,11 @@ export default {
           });
           return;
         }
+
+        if (config.merge) {
+          payload = this.mergeModalData(payload, item, config.merge || []);
+        }
+
         this.showModal(payload);
         return;
       }

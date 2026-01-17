@@ -206,9 +206,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
     // const code = parseInt(error.response && error.response.status)
     console.log("code", error.response);
-    if (code === 400) {
-      redirect('/400')
-    }
+
     if (code === 500 || code === 404) {
       $toast.error(error.response.data.message);
     }

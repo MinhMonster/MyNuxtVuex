@@ -11,7 +11,7 @@ import AdminModify from "@/components/base/AdminModify";
 
 export default {
   layout: "adminDev",
-  name: "UpdateAccountNinja",
+  name: "UpdateAccountDragonBall",
   components: { AdminModify },
 };
 </script>
