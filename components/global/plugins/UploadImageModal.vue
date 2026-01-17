@@ -2,18 +2,18 @@
   <v-dialog light v-model="dialog" persistent max-width="1250" class="modal">
     <template v-slot:activator="{ props }">
       <v-btn
-        v-if="icon == 'btn-icon'"
+        v-if="showIcon && icon == 'btn-icon'"
         v-bind="props"
         icon
         class="right primary"
-        @click="dialog = true"
+        @click="show()"
       >
         <v-icon>mdi-plus</v-icon>
       </v-btn>
       <i
-        v-if="icon == 'add-file'"
+        v-if="showIcon && icon == 'add-file'"
         class="display-4 text-muted mdi mdi-playlist-plus"
-        @click="dialog = true"
+        @click="show()"
       ></i>
     </template>
     <v-card class="modal-upload">
@@ -26,8 +26,6 @@
           </b-tab>
           <b-tab title="Manager Folder" class="manager-folder">
             <FolderFile
-              v-if="folders"
-              :folders="folders"
               :selectedImages="selectedImages"
               :activated="activated"
               @newFolder="newFolder"
@@ -47,10 +45,15 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="red" variant="text" class="text-white" @click="dialog = false">
+        <v-btn
+          color="red"
+          variant="text"
+          class="text-white"
+          @click="dialog = false"
+        >
           Close
         </v-btn>
-        <v-btn color="primary" variant="primary"  @click="saveSelected()">
+        <v-btn color="primary" variant="primary" @click="saveSelected()">
           Save
         </v-btn>
       </v-card-actions>
@@ -81,13 +84,16 @@ export default {
       type: String,
       default: "btn-icon",
     },
+    showIcon: {
+      type: Boolean,
+      default: true,
+    },
   },
   data: () => ({
     dialog: false,
     image: {},
   }),
   computed: {
-    ...mapFields("admin/folders", ["folders"]),
     ...mapFields("global", ["selectedImages"]),
   },
   methods: {
@@ -98,9 +104,14 @@ export default {
       "updateNameFolder",
     ]),
     ...mapActions("global", ["setSelectedImages"]),
-
-    uploaded(files) {
+    show() {
+      this.dialog = true;
+    },
+    close() {
       this.dialog = false;
+    },
+    uploaded(files) {
+      this.close();
       this.$emit("onUploaded", files);
     },
 
@@ -114,7 +125,7 @@ export default {
       ) {
         this.$toasted.success(result.data.message);
       }
-      await this.fetchFolders(this.$route.path);
+      await this.fetchFolders();
     },
 
     selected(files) {
@@ -132,7 +143,7 @@ export default {
     },
 
     saveSelected() {
-      this.dialog = false;
+      this.close();
       this.$emit("onUploaded", this.selectedImages);
       this.setSelectedImages([]);
     },

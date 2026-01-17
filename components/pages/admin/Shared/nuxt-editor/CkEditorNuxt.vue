@@ -1,7 +1,7 @@
 <template>
   <client-only placeholder="loading...">
     <ckeditor-nuxt
-      class="bg-view view_htm"
+      class="bg-view view_htm mb-2"
       :config="editorConfig"
       :value="value"
       :disabled="disabled"

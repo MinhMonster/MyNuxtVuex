@@ -3,7 +3,6 @@
 
 import { mapFields } from "vuex-map-fields";
 
-
 export default {
   data() {
     return {
@@ -91,8 +90,11 @@ export default {
     isTablet() {
       return this.is_tablet
     },
+    isQueryCopy() {
+      return this.$route.query?.copy ? true : false;
+    },
     path() {
-      return this.$route.path;
+      return this.$route.path.replace(/\/+$/, "");
     },
     nowYear() {
       var year = this.currentYear
@@ -148,18 +150,17 @@ export default {
     },
   },
   methods: {
+    convertToCamelCase(str, delimiter = '/') {
+      const parts = str.split(delimiter)
+      return parts.shift() + parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('')
+    },
+    convertToDot(str) {
+      return str.replace(/\//g, '.')
+    },
     onResize() {
       const screenWidth = document.querySelector("body").clientWidth;
-      if (screenWidth < 600) {
-        this.isMb = true;
-      } else {
-        this.isMb = false;
-      }
-      if (screenWidth < 768) {
-        this.is_tablet = true;
-      } else {
-        this.is_tablet = false;
-      }
+      this.isMb = screenWidth < 768;
+      this.is_tablet = screenWidth < 948;
     },
     format_number(number) {
       const number_toFixed = Number(number).toFixed(0);
@@ -170,9 +171,9 @@ export default {
       return this.format_number(Math.round((number * 0.85) / 10000).toFixed(0) * 10000)
     },
     profit_atm(account) {
-      const percent = 1 - ((account.saleOff / 100) || 0);
-      return this.format_number((account.giatien * percent) - account.gianhap);
-      // return this.format_number(Math.round(profit / 10000).toFixed(0) * 10000)
+      const percent = 1 - (((account.active_discount || 0) / 100) || 0);
+      const profit = (account.selling_price * percent) - account.purchase_price;
+      return this.format_number(Math.round(profit / 10000).toFixed(0) * 10000)
     },
     time_10(time) {
       if (time > 1000) {
@@ -315,6 +316,24 @@ export default {
           setting = {
             text: "Không rõ",
             color: "text-muted"
+          };
+      }
+      return `<span class="${setting.color}">${setting.text}</span>`;
+    },
+
+    deletedAt(value) {
+      let setting = {};
+      switch (value) {
+        case "null":
+          setting = {
+            text: "Actived",
+            color: "text-primary"
+          };
+          break;
+        default:
+          setting = {
+            text: "Deleted",
+            color: "text-danger"
           };
       }
       return `<span class="${setting.color}">${setting.text}</span>`;

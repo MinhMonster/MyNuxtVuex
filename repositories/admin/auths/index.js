@@ -1,4 +1,4 @@
-const resource = '/apis/admin/auths'
+const resource = '/admin'
 const headers = {
   headers: {
     "Content-Type": "multipart/form-data"
@@ -6,9 +6,9 @@ const headers = {
 }
 export default ($api) => ({
   login(payload) {
-    return $api.post(`${resource}/login.php`, payload);
+    return $api.post(`${resource}/login`, payload);
   },
   logout() {
-    return $api.get(`${resource}/logout.php`);
+    return $api.get(`${resource}/logout`);
   }
 })

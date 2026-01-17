@@ -21,16 +21,19 @@ export default {
     setStatus() {
       switch (this.status) {
         case "0":
+        case "pending":
           return {
             text: "Warning",
             color: "warning",
           };
         case "1":
+        case "success":
           return {
             text: "Success",
             color: "success",
           };
         case "2":
+        case "failed":
         default:
           return {
             text: "Failed",

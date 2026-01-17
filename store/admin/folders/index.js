@@ -1,8 +1,7 @@
 import { getField, updateField } from "vuex-map-fields";
 
 const UPDATE_ACTION = "UPDATE_ACTION";
-
-
+const SET_QUERY = "SET_QUERY";
 const UPDATE_SUM_CASH_REVENUES = "UPDATE_SUM_CASH_REVENUES";
 const UPDATE_SUM_CASH_EXPENSES = "UPDATE_SUM_CASH_EXPENSES";
 const UPDATE_INCOME = "UPDATE_INCOME";
@@ -12,7 +11,13 @@ export default {
   namespaced: true,
   state: () => ({
     folders: [],
+    metaFolders: {},
     media: {},
+    isUploadMms: false,
+    query: {
+      page: 1,
+      perPage: 11,
+    }
   }),
 
   getters: {
@@ -34,11 +39,22 @@ export default {
   mutations: {
     updateField,
     SET_FOLDERS(state, payload) {
-      state.folders = payload
+      state.folders = payload.data
+      state.metaFolders = payload.meta
     },
 
     SET_finance(state, finance) {
       state.finance = finance
+    },
+    SET_PAGE(state) {
+      const page = _.cloneDeep(state.query.page)
+      state.query.page = page + 1;
+    },
+    SET_QUERY(state, payload) {
+      state.query = {
+        ...state.query,
+        ..._.cloneDeep(payload),
+      };
     },
   },
 
@@ -67,25 +83,26 @@ export default {
     },
 
 
-    async fetchFolders({ commit }, payload) {
+    async fetchFolders({ state, commit }) {
       try {
-        console.log("payload", payload);
         let folders = [];
-        if (payload.includes('mimifood')) {
-          const res = await this.$repositories_mimifood.mimiFoodFolders.adminFetchFolders()
+        let meta = {};
+        if (state.isUploadMms) {
+          const res = await this.$repositories_mms.mmsFolders.adminFetchFolders({ input: state.query });
           folders = res.data.response.data;
+          meta = res.data.response.meta;
         } else {
           const res = await this.$repositories.adminFolders.fetchFolders();
           folders = res.data.folders;
         }
 
-        commit('SET_FOLDERS', folders)
+        commit('SET_FOLDERS', { data: folders, meta: meta });
       } catch (error) { }
     },
-    async createFolder({ commit }, payload) {
+    async createFolder({ state }, payload) {
       try {
-        if (payload.route_path.includes('mimifood')) {
-          return await this.$repositories_mimifood.mimiFoodFolders.adminCreateFolder({
+        if (state.isUploadMms) {
+          return await this.$repositories_mms.mmsFolders.adminCreateFolder({
             name: payload.name,
             parent_id: payload.parent_id
 
@@ -96,10 +113,10 @@ export default {
 
       } catch (error) { }
     },
-    async editNameFolder({ commit }, payload) {
+    async editNameFolder({ state }, payload) {
       try {
-        if (payload.route_path.includes('mimifood')) {
-          return await this.$repositories_mimifood.mimiFoodFolders.adminUpdateFolder({
+        if (state.isUploadMms) {
+          return await this.$repositories_mms.mmsFolders.adminUpdateFolder({
             name: payload.name,
             id: payload.folder.id
           })
@@ -113,8 +130,44 @@ export default {
       try {
         return await this.$repositories.adminMedias.deleteMedia(id)
       } catch (error) { }
-    }
-
+    },
+    async fileUpload({ state }, payload) {
+      try {
+        if (state.isUploadMms) {
+          return await this.$repositories_mms.mmsFiles.uploads(payload)
+        } else {
+          return await this.$repositories.adminUploads.upload(payload)
+        }
+      } catch (err) {
+      };
+    },
+    async fetchFiles({ state }, payload) {
+      if (state.isUploadMms) {
+        const res = await this.$repositories_mms.mmsFiles.fetchFiles(
+          payload
+        );
+        return res.data.response.data;
+      } else {
+        const res = await this.$repositories.adminUploads.fetchFiles(
+          payload.folder
+        );
+        return res.data.files;
+      }
+    },
+    async deleteFile({ state }, payload) {
+      if (state.isUploadMms) {
+        return await this.$repositories_mms.mmsFiles.deleteFile(
+          payload.file.id
+        );
+      } else {
+        return await this.$repositories.adminUploads.deleteFile(
+          payload.file
+        );
+      }
+    },
+    setQuery({ commit }, payload) {
+      commit(SET_QUERY, payload);
+    },
 
   },
 }

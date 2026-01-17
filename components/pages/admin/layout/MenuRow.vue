@@ -12,7 +12,7 @@
         </v-btn>
       </v-slide-item>
       <v-slide-item
-        v-for="(item, i) in items"
+        v-for="(item, i) in menus"
         :key="i"
         v-slot="{ active, toggle }"
         :class="[$route.path.includes(`${item.to}`) ? 'v-btn--active' : '']"
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { menus } from '@/utils/admin/configs'
+
 export default {
   name: "MenuRow",
   components: {},
@@ -68,8 +70,8 @@ export default {
         },
         {
           icon: "mdi-image",
-          title: "Sale Off",
-          to: "/admin/sale-offs",
+          title: "Discounts",
+          to: "/admin/discounts",
         },
         {
           icon: "mdi-image",
@@ -98,6 +100,11 @@ export default {
         },
         {
           icon: "mdi-image",
+          title: "Transections",
+          to: "/admin/history/wallet-transactions",
+        },
+        {
+          icon: "mdi-image",
           title: "Ninja",
           to: "/admin/game/ninjas",
         },
@@ -108,8 +115,8 @@ export default {
         },
         {
           icon: "mdi-image",
-          title: "Carots",
-          to: "/admin/history/carots",
+          title: "Carrots",
+          to: "/admin/history/carrots",
         },
         {
           icon: "mdi-image",
@@ -119,9 +126,10 @@ export default {
         {
           icon: "mdi-image",
           title: "Mimi Food",
-          to: "/admin/mimifood",
+          to: "/admin/mms",
         },
       ],
+      menus
     };
   },
 };

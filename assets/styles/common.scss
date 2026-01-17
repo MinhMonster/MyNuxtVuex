@@ -31,6 +31,11 @@ html {
   justify-content: center;
 }
 
+[disabled] {
+  cursor: not-allowed !important;
+  opacity: 0.65 !important;
+}
+
 .loading {
   position: fixed;
   z-index: 99999999;
@@ -408,4 +413,8 @@ blockquote {
   margin-right: 0;
   font-style: italic;
   border-left: 5px solid #ccc;
+}
+
+.bg-content {
+  background: #f2f2f2;
 }

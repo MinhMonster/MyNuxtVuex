@@ -2,16 +2,17 @@
   <v-row>
     <v-col cols="12" sm="12" md="12">
       <v-text-field
-        label="Tài Khoản"
-        v-model="user.username"
+        label="Email"
+        v-model="user.email"
         :rules="[rules.required]"
         outlined
         clearable
+        type="email"
       ></v-text-field>
     </v-col>
     <v-col cols="12" sm="12" md="12">
       <v-text-field
-        label="Mật Khẩu"
+        label="Password"
         v-model="user.password"
         type="password"
         :rules="[rules.required]"
@@ -34,7 +35,7 @@ export default {
   data() {
     return {
       rules: {
-        required: (value) => !!value || "Không được để trống.",
+        required: (value) => !!value || "This field is required.",
       },
     };
   },

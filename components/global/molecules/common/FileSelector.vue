@@ -81,8 +81,7 @@
 <script>
 import ViewImage from "@/components/global/molecules/media/ViewImage";
 import mixins from "@/mixins/index";
-import { createNamespacedHelpers } from "vuex";
-const { mapActions, mapState } = createNamespacedHelpers("global");
+import { mapActions } from "vuex";
 let WidgetCount = 0;
 export default {
   mixins: [mixins],
@@ -141,15 +140,10 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      // usedStorage: (state) => _.get(state.account, "usedStorage", 0),
-      // maxStorage: (state) =>
-      //   _.get(state.account, "maxStorage", 1024 * 1024 * 1000),
-    }),
   },
   mounted() {},
   methods: {
-    ...mapActions(["fileUpload"]),
+    ...mapActions("admin/folders", ["fileUpload"]),
     dragover(event) {
       event.preventDefault();
       event.currentTarget.classList.add("bg-gray");

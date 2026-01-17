@@ -1,5 +1,14 @@
-#admin {
+// :root {
+//   --admin-master: #363636;
 
+//   /* --admin-master: #3e4753; */
+//   --admin-bold: #333;
+//   --admin-bland: #f1f1f1;
+//   --admin-content: #a4a4a4;
+//   --admin-table-border: #a4a4a4;
+//   --admin-active-color: #fff;
+// }
+#admin {
   .bg-editor {
     .v-input__slot {
       .v-select__slot {
@@ -35,4 +44,67 @@
     }
   }
 
+  .bg-editor .v-select__slot,
+  .bg-editor .v-text-field__slot {
+    background: var(--admin-master) !important;
+    padding: 10px;
+    // min-height: 50px !important;
+    // line-height: 50px;
+    caret-color: var(--white);
+    @media (max-width: 768px) {
+      padding: 6px;
+    }
+  }
+
+  .bg-view,
+  .bg-editor .ck.ck-editor__main > .ck-editor__editable,
+  .bg-editor input,
+  .bg-editor div.outline-format p.value-format {
+    background: var(--admin-master) !important;
+    color: var(--white);
+    padding: 10px;
+    @media (max-width: 768px) {
+      padding: 6px;
+    }
+  }
+
+  .bg-editor label,
+  label {
+    margin: 10px;
+    padding-left: 10px;
+    @media (max-width: 768px) {
+      margin: 6px;
+      padding-left: 6px;
+    }
+  }
+
+  .bg-editor .nav-tabs .nav-link.active,
+  .bg-editor .ck.ck-toolbar__items,
+  .bg-editor .ck.ck-reset {
+    background: #212529;
+    color: var(--white);
+    padding: 6px;
+    margin-bottom: 10px;
+    @media (max-width: 768px) {
+      padding: 6px;
+    }
+  }
+
+  // label {
+  //   color: #a4a4a4;
+  //   padding-left: 10px;
+  // }
+  @media (max-width: 768px) {
+    /* Chrome, Safari, Edge, Opera */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
 }

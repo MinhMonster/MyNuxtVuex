@@ -1,28 +1,24 @@
-const resource = '/apis/admin/game/avatars'
+const resource = '/admin/game/avatars'
 const headers = {
   headers: {
     "Content-Type": "multipart/form-data"
   },
 }
 export default ($api) => ({
-  createAccountAvatar(payload) {
-    return $api.post(`${resource}/createAccountAvatar.php`, payload)
-  },
-  fetchAccountAvatars(payload) {
-    return $api.get(`${resource}/fetchAccountAvatars.php`, { params: { input: payload.input } },
+  index(payload) {
+    return $api.get(`${resource}`, { params: { input: payload.input } },
     )
   },
-  fetchAccountAvatar(payload) {
-    return $api.get(`${resource}/fetchAccountAvatar.php`, { params: { id: payload } })
+  fetch(id) {
+    return $api.get(`${resource}/${id}`)
   },
-  updateAccountAvatar(payload) {
-    return $api.post(`${resource}/updateAccountAvatar.php`, payload)
+  modify(payload) {
+    return $api.post(`${resource}/modify`, payload)
   },
   destroyAccountAvatar(payload) {
-    return $api.get(`${resource}/destroyAccountAvatar.php`, { params: { id: payload } }
-    )
+    return $api.post(`${resource}/destroy`, { id: payload })
   },
   unDestroyAccountAvatar(payload) {
-    return $api.get(`${resource}/unDestroyAccountAvatar.php`, { params: { id: payload } })
+    return $api.post(`${resource}/restore`, { id: payload })
   },
 })

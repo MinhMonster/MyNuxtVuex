@@ -11,47 +11,55 @@
         <v-card-title class="right nowrap">
           <v-row>
             <v-col
-              v-if="sum_value"
+              v-if="sums['selling_price'] || null"
               cols="12"
               md="4"
               class="text-right text-20-500"
             >
-              Total: {{ format_number(sum_value) }} Đ
+              Total: {{ format_number(sums["selling_price"]) }} Đ
             </v-col>
             <v-col
-              v-if="cost_value"
+              v-if="sums['purchase_price'] || null"
               cols="12"
               md="4"
               class="text-right text-20-500"
             >
-              Cost: {{ format_number(cost_value) }} Đ
+              Cost: {{ format_number(sums["purchase_price"]) }} Đ
             </v-col>
             <v-col
-              v-if="profit_value"
+              v-if="
+                (sums['selling_price'] || null) &&
+                (sums['purchase_price'] || null)
+              "
               cols="12"
               md="4"
               class="text-right text-20-500"
             >
-              Profit: {{ format_number(profit_value) }} Đ
+              Profit:
+              {{
+                format_number(sums["selling_price"] - sums["purchase_price"])
+              }}
+              Đ
             </v-col>
           </v-row>
         </v-card-title>
       </div>
     </div>
     <FormSearchAdmin
-      v-if="haveStore"
-      :store="store"
       :module="module"
-      @search="fetchData"
+      :store-module="storeModule"
+      :store-state="storeQueryItems"
+      :state-query="stateQueryItems"
+      @search="onChangePage"
     />
     <BaseTable
-      :columns="columns"
+      :columns="stateColumns"
       :data="dataSource"
-      :meta="pagy"
-      @onChange="fetchData"
+      :meta="meta"
+      @onChange="onChangePage"
     >
       <template
-        v-for="(column, index) in columns"
+        v-for="(column, index) in stateColumns"
         #[column.key]="{ row, value }"
       >
         <slot :name="column.key" :row="row" :value="value">
@@ -70,176 +78,22 @@
 import FormSearchAdmin from "@/components/pages/admin/Shared/form/FormSearchAdmin";
 import BaseTable from "@/components/base/BaseTable";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
-import { mapState } from "vuex";
+import adminCrud from "@/mixins/adminCrud";
 
 export default {
+  mixins: [adminCrud],
   components: {
     FormSearchAdmin,
     BaseTable,
     ButtonCoppy,
   },
   props: {
-    store: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-      required: false,
-    },
-    module: {
-      type: String,
-      default: "",
-      require: false,
-    },
-    defaultParams: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-      require: false,
-    },
-    repository: {
-      type: String,
-      default: "",
-      require: false,
-    },
-    repositories: {
-      type: String,
-      default: null,
-      require: false,
-    },
-    meta: {
-      type: Object,
-      default: () => {},
-    },
-    columns: {
-      type: Array,
-      default: () => [],
-    },
     noTotal: Boolean,
     params: {
       type: Array,
       default: () => [],
       require: false,
     },
-  },
-  data() {
-    return {
-      response: {},
-    };
-  },
-  computed: {
-    ...mapState({
-      stateQuery(state) {
-        return _.get(state, this.store.module + "." + this.store.state, {});
-      },
-      stateParamDefault(state) {
-        // console.log("this.params", this.params);
-        return this.params.length > 0
-          ? _.get(state, this.store.module + "." + "paramDefaults", {})
-          : {};
-      },
-      haveStore() {
-        return !_.isEmpty(this.store);
-      },
-      // dataSource(state) {
-      //   if (this.haveStore) {
-      //     // const data
-      //     return _.get(
-      //       state,
-      //       this.store.module + "." + this.store.state + ".response.data",
-      //       []
-      //     );
-      //   }
-      //   return get(this.response, "data", []);
-      // },
-      // pagy(state) {
-      //   if (this.haveStore) {
-      //     return _.get(
-      //       state,
-      //       this.store.module + "." + this.store.state + ".response.meta",
-      //       []
-      //     );
-      //   }
-      //   return get(this.response, "meta", defaultPagy);
-      // },
-      pagy() {
-        if (this.haveStore) {
-          return this.$store.getters[this.module + "/metaFilter"](
-            this.store.state
-          );
-        }
-        return get(this.response, "meta", defaultPagy);
-      },
-      dataSource() {
-        if (this.haveStore) {
-          return this.$store.getters[this.module + "/dataFilter"](
-            this.store.state
-          );
-        }
-        return get(this.response, "data", []);
-      },
-      count(state) {
-        if (this.haveStore) {
-          // const data
-          return _.get(
-            state,
-            this.store.module + "." + this.store.state + ".response.count",
-            0
-          );
-        }
-        return get(this.response, "count", 0);
-      },
-      sum_value(state) {
-        if (this.haveStore) {
-          // const data
-          return _.get(
-            state,
-            this.store.module + "." + this.store.state + ".response.sum_value",
-            0
-          );
-        }
-        return get(this.response, "sum_value", 0);
-      },
-      cost_value(state) {
-        if (this.haveStore) {
-          // const data
-          return _.get(
-            state,
-            this.store.module + "." + this.store.state + ".response.cost_value",
-            0
-          );
-        }
-        return get(this.response, "cost_value", 0);
-      },
-      profit_value(state) {
-        if (this.haveStore) {
-          // const data
-          return _.get(
-            state,
-            this.store.module +
-              "." +
-              this.store.state +
-              ".response.profit_value",
-            0
-          );
-        }
-        return get(this.response, "profit_value", 0);
-      },
-      //   computed: {
-      // ...mapFields("admin/histories/game_account_sold", {
-      //   count: "queryGameAccountSolds.response.count",
-      //   sum_value: "queryGameAccountSolds.response.sum_value",
-      // }),
-      // },
-    }),
-
-    // dataSource() {
-    //   if (this.haveStore) {
-    //     _.get(state, this.store.module + "." + this.store.query + ".response.data", [])
-    //   }
-    //   return get(this.response, "data", []);
-    // },
   },
   mounted() {},
   methods: {
@@ -256,87 +110,13 @@ export default {
       const value = this.getValue(row, column);
       return this.columnsValue(column.type, value);
     },
-    onChange(page) {
-      this.$emit("onChange", page);
-    },
-    async fetchData(page) {
-      if (this.haveStore) {
-        await this.$store.dispatch(this.module + "/setQueryPage", {
-          stateName: this.store.state,
-          data: page || this.stateQuery.page.value || 1,
-        });
-        this.fetchActions();
-      } else {
-        // try {
-        //   console.log(params, 'params')
-        //   this.loading = true
-        //   const api = getRepository(this.module, this.paramsRepository)
-        //   params = { ...params, ...this.defaultParams }
-        //   if (this.type == 'main') {
-        //     this.fullResponse = await api.all(params)
-        //     this.response = get(this.fullResponse, pluralize(this.module, 2), {})
-        //   } else {
-        //     const { id, relation } = this.relation
-        //     const relationCustom = pluralize(relation, 2)
-        //     const relationQuery = this.relation.notQuery ? '' : relationCustom
-        //     this.fullResponse = await api.findModuleRelation(id, relationQuery, params)
-        //     this.response = get(this.fullResponse, pluralize(relationCustom, 2), {})
-        //   }
-        //   this.updateParams()
-        //   this.$emit('fullResponse', this.fullResponse)
-        //   this.$emit('response', this.response)
-        // } catch (e) {
-        //   console.log(e)
-        // }
-        // this.loading = false
-      }
-    },
-    async fetchActions() {
-      try {
-        // await this.$store.dispatch(this.module + "/resetData", this.store.state);
-        this.params.forEach((param, index) => {
-          this.$store.dispatch(this.module + "/setParamDefault", {
-            query: param.query,
-            data: param.value,
-          });
-          // console.log("default", this.store.state + "." + param.query + ".value", index, this.params);
-        });
-
-        const { dataSearch, dataOrigin, dataRoute } =
-          await this.$store.dispatch(
-            this.module + "/convertDataSend",
-            this.store.state
-          );
-        // console.log("stateParamDefault", this.stateParamDefault);
-        const repositoryKey = this.repositories
-          ? this.$repositories_mimifood
-          : this.$repositories;
-        const result = await repositoryKey[this.repository][this.store.action]({
-          input: Object.assign(dataSearch, this.stateParamDefault),
-        });
-
-        dataOrigin.response = result.data.response;
-        this.$store.dispatch(this.module + "/setState", {
-          stateName: this.store.state,
-          data: dataOrigin,
-          query: dataRoute,
-        });
-      } catch (error) {
-        // console.log("error", error);
-      }
-    },
   },
   async created() {
-    // if (!this.notImmediateFetch && !this.haveStore) {
-    //   this.fetchData(this.stateQuery.page.value);
-    // }
-    if (this.haveStore) {
-      await this.$store.dispatch(this.module + "/passDataFromQuery", {
-        stateName: this.store.state,
-        query: this.$route.query,
-      });
-      this.fetchActions();
-    }
+    await this.storeDispatch("passDataFromQuery", {
+      stateName: this.storeQueryItems,
+      query: this.$route.query,
+    });
+    this.fetchDataIndex();
   },
 };
 </script>

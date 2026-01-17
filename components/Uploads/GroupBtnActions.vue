@@ -15,14 +15,28 @@
     <v-btn v-else color="white" @click="$emit('setIsZoom', false)">
       <v-icon>mdi-arrow-collapse-all</v-icon>
     </v-btn>
-    <v-btn color="white" @click="$emit('fetchFolders', $route.path)">
+    <v-btn color="white" @click="$emit('fetchFolders')">
       <v-icon>mdi-reload</v-icon>
+    </v-btn>
+    <v-btn color="white">
+      <BaseCheckBox
+        :value="isUploadMms"
+        @change="(value) => ((isUploadMms = value), $emit('fetchFolders'))"
+      >
+      </BaseCheckBox>
     </v-btn>
   </div>
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+
+import BaseCheckBox from "@/components/pages/admin/base/form/BaseCheckBox";
 export default {
+  components: { BaseCheckBox },
+  computed: {
+    ...mapFields("admin/folders", ["isUploadMms"]),
+  },
   props: {
     isZoom: Boolean,
   },

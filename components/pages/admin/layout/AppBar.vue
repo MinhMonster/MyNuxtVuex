@@ -14,37 +14,38 @@
     <v-btn icon to="/admin/settings">
       <v-icon>mdi-cog-outline</v-icon>
     </v-btn>
-
-    <!-- <v-toolbar-title>
-          {{ title }}
-          
-        </v-toolbar-title> -->
     <v-spacer />
-    <v-btn v-if="showMenuRight" icon> <v-icon>mdi-cursor-move</v-icon>: </v-btn
-    ><br />
-    <b-form-checkbox
-      v-if="showMenuRight"
-      v-model="checkedMove"
-      name="check-button"
-      switch
-    >
-    </b-form-checkbox>
-    <v-btn v-if="showMenuRight" icon>
-      <v-icon>mdi-pencil-box-multiple-outline</v-icon>:
-    </v-btn>
-    <b-form-checkbox
-      v-if="showMenuRight"
-      v-model="checkedEdit"
-      name="check-button"
-      switch
-    >
-    </b-form-checkbox>
-    <v-btn color="red" icon @click="onLogout">
-      <v-icon>mdi-power</v-icon>
-    </v-btn>
-    <v-btn v-if="deverloper" icon @click.stop="showMenuRight = !showMenuRight">
-      <v-icon>mdi-menu</v-icon>
-    </v-btn>
+    <div class="flex justify-end items-center">
+      <!-- <v-btn v-if="showMenuRight" icon>
+        <v-icon>mdi-cursor-move</v-icon>:
+      </v-btn>
+      <br />
+      <v-switch
+        v-if="showMenuRight"
+        v-model="checkedMove"
+        color="blue"
+        switch
+      /> -->
+      <!-- <v-btn v-if="showMenuRight" icon>
+        <v-icon>mdi-pencil-box-multiple-outline</v-icon>:
+      </v-btn>
+      <v-switch
+        v-if="showMenuRight"
+        v-model="checkedEdit"
+        color="blue"
+        switch
+      /> -->
+      <v-btn color="red" icon @click="onLogout">
+        <v-icon>mdi-power</v-icon>
+      </v-btn>
+      <!-- <v-btn
+        v-if="deverloper"
+        icon
+        @click.stop="showMenuRight = !showMenuRight"
+      >
+        <v-icon>mdi-menu</v-icon>
+      </v-btn> -->
+    </div>
   </v-app-bar>
 </template>
 
@@ -52,7 +53,7 @@
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("admin/auth");
-const dev = createNamespacedHelpers("admin/deverlopers");
+// const dev = createNamespacedHelpers("admin/deverlopers");
 
 export default {
   name: "AppBar",
@@ -70,14 +71,21 @@ export default {
       checkedMove: "checkedMove",
       fixed: "fixed",
     }),
-    ...dev.mapState(["deverloper"]),
+    // ...dev.mapState(["deverloper"]),
   },
   methods: {
     ...mapActions(["logout"]),
     async onLogout() {
       await this.logout();
-      this.$router.push("/admin/login");
     },
   },
 };
 </script>
+<style scoped lang="scss">
+::v-deep {
+  .v-input__slot {
+    margin-bottom: 0 !important;
+    margin-top: 6px;
+  }
+}
+</style>

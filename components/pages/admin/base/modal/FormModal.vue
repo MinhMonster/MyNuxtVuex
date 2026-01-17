@@ -9,11 +9,11 @@
         :style="{ 'min-height': minHeight, 'max-height': maxHeight }"
       >
         <div class="modal-body">
-          <form v-if="isForm" @submit.prevent="onUpdate()">
+          <form v-if="isForm" @submit.prevent="onModify()">
             <BaseGroupForm
               :data-form="dataForm"
               :forms="stateForms"
-              @updated="updateForm()"
+              @updated="updateForm"
             />
             <v-btn
               v-show="false"
@@ -36,13 +36,17 @@
             type="submit"
             color="primary"
             class="text-white"
-            @click="onUpdate()"
+            @click="onModify()"
           >
             Submit
           </v-btn>
           <v-btn v-if="isShow" color="primary" class="text-white left">
-            <v-icon v-if="isForm" @click="isForm = false" title="Display"> mdi-eye </v-icon>
-            <v-icon v-else @click="isForm = true" title="Edit"> mdi-pen </v-icon>
+            <v-icon v-if="isForm" @click="isForm = false" title="Display">
+              mdi-eye
+            </v-icon>
+            <v-icon v-else @click="isForm = true" title="Edit">
+              mdi-pen
+            </v-icon>
           </v-btn>
           <slot name="btn-footer"></slot>
         </div>
@@ -52,12 +56,11 @@
 </template>
 <script>
 import BaseGroupForm from "@/components/pages/admin/base/BaseGroupForm.vue";
-import BaseCheckBox from "@/components/pages/admin/base/form/BaseCheckBox";
-
-import { mapState } from "vuex";
+import adminCrud from "@/mixins/adminCrud";
 
 export default {
-  components: { BaseGroupForm, BaseCheckBox },
+  mixins: [adminCrud],
+  components: { BaseGroupForm },
   props: {
     title: {
       type: String,
@@ -65,28 +68,6 @@ export default {
       require: false,
     },
     subTitle: {
-      type: String,
-      default: "",
-      require: false,
-    },
-    id: {
-      type: [String, Number],
-      defualt: null,
-      require: false,
-    },
-    store: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-      required: true,
-    },
-    module: {
-      type: String,
-      default: "",
-      require: true,
-    },
-    repository: {
       type: String,
       default: "",
       require: false,
@@ -112,25 +93,8 @@ export default {
   data() {
     return {
       dialog: false,
-      cash: 0,
       isForm: true,
     };
-  },
-  computed: {
-    ...mapState({
-      stateQuery(state) {
-        return _.get(state, this.store.module + "." + this.store.state, {});
-      },
-      stateForms(state) {
-        return _.get(state, this.store.module + "." + this.store.form, []);
-      },
-      haveStore() {
-        return !_.isEmpty(this.store);
-      },
-    }),
-    dataForm() {
-      return _.cloneDeep(this.stateQuery);
-    },
   },
   mounted() {},
   methods: {
@@ -143,67 +107,6 @@ export default {
         this.resetDataForm();
       }
     },
-    updateForm() {
-      this.updateState(this.dataForm);
-    },
-    resetForm() {
-      this.$store.dispatch(this.module + "/resetData", this.store.state);
-    },
-    resetDataForm() {
-      this.$store.dispatch(this.module + "/resetDataForm", this.store.state);
-    },
-
-    updateState(data) {
-      this.$store.dispatch(this.module + "/setState", {
-        stateName: this.store.state,
-        data: data,
-      });
-    },
-    // async showModal(row) {
-    //   this.dialog = true;
-    //   if (this.haveStore && this.store.action && row.ID) {
-    //     await this.fetchData();
-    //   }
-    // },
-    // async fetchData() {
-    //   console.log("okok");
-    //   try {
-    //     const result = await this.$repositories[this.repository][
-    //       this.store.action
-    //     ](this.id);
-
-    //     const data = result.data.response;
-    //     console.log("response", data);
-
-    //     if (data) {
-    //       this.updateState(data);
-    //     } else {
-    //       this.dialog = false;
-    //     }
-    //   } catch (error) {}
-    // },
-    async onUpdate() {
-      try {
-        const result = await this.$repositories[this.repository][
-          this.store.update
-        ]({
-          id: this.id,
-          input: this.stateQuery,
-        });
-        const data = result.data;
-        if (data.code === 200) {
-          this.$toasted.success(data.message);
-          this.$emit("updated");
-
-          // if (this.id !== data.response.ID) {
-          //   this.$router.push(this.path.replace(this.id, data.response.ID));
-          // }
-          if (data.response) {
-            this.updateState(data.response);
-          }
-        }
-      } catch (error) {}
-    },
   },
 };
 </script>
@@ -212,6 +115,7 @@ form {
   padding: 0px;
   background: #ffffff;
 }
+
 ::v-deep {
   .form-group {
     margin-bottom: 0 !important;
@@ -220,45 +124,5 @@ form {
 
 .v-card.v-sheet.theme--dark {
   border: 1px solid #a4a4a4;
-  /* border: 1px solid rgba(255, 255, 255, 0.12); */
 }
-
-/* .v-card.v-sheet.theme--dark {
-  background: #fff !important;
-} */
-// .v-card__title.title-modal {
-//   color: #fff;
-//   border-left: 2px solid #272727;
-//   border-right: 2px solid #272727;
-//   background: #333;
-//   border-bottom: none;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-// .v-dialog--scrollable > .v-card > .v-card__text {
-//   position: relative;
-//   border: 2px solid #272727;
-//   background: #f2f2f2;
-//   padding: 10px;
-//   .modal-body {
-//     background: #fff;
-//     height: auto;
-//     min-height: 100%;
-//     padding: 5px 1rem;
-//   }
-// }
-// .v-dialog > .v-card > .v-card__actions {
-//   border: 2px solid #272727 !important;
-//   background: #333;
-//   border-top: none;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: right;
-//   align-content: flex-end;
-//   padding: 6px 16px;
-//   button {
-//     // margin-left: 5px;
-//   }
-// }
 </style>

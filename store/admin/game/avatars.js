@@ -7,14 +7,16 @@ export default enableResetStore({
   namespaced: true,
   state() {
     return {
+      repositories: "repositories_mms",
+      columns: columns,
       stateDefault: {
-        queryAvatars: queryAvatars,
-        queryAvatar: queryAvatar,
+        queryItems: queryItems,
+        queryItem: queryItem,
       },
-      queryAvatars: queryAvatars,
-      queryAvatar: queryAvatar,
-      formAvatar: formAvatar,
-      formModalAvatar: formModalAvatar
+      queryItems: queryItems,
+      queryItem: queryItem,
+      formItem: formItem,
+      formItemModal: formItemModal
     }
 
   },
@@ -33,7 +35,7 @@ export default enableResetStore({
 });
 
 
-const queryAvatars = _.cloneDeep({
+const queryItems = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [],
@@ -51,8 +53,13 @@ const queryAvatars = _.cloneDeep({
     value: 15
   },
   id: {
-    // title: "ID",
     placeholder: "ID",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  code: {
+    placeholder: "code",
     type: "text",
     show: true,
     value: ''
@@ -75,15 +82,15 @@ const queryAvatars = _.cloneDeep({
       },
       {
         text: "Nam",
-        value: "male",
+        value: "1",
       },
       {
         text: "Nữ",
-        value: "female",
+        value: "2",
       },
       {
         text: "Bê đê",
-        value: "gay",
+        value: "3",
       },
     ],
   },
@@ -91,84 +98,81 @@ const queryAvatars = _.cloneDeep({
     placeholder: "Trạng Thái",
     type: "select-options",
     show: true,
-    value: "yes",
+    value: "active",
     options: [
       {
         text: "Tất cả",
-        value: null,
+        value: 'all',
       },
       {
         text: "Đang bán",
-        value: "yes",
+        value: "active",
       },
       {
         text: "Đã bán",
-        value: "no",
+        value: "deleted",
       },
     ],
   },
 });
 
-const queryAvatar = _.cloneDeep({
+const queryItem = _.cloneDeep({
 
-  ID: "",
+  code: "",
   username: "",
-  dat: "",
-  ga: "",
-  ca: "",
+  land: "",
+  pets: "",
+  fish: "",
   sex: "",
-  mcs: "",
-  thongtin: "",
-  giatien: "",
-  gianhap: "",
-  sim: "",
-  hinhanh: [],
-  full: "0",
-  status: 'yes'
-
+  description: "",
+  selling_price: "",
+  purchase_price: "",
+  discount_percent: "",
+  images: [],
+  is_full_image: "0",
 });
 
-const formAvatar =
+const formItem =
   _.cloneDeep([
     {
-      title: "ID",
+      title: "code",
       type: "number",
-      value: 'ID'
+      value: 'code'
     },
     {
-      title: "Tài Khoản",
+      title: "Tài khoản",
       type: "text",
       value: 'username'
     },
     {
       title: "Giá Bán",
       type: "cash",
-      value: 'giatien'
+      value: 'selling_price'
     },
     {
       title: "Giá Nhập",
       type: "cash",
-      value: 'gianhap'
+      value: 'purchase_price'
     },
     {
-      title: "Sim",
+      title: "Discount",
       type: "number",
-      value: 'sim'
+      value: 'discount_percent'
     },
     {
       title: "Đất",
       type: "number",
-      value: 'dat'
+      value: 'land'
     },
     {
       title: "Gà",
       type: "number",
-      value: 'ga'
+      value: 'pets'
     },
     {
       title: "Cá",
       type: "number",
-      value: 'ca'
+      value: 'fish'
     },
     {
       title: "Giới tính",
@@ -176,66 +180,188 @@ const formAvatar =
       options: sexAvatarOptions,
       value: 'sex'
     },
-    {
-      title: "Trạng Thái",
-      type: "select-options",
-      options: statusOptions,
-      value: 'status',
-    },
+    // {
+    //   title: "Trạng Thái",
+    //   type: "select-options",
+    //   options: statusOptions,
+    //   value: 'status',
+    // },
     {
       title: "Thông tin",
       type: "content-editer",
-      value: 'thongtin',
+      value: 'description',
       cols: 12,
-      sm: 12,
       md: 12,
-      lg: 12
     },
 
   ]);
 
-const formModalAvatar =
+const formItemModal =
   _.cloneDeep([
     {
       title: "Tài Khoản",
       type: "text",
       value: 'username',
       cols: 12,
-      lg: 12,
       md: 12
     },
-
+    {
+      title: "Discount",
+      type: "cash",
+      value: 'discount_percent',
+      md: 6
+    },
+    {
+      title: "Discount Active",
+      type: "text",
+      disabled: true,
+      value: 'active_discount',
+      md: 6
+    },
     {
       title: "Giá Bán (Vnd)",
       type: "cash",
-      value: 'giatien',
-      cols: 6,
-      lg: 6,
+      value: 'selling_price',
       md: 6
     },
     {
       title: "Giá Sale (Vnđ)",
       type: "cash_sale_off",
-      value: 'giatien',
-      cols: 6,
-      lg: 6,
+      value: 'selling_price',
       md: 6
     },
     {
       title: "Giá Nhập (Vnđ)",
       type: "cash",
-      value: 'gianhap',
-      cols: 6,
-      lg: 6,
+      value: 'purchase_price',
       md: 6
     },
     {
       title: "Lợi Nhuận (Vnđ)",
-      value: 'giatien',
+      value: 'selling_price',
       type: "profit",
-      cols: 6,
-      lg: 6,
       md: 6
+    },
+  ]);
+
+
+const columns =
+  _.cloneDeep([
+    {
+      key: "id",
+      label: "ID",
+      type: "number",
+      fixed: "left",
+      attributes: {
+        align: "left",
+        style: {
+          minWidth: "80px",
+        },
+      },
+    },
+    {
+      key: "code",
+      label: "Mã",
+      type: "number",
+      fixed: "left",
+      attributes: {
+        style: {
+          minWidth: "80px",
+        },
+      },
+    },
+    {
+      key: "username",
+      label: "Account",
+      attributes: {
+        style: {
+          minWidth: "150px",
+        },
+      },
+    },
+    {
+      key: "deleted_at",
+      label: "Status",
+      type: "deleted_at",
+      attributes: {
+        style: {
+          minWidth: "50px",
+        },
+      },
+    },
+    {
+      key: "land",
+      label: "Đất",
+      type: "number",
+      attributes: {
+        style: {
+          minWidth: "70px",
+        },
+      },
+    },
+    {
+      key: "pets",
+      label: "Gà",
+      type: "number",
+      attributes: {
+        style: {
+          minWidth: "70px",
+        },
+      },
+    },
+    {
+      key: "fish",
+      label: "Cá",
+      attributes: {
+        style: {
+          minWidth: "70px",
+        },
+      },
+    },
+    {
+      key: "price",
+      label: "Price",
+      type: "number",
+      attributes: {
+        class: "text-right",
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
+      key: "purchase_price",
+      label: "Cost",
+      type: "number",
+      attributes: {
+        // class: 'text-right',
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
+      key: "profit",
+      label: "Profit",
+      type: "number",
+      attributes: {
+        class: "text-right",
+        style: {
+          minWidth: "50px",
+        },
+      },
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      type: "actions",
+      fixed: "right",
+      attributes: {
+        align: "center",
+        style: {
+          maxWidth: "60px",
+        },
+      },
     },
   ]);
 

@@ -1,5 +1,63 @@
 .container {
-  padding: 0 12px !important;
+  padding: 12px;
+
+  @media (max-width: 768px) {
+    padding: 4px !important;
+  }
+}
+
+.tab-account {
+  .tab-content {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-top: none;
+
+    @media (max-width: 768px) {
+      padding: 4px;
+    }
+  }
+}
+
+.row {
+  margin: 0 -12px;
+}
+
+form {
+  padding: 5px;
+  background: #ffffff;
+
+  @media (max-width: 768px) {
+    padding: 0px;
+  }
+}
+
+#admin {
+  .bg-editor {
+    label {
+      color: #9ca3af;
+      font-size: 13px;
+    }
+
+    .images {
+      background: #363636;
+      padding: 10px;
+
+      .bg-images {
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+    }
+  }
+}
+
+.v-text-field input {
+  align-items: flex-start;
+  display: flex;
+  flex: 1 1 auto;
+  font-size: 16px;
+  letter-spacing: normal;
+  max-width: 100%;
+  text-align: left;
 }
 
 @import "~/assets/styles/admin/swal.scss";

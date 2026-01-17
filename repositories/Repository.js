@@ -1,8 +1,6 @@
-import adminSettings from '~/repositories/admin/settings'
-
-
+// import adminSettings from '~/repositories/admin/settings'
 // admin Auths
-import adminAuths from '~/repositories/admin/auths'
+// import adminAuths from '~/repositories/admin/auths'
 
 //admin
 import adminTopics from '~/repositories/admin/topics'
@@ -11,16 +9,15 @@ import adminFinances from '~/repositories/admin/finances'
 import adminUploads from '~/repositories/admin/uploads'
 import adminMedias from '~/repositories/admin/medias'
 import adminFolders from '~/repositories/admin/folders'
-import adminUsers from '~/repositories/admin/users'
+// import adminUsers from '~/repositories/admin/users'
 
 //admin Game
-import adminGameNinjas from '~/repositories/admin/game/ninjas'
-import adminGameAvatars from '~/repositories/admin/game/avatars'
-import adminGameAccountSold from '~/repositories/admin/histories/game_account_sold'
-import adminBankDeposits from '~/repositories/admin/histories/bank_deposits'
-import adminSaleOffs from '~/repositories/admin/sale_offs'
-import adminCarots from '~/repositories/admin/histories/carots'
-import adminXuNinjas from '~/repositories/admin/histories/xu_ninjas'
+// import adminGameNinjas from '~/repositories/admin/game/ninjas'
+
+// import adminGameAvatars from '~/repositories/admin/game/avatars'
+// import adminGameAccountSold from '~/repositories/admin/histories/game_account_sold'
+// import adminBankDeposits from '~/repositories/admin/histories/bank_deposits'
+// import adminDiscounts from '~/repositories/admin/discounts'
 
 //admin events
 import adminDailyEvents from '~/repositories/admin/events/daily'
@@ -31,8 +28,8 @@ import adminLearnLanguages from '~/repositories/admin/learn_languages'
 
 
 // Home Page
-import gameNinjas from '~/repositories/home/game/ninjas'
-import gameAvatars from '~/repositories/home/game/avatars'
+// import gameNinjas from '~/repositories/home/game/ninjas'
+// import gameAvatars from '~/repositories/home/game/avatars'
 import gameDragonBalls from '~/repositories/home/game/dragon_balls'
 
 import homeUsers from '~/repositories/home/users'
@@ -41,9 +38,9 @@ import homeTopics from '~/repositories/home/topics'
 
 
 export default ($api) => ({
-  adminSettings: adminSettings($api),
+  // adminSettings: adminSettings($api),
   // admin Auths
-  adminAuths: adminAuths($api),
+  // adminAuths: adminAuths($api),
 
   // admin
   adminTopics: adminTopics($api),
@@ -52,17 +49,15 @@ export default ($api) => ({
   adminUploads: adminUploads($api),
   adminMedias: adminMedias($api),
   adminFolders: adminFolders($api),
-  adminUsers: adminUsers($api),
+  // adminUsers: adminUsers($api),
 
 
   // admin Game
-  adminGameNinjas: adminGameNinjas($api),
-  adminGameAvatars: adminGameAvatars($api),
-  adminGameAccountSold: adminGameAccountSold($api),
-  adminBankDeposits: adminBankDeposits($api),
-  adminSaleOffs: adminSaleOffs($api),
-  adminCarots: adminCarots($api),
-  adminXuNinjas: adminXuNinjas($api),
+  // adminGameNinjas: adminGameNinjas($api),
+  // adminGameAvatars: adminGameAvatars($api),
+  // adminGameAccountSold: adminGameAccountSold($api),
+  // adminBankDeposits: adminBankDeposits($api),
+  // adminDiscounts: adminDiscounts($api),
 
   //admin events
   adminDailyEvents: adminDailyEvents($api),
@@ -71,12 +66,9 @@ export default ($api) => ({
   adminLearnLanguages: adminLearnLanguages($api),
 
   // Home Page
-  gameNinjas: gameNinjas($api),
-  gameAvatars: gameAvatars($api),
+  // gameNinjas: gameNinjas($api),
+  // gameAvatars: gameAvatars($api),
   gameDragonBalls: gameDragonBalls($api),
   homeUsers: homeUsers($api),
   homeTopics: homeTopics($api),
-
-
-
 })

@@ -115,11 +115,10 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
                 redirect('/')
               }
             });
-          
           break;
         case "adminDev":
-          store.dispatch("admin/auth/logout");
-          redirect('/admin/login')
+          // store.dispatch("admin/auth/logout");
+          // redirect('/admin/login')
           break;
       }
       // store.dispatch("admin/auth/logout");
@@ -195,9 +194,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     const code = parseInt(error.response && error.response.status)
     // const code = parseInt(error.response && error.response.status)
 
-    if (code === 400) {
-      redirect('/400')
-    }
     if (code === 401) {
       store.dispatch("admin/auth/logout");
       redirect('/admin/login')

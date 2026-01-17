@@ -4,12 +4,12 @@
     v-if="
       folderShowList &&
       folderShowList.id == folder.id &&
-      folder.sub_folders.length
+      folder.sub_folders?.length
     "
   >
     mdi-menu-up
   </v-icon>
-  <v-icon class="icon-down" v-else-if="folder.sub_folders.length">
+  <v-icon class="icon-down" v-else-if="folder.sub_folders?.length">
     mdi-menu-down
   </v-icon>
 </template>

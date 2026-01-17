@@ -1,6 +1,6 @@
 <template>
   <NavAdmin
-    title="Notification"
+    title="Settings"
     goBack
     next-page
     reload
@@ -12,6 +12,7 @@
           ref="form"
           module="admin/settings"
           repository="adminSettings"
+          :repositories="repositories"
           id="1"
           :store="{
             state: 'queryNotification',
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseForm from "@/components/pages/admin/base/AdminBaseForm";
 
@@ -42,7 +44,9 @@ export default {
     return {};
   },
   async mounted() {},
-  computed: {},
+  computed: {
+    ...mapState("admin/mms", ["repositories"]),
+  },
   methods: {},
 };
 </script>

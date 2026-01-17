@@ -1,27 +1,24 @@
-const resource = '/apis/admin/game/ninjas'
+const resource = '/admin/game/ninjas'
 const headers = {
   headers: {
     "Content-Type": "multipart/form-data"
   },
 }
 export default ($api) => ({
-  createAccountNinja(payload) {
-    return $api.post(`${resource}/createAccountNinja.php`, payload)
-  },
-  fetchAccountNinjas(payload) {
-    return $api.get(`${resource}/fetchAccountNinjas.php`, { params: { input: payload.input } },
+  index(payload) {
+    return $api.get(`${resource}`, { params: { input: payload.input } },
     )
   },
-  fetchAccountNinja(payload) {
-    return $api.get(`${resource}/fetchAccountNinja.php`, { params: { id: payload } })
+  fetch(id) {
+    return $api.get(`${resource}/${id}`)
   },
-  updateAccountNinja(payload) {
-    return $api.post(`${resource}/updateAccountNinja.php`, payload)
+  modify(payload) {
+    return $api.post(`${resource}/modify`, payload)
   },
-  destroyAccountNinja(payload) {
-    return $api.get(`${resource}/destroyAccountNinja.php`, { params: { id: payload } })
+  destroyAccountNinja(id) {
+    return $api.post(`${resource}/destroy`, { id: id })
   },
-  unDestroyAccountNinja(payload) {
-    return $api.get(`${resource}/unDestroyAccountNinja.php`, { params: { id: payload } })
+  unDestroyAccountNinja(id) {
+    return $api.post(`${resource}/restore`, { id: id })
   },
 })

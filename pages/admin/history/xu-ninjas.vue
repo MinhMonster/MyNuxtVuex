@@ -58,7 +58,7 @@ import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
 import AdminBaseTable from "@/components/pages/admin/base/AdminBaseTable";
 import ModalUpdateStatus from "@/components/pages/admin/histories/xu-ninjas/ModalUpdateStatus";
 import StatusBtn from "@/components/common/client/button/StatusBtn";
-import ActionsModal from "@/components/pages/admin/histories/carots/ActionsModal";
+import ActionsModal from "@/components/pages/admin/histories/carrots/ActionsModal";
 
 export default {
   layout: "adminDev",

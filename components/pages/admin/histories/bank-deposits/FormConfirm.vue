@@ -7,7 +7,7 @@
       <v-btn icon class="close" color="red" @click="dialog = false">
         <v-icon>mdi-close</v-icon>
       </v-btn>
-      <v-card-text style="height: 335px">
+      <v-card-text style="height: auto">
         <div class="modal-body">
           <v-simple-table class="table" dark>
             <template v-slot:default>
@@ -18,35 +18,19 @@
                 </tr>
                 <tr>
                   <th>ID User</th>
-                  <td>{{ record.id_nap }}</td>
+                  <td>{{ record.user_id }}</td>
                 </tr>
                 <tr>
-                  <th>Name</th>
-                  <td>{{ record.name }}</td>
+                  <th>User Name</th>
+                  <td>{{ record.user.name }}</td>
                 </tr>
                 <tr>
-                  <th>Money</th>
-                  <td>{{ format_number(record.sotien) }} đ</td>
-                </tr>
-                <tr>
-                  <th>Change</th>
-                  <td>{{ format_number(record.tiennhan) }} đ</td>
-                </tr>
-                <tr>
-                  <th>Wallet</th>
-                  <td>{{ record.hinhthuc }}</td>
-                </tr>
-                <tr>
-                  <th>Name</th>
-                  <td>{{ record.nguoinap }}</td>
-                </tr>
-                <tr>
-                  <th>Card Number</th>
-                  <td>{{ record.stk }}</td>
+                  <th>Amount</th>
+                  <td>{{ format_number(record.amount) }} đ</td>
                 </tr>
                 <tr>
                   <th>Time</th>
-                  <td>{{ record.time }}</td>
+                  <td>{{ record.transaction_at }}</td>
                 </tr>
                 <tr>
                   <th>Status</th>
@@ -58,7 +42,7 @@
         </div>
       </v-card-text>
       <v-card-actions
-        v-if="record.status === '0'"
+        v-if="record.status === 'pending'"
         class="text-right right gap-10"
       >
         <v-btn color="red" class="text-white" @click="confirm(false)">
@@ -96,21 +80,14 @@ export default {
     async confirm(value) {
       try {
         const res =
-          await this.$repositories.adminBankDeposits.confirmBankDeposit({
-            input: {
-              id: this.record.id,
-              confirm: value,
-            },
+          await this.$repositories_mms.adminHistoriesBankDeposits.confirm({
+            id: this.record.id,
+            confirm: value,
           });
-
-        this.$toasted[res.data.response ? "success" : "error"](
-          res.data.response ? "Success" : "Failed"
-        );
       } catch (e) {
         console.log(e);
       }
       this.$emit("confirmed");
-
       this.dialog = false;
     },
   },
