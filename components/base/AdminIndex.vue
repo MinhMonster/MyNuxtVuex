@@ -40,6 +40,12 @@
             {{ row.user.name }}
           </div>
         </template>
+        <template #is_active="{ row }">
+          <BaseCheckBox
+            :value="row.is_active"
+            @change="onActive(row.id)"
+          />
+        </template>
         <template #actions="{ row }">
           <slot name="actions" :row="row">
             <v-btn v-if="actions.length" light icon @click="openActions(row)">
@@ -79,6 +85,7 @@ import FormModal from "@/components/pages/admin/base/modal/FormModal";
 import ActionsModal from "@/components/base/ActionsModal";
 import UserInfo from "@/components/pages/admin/users/UserInfo";
 import StatusBtn from "@/components/common/client/button/StatusBtn";
+import BaseCheckBox from "@/components/pages/admin/base/form/BaseCheckBox";
 import adminCrud from "@/mixins/adminCrud";
 
 const DEFAULT_MODAL_CONFIG = {
@@ -102,6 +109,7 @@ export default {
     ActionsModal,
     UserInfo,
     StatusBtn,
+    BaseCheckBox
   },
   data() {
     return {

@@ -5,20 +5,17 @@ const headers = {
   },
 }
 export default ($api) => ({
-  fetchSaleOffs(payload) {
+  index(payload) {
     return $api.get(`${resource}`, { params: { input: payload.input } },
     )
   },
-  fetchSaleOff(payload) {
+  fetch(payload) {
     return $api.get(`${resource}/${payload}`)
   },
-  createSaleOff(payload) {
+  modify(payload) {
     return $api.post(`${resource}/modify`, payload)
   },
-  updateSaleOff(payload) {
-    return $api.post(`${resource}/modify`, payload)
-  },
-  setDefaultSaleOff(payload) {
-    return $api.post(`${resource}/setDefaultSaleOff`, { id: payload.id, input: payload.input })
+  active(id) {
+    return $api.get(`${resource}/${id}/active`)
   },
 })

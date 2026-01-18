@@ -228,6 +228,16 @@ export default {
       }
     },
 
+    async onActive(id) {
+      const action = this.repositoryKey[this.repo][this.store.active || 'active'];
+      try {
+        await action(id);
+        this.fetchDataIndex();
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
     async onDelete($id = this.itemId) {
       const result = await this.showSwal({
         title: `Delete ID: ${$id} ?`,

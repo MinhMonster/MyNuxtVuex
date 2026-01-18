@@ -7,12 +7,14 @@ export default enableResetStore({
   state() {
     return {
       stateDefault: {
-        querySaleOffs: querySaleOffs,
-        querySaleOff: querySaleOff
+        queryItems: queryItems,
+        queryItem: queryItem
       },
-      querySaleOffs: querySaleOffs,
-      querySaleOff: querySaleOff,
-      formSaleOff: formSaleOff
+      columns: columns,
+      repositories: "repositories_mms",
+      queryItems: queryItems,
+      queryItem: queryItem,
+      formItem: formItem
     }
   },
 
@@ -27,7 +29,7 @@ export default enableResetStore({
   },
 });
 
-const querySaleOffs = _.cloneDeep({
+const queryItems = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [],
@@ -46,7 +48,7 @@ const querySaleOffs = _.cloneDeep({
   },
 });
 
-const querySaleOff = _.cloneDeep({
+const queryItem = _.cloneDeep({
   ID: "",
   name: "",
   start_date: "",
@@ -91,34 +93,32 @@ const querySaleOff = _.cloneDeep({
 });
 
 
-const formSaleOff =
+const formItem =
   _.cloneDeep([
     {
       title: "Name",
       type: "text",
       value: 'name',
-      // cols: 12,
-      sm: 6,
-      md: 4,
-      lg: 3
+      md: 3,
+    },
+    {
+      title: "Type",
+      type: "select-options",
+      options: typeSeleOffOptions,
+      value: 'type',
+      md: 3,
     },
     {
       title: "Start Date",
       type: "date",
       value: 'start_date',
-      // cols: 12,
-      sm: 6,
-      md: 4,
-      lg: 3
+      md: 3,
     },
     {
       title: "End Date",
       type: "date",
       value: 'end_date',
-      // cols: 12,
-      sm: 6,
-      md: 4,
-      lg: 3
+      md: 3,
     },
 
     {
@@ -128,28 +128,16 @@ const formSaleOff =
       options: [
         {
           text: "Active",
-          value: '1',
+          value: true,
         },
         {
           text: "No Active",
-          value: "0",
+          value: false,
         },
       ],
-      // cols: 12,
-      sm: 6,
-      md: 4,
-      lg: 3
+      md: 3,
     },
-    {
-      title: "Type",
-      type: "select-options",
-      options: typeSeleOffOptions,
-      value: 'type',
-      // cols: 12,
-      sm: 6,
-      md: 4,
-      lg: 3
-    },
+
     {
       title: "Prices",
       type: "forms",
@@ -158,71 +146,122 @@ const formSaleOff =
           title: "100K",
           type: "number",
           value: 'value',
-          sm: 6,
-          md: 4,
-          lg: 3
+          md: 3,
         },
         {
           title: "300K",
           type: "number",
           value: 'value',
-          sm: 6,
-          md: 4,
-          lg: 3
+          md: 3,
         },
         {
           title: "500K",
           type: "number",
           value: 'value',
-          sm: 6,
-          md: 4,
-          lg: 3
+          md: 3,
         },
         {
           title: "1 Triệu",
           type: "number",
           value: 'value',
-          sm: 6,
-          md: 4,
-          lg: 3
+          md: 3,
         },
         {
           title: "2 Triệu",
           type: "number",
           value: 'value',
-          sm: 6,
-          md: 4,
-          lg: 3
+          md: 3,
         },
         {
           title: "3 Triệu",
           type: "number",
           value: 'value',
-          sm: 6,
-          md: 4,
-          lg: 3
+          md: 3,
         },
         {
           title: "5 Triệu",
           type: "number",
           value: 'value',
-          sm: 6,
-          md: 4,
-          lg: 3
+          md: 3,
         },
         {
           title: "10 Triệu",
           type: "number",
           value: 'value',
-          sm: 6,
-          md: 4,
-          lg: 3
+          md: 3,
         },
       ],
       value: 'price_tiers',
-      // cols: 12,
-      sm: 12,
+      cols: 12,
       md: 12,
-      lg: 12
     },
   ]);
+
+
+const columns =
+  _.cloneDeep([
+    {
+      key: "id",
+      label: "ID",
+      attributes: {
+        style: {
+          minWidth: "50px",
+        },
+      },
+    },
+    {
+      key: "is_active",
+      label: "Active",
+    },
+    {
+      key: "price_tiers[0].value",
+      label: "100k",
+    },
+    {
+      key: "price_tiers[1].value",
+      label: "300k",
+    },
+    {
+      key: "price_tiers[2].value",
+      label: "500k",
+    },
+    {
+      key: "price_tiers[3].value",
+      label: "1 Triệu 500k",
+    },
+    {
+      key: "price_tiers[4].value",
+      label: "2 Triệu",
+    },
+    {
+      key: "price_tiers[5].value",
+      label: "3 Triệu 500k",
+    },
+    {
+      key: "price_tiers[6].value",
+      label: "5 Triệu",
+    },
+    {
+      key: "price_tiers[7].value",
+      label: "10 Triệu",
+    },
+    {
+      key: "type",
+      label: "Type",
+      type: "text",
+      attributes: {
+        style: {
+          minWidth: "50px",
+        },
+      },
+    },
+    // {
+    //   key: "actions",
+    //   label: "Actions",
+    //   type: "actions",
+    //   attributes: {
+    //     minWidth: "120",
+    //   },
+    // },
+  ]);
+
