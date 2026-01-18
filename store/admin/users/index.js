@@ -6,17 +6,18 @@ export default enableResetStore({
   namespaced: true,
   state() {
     return {
-      stateDefault: {
-        queryUsers: queryUsers,
-        queryUserCash: queryUserCash,
-        queryUser: queryUser,
-      },
       repositories: "repositories_mms",
       columns: columns,
-      queryUsers: queryUsers,
-      queryUser: queryUser,
-      queryUserCash: queryUserCash,
-      formUpdateCash: formUpdateCash,
+      stateDefault: {
+        queryItems: queryItems,
+        queryItem: queryItem,
+        queryItemCash: queryItemCash,
+      },
+      queryItems: queryItems,
+      queryItem: queryItem,
+      queryItemCash: queryItemCash,
+      formItem: formItem,
+      formItemCash: formItemCash,
     }
   },
   getters: {
@@ -30,7 +31,7 @@ export default enableResetStore({
   actions: {},
 });
 
-const queryUsers = _.cloneDeep({
+const queryItems = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [],
@@ -73,7 +74,34 @@ const queryUsers = _.cloneDeep({
   },
 });
 
-const formUpdateCash =
+
+const formItem =
+  _.cloneDeep([
+    {
+      title: "Name",
+      value: 'name',
+      type: "text",
+      cols: 12,
+      md: 12
+    },
+    {
+      title: "Phone",
+      type: "text",
+      value: 'phone',
+      cols: 12,
+      md: 12
+    },
+    {
+      title: "Email",
+      value: 'email',
+      type: "text",
+      cols: 12,
+      md: 12
+    },
+  ]);
+
+
+const formItemCash =
   _.cloneDeep([
     {
       title: "Cash",
@@ -88,15 +116,15 @@ const formUpdateCash =
     {
       title: "Type",
       type: "select-options",
-      value: 'type',
+      value: 'direction',
       options: [
         {
           text: "Increase",
-          value: 'increase',
+          value: 'in',
         },
         {
           text: "Decrease",
-          value: "decrease",
+          value: "out",
         },
       ],
       cols: 12,
@@ -116,13 +144,13 @@ const formUpdateCash =
   ]);
 
 
-const queryUserCash = _.cloneDeep({
+const queryItemCash = _.cloneDeep({
   amount: "",
-  type: "increase",
+  direction: "in",
   cash: "",
 });
 
-const queryUser = _.cloneDeep({
+const queryItem = _.cloneDeep({
   id: "",
   cash: "",
   name: "",
@@ -157,7 +185,25 @@ const columns =
       attributes: {},
     },
     {
-      key: "action",
+      key: "status",
+      label: "Status",
+      attributes: {
+        align: "center",
+      },
+    },
+    {
+      key: "created_at",
+      label: "Time",
+      type: "text",
+      attributes: {
+        style: {
+          width: "150px !important",
+          minWidth: "150px",
+        },
+      },
+    },
+    {
+      key: "actions",
       label: "Actions",
       type: "actions",
       attributes: {

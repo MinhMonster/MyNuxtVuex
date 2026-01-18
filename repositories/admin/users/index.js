@@ -5,20 +5,23 @@ const headers = {
   },
 }
 export default ($api) => ({
-  fetchUsers(payload) {
+  index(payload) {
     return $api.get(`${resource}`, { params: { input: payload.input } },
     )
   },
-  fetchUser(payload) {
+  fetch(payload) {
     return $api.get(`${resource}/fetchUser.php`, payload)
   },
-  updateUser(payload) {
-    return $api.post(`${resource}/updateUser.php`, payload)
+  update(payload) {
+    return $api.post(`${resource}/${payload.id}/update`, payload.input)
   },
-  updateCashUser(payload) {
-    return $api.post(`${resource}/${payload.id}/top-up`, {
+  updateCash(payload) {
+    return $api.post(`${resource}/${payload.id}/update-cash`, {
       amount: payload.input.amount,
-      type: payload.input.type
+      direction: payload.input.direction
     })
+  },
+  updateStatus(payload) {
+    return $api.post(`${resource}/${payload.id}/update-status`, { status: payload.status })
   },
 })

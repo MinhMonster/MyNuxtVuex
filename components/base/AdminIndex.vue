@@ -202,7 +202,7 @@ export default {
           return;
         }
 
-        if (config.merge) {
+        if (config?.merge) {
           payload = this.mergeModalData(payload, item, config.merge || []);
         }
 

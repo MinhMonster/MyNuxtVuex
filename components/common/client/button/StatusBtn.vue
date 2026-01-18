@@ -1,5 +1,12 @@
 <template>
+  <div v-if="setStatus.icon">
+    <v-icon :color="setStatus.color" small>
+      {{ setStatus.icon }}
+    </v-icon>
+    <span>{{ setStatus.text }}</span>
+  </div>
   <v-badge
+    v-else
     :color="setStatus.color"
     :content="setStatus.text"
     class="pointer"
@@ -8,7 +15,6 @@
 
 <script>
 export default {
-  components: {},
   name: "StatusBtn",
   props: {
     status: {
@@ -32,6 +38,17 @@ export default {
             text: "Success",
             color: "success",
           };
+        case "locked":
+          return {
+            text: "",
+            color: "error",
+            icon: "mdi-lock",
+          };
+        case "active":
+          return {
+            text: "",
+            color: "",
+          };
         case "2":
         case "failed":
         default:
@@ -42,7 +59,6 @@ export default {
       }
     },
   },
-  methods: {},
 };
 </script>
 <style lang="scss" scoped>
