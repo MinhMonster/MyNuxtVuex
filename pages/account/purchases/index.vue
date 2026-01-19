@@ -48,7 +48,7 @@
                     size="sx"
                     color="success"
                     class="btn btn-success btn-sm text-white bdrs-5px"
-                    :to="`/account/history/${history.id}`"
+                    :to="`/account/purchases/${history.id}`"
                     >Xem
                   </v-btn>
                 </td>
@@ -108,8 +108,8 @@ export default {
       await this.setQuery({ page });
       await this.historyBuyAccounts();
       page == 1 || !page
-        ? await this.$router.push(`/account/history`)
-        : await this.$router.push(`/account/history?page=${page}`);
+        ? await this.$router.push(`/account/purchases`)
+        : await this.$router.push(`/account/purchases?page=${page}`);
       this.ready = true;
     },
   },

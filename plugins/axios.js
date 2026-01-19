@@ -157,6 +157,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       switch (layout) {
         case "clientLayout":
           store.dispatch("home/users/logout");
+          redirect('/')
           break;
       }
     }

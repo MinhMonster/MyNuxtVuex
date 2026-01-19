@@ -17,7 +17,7 @@ export default {
     user: null,
     historyBuyAccount: {},
     historyBuyAccounts: [],
-    historyChangeMoneys: [],
+    walletTransactions: [],
     historyWalletDepositVnd: {},
     bankTopUpHistories: [],
     historyWalletDepositCard: {},
@@ -101,10 +101,10 @@ export default {
         commit(SET_STATE, { historyMeta: res.data.response.meta });
       } catch { }
     },
-    async historyChangeMoneys({ commit, state }) {
+    async fetchWalletTransactions({ commit, state }) {
       try {
-        const response = await this.$repositories.homeUsers.historyChangeMoneys({ input: state.query });
-        commit(SET_STATE, { historyChangeMoneys: response.data.response.data });
+        const response = await this.$repositories.homeUsers.fetchWalletTransactions({ input: state.query });
+        commit(SET_STATE, { walletTransactions: response.data.response.data });
         commit(SET_STATE, { historyMeta: response.data.response.meta });
 
       } catch { }

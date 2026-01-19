@@ -9,7 +9,7 @@
     >
     </ModalNotification>
     <v-row class="hom-page">
-      <v-col cols="12" :sm="isTablet ? 12 : 8" md="8" lg="8" id="home-left">
+      <v-col cols="12" id="home-left">
         <v-row style="margin: -15px">
           <v-col cols="12">
             <!-- <RunText v-if="isTablet" /> -->
@@ -49,7 +49,7 @@
         </div>
       </v-col>
 
-      <v-col
+      <!-- <v-col
         v-if="!isTablet"
         cols="12"
         :sm="isTablet ? 12 : 4"
@@ -61,9 +61,9 @@
           class="mt--1 form-deposit-card"
           :style="{ height: heightHomeLeft + 'px' }"
         >
-          <template><DepositCardForm /></template>
+          <SideBarMenu />
         </div>
-      </v-col>
+      </v-col> -->
     </v-row>
   </div>
 </template>
@@ -139,14 +139,14 @@ export default {
         },
         {
           title: "Nạp Tiền từ Thẻ Cào",
-          path: "/account/wallet/deposit/card",
+          path: "/account/wallet/deposits/card",
           image: this.isThemeRed
             ? "/images/banners/top-up-card-red.png"
             : "/images/banners/top-up-card.png",
         },
         {
           title: "Lịch Sử Mua Nick",
-          path: "/account/history",
+          path: "/account/purchases",
           image: this.isThemeRed
             ? "/images/banners/history-buy-account-red.png"
             : "/images/banners/history-buy-account.png",
@@ -157,7 +157,7 @@ export default {
       return [
         {
           title: "Cài đặt ChatGPT Plus",
-          path: "/account/history",
+          path: "/account/purchases",
           image: this.isThemeRed
             ? "/images/banners/history-buy-account-red.png"
             : "/images/banners/chatgpt.png",

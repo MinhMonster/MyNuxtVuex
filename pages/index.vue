@@ -142,4 +142,8 @@ export default {
 .col-1 {
   padding: 9px;
 }
+
+#home-page {
+  max-width: 1000px !important;
+}
 </style>

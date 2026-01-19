@@ -73,28 +73,28 @@
               </div>
               <div class="h-line"></div>
 
-              <div class="member-nav-item">
+              <!-- <div class="member-nav-item">
                 <nuxt-link to="/account/wallet/deposit/card">
                   <BaseSvg name="card" />
                   <span class="member-nav-name">Nạp Thẻ Cào</span>
                 </nuxt-link>
-              </div>
+              </div> -->
               <div class="member-nav-item">
                 <nuxt-link to="/account/wallet/deposits/bank">
                   <BaseSvg name="bank" />
                   <span class="member-nav-name">Nạp Ví, ATM-MOMO</span>
                 </nuxt-link>
               </div>
-              <div class="h-line"></div>
+              <!-- <div class="h-line"></div> -->
 
               <div class="member-nav-item">
-                <nuxt-link to="/account/history">
+                <nuxt-link to="/account/purchases">
                   <BaseSvg name="history" />
                   <span class="member-nav-name">Lịch sử mua Nick</span>
                 </nuxt-link>
               </div>
               <div class="member-nav-item">
-                <nuxt-link to="/account/transactions">
+                <nuxt-link to="/account/wallet/transactions">
                   <BaseSvg name="history" />
                   <span class="member-nav-name">Biến động Số dư</span>
                 </nuxt-link>

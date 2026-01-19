@@ -16,7 +16,7 @@ $danger : #a21d0a;
 
 .sms {
   font-weight: 500;
-  color: $danger  !important;
+  color: $danger !important;
 
 }
 
@@ -25,6 +25,7 @@ $danger : #a21d0a;
 }
 
 #home-page {
+  max-width: 1200px;
 
   .content-main,
   .text-main {

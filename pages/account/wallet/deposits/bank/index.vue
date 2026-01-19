@@ -77,10 +77,6 @@
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 import FormValidator from "@/components/global/form/FormValidator";
-import ButtonCoppy from "@/components/common/ButtonCoppy";
-import AccountNumbeAdmin from "@/components/common/AccountNumbeAdmin";
-import RechargeInstructions from "@/components/common/RechargeInstructions";
-import ModalPayload from "@/components/common/ModalPayload";
 import HistoryDepositVndTable from "@/components/pages/client/account/wallet/HistoryDepositVndTable";
 import Pagination from "@/components/global/molecules/common/Pagination";
 import HomePage from "@/components/pages/home/HomePage";
@@ -101,10 +97,6 @@ export default {
     HomePage,
     Loading,
     FormValidator,
-    ButtonCoppy,
-    AccountNumbeAdmin,
-    RechargeInstructions,
-    ModalPayload,
     HistoryDepositVndTable,
     Pagination,
     BaseInputCash,
@@ -353,5 +345,8 @@ form {
   .title {
     font-size: 15px !important;
   }
+}
+#home-page {
+  max-width: 1000px !important;
 }
 </style>

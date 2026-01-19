@@ -6,7 +6,7 @@
       full-screen
       :loading="!ready"
       goBack
-      :path-go-back="`/account/history`"
+      :path-go-back="`/account/purchases`"
       reload
       @reload="fetchHistory()"
     >
@@ -153,7 +153,7 @@ export default {
       this.ready = true;
     },
     goBack() {
-      this.$router.push(`/account/history?page=${this.pageSave}`);
+      this.$router.push(`/account/purchases?page=${this.pageSave}`);
     },
   },
   data() {

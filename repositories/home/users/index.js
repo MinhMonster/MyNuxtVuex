@@ -33,8 +33,8 @@ export default ($api) => ({
     return $api.post(`${resource}/account-purchases`, payload)
 
   },
-  historyChangeMoneys(payload) {
-    return $api.get(`${resource}/account/transactions`, { params: { input: payload.input } },)
+  fetchWalletTransactions(payload) {
+    return $api.get(`${resource}/account/transactions`, { params: payload.input },)
   },
   depositCard(payload) {
     return $api.post(`${resource}/wallet/depositCard.php`, payload,)

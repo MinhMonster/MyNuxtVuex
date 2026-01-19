@@ -259,7 +259,7 @@ export default {
         account_type: this.account.account_type,
       });
       if (res?.data?.id) {
-        this.$router.push(`/account/history/${res?.data?.id}`);
+        this.$router.push(`/account/purchases/${res?.data?.id}`);
         this.showSwal({
           icon: "success",
           title: res?.data?.message || "Mua thành công!",
