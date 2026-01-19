@@ -80,7 +80,7 @@
                 </nuxt-link>
               </div>
               <div class="member-nav-item">
-                <nuxt-link to="/account/wallet/deposit/vnd">
+                <nuxt-link to="/account/wallet/deposits/bank">
                   <BaseSvg name="bank" />
                   <span class="member-nav-name">Nạp Ví, ATM-MOMO</span>
                 </nuxt-link>

@@ -9,7 +9,7 @@
       table
     >
       <template v-if="ready" #body>
-        <form class="form">
+        <form class="form" @submit.prevent="submit()" >
           <div class="content-main text-center">
             Hãy tạo giao dịch nạp tiền sau đó làm theo hướng dẫn
             <br />
@@ -126,7 +126,7 @@ export default {
   computed: {
     ...mapFields("global", { ready: "ready" }),
     ...mapFields("home/users", {
-      histories: "historyWalletDepositVnds",
+      histories: "bankTopUpHistories",
       historyMeta: "historyMeta",
       pageSave: "pageSave",
     }),
@@ -138,16 +138,17 @@ export default {
   },
   methods: {
     ...mapActions([
-      "depositVnd",
-      "historyWalletDepositVnds",
+      "createBankTopUp",
+      "getBankTopUpHistory",
       "setQuery",
       "resetQuery",
     ]),
     ...global.mapActions(["nextOldPath"]),
 
+
     async submit() {
       this.isLoading = true;
-      const res = await this.depositVnd(this.money);
+      const res = await this.createBankTopUp(this.money);
       this.isLoading = false;
       console.log("res", res);
 
@@ -157,7 +158,7 @@ export default {
         await this.showModalDetail(history);
         await this.resetInput();
         await this.setQuery({ page: 1 });
-        this.historyWalletDepositVnds();
+        this.getBankTopUpHistory();
       }
     },
 
@@ -177,10 +178,10 @@ export default {
     async onPageChange(page) {
       this.ready = false;
       await this.setQuery({ page });
-      await this.historyWalletDepositVnds();
+      await this.getBankTopUpHistory();
       page == 1 || !page
-        ? this.$router.push(`/account/wallet/deposit/vnd`)
-        : this.$router.push(`/account/wallet/deposit/vnd?page=${page}`);
+        ? this.$router.push(`/account/wallet/deposits/bank`)
+        : this.$router.push(`/account/wallet/deposits/bank?page=${page}`);
       this.ready = true;
     },
     increaseMoney(history) {

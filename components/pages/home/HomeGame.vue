@@ -132,7 +132,7 @@ export default {
 
         {
           title: "Nạp Tiền từ ATM MOMO",
-          path: "/account/wallet/deposit/vnd",
+          path: "/account/wallet/deposits/bank",
           image: this.isThemeRed
             ? "/images/banners/top-up-red.png"
             : "/images/banners/top-up.png",

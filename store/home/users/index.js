@@ -19,7 +19,7 @@ export default {
     historyBuyAccounts: [],
     historyChangeMoneys: [],
     historyWalletDepositVnd: {},
-    historyWalletDepositVnds: [],
+    bankTopUpHistories: [],
     historyWalletDepositCard: {},
     historyWalletDepositCards: [],
     historyBuyCarots: [],
@@ -109,9 +109,9 @@ export default {
 
       } catch { }
     },
-    async depositVnd({ commit }, payload) {
+    async createBankTopUp({ commit }, payload) {
       try {
-        const response = await this.$repositories.homeUsers.depositVnd(payload);
+        const response = await this.$repositories.homeUsers.createBankTopUp(payload);
         return response
       } catch { }
     },
@@ -137,10 +137,10 @@ export default {
 
       } catch { }
     },
-    async historyWalletDepositVnds({ commit, state }) {
+    async getBankTopUpHistory({ commit, state }) {
       try {
-        const response = await this.$repositories.homeUsers.historyWalletDepositVnds({ input: state.query });
-        commit(SET_STATE, { historyWalletDepositVnds: response.data.response.data });
+        const response = await this.$repositories.homeUsers.getBankTopUpHistory({ input: state.query });
+        commit(SET_STATE, { bankTopUpHistories: response.data.response.data });
         commit(SET_STATE, { historyMeta: response.data.response.meta });
 
       } catch { }

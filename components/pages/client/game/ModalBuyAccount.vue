@@ -71,7 +71,7 @@
           size="sm"
           color="success"
           class="btn-sm text-black"
-          @click="$router.push('/account/wallet/deposit/vnd')"
+          @click="$router.push('/account/wallet/deposits/bank')"
           ><span>Nap tiền</span></v-btn
         >
 
