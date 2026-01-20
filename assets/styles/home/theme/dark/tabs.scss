@@ -1,15 +1,15 @@
 .theme-dark {
   .v-tabs {
     .v-tabs-slider {
-      background-color: #171e28 !important;
+      background-color: var(--border-table) !important;
     }
 
     padding: 0px !important;
     margin: 0px;
 
     .v-tab {
-      background-color: #031019 !important;
-      border: 1px solid #171e28 !important;
+      background-color: var(--bg-main) !important;
+      border: 1px solid var(--border-table) !important;
       color: #f1f1f1 !important;
 
       &:hover {
@@ -17,8 +17,8 @@
       }
 
       &.v-tab--active {
-        background-color: #171e28 !important;
-        border: 1px solid #031019 !important;
+        background-color: var(--bg--table-td) !important;
+        border: 1px solid var(--border-table) !important;
 
       }
     }

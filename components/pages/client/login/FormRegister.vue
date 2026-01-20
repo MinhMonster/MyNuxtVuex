@@ -93,11 +93,11 @@
         <input type="checkbox" id="remember" checked />
         <label for="remember">Lưu đăng nhập</label>
       </div>
-      <span class="login-btn text-white" @click="showModalLoginRegister('login')">Đăng Nhập</span>
+      <span class="btn-gaming-unified w-100px h-32px text-white" @click="showModalLoginRegister('login')">Đăng Nhập</span>
     </div>
     <input type="hidden" id="confirm" name="confirm" />
     <div class="field submit">
-      <v-btn size="sm" class="btn-login" @click="registerUser()">
+      <v-btn size="sm" class="btn-neon-purple w-100" @click="registerUser()">
         <Loading v-if="isLoading" button></Loading>
         <span v-else> Đăng Ký </span>
       </v-btn>
@@ -431,6 +431,6 @@ form {
   }
 }
 #home-page {
-  max-width: 800px;
+  // max-width: 800px;
 }
 </style>

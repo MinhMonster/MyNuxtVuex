@@ -2,7 +2,7 @@
   <client-only>
     <v-row v-if="account">
       <v-col cols="12" sm="12" md="8" lg="8">
-        <div class="title">
+        <div class="title mb-2">
           <center>
             <h3>
               Nick Ninja - Mã Số:

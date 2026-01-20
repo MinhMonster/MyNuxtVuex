@@ -6,13 +6,13 @@
         Xem thêm ảnh nick chi tiết ở bên dưới
         <BaseSvg name="next-bottom" />
       </div>
-      <div class="title">
+      <div class="title mb-3">
         <center>
           <h3>Thông tin chi tiết</h3>
         </center>
       </div>
 
-      <AccountInfoTable :account="account" :account-infos="accountInfos" />
+      <AccountInfoTable :account="account" :account-infos="accountInfos" :isShow="false"/>
       <GroupBtnBuyAccount :account="account" :account-infos="accountInfos" />
     </div>
   </client-only>
@@ -43,6 +43,5 @@ export default {
 <style lang="scss" scoped>
 .title {
   color: #1e5b7e;
-  margin-bottom: 10px;
 }
 </style>

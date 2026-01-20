@@ -8,63 +8,10 @@
       @hide="onNotification = false"
     >
     </ModalNotification>
-    <v-row class="hom-page">
-      <v-col cols="12" id="home-left">
-        <v-row style="margin: -15px">
-          <v-col cols="12">
-            <!-- <RunText v-if="isTablet" /> -->
 
-            <HomeSlider />
-          </v-col>
-        </v-row>
-        <div class="mt-3" id="account">
-          <div class="title text-center text-underline">TÀI KHOẢN</div>
-          <v-row class="text-center account mb-1">
-            <AccountCard
-              v-for="(game, index) in accountList"
-              :key="index"
-              :game="game"
-            ></AccountCard>
-          </v-row>
-        </div>
-        <!-- <div class="mt-3" id="service">
-          <div class="title text-center text-underline">DỊCH VỤ</div>
-          <v-row class="text-center account mb-1">
-            <AccountCard
-              v-for="(game, index) in serviceList"
-              :key="index"
-              :game="game"
-            ></AccountCard>
-          </v-row>
-        </div> -->
-        <div class="mt-3" id="dich-vu-game">
-          <div class="title text-center text-underline">DỊCH VỤ GAME</div>
-          <v-row class="text-center account mb-1">
-            <GameCard
-              v-for="(game, index) in gameList"
-              :key="index"
-              :game="game"
-            ></GameCard>
-          </v-row>
-        </div>
-      </v-col>
-
-      <!-- <v-col
-        v-if="!isTablet"
-        cols="12"
-        :sm="isTablet ? 12 : 4"
-        md="4"
-        lg="4"
-        id="home-right"
-      >
-        <div
-          class="mt--1 form-deposit-card"
-          :style="{ height: heightHomeLeft + 'px' }"
-        >
-          <SideBarMenu />
-        </div>
-      </v-col> -->
-    </v-row>
+    <HomeSlider />
+    <MenuCard />
+    <GameCards />
   </div>
 </template>
 
@@ -76,6 +23,8 @@ import ModalNotification from "@/components/pages/client/layout/ModalNotificatio
 // import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
 import HomeSlider from "@/components/pages/home/HomeSlider";
 import DepositCardForm from "@/components/pages/client/account/wallet/DepositCardForm";
+import MenuCard from "@/components/pages/home/MenuCard";
+import GameCards from "@/components/pages/home/GameCards";
 
 // import RunText from "@/components/global/molecules/common/template/RunText";
 
@@ -92,6 +41,8 @@ export default {
     // SideBarMenu,
     HomeSlider,
     DepositCardForm,
+    MenuCard,
+    GameCards,
     // RunText,
   },
   props: {

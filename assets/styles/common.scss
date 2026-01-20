@@ -5,14 +5,13 @@
 @import "~/assets/styles/home/theme/index.scss";
 @import "~/assets/styles/home/custom/index.scss";
 
-
 body {
   font-size: 13px;
   font-weight: 400;
   font-family: "Arial", sans-serif;
   position: fixed;
   height: 100vh;
-  width: 100vw;
+  max-width: 100%;
   top: 0;
   right: 0;
 }
@@ -28,6 +27,10 @@ html {
 
 .bg-website {
   background: #fff;
+  @media (max-width: 768px) {
+    padding: 60px 0px 0px 0px !important;
+  }
+  padding: 137px 0px 0px 0px !important;
 }
 
 .img-fluid {
@@ -36,7 +39,7 @@ html {
 
 .table {
   width: 100%;
-  margin-bottom: 15px;
+  // margin-bottom: 15px;
 }
 
 .relative {
@@ -66,16 +69,13 @@ html {
   padding: 0 5px !important;
 }
 
-
 .danger {
   background-color: #a21d0a;
 
   &.theme--dark.v-btn.v-btn--has-bg {
     background-color: #a21d0a;
-
   }
 }
-
 
 .text-underline {
   text-decoration: underline;
@@ -97,8 +97,6 @@ html {
 //   }
 // }
 
-
-
 // @media (min-width: 960px) {
 //   .hidden-md {
 //     display: block;
@@ -114,7 +112,6 @@ html {
 //     max-width: 100% !important;
 //   }
 // }
-
 
 .loading {
   position: fixed;
@@ -395,7 +392,6 @@ html {
   font-weight: 700 !important;
 }
 
-
 .mt--1 {
   margin-top: -4px !important;
 }
@@ -459,7 +455,7 @@ html {
 }
 
 .text-italic {
-  font-style: italic
+  font-style: italic;
 }
 
 .text-black {

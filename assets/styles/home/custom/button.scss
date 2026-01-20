@@ -31,3 +31,51 @@ button.v-btn.v-size--default {
     border-bottom-left-radius: 0 !important;
   }
 }
+
+.btn-neon-purple {
+  background: linear-gradient(135deg, #bd00ff 0%, #4a0063 100%) !important;
+  box-shadow: 0 0 15px rgba(189, 0, 255, 0.2);
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 900;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #bd00ff;
+  transition: 0.2s;
+
+  &:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 15px rgba(189, 0, 255, 0.5);
+  }
+}
+
+.btn-gaming-unified {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  background: #121212 !important; // Nền đen sâu đồng nhất
+  border: 1px solid rgba(189, 0, 255, 0.5) !important; // Viền tím Neon mờ
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+
+  ::v-deep .base-svg {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &:hover {
+    background: rgba(189, 0, 255, 0.1) !important; // Sáng nền tím nhẹ
+    border-color: #bd00ff !important; // Viền sáng rực lên
+    box-shadow: 0 0 12px rgba(189, 0, 255, 0.4);
+    transform: translateY(-2px);
+  }
+}

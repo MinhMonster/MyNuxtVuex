@@ -123,12 +123,6 @@ export default {
 .account {
   margin: -9px;
 }
-.btn-next-more {
-  color: #ffffff;
-  background: #a21d0a !important;
-  text-align: center;
-  margin: 0 auto;
-}
 .image-account {
   width: 100% !important;
   overflow: hidden;

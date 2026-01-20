@@ -3,7 +3,7 @@
   <client-only>
     <v-row v-if="account.id">
       <v-col cols="12" sm="12" md="6" lg="6">
-        <div class="title">
+        <div class="title mb-3">
           <center>
             <h3>
               Nick Avatar - Mã Số:
@@ -167,12 +167,7 @@ export default {
 .account {
   margin: -9px;
 }
-.btn-next-more {
-  color: #ffffff;
-  background: #a21d0a !important;
-  text-align: center;
-  margin: 0 auto;
-}
+
 .image-account {
   width: 120% !important;
   overflow: hidden;
@@ -180,6 +175,5 @@ export default {
 }
 .title {
   color: #1e5b7e;
-  margin-bottom: 10px;
 }
 </style>

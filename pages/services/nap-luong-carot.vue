@@ -122,14 +122,14 @@
 
             <v-col cols="6">
               <div class="field submit mt-6">
-                <v-btn size="sm" class="btn-login" @click="buyOffline()">
+                <v-btn size="sm" class="btn-neon-purple w-100" @click="buyOffline()">
                   <span>Nạp Offline </span>
                 </v-btn>
               </div>
             </v-col>
             <v-col cols="6">
               <div class="field submit mt-6">
-                <v-btn size="sm" class="btn-login" @click="submit()">
+                <v-btn size="sm" class="btn-neon-purple w-100" @click="submit()">
                   <Loading v-if="isLoading" button></Loading>
                   <span v-else>Thanh toán </span>
                 </v-btn>

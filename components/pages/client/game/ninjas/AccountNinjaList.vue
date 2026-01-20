@@ -7,11 +7,17 @@
   </div>
   <div v-else>
     <v-row class="text-center account">
-      <AccountNinjaCard
+      <AccountCard
         v-for="(account, index) in accountNinjas"
         :key="index"
         :account="account"
-      />
+        :infoItems="getInfoItems(account)"
+        :detailLink="`/teamobi/ninja-school/${account.code}`"
+      >
+        <template #image>
+          <AccountNinjaTL :account-ninja="account" />
+        </template>
+      </AccountCard>
     </v-row>
     <div v-if="isLoading" class="center mgt--50px mgb--50px">
       <Loading></Loading>
@@ -21,7 +27,7 @@
         Không tìm thấy Tài khoản nào!
       </h1>
     </div>
-    <div class="btn-next-more">
+    <div class="btn-next-more mb-4 mt-4">
       <BaseSvg
         v-if="isShowNext && accountNinjas.length && !isLoading"
         button
@@ -30,7 +36,7 @@
           type == 'cheap' ? 'Giá Rẻ' : type ?? ''
         }`"
         variant="danger"
-        class="flex mt-3 mb-1"
+        class="flex mt-3 mb-1 "
         @click="onChange()"
       />
     </div>
@@ -40,10 +46,11 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
-import AccountNinjaCard from "@/components/pages/client/game/ninjas/AccountNinjaCard";
+import AccountCard from "@/components/common/client/account/AccountCard";
+import AccountNinjaTL from "@/components/pages/client/game/ninjas/AccountNinjaTL";
 import Loading from "@/components/global/molecules/common/Loading";
 export default {
-  components: { AccountNinjaCard, Loading },
+  components: { AccountCard, Loading, AccountNinjaTL },
   props: {
     type: {
       type: String,
@@ -84,6 +91,25 @@ export default {
       "resetQuery",
       "resetAccountNinjas",
     ]),
+    getInfoItems(account) {
+      return [
+        {
+          key: "code",
+          label: "Mã số",
+          value: this.format_number(account.code),
+        },
+        {
+          key: "class",
+          label: "Lớp",
+          value: this.classNinja(account.class),
+        },
+        {
+          key: "server",
+          label: "Máy chủ",
+          value: this.serverNinja(account.server),
+        },
+      ];
+    },
     async onChange() {
       this.isLoading = true;
       await this.setQuery({ page: this.page + 1 });
@@ -105,13 +131,5 @@ export default {
 <style lang="scss" scoped>
 .account {
   margin: -9px;
-}
-.btn-next-more {
-  color: #ffffff;
-  text-align: center;
-  margin: 0 auto;
-  button {
-    background: #a21d0a !important;
-  }
 }
 </style>

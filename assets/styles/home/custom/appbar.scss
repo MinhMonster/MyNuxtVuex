@@ -1,7 +1,7 @@
 .v-overlay {
   top: 0px !important;
 
-  + .v-application--wrap +.v-dialog__content {
+  +.v-application--wrap+.v-dialog__content {
     top: 0px !important;
   }
 }
@@ -17,11 +17,24 @@
       #561d00 127%);
 
   .v-toolbar__content {
+    flex-direction: column;
+    justify-content: space-between;
+    // max-width: 1024px;
+    margin: 0 auto;
     height: 50px !important;
     padding: 5px 5px;
 
+    .header-content {
+      margin-top: 20px;
+
+      @media (max-width: 768px) {
+        margin-top: 5px;
+      }
+    }
+
     .header-user {
       width: 100%;
+      // max-width: 1000px;
       display: flex;
       justify-content: space-between;
       align-items: center;

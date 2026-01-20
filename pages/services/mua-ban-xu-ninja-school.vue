@@ -96,14 +96,14 @@
 
             <v-col cols="6">
               <div class="field submit mt-6">
-                <v-btn size="sm" class="btn-login" @click="buyOffline()">
+                <v-btn size="sm" class="btn-neon-purple w-100" @click="buyOffline()">
                   <span>Mua Offline </span>
                 </v-btn>
               </div>
             </v-col>
             <v-col cols="6">
               <div class="field submit mt-6">
-                <v-btn size="sm" class="btn-login" @click="submit()">
+                <v-btn size="sm" class="btn-neon-purple w-100" @click="submit()">
                   <Loading v-if="isLoading" button></Loading>
                   <span v-else>Thanh toán </span>
                 </v-btn>
@@ -305,7 +305,7 @@ export default {
     this.reload();
   },
   methods: {
-    ...mapActions("home/users", ["fetchUser", "setQuery"]),
+    ...mapActions("home/users", [ "setQuery"]),
     ...mapActions("home/game/ninja-coin", [
       "fetchXuNinjaPrices",
       "buyXuNinja",
@@ -385,7 +385,7 @@ export default {
         await this.resetInput();
         await this.setQuery({ page: 1 });
         await this.fetchHistoryBuyXuNinjas();
-        this.fetchUser();
+        this.getProfile();
       }
     },
     showModalDetail(history) {

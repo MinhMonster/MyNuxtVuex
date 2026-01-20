@@ -37,7 +37,7 @@ export default {
 }
 .sms {
   font-weight: 500;
-  color: #f64e60;
+  color: #b20000;
 }
 
 .title {

@@ -144,6 +144,6 @@ export default {
 }
 
 #home-page {
-  max-width: 1000px !important;
+  max-width: 1024px !important;
 }
 </style>

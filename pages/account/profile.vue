@@ -92,7 +92,7 @@ import Loading from "@/components/global/molecules/common/Loading";
 
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("home/users");
+const { mapState } = createNamespacedHelpers("home/users");
 
 export default {
   middleware: ["authentication"],
@@ -110,12 +110,11 @@ export default {
     this.fetchAccount();
   },
   methods: {
-    ...mapActions(["logout", "fetchUser", "getToken"]),
 
     async fetchAccount() {
       this.ready = false;
 
-      await this.fetchUser();
+      await this.getProfile();
 
       this.ready = true;
     },

@@ -1,8 +1,8 @@
-$primary: #3699FF;
+$primary: #3699ff;
 $primary-border: #0062cc;
 $primary-bold: #0069d9;
 $blue: #007bff;
-$danger : #a21d0a;
+$danger: #a21d0a;
 
 ::v-depp {
   .has-error .validation {
@@ -17,7 +17,6 @@ $danger : #a21d0a;
 .sms {
   font-weight: 500;
   color: $danger !important;
-
 }
 
 .text-menu-main {
@@ -25,7 +24,7 @@ $danger : #a21d0a;
 }
 
 #home-page {
-  max-width: 1200px;
+  max-width: 1250px !important;
 
   .content-main,
   .text-main {
@@ -59,8 +58,6 @@ $danger : #a21d0a;
     }
   }
 
-
-
   .title {
     color: #561d00;
   }
@@ -83,10 +80,7 @@ $danger : #a21d0a;
       background: none !important;
     }
   }
-
 }
-
-
 
 .box-body {
   position: relative;
@@ -138,7 +132,6 @@ $danger : #a21d0a;
   text-align: center;
 }
 
-
 .account-empty {
   position: relative;
   color: #663019;
@@ -149,22 +142,23 @@ $danger : #a21d0a;
   margin: 0 -3px;
 }
 
-
 .go-back,
 .reload {
   position: absolute;
   top: 12px;
   height: 20px !important;
   width: 20px !important;
-  z-index: 999;
+  z-index: 10;
 
   .v-btn--icon.v-size--default {
     height: 20px;
     width: 20px;
-    background: radial-gradient(circle at 50% 100%,
-        #e28637,
-        #9f5424 58%,
-        #561d00 127%);
+    background: radial-gradient(
+      circle at 50% 100%,
+      #e28637,
+      #9f5424 58%,
+      #561d00 127%
+    );
   }
 }
 
@@ -192,7 +186,7 @@ $danger : #a21d0a;
 }
 
 .text-blue {
-  color: #1E5B7E !important;
+  color: #1e5b7e !important;
 }
 
 .text-sup {
@@ -231,65 +225,73 @@ $danger : #a21d0a;
   font-weight: 500;
   color: #fff;
   box-shadow: 0 0.05rem 0.2rem 0 rgb(0 0 0 / 50%);
-  background-image: linear-gradient(180deg,
-      #e28637,
-      #9f5424 9%,
-      #561d00 58%,
-      #9f5424);
+  background-image: linear-gradient(
+    180deg,
+    #e28637,
+    #9f5424 9%,
+    #561d00 58%,
+    #9f5424
+  );
 
   &:hover {
     color: #fff;
-    background-image: linear-gradient(180deg,
-        #e28637,
-        #9f5424 9%,
-        #9f5424 58%,
-        #561d00);
+    background-image: linear-gradient(
+      180deg,
+      #e28637,
+      #9f5424 9%,
+      #9f5424 58%,
+      #561d00
+    );
   }
 
   .v-btn.v-btn--icon.v-size--default {
     height: 20px !important;
     width: 20px !important;
   }
-
 }
 
-
-
 .btn-login-fb {
-  background-image: linear-gradient(180deg,
-      $blue,
-      $primary-border 9%,
-      $primary-bold 58%,
-      $primary-border);
+  background-image: linear-gradient(
+    180deg,
+    $blue,
+    $primary-border 9%,
+    $primary-bold 58%,
+    $primary-border
+  );
 
   &:hover {
-    background-image: linear-gradient(180deg,
-        $blue,
-        $primary-bold 9%,
-        $primary-border 58%,
-        $primary-bold);
+    background-image: linear-gradient(
+      180deg,
+      $blue,
+      $primary-bold 9%,
+      $primary-border 58%,
+      $primary-bold
+    );
   }
 }
 
 .btn,
 .v-btn {
-
   &.login-btn,
   &.btn-main {
     border: 1px solid #9f5424;
-    background-image: linear-gradient(180deg,
-        #e28637,
-        #9f5424 9%,
-        #561d00 58%,
-        #9f5424);
+    background-image: linear-gradient(
+      180deg,
+      #e28637,
+      #9f5424 9%,
+      #561d00 58%,
+      #9f5424
+    );
 
     &:hover {
       color: #fff;
-      background-image: linear-gradient(180deg,
-          #e28637,
-          #9f5424 9%,
-          #9f5424 58%,
-          #561d00);
+      background-image: linear-gradient(
+        180deg,
+        #e28637,
+        #9f5424 9%,
+        #9f5424 58%,
+        #561d00
+      );
     }
   }
 }
@@ -298,19 +300,23 @@ $danger : #a21d0a;
   color: #fff;
   width: 100%;
   border: 1px solid #9f5424;
-  background-image: linear-gradient(180deg,
-      #e28637,
-      #9f5424 9%,
-      #9f5424 58%,
-      #e28637);
+  background-image: linear-gradient(
+    180deg,
+    #e28637,
+    #9f5424 9%,
+    #9f5424 58%,
+    #e28637
+  );
 
   &:hover {
     color: #fff;
-    background-image: linear-gradient(180deg,
-        #e28637,
-        #9f5424 9%,
-        #9f5424 58%,
-        #561d00);
+    background-image: linear-gradient(
+      180deg,
+      #e28637,
+      #9f5424 9%,
+      #9f5424 58%,
+      #561d00
+    );
   }
 }
 
@@ -319,19 +325,23 @@ $danger : #a21d0a;
     color: #fff;
     width: 100%;
     border: 1px solid red;
-    background-image: linear-gradient(180deg,
-        red,
-        #a21d0a 9%,
-        #a21d0a 58%,
-        $danger);
+    background-image: linear-gradient(
+      180deg,
+      red,
+      #a21d0a 9%,
+      #a21d0a 58%,
+      $danger
+    );
 
     &:hover {
       color: #fff;
-      background-image: linear-gradient(180deg,
-          red,
-          $danger 9%,
-          #a21d0a 58%,
-          #a21d0a);
+      background-image: linear-gradient(
+        180deg,
+        red,
+        $danger 9%,
+        #a21d0a 58%,
+        #a21d0a
+      );
     }
   }
 }
@@ -339,22 +349,25 @@ $danger : #a21d0a;
 .btn.search-btn {
   width: 100%;
   border: 1px solid $primary-border;
-  background-image: linear-gradient(180deg,
-      $primary-bold,
-      $blue 9%,
-      $blue 58%,
-      $primary-bold);
+  background-image: linear-gradient(
+    180deg,
+    $primary-bold,
+    $blue 9%,
+    $blue 58%,
+    $primary-bold
+  );
 
   &:hover {
     color: #fff;
-    background-image: linear-gradient(180deg,
-        $primary-bold,
-        $primary-bold 9%,
-        $blue 58%,
-        $blue);
+    background-image: linear-gradient(
+      180deg,
+      $primary-bold,
+      $primary-bold 9%,
+      $blue 58%,
+      $blue
+    );
   }
 }
-
 
 .mua-nick {
   cursor: pointer;
@@ -412,7 +425,7 @@ $danger : #a21d0a;
         margin-top: 0px;
       }
 
-      input:valid~label {
+      input:valid ~ label {
         top: 0%;
         font-size: 16px;
         color: #4158d0;
@@ -534,7 +547,7 @@ $danger : #a21d0a;
   }
 }
 
-.checkbox input[type="checkbox"]+label::before {
+.checkbox input[type="checkbox"] + label::before {
   content: " ";
   position: absolute;
   border: 1px solid #e28637;
@@ -545,7 +558,7 @@ $danger : #a21d0a;
   border-radius: 2px;
 }
 
-.checkbox input[type="checkbox"]:checked+label::before {
+.checkbox input[type="checkbox"]:checked + label::before {
   content: " ";
   background: linear-gradient(#e28637, #663019);
 }
@@ -607,8 +620,8 @@ form {
   // background: #000;
 }
 
-.form-input:not(:placeholder-shown)+.form-label,
-.form-input:focus+.form-label {
+.form-input:not(:placeholder-shown) + .form-label,
+.form-input:focus + .form-label {
   // top: -9px;
   // left: 11px;
   // padding: 0 10px;
@@ -649,8 +662,6 @@ table th {
   background: #e28637;
 }
 
-
-
 .table td {
   padding: 5px;
   vertical-align: middle;
@@ -663,7 +674,6 @@ table th {
 
 table.table {
   &.table-small {
-
     span,
     td,
     th,
@@ -680,18 +690,17 @@ figure.image {
     img {
       max-width: 100%;
       margin: 0 auto;
-
     }
   }
 }
 
 .btn-next-more {
-  color: #ffffff;
   text-align: center;
   margin: 0 auto;
 
   button {
-    background: #a21d0a !important;
+    color: #ffffff;
+    background: linear-gradient(180deg, #ff1744 0%, #b20000 100%) !important;
   }
 
   .v-btn:not(.v-btn--round).v-size--default {

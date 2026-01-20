@@ -31,7 +31,7 @@
         class="btn btn-danger btn-search text-not-shadow text-white w-100"
         @click="reset()"
       >
-        <i class="fa fa-list"></i> Xóa
+        <i class="fa fa-list"></i> Đặt lại
       </v-btn>
     </div>
   </v-col>

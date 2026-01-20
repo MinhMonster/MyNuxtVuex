@@ -1,205 +1,183 @@
 <template>
   <client-only>
-    <div v-if="accountNinja" class="image-card">
+    <div v-if="accountNinja" class="ninja-image-card">
       <img
-        v-if="accountNinja.images[0].includes('muabannick.pro')"
-        :src="accountNinja.images[0]"
-        alt=""
-        class="image-ninja"
-        :class="{ full: accountNinja.is_full_image }"
+        :src="
+          accountNinja.images[0].includes('muabannick.pro')
+            ? accountNinja.images[0]
+            : `https://muabannick.pro${accountNinja.images[0]}`
+        "
+        alt="Ninja School"
+        class="ninja-img"
+        :class="{ 'img-full': accountNinja.is_full_image }"
       />
-      <img
-        v-else
-        :src="`https://muabannick.pro${accountNinja.images[0]}`"
-        alt=""
-        class="image-ninja"
-        :class="{ full: accountNinja.is_full_image }"
-      />
+
       <template v-if="!accountNinja.is_full_image">
+        <div class="ninja-top-meta">
+          <span class="meta-tag tag-lv">Lv: {{ accountNinja.level }}</span>
+          <span class="meta-tag tag-sv"
+            >Sv: {{ serverNinjaNumber(accountNinja.server) }}</span
+          >
+          <span class="meta-tag tag-name"
+            >@{{ accountNinja.character_name }}</span
+          >
+        </div>
+
         <span
           v-if="accountNinja.tl_1"
-          class="account-tl bg-equip text-13-450"
-          style="right: 24%; top: 19%"
+          class="equip-stat pos-r"
+          style="top: 19%"
           >{{ accountNinja.tl_1 }}</span
         >
         <span
           v-if="accountNinja.tl_2"
-          class="account-tl bg-equip text-13-450"
-          style="right: 24%; top: 30.5%"
+          class="equip-stat pos-r"
+          style="top: 30.5%"
           >{{ accountNinja.tl_2 }}</span
         >
         <span
           v-if="accountNinja.tl_3"
-          class="account-tl bg-equip text-13-450"
-          style="right: 24%; top: 42%"
+          class="equip-stat pos-r"
+          style="top: 42%"
           >{{ accountNinja.tl_3 }}</span
         >
         <span
           v-if="accountNinja.tl_4"
-          class="account-tl bg-equip text-13-450"
-          style="right: 24%; top: 53%"
+          class="equip-stat pos-r"
+          style="top: 53%"
           >{{ accountNinja.tl_4 }}</span
         >
         <span
           v-if="accountNinja.tl_5"
-          class="account-tl bg-equip text-13-450"
-          style="right: 24%; top: 64%"
+          class="equip-stat pos-r"
+          style="top: 64%"
           >{{ accountNinja.tl_5 }}</span
         >
 
         <span
           v-if="accountNinja.tl_6"
-          class="account-tl bg-equip text-13-450"
-          style="left: 25%; top: 19%"
+          class="equip-stat pos-l"
+          style="top: 19%"
           >{{ accountNinja.tl_6 }}</span
         >
         <span
           v-if="accountNinja.tl_7"
-          class="account-tl bg-equip text-13-450"
-          style="left: 25%; top: 30.5%"
+          class="equip-stat pos-l"
+          style="top: 30.5%"
           >{{ accountNinja.tl_7 }}</span
         >
         <span
           v-if="accountNinja.tl_8"
-          class="account-tl bg-equip text-13-450"
-          style="left: 25%; top: 42%"
+          class="equip-stat pos-l"
+          style="top: 42%"
           >{{ accountNinja.tl_8 }}</span
         >
         <span
           v-if="accountNinja.tl_9"
-          class="account-tl bg-equip text-13-450"
-          style="left: 25%; top: 53%"
+          class="equip-stat pos-l"
+          style="top: 53%"
           >{{ accountNinja.tl_9 }}</span
         >
         <span
           v-if="accountNinja.tl_10"
-          class="account-tl bg-equip text-13-450"
-          style="left: 25%; top: 64%"
+          class="equip-stat pos-l"
+          style="top: 64%"
           >{{ accountNinja.tl_10 }}</span
         >
 
         <span
           v-if="accountNinja.tl_11"
-          class="account-tl bg-equip text-13-450"
+          class="equip-stat"
           style="left: 44.5%; top: 62%"
           >{{ accountNinja.tl_11 }}</span
         >
-
         <span
           v-if="accountNinja.tl_12"
-          class="account-tl bg-equip text-13-450"
+          class="equip-stat"
           style="left: 56.5%; top: 62%"
           >{{ accountNinja.tl_12 }}</span
         >
+
         <span
           v-if="accountNinja.item_7"
-          class="account-stick bg-equip text-13-450"
+          class="item-badge pos-l"
+          style="top: 19%"
+          >{{ accountNinja.item_7 }}</span
         >
-          {{ accountNinja.item_7 }}
-        </span>
         <span
           v-if="accountNinja.item_8"
-          class="account-mask bg-equip text-13-450"
+          class="item-badge pos-l"
+          style="top: 30.5%"
+          >{{ accountNinja.item_8 }}</span
         >
-          {{ accountNinja.item_8 }}
-        </span>
         <span
           v-if="accountNinja.item_9"
-          class="account-pet bg-equip text-13-450"
+          class="item-badge pos-l"
+          style="top: 42%"
+          >{{ accountNinja.item_9 }}</span
         >
-          {{ accountNinja.item_9 }}
-        </span>
         <span
           v-if="accountNinja.item_10"
-          class="account-disguise-2 bg-equip text-13-450"
+          class="item-badge pos-l"
+          style="top: 53%"
+          >{{ accountNinja.item_10 }}</span
         >
-          {{ accountNinja.item_10 }}
-        </span>
         <span
           v-if="accountNinja.item_11"
-          class="account-disguise bg-equip text-13-450"
+          class="item-badge pos-l"
+          style="top: 64%"
+          >{{ accountNinja.item_11 }}</span
         >
-          {{ accountNinja.item_11 }}
-        </span>
         <span
           v-if="accountNinja.item_12"
-          class="account-clone bg-equip text-13-450"
+          class="item-badge pos-l"
+          style="top: 75%"
+          >{{ accountNinja.item_12 }}</span
         >
-          {{ accountNinja.item_12 }}
-        </span>
-        <span v-if="accountNinja.item_13" class="account-mounts">
-          <span class="mounts-info bg-equip text-13-450">
-            {{ accountNinja.item_13 }}
-          </span>
-        </span>
+
         <span
           v-if="accountNinja.item_1"
-          class="account-gem-3 bg-equip text-13-450"
+          class="item-badge pos-r"
+          style="top: 19%"
+          >{{ accountNinja.item_1 }}</span
         >
-          {{ accountNinja.item_1 }}
-        </span>
         <span
           v-if="accountNinja.item_2"
-          class="account-gem-2 bg-equip text-13-450"
+          class="item-badge pos-r"
+          style="top: 30.5%"
+          >{{ accountNinja.item_2 }}</span
         >
-          {{ accountNinja.item_2 }}
-        </span>
         <span
           v-if="accountNinja.item_3"
-          class="account-gem-1 bg-equip text-13-450"
+          class="item-badge pos-r"
+          style="top: 42%"
+          >{{ accountNinja.item_3 }}</span
         >
-          {{ accountNinja.item_3 }}
-        </span>
         <span
           v-if="accountNinja.item_4"
-          class="account-book bg-equip text-13-450"
+          class="item-badge pos-r"
+          style="top: 53%"
+          >{{ accountNinja.item_4 }}</span
         >
-          {{ accountNinja.item_4 }}
-        </span>
         <span
           v-if="accountNinja.item_5"
-          class="account-cake bg-equip text-13-450"
+          class="item-badge pos-r"
+          style="top: 64%"
+          >{{ accountNinja.item_5 }}</span
         >
-          {{ accountNinja.item_5 }}
-        </span>
         <span
           v-if="accountNinja.item_6"
-          class="account-yen bg-equip text-13-450"
+          class="item-badge pos-r"
+          style="top: 75%"
+          >{{ accountNinja.item_6 }}</span
         >
-          {{ accountNinja.item_6 }}
-        </span>
-        <span class="account-cash-atm text-bold">
-          Lv: {{ accountNinja.level }}</span
-        >
-        <span class="account-server-number text-bold">
-          Sv: {{ serverNinjaNumber(accountNinja.server) }}
-        </span>
 
-        <span class="account-ingame text-bold">
-          @{{ accountNinja.character_name }}
-        </span>
+        <div v-if="accountNinja.item_13" class="banner-mounts-minimal">
+          <div class="line top"></div>
+          <div class="text-glow">{{ accountNinja.item_13 }}</div>
+          <div class="line bottom"></div>
+        </div>
       </template>
-
-      <!-- <span
-        v-if="accountNinja.saleOff"
-        class="account-cash-atm bg-none text-13-450"
-      >
-        <span class="bg-warning"> {{ "-" + accountNinja.saleOff + "% " }}</span>
-        <span class="bg-danger text-white">
-          {{
-            " " +
-            cash_atm(accountNinja.giatien * (1 - accountNinja.saleOff / 100))
-          }}
-          Vnđ</span
-        >
-      </span>
-      <span v-else class="account-cash-atm text-13-450">
-        {{ cash_atm(accountNinja.giatien) }} Vnđ</span
-      >
-
-      <span class="account-ingame text-13-450">
-        @{{ accountNinja.ingame }}
-      </span> -->
     </div>
   </client-only>
 </template>
@@ -216,182 +194,203 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.image-card {
+.ninja-image-card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  // height: 100%;
+  background: #000;
   overflow: hidden;
-  // border-radius: 5px;
-  border-bottom: 1px solid #663019;
+  border-bottom: 1px solid rgba(189, 0, 255, 0.4);
 
-  img {
+  .ninja-img {
     width: 108%;
-    // max-height: 200px;
-
-    &.full {
+    display: block;
+    &.img-full {
       width: 100%;
-      margin-left: 0px;
     }
   }
 }
-.account-ingame {
-  right: 4px;
-}
-.account-server-number,
-.account-ingame,
-.account-cash-atm {
+/* Header Info - Phong cách mờ dần và 2 vạch kẻ */
+.meta-tag {
   position: absolute;
-  height: 13% !important;
-  top: 4px;
-  width: auto !important;
+  top: 4px; // Đưa sát lên trên một chút cho thoáng
+  height: 12%;
+  line-height: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-  padding: 0px 5px;
-  color: #ffffff;
-  background: #a21d0a;
-  .v-btn--icon.v-size--default {
-    height: 20px;
-    width: 20px;
-    margin: 0 -5px;
-    i {
-      height: 15px;
-      width: 15px;
-      line-height: 15px;
-      font-size: 14px;
-    }
+  // z-index: 20;
+
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  text-shadow: 1px 1px 2px #000;
+
+  /* Cấu trúc 2 vạch kẻ trên dưới */
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+
+  /* Level: Mờ dần từ trái sang phải */
+  &.tag-lv {
+    left: 4px;
+    padding-left: 6px;
+    padding-right: 20px;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.9) 60%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    border-left: 1px solid;
+    border-image: linear-gradient(90deg, #bd00ff 0%, transparent 100%) 1; // Vạch kẻ trắng mờ dần
+  }
+
+  /* Server: Mờ đều sang 2 bên (Tâm điểm) */
+  &.tag-sv {
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 15px;
+    min-width: 80px;
+    justify-content: center;
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.95) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    /* Vạch kẻ tím mờ dần 2 đầu */
+    border-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        #bd00ff 50%,
+        transparent 100%
+      )
+      1;
+  }
+
+  /* Tên nhân vật: Mờ dần từ phải sang trái */
+  &.tag-name {
+    right: 4px;
+    padding-right: 6px;
+    padding-left: 20px;
+    background: linear-gradient(
+      270deg,
+      rgba(0, 0, 0, 0.9) 60%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    border-right: 1px solid;
+    border-image: linear-gradient(270deg, #bd00ff 0%, transparent 100%) 1; // Vạch kẻ xanh Cyan mờ dần
   }
 }
 
-.account-server-number {
-  left: calc(50% - 30px);
-  min-width: 60px !important;
-}
-
-.account-cash-atm {
-  &.bg-none {
-    background: none !important;
-    color: #333 !important;
-    padding: 0px !important;
-  }
-  left: 4px;
-  // font-size: 11px;
-  font-weight: 700;
-  span {
-    padding: 0 5px;
-    height: 100% !important;
-    line-height: 100%;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-  }
-}
-
-.account-tl {
+/* Các ô số (+5, +9...) */
+.equip-stat {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 6px;
   width: 5.5% !important;
   height: 10% !important;
-  text-align: center;
-  border-radius: 3px;
-  padding: 0px;
-  color: #ffffff;
-  background: #a21d0a;
-}
-
-.account-mounts {
-  position: absolute;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 89%;
-  left: 0%;
-  width: 100% !important;
-  height: 10% !important;
-  text-align: center;
-  .mounts-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100% !important;
-    color: #ffffff;
-    background: #a21d0a;
-    border-radius: 3px;
-    padding: 0px 5px;
-    margin: 0 auto !important;
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid rgba(189, 0, 255, 0.7);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  border-radius: 2px;
+  // z-index: 10;
+  padding: 0 2px;
+  &.pos-r {
+    right: 24.5%;
+  }
+  &.pos-l {
+    left: 25.5%;
   }
 }
-.account-gem-3 {
-  right: 4px;
-  top: 19%;
-}
-.account-gem-2 {
-  right: 4px;
-  top: 30.5%;
-}
-.account-gem-1 {
-  right: 4px;
-  top: 42%;
-}
-.account-book {
-  right: 4px;
-  top: 53%;
-}
-
-.account-cake {
-  right: 4px;
-  top: 64%;
-}
-
-.account-yen {
-  right: 4px;
-  top: 75%;
-}
-
-.account-clone {
-  left: 4px;
-  top: 75%;
-}
-.account-stick {
-  left: 4px;
-  top: 19%;
-}
-.account-mask {
-  left: 4px;
-  top: 30.5%;
-}
-.account-pet {
-  left: 4px;
-  top: 42%;
-}
-.account-disguise-2 {
-  left: 4px;
-  top: 53%;
-}
-.account-disguise {
-  left: 4px;
-  top: 64%;
-}
-.bg-equip {
+/* Các nhãn vật phẩm sát mép với hiệu ứng mờ dần và 2 vạch kẻ */
+.item-badge {
   position: absolute;
+  height: 10%; // Cố định chiều cao thay vì dùng % để tránh méo chữ
+  line-height: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: auto !important;
-  height: 10% !important;
-  text-align: center;
-
+  // z-index: 15;
   color: #ffffff;
-  background: #a21d0a;
-  padding: 0px 5px;
-  border-radius: 3px;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-shadow: 1px 1px 2px #000;
+
+  /* Tạo 2 vạch kẻ trên dưới */
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+
+  /* Xử lý riêng cho vật phẩm bên trái */
+  &.pos-l {
+    left: 4px; // Sát mép trái tuyệt đối
+    padding-left: 6px;
+    padding-right: 25px; // Khoảng thở rộng để gradient mờ dần mượt mà
+
+    /* Nền đen mờ dần sang phải */
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.9) 60%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    border-left: 1px solid;
+    /* Vạch kẻ tím mờ dần sang phải */
+    border-image: linear-gradient(90deg, #bd00ff 0%, transparent 100%) 1;
+  }
+
+  /* Xử lý riêng cho vật phẩm bên phải */
+  &.pos-r {
+    right: 4px; // Sát mép phải tuyệt đối
+    padding-right: 6px;
+    padding-left: 25px;
+
+    /* Nền đen mờ dần sang trái */
+    background: linear-gradient(
+      270deg,
+      rgba(0, 0, 0, 0.9) 60%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    border-right: 1px solid;
+
+    /* Vạch kẻ tím mờ dần sang trái */
+    border-image: linear-gradient(270deg, #bd00ff 0%, transparent 100%) 1;
+  }
+}
+
+/* Giữ nguyên logic Banner Mounts nhưng tinh chỉnh nhẹ */
+.banner-mounts-minimal {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  // z-index: 20;
+
+  .line {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #bd00ff 50%,
+      transparent 100%
+    );
+  }
+
+  .text-glow {
+    /* Nền đậm trung tâm tỏa ra */
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.95) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    color: #fff;
+    font-size: 11.5px;
+    font-weight: 800;
+    text-align: center;
+    padding: 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 4px #000;
+  }
 }
 </style>

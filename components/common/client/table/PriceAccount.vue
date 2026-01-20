@@ -9,12 +9,12 @@
       </template>
     </th>
     <td class="mua-nick">
-      <span :class="{ 'text-line-middel text-danger': hasDiscount }">
+      <span :class="{ 'text-line-middel text-danger text-bold': hasDiscount }">
         {{ format_number(account.selling_price) }} Vnđ
       </span>
       <template v-if="hasDiscount">
         <div class="divider"></div>
-        <span>{{ format_number(account.price) }} Vnđ</span>
+        <span class="text-bold">{{ format_number(account.price) }} Vnđ</span>
       </template>
     </td>
   </tr>
@@ -38,4 +38,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+th.info-nick {
+  width: 50%;
+}
 </style>
