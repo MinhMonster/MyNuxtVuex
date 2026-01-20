@@ -88,7 +88,7 @@
 
             <v-col cols="12">
               <div class="field submit mt-6">
-                <v-btn size="sm" class="btn-login" @click="submit()">
+                <v-btn size="sm" class="btn-neon-purple w-100" @click="submit()">
                   <Loading v-if="isLoading" button></Loading>
                   <span v-else>Nạp Thẻ </span>
                 </v-btn>
@@ -286,8 +286,8 @@ export default {
       await this.setQuery({ page });
       await this.fetchHistoryWalletDepositCards();
       page == 1 || !page
-        ? this.$router.push(`/account/wallet/deposit/card`)
-        : this.$router.push(`/account/wallet/deposit/card?page=${page}`);
+        ? this.$router.push(this.path)
+        : this.$router.push(`${this.path}?page=${page}`);
       this.ready = true;
     },
     resetInput() {

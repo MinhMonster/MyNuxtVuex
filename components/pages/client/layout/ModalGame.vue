@@ -9,7 +9,7 @@
         name="game"
       />
     </div>
-    <span class="title-menu-buttom">Game</span>
+    <span class="title-menu-buttom">Acc game</span>
     <ModalPayload ref="modal" :title="`Menu Nick Game`" size="md" hiddenFooter>
       <template #content>
         <div class="base-diglog page-body">
@@ -98,4 +98,10 @@ export default {
     margin-bottom: 20px;
   }
 }
+// .v-toolbar__content {
+  .v-btn.v-btn--icon.v-size--default {
+    width: auto !important;
+    height: auto !important;
+  }
+// }
 </style>

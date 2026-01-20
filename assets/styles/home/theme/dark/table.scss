@@ -4,59 +4,63 @@
 
     th {
       color: #f1f1f1;
-      border: 1px solid #0F0F0F !important;
-      border-top: none !important;
-      background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+      border: 1px solid var(--border-table) !important;
+      // border-top: none !important;
+      background: var(--bg--table-th) !important;
     }
 
     td {
-      border: 1px solid #0F0F0F;
+      border: 1px solid var(--border-table) !important;
     }
 
-    &.table.table-striped>tbody>tr:nth-of-type(odd) {
+    &.table.table-striped > tbody > tr:nth-of-type(odd) {
       color: #f1f1f1 !important;
-      background: #171e28 !important;
+      background: var(--bg--table-td) !important;
     }
   }
 
   .table.table-striped {
-    tbody>tr:nth-of-type(odd) {
+    tbody > tr:nth-of-type(odd) {
       color: #f1f1f1 !important;
       background: #171e28 !important;
     }
-
   }
 
-  .v-data-table>.v-data-table__wrapper>table>tbody>tr:nth-child(even) {
+  .v-data-table > .v-data-table__wrapper > table > tbody > tr:nth-child(even) {
     color: #fff;
   }
 
   &.theme--dark {
     .v-pagination {
-
       .v-pagination__navigation,
       .v-pagination__item {
         color: #f1f1f1 !important;
         border: 1px solid #a4a4a4 !important;
-        background: radial-gradient(circle at 50% 100%, #424040, #a4a4a4 58%, #424040 127%) !important;
+        background: radial-gradient(
+          circle at 50% 100%,
+          #424040,
+          #a4a4a4 58%,
+          #424040 127%
+        ) !important;
 
         &:hover,
         &.v-pagination__item--active.primary {
           color: #f1f1f1 !important;
-          background: radial-gradient(circle at 50% 15%, #a937ed, #0F0F0F 72%) !important;
+          background: radial-gradient(
+            circle at 50% 15%,
+            #a937ed,
+            #0f0f0f 72%
+          ) !important;
           border: 1px solid #a937ed !important;
         }
-
-
       }
     }
   }
 
   .base-table {
-
-    .v-data-table>.v-data-table__wrapper>table>tbody>tr>th,
-    .v-data-table>.v-data-table__wrapper>table>thead>tr>th,
-    .v-data-table>.v-data-table__wrapper>table>tfoot>tr>th {
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr > th,
+    .v-data-table > .v-data-table__wrapper > table > thead > tr > th,
+    .v-data-table > .v-data-table__wrapper > table > tfoot > tr > th {
       color: #f1f1f1 !important;
     }
   }

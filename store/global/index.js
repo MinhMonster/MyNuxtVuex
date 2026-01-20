@@ -15,7 +15,7 @@ export default {
     isThemeDark: true,
     isThemeRed: false,
     isView: false,
-    showMenuRight: false,
+    isShowMenuRight: false,
     fixed: false,
     scrWidth: 0,
     isMb: true,
@@ -23,6 +23,7 @@ export default {
     heightHomeRight: 810,
     showLoginRegister: false,
     isFormLoginRegister: 'login',
+    isShowProfileModal: false,
   }),
   getters: {
     getField,

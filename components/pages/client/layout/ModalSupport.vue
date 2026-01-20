@@ -39,3 +39,11 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+// .v-toolbar__content {
+  .v-btn.v-btn--icon.v-size--default {
+    width: auto !important;
+    height: auto !important;
+  }
+// }
+</style>

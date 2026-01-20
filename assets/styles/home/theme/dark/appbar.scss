@@ -1,5 +1,16 @@
 .theme-dark {
   .v-app-bar {
-    background: radial-gradient(circle at 20% 70%, #b549cc, #0F0F0F 28%, #0F0F0F 127%) !important;
+    // background: radial-gradient(circle at 20% 70%, #b549cc, #0F0F0F 28%, #0F0F0F 127%) !important;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    // max-height: calc(100% - 30px) !important;
+    background-image: url('https://bonfirethemes.com/powerup/one/wp-content/themes/powerup/images/header-bg.png');
+    background-repeat: repeat-x;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
 }

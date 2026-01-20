@@ -1,5 +1,5 @@
 <template>
-  <div class="home-slider">
+  <div class="home-slider" style="margin: -6px">
     <v-carousel hide-delimiters cycle :interval="5000">
       <v-carousel-item v-for="(item, i) in items" :key="i" cover eager>
         <v-img
@@ -90,6 +90,7 @@ export default {
 
 <style lang="scss" scoped>
 .home-slider {
+  box-shadow: 0 0 12px rgba(189, 0, 255, 0.45) !important;
   ::v-deep {
     .v-carousel {
       height: auto !important;
@@ -99,6 +100,7 @@ export default {
         aspect-ratio: 600 / 220;
         width: 100%;
         height: auto !important;
+        max-height: 300px !important;
       }
     }
   }

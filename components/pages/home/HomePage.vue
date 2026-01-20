@@ -1,5 +1,5 @@
 <template>
-  <div id="home-page">
+  <div id="home-page" class="mb-5">
     <Loading v-if="loading" />
     <v-row v-else>
       <v-col cols="12" md="12" :lg="colLeft">
@@ -38,7 +38,7 @@
     <div id="next-bottom"></div>
   </div>
 </template>
-  
+
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 import { mapFields } from "vuex-map-fields";

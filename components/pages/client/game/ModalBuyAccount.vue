@@ -12,8 +12,8 @@
       <template #content>
         <div class="page-body">
           <v-tabs v-model="tab" align-tabs="center">
-            <v-tab :value="1">Thanh Toán</v-tab>
-            <v-tab :value="2">Thông Tin</v-tab>
+            <v-tab :value="0">Thanh Toán</v-tab>
+            <v-tab :value="1">Thông Tin</v-tab>
           </v-tabs>
           <v-window v-model="tab">
             <v-window-item :value="0">
@@ -60,28 +60,25 @@
       <template #footer-button>
         <v-btn
           v-if="!user"
-          size="sm"
-          color="success"
-          class="btn-sm"
+          class="btn-neon-purple"
           @click="openModalLogin()"
           ><span>Đăng nhập</span></v-btn
         >
         <v-btn
           v-else-if="Number(user.cash) < price"
-          size="sm"
           color="success"
-          class="btn-sm text-black"
+          class="text-black"
           @click="$router.push('/account/wallet/deposits/bank')"
           ><span>Nap tiền</span></v-btn
         >
 
         <v-btn
           v-else
-          color="success"
+          class="btn-neon-purple"
           :disabled="isLoading"
-          class="btn-buy btn-sm"
           @click="buyNow()"
         >
+
           <Loading v-if="isLoading" button></Loading>
           <span v-else> Thanh Toán </span>
         </v-btn>

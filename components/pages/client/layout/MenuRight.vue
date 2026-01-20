@@ -1,60 +1,45 @@
 <template>
   <client-only>
     <v-navigation-drawer
-      style="
-        top: 50px;
-        width: 250px;
-        text-align: left;
-        max-height: calc(100% - 50px);
-      "
-      :style="{
-        minHeight: heightMenu,
-      }"
-      v-model="showMenuRight"
-      :right="right"
-      :clipped="clipped"
+      v-model="isShowMenuRight"
+      :style="menuStyle"
+      left
+      clipped
       fixed
       app
     >
-      <SideBarMenu @close="showMenuRight = false"></SideBarMenu>
+      <SideBarMenu @close="isShowMenuRight = false" />
     </v-navigation-drawer>
   </client-only>
 </template>
 
 <script>
 import SideBarMenu from "@/components/pages/client/layout/SideBarMenu";
-import { mapFields } from "vuex-map-fields";
 
 export default {
-  components: {
-    SideBarMenu,
-  },
+  components: { SideBarMenu },
 
-  data() {
-    return {
-      clipped: true,
-      fixed: false,
-      right: true,
-    };
-  },
-  async mounted() {
-    if (this.isMobile) {
-      this.showMenuRight = false;
-    } else {
-      this.showMenuRight = true;
-    }
-  },
   computed: {
-    ...mapFields("global", {
-      showMenuRight: "showMenuRight",
-    }),
-    heightMenu() {
-      return this.isMobile ? `calc(100% - 50px)` : `calc(100% - 105px)`;
+    menuStyle() {
+      const top = this.isMobile ? 60 : 137;
+      const offset = this.isMobile ? 50 : 105;
+
+      return {
+        top: `${top}px`,
+        width: "250px",
+        textAlign: "left",
+        minHeight: `calc(100% - ${offset}px)`,
+        maxHeight: `calc(100% - 60px)`,
+      };
     },
   },
-  methods: {
-    closeMenuRight() {
-      this.showMenuRight = false;
+
+  watch: {
+    isMobile: {
+      immediate: true,
+      handler(val) {
+        this.isShowMenuRight = !val;
+      },
     },
   },
 };

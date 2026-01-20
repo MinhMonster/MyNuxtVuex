@@ -7,11 +7,17 @@
   </div>
   <div v-else id="list-avatar">
     <v-row class="text-center account">
-      <AccountAvatarCard
+      <AccountCard
         v-for="(account, index) in accounts"
         :key="index"
         :account="account"
-      ></AccountAvatarCard>
+        :infoItems="getInfoItems(account)"
+        :detailLink="`/teamobi/avatar/${account.code}`"
+      >
+        <template #image>
+          <AccountAvatarTL :account="account" />
+        </template>
+    </AccountCard>
     </v-row>
     <div v-if="!accounts.length" class="account-empty mt-4">
       <h1 class="text-center bold text-danger">
@@ -28,13 +34,24 @@
 
 <script>
 import avatars_mixins from "@/mixins/avatars_mixins";
-import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
+import AccountCard from "@/components/common/client/account/AccountCard";
+import AccountAvatarTL from "@/components/pages/client/game/avatars/AccountAvatarTL";
 import Pagination from "@/components/global/molecules/common/Pagination";
 import Loading from "@/components/global/molecules/common/Loading";
 
 export default {
   mixins: [avatars_mixins],
-  components: { AccountAvatarCard, Pagination, Loading },
+  components: { AccountCard, AccountAvatarTL, Pagination, Loading },
+  methods: {
+    getInfoItems(account) {
+      return [
+        { label: "Mã Số", value: account.code },
+        { label: "Đất", value: account.land },
+        { label: "Gà", value: account.pets },
+        { label: "Cá", value: account.fish },
+      ];
+    },
+  },
 };
 </script>
 

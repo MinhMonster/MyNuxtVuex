@@ -25,6 +25,10 @@
 
   button {
     .v-btn__content {
+      .text-black {
+        color: #333 !important;
+      }
+
       // text-shadow: $text-shadow-theme-dark;
     }
 

@@ -8,21 +8,29 @@
     .modal-header {
       border-left: $border-theme-dark;
       border-right: $border-theme-dark;
-      background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+      background: linear-gradient(
+        180deg,
+        #b549cc,
+        #0f0f0f 12%,
+        #0f0f0f 58%,
+        #0f0f0f
+      ) !important;
       // background-image: linear-gradient(180deg, #663019, #e28637 9%, #e28637 58%, #e28637) ;
 
       .modal-title {
         color: #fff;
-        text-shadow: rgb(131 60 247) 0px 0px 5px,
-          rgb(131 60 247) 0px 0px 5px,
-          rgb(131 60 247) 0px 0px 0px,
-          rgb(131 60 247) 0px 0px 0px,
+        text-shadow: rgb(131 60 247) 0px 0px 5px, rgb(131 60 247) 0px 0px 5px,
+          rgb(131 60 247) 0px 0px 0px, rgb(131 60 247) 0px 0px 0px,
           rgb(131 60 247) 0px 0px 0px;
       }
 
       .close {
         color: #f1f1f1;
-        background: radial-gradient(circle at 50% 15%, #a937ed, #0F0F0F 72%) !important;
+        background: radial-gradient(
+          circle at 50% 15%,
+          #a937ed,
+          #0f0f0f 72%
+        ) !important;
         border: $border-theme-dark;
       }
     }
@@ -41,7 +49,6 @@
       .thongbao {
         * {
           text-shadow: none !important;
-
         }
 
         a,
@@ -53,50 +60,55 @@
           // color: #a937ed !important;
           // text-shadow: #fff 0px 0px 5px!important;
         }
-
       }
 
       .page-body {
-        background: #031019;
+        background: var(--bg-main);
         border: none;
         color: #f1f1f1;
 
+        // table {
+        //   width: 100%;
+        //   border-collapse: separate;
+        //   border-spacing: 0 4px; // Tạo khoảng hở giữa các dòng
 
+        //   tr {
+        //     background: rgba(255, 255, 255, 0.02);
+        //     &:hover {
+        //       background: rgba(189, 0, 255, 0.05);
+        //     }
+        //   }
 
+        //   td {
+        //     padding: 12px 15px;
+        //     font-size: 0.9rem;
+        //     border: none !important;
 
+        //     // Cột tiêu đề trái
+        //     &:first-child {
+        //       color: #94a3b8;
+        //       font-weight: 600;
+        //       width: 40%;
+        //       background: rgba(0, 0, 0, 0.15);
+        //       border-radius: 4px 0 0 4px;
+        //     }
 
-        .table {
-          &.text-center {
-            // text-shadow: $text-shadow-theme-dark;
+        //     // Cột giá trị phải
+        //     &:last-child {
+        //       color: #ffffff;
+        //       text-align: right;
+        //       font-weight: 500;
+        //       border-radius: 0 4px 4px 0;
+        //     }
+        //   }
 
-          }
-
-          th.info-nick {
-            background: #171e28 !important;
-            color: #f1f1f1;
-            border: 1px solid #031019 !important;
-          }
-
-          td.mua-nick {
-            background: #031019;
-            color: #f1f1f1;
-            border: 1px solid #171e28 !important;
-
-            div {
-              // background-color: #171e28 !important;
-            }
-
-            span {
-              color: #f1f1f1;
-            }
-
-            .btn {
-              text-shadow: none;
-            }
-          }
-        }
-
-
+        //   /* Làm nổi bật dòng SỐ DƯ (thường là dòng thứ 4) */
+        //   tr:nth-child(4) td:last-child {
+        //     color: #ff4d4d !important; // Màu đỏ cam nổi bật
+        //     font-weight: 700;
+        //     text-shadow: 0 0 5px rgba(255, 77, 77, 0.2);
+        //   }
+        // }
       }
     }
 
@@ -105,45 +117,36 @@
       border-top: none;
       border-bottom: none;
       background: #0f0f0f;
-
-
     }
-
-
   }
 
-
-
-  .custom-control-input:checked~.custom-control-label::before {
+  .custom-control-input:checked ~ .custom-control-label::before {
     color: #333;
     border: $border-theme-dark !important;
-    background-color: #0F0F0F !important;
+    background-color: #0f0f0f !important;
   }
 
   .info-atm-momo {
-    background: #171e28 !important;
-    border: 1px solid #031019 !important;
+    background: var(--bg-info) !important;
+    border: 1px solid var(--border-info) !important;
 
     .title {
       color: #f1f1f1 !important;
     }
 
     .sms {
-      color: #f64e60 !important;
+      color: #b20000 !important;
     }
 
     .text-danger,
     .text-primary {
       color: #f1f1f1 !important;
     }
-
-
   }
 
   .v-btn--icon.v-size--default .v-icon.mdi.mdi-content-copy {
     color: #f1f1f1 !important;
     text-shadow: $text-shadow-topic-theme-dark !important;
-
   }
 
   .color-main {

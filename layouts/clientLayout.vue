@@ -1,8 +1,11 @@
 <template>
   <v-app
-    :class="`${isThemeDark ? 'theme-dark' : isThemeRed ? 'theme-red' : ''}${
-      isViewAccount ? ' admin-view-account' : ''
-    }`"
+    :class="{
+      'theme-dark': isThemeDark,
+      'theme-red': !isThemeDark && isThemeRed,
+      'admin-view-account': isViewAccount,
+      mobile: isMobile,
+    }"
   >
     <client-only>
       <AppBar />
@@ -17,9 +20,10 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <MenuBottom />
+    <MenuBottom v-if="isMobile" />
     <MenuRight />
     <ModalLogin />
+    <ModalProfile v-if="isLogin"/>
 
     <template v-if="isShowButton">
       <!-- <div class="change-theme">
@@ -44,9 +48,9 @@ import AppBar from "@/components/pages/client/layout/AppBar";
 import MenuBottom from "@/components/pages/client/layout/MenuBottom";
 import MenuRight from "@/components/pages/client/layout/MenuRight";
 import ModalLogin from "@/components/pages/client/account/wallet/ModalLogin";
+import ModalProfile from "@/components/pages/client/layout/ModalProfile";
 import { mapFields } from "vuex-map-fields";
 
-import { mapState, mapActions } from "vuex";
 import mixins from "@/mixins/index";
 
 export default {
@@ -57,6 +61,7 @@ export default {
     MenuBottom,
     MenuRight,
     ModalLogin,
+    ModalProfile
   },
   data() {
     return {
@@ -80,15 +85,12 @@ export default {
     },
   },
   computed: {
-    ...mapFields("global", {
-      showMenuRight: "showMenuRight",
-    }),
 
     styleMain() {
-      if (this.showMenuRight && !this.isMobile) {
-        return "width: calc(100% - 260px) !important; margin-right: 250px; transition: margin-left 0.3s";
+      if (this.isShowMenuRight && !this.isMobile) {
+        return "width: calc(100vw - 260px) !important; margin-left: 250px; transition: margin-right 0.3s";
       }
-      return "width: calc(100% - 0px) !important; margin-left: 0px; transition: margin-left 0.3s";
+      return "width: calc(100vw - 0px) !important; margin-left: 0px; transition: margin-right 0.3s";
     },
     // isAvatar() {
     //   const path = this.$route.path;
@@ -100,7 +102,7 @@ export default {
     this.isThemeDark = true;
     this.isThemeRed = false;
     if (this.token) {
-      await this.fetchUser();
+      await this.getProfile();
     }
     this.$nextTick(function () {
       this.onResize();
@@ -111,7 +113,6 @@ export default {
     window.removeEventListener("resize", this.onResize);
   },
   methods: {
-    ...mapActions("home/users", ["fetchUser"]),
     // changeTheme() {
     //   this.isThemeDark = !this.isThemeDark;
     // },
@@ -243,13 +244,17 @@ export default {
 ::v-deep {
   .v-main__wrap {
     .container.client-main {
-      top: 50px;
-      bottom: 45px;
+      // top: 120px;
+      // bottom: 45px;
       right: 0px;
-      position: fixed;
-      width: calc(100% - 55px) !important;
-      // height: calc(100vh - 115px);
-      margin-left: 50px;
+      left: 0;
+      // position: fixed;
+      width: calc(100vw - 55px) !important;
+      height: calc(100vh - 115px);
+      @media (max-width: 768px) {
+        height: calc(100vh - 200px);
+      }
+      left: 0px;
       max-width: 100% !important;
       border-radius: 0px;
       background: #ffcf9c;
@@ -268,10 +273,10 @@ export default {
 
     .v-main__wrap {
       .container.client-main {
-        top: 50px;
-        bottom: 45px;
-        width: calc(100% - 65px) !important;
-        margin-left: 60px;
+        // top: 50px;
+        // bottom: 45px;
+        // width: calc(100vw - 65px) !important;
+        // margin-left: 60px;
       }
     }
   }
@@ -283,8 +288,8 @@ export default {
 
     .v-main__wrap {
       .container.client-main {
-        width: calc(100% - 75px) !important;
-        margin-left: 70px;
+        // width: calc(100vw - 75px) !important;
+        // margin-left: 70px;
       }
     }
   }
@@ -296,23 +301,23 @@ export default {
 
     .v-main__wrap {
       .container.client-main {
-        top: 50px;
-        bottom: 45px;
+        // top: 50px;
+        // bottom: 45px;
 
-        #home-page {
-          .page-body {
-            &.full-screen {
-              min-height: calc(100vh - 134px);
+        // #home-page {
+        //   .page-body {
+        //     &.full-screen {
+        //       min-height: calc(100vh - 134px);
 
-              .page-info {
-                min-height: calc(100vh - 155px);
-                // .col-12 {
-                //   padding: 12px;
-                // }
-              }
-            }
-          }
-        }
+        //       .page-info {
+        //         min-height: calc(100vh - 155px);
+        //         // .col-12 {
+        //         //   padding: 12px;
+        //         // }
+        //       }
+        //     }
+        //   }
+        // }
       }
     }
   }
@@ -332,17 +337,17 @@ export default {
         //     }
         //   }
         // }
-        #home-page {
-          .page-body {
-            &.full-screen {
-              min-height: calc(100vh - 200px) !important;
+        // #home-page {
+        //   .page-body {
+        //     &.full-screen {
+        //       min-height: calc(100vh - 200px) !important;
 
-              .page-info {
-                min-height: calc(100vh - 180px) !important;
-              }
-            }
-          }
-        }
+        //       .page-info {
+        //         min-height: calc(100vh - 180px) !important;
+        //       }
+        //     }
+        //   }
+        // }
       }
     }
   }
@@ -394,7 +399,7 @@ export default {
   .slick-slide {
     padding: 6px;
     // border: 1px solid #663019;
-    // height: calc(100% - 10px) !important;
+    // height: calc(100vw - 10px) !important;
     // border-radius: 3px !important;
   }
 

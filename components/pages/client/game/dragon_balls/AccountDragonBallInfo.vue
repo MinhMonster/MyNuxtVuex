@@ -61,11 +61,10 @@
 </template>
 
   <script>
-import AccountAvatarCard from "@/components/pages/client/game/avatars/AccountAvatarCard";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 
 export default {
-  components: { AccountAvatarCard, GroupBtnBuyAccount },
+  components: { GroupBtnBuyAccount },
   props: {
     account: {
       type: Object,

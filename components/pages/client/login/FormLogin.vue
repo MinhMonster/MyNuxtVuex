@@ -6,7 +6,7 @@
           v-model="input.email"
           type="text"
           class="v-input"
-          placeholder="Tài Khoản"
+          placeholder="Email hoặc tài khoản"
           @keyup.enter="loginUser()"
         />
       </form-validator>
@@ -23,26 +23,27 @@
         />
       </form-validator>
     </div>
+
     <div class="content">
       <div class="checkbox">
         <input type="checkbox" id="remember" checked />
         <label for="remember">Lưu đăng nhập</label>
       </div>
-      <span
-        class="login-btn text-white"
+      <button
+        type="button"
+        class="btn-gaming-unified w-100px h-32px text-white"
         @click="showModalLoginRegister('register')"
-        >Đăng Ký</span
       >
+        Đăng ký
+      </button>
     </div>
-    <input type="hidden" id="confirm" name="confirm" />
+
     <div class="field submit">
-      <v-btn size="sm" class="btn-login" @click="loginUser()">
-        <Loading v-if="isLoading" button></Loading>
-        <span v-else> Đăng nhập </span>
+      <v-btn class="btn-neon-purple w-100" @click="loginUser()">
+        <Loading v-if="isLoading" button />
+        <span v-else>Đăng nhập</span>
       </v-btn>
     </div>
-    <!-- <div class="signin">----------- Hoặc -----------</div>
-    <ButtonLoginFacebook /> -->
   </form>
 </template>
 
@@ -78,12 +79,12 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["login", "logout", "fetchUser", "loginFb"]),
+    ...mapActions(["login"]),
     async loginUser() {
       this.isLoading = true;
       const res = await this.login(this.input);
       if (this.token) {
-        this.fetchUser();
+        this.getProfile();
         this.$emit("close");
         this.showSwal({
           icon: "success",
@@ -311,6 +312,36 @@ input[type="checkbox"]:checked + label::after {
 }
 
 #home-page {
-  max-width: 400px;
+  // max-width: 400px;
+}
+
+.btn-register {
+  background: transparent;
+  border: 1px solid rgba(170, 80, 255, 0.7);
+  color: #d9a6ff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 0 rgba(170, 80, 255, 0);
+}
+
+/* hover */
+.btn-register:hover {
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    rgba(170, 80, 255, 0.25),
+    rgba(255, 80, 220, 0.25)
+  );
+  box-shadow: 0 0 10px rgba(170, 80, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+/* active */
+.btn-register:active {
+  transform: translateY(0);
+  box-shadow: 0 0 6px rgba(170, 80, 255, 0.4);
 }
 </style>

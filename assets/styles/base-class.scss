@@ -27,6 +27,9 @@ $fontWeight: (
 );
 
 $widths: (
+  32,
+  40,
+  45,
   50,
   60,
   70,
@@ -70,7 +73,11 @@ $margins: (
   .w-#{$widths}px {
     width: #{$widths}px !important;
   }
+  .h-#{$widths}px {
+    height: #{$widths}px !important;
+  }
 }
+
 
 @each $widths in $widths {
   .min-w-#{$widths} {
@@ -105,7 +112,7 @@ $margins: (
 .divider {
   width: 100%;
   height: 1px;
-  background-color: #a4a4a4;
+  background-color: var(--border-table);
   margin: 5px 0;
 }
 

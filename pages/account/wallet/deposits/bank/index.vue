@@ -48,7 +48,7 @@
             </v-col> -->
             <v-col cols="12" sm="6">
               <div class="field submit mt-2">
-                <v-btn size="sm" class="btn-login" @click="submit()">
+                <v-btn size="sm" class="btn-neon-purple w-100" @click="submit()">
                   <Loading v-if="isLoading" button></Loading>
                   <span v-else> Tạo giao dịch nạp tiền </span>
                 </v-btn>
@@ -345,8 +345,5 @@ form {
   .title {
     font-size: 15px !important;
   }
-}
-#home-page {
-  max-width: 1000px !important;
 }
 </style>

@@ -2,6 +2,7 @@
 
 
 import { mapFields } from "vuex-map-fields";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -92,12 +93,17 @@ export default {
       showLoginRegister: "showLoginRegister",
       showRegister: "showRegister",
       isFormLoginRegister: "isFormLoginRegister",
+      isShowProfileModal: "isShowProfileModal",
+      isShowMenuRight: "isShowMenuRight",
       isThemeDark: "isThemeDark",
       isThemeRed: "isThemeRed",
       isView: "isView",
     }),
     isLogin() {
       return this.token && this.user;
+    },
+    userInfo() {
+      return this.user;
     },
     isAdmin() {
       return this.isLogin && this.user.admin;
@@ -177,15 +183,31 @@ export default {
     },
   },
   methods: {
+    ...mapActions("home/users", [
+      "logout",
+      "fetchUser"
+    ]),
+    handleLogout() {
+      this.logout();
+    },
+    getProfile() {
+      this.fetchUser();
+    },
     showModalLoginRegister(value) {
       if (!this.showLoginRegister) {
         this.showLoginRegister = true;
       }
       this.isFormLoginRegister = value;
     },
+    openProfileModal() {
+      this.isShowProfileModal = true;
+    },
+    handleMenuRight(value) {
+      this.isShowMenuRight = value;
+    },
     onResize() {
       this.scrWidth = document.querySelector("body").clientWidth;
-      if (this.scrWidth < 600) {
+      if (this.scrWidth < 768) {
         this.isMb = true;
       } else {
         this.isMb = false;

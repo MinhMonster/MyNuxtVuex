@@ -1,19 +1,31 @@
 <template>
   <table class="table text-center">
     <tbody>
-      <tr v-for="(row, index) in accountInfos" :key="'row-' + index">
-        <template v-if="!row.hidden">
-          <th class="info-nick">
-            {{ row.label }}
-          </th>
+      <tr v-if="!showMore">
+        <td colspan="2" class="btn-next-more" @click="showMore = true">
+          <BaseSvg
+            button
+            name="skip"
+            content="Xem thêm Thông tin chi tiết"
+            variant="danger"
+          />
+        </td>
+      </tr>
+      <tr
+        v-for="(row, index) in accountInfos"
+        :key="'row-' + index"
+        v-show="showMore && !row.hidden"
+      >
+        <th class="info-nick">
+          {{ row.label }}
+        </th>
 
-          <td class="mua-nick">
-            <span v-if="!row.html">
-              {{ row.value }}
-            </span>
-            <span v-else v-html="row.value"></span>
-          </td>
-        </template>
+        <td class="mua-nick">
+          <span v-if="!row.html">
+            {{ row.value }}
+          </span>
+          <span v-else v-html="row.value"></span>
+        </td>
       </tr>
       <slot>
         <PriceAccount :account="account" />
@@ -30,6 +42,21 @@ export default {
   components: {
     PriceAccount,
   },
+  data() {
+    return {
+      showMore: true,
+    };
+  },
+  watch: {
+    isMobile: {
+      async handler(newValue, oldValue) {
+        this.handleShowMore();
+      },
+    },
+  },
+  created() {
+    this.handleShowMore();
+  },
   props: {
     account: {
       type: Object,
@@ -44,6 +71,19 @@ export default {
     accountInfos: {
       type: Array,
       required: true,
+    },
+    isShow: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  methods: {
+    handleShowMore() {
+      if (!this.isShow && this.isMobile) {
+        this.showMore = false;
+      } else {
+        this.showMore = true;
+      }
     },
   },
 };
