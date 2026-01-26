@@ -32,7 +32,7 @@
         content="Xem Thêm Nick"
         variant="danger"
         class="flex mt-3 mb-1"
-        @click="onChange()"
+        @click="loadNextPage()"
       />
     </div>
   </div>

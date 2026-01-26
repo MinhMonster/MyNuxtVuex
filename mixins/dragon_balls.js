@@ -5,17 +5,20 @@ import { getQueryObject, buildQueryString } from "@/utils/queryHelpers";
 
 export default {
   computed: {
+    // global
     ...mapFields("global", {
       ready: "ready",
-      isLoadingSearch: "isLoadingSearch"
+      isLoadingSearch: "isLoadingSearch",
     }),
+
+    // module
     ...mapFields("home/game/dragon_balls", {
       accounts: "accounts",
       account: "account",
       meta: "meta",
       pages: "meta.pages",
+
       query: "query",
-      cash: "query.q.cash",
       code: "query.q.code",
       server: "query.q.server",
       accountClass: "query.q.class",
@@ -23,13 +26,15 @@ export default {
       username: "query.q.username",
       page: "query.page",
     }),
+
     isQuery() {
-      const query = this.$route.query;
-      return !_.isEmpty(query);
+      return !_.isEmpty(this.$route.query);
     },
+
     isShowNext() {
       return this.page < this.pages;
     },
+
     queryFieldConfig() {
       return queryDragonBallConfigs(this);
     },
@@ -38,7 +43,7 @@ export default {
       return getQueryObject(this.queryFieldConfig, this.$route);
     },
 
-    query() {
+    queryString() {
       return buildQueryString(this.queryFieldConfig);
     },
   },
@@ -49,8 +54,9 @@ export default {
       "setQuery",
       "fetchAccountDragonBall",
       "resetAccountDragonBalls",
-      "fetchAccountDragonBalls"
+      "fetchAccountDragonBalls",
     ]),
+
     async reload() {
       this.ready = false;
       await this.setQueryAccount();
@@ -58,25 +64,35 @@ export default {
       await this.fetchAccountDragonBalls();
       this.ready = true;
     },
+
     async search() {
-      await this.setQuery({ page: 1 });
       this.isLoadingSearch = true;
+
+      await this.setQuery({ page: 1 });
       await this.resetAccountDragonBalls();
       await this.fetchAccountDragonBalls();
-      setTimeout(() => (this.isLoadingSearch = false), 300);
+
+      this.isLoadingSearch = false;
       this.syncQueryToUrl();
     },
-    async onChange() {
+
+    // load more (đổi tên cho đúng nghĩa)
+    async loadNextPage() {
+      if (!this.isShowNext) return;
+
       this.isLoadingSearch = true;
       await this.setQuery({ page: this.page + 1 });
       await this.fetchAccountDragonBalls();
       this.isLoadingSearch = false;
+
       this.syncQueryToUrl();
     },
+
     async reset() {
       await this.resetQuery();
-      this.search();
+      await this.search();
     },
+
     async setQueryAccount() {
       await this.resetQuery();
 
@@ -89,8 +105,13 @@ export default {
 
       this.syncQueryToUrl();
     },
+
     syncQueryToUrl() {
-      this.$router.push(`${this.path}?${this.query}`);
+      this.$router.push(
+        this.queryString
+          ? `${this.path}?${this.queryString}`
+          : this.path
+      );
     },
   },
 };
