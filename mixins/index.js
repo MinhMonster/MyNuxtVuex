@@ -86,6 +86,7 @@ export default {
       user: "user"
     }),
     ...mapFields("global", {
+      ready: "ready",
       isMb: "isMb",
       scrWidth: "scrWidth",
       is_tablet: "is_tablet",
@@ -99,6 +100,9 @@ export default {
       isThemeRed: "isThemeRed",
       isView: "isView",
     }),
+    isReady() {
+      return this.ready;
+    },
     isLogin() {
       return this.token && this.user;
     },
@@ -204,6 +208,13 @@ export default {
     },
     handleMenuRight(value) {
       this.isShowMenuRight = value;
+    },
+    convertToCamelCase(str, delimiter = '/') {
+      const parts = str.split(delimiter)
+      return parts.shift() + parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('')
+    },
+    convertToDot(str) {
+      return str.replace(/\//g, '.')
     },
     onResize() {
       this.scrWidth = document.querySelector("body").clientWidth;
@@ -399,5 +410,15 @@ export default {
           return "";
       }
     },
+
+    getOptionText(value, options, fallback = "") {
+      if (value === null || value === undefined) return fallback;
+
+      const found = options.find(
+        (item) => String(item.value) === String(value)
+      );
+
+      return found ? found.text : fallback;
+    }
   },
 };

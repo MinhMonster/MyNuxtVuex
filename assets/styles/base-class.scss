@@ -1,30 +1,5 @@
-$fontSize: (
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  20,
-  24,
-  28,
-  20,
-  32,
-  36,
-  48
-);
-$fontWeight: (
-  400,
-  450,
-  500,
-  550,
-  600,
-  650,
-  700,
-  750,
-  800
-);
+$fontSize: (12, 13, 14, 15, 16, 17, 18, 20, 24, 28, 20, 32, 36, 48);
+$fontWeight: (400, 450, 500, 550, 600, 650, 700, 750, 800);
 
 $widths: (
   32,
@@ -38,26 +13,27 @@ $widths: (
   150,
   180,
   200,
+  300,
+  400,
+  450,
+  500,
+  600,
+  700,
+  800,
+  900,
+  1000
 );
 
-$margins: (
-  -1,
-  -2,
-  -3,
-  -4,
-  -5,
-  -6,
-  -10
-);
+$margins: (-1, -2, -3, -4, -5, -6, -10);
 
 @each $fontSize in $fontSize {
   @each $fontWeight in $fontWeight {
     .text-#{$fontSize}-#{$fontWeight} {
       font-size: #{$fontSize}px !important;
       font-weight: #{$fontWeight} !important;
-        @media (max-width: 370px) {
-          font-size: #{$fontSize * 0.84}px !important;
-        }
+      @media (max-width: 370px) {
+        font-size: #{$fontSize * 0.84}px !important;
+      }
     }
   }
 }
@@ -68,7 +44,6 @@ $margins: (
   }
 }
 
-
 @each $widths in $widths {
   .w-#{$widths}px {
     width: #{$widths}px !important;
@@ -77,7 +52,6 @@ $margins: (
     height: #{$widths}px !important;
   }
 }
-
 
 @each $widths in $widths {
   .min-w-#{$widths} {

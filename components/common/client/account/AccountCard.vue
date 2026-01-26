@@ -147,9 +147,9 @@ export default {
   height: 32px;
   overflow: hidden;
 
-  &.is-discount {
-    border-color: rgba(255, 23, 68, 0.4); // Viền đỏ mờ khi có giảm giá
-  }
+  // &.is-discount {
+  border-color: rgba(255, 23, 68, 0.4); // Viền đỏ mờ khi có giảm giá
+  // }
 }
 
 /* Badge Giảm giá tích hợp */
@@ -172,7 +172,9 @@ export default {
 .price-display {
   padding-left: 10px;
   display: flex;
+  flex: 1;
   flex-direction: column;
+  align-items: center;
 
   .price-old {
     text-decoration: line-through;

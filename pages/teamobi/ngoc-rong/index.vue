@@ -1,75 +1,31 @@
 <template>
-  <client-only>
-    <HomePage
-      title="Nick Ngọc Rồng Online"
-      :loading="!ready"
-      goBack
-      reload
-      @reload="reload()"
-      notBoder
-    >
-      <template v-if="ready" #body>
-        <div class="mt-4">
-          <AccountDragonBallSearch @search="search()"></AccountDragonBallSearch>
-          <AccountDragonBallList></AccountDragonBallList>
-        </div>
-      </template>
-    </HomePage>
-  </client-only>
+  <AccountIndex
+    title="Nick Ngọc Rồng Online"
+    module="client/game/dragonBalls"
+    :imageComponent="AccountImage"
+  >
+    <template #content>
+      <AccountContent />
+    </template>
+  </AccountIndex>
 </template>
 
 <script>
-import HomePage from "@/components/pages/home/HomePage";
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
-import AccountDragonBallSearch from "@/components/pages/client/game/dragon_balls/AccountDragonBallSearch";
-import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/AccountDragonBallList";
+import AccountIndex from "@/components/common/client/account/AccountIndex";
+import AccountImage from "@/components/common/client/account/AccountImage";
+import AccountContent from "@/components/pages/client/game/dragon_balls/AccountContent";
 
 export default {
   layout: "clientLayout",
 
   components: {
-    HomePage,
-    AccountDragonBallSearch,
-    AccountDragonBallList,
-  },
-  computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
-  },
-  async mounted() {
-    this.ready = false;
-    await this.resetQuery();
-    await this.resetAccountDragonBalls();
-    await this.fetchAccountDragonBalls();
-    this.ready = true;
-  },
-  methods: {
-    ...mapActions("home/game/dragon_balls", [
-      "resetQuery",
-      "setQuery",
-      "resetAccountDragonBalls",
-      "fetchAccountDragonBalls",
-    ]),
-    async search() {
-      this.ready = false;
-      await this.resetAccountDragonBalls();
-      await this.fetchAccountDragonBalls();
-      this.ready = true;
-    },
-    async reload() {
-      this.ready = false;
-      await this.resetQuery();
-      await this.resetAccountDragonBalls();
-      await this.fetchAccountDragonBalls();
-      this.ready = true;
-    },
+    AccountIndex,
+    AccountContent,
   },
   data() {
     return {
-      title:
-        "MuaBanNick.Pro - Shop Nick Ngọc Rồng Online Tự Động - Shop Mua Bán Nick Ngọc Rồng Online VIP Giá Rẻ, Uy Tín Nhất MXH",
+      AccountImage,
+      title: "MuaBanNick.Pro - Shop Nick Ngọc Rồng Online",
       description:
         "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
     };

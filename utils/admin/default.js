@@ -1,0 +1,201 @@
+import _ from 'lodash'
+
+export const defaultPagy = _.cloneDeep({
+  count: 1,
+  page: 1,
+  per_page: 15,
+  pages: 0,
+  from: 0,
+  to: 0
+})
+
+
+// Ninja
+export const typeOptions = _.cloneDeep([
+  {
+    text: "Thường",
+    value: 1,
+  },
+  {
+    text: "VIP",
+    value: 2,
+  },
+]);
+
+export const serverNinjaOptions = _.cloneDeep([
+  {
+    text: "Sv1 - Bokken",
+    value: 1,
+  },
+  {
+    text: "Sv2+3 - Shuriken + Tessen",
+    value: 2,
+  },
+  {
+    text: "Sv4 - Kunai",
+    value: 4,
+  },
+  {
+    text: "Sv5 - Katana",
+    value: 5,
+  },
+  {
+    text: "Sv67 - Tone + Sanzu",
+    value: 6,
+  },
+  {
+    text: "Sv8 - Sensha",
+    value: 8,
+  },
+]);
+
+
+export const classNinjaOptions = _.cloneDeep([
+  {
+    text: "Đao",
+    value: 1,
+  },
+  {
+    text: "Kiếm",
+    value: 2,
+  },
+  {
+    text: "Tiêu",
+    value: 3,
+  },
+  {
+    text: "Cung",
+    value: 4,
+  },
+  {
+    text: "Quạt",
+    value: 5,
+  },
+  {
+    text: "Kunai",
+    value: 6,
+  },
+  {
+    text: "Chưa",
+    value: 7,
+  },
+]);
+
+// Avatar
+export const sexAvatarOptions = _.cloneDeep([
+  {
+    text: "Nam",
+    value: 1,
+  },
+  {
+    text: "Nữ",
+    value: 2,
+  },
+  {
+    text: "Bê đê",
+    value: 3,
+  }
+]);
+
+export const statusOptions = _.cloneDeep([
+  {
+    text: "Chưa Bán",
+    value: "yes",
+  },
+  {
+    text: "Đã Bán",
+    value: "no",
+  },
+  {
+    text: "Chờ Duyệt",
+    value: "pending",
+  }
+]);
+
+// Ninja
+export const typeSeleOffOptions = _.cloneDeep([
+  {
+    text: "Ninja",
+    value: "ninja",
+  },
+  {
+    text: "Avatar",
+    value: "avatar",
+  },
+]);
+
+
+export const serverNroOptions = _.cloneDeep([
+  {
+    text: "Vũ trụ 1",
+    value: 1,
+  },
+  {
+    text: "Vũ trụ 2",
+    value: 2,
+  },
+  {
+    text: "Vũ trụ 3",
+    value: 3,
+  },
+  {
+    text: "Vũ trụ 4",
+    value: 4,
+  },
+  {
+    text: "Vũ trụ 5",
+    value: 5,
+  },
+  {
+    text: "Vũ trụ 6",
+    value: 6,
+  },
+  {
+    text: "Vũ trụ 7",
+    value: 7,
+  },
+  {
+    text: "Vũ trụ 8",
+    value: 8,
+  },
+  {
+    text: "Vũ trụ 9",
+    value: 9,
+  },
+  {
+    text: "Vũ trụ 10",
+    value: 10,
+  },
+  {
+    text: "Vũ trụ 11",
+    value: 11,
+  },
+  {
+    text: "Vũ trụ 12",
+    value: 12,
+  },
+  {
+    text: "Vũ trụ 13",
+    value: 13,
+  },
+  {
+    text: "Vũ trụ 14",
+    value: 14,
+  },
+]);
+
+export const planetNroOptions = _.cloneDeep([
+  {
+    text: "Trái đất",
+    value: 1,
+  },
+  {
+    text: "Xayda",
+    value: 2,
+  },
+  {
+    text: "Namec",
+    value: 3,
+  },
+]);
+

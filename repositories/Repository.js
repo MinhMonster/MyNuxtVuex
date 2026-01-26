@@ -2,8 +2,11 @@
 // Home Page
 import gameNinjas from '~/repositories/home/game/ninjas'
 import gameAvatars from '~/repositories/home/game/avatars'
-import gameDragonBalls from '~/repositories/home/game/dragon_balls'
+import gameDragonBalls from '~/repositories/home/game/dragonBalls'
 import gameNinjaCoin from '~/repositories/home/game/ninja-coin'
+
+import clientGameDragonBalls from '~/repositories/client/game/dragonBalls'
+
 
 import homeUsers from '~/repositories/home/users'
 import homeTopics from '~/repositories/home/topics'
@@ -23,6 +26,8 @@ export default ($api) => ({
   gameAvatars: gameAvatars($api),
   gameDragonBalls: gameDragonBalls($api),
   gameNinjaCoin: gameNinjaCoin($api),
+
+  clientGameDragonBalls: clientGameDragonBalls($api),
 
   homeUsers: homeUsers($api),
   homeTopics: homeTopics($api),
