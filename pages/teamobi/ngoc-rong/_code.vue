@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
-      <template v-if="account && account.ID && ready" #body>
+      <template v-if="account && ready" #body>
         <AccountDragonBallDetail :account="account" />
       </template>
       <template #table>
@@ -25,12 +25,11 @@ import HomePage from "@/components/pages/home/HomePage";
 import AccountDragonBallDetail from "@/components/pages/client/game/dragon_balls/AccountDragonBallDetail";
 import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/AccountDragonBallList";
 
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
 import mixins from "@/mixins/index";
+import dragon_balls from "@/mixins/dragon_balls";
 
 export default {
-  mixins: [mixins],
+  mixins: [mixins, dragon_balls],
   layout: "clientLayout",
   components: {
     HomePage,
@@ -39,19 +38,12 @@ export default {
   },
 
   computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
-    ...mapFields("home/game/dragon_balls", {
-      account: "accountDragonBall",
-      accounts: "accountDragonBalls",
-    }),
-    accountId() {
-      return this.$route.params.id;
+    accountCode() {
+      return this.$route.params.code;
     },
     title() {
       return `Mã Số: ${this.format_number(
-        this.accountId
+        this.accountCode
       )} - Nick Ngọc Rồng Online - MuaBanNick.Pro`;
     },
   },
@@ -59,22 +51,11 @@ export default {
     this.fetchAccount();
   },
   methods: {
-    ...mapActions("home/game/dragon_balls", [
-      "fetchAccountDragonBall",
-      "resetQuery",
-      "setQuery",
-      "resetAccountDragonBalls",
-      "fetchAccountDragonBalls",
-    ]),
 
     async fetchAccount() {
       this.ready = false;
 
-      await this.fetchAccountDragonBall({
-        params: {
-          id: this.accountId,
-        },
-      });
+      await this.fetchAccountDragonBall(this.accountCode);
       this.ready = true;
 
       await this.resetQuery();
@@ -84,7 +65,7 @@ export default {
           perPage: 8,
           q: {
             giatien: this.account.price,
-            id_other: this.account.ID,
+            id_other: this.account.code,
           },
         });
         await this.fetchAccountDragonBalls();

@@ -20,12 +20,12 @@
 
 <script>
 import HomePage from "@/components/pages/home/HomePage";
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
 import AccountDragonBallSearch from "@/components/pages/client/game/dragon_balls/AccountDragonBallSearch";
 import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/AccountDragonBallList";
+import dragon_balls from "@/mixins/dragon_balls";
 
 export default {
+  mixins: [dragon_balls],
   layout: "clientLayout",
 
   components: {
@@ -33,38 +33,9 @@ export default {
     AccountDragonBallSearch,
     AccountDragonBallList,
   },
-  computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
-  },
+
   async mounted() {
-    this.ready = false;
-    await this.resetQuery();
-    await this.resetAccountDragonBalls();
-    await this.fetchAccountDragonBalls();
-    this.ready = true;
-  },
-  methods: {
-    ...mapActions("home/game/dragon_balls", [
-      "resetQuery",
-      "setQuery",
-      "resetAccountDragonBalls",
-      "fetchAccountDragonBalls",
-    ]),
-    async search() {
-      this.ready = false;
-      await this.resetAccountDragonBalls();
-      await this.fetchAccountDragonBalls();
-      this.ready = true;
-    },
-    async reload() {
-      this.ready = false;
-      await this.resetQuery();
-      await this.resetAccountDragonBalls();
-      await this.fetchAccountDragonBalls();
-      this.ready = true;
-    },
+    this.reload();
   },
   data() {
     return {

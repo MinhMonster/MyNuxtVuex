@@ -6,16 +6,14 @@ const SET_QUERY = "SET_QUERY";
 export default {
   namespaced: true,
   state: () => ({
-    accountDragonBalls: [],
-    metaDragonBalls: {},
-    countDragonBalls: "",
-    accountDragonBall: {},
+    accounts: [],
+    meta: {},
+    account: {},
     query: {
       page: 1,
-      perPage: 24,
+      perPage: 2,
       q: {
-        id: null,
-        level: null,
+        code: null,
         cash: null,
         class: null,
         server: null,
@@ -45,37 +43,36 @@ export default {
       });
     },
     SET_DRAGON_BALLS(state, payload) {
-      const accountDragonBalls = _.cloneDeep(state.accountDragonBalls);
-      state.accountDragonBalls = accountDragonBalls.concat(payload.accountDragonBalls);
-      state.metaDragonBalls = payload.pagy
-      state.countDragonBalls = payload.count
+      const accounts = _.cloneDeep(state.accounts);
+      state.accounts = accounts.concat(payload.data);
+      state.meta = payload.meta;
     },
     RESET_DRAGON_BALLS(state) {
-      state.accountDragonBalls = []; 
-      state.metaDragonBalls = {}
-      state.countDragonBalls = ""
+      state.accounts = [];
+      state.meta = {}
     },
 
     SET_DRAGON_BALL(state, payload) {
-      state.accountDragonBall = payload
+      state.account = payload
     },
 
   },
 
   actions: {
     newAccountDragonBall({ commit }) {
-      commit(SET_STATE, { accountDragonBall: newAccountDragonBall });
+      commit(SET_STATE, { account: newAccountDragonBall });
     },
+
     async fetchAccountDragonBalls({ commit, state }) {
       try {
         const res = await this.$repositories.gameDragonBalls.fetchAccountDragonBalls({ input: state.query })
-        commit('SET_DRAGON_BALLS', res.data)
+        commit('SET_DRAGON_BALLS', res.data.response);
       } catch (error) { }
     },
     async fetchAccountDragonBall({ commit }, payload) {
       try {
         const res = await this.$repositories.gameDragonBalls.fetchAccountDragonBall(payload)
-        commit('SET_DRAGON_BALL', res.data.accountDragonBall)
+        commit('SET_DRAGON_BALL', res.data.response)
       } catch (error) { }
     },
 
@@ -94,10 +91,9 @@ export default {
     resetQuery({ commit }) {
       commit(SET_QUERY, {
         page: 1,
-        perPage: 24,
+        perPage: 2,
         q: {
-          id: null,
-          level: null,
+          code: null,
           cash: null,
           class: null,
           server: null,

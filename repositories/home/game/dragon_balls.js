@@ -1,18 +1,14 @@
-const resource = '/apis/game/dragon_balls'
-const headers = {
-  headers: {
-    "Content-Type": "multipart/form-data"
-  },
-}
+const resource = '/dragon-balls'
+
 export default ($api) => ({
   fetchAccountDragonBalls(payload) {
-    return $api.get(`${resource}/fetchAccountDragonBalls.php`,
-      { params: { input: payload.input } },
+    return $api.get(`${resource}`,
+      { params: payload.input },
       {
         hideLoading: true
       });
   },
-  fetchAccountDragonBall(payload) {
-    return $api.get(`${resource}/fetchAccountDragonBall.php`, payload)
+  fetchAccountDragonBall(code) {
+    return $api.get(`${resource}/${code}`)
   },
 })
