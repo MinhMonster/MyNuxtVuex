@@ -23,7 +23,7 @@
     <MenuBottom v-if="isMobile" />
     <MenuRight />
     <ModalLogin />
-    <ModalProfile v-if="isLogin"/>
+    <ModalProfile v-if="isLogin" />
 
     <template v-if="isShowButton">
       <!-- <div class="change-theme">
@@ -61,7 +61,7 @@ export default {
     MenuBottom,
     MenuRight,
     ModalLogin,
-    ModalProfile
+    ModalProfile,
   },
   data() {
     return {
@@ -81,11 +81,11 @@ export default {
         if (!this.token && this.path.includes("/account/")) {
           this.$router.push("/");
         }
+        this.nextTop();
       },
     },
   },
   computed: {
-
     styleMain() {
       if (this.isShowMenuRight && !this.isMobile) {
         return "width: calc(100vw - 260px) !important; margin-left: 250px; transition: margin-right 0.3s";

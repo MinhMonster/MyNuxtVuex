@@ -1,42 +1,32 @@
 <template>
   <client-only>
-    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
-      <template v-if="account && ready" #body>
-        <AccountDragonBallDetail :account="account" />
-      </template>
-      <template #table>
-        <div class="page-body bg-none mt--2">
-          <div class="title-category">
-            <div data-v-53350ac5="" class="title">
-              <center data-v-53350ac5="">
-                <h3 data-v-53350ac5="">Danh Sách Nick Gợi Ý</h3>
-              </center>
-            </div>
-          </div>
-          <AccountDragonBallList />
-        </div>
-      </template>
-    </HomePage>
+    <AccountShow
+      module="client/game/dragonBalls"
+      title="Nick Ngọc Rồng"
+      :id="accountCode"
+      :imageComponent="AccountImage"
+    />
   </client-only>
 </template>
 
 <script>
-import HomePage from "@/components/pages/home/HomePage";
-import AccountDragonBallDetail from "@/components/pages/client/game/dragon_balls/AccountDragonBallDetail";
-import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/AccountDragonBallList";
+import AccountImage from "@/components/common/client/account/AccountImage";
+import AccountShow from "@/components/common/client/account/AccountShow";
 
+import clientCrud from "@/mixins/clientCrud";
 import mixins from "@/mixins/index";
-import dragon_balls from "@/mixins/dragon_balls";
 
 export default {
-  mixins: [mixins, dragon_balls],
   layout: "clientLayout",
+  mixins: [mixins, clientCrud],
   components: {
-    HomePage,
-    AccountDragonBallDetail,
-    AccountDragonBallList,
+    AccountShow,
   },
-
+  data() {
+    return {
+      AccountImage,
+    };
+  },
   computed: {
     accountCode() {
       return this.$route.params.code;
@@ -45,31 +35,6 @@ export default {
       return `Mã Số: ${this.format_number(
         this.accountCode
       )} - Nick Ngọc Rồng Online - MuaBanNick.Pro`;
-    },
-  },
-  mounted() {
-    this.fetchAccount();
-  },
-  methods: {
-
-    async fetchAccount() {
-      this.ready = false;
-
-      await this.fetchAccountDragonBall(this.accountCode);
-      this.ready = true;
-
-      await this.resetQuery();
-      await this.resetAccountDragonBalls();
-      if (this.account) {
-        await this.setQuery({
-          perPage: 8,
-          q: {
-            giatien: this.account.price,
-            id_other: this.account.code,
-          },
-        });
-        await this.fetchAccountDragonBalls();
-      }
     },
   },
   head() {

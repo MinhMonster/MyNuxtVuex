@@ -107,16 +107,6 @@ export default {
 </script>
 
 <style scoped>
-.neon-title {
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 900;
-  text-shadow: 0 0 10px #bd00ff, 0 0 20px #bd00ff;
-  display: inline-block;
-  border-bottom: 2px solid #bd00ff;
-  padding-bottom: 5px;
-  text-transform: uppercase;
-}
 
 .game-card {
   background: #1a0033 !important;

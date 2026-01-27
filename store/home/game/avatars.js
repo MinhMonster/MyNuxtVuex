@@ -1,7 +1,6 @@
 import { getField, updateField } from "vuex-map-fields";
 import { cleanQuery } from "@/utils/queryHelpers";
 
-const SET_STATE = "SET_STATE";
 const SET_QUERY = "SET_QUERY";
 
 export default {
@@ -78,12 +77,12 @@ export default {
       commit("RESET_ACCOUNTS");
     },
     resetQuery({ commit }) {
-      commit(SET_QUERY, defaultQueryAvatar());
+      commit(SET_QUERY, defaultQueryAvatar);
     }
   }
 };
 
-const defaultQueryAvatar = () => ({
+const defaultQueryAvatar = {
   page: 1,
   perPage: 60,
   q: {
@@ -93,4 +92,4 @@ const defaultQueryAvatar = () => ({
     sex: null,
     farm: null
   }
-});
+};

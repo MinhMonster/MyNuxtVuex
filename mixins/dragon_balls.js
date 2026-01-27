@@ -12,7 +12,7 @@ export default {
     }),
 
     // module
-    ...mapFields("home/game/dragon_balls", {
+    ...mapFields("home/game/dragonBalls", {
       accounts: "accounts",
       account: "account",
       meta: "meta",
@@ -49,7 +49,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("home/game/dragon_balls", [
+    ...mapActions("home/game/dragonBalls", [
       "resetQuery",
       "setQuery",
       "fetchAccountDragonBall",

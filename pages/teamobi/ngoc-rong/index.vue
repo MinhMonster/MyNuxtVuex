@@ -1,46 +1,31 @@
 <template>
-  <client-only>
-    <HomePage
-      title="Nick Ngọc Rồng Online"
-      :loading="!ready"
-      goBack
-      reload
-      @reload="reload()"
-      notBoder
-    >
-      <template v-if="ready" #body>
-        <div class="mt-4">
-          <AccountDragonBallSearch @search="search()"></AccountDragonBallSearch>
-          <AccountDragonBallList></AccountDragonBallList>
-        </div>
-      </template>
-    </HomePage>
-  </client-only>
+  <AccountIndex
+    title="Nick Ngọc Rồng Online"
+    module="client/game/dragonBalls"
+    :imageComponent="AccountImage"
+  >
+    <template #content>
+      <AccountContent />
+    </template>
+  </AccountIndex>
 </template>
 
 <script>
-import HomePage from "@/components/pages/home/HomePage";
-import AccountDragonBallSearch from "@/components/pages/client/game/dragon_balls/AccountDragonBallSearch";
-import AccountDragonBallList from "@/components/pages/client/game/dragon_balls/AccountDragonBallList";
-import dragon_balls from "@/mixins/dragon_balls";
+import AccountIndex from "@/components/common/client/account/AccountIndex";
+import AccountImage from "@/components/common/client/account/AccountImage";
+import AccountContent from "@/components/pages/client/game/dragon_balls/AccountContent";
 
 export default {
-  mixins: [dragon_balls],
   layout: "clientLayout",
 
   components: {
-    HomePage,
-    AccountDragonBallSearch,
-    AccountDragonBallList,
-  },
-
-  async mounted() {
-    this.reload();
+    AccountIndex,
+    AccountContent,
   },
   data() {
     return {
-      title:
-        "MuaBanNick.Pro - Shop Nick Ngọc Rồng Online Tự Động - Shop Mua Bán Nick Ngọc Rồng Online VIP Giá Rẻ, Uy Tín Nhất MXH",
+      AccountImage,
+      title: "MuaBanNick.Pro - Shop Nick Ngọc Rồng Online",
       description:
         "WEB Mua Bán Nick Game, Tài Khoản Game, Dịch Vụ Game Online, Ninja School - Nso, Ngọc Rồng - Nro, Avatar SX Diệu Kỳ, Uy Tín - Giá rẻ",
     };
