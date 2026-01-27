@@ -1,180 +1,180 @@
 <template>
   <client-only>
-    <div v-if="accountNinja" class="ninja-image-card">
+    <div v-if="account?.code" class="ninja-image-card">
       <img
         :src="
-          accountNinja.images[0].includes('muabannick.pro')
-            ? accountNinja.images[0]
-            : `https://muabannick.pro${accountNinja.images[0]}`
+          account.images[0].includes('muabannick.pro')
+            ? account.images[0]
+            : `https://muabannick.pro${account.images[0]}`
         "
         alt="Ninja School"
         class="ninja-img"
-        :class="{ 'img-full': accountNinja.is_full_image }"
+        :class="{ 'img-full': account.is_full_image }"
       />
 
-      <template v-if="!accountNinja.is_full_image">
+      <template v-if="!account.is_full_image">
         <div class="ninja-top-meta">
-          <span class="meta-tag tag-lv">Lv: {{ accountNinja.level }}</span>
+          <span class="meta-tag tag-lv">Lv: {{ account.level }}</span>
           <span class="meta-tag tag-sv"
-            >Sv: {{ serverNinjaNumber(accountNinja.server) }}</span
+            >Sv: {{ serverNinjaNumber(account.server) }}</span
           >
           <span class="meta-tag tag-name"
-            >@{{ accountNinja.character_name }}</span
+            >@{{ account.character_name }}</span
           >
         </div>
 
         <span
-          v-if="accountNinja.tl_1"
+          v-if="account.tl_1"
           class="equip-stat pos-r"
           style="top: 19%"
-          >{{ accountNinja.tl_1 }}</span
+          >{{ account.tl_1 }}</span
         >
         <span
-          v-if="accountNinja.tl_2"
+          v-if="account.tl_2"
           class="equip-stat pos-r"
           style="top: 30.5%"
-          >{{ accountNinja.tl_2 }}</span
+          >{{ account.tl_2 }}</span
         >
         <span
-          v-if="accountNinja.tl_3"
+          v-if="account.tl_3"
           class="equip-stat pos-r"
           style="top: 42%"
-          >{{ accountNinja.tl_3 }}</span
+          >{{ account.tl_3 }}</span
         >
         <span
-          v-if="accountNinja.tl_4"
+          v-if="account.tl_4"
           class="equip-stat pos-r"
           style="top: 53%"
-          >{{ accountNinja.tl_4 }}</span
+          >{{ account.tl_4 }}</span
         >
         <span
-          v-if="accountNinja.tl_5"
+          v-if="account.tl_5"
           class="equip-stat pos-r"
           style="top: 64%"
-          >{{ accountNinja.tl_5 }}</span
+          >{{ account.tl_5 }}</span
         >
 
         <span
-          v-if="accountNinja.tl_6"
+          v-if="account.tl_6"
           class="equip-stat pos-l"
           style="top: 19%"
-          >{{ accountNinja.tl_6 }}</span
+          >{{ account.tl_6 }}</span
         >
         <span
-          v-if="accountNinja.tl_7"
+          v-if="account.tl_7"
           class="equip-stat pos-l"
           style="top: 30.5%"
-          >{{ accountNinja.tl_7 }}</span
+          >{{ account.tl_7 }}</span
         >
         <span
-          v-if="accountNinja.tl_8"
+          v-if="account.tl_8"
           class="equip-stat pos-l"
           style="top: 42%"
-          >{{ accountNinja.tl_8 }}</span
+          >{{ account.tl_8 }}</span
         >
         <span
-          v-if="accountNinja.tl_9"
+          v-if="account.tl_9"
           class="equip-stat pos-l"
           style="top: 53%"
-          >{{ accountNinja.tl_9 }}</span
+          >{{ account.tl_9 }}</span
         >
         <span
-          v-if="accountNinja.tl_10"
+          v-if="account.tl_10"
           class="equip-stat pos-l"
           style="top: 64%"
-          >{{ accountNinja.tl_10 }}</span
+          >{{ account.tl_10 }}</span
         >
 
         <span
-          v-if="accountNinja.tl_11"
+          v-if="account.tl_11"
           class="equip-stat"
           style="left: 44.5%; top: 62%"
-          >{{ accountNinja.tl_11 }}</span
+          >{{ account.tl_11 }}</span
         >
         <span
-          v-if="accountNinja.tl_12"
+          v-if="account.tl_12"
           class="equip-stat"
           style="left: 56.5%; top: 62%"
-          >{{ accountNinja.tl_12 }}</span
+          >{{ account.tl_12 }}</span
         >
 
         <span
-          v-if="accountNinja.item_7"
+          v-if="account.item_7"
           class="item-badge pos-l"
           style="top: 19%"
-          >{{ accountNinja.item_7 }}</span
+          >{{ account.item_7 }}</span
         >
         <span
-          v-if="accountNinja.item_8"
+          v-if="account.item_8"
           class="item-badge pos-l"
           style="top: 30.5%"
-          >{{ accountNinja.item_8 }}</span
+          >{{ account.item_8 }}</span
         >
         <span
-          v-if="accountNinja.item_9"
+          v-if="account.item_9"
           class="item-badge pos-l"
           style="top: 42%"
-          >{{ accountNinja.item_9 }}</span
+          >{{ account.item_9 }}</span
         >
         <span
-          v-if="accountNinja.item_10"
+          v-if="account.item_10"
           class="item-badge pos-l"
           style="top: 53%"
-          >{{ accountNinja.item_10 }}</span
+          >{{ account.item_10 }}</span
         >
         <span
-          v-if="accountNinja.item_11"
+          v-if="account.item_11"
           class="item-badge pos-l"
           style="top: 64%"
-          >{{ accountNinja.item_11 }}</span
+          >{{ account.item_11 }}</span
         >
         <span
-          v-if="accountNinja.item_12"
+          v-if="account.item_12"
           class="item-badge pos-l"
           style="top: 75%"
-          >{{ accountNinja.item_12 }}</span
+          >{{ account.item_12 }}</span
         >
 
         <span
-          v-if="accountNinja.item_1"
+          v-if="account.item_1"
           class="item-badge pos-r"
           style="top: 19%"
-          >{{ accountNinja.item_1 }}</span
+          >{{ account.item_1 }}</span
         >
         <span
-          v-if="accountNinja.item_2"
+          v-if="account.item_2"
           class="item-badge pos-r"
           style="top: 30.5%"
-          >{{ accountNinja.item_2 }}</span
+          >{{ account.item_2 }}</span
         >
         <span
-          v-if="accountNinja.item_3"
+          v-if="account.item_3"
           class="item-badge pos-r"
           style="top: 42%"
-          >{{ accountNinja.item_3 }}</span
+          >{{ account.item_3 }}</span
         >
         <span
-          v-if="accountNinja.item_4"
+          v-if="account.item_4"
           class="item-badge pos-r"
           style="top: 53%"
-          >{{ accountNinja.item_4 }}</span
+          >{{ account.item_4 }}</span
         >
         <span
-          v-if="accountNinja.item_5"
+          v-if="account.item_5"
           class="item-badge pos-r"
           style="top: 64%"
-          >{{ accountNinja.item_5 }}</span
+          >{{ account.item_5 }}</span
         >
         <span
-          v-if="accountNinja.item_6"
+          v-if="account.item_6"
           class="item-badge pos-r"
           style="top: 75%"
-          >{{ accountNinja.item_6 }}</span
+          >{{ account.item_6 }}</span
         >
 
-        <div v-if="accountNinja.item_13" class="banner-mounts-minimal">
+        <div v-if="account.item_13" class="banner-mounts-minimal">
           <div class="line top"></div>
-          <div class="text-glow">{{ accountNinja.item_13 }}</div>
+          <div class="text-glow">{{ account.item_13 }}</div>
           <div class="line bottom"></div>
         </div>
       </template>
@@ -183,10 +183,10 @@
 </template>
 <script>
 export default {
-  name: "AccountNinjaTL",
+  name: "AccountImageNinja",
   components: {},
   props: {
-    accountNinja: {
+    account: {
       type: Object,
       default: () => {},
     },

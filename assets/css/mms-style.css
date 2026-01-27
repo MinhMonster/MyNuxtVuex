@@ -78,7 +78,7 @@
   /* --danger: #b20000; */
   --danger: #a21d0a;
   --danger-bold-2: #b90000;
-  --danger-bold: #c82333;
+  --danger-bold: #bd2130;
   --danger-bland: #ffe2e5;
   --danger-border: #bd2130;
 
@@ -3610,7 +3610,7 @@ select.select-time {
 .btn-danger.active {
   color: var(--white);
   background-color: var(--danger-bold);
-  border-color: var(--danger-border);
+  border-color: var(--danger-bold);
 }
 
 .btn-primary {

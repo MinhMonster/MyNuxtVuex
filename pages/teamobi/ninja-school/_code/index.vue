@@ -1,8 +1,8 @@
 <template>
   <client-only>
     <AccountShow
-      module="client/game/dragonBalls"
-      title="Nick Ngọc Rồng"
+      module="client/game/ninjaSchools"
+      title="Nick Ninja School"
       :id="accountCode"
     />
   </client-only>
@@ -27,7 +27,7 @@ export default {
     title() {
       return `Mã Số: ${this.format_number(
         this.accountCode
-      )} - Nick Ngọc Rồng Online - MuaBanNick.Pro`;
+      )} - Nick Ninja School Online - MuaBanNick.Pro`;
     },
   },
   head() {
@@ -37,6 +37,14 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
+        {
+          property: "og:image",
+          content: "/banner.jpg"
+        },
+        {
+          property: "og:image:alt",
+          content: "Shop Nick Ninja School Online VIP Giá RẺ"
+        },
       ],
     };
   },

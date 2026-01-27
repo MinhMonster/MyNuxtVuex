@@ -1,10 +1,11 @@
 <template>
   <client-only>
     <div class="page-body mt-6">
-      <label v-if="user" for=""
-        ><i class="mdi mdi-history"></i> Lịch sử nạp Lượng, Carot của
-        <font color="red">{{ user.name }}</font></label
-      ><br />
+      <label v-if="isLogin" for="">
+        <i class="mdi mdi-history"></i> Lịch sử nạp Lượng, Carot của
+        <font color="red">{{ userInfo.name }}</font></label
+      >
+      <br />
       <small id="fileHelp" class="form-text text-muted"
         >Xem lại các Giao dịch gần nhất.</small
       >

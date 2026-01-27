@@ -1,50 +1,18 @@
 <template>
-  <client-only>
-    <HomePage
-      title="Nick Ninja School Giá Rẻ"
-      :loading="!ready"
-      goBack
-      reload
-      @reload="reload('cheap')"
-      notBoder
-    >
-      <template v-if="ready" #body>
-        <div class="mt-4">
-          <AccountNinjaSearch
-            type="cheap"
-            @search="search()"
-            @reset="reset('cheap')"
-          ></AccountNinjaSearch>
-          <AccountNinjaList type="cheap"></AccountNinjaList>
-        </div>
-      </template>
-    </HomePage>
-  </client-only>
+  <AccountIndex
+    title="Nick Ninja School Giá Rẻ"
+    module="client/game/ninjaSchools"
+  />
 </template>
 
 <script>
-import ninjas_mixins from "@/mixins/ninjas_mixins";
-import HomePage from "@/components/pages/home/HomePage";
-
-import AccountNinjaSearch from "@/components/pages/client/game/ninjas/AccountNinjaSearch";
-import AccountNinjaList from "@/components/pages/client/game/ninjas/AccountNinjaList";
-
+import AccountIndex from "@/components/common/client/account/AccountIndex";
 export default {
   layout: "clientLayout",
-  mixins: [ninjas_mixins],
-
-  components: {
-    HomePage,
-    AccountNinjaSearch,
-    AccountNinjaList,
-  },
-  async mounted() {
-    this.reload("cheap");
-  },
+  components: { AccountIndex },
   data() {
     return {
-      title:
-        "MuaBanNick.Pro - Shop Nick Ninja School Online Tự Động - Shop Mua Bán Nick Ninja School Online Giá Rẻ, Uy Tín Nhất MXH",
+      title: "MuaBanNick.Pro - Shop Nick Ninja School Online",
       description:
         "WEB Mua Bán Nick Ninja School, Tài Khoản Ninja School, Dịch Vụ Game Ninja School, Shop Nick Ninja School, Shop Nick Nso, Mua Bán Acc Ninja School, Shop Acc Ninja School của TeaMobi - Uy Tín - Giá rẻ",
     };

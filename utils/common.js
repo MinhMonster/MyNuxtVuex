@@ -1,6 +1,14 @@
 import _ from "lodash";
 const SET_STATE = "SET_STATE";
 
+const cleanQuery = (query = {}) => {
+  return Object.fromEntries(
+    Object.entries(query).filter(([_, v]) =>
+      v !== null && v !== undefined && v !== ""
+    )
+  );
+};
+
 export const enableResetStore = (store) => {
   return {
     ...store,
@@ -32,6 +40,13 @@ export const enableResetStore = (store) => {
         )
 
         return found ? found.text : fallback
+      },
+      formatNumber: () => (number) => {
+        if (number === null || number === undefined || number === '') return '0';
+
+        return new Intl.NumberFormat('de-DE', {
+          maximumFractionDigits: 0,
+        }).format(Number(number));
       },
 
     },
@@ -112,7 +127,11 @@ export const enableResetStore = (store) => {
           }
         }
 
-        return Promise.resolve({ dataSearch, dataOrigin, dataRoute })
+        return Promise.resolve({
+          dataSearch,
+          dataOrigin,
+          dataRoute: cleanQuery(dataRoute),
+        })
       },
 
       passDataFromQuery({ commit, state }, params = { stateName: "", query: {} }) {

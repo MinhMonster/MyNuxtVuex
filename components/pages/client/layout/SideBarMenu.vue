@@ -17,8 +17,8 @@
           <div class="avatar-glow"></div>
           <v-avatar size="85" class="premium-avatar">
             <v-img
-              v-if="user && user.avatar"
-              :src="user.avatar"
+              v-if="isLogin && userInfo.avatar"
+              :src="userInfo.avatar"
               alt="Avatar"
             ></v-img>
             <v-icon v-else size="50" color="white">mdi-account</v-icon>
@@ -42,14 +42,16 @@
           </div>
 
           <template v-else>
-            <h2 class="user-name-display">{{ user.name || "Thành viên" }}</h2>
+            <h2 class="user-name-display">
+              {{ userInfo.name || "Thành viên" }}
+            </h2>
             <div class="balance-badge mx-auto mt-2">
               <v-icon x-small color="amber lighten-2" class="mr-1"
                 >mdi-wallet</v-icon
               >
               <span class="label">Số dư:</span>
               <span class="amount ml-1"
-                >{{ format_number(user.cash) }}
+                >{{ format_number(userInfo.cash) }}
                 <sup class="currency">đ</sup></span
               >
             </div>
@@ -111,7 +113,7 @@
         </v-list>
 
         <div v-if="isLogin" class="logout-section">
-          <button class="btn-logout-minimal" @click="logoutUser()">
+          <button class="btn-logout-minimal" @click="handleLogout()">
             <v-icon left size="18" color="#ff5252">mdi-power</v-icon> Đăng xuất
           </button>
         </div>
@@ -121,12 +123,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import { mapFields } from "vuex-map-fields";
-
 export default {
   computed: {
-    ...mapFields("global", ["isNotification"]),
     // Đã fix: Đưa menu vào đúng computed để v-for có thể đọc được
     menuItems() {
       return [
@@ -154,10 +152,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions("home/users", ["logout"]),
-    async logoutUser() {
-      await this.logout();
-    },
     nextLoginRegister(value) {
       if (this.isMobile) this.$emit("close");
       this.showModalLoginRegister(value);

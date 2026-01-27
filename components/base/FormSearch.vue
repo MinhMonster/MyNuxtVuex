@@ -11,16 +11,20 @@
           :key="key"
           v-show="item.show"
         >
-          <div class="field">
-            <v-text-field
-              v-if="item.type === 'text'"
-              v-model="item.value"
-              @change="changeData"
-              density="compact"
-              :label="item.title"
-              :placeholder="item.placeholder"
-              variant="outlined"
-            ></v-text-field>
+          <div class="field group-btn-input flex">
+            <div v-if="item.type === 'text'" class="group-btn-input flex">
+              <v-btn color="white" class="w-20">
+                <label for="id" class="w-100">{{item.title}}:</label>
+              </v-btn>
+              <v-text-field
+                v-model="item.value"
+                @change="changeData"
+                density="compact"
+                :placeholder="item.placeholder"
+                variant="outlined"
+                clearable
+              />
+            </div>
             <v-text-field
               v-if="item.type === 'date'"
               type="date"
@@ -29,9 +33,10 @@
               density="compact"
               :label="item.title"
               :placeholder="item.placeholder"
+              clearable
               class="input-date"
               variant="outlined"
-            ></v-text-field>
+            />
             <v-select
               v-if="item.type === 'select' || item.type === 'range'"
               v-model="item.value"
@@ -39,8 +44,9 @@
               :label="item.title"
               :placeholder="item.placeholder"
               :items="item.options"
+              clearable
               @change="changeData"
-            ></v-select>
+            />
           </div>
         </v-col>
         <GroupBtnSearch @search="search()" @reset="reset()" />
@@ -81,7 +87,7 @@ export default {
     ...mapActions({}),
     async reset() {
       await this.resetQueryItems();
-      this.search();
+      await this.search();
     },
     async search() {
       await this.storeDispatch("clearResponse", this.storeQueryItems);

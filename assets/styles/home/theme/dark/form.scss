@@ -11,11 +11,7 @@
         background: #171e28;
       }
     }
-
   }
-
-
-
 
   form {
     background: none !important;
@@ -25,13 +21,11 @@
     }
 
     .field {
-
       // .form-group {
       input.v-input,
       select {
         border: $border-theme-dark !important;
       }
-
 
       select {
         option {
@@ -44,39 +38,46 @@
           &:hover,
           &:active {
             border: 1px solid #333 !important;
-            background: #0F0F0F !important;
+            background: #0f0f0f !important;
           }
 
           select,
           .v-select__slot {
-            border: 1px solid #0F0F0F !important;
+            border: 1px solid #0f0f0f !important;
             color: #a4a4a4 !important;
           }
         }
-
-
-
       }
 
       button.btn-login {
         color: #f1f1f1 !important;
         border: $border-theme-dark !important;
-        background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+        background-image: linear-gradient(
+          139.4deg,
+          #b549cc 5.38%,
+          #0f0f0f 55.2%,
+          #0f0f0f 58.96%,
+          #0f0f0f 54.97%,
+          #0f0f0f 55.49%,
+          #333 81.5%,
+          #b549cc 90.52%
+        ) !important;
 
         span {
           color: #f1f1f1 !important;
-
         }
 
         &:hover {
           color: #f1f1f1;
-          background-image: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
-
+          background-image: linear-gradient(
+            180deg,
+            #b549cc,
+            #0f0f0f 12%,
+            #0f0f0f 58%,
+            #0f0f0f
+          ) !important;
         }
       }
-
-
-
     }
 
     .checkbox label {
@@ -89,31 +90,29 @@
 
     .content input {
       background: #f1f1f1 !important;
-
     }
 
     .checkbox {
-      input[type=checkbox]:checked+label::before {
+      input[type="checkbox"]:checked + label::before {
         content: " ";
-        background: linear-gradient(#424040, #0F0F0F);
+        background: linear-gradient(#424040, #0f0f0f);
       }
 
-      input[type=checkbox]:checked+label::before {
+      input[type="checkbox"]:checked + label::before {
         content: " ";
         border: 1px solid #a4a4a4 !important;
-        background: linear-gradient(#424040, #0F0F0F);
+        background: linear-gradient(#424040, #0f0f0f);
       }
 
-      input[type=checkbox]+label::before {
+      input[type="checkbox"] + label::before {
         content: " ";
         border: 1px solid #a4a4a4 !important;
-        background: linear-gradient(#424040, #0F0F0F);
-
+        background: linear-gradient(#424040, #0f0f0f);
       }
     }
 
-    .form-input:not(:placeholder-shown)+.form-label,
-    .form-input:focus+.form-label {
+    .form-input:not(:placeholder-shown) + .form-label,
+    .form-input:focus + .form-label {
       color: #f1f1f1 !important;
     }
 
@@ -131,19 +130,42 @@
     color: #f1f1f1 !important;
     border: 1px solid #333 !important;
     border-radius: 0.32rem;
-    background-image: linear-gradient(219.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+    background-image: linear-gradient(
+      219.4deg,
+      #b549cc 5.38%,
+      #0f0f0f 55.2%,
+      #0f0f0f 58.96%,
+      #0f0f0f 54.97%,
+      #0f0f0f 55.49%,
+      #333 81.5%,
+      #b549cc 90.52%
+    ) !important;
 
     &:hover {
       color: #f1f1f1 !important;
-      background-image: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
-
+      background-image: linear-gradient(
+        180deg,
+        #b549cc,
+        #0f0f0f 12%,
+        #0f0f0f 58%,
+        #0f0f0f
+      ) !important;
     }
   }
 
   .login-btn {
     color: #f1f1f1 !important;
     border: 1px solid #333 !important;
-    background-image: linear-gradient(139.4deg, #b549cc 5.38%, #0F0F0F 55.2%, #0F0F0F 58.96%, #0F0F0F 54.97%, #0F0F0F 55.49%, #333 81.5%, #b549cc 90.52%) !important;
+    background-image: linear-gradient(
+      139.4deg,
+      #b549cc 5.38%,
+      #0f0f0f 55.2%,
+      #0f0f0f 58.96%,
+      #0f0f0f 54.97%,
+      #0f0f0f 55.49%,
+      #333 81.5%,
+      #b549cc 90.52%
+    ) !important;
 
     &:hover {
       color: #f1f1f1 !important;
@@ -152,29 +174,39 @@
       //     #0F0F0F 9%,
       //     #424040 58%,
       //     #424040) !important;
-      background-image: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
-
+      background-image: linear-gradient(
+        180deg,
+        #b549cc,
+        #0f0f0f 12%,
+        #0f0f0f 58%,
+        #0f0f0f
+      ) !important;
     }
   }
 
   #home-page .btn-show-more {
-
     button {
       color: #f1f1f1 !important;
-      border: 1px solid #0F0F0F;
-      background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
+      border: 1px solid #0f0f0f;
+      background: linear-gradient(
+        180deg,
+        #b549cc,
+        #0f0f0f 12%,
+        #0f0f0f 58%,
+        #0f0f0f
+      ) !important;
 
       &:hover {
         color: #f1f1f1 !important;
-        background-image: linear-gradient(180deg,
-            #0F0F0F,
-            #0F0F0F 9%,
-            #424040 58%,
-            #424040) !important;
+        background-image: linear-gradient(
+          180deg,
+          #0f0f0f,
+          #0f0f0f 9%,
+          #424040 58%,
+          #424040
+        ) !important;
       }
     }
-
-
   }
 
   // }
@@ -188,8 +220,15 @@
 
       .v-input__slot {
         border: $border-theme-dark !important;
-      }
 
+        .primary--text {
+          color: var(--bg-main) !important;
+          caret-color: var(--bg-main) !important;
+        }
+        .v-icon.v-icon {
+          font-size: 16px;
+        }
+      }
 
       &.v-input--radio-group--column {
         background: none;
@@ -204,18 +243,10 @@
         .v-radio {
           .v-icon {
             color: #b549cc !important;
-
-          }
-
-          .primary--text {
-            color: #b549cc !important;
-            caret-color: #b549cc !important;
-
           }
 
           .v-label {
             color: #f1f1f1 !important;
-
           }
         }
 
@@ -224,8 +255,6 @@
         }
       }
     }
-
-
   }
 
   .v-menu__content {
@@ -240,9 +269,8 @@
       .v-list-item--active {
         border: 1px solid #333 !important;
         color: #f1f1f1;
-        background: #0F0F0F !important;
+        background: #0f0f0f !important;
       }
-
     }
 
     &::-webkit-scrollbar-track {
@@ -253,5 +281,4 @@
       background: #b549cc !important;
     }
   }
-
 }

@@ -7,15 +7,7 @@
           ref="detail"
           :title="title"
           :account="account"
-        >
-          <template #image="slotProps">
-            <component
-              v-if="imageComponent"
-              :is="imageComponent"
-              v-bind="slotProps"
-            />
-          </template>
-        </AccountDetail>
+        />
       </template>
       <template #table>
         <div class="page-body">
@@ -26,15 +18,7 @@
               </center>
             </div>
           </div>
-          <AccountList :module="module" ref="table">
-            <template #image="slotProps">
-              <component
-                v-if="imageComponent"
-                :is="imageComponent"
-                v-bind="slotProps"
-              />
-            </template>
-          </AccountList>
+          <AccountList :module="module" ref="table" />
         </div>
       </template>
     </HomePage>
@@ -61,10 +45,6 @@ export default {
     title: {
       type: String,
       default: "",
-    },
-    imageComponent: {
-      type: [Object, Function],
-      default: null,
     },
   },
   computed: {

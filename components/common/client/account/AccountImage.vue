@@ -1,19 +1,32 @@
 <template>
   <div v-if="imageUrl" class="account-image">
+    <AccountImageNinja
+      v-if="account.account_type === 'ninja'"
+      :account="account"
+    />
     <img
+      v-else
       :src="imageUrl"
       alt="Ảnh tài khoản game"
       loading="lazy"
       width="300"
       height="200"
+      :class="[
+        `account-${account.account_type}`,
+        {
+          full: account?.is_full_image,
+        },
+      ]"
     />
   </div>
 </template>
 
 <script>
+import AccountImageNinja from "@/components/common/client/account/AccountImageNinja";
+
 export default {
   name: "AccountImage",
-
+  components: { AccountImageNinja },
   props: {
     account: {
       type: Object,
@@ -47,7 +60,14 @@ export default {
     width: 106.7%;
     height: auto;
     display: block;
-    object-fit: cover;
+    &.account-avatar {
+      @media (min-width: 600px) {
+        height: 350px !important;
+      }
+    }
+    &.full {
+      width: 100% !important;
+    }
   }
 }
 </style>

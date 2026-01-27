@@ -461,7 +461,7 @@
   .text-danger a,
   .color-danger,
   .color-danger a {
-    color: #b20000 !important;
+    color: var(--danger-bold) !important;
   }
 
   .text-main {

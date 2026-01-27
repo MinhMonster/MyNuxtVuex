@@ -1,6 +1,7 @@
 <template>
   <client-only>
     <div v-if="image" class="view-image">
+      <!-- Thumbnail -->
       <img
         :src="image"
         alt="Image Account"
@@ -8,91 +9,102 @@
         class="image-account cursor-pointer"
         @click="$refs.modal.show()"
       />
+
+      <!-- Modal -->
       <ModalPayload
+        ref="modal"
         classContent="modal-zoom"
         classDiglog="image-zoom"
         width="100%"
         :max-width="maxWidth + 'px'"
-        ref="modal"
-        :title="
-          'Xem ảnh ' +
-          (isGridView
-            ? 'dạng lưới'
-            : '(' + (indexImage + 1) + '/' + lengthImages + ')')
-        "
+        :title="modalTitle"
         size="md"
         :isBtnClose="false"
-        @hide="resetData()"
+        @hide="resetData"
       >
+        <!-- CONTENT -->
         <template #content>
           <div class="scroll-x text-center">
+            <!-- Single view -->
             <img
               v-if="!isGridView"
-              :src="url"
-              alt="Image Account"
+              :src="currentImage"
               class="image-account w-100"
-              :style="{ width: percent + '%' }"
+              :style="imageStyle"
             />
+
+            <!-- Grid view -->
             <v-row v-else>
-              <v-col v-for="(img, i) in images" :key="i" :cols="12" :sm="6">
+              <v-col
+                v-for="(img, i) in images"
+                :key="i"
+                cols="12"
+                :sm="lengthImages === 1 ? 12 : 6"
+              >
                 <img
                   :src="img"
-                  alt="Image Account"
                   class="image-account w-100"
+                  :style="imageStyle"
                 />
               </v-col>
             </v-row>
           </div>
         </template>
+
+        <!-- FOOTER -->
         <template #footer-content>
           <div class="group-btn-zoom">
             <v-btn
               v-if="lengthImages > 1"
-              class="btn-zoom ml-3"
               icon
-              @click="prevImage()"
+              class="btn-zoom ml-3"
+              @click="prevImage"
               :disabled="isGridView"
             >
               <v-icon>mdi-arrow-left-bold-circle-outline</v-icon>
             </v-btn>
+
             <v-btn
-              class="btn-zoom ml-3"
               icon
-              @click="zoomInImage()"
+              class="btn-zoom ml-3"
+              @click="zoomInImage"
               :disabled="!isZoomIn"
             >
               <v-icon>mdi-arrow-collapse-all</v-icon>
             </v-btn>
+
             <v-btn
-              class="btn-zoom ml-3"
               icon
-              @click="resetData()"
+              class="btn-zoom ml-3"
+              @click="resetData"
               :disabled="!isReset"
             >
               <v-icon>mdi-reload</v-icon>
             </v-btn>
+
             <v-btn
               v-if="lengthImages > 1"
-              class="btn-zoom ml-3"
               icon
-              @click="isGridViewImage()"
+              class="btn-zoom ml-3"
+              @click="toggleGrid"
             >
-              <v-icon v-if="!isGridView">mdi-grid</v-icon>
-              <v-icon v-else>mdi-grid-off</v-icon>
+              <v-icon>{{ isGridView ? "mdi-grid-off" : "mdi-grid" }}</v-icon>
             </v-btn>
+
             <v-btn
-              class="btn-zoom ml-3"
               icon
-              @click="zoomOutImage()"
+              class="btn-zoom ml-3"
+              @click="zoomOutImage"
               :disabled="!isZoomOut"
             >
               <v-icon>mdi-arrow-all</v-icon>
             </v-btn>
+
             <v-btn
               v-if="lengthImages > 1"
-              class="btn-zoom ml-3"
               icon
-              @click="nextImage()"
+              class="btn-zoom ml-3"
+              @click="nextImage"
               :disabled="isGridView"
             >
               <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>
@@ -108,115 +120,106 @@
 import ModalPayload from "@/components/common/ModalPayload";
 
 export default {
+  name: "ViewImage",
   components: { ModalPayload },
+
+  props: {
+    image: { type: String, default: "" },
+    images: { type: Array, default: () => [] },
+    index: { type: Number, default: 0 },
+  },
+
   data() {
     return {
       percent: 100,
       maxWidth: 1200,
-      url: null,
       indexImage: 0,
-      isGridView: true,
+      isGridView: false,
     };
   },
-  props: {
-    image: {
-      type: String,
-      default: () => "",
-    },
-    images: {
-      type: Array,
-      default: () => [],
-    },
-    index: {
-      type: Number,
-      default: () => 0,
-    },
-    isDetail: Boolean,
-  },
+
   computed: {
-    isZoomOut() {
-      if (this.isMobile) {
-        return this.percent < 300 && !this.isGridView;
-      }
-      return this.maxWidth < 1500;
-    },
-    isZoomIn() {
-      if (this.isMobile) {
-        return this.percent > 100 && !this.isGridView;
-      }
-      return this.maxWidth > 450;
-    },
-    isReset() {
-      if (this.isMobile) {
-        return this.percent != 100 && !this.isGridView;
-      }
-      return this.maxWidth != 1200;
-    },
     lengthImages() {
-      if (Array.isArray(this.images)) {
-        return this.images.length;
-      }
-      return 1;
+      return Array.isArray(this.images) ? this.images.length : 1;
+    },
+
+    currentImage() {
+      return this.images[this.indexImage] || this.image;
+    },
+
+    modalTitle() {
+      return this.isGridView
+        ? "Xem ảnh dạng lưới"
+        : `Xem ảnh (${this.indexImage + 1}/${this.lengthImages})`;
+    },
+
+    imageStyle() {
+      return !this.isGridView || this.lengthImages === 1
+        ? { width: this.percent + "%" }
+        : null;
+    },
+
+    canZoom() {
+      return !this.isGridView || this.lengthImages === 1;
+    },
+
+    isZoomOut() {
+      if (!this.canZoom) return false;
+      return this.isMobile
+        ? this.percent < 300
+        : this.maxWidth < 1500;
+    },
+
+    isZoomIn() {
+      if (!this.canZoom) return false;
+      return this.isMobile
+        ? this.percent > 100
+        : this.maxWidth > 450;
+    },
+
+    isReset() {
+      return this.isMobile
+        ? this.percent !== 100
+        : this.maxWidth !== 1200;
     },
   },
+
   mounted() {
-    this.url = this.image;
     this.indexImage = this.index;
     this.resetData();
   },
+
   methods: {
-    zoomOutImage() {
+    applyZoom(delta) {
       if (this.isMobile) {
-        if (this.percent <= 280) {
-          this.percent += 20;
-        } else {
-          this.percent = 300;
-        }
+        this.percent = Math.min(300, Math.max(100, this.percent + delta));
       } else {
-        if (this.maxWidth <= 1400) {
-          this.maxWidth += 150;
-        } else {
-          this.maxWidth = 1500;
-        }
+        this.maxWidth = Math.min(1500, Math.max(450, this.maxWidth + delta));
       }
     },
+
     zoomInImage() {
-      if (this.isMobile) {
-        if (this.percent > 100) {
-          this.percent -= 20;
-        } else {
-          this.percent = 100;
-        }
-      } else {
-        if (this.maxWidth <= 1600 && this.maxWidth > 450) {
-          this.maxWidth -= 150;
-        } else {
-          // this.maxWidth -= 100;
-          this.maxWidth = 450;
-        }
-      }
+      this.applyZoom(this.isMobile ? -20 : -150);
     },
+
+    zoomOutImage() {
+      this.applyZoom(this.isMobile ? 20 : 150);
+    },
+
     resetData() {
       this.percent = 100;
       this.maxWidth = 1200;
     },
-    async nextImage() {
-      if (this.indexImage < this.lengthImages - 1) {
-        this.indexImage = this.indexImage + 1;
-      } else {
-        this.indexImage = 0;
-      }
-      this.url = this.images[this.indexImage] || this.image;
+
+    nextImage() {
+      this.indexImage = (this.indexImage + 1) % this.lengthImages;
     },
-    async prevImage() {
-      if (this.indexImage > 0 && this.indexImage <= this.lengthImages) {
-        this.indexImage = this.indexImage - 1;
-      } else {
-        this.indexImage = this.lengthImages - 1;
-      }
-      this.url = this.images[this.indexImage] || this.image;
+
+    prevImage() {
+      this.indexImage =
+        (this.indexImage - 1 + this.lengthImages) % this.lengthImages;
     },
-    async isGridViewImage() {
+    toggleGrid() {
       this.isGridView = !this.isGridView;
     },
   },
@@ -225,109 +228,30 @@ export default {
 
 <style lang="scss" scoped>
 .view-image {
-  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  overflow: hidden;
-  border-radius: 5px;
 
   .image-account {
     width: 100%;
-    // margin-left: -10%;
-    // height: 270px;
     border-radius: 7px;
     border: 1px solid #a4a4a4;
-
-    &.full {
-      width: 100%;
-      margin-left: 0;
-    }
-
-    &.avatar-detail {
-      height: 100% !important;
-    }
-
-    // @media (min-width: 1500px), (max-width: 959px) {
-    //   height: 400px;
-    // }
-
-    @media (max-width: 599px) {
-      height: 100%;
-    }
+    cursor: pointer;
   }
-}
-
-.account-ingame,
-.account-cash-atm {
-  position: absolute;
-  top: 4px;
-  font-size: 13px;
-  font-weight: 450;
-  border-radius: 5px;
-  padding: 0 5px;
-  color: #fff;
-  background: #a21d0a;
-  text-align: center;
-
-  &.account-ingame {
-    right: 4px;
-  }
-
-  &.account-cash-atm {
-    left: 4px;
-    font-size: 11px;
-    font-weight: 700;
-  }
-
-  .v-btn--icon.v-size--default {
-    height: 20px;
-    width: 20px;
-    margin: 0 -5px;
-
-    i {
-      height: 15px;
-      width: 15px;
-      line-height: 15px;
-      font-size: 14px;
-    }
-  }
-}
-
-.account-tl {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 6px;
-  font-size: 13px;
-  font-weight: 450;
-  width: 5.5% !important;
-  height: 10% !important;
-  text-align: center;
-  border-radius: 3px;
-  padding: 0;
-  color: #fff;
-  background: #a21d0a;
 }
 
 .group-btn-zoom {
   width: 100%;
-  margin: 0 auto;
   text-align: center;
 
   .btn-zoom {
-    text-align: center;
     background: radial-gradient(
       circle at 50% 100%,
       #e28637,
       #663019 58%,
       #663019 127%
     );
-
     border: 1px solid #663019;
-    box-shadow: #e28637 0px 0px 1px inset, #663019 0px 1px 2px;
+    box-shadow: #e28637 0 0 1px inset, #663019 0 1px 2px;
   }
 }
 </style>

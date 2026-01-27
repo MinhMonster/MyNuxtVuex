@@ -1,5 +1,5 @@
 import { defaultPagy } from '@/utils/default'
-import { cashOptions, serverOptions, planetOptions } from "@/utils/queryDragonBallOptions";
+import { cashOptions, sexOptions, farmOptions, clanOptions } from "@/utils/queryAvatarOptions";
 import { enableResetStore } from '@/utils/common'
 import { getField, updateField } from "vuex-map-fields";
 
@@ -13,7 +13,7 @@ export default enableResetStore({
       },
       queryItems: queryItems,
       queryItem: queryItem,
-      queryPath: '/teamobi/ngoc-rong',
+      queryPath: '/teamobi/avatar',
     }
   },
 
@@ -28,15 +28,16 @@ export default enableResetStore({
           value: getters.formatNumber(account.code),
         },
         {
-          label: "Máy chủ",
-          value: `${account.server} Sao`,
+          label: "Đất",
+          value: account.land,
         },
         {
-          label: "Hành tinh",
-          value: getters.getOptionText(
-            account.planet,
-            planetOptions,
-          ),
+          label: "Gà",
+          value: account.pets,
+        },
+        {
+          label: "Cá",
+          value: account.fish,
         },
       ]
     },
@@ -45,14 +46,22 @@ export default enableResetStore({
 
       return [
         {
-          label: "Máy chủ",
-          value: `${account.server} Sao`,
+          label: "Đất",
+          value: account.land,
         },
         {
-          label: "Hành tinh",
+          label: "Gà",
+          value: account.pets,
+        },
+        {
+          label: "Cá",
+          value: account.fish,
+        },
+        {
+          label: "Giới tính",
           value: getters.getOptionText(
-            account.planet,
-            planetOptions,
+            account.sex,
+            sexOptions,
           ),
         },
         {
@@ -96,24 +105,31 @@ const queryItems = _.cloneDeep({
     show: true,
     value: ''
   },
-  server: {
-    placeholder: "Máy chủ",
-    type: "select",
-    options: serverOptions,
-    show: true,
-    value: ''
-  },
-  planet: {
-    placeholder: "Hành tinh",
-    type: "select",
-    options: planetOptions,
-    show: true,
-    value: ''
-  },
   cash: {
     placeholder: "Giá tiền",
     type: "select",
     options: cashOptions,
+    show: true,
+    value: ""
+  },
+  land: {
+    placeholder: "Đất",
+    type: "select",
+    options: farmOptions,
+    show: true,
+    value: ""
+  },
+  sex: {
+    placeholder: "Giới tính",
+    type: "select",
+    options: sexOptions,
+    show: true,
+    value: ""
+  },
+  is_clan: {
+    placeholder: "Clan",
+    type: "select",
+    options: clanOptions,
     show: true,
     value: ""
   },

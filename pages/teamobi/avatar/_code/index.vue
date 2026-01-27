@@ -1,50 +1,26 @@
 <template>
   <client-only>
-    <HomePage :loading="!ready" goBack reload @reload="fetchAccount()" table>
-      <template v-if="account && account.id && ready" #body>
-        <AccountAvatarDetail :account="account"></AccountAvatarDetail>
-      </template>
-      <template #table>
-        <div class="page-body bg-none mt--2">
-          <div class="title-category mt--2">
-            <div class="title">
-              <h2 class="text-center">Danh Sách Nick Gợi Ý</h2>
-            </div>
-          </div>
-          <AccountAvatarList></AccountAvatarList>
-        </div>
-      </template>
-    </HomePage>
+    <AccountShow
+      module="client/game/avatars"
+      title="Nick Avatar DK"
+      :id="accountCode"
+    />
   </client-only>
 </template>
 
 <script>
-import HomePage from "@/components/pages/home/HomePage";
+import AccountShow from "@/components/common/client/account/AccountShow";
 
-import AccountAvatarDetail from "@/components/pages/client/game/avatars/AccountAvatarDetail";
-import AccountAvatarList from "@/components/pages/client/game/avatars/AccountAvatarList";
-
-import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
+import clientCrud from "@/mixins/clientCrud";
 import mixins from "@/mixins/index";
 
 export default {
-  mixins: [mixins],
   layout: "clientLayout",
-
+  mixins: [mixins, clientCrud],
   components: {
-    HomePage,
-    AccountAvatarDetail,
-    AccountAvatarList,
+    AccountShow,
   },
   computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
-    ...mapFields("home/game/avatars", {
-      account: "account",
-      accounts: "accounts",
-    }),
     accountCode() {
       return this.$route.params.code;
     },
@@ -52,38 +28,6 @@ export default {
       return `Mã Số: ${this.format_number(
         this.accountCode
       )} - Nick Avatar - MuaBanNick.Pro`;
-    },
-  },
-  mounted() {
-    this.fetchAccount();
-  },
-  methods: {
-    ...mapActions("home/game/avatars", [
-      "fetchAccountAvatar",
-      "resetQuery",
-      "setQuery",
-      "resetAccountAvatars",
-      "fetchAccountAvatars",
-    ]),
-
-    async fetchAccount() {
-      this.ready = false;
-
-      await this.fetchAccountAvatar(this.accountCode);
-      this.ready = true;
-
-      await this.setQuery({ page: this.queryPage });
-      await this.resetAccountAvatars();
-      if (this.accountAvatar) {
-        await this.setQuery({
-          perPage: 9,
-          q: {
-            giatien: this.account.price,
-            id_other: this.account.id,
-          },
-        });
-        await this.fetchAccountAvatars();
-      }
     },
   },
   head() {
@@ -106,4 +50,3 @@ export default {
   },
 };
 </script>
-

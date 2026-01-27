@@ -18,9 +18,9 @@
                 <td class="mua-nick text-left" colspan="2">
                   <span>
                     <template
-                      v-if="!transferPin && history.account_type === 'ngocrong'"
+                      v-if="!transferPin && history.account_type === 'dragon_ball'"
                     >
-                      <p v-if="history.account_type === 'ngocrong'" class="sms">
+                      <p v-if="history.account_type === 'dragon_ball'" class="sms">
                         Nick Ngọc Rồng trên Web đều là đăng ký ảo. Các bạn chỉ
                         cần đổi mật khẩu là xong.
                       </p>
@@ -120,7 +120,7 @@ export default {
         {
           label: "Mã chuyển sim",
           value: this.transferPin || "Đang cập nhật",
-          hidden: this.history.account_type === "ngocrong",
+          hidden: this.history.account_type === "dragon_ball",
         },
         {
           label: "Giá Bán",

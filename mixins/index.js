@@ -244,9 +244,11 @@ export default {
       }
     },
     format_number(number) {
-      const number_toFixed = Number(number).toFixed(0);
-      const result = Intl.NumberFormat().format(number_toFixed)
-      return result.replace(",", ".").replace(",", ".").replace(",", ".").replace(",", ".");
+      if (number === null || number === undefined || number === '') return '0';
+
+      return new Intl.NumberFormat('de-DE', {
+        maximumFractionDigits: 0,
+      }).format(Number(number));
     },
     cash_atm(number) {
       return this.format_number(Math.round((number * 0.85) / 10000).toFixed(0) * 10000)
@@ -404,8 +406,8 @@ export default {
           return "Ninja";
         case "avatar":
           return "Avatar";
-        case "ngocrong":
-          return "NRO";
+        case "dragon_ball":
+          return "Nro";
         default:
           return "";
       }

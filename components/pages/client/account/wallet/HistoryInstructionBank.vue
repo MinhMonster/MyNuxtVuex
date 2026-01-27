@@ -29,8 +29,8 @@
       <span class="sms">Đỗ Công Minh</span> <br />
       <img src="/icon/icon-next-right.gif" /> Nội dung:
       <span class="sms"
-        >NAP MBN {{ user.id }}
-        <ButtonCoppy :content="`NAP MBN ${user.id}`"></ButtonCoppy> </span
+        >NAP MBN {{ userInfo.id }}
+        <ButtonCoppy :content="`NAP MBN ${userInfo.id}`"></ButtonCoppy> </span
       ><br />
       <img src="/icon/icon-next-right.gif" /> Sau 5-30p khi bạn đã chuyển tiền
       cho Admin thành công nhưng vẫn chưa được cộng tiền trên Web thì hãy liên
@@ -40,8 +40,6 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
-
 import ButtonCoppy from "@/components/common/ButtonCoppy";
 import AdminInbox from "@/components/common/client/AdminInbox";
 
@@ -55,9 +53,6 @@ export default {
       type: Object,
       default: () => {},
     },
-  },
-  computed: {
-    ...mapState("home/users", ["user"]),
   },
 };
 </script>

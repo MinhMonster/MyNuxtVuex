@@ -1,9 +1,16 @@
 <template>
   <div class="sub-menu-buttom" @click="$refs.modal.show()">
-    <ModalPayload ref="modal" :title="`HD Chuyển Sim Đăng Ký`" size="md">
+    <ModalPayload
+      ref="modal"
+      :title="`HD Chuyển Sim Đăng Ký`"
+      size="md"
+      hiddenFooter
+    >
       <template #content>
         <div class="page-body">
-          <div class="text-center text-uppercase bold">Lấy mã số chuyển sim</div>
+          <div class="text-center text-uppercase bold">
+            Lấy mã số chuyển sim
+          </div>
           - Dùng sim đăng ký soạn:<br />
           <img src="/icon/icon-next-right.gif" />
           <span class="bold text-danger">GO SIMCU TK MK</span> gửi
@@ -16,7 +23,9 @@
           <img src="/icon/icon-next-right.gif" />
           <span class="bold text-danger">GO SIMMOI TK XXXX</span> gửi
           <span class="bold text-danger">+6020</span> <br />
-          - Sau khi gửi tin nhắn chuyển sim hệ thống sẽ gửi về thông báo chuyển sim thành công nếu như bạn thao tác đúng và mã chuyển sim còn hạn sử dụng.<br /><br />
+          - Sau khi gửi tin nhắn chuyển sim hệ thống sẽ gửi về thông báo chuyển
+          sim thành công nếu như bạn thao tác đúng và mã chuyển sim còn hạn sử
+          dụng.<br /><br />
 
           + <span class="bold text-danger">XXXX</span> là mã PIN 4 số mà hệ
           thống gửi về. <br />

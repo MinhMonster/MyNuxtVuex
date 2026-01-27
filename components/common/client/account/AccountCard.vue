@@ -1,8 +1,8 @@
 <template>
   <v-col v-if="account" cols="12" sm="6" md="6" lg="4" class="pa-2">
     <div class="card-gaming-v3">
-      <slot name="image"></slot>
-      <div class="card-body-wrapper">
+      <AccountImage :account="account" />
+      <div class="card-body-wrapper" v-if="!isViewAccount">
         <div class="account-description break-line-1">
           <span v-html="account.description"></span>
         </div>
@@ -41,8 +41,11 @@
 </template>
 
 <script>
+import AccountImage from "@/components/common/client/account/AccountImage";
+
 export default {
   name: "AccountCard",
+  components: { AccountImage },
   props: {
     account: { type: Object, required: true },
     infoItems: {

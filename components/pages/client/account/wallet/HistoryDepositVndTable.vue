@@ -1,9 +1,9 @@
 <template>
   <client-only>
     <div class="page-body">
-      <label v-if="user" for=""
+      <label v-if="isLogin" for=""
         ><i class="mdi mdi-history"></i> Lịch sử nạp ATM-MOMO của
-        <font color="red">{{ user.name }}</font></label
+        <font color="red">{{ userInfo.name }}</font></label
       ><br />
       <small id="fileHelp" class="form-text text-muted"
         >Xem lại các Giao dịch gần nhất.</small
@@ -23,9 +23,7 @@
             <tr v-for="(history, index) in histories" :key="index">
               <td class="text-middle">#{{ history.id }}</td>
 
-              <td class="text-middle">
-                {{ format_number(history.amount) }} đ
-              </td>
+              <td class="text-middle">{{ format_number(history.amount) }} đ</td>
               <td v-if="!isMobile" class="text-middle">
                 {{ history.created_at }}
               </td>

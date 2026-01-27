@@ -10,8 +10,7 @@
             <h3>{{ title }} - Mã Số: {{ format_number(account.code) }}</h3>
           </center>
         </div>
-
-        <slot name="image" v-if="isMobile" :account="account" />
+        <AccountImage v-if="isMobile" :account="account" />
         <VueSlickCarousel
           v-else-if="accountImages"
           :initialSlide="0"
@@ -23,23 +22,13 @@
             v-for="(image, index) in accountImages"
             :key="index"
             :src="image"
-            alt=""
           >
             <ViewImage
-              v-if="image?.includes('muabannick.pro')"
               :image="image"
               :index="index"
               :images="accountImages"
               class="image-ninja"
-              :class="{ full: index == 0 && account.is_full_image }"
-            />
-            <ViewImage
-              v-else
-              :image="`https://muabannick.pro${image}`"
-              :index="index"
-              :images="accountImages"
-              class="image-ninja"
-              :class="{ full: index == 0 && account.is_full_image }"
+              :class="{ full: index === 0 && account.is_full_image }"
             />
           </div>
         </VueSlickCarousel>
@@ -86,20 +75,11 @@
           <v-col v-for="(image, index) in accountImages" :key="index" cols="12">
             <div class="image-card">
               <ViewImage
-                v-if="image?.includes('muabannick.pro')"
                 :image="image"
                 :index="index"
                 :images="accountImages"
                 class="image-ninja"
-                :class="{ full: index == 0 && account.is_full_image }"
-              />
-              <ViewImage
-                v-else
-                :image="`https://muabannick.pro${image}`"
-                :index="index"
-                :images="accountImages"
-                class="image-ninja"
-                :class="{ full: index == 0 && account.is_full_image }"
+                :class="{ full: index === 0 && account.is_full_image }"
               />
             </div>
           </v-col>
@@ -112,7 +92,7 @@
 
 <script>
 import ViewImage from "@/components/global/molecules/media/ViewImage";
-import AccountDetailCard from "@/components/common/client/account/AccountDetailCard";
+import AccountImage from "@/components/common/client/account/AccountImage";
 import AccountInfoTable from "@/components/common/client/table/AccountInfoTable.vue";
 import GroupBtnBuyAccount from "@/components/pages/client/game/GroupBtnBuyAccount";
 import Loading from "@/components/global/molecules/common/Loading";
@@ -124,27 +104,35 @@ export default {
   components: {
     ViewImage,
     Loading,
-    AccountDetailCard,
     AccountInfoTable,
     GroupBtnBuyAccount,
+    AccountImage
   },
   props: {
     title: {
       type: String,
-      default: "Chi Tiết Nick",
+      default: "Chi Tiết Nick"
     },
     account: {
       type: Object,
-      default: () => null,
-    },
+      default: () => null
+    }
   },
   computed: {
     accountImages() {
-      return this.account?.images || [];
+      return (this.account?.images || []).map(this.normalizeImage);
     },
     accountInfos() {
       return this.storeGetter("getTableInfos")(this.account);
-    },
+    }
   },
+  methods: {
+    normalizeImage(image) {
+      if (!image) return "";
+      return image.includes("muabannick.pro")
+        ? image
+        : `https://muabannick.pro${image}`;
+    }
+  }
 };
 </script>

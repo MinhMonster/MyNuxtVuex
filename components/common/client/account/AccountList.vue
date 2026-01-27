@@ -8,11 +8,7 @@
           :account="account"
           :infoItems="getInfoItems(account)"
           :detailLink="`${stateQueryPath}/${account.code}`"
-        >
-          <template #image>
-            <slot name="image" :account="account" />
-          </template>
-        </AccountCard>
+        />
       </v-row>
       <div
         v-if="!isLoadingSearch && !dataSource.length"
@@ -63,7 +59,7 @@ export default {
       stateName: this.storeQueryItems,
       query: this.$route.query,
     });
-    await this.resetQueryItems();
+    // await this.resetQueryItems();
     await this.storeDispatch("clearResponse", this.storeQueryItems);
     this.fetchDataIndex();
   },
@@ -74,6 +70,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

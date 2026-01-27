@@ -1,11 +1,11 @@
 <template>
-  <div v-if="user" class="info-atm-momo">
+  <div v-if="isLogin" class="info-atm-momo">
     <div class="title text-center">HD Nạp Tiền = ATM - MOMO</div>
     <img src="/icon/icon-next-right.gif" /> Bạn Chuyển tiền cho Admin:<br />
     <img src="/icon/icon-next-right.gif" /> Nội dung:
     <span class="sms"
-      >NAP MBN {{ user.id }}
-      <ButtonCoppy :content="`NAP MBN ${user.id}`"></ButtonCoppy></span
+      >NAP MBN {{ userInfo.id }}
+      <ButtonCoppy :content="`NAP MBN ${userInfo.id}`"></ButtonCoppy></span
     ><br />
     <img src="/icon/icon-next-right.gif" /> Bạn chuyển xong hãy tạo thông báo
     nạp tiền hoặc nhắn tin cho Admin:
@@ -18,12 +18,6 @@ import AdminInbox from "@/components/common/client/AdminInbox";
 
 export default {
   components: { ButtonCoppy, AdminInbox },
-  props: {
-    user: {
-      type: Object,
-      default: () => {},
-    },
-  },
 };
 </script>
 <style lang="scss" scoped>

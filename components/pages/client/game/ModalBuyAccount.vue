@@ -47,25 +47,25 @@
         </div>
       </template>
       <template #footer-content>
-        <div v-if="!user" class="color-main mgb-10px">
+        <div v-if="!isLogin" class="color-main mgb-10px">
           Bạn chưa Đăng nhập. Hãy Đăng nhập để mua.
         </div>
-        <div v-else-if="Number(user.cash) < price" class="color-main mgb-10px">
+        <div
+          v-else-if="Number(userInfo.cash) < price"
+          class="color-main mgb-10px"
+        >
           Số dư không đủ. Bạn còn thiếu:
           <span class="text-danger text-bold"
-            >{{ format_number(price - Number(user.cash)) }} </span
+            >{{ format_number(price - Number(userInfo.cash)) }} </span
           >Vnđ
         </div>
       </template>
       <template #footer-button>
-        <v-btn
-          v-if="!user"
-          class="btn-neon-purple"
-          @click="openModalLogin()"
+        <v-btn v-if="!isLogin" class="btn-neon-purple" @click="openModalLogin()"
           ><span>Đăng nhập</span></v-btn
         >
         <v-btn
-          v-else-if="Number(user.cash) < price"
+          v-else-if="Number(userInfo.cash) < price"
           color="success"
           class="text-black"
           @click="$router.push('/account/wallet/deposits/bank')"
@@ -78,7 +78,6 @@
           :disabled="isLoading"
           @click="buyNow()"
         >
-
           <Loading v-if="isLoading" button></Loading>
           <span v-else> Thanh Toán </span>
         </v-btn>
@@ -88,7 +87,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
 import Loading from "@/components/global/molecules/common/Loading";
 import ModalPayload from "@/components/common/ModalPayload";
 import BuyAccountQRInstructions from "@/components/common/BuyAccountQRInstructions";
@@ -120,7 +119,6 @@ export default {
     };
   },
   computed: {
-    ...mapState("home/users", ["token", "user"]),
     price() {
       return this.account.price;
     },
@@ -129,8 +127,8 @@ export default {
         case "ninja":
           return "Ninja School Online";
         case "avatar":
-          return "Avatar";
-        case "ngocrong":
+          return "Avatar DK";
+        case "dragon_ball":
           return "Ngọc Rồng Online";
         default:
           return "";
@@ -152,92 +150,6 @@ export default {
         },
       ];
     },
-    // accountInfos() {
-    //   switch (this.account.account_type) {
-    //     case "ninja":
-    //       return [
-    //         {
-    //           label: "Lớp",
-    //           value: this.classNinja(this.account.class),
-    //         },
-    //         {
-    //           label: "Cấp độ",
-    //           value: this.account.level,
-    //         },
-
-    //         {
-    //           label: "Máy chủ",
-    //           value: this.serverNinja(this.account.server),
-    //         },
-    //         {
-    //           label: "Gia tộc",
-    //           value: this.account.is_family || false ? "Có" : "Không",
-    //         },
-    //         {
-    //           label: "Mô tả",
-    //           value: this.account.description,
-    //           html: true,
-    //         },
-    //       ];
-    //     case "avatar":
-    //       return [
-    //         {
-    //           label: "Giới tính",
-    //           value:
-    //             this.account.sex === 1
-    //               ? "Nam"
-    //               : this.account.sex === 2
-    //               ? "Nữ"
-    //               : "Gay",
-    //         },
-    //         {
-    //           label: "Đất",
-    //           value: this.account.land,
-    //         },
-
-    //         {
-    //           label: "Gà",
-    //           value: this.account.pets,
-    //         },
-    //         {
-    //           label: "Cá",
-    //           value: this.account.fish,
-    //         },
-    //         {
-    //           label: "Mô tả",
-    //           value: this.account.description,
-    //           html: true,
-    //         },
-    //       ];
-    //     case "ngocrong":
-    //       return [
-    //         {
-    //           label: "Sức mạnh",
-    //           value: tthis.account.power,
-    //         },
-    //         {
-    //           label: "Đệ tử",
-    //           value: this.account.practitioners,
-    //         },
-
-    //         {
-    //           label: "Máy chủ",
-    //           value: this.account.server,
-    //         },
-    //         {
-    //           label: "Hành tinh",
-    //           value: this.planet,
-    //         },
-    //         {
-    //           label: "Mô tả",
-    //           value: this.account.description,
-    //           html: true,
-    //         },
-    //       ];
-    //     default:
-    //       return [];
-    //   }
-    // },
   },
   methods: {
     ...mapActions("home/users", ["buyAccount"]),

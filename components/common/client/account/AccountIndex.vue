@@ -3,17 +3,9 @@
     <HomePage :title="title" goBack reload @reload="reset()" notBoder>
       <template #body>
         <div class="mt-4">
-          <slot name="content"></slot>
+          <AccountContent :module="module"/>
           <BaseFormSearch :module="module" @search="reload" ref="search" />
-          <AccountList :module="module" ref="table">
-            <template #image="slotProps">
-              <component
-                v-if="imageComponent"
-                :is="imageComponent"
-                v-bind="slotProps"
-              />
-            </template>
-          </AccountList>
+          <AccountList :module="module" ref="table" />
         </div>
       </template>
     </HomePage>
@@ -23,6 +15,8 @@
 <script>
 import HomePage from "@/components/pages/home/HomePage";
 import AccountList from "@/components/common/client/account/AccountList";
+import AccountContent from "@/components/common/client/account/AccountContent";
+
 import clientCrud from "@/mixins/clientCrud";
 
 export default {
@@ -32,15 +26,12 @@ export default {
   components: {
     HomePage,
     AccountList,
+    AccountContent,
   },
   props: {
     title: {
       type: String,
       default: "Title",
-    },
-    imageComponent: {
-      type: [Object, Function],
-      default: null,
     },
   },
   methods: {

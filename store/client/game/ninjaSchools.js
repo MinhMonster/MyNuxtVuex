@@ -1,5 +1,5 @@
 import { defaultPagy } from '@/utils/default'
-import { cashOptions, serverOptions, planetOptions } from "@/utils/queryDragonBallOptions";
+import { cashOptions, classOptions, levelOptions, serverShortOptions, familyOptions } from "@/utils/queryNinjaOptions";
 import { enableResetStore } from '@/utils/common'
 import { getField, updateField } from "vuex-map-fields";
 
@@ -13,7 +13,7 @@ export default enableResetStore({
       },
       queryItems: queryItems,
       queryItem: queryItem,
-      queryPath: '/teamobi/ngoc-rong',
+      queryPath: '/teamobi/ninja-school',
     }
   },
 
@@ -28,14 +28,17 @@ export default enableResetStore({
           value: getters.formatNumber(account.code),
         },
         {
-          label: "Máy chủ",
-          value: `${account.server} Sao`,
+          label: "Phái",
+          value: getters.getOptionText(
+            account.class,
+            classOptions,
+          ),
         },
         {
-          label: "Hành tinh",
+          label: "Máy chủ",
           value: getters.getOptionText(
-            account.planet,
-            planetOptions,
+            account.server,
+            serverShortOptions,
           ),
         },
       ]
@@ -45,14 +48,26 @@ export default enableResetStore({
 
       return [
         {
-          label: "Máy chủ",
-          value: `${account.server} Sao`,
+          label: "Phái",
+          value: getters.getOptionText(
+            account.class,
+            classOptions,
+          ),
         },
         {
-          label: "Hành tinh",
+          label: "Cấp độ",
+          value: account.level,
+        },
+        {
+          label: "Vũ khí",
+          value: account.weapon,
+        },
+
+        {
+          label: "Máy chủ",
           value: getters.getOptionText(
-            account.planet,
-            planetOptions,
+            account.server,
+            serverShortOptions,
           ),
         },
         {
@@ -72,7 +87,6 @@ export default enableResetStore({
   },
 });
 
-
 const queryItems = _.cloneDeep({
   response: {
     meta: defaultPagy,
@@ -91,22 +105,16 @@ const queryItems = _.cloneDeep({
     value: 24
   },
   code: {
-    placeholder: "Mã số",
+    title: "Mã",
+    placeholder: "Mã số nick...",
     type: "text",
     show: true,
     value: ''
   },
-  server: {
-    placeholder: "Máy chủ",
-    type: "select",
-    options: serverOptions,
-    show: true,
-    value: ''
-  },
-  planet: {
-    placeholder: "Hành tinh",
-    type: "select",
-    options: planetOptions,
+  character_name: {
+    title: "IG",
+    placeholder: "Tên nhân vật...",
+    type: "text",
     show: true,
     value: ''
   },
@@ -115,7 +123,35 @@ const queryItems = _.cloneDeep({
     type: "select",
     options: cashOptions,
     show: true,
-    value: ""
+    value: null
+  },
+  level: {
+    placeholder: "Cấp độ",
+    type: "select",
+    options: levelOptions,
+    show: true,
+    value: null
+  },
+  class: {
+    placeholder: "Phái",
+    type: "select",
+    options: classOptions,
+    show: true,
+    value: null
+  },
+  server: {
+    placeholder: "Máy chủ",
+    type: "select",
+    options: serverShortOptions,
+    show: true,
+    value: null
+  },
+  is_family: {
+    placeholder: "Gia tộc",
+    type: "select",
+    options: familyOptions,
+    show: true,
+    value: null
   },
 });
 
@@ -123,7 +159,6 @@ const queryItem = _.cloneDeep({
   code: "",
   username: "",
   selling_price: "",
-  purchase_price: "",
   discount_percent: "",
   strength: "",
   disciple: "",
