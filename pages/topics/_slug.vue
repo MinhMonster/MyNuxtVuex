@@ -1,23 +1,18 @@
 <template>
-  <client-only>
-    <HomePage
-      title="Nội dung Bài Viết"
-      :description="topic?.description"
-      :keywords="topic?.keywords"
-      :image="topic?.image"
-      :loading="!ready"
-      goBack
-      reload
-      @reload="reloadTopic"
-    >
-      <template v-if="ready" #body>
-        <div class="topic mt-4">
-          <h1 class="title text-center">{{ topic.title }}</h1>
-          <div v-html="topic.content" class="mt-4" />
-        </div>
-      </template>
-    </HomePage>
-  </client-only>
+  <HomePage
+    title="Nội dung Bài Viết"
+    :loading="isLoading"
+    goBack
+    reload
+    @reload="reloadTopic"
+  >
+    <template v-if="topic" #body>
+      <div class="topic mt-4">
+        <h1 class="title text-center">{{ topic.title }}</h1>
+        <div class="mt-4" v-html="topic.content" />
+      </div>
+    </template>
+  </HomePage>
 </template>
 
 <script>
@@ -26,54 +21,74 @@ import HomePage from "@/components/pages/home/HomePage";
 export default {
   components: { HomePage },
   layout: "clientLayout",
-
-  async asyncData({ store, params, error }) {
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
+  async asyncData({ params, error, $repositories }) {
     try {
-      const slug = params.slug;
-      await store.dispatch("home/topics/fetchTopic", slug);
-
-      const topic = store.state.home.topics.topic;
+      const res = await $repositories.clientTopics.fetch(params.slug);
+      const topic = res?.data?.response ?? null;
 
       if (!topic) {
-        return error({ statusCode: 404, message: "Topic not found" });
+        error({ statusCode: 404, message: "Không tìm thấy bài đăng" });
+        return;
       }
 
-      return { topic, ready: true };
-    } catch (e) {
-      return error({ statusCode: 500, message: "Load topic failed" });
-    }
-  },
+      return { topic };
+    } catch (err) {
+      if (err.response?.status === 404) {
+        error({ statusCode: 404, message: "Không tìm thấy bài đăng" });
+        return;
+      }
 
-  data() {
-    return {};
+      error({ statusCode: 500, message: "Đã có lỗi xảy ra!" });
+    }
   },
 
   methods: {
     async reloadTopic() {
-      this.ready = false;
-      await this.$store.dispatch(
-        "home/topics/fetchTopic",
-        this.$route.params.slug
-      );
-      this.topic = this.$store.state.home.topics.topic;
-      this.ready = true;
+      try {
+        this.isLoading = true;
+        const res = await this.$repositories.clientTopics.fetch(
+          this.$route.params.slug
+        );
+        this.topic = res?.data?.response ?? this.topic;
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 500);
+      } catch {
+        // silent
+      }
     },
   },
 
   head() {
+    if (!this.topic) return {};
+
     return {
-      title: this.topic?.title,
+      title: this.topic.title,
       meta: [
         {
           hid: "description",
           name: "description",
-          content: this.topic?.description || "",
+          content: this.topic.description || "",
         },
-        { property: "og:title", content: this.topic?.title || "" },
-        { property: "og:description", content: this.topic?.description || "" },
         {
+          hid: "og:title",
+          property: "og:title",
+          content: this.topic.title,
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: this.topic.description || "",
+        },
+        {
+          hid: "og:image",
           property: "og:image",
-          content: this.topic?.image || "/banner.jpg",
+          content: this.topic.thumbnail || "/banner.jpg",
         },
       ],
     };

@@ -1,6 +1,12 @@
 <template>
-  <v-col cols="6" sm="6" md="3" lg="2" class="d-flex">
-    <div class="is-search">
+  <v-col
+    :cols="hiddenReset ? 2 : 6"
+    :sm="hiddenReset ? 2 : 4"
+    :md="hiddenReset ? 1 : 3"
+    :lg="hiddenReset ? 1 : 2"
+    class="d-flex"
+  >
+    <div class="is-search" :class="{ 'hidden-reset': hiddenReset }">
       <v-btn
         v-if="isLoadingSearch && !isReset"
         color="primary"
@@ -17,7 +23,7 @@
         <i class="fa fa-search"></i> Tìm
       </v-btn>
     </div>
-    <div class="is-reset">
+    <div class="is-reset" v-if="!hiddenReset">
       <v-btn
         v-if="isLoadingSearch && isReset"
         color="error"
@@ -57,6 +63,12 @@ export default {
       isReset: false,
     };
   },
+  props: {
+    hiddenReset: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     ...mapFields("global", {
       isLoadingSearch: "isLoadingSearch",
@@ -76,20 +88,19 @@ export default {
 <style lang="scss" scoped>
 .is-search {
   width: calc(50% - 3px);
-  margin-right: 3px;
+  @media (min-width: 601px) {
+    width: calc(50% - 12px);
+  }
+  &.hidden-reset {
+    width: 100% !important;
+  }
 }
 .is-reset {
   width: calc(50% - 3px);
-  margin-left: 3px;
-}
-@media (min-width: 601px) {
-  .is-search {
+  margin-left: 6px;
+  @media (min-width: 601px) {
     width: calc(50% - 12px);
-    margin-right: 12px;
-  }
-  .is-reset {
-    width: calc(50% - 12px);
-    margin-left: 12px;
+    margin-left: 24px;
   }
 }
 </style>

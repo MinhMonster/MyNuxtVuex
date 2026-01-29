@@ -4,16 +4,16 @@
       <v-row>
         <v-col
           v-for="(item, key) in querySearch"
-          cols="6"
-          sm="4"
-          md="4"
-          lg="2"
+          :cols="item.cols || 6"
+          :sm="item.sm || 4"
+          :md="item.md || 4"
+          :lg="item.lg || 2"
           :key="key"
           v-show="item.show"
         >
           <div class="field group-btn-input flex">
             <div v-if="item.type === 'text'" class="group-btn-input flex">
-              <v-btn color="white" class="w-20">
+              <v-btn v-if="!item?.hiddenTitle" color="white" class="w-20">
                 <label for="id" class="w-100">{{item.title}}:</label>
               </v-btn>
               <v-text-field
@@ -49,7 +49,7 @@
             />
           </div>
         </v-col>
-        <GroupBtnSearch @search="search()" @reset="reset()" />
+        <GroupBtnSearch @search="search()" @reset="reset()" :hiddenReset="hiddenReset" />
       </v-row>
     </form>
   </div>
@@ -68,6 +68,10 @@ export default {
       default: "",
       require: false,
     },
+    hiddenReset: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {

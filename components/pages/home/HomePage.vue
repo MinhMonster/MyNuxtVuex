@@ -77,18 +77,6 @@ export default {
       default: null,
     },
     table: Boolean,
-    description: {
-      type: String,
-      default: null,
-    },
-    keywords: {
-      type: String,
-      default: null,
-    },
-    image: {
-      type: String,
-      default: null,
-    },
   },
   computed: {
     ...mapFields("global", {
