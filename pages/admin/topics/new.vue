@@ -1,42 +1,13 @@
 <template>
-  <NavAdmin
-    title="Create Topic"
-    goBack
-    next-page
-    reload
-    @reload="$refs.form.resetForm()"
-  >
-    <template #body>
-      <div id="body-admin">
-        <AdminBaseForm
-          ref="form"
-          module="admin/topics"
-          repository="adminTopics"
-          :id="$route.params.id"
-          :store="{
-            state: 'queryTopic',
-            module: 'admin.topics',
-            form: 'formTopic',
-            create: 'adminCreateTopic',
-          }"
-          :multipleImages="false"
-        ></AdminBaseForm>
-      </div>
-    </template>
-  </NavAdmin>
+  <AdminModify title="Topic" module="admin/topics" />
 </template>
 
 <script>
-import NavAdmin from "@/components/pages/admin/layout/NavAdmin";
-import AdminBaseForm from "@/components/pages/admin/base/AdminBaseForm";
+import AdminModify from "@/components/base/AdminModify";
 
 export default {
-  components: { NavAdmin, AdminBaseForm },
   layout: "adminDev",
-  name: "CreateTopic",
-  props: {},
-  computed: {},
-  async mounted() {},
-  methods: {},
+  name: "NewATopic",
+  components: { AdminModify },
 };
 </script>

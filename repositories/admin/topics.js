@@ -1,25 +1,16 @@
-const resource = '/apis/admin/topics/'
-const baseResource = '/api'
-
+const resource = '/admin/topics'
 export default ($api) => ({
-  adminFetchTopics(payload) {
-    return $api.get(`${baseResource}/adminFetchTopics`, { params: { input: payload.input } })
+  index(payload) {
+    return $api.get(`${resource}`, { params: payload.input },
+    )
   },
-  adminFetchTopic(id) {
-    return $api.get(`${baseResource}/adminFetchTopic?id=${id}`)
+  fetch(id) {
+    return $api.get(`${resource}/${id}`)
   },
-
-  adminCreateTopic(payload) {
-    return $api.post(`${baseResource}/adminCreateTopic`, payload)
+  modify(payload) {
+    return $api.post(`${resource}/modify`, payload)
   },
-
-  adminUpdateTopic(payload) {
-    return $api.post(`${baseResource}/adminUpdateTopic`, payload)
-  },
-  adminDestroyTopic(payload) {
-    return $api.get(`${baseResource}/adminDestroyTopic`, { params: { id: payload } })
-  },
-  adminUnDestroyTopic(payload) {
-    return $api.get(`${baseResource}/adminUnDestroyTopic`, { params: { id: payload } })
+  destroy(payload) {
+    return $api.post(`${resource}/destroy`, { id: payload })
   },
 })

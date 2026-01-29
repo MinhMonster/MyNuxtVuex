@@ -238,9 +238,9 @@ export default {
       }
     },
 
-    async onDelete($id = this.itemId) {
+    async onDelete($id = this.itemId, $label = "Delete") {
       const result = await this.showSwal({
-        title: `Delete ID: ${$id} ?`,
+        title: $label + ` ID: ${$id} ?`,
         text: "",
         icon: "question",
         type: "warning",

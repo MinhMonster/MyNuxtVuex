@@ -1,153 +1,38 @@
+import _ from "lodash";
 import { defaultPagy } from '@/utils/admin/default'
 import { enableResetStore } from '@/utils/admin/common'
 import { getField, updateField } from "vuex-map-fields";
 
-const SET_STATE = "SET_STATE";
-const SET_QUERY = "SET_QUERY";
-
 export default enableResetStore({
   namespaced: true,
+
   state() {
     return {
+      repositories: "repositories_mms",
+      columns: columns,
       stateDefault: {
-        queryTopics: queryTopics,
-        queryTopic: queryTopic,
+        queryItems: queryItems,
+        queryItem: queryItem,
       },
-      queryTopics: queryTopics,
-      queryTopic: queryTopic,
-      formTopic: formTopic
+      queryItems: queryItems,
+      queryItem: queryItem,
+      formItem: formItem,
     }
+  },
 
+  getters: {
+    getField,
   },
 
   mutations: {
     updateField,
+  },
 
-    SET_TOPICS(state, topics) {
-      state.topics = topics
-    },
-    SET_POST(state, post) {
-      state.post = post
-    },
-    SET_STATE(state, payload) {
-      _.each(payload, (value, key) => {
-        state[key] = value;
-      });
-    },
-    SET_QUERY(state, payload) {
-      state.query = {
-        ...state.query,
-        ..._.cloneDeep(payload),
-      };
-    },
-  },
-  getters: {
-    getField,
-  },
   actions: {
-    newTopic({ commit }) {
-      commit(SET_STATE, { topic: newTopic });
-    },
-    async fetchTopics({ commit, state }) {
-      try {
-        const res = await this.$repositories.adminTopics.fetchTopics({ input: state.query })
-        commit(SET_STATE, { topics: res.data.topics, metaTopics: res.data.pagy })
-      } catch (error) {
-
-      }
-    },
-    async fetchTopic({ commit }, id) {
-      try {
-        const res = await this.$repositories.adminTopics.fetchTopic(id)
-        commit('SET_STATE', { topic: res.data.topic })
-      } catch (error) {
-
-      }
-    },
-    async createTopic({ commit, state }) {
-      try {
-        await this.$repositories.adminTopics.createTopic({
-          input: state.topic
-        });
-      } catch (error) { }
-    },
-    async updateTopic({ commit, state }, id) {
-      try {
-        await this.$repositories.adminTopics.updateTopic({
-          id,
-          input: state.topic
-        });
-      } catch (error) { }
-    },
-    setQuery({ commit, state }, payload) {
-      commit(SET_QUERY, payload);
-      commit(SET_STATE, { pageSave: state.query.page });
-    },
-    resetQuery({ commit }) {
-      commit(SET_QUERY, {
-        page: 1,
-        perPage: 24,
-        q: {},
-      });
-    },
-  }
-
-  // async get_post({ commit }, post) {
-  //   const res = await this.$repositories.post.show(post)
-  //   const { status, data } = res
-  //   if (status === 200 && data.success && data.code) {
-  //     const { data } = data
-  //     commit('SET_POST', data)
-  //   } else {
-  //     // Handle error here
-  //   }
-  // },
-
-  // async create_post({ commit }, id, post) {
-  //   const res = await this.$repositories.post.create(id, post)
-  //   const { status, data } = res
-  //   if (status === 200 && data.success && data.code) {
-  //     const { data } = data
-  //     commit('SET_POST', data)
-  //   } else {
-  //     // Handle error here
-  //   }
-  // },
-
-  // async update_post({ commit }, id, post) {
-  //   const res = await this.$repositories.post.update(id, post)
-  //   const { status, data } = res
-  //   if (status === 200 && data.success && data.code) {
-  //     const { data } = data
-  //     commit('SET_POST', data)
-  //   } else {
-  //     // Handle error here
-  //   }
-  // },
-
-  // async delete_post({ commit }, id) {
-  //   const res = await this.$repositories.post.delete(id)
-  //   const { status, data } = res
-  //   if (status === 200 && data.success && data.code) {
-  //     // Remove from store
-  //   } else {
-  //     // Handle error here
-  //   }
-  // }
+  },
 });
 
-export const newTopic = {
-  title: "",
-  content: "",
-  image: '',
-  link: "",
-  status: "yes",
-  description: "",
-};
-
-
-
-const queryTopics = _.cloneDeep({
+const queryItems = _.cloneDeep({
   response: {
     meta: defaultPagy,
     data: [],
@@ -165,107 +50,146 @@ const queryTopics = _.cloneDeep({
     value: 15
   },
   id: {
-    // title: "ID",
     placeholder: "ID",
     type: "text",
     show: true,
     value: ''
   },
-  title: {
-    placeholder: "Title",
+  keyword: {
+    placeholder: "Keyword",
     type: "text",
     show: true,
     value: ''
   },
-  link: {
-    placeholder: "Link",
+
+  slug: {
+    placeholder: "Slug",
     type: "text",
     show: true,
     value: ''
   },
-  status: {
-    placeholder: "Trạng Thái",
+
+  is_active: {
+    placeholder: "Status",
     type: "select-options",
     show: true,
-    value: "yes",
+    value: "1",
     options: [
-      {
-        text: "Tất cả",
-        value: null,
-      },
-      {
-        text: "Xuất bản",
-        value: "yes",
-      },
-      {
-        text: "Ẩn",
-        value: "no",
-      },
+      { text: "Tất cả", value: null },
+      { text: "Hiển thị", value: "1" },
+      { text: "Ẩn", value: "0" },
     ],
   },
 });
 
-
-const queryTopic = _.cloneDeep({
-
-  ID: "",
+const queryItem = _.cloneDeep({
+  id: "",
   title: "",
-  content: "",
-  image: '',
-  link: "",
-  status: "yes",
+  slug: "",
   description: "",
+  content: "",
+  images: [],
+  is_active: true,
 });
 
+const formItem = _.cloneDeep([
+  {
+    title: "Title",
+    type: "text",
+    value: 'title',
+    cols: 12,
+    sm: 12,
+    md: 6,
+    lg: 6
+  },
+  {
+    title: "Slug",
+    type: "text",
+    value: 'slug',
+    cols: 12,
+    sm: 12,
+    md: 6,
+    lg: 6
+  },
+  {
+    title: "Description",
+    type: "content-editer",
+    value: 'description',
+    cols: 12,
+    sm: 12,
+    md: 12,
+    lg: 12
+  },
+  {
+    title: "Content",
+    type: "content-editer",
+    value: 'content',
+    height: '100%',
+    fullHeight: true,
+    cols: 12,
+    sm: 12,
+    md: 12,
+    lg: 12
+  },
+]);
 
-const formTopic =
-  _.cloneDeep([
-    // {
-    //   title: "Image",
-    //   type: "text",
-    //   value: 'image',
-    //   show: false,
-    //   cols: 12,
-    //   sm: 12,
-    //   md: 12,
-    //   lg: 12
-    // },
-    {
-      title: "Title",
-      type: "text",
-      value: 'title',
-      cols: 12,
-      sm: 12,
-      md: 6,
-      lg: 6
+
+const columns = _.cloneDeep([
+  {
+    key: "id",
+    label: "ID",
+    attributes: {
+      style: {
+        width: "50px !important",
+        minWidth: "50px !important",
+      },
     },
-    {
-      title: "Link",
-      type: "text",
-      value: 'link',
-      cols: 12,
-      sm: 12,
-      md: 6,
-      lg: 6
+  },
+  {
+    key: "thumbnail",
+    label: "Image",
+    attributes: {
+      style: {
+        width: "50px !important",
+        minWidth: "100px !important",
+      },
     },
-    {
-      title: "Mô tả",
-      type: "content-editer",
-      value: 'description',
-      cols: 12,
-      sm: 12,
-      md: 12,
-      lg: 12
+  },
+  {
+    key: "title",
+    label: "Title",
+    attributes: {
+      style: {
+        minWidth: "200px",
+      },
     },
-    {
-      title: "Nội dung",
-      type: "content-editer",
-      value: 'content',
-      height: '100%',
-      fullHeight: true,
-      cols: 12,
-      sm: 12,
-      md: 12,
-      lg: 12
+  },
+  {
+    key: "slug",
+    label: "Slug",
+    attributes: {
+      style: {
+        minWidth: "200px",
+      },
     },
-  ]);
+  },
+  {
+    key: "description",
+    label: "Description",
+    attributes: {
+      style: {
+        minWidth: "200px",
+      },
+    },
+  },
+  {
+    key: "actions",
+    label: "Actions",
+    type: "actions",
+    attributes: {
+      minWidth: "120x",
+    },
+  },
+]);
+
+

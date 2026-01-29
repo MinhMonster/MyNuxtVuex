@@ -3,7 +3,7 @@
 // import adminAuths from '~/repositories/admin/auths'
 
 //admin
-import adminTopics from '~/repositories/admin/topics'
+// import adminTopics from '~/repositories/admin/topics'
 import adminDeverlopers from '~/repositories/admin/deverlopers'
 import adminFinances from '~/repositories/admin/finances'
 import adminUploads from '~/repositories/admin/uploads'
@@ -43,7 +43,7 @@ export default ($api) => ({
   // adminAuths: adminAuths($api),
 
   // admin
-  adminTopics: adminTopics($api),
+  // adminTopics: adminTopics($api),
   adminDeverlopers: adminDeverlopers($api),
   adminFinances: adminFinances($api),
   adminUploads: adminUploads($api),

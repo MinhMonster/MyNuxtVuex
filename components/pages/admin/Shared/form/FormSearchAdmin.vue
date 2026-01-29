@@ -1,6 +1,6 @@
 <template>
   <div v-if="active & isFilter">
-    <form @submit.prevent="search" class="form-search-admin">
+    <form @submit.prevent="search" class="form-search-admin mb-3">
       <v-row>
         <v-col
           v-for="(item, key) in querySearch"
