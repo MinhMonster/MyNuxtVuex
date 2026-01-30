@@ -11,7 +11,15 @@
       table
     >
       <template v-if="ready" #body>
-        <form class="form">
+        <div
+          v-if="!isDipositCard"
+          class="flex flex-column flex-center card h-238px"
+        >
+          <h1 class="bold text-danger height-200px middle text-20-800">
+            Nạp thẻ đang bảo trì!
+          </h1>
+        </div>
+        <form v-else class="form">
           <v-row>
             <v-col cols="12" sm="6" class="middle">
               <div class="field">
@@ -88,7 +96,11 @@
 
             <v-col cols="12">
               <div class="field submit mt-6">
-                <v-btn size="sm" class="btn-neon-purple w-100" @click="submit()">
+                <v-btn
+                  size="sm"
+                  class="btn-neon-purple w-100"
+                  @click="submit()"
+                >
                   <Loading v-if="isLoading" button></Loading>
                   <span v-else>Nạp Thẻ </span>
                 </v-btn>
@@ -156,6 +168,7 @@ export default {
     return {
       history: null,
       isLoading: false,
+      isDipositCard: false,
       walletOptions: [
         {
           text: "Chọn loại thẻ",
@@ -256,7 +269,8 @@ export default {
     ...mapState(["token", "user"]),
   },
   mounted() {
-    this.onPageChange(this.queryPage);
+    // this.onPageChange(this.queryPage);
+    this.reload();
   },
   methods: {
     ...mapActions([
@@ -300,7 +314,11 @@ export default {
       this.moneyReceived = 0;
     },
     reload() {
-      this.onPageChange(this.pageSave);
+      // this.onPageChange(this.pageSave);
+      this.ready = false;
+      setTimeout(() => {
+        this.ready = true;
+      }, 500);
     },
     showModalDetail(history) {
       this.history = history;

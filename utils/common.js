@@ -67,8 +67,8 @@ export const enableResetStore = (store) => {
       setQuery({ commit, state }, params = { stateName, data }) {
         commit("SET_STATE", { stateName: params.stateName, data: params.data })
       },
-      setParamQuery({ commit, state }, params = { stateName, query, data }) {
-        commit("SET_PARAM_QUERY", { stateName: params.stateName, query: params.query, data: params.data })
+      setParamQuery({ commit, state }, params = { stateName, query, data, silent }) {
+        commit("SET_PARAM_QUERY", { stateName: params.stateName, query: params.query, data: params.data, silent: params.silent })
       },
       setParamDefault({ commit, state }, params = { query, data }) {
         commit("SET_PARAM_DEFAULT", { query: params.query, data: params.data })
@@ -98,6 +98,7 @@ export const enableResetStore = (store) => {
           // 🔥 RANGE HANDLING
           // ===============================
           if (item.type === "range") {
+            if (item.silent) continue;
             const min = value?.min ?? null
             const max = value?.max ?? null
 
@@ -122,7 +123,7 @@ export const enableResetStore = (store) => {
             dataSearch[key] = value
           }
 
-          if (!_.isEqual(value, defaultValue)) {
+          if (!item.silent && !_.isEqual(value, defaultValue)) {
             dataRoute[key] = value
           }
         }
@@ -247,8 +248,17 @@ export const enableResetStore = (store) => {
       SET_PAGE(state, params = { stateName, data }) {
         state[params.stateName].page.value = params.data
       },
-      SET_PARAM_QUERY(state, params = { stateName, query, data }) {
-        state[params.stateName][params.query].value = params.data
+      SET_PARAM_QUERY(
+        state,
+        params = { stateName, query, data, silent }
+      ) {
+        const item = state[params.stateName]?.[params.query];
+        if (!item) return;
+
+        item.value = params.data;
+
+        // 🔥 silent chỉ áp dụng khi được truyền
+        item.silent = !!params.silent;
       },
       SET_PARAM_DEFAULT(state, params = { query, data }) {
         state.paramDefaults[params.query] = params.data

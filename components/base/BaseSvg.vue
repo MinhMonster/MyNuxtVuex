@@ -1,5 +1,5 @@
 <template>
-  <v-btn :icon="!button" :color="color" @click="$emit('click')">
+  <v-btn :icon="!button" :color="color" v-bind="$attrs" @click="$emit('click')">
     <div
       class="base-svg"
       v-html="require(`@/assets/images/svg/${name}.svg?raw`)"
@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  inheritAttrs: false,
   props: {
     name: { type: String, default: "home" },
     color: { type: String, default: null },

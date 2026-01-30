@@ -100,7 +100,15 @@ const queryItems = _.cloneDeep({
     value: 24
   },
   code: {
-    placeholder: "Mã số",
+    title: "Mã",
+    placeholder: "Mã số...",
+    type: "text",
+    show: true,
+    value: ''
+  },
+  username: {
+    title: "ID",
+    placeholder: "Nhập ID...",
     type: "text",
     show: true,
     value: ''
@@ -113,7 +121,7 @@ const queryItems = _.cloneDeep({
     value: ""
   },
   land: {
-    placeholder: "Đất",
+    placeholder: "Số ô đất",
     type: "select",
     options: farmOptions,
     show: true,
@@ -123,13 +131,6 @@ const queryItems = _.cloneDeep({
     placeholder: "Giới tính",
     type: "select",
     options: sexOptions,
-    show: true,
-    value: ""
-  },
-  is_clan: {
-    placeholder: "Clan",
-    type: "select",
-    options: clanOptions,
     show: true,
     value: ""
   },

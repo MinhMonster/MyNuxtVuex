@@ -2,6 +2,12 @@
   <AccountIndex
     title="Nick Ninja School Giá Rẻ"
     module="client/game/ninjaSchools"
+    :params="[
+      {
+        query: 'type',
+        data: 2,
+      },
+    ]"
   />
 </template>
 

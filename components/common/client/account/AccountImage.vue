@@ -3,6 +3,7 @@
     <AccountImageNinja
       v-if="account.account_type === 'ninja'"
       :account="account"
+      :thumbnail="imageUrl"
     />
     <img
       v-else
@@ -36,7 +37,7 @@ export default {
 
   computed: {
     imageUrl() {
-      const img = this.account?.images?.[0];
+      const img = this.account?.thumbnail;
       if (!img) return null;
 
       // Nếu đã là URL đầy đủ (http/https)

@@ -47,11 +47,13 @@ import Loading from "@/components/global/molecules/common/Loading";
 export default {
   mixins: [clientCrud],
   components: { AccountCard, Loading },
-  props: {
+  watch: {
     params: {
-      type: Array,
-      default: () => [],
-      require: false,
+      immediate: true,
+      deep: true,
+      handler() {
+        this.resetAllQuery();
+      },
     },
   },
   async created() {
@@ -60,12 +62,24 @@ export default {
       query: this.$route.query,
     });
     // await this.resetQueryItems();
+    await this.storeDispatch("setQueryPage", {
+      stateName: this.storeQueryItems,
+      data: 1,
+    });
     await this.storeDispatch("clearResponse", this.storeQueryItems);
     this.fetchDataIndex();
   },
   methods: {
     getInfoItems(account) {
       return this.storeGetter("getInfoItems")(account);
+    },
+    async resetAllQuery() {
+      await this.storeDispatch("resetData", this.storeQueryItems);
+      await this.storeDispatch("setQueryPage", {
+        stateName: this.storeQueryItems,
+        data: 1,
+      });
+      await this.storeDispatch("clearResponse", this.storeQueryItems);
     },
   },
 };

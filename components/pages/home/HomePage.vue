@@ -3,36 +3,58 @@
     <Loading v-if="loading" />
     <v-row v-else>
       <v-col cols="12" md="12" :lg="colLeft">
-        <div
+        <main
           class="page-body"
           :class="{ 'full-screen': fullScreen, 'not-border': notBoder }"
+          role="main"
         >
-          <div :class="{ 'page-info': fullScreen }">
-            <div v-if="title" class="title-page title text-center">
+          <!-- PAGE HEADER -->
+          <header v-if="title || content" class="page-header text-center">
+            <!-- MAIN TITLE: ALWAYS H1 -->
+            <h1 v-if="title" class="title-page title">
               {{ title }}
-            </div>
-            <div v-if="content" class="text-center">
-              <small id="fileHelp" class="form-text text-muted">
-                {{ content }}
-              </small>
-            </div>
+            </h1>
 
-            <div v-if="goBack" class="go-back" @click="onGoBack()">
-              <BaseSvg v-if="!isGoHome" name="next-left" />
-              <BaseSvg v-else name="home" />
-            </div>
-            <div v-if="reload" class="reload" @click="onReload()">
-              <BaseSvg name="reload" />
-            </div>
-            <slot name="body"></slot>
+            <p v-if="content" class="page-description text-muted">
+              {{ content }}
+            </p>
+          </header>
+
+          <!-- ACTIONS -->
+          <div v-if="goBack" class="go-back" @click="onGoBack()">
+            <BaseSvg
+              v-if="goBack"
+              :name="isGoHome ? 'home' : 'next-left'"
+              :title="isGoHome ? 'Về trang chủ' : 'Quay lại'"
+              aria-label="Quay lại"
+            />
           </div>
-        </div>
+          <div v-if="reload" class="reload" @click="onReload()">
+            <BaseSvg
+              v-if="reload"
+              name="reload"
+              title="Tải lại"
+              aria-label="Tải lại"
+            />
+          </div>
+
+          <!-- BODY -->
+          <section class="page-content">
+            <slot name="body" />
+          </section>
+        </main>
       </v-col>
+      <!-- RIGHT COLUMN -->
       <v-col v-if="colRight" cols="12" md="12" :lg="colRight">
-        <slot name="col-right"></slot>
+        <aside role="complementary">
+          <slot name="col-right" />
+        </aside>
       </v-col>
-      <v-col v-if="table" cols="12" md="12" lg="12">
-        <slot name="table"></slot>
+      <!-- TABLE -->
+      <v-col v-if="table" cols="12">
+        <section class="page-table">
+          <slot name="table" />
+        </section>
       </v-col>
     </v-row>
     <div id="next-bottom"></div>
@@ -41,27 +63,15 @@
 
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
-import { mapFields } from "vuex-map-fields";
 
 export default {
   components: { Loading },
   props: {
-    title: {
-      type: String,
-      default: null,
-    },
-    content: {
-      type: String,
-      default: null,
-    },
-    pathGoBack: {
-      type: String,
-      default: null,
-    },
-    queryGoBack: {
-      type: String,
-      default: null,
-    },
+    title: String,
+    content: String,
+
+    pathGoBack: String,
+    queryGoBack: String,
     goBack: Boolean,
     goHome: Boolean,
     reload: Boolean,
@@ -72,16 +82,10 @@ export default {
       type: Number,
       default: 12,
     },
-    colRight: {
-      type: Number,
-      default: null,
-    },
+    colRight: Number,
     table: Boolean,
   },
   computed: {
-    ...mapFields("global", {
-      ready: "ready",
-    }),
     isGoHome() {
       return this.goHome;
     },
@@ -94,8 +98,7 @@ export default {
         await this.$router.push(`${this.pathGoBack}?${this.queryGoBack}`);
       } else {
         const { from } = this.$route.query;
-        if (from) this.$router.push(from);
-        else await this.$router.go(-1);
+        from ? this.$router.push(from) : this.$router.go(-1);
       }
       setTimeout(() => {
         this.onReload();
@@ -107,8 +110,23 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
+.page-header {
+  margin-bottom: 12px;
+}
+
 .title-page {
   padding: 0 30px;
+  font-weight: 700;
+}
+
+.page-description {
+  margin-top: 4px;
+}
+
+.page-content {
+  margin-top: 8px;
 }
 </style>
+

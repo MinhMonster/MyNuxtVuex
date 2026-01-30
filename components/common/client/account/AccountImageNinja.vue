@@ -2,176 +2,45 @@
   <client-only>
     <div v-if="account?.code" class="ninja-image-card">
       <img
-        :src="
-          account.images[0].includes('muabannick.pro')
-            ? account.images[0]
-            : `https://muabannick.pro${account.images[0]}`
-        "
+        :src="thumbnail"
         alt="Ninja School"
         class="ninja-img"
         :class="{ 'img-full': account.is_full_image }"
       />
 
       <template v-if="!account.is_full_image">
+        <!-- Meta -->
         <div class="ninja-top-meta">
           <span class="meta-tag tag-lv">Lv: {{ account.level }}</span>
-          <span class="meta-tag tag-sv"
-            >Sv: {{ serverNinjaNumber(account.server) }}</span
-          >
-          <span class="meta-tag tag-name"
-            >@{{ account.character_name }}</span
-          >
+          <span class="meta-tag tag-sv">
+            Sv: {{ serverNinjaNumber(account.server) }}
+          </span>
+          <span class="meta-tag tag-name"> @{{ account.character_name }} </span>
         </div>
 
+        <!-- Equip stats -->
         <span
-          v-if="account.tl_1"
-          class="equip-stat pos-r"
-          style="top: 19%"
-          >{{ account.tl_1 }}</span
-        >
-        <span
-          v-if="account.tl_2"
-          class="equip-stat pos-r"
-          style="top: 30.5%"
-          >{{ account.tl_2 }}</span
-        >
-        <span
-          v-if="account.tl_3"
-          class="equip-stat pos-r"
-          style="top: 42%"
-          >{{ account.tl_3 }}</span
-        >
-        <span
-          v-if="account.tl_4"
-          class="equip-stat pos-r"
-          style="top: 53%"
-          >{{ account.tl_4 }}</span
-        >
-        <span
-          v-if="account.tl_5"
-          class="equip-stat pos-r"
-          style="top: 64%"
-          >{{ account.tl_5 }}</span
-        >
-
-        <span
-          v-if="account.tl_6"
-          class="equip-stat pos-l"
-          style="top: 19%"
-          >{{ account.tl_6 }}</span
-        >
-        <span
-          v-if="account.tl_7"
-          class="equip-stat pos-l"
-          style="top: 30.5%"
-          >{{ account.tl_7 }}</span
-        >
-        <span
-          v-if="account.tl_8"
-          class="equip-stat pos-l"
-          style="top: 42%"
-          >{{ account.tl_8 }}</span
-        >
-        <span
-          v-if="account.tl_9"
-          class="equip-stat pos-l"
-          style="top: 53%"
-          >{{ account.tl_9 }}</span
-        >
-        <span
-          v-if="account.tl_10"
-          class="equip-stat pos-l"
-          style="top: 64%"
-          >{{ account.tl_10 }}</span
-        >
-
-        <span
-          v-if="account.tl_11"
+          v-for="stat in equipStats"
+          :key="stat.key"
           class="equip-stat"
-          style="left: 44.5%; top: 62%"
-          >{{ account.tl_11 }}</span
+          :class="stat.side"
+          :style="stat.style || { top: stat.top }"
         >
-        <span
-          v-if="account.tl_12"
-          class="equip-stat"
-          style="left: 56.5%; top: 62%"
-          >{{ account.tl_12 }}</span
-        >
+          {{ stat.value }}
+        </span>
 
+        <!-- Item badges -->
         <span
-          v-if="account.item_7"
-          class="item-badge pos-l"
-          style="top: 19%"
-          >{{ account.item_7 }}</span
+          v-for="item in itemBadges"
+          :key="item.key"
+          class="item-badge"
+          :class="item.side"
+          :style="{ top: item.top }"
         >
-        <span
-          v-if="account.item_8"
-          class="item-badge pos-l"
-          style="top: 30.5%"
-          >{{ account.item_8 }}</span
-        >
-        <span
-          v-if="account.item_9"
-          class="item-badge pos-l"
-          style="top: 42%"
-          >{{ account.item_9 }}</span
-        >
-        <span
-          v-if="account.item_10"
-          class="item-badge pos-l"
-          style="top: 53%"
-          >{{ account.item_10 }}</span
-        >
-        <span
-          v-if="account.item_11"
-          class="item-badge pos-l"
-          style="top: 64%"
-          >{{ account.item_11 }}</span
-        >
-        <span
-          v-if="account.item_12"
-          class="item-badge pos-l"
-          style="top: 75%"
-          >{{ account.item_12 }}</span
-        >
+          {{ item.value }}
+        </span>
 
-        <span
-          v-if="account.item_1"
-          class="item-badge pos-r"
-          style="top: 19%"
-          >{{ account.item_1 }}</span
-        >
-        <span
-          v-if="account.item_2"
-          class="item-badge pos-r"
-          style="top: 30.5%"
-          >{{ account.item_2 }}</span
-        >
-        <span
-          v-if="account.item_3"
-          class="item-badge pos-r"
-          style="top: 42%"
-          >{{ account.item_3 }}</span
-        >
-        <span
-          v-if="account.item_4"
-          class="item-badge pos-r"
-          style="top: 53%"
-          >{{ account.item_4 }}</span
-        >
-        <span
-          v-if="account.item_5"
-          class="item-badge pos-r"
-          style="top: 64%"
-          >{{ account.item_5 }}</span
-        >
-        <span
-          v-if="account.item_6"
-          class="item-badge pos-r"
-          style="top: 75%"
-          >{{ account.item_6 }}</span
-        >
-
+        <!-- Mount banner -->
         <div v-if="account.item_13" class="banner-mounts-minimal">
           <div class="line top"></div>
           <div class="text-glow">{{ account.item_13 }}</div>
@@ -184,11 +53,72 @@
 <script>
 export default {
   name: "AccountImageNinja",
-  components: {},
   props: {
     account: {
       type: Object,
-      default: () => {},
+      required: true,
+    },
+    thumbnail: {
+      type: String,
+      required: true,
+    }
+  },
+
+  computed: {
+    equipStats() {
+      const tops = ["19%", "30.5%", "42%", "53%", "64%"];
+
+      return [
+        // right tl_1 -> tl_5
+        ...tops.map((top, i) => ({
+          key: `tl_${i + 1}`,
+          value: this.account[`tl_${i + 1}`],
+          side: "pos-r",
+          top,
+        })),
+
+        // left tl_6 -> tl_10
+        ...tops.map((top, i) => ({
+          key: `tl_${i + 6}`,
+          value: this.account[`tl_${i + 6}`],
+          side: "pos-l",
+          top,
+        })),
+
+        // center tl_11, tl_12
+        {
+          key: "tl_11",
+          value: this.account.tl_11,
+          style: { left: "44.5%", top: "62%" },
+        },
+        {
+          key: "tl_12",
+          value: this.account.tl_12,
+          style: { left: "56.5%", top: "62%" },
+        },
+      ].filter((i) => i.value);
+    },
+
+    itemBadges() {
+      const tops = ["19%", "30.5%", "42%", "53%", "64%", "75%"];
+
+      return [
+        // left items 7 -> 12
+        ...tops.map((top, i) => ({
+          key: `item_${i + 7}`,
+          value: this.account[`item_${i + 7}`],
+          side: "pos-l",
+          top,
+        })),
+
+        // right items 1 -> 6
+        ...tops.map((top, i) => ({
+          key: `item_${i + 1}`,
+          value: this.account[`item_${i + 1}`],
+          side: "pos-r",
+          top,
+        })),
+      ].filter((i) => i.value);
     },
   },
 };

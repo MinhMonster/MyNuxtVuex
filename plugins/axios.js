@@ -153,11 +153,29 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       });
     }
 
-    if (code === 401 || code === 419) {
+    if (code === 419) {
       switch (layout) {
         case "clientLayout":
           store.dispatch("home/users/logout");
           redirect('/')
+          break;
+      }
+    }
+
+    if (code === 401) {
+      switch (layout) {
+        case "clientLayout":
+          store.dispatch("home/users/logout");
+          const dataCode = error?.response?.data?.code;
+          if (['TOKEN_EXPIRED', 'TOKEN_INVALID', 'UNAUTHENTICATED'].includes(dataCode)) {
+            redirect('/')
+          }
+          $swal.fire({
+            title: "",
+            html: error.response.data.message,
+            icon: "error",
+            customClass: customClassSwal
+          });
           break;
       }
     }

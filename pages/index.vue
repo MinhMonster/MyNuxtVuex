@@ -1,18 +1,15 @@
 <template>
-  <client-only>
-    <HomePage :loading="!ready" notBoder>
-      <template v-if="ready" #body>
-        <div class="mt-1">
-          <HomeGame></HomeGame>
-        </div>
-      </template>
-    </HomePage>
-  </client-only>
+  <HomePage :loading="!ready" notBoder>
+    <template v-if="ready" #body>
+      <div class="mt-1">
+        <HomeGame></HomeGame>
+      </div>
+    </template>
+  </HomePage>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
-
 import HomePage from "@/components/pages/home/HomePage";
 import HomeGame from "@/components/pages/home/HomeGame";
 
@@ -42,28 +39,56 @@ export default {
   data() {
     return {
       title:
-        "MuaBanNick.Pro - Shop Nick Tự Động - Shop Mua Bán Nick Ninja School Online, Ngọc Rồng Online, Avatar, Đại Tây Du Giá Rẻ, Uy Tín Nhất MXH",
+        "MuaBanNick.Pro – Shop Nick Tự Động | Ninja School, Avatar, Ngọc Rồng, Liên Quân Mobile",
       description:
-        "WEB Mua Bán Nick Game, Tài Khoản Game, Account Game, Dịch Vụ Game Online, Nick Ninja School - Nso, Nick Ngọc Rồng - Nro, Nick Avatar SX Diệu Kỳ (2x) của TeaMobi - Uy Tín - Giá rẻ",
+        "Mua bán nick game tự động uy tín: Ninja School Online, Ngọc Rồng Online, Avatar Diệu Kỳ, Liên Quân Mobile. Giá rẻ – giao dịch nhanh – không trung gian.",
     };
   },
   head() {
     return {
       title: this.title,
       meta: [
-        { hid: "description", name: "description", content: this.description },
-        { property: "og:title", content: this.title },
-        { property: "og:description", content: this.description },
-        { property: "og:image", content: "/banner.jpg" },
+        // SEO cơ bản
         {
-          property: "og:image:alt",
-          content: "MuaBanNick.Pro - Shop Nick Tự Động",
+          hid: "description",
+          name: "description",
+          content: this.description,
         },
         {
+          hid: "keywords",
           name: "keywords",
           content:
-            "nick ninja, shop nick ninja, mua nick ninja, shop acc ninja, mua acc ninja, shop nick ninja, mua bán nick ninja, shop nick ninja không chiết khấu, acc ninja, mua ních ninja, bán nick ninja, shop ninja sv4, mua nick ninja trả góp, shop nick ninja giá rẻ, xu5sv, shop nick ninja sv world, nick avatar, nick dai tay du, nick avatar dk, shop nick avatar 2x, mua nick avatar dk, mua nick avatar 2x, shop acc avatar dk, shop acc avatar 2x, nick avatar dk teamobi, shop nick avatar 2x teamobi",
+            "shop nick ninja, mua nick ninja, shop acc ninja, nick ngọc rồng, shop nick nro, nick avatar 2x, nick liên quân mobile, shop nick teamobi",
         },
+
+        // Open Graph
+        { hid: "og:title", property: "og:title", content: this.title },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: this.description,
+        },
+        { hid: "og:type", property: "og:type", content: "website" },
+        { hid: "og:image", property: "og:image", content: "/banner.jpg" },
+        {
+          hid: "og:image:alt",
+          property: "og:image:alt",
+          content: "Shop mua bán nick game tự động MuaBanNick.Pro",
+        },
+
+        // Twitter
+        {
+          hid: "twitter:card",
+          name: "twitter:card",
+          content: "summary_large_image",
+        },
+        { hid: "twitter:title", name: "twitter:title", content: this.title },
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content: this.description,
+        },
+        { hid: "twitter:image", name: "twitter:image", content: "/banner.jpg" },
       ],
     };
   },

@@ -15,7 +15,7 @@
           :href="item.path"
           class="neon-horizontal-card d-flex align-center"
           ripple
-          @click.prevent="handleAction(item.path)"
+          @click.prevent="handleAction(item)"
         >
           <div
             class="icon-section d-flex justify-center align-center"
@@ -45,7 +45,7 @@ export default {
           title: this.isLogin ? "Tài Khoản" : "Đăng Nhập",
           category: "Thành viên",
           icon: "mdi-account",
-          path: "/account/profile",
+          method: "openProfileModal",
         },
         {
           title: "Nạp Tiền",
@@ -69,11 +69,13 @@ export default {
     },
   },
   methods: {
-    handleAction(path) {
+    handleAction(action) {
       if (!this.isLogin) {
         this.showModalLoginRegister("login");
-      } else {
-        this.$router.push(`${path}`);
+      } else if (action.path) {
+        this.$router.push(`${action.path}`);
+      } else if (action.method) {
+        this[action.method]();
       }
     },
   },
