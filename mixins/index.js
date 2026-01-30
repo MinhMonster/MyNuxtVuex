@@ -110,7 +110,7 @@ export default {
       return this.user;
     },
     isAdmin() {
-      return this.isLogin && this.user.admin;
+      return this.isLogin && this.user.is_admin;
     },
     isViewAccount() {
       return this.isAdmin && this.isView;
@@ -296,7 +296,7 @@ export default {
     },
 
     classNinja(type) {
-      switch (type) {
+      switch (Number(type)) {
         case 1:
           return "Đao";
         case 2:
@@ -317,7 +317,7 @@ export default {
     },
 
     serverNinja(type) {
-      switch (type) {
+      switch (Number(type)) {
         case 1:
           return "Bokken";
         case 2:
@@ -338,7 +338,7 @@ export default {
     },
 
     serverNinjaNumber(type) {
-      switch (type) {
+      switch (Number(type)) {
         case 1:
           return "1";
         case 2:

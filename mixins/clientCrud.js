@@ -49,7 +49,12 @@ export default {
       default: () => {
         return false;
       }
-    }
+    },
+    params: {
+      type: Array,
+      default: () => [],
+      require: false,
+    },
   },
   computed: {
     ...mapFields("global", {
@@ -290,7 +295,6 @@ export default {
           );
           this.fetchDataIndex();
         } catch (e) {
-          console.log(e);
         }
       }
     },
@@ -322,7 +326,6 @@ export default {
               this.fetchDataIndex();
               // }
             } catch (e) {
-              console.log(e);
             }
           }
         });
@@ -332,8 +335,6 @@ export default {
         stateName: this.storeQueryItems,
         data: page || this.stateQueryItems?.page?.value || 1
       });
-      console.log("onChangePage");
-
       this.fetchDataIndex();
     },
     resetDataPage() {
@@ -363,13 +364,14 @@ export default {
       try {
         this.isLoadingSearch = true
 
-        // set param default (giữ nguyên)
-        this.params.forEach((param) => {
-          this.storeDispatch("setParamDefault", {
+        this.params.forEach(param => {
+          this.storeDispatch("setParamQuery", {
+            stateName: this.storeQueryItems,
             query: param.query,
-            data: param.value,
-          })
-        })
+            data: param.data,
+            silent: true,
+          });
+        });
 
         const { dataSearch, dataOrigin, dataRoute } =
           await this.storeDispatch("convertDataSend", this.storeQueryItems)
@@ -379,8 +381,6 @@ export default {
         ]({
           input: Object.assign(dataSearch, this.stateParamDefault),
         })
-        console.log("result");
-
 
         setTimeout(() => {
           this.isLoadingSearch = false;
@@ -388,13 +388,15 @@ export default {
           // 🔥 LOAD MORE LOGIC
           // =========================
           if (loadMore && dataOrigin.response?.data?.length) {
+            const merged = [
+              ...dataOrigin.response.data,
+              ...result.data.response.data,
+            ];
+
             dataOrigin.response = {
               ...result.data.response,
-              data: [
-                ...dataOrigin.response.data,
-                ...result.data.response.data,
-              ],
-            }
+              data: _.uniqBy(merged, item => item.id ?? item.code),
+            };
           } else {
             // fetch mới (search / reset)
             dataOrigin.response = result.data.response
@@ -408,10 +410,6 @@ export default {
             query: loadMore ? undefined : dataRoute,
           })
         }, 300);
-
-
-
-
       } catch (error) {
         this.isLoadingSearch = false
       }

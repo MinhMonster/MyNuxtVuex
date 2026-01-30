@@ -1,7 +1,7 @@
 <template>
   <ModalPayload
     ref="modal"
-    :title="`Thông tin Thành viên`"
+    :title="`Thông tin cá nhân`"
     size="md"
     hiddenFooter
     @hide="isShowProfileModal = false"
@@ -69,7 +69,7 @@
                 <span
                   ><strong
                     ><strong>{{
-                      userInfo.admin ? "Admin" : "Thành Viên"
+                      isAdmin ? "Admin" : "Thành Viên"
                     }}</strong></strong
                   ></span
                 >

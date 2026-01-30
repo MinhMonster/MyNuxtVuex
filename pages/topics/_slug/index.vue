@@ -18,6 +18,13 @@
 <script>
 import HomePage from "@/components/pages/home/HomePage";
 
+function stripHtml(html = "") {
+  return html
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export default {
   components: { HomePage },
   layout: "clientLayout",
@@ -67,13 +74,15 @@ export default {
   head() {
     if (!this.topic) return {};
 
+    const description = stripHtml(this.topic.description).slice(0, 160);
+
     return {
       title: this.topic.title,
       meta: [
         {
           hid: "description",
           name: "description",
-          content: this.topic.description || "",
+          content: description || "",
         },
         {
           hid: "og:title",
@@ -83,7 +92,7 @@ export default {
         {
           hid: "og:description",
           property: "og:description",
-          content: this.topic.description || "",
+          content: description || "",
         },
         {
           hid: "og:image",

@@ -49,9 +49,13 @@ import MenuBottom from "@/components/pages/client/layout/MenuBottom";
 import MenuRight from "@/components/pages/client/layout/MenuRight";
 import ModalLogin from "@/components/pages/client/account/wallet/ModalLogin";
 import ModalProfile from "@/components/pages/client/layout/ModalProfile";
-import { mapFields } from "vuex-map-fields";
 
 import mixins from "@/mixins/index";
+
+const setRealVh = () => {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+};
 
 export default {
   name: "ClientLayout",
@@ -99,6 +103,8 @@ export default {
   },
 
   async mounted() {
+    setRealVh();
+    window.addEventListener("resize", setRealVh);
     this.isThemeDark = true;
     this.isThemeRed = false;
     if (this.token) {
@@ -111,6 +117,7 @@ export default {
   },
   destroyed() {
     window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("resize", setRealVh);
   },
   methods: {
     // changeTheme() {
@@ -145,6 +152,10 @@ export default {
   }
 
   #home-page {
+    margin-bottom: 40px;
+    @media (max-width: 768px) {
+      margin-bottom: 50px;
+    }
     // height: calc(100vh - 145px);
     // top: 70px;
     // bottom: 60px;
@@ -156,11 +167,11 @@ export default {
       border-radius: 4px;
 
       &.full-screen {
-        min-height: calc(100vh - 145px);
+        min-height: calc(100 * var(--vh) - 120px);
         overflow: hidden;
 
         .page-info {
-          min-height: calc(100vh - 125px);
+          min-height: calc(100 * var(--vh) - 120px);
         }
       }
 
@@ -247,14 +258,14 @@ export default {
       // top: 120px;
       // bottom: 45px;
       right: 0px;
-      left: 0;
+      left: 0px;
       // position: fixed;
       width: calc(100vw - 55px) !important;
-      height: calc(100vh - 115px);
+      height: calc(100 * var(--vh) - 100px);
+
       @media (max-width: 768px) {
-        height: calc(100vh - 200px);
+        height: calc(100 * var(--vh) - 60px);
       }
-      left: 0px;
       max-width: 100% !important;
       border-radius: 0px;
       background: #ffcf9c;

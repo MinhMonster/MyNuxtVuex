@@ -6,6 +6,7 @@
       full-screen
       :loading="!ready"
       goBack
+      queryGoBack
       :path-go-back="`/account/purchases`"
       reload
       @reload="fetchHistory()"
@@ -18,9 +19,14 @@
                 <td class="mua-nick text-left" colspan="2">
                   <span>
                     <template
-                      v-if="!transferPin && history.account_type === 'dragon_ball'"
+                      v-if="
+                        !transferPin && history.account_type === 'dragon_ball'
+                      "
                     >
-                      <p v-if="history.account_type === 'dragon_ball'" class="sms">
+                      <p
+                        v-if="history.account_type === 'dragon_ball'"
+                        class="sms"
+                      >
                         Nick Ngọc Rồng trên Web đều là đăng ký ảo. Các bạn chỉ
                         cần đổi mật khẩu là xong.
                       </p>
@@ -61,35 +67,31 @@
 
 <script>
 import mixins from "@/mixins/index";
-import Loading from "@/components/global/molecules/common/Loading";
 import HomePage from "@/components/pages/home/HomePage";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
 import AdminInbox from "@/components/common/client/AdminInbox";
 import AccountInfoTable from "@/components/common/client/table/AccountInfoTable.vue";
 
 import { mapFields } from "vuex-map-fields";
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("home/users");
 
 export default {
   middleware: ["authentication"],
   layout: "clientLayout",
   mixins: [mixins],
   components: {
-    Loading,
     HomePage,
     ButtonCoppy,
     AdminInbox,
     AccountInfoTable,
   },
+  data() {
+    return {
+      history: null,
+      title: "Thông tin Tài Khoản",
+    };
+  },
   computed: {
     ...mapFields("global", { ready: "ready" }),
-    ...mapFields("home/users", {
-      history: "historyBuyAccount",
-      pageSave: "pageSave",
-    }),
-    ...mapFields("home/game/ninjas", {}),
-    ...mapState(["token", "user"]),
     historyId() {
       return _.cloneDeep(this.$route.params.id);
     },
@@ -112,6 +114,7 @@ export default {
         {
           label: "Tài Khoản",
           value: this.account?.username || "Đang cập nhật",
+          copy: true
         },
         {
           label: "Mật khẩu",
@@ -132,8 +135,9 @@ export default {
         },
         {
           label: "Trạng Thái",
-          value: `<span class="btn btn-success btn-xs">Thành công</span>`,
-          html: true,
+          value: "success",
+          type: "status",
+          class: "flex flex-center"
         },
       ];
     },
@@ -142,24 +146,20 @@ export default {
     this.fetchHistory();
   },
   methods: {
-    ...mapActions(["historyBuyAccount", "setQuery", "resetQuery"]),
-    nextTop() {
-      const element = document.getElementById("home-page");
-      element.scrollIntoView();
-    },
     async fetchHistory() {
-      this.ready = false;
-      await this.historyBuyAccount(this.historyId);
-      this.ready = true;
+      try {
+        this.ready = false;
+        const res = await this.$repositories.clientAccountPurchases.show(
+          this.historyId
+        );
+        this.history = res.data.response;
+      } catch {
+      } finally {
+        setTimeout(() => {
+          this.ready = true;
+        }, 400);
+      }
     },
-    goBack() {
-      this.$router.push(`/account/purchases?page=${this.pageSave}`);
-    },
-  },
-  data() {
-    return {
-      title: "Thông tin Tài Khoản",
-    };
   },
   head() {
     return {

@@ -136,7 +136,7 @@ export default {
         {
           title: "Nạp tiền tài khoản",
           icon: "mdi-plus-circle-outline",
-          path: "/account/wallet/deposits/bank",
+          path: "/account/wallet/deposit/bank",
         },
         {
           title: "Lịch sử mua Nick",

@@ -16,25 +16,29 @@ export default {
   },
 
   methods: {
-    columnsValue(type, value) {
-      // return value
+    columnsValue(column = {}, value) {
+      const { type, prefix = '' } = column
+      let newValue = value
 
       switch (type) {
         case 'number':
-          return this.format_number(value);
+          newValue = this.format_number(value)
+          break
         case 'class-ninja':
-          return this.classNinja(value);
+          newValue = this.classNinja(value)
+          break
         case 'server-ninja':
-          return this.serverNinja(value);
+          newValue = this.serverNinja(value)
+          break
         case 'type-ninja':
-          return this.typeNinja(value);
-        // case 'status-ninja':
-        //   return this.statusNinja(value);
-        case 'deleted_at':
-          return this.deletedAt(value);
-        default:
-          return value
+          newValue = this.typeNinja(value)
+          break
+        case 'game-name':
+          newValue = this.game_name(value)
+          break
       }
-    },
+
+      return prefix + newValue
+    }
   },
 }

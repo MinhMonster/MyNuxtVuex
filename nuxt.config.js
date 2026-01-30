@@ -75,14 +75,18 @@ export default {
       }
     },
   },
-  // generate: {
-  //   routes: async () => {
-  //     const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
-  //     return data.sitemap_topics.map(
-  //       file => `${file.link}`
-  //     );
-  //   },
-  // },
+  generate: {
+    fallback: true,
+    routes: async () => {
+      const { data } = await axios.get(
+        'https://control.muabannick.pro/topics?perPage=1000'
+      )
+
+      return data.response.data.map(
+        item => `/topics/${item.slug}/`
+      )
+    }
+  },
   mounted() {
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }

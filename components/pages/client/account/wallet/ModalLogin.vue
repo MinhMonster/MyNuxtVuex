@@ -19,10 +19,9 @@
     </ModalPayload>
   </div>
 </template>
-  
+
 <script>
 import { mapFields } from "vuex-map-fields";
-import { mapActions, mapState } from "vuex";
 import ModalPayload from "@/components/common/ModalPayload";
 import FormLogin from "@/components/pages/client/login/FormLogin";
 import FormRegister from "@/components/pages/client/login/FormRegister";
@@ -44,23 +43,13 @@ export default {
       },
     },
   },
-  props: {},
-  data() {
-    return {
-      tab: null,
-      isBuy: "wallet",
-      isLoading: false,
-    };
-  },
   computed: {
-    ...mapState("home/users", ["token", "user"]),
     ...mapFields("global", {
       showLoginRegister: "showLoginRegister",
       isFormLoginRegister: "isFormLoginRegister",
     }),
   },
   methods: {
-    ...mapActions("home/users", ["buyAccount"]),
     show() {
       this.$refs.modal.show();
     },
@@ -72,7 +61,7 @@ export default {
   },
 };
 </script>
-  
+
 <style lang="scss" scoped>
 .theme-dark form.form-login {
   border: none !important;

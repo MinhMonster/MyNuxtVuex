@@ -1,8 +1,6 @@
 export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
-
-
-
   const axiosConfig = { timeout: 60000 };
+
   axiosConfig.baseURL = process.env.apiUrl;
 
   const api = $axios.create(axiosConfig);
@@ -19,7 +17,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       const namespace = _.get(store, "_vm.$nuxt.$data.layoutName", "");
       let authToken = null;
 
-      // if (!config.noRequireToken) {
       switch (namespace) {
         case "clientLayout":
           authToken = store.state.home.users.token;
@@ -27,7 +24,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
         default:
           authToken = null;
       }
-      // }
 
       if (authToken) {
         config.headers = {
@@ -100,7 +96,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     const code = parseInt(error.response && error.response.status)
     const layout = _.get(store, "_vm.$nuxt.$data.layoutName", "");
     // const code = parseInt(error.response && error.response.status)
-    console.log(error.response);
     const isThemeDark = store.state.global.isThemeDark;
     const customClassSwal = {
       container: isThemeDark ? "swal-dark" : "",
@@ -115,7 +110,6 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     }
 
     if (code === 404) {
-      console.log("ok", error);
       const account_type = error.response.data.account_type || null;
       if (account_type) {
         $swal.fire({
@@ -131,6 +125,8 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
           case 'avatar':
             redirect('/teamobi/avatar')
             break;
+          case 'dragon_ball':
+            redirect('/teamobi/ngoc-rong')
         }
       } else {
         switch (layout) {
@@ -153,11 +149,52 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       });
     }
 
-    if (code === 401 || code === 419) {
+    if (code === 419) {
       switch (layout) {
         case "clientLayout":
           store.dispatch("home/users/logout");
           redirect('/')
+          break;
+      }
+    }
+
+    if (code === 401) {
+      switch (layout) {
+        case "clientLayout":
+          store.dispatch("home/users/logout");
+          const dataCode = error?.response?.data?.code;
+          if (['TOKEN_EXPIRED', 'TOKEN_INVALID', 'UNAUTHENTICATED'].includes(dataCode)) {
+            redirect('/')
+          }
+          $swal.fire({
+            title: "",
+            html: error.response.data.message,
+            icon: "error",
+            customClass: customClassSwal
+          });
+          break;
+      }
+    }
+
+    if (code === 402) {
+      switch (layout) {
+        case "clientLayout":
+          $swal
+            .fire({
+              title: "Thất bại",
+              text: error.response.data.message,
+              confirmButtonColor: "#F64E60",
+              cancelButtonColor: "#a4a4a4",
+              showCancelButton: true,
+              cancelButtonText: "Bỏ qua",
+              confirmButtonText: "Nạp tiền",
+              customClass: customClassSwal
+            })
+            .then(async (result) => {
+              if (result.isConfirmed) {
+                redirect('/account/wallet/deposit/bank')
+              }
+            });
           break;
       }
     }

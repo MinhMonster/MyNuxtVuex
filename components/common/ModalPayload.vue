@@ -70,7 +70,7 @@ export default {
     };
   },
   props: {
-    title: { type: String, default: "THÔNG TIN THÀNH VIÊN" },
+    title: { type: String, default: "" },
     textClose: { type: String, default: "Đóng" },
     size: { type: String, default: "lg" },
     height: { type: String, default: "auto" },
@@ -97,7 +97,7 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep .gaming-modal-container {
-  box-shadow: 0 0 0 1px rgba(189, 0, 255, 0.4), 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: #0f0f0f 0px 0px 1px inset, #ac3be4 0px 2px 5px;
   border-radius: 8px !important;
   overflow: visible !important;
 }
@@ -177,7 +177,7 @@ export default {
       }
     }
     th {
-       vertical-align: middle;
+      vertical-align: middle;
     }
 
     td {

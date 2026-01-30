@@ -3,8 +3,8 @@
     v-if="button"
     xmlns="http://www.w3.org/2000/svg"
     class="lds-camera"
-    width="36px"
-    height="36px"
+    width="32px"
+    height="32px"
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
   >

@@ -7,12 +7,12 @@
           id="btn-facebook"
           title="Facebook Admin"
           aria-label="Facebook Admin"
-          class="bg-svg-white"
+          class="bg-svg-white mr-1"
         />
         <span class="mgt-1px">Admin: Đỗ Minh</span>
       </span>
     </a>
-    -
+    <span class="mx-1"></span>
     <a href="https://zalo.me/0961646828" target="_blank"
       ><span class="text-primary"
         ><BaseSvg
@@ -20,13 +20,13 @@
           id="btn-zalo"
           title="Zalo Admin"
           aria-label="Zalo Admin"
-          class="bg-svg-white"
+          class="bg-svg-white mr-1"
         />
         Admin: Đỗ Minh</span
       ></a
     >
   </p>
-</template> 
+</template>
 <style lang="scss" scoped>
 #admin-inbox {
   .bg-svg-white {

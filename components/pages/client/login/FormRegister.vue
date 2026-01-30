@@ -388,7 +388,7 @@ form {
 .form-label {
   color: #a4a4a4;
   position: absolute;
-  top: 20px;
+  top: 17px;
   //  top: 35%;
   font-size: 14px;
   transform: translateY(-50%);

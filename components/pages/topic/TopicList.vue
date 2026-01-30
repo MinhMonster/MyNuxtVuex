@@ -57,13 +57,6 @@ import Loading from "@/components/global/molecules/common/Loading";
 export default {
   mixins: [clientCrud],
   components: { Pagination, Loading },
-  props: {
-    params: {
-      type: Array,
-      default: () => [],
-      require: false,
-    },
-  },
   async created() {
     await this.storeDispatch("passDataFromQuery", {
       stateName: this.storeQueryItems,

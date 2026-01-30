@@ -1,35 +1,39 @@
 <template>
-  <div class="base-table" :class="{ 'table-responsive': responsive }">
-    <v-simple-table v-bind="$attrs" v-on="$listeners" class="table">
-      <thead>
-        <tr>
-          <th
-            v-for="(column, indexColumn) in columns"
-            :key="indexColumn"
-            v-bind="column.attributes"
-            :class="getStickyClass(column)"
-          >
-            {{ column.label }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(record, indexRow) in data" :key="indexRow">
-          <td
-            v-for="(column, indexColumn) in columns"
-            :key="indexColumn"
-            v-bind="column.attributes"
-            :class="getStickyClass(column)"
-          >
-            <slot
-              :name="column.key"
-              :row="record"
-              :column="column"
-              :value="`${getValue(record, column)}`"
+  <div>
+    <div
+      class="base-table table table-striped table-border mb-3"
+      :class="{ 'table-responsive': responsive }"
+    >
+      <v-simple-table v-bind="$attrs" v-on="$listeners" class="table">
+        <thead>
+          <tr>
+            <th
+              v-for="(column, indexColumn) in columns"
+              :key="indexColumn"
+              v-bind="column.attributes"
+              :class="getStickyClass(column)"
             >
-              {{ valueCustom(record, column) }}
-            </slot>
-            <!-- <template #[column.key]="{ record }">
+              {{ column.label }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(record, indexRow) in data" :key="indexRow">
+            <td
+              v-for="(column, indexColumn) in columns"
+              :key="indexColumn"
+              v-bind="column.attributes"
+              :class="getStickyClass(column)"
+            >
+              <slot
+                :name="column.key"
+                :row="record"
+                :column="column"
+                :value="`${getValue(record, column)}`"
+              >
+                {{ valueCustom(record, column) }}
+              </slot>
+              <!-- <template #[column.key]="{ record }">
               <slot
                 :name="column.key"
                 :row="record"
@@ -38,10 +42,11 @@
                 {{ valueCustom(row, column) }}
               </slot>
             </template> -->
-          </td>
-        </tr>
-      </tbody>
-    </v-simple-table>
+            </td>
+          </tr>
+        </tbody>
+      </v-simple-table>
+    </div>
     <Pagination
       v-if="meta && meta.pages > 1"
       :meta="meta"
@@ -94,7 +99,7 @@ export default {
     },
     valueCustom(row, column) {
       const value = this.getValue(row, column);
-      return this.columnsValue(column.type, value);
+      return this.columnsValue(column, value);
     },
     getStickyClass(column) {
       const fixed = column.fixed;
@@ -112,19 +117,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#admin td ul li {
-  padding: 10px 0;
-}
-
 .list-group-item,
 .handle-items,
 .handle-li {
   cursor: move;
 }
-
-/* .v-data-table > .v-data-table__wrapper > table > tbody > tr > td{
-  padding: 0px;
-} */
 
 .v-data-table > .v-data-table__wrapper > table > tbody > tr > td.padding-none,
 .v-data-table > .v-data-table__wrapper > table > thead > tr > th.padding-none {
@@ -179,57 +176,8 @@ export default {
   border-top: none !important;
 }
 
-#admin .v-data-table > .v-data-table__wrapper > table > tbody > tr td {
-  // border: none !important;
-}
-
 .theme--dark.v-data-table {
   background: none;
-}
-
-/* tr.table-main {
-  border-bottom: 2px solid #333;
-} */
-
-/* tr.table-main > td {
-  border: 2px solid #333 !important;
-} */
-
-/* .sub-table tr td:first-child{
-  border-right: 2px solid #333 !important;;
-} */
-
-element.style {
-}
-
-/* #admin .table td {
-  border: 1px solid var(--admin-table-border);
-} */
-#admin td.bg-dark {
-  color: #333 !important;
-  font-weight: 800;
-  text-align: center;
-}
-
-.table.text-center tr,
-.table.text-center th,
-.table.text-center td {
-  text-align: center !important;
-  // min-width: 100px;
-}
-
-.table th {
-  // min-width: 100px;
-}
-
-#admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
-  height: 32px;
-  font-size: 13.5px;
-  vertical-align: middle;
-}
-
-#admin .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
-  padding: 0px 10px;
 }
 
 .sticky-column-left {

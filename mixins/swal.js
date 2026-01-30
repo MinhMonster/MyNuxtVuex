@@ -8,7 +8,7 @@ export default {
         }
       }
       const setting = Object.assign(input, customClass);
-      this.$swal.fire(setting);
+      return this.$swal.fire(setting);
     },
   },
 };

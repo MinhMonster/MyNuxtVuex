@@ -43,7 +43,7 @@
   text-align: center;
   position: relative;
   float: left;
-  margin: 0 5px 0 0;
+  margin: 0 3px;
   background: #1b1b1c;
   border-top-left-radius: 1px;
   border-top-right-radius: 1px;
@@ -51,21 +51,21 @@
   -moz-transition: all 0.3s ease;
   transition: all 0.3s ease;
   border-bottom: 2px solid #0d0e0f;
-  border-top: 2px solid #b549cc;
+  border-top: 2px solid #bd00ff;
   background-image: -webkit-gradient(
     linear,
     0 0,
     0 100%,
-    from(#b549cc),
+    from(#bd00ff),
     to(rgba(23, 23, 24, 0))
   );
-  background-image: -webkit-linear-gradient(#b549cc, rgba(23, 23, 24, 0));
-  background-image: -moz-linear-gradient(#b549cc, rgba(23, 23, 24, 0)),
-    -moz-linear-gradient(#b549cc, rgba(23, 23, 24, 0));
-  background-image: -o-linear-gradient(#b549cc, rgba(23, 23, 24, 0)),
-    -o-linear-gradient(#b549cc, rgba(23, 23, 24, 0));
-  background-image: linear-gradient(#b549cc, rgba(23, 23, 24, 0)),
-    linear-gradient(#b549cc, rgba(23, 23, 24, 0));
+  background-image: -webkit-linear-gradient(#bd00ff, rgba(23, 23, 24, 0));
+  background-image: -moz-linear-gradient(#bd00ff, rgba(23, 23, 24, 0)),
+    -moz-linear-gradient(#bd00ff, rgba(23, 23, 24, 0));
+  background-image: -o-linear-gradient(#bd00ff, rgba(23, 23, 24, 0)),
+    -o-linear-gradient(#bd00ff, rgba(23, 23, 24, 0));
+  background-image: linear-gradient(#bd00ff, rgba(23, 23, 24, 0)),
+    linear-gradient(#bd00ff, rgba(23, 23, 24, 0));
   -moz-background-size: 2px 100%;
   background-size: 2px 100%;
   background-position: 0 0, 100% 0;

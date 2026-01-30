@@ -22,12 +22,18 @@
   .table.table-striped {
     tbody > tr:nth-of-type(odd) {
       color: #f1f1f1 !important;
-      background: #171e28 !important;
+      background: var(--bg--table-td) !important;
+      .sticky-column-right {
+        background: var(--bg--table-td) !important;
+      }
     }
   }
 
   .v-data-table > .v-data-table__wrapper > table > tbody > tr:nth-child(even) {
     color: #fff;
+    .sticky-column-right {
+        background: var(--bg--table-th) !important;
+      }
   }
 
   &.theme--dark {

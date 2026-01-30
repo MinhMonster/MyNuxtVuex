@@ -1,7 +1,7 @@
 <template>
   <section
     aria-labelledby="game-service-heading"
-    class="pa-0 mb-3"
+    class="pa-0"
     style="margin: -12px"
   >
     <v-row no-gutters>
@@ -82,9 +82,9 @@ export default {
         path: "/teamobi/ngoc-rong",
       },
       {
-        title: "Nạp Lượng, Carot",
+        title: "Nạp Lượng, Carrot",
         image: "https://muabannick.pro/images/banners/carot.png",
-        path: "/services/nap-luong-carot",
+        path: "/services/nap-luong-carrot",
       },
       {
         title: "Bán Xu Ninja",

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="info-atm-momo">
+    <div class="text-white">
       <span id="fileHelp" class="form-text text-muted"
         >Hãy chuyển tiền cho Admin để
         <v-btn color="success" class="pd-5px text-black btn-sm"

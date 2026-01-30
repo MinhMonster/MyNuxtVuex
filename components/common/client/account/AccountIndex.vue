@@ -3,9 +3,9 @@
     <HomePage :title="title" goBack reload @reload="reset()" notBoder>
       <template #body>
         <div class="mt-4">
-          <AccountContent :module="module"/>
+          <AccountContent :module="module" />
           <BaseFormSearch :module="module" @search="reload" ref="search" />
-          <AccountList :module="module" ref="table" />
+          <AccountList :module="module" ref="table" :params="params" />
         </div>
       </template>
     </HomePage>
@@ -32,6 +32,11 @@ export default {
     title: {
       type: String,
       default: "Title",
+    },
+    params: {
+      type: Array,
+      default: () => [],
+      require: false,
     },
   },
   methods: {

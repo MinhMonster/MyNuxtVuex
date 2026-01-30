@@ -3,7 +3,7 @@
     :color="status.color"
     :content="status.text"
     overlap
-    class="btn-sm pd-5px"
+    class="pd-5px"
     :class="value === 'failed' ? '' : 'text-black'"
   >
     {{ status.text }}

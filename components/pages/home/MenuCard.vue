@@ -15,7 +15,7 @@
           :href="item.path"
           class="neon-horizontal-card d-flex align-center"
           ripple
-          @click.prevent="handleAction(item.path)"
+          @click.prevent="handleAction(item)"
         >
           <div
             class="icon-section d-flex justify-center align-center"
@@ -45,19 +45,7 @@ export default {
           title: this.isLogin ? "Tài Khoản" : "Đăng Nhập",
           category: "Thành viên",
           icon: "mdi-account",
-          path: "/account/profile",
-        },
-        {
-          title: "Nạp Tiền",
-          category: "Thanh toán",
-          icon: "mdi-currency-usd",
-          path: "/account/wallet/deposits/bank",
-        },
-        {
-          title: "Nạp Thẻ",
-          category: "Giao dịch",
-          icon: "mdi-credit-card",
-          path: "/account/wallet/deposits/card",
+          method: "openProfileModal",
         },
         {
           title: "Đã Mua",
@@ -65,15 +53,44 @@ export default {
           icon: "mdi-history",
           path: "/account/purchases",
         },
+        {
+          title: "Nạp Tiền",
+          category: "Thanh toán",
+          icon: "mdi-currency-usd",
+          path: "/account/wallet/deposit/bank",
+        },
+        {
+          title: "Nạp Thẻ",
+          category: "Giao dịch",
+          icon: "mdi-credit-card",
+          method: "handleShowSwal",
+        },
       ];
     },
   },
   methods: {
-    handleAction(path) {
+    handleAction(action) {
       if (!this.isLogin) {
         this.showModalLoginRegister("login");
-      } else {
-        this.$router.push(`${path}`);
+      } else if (action.path) {
+        this.$router.push(`${action.path}`);
+      } else if (action.method) {
+        this[action.method]();
+      }
+    },
+
+    async handleShowSwal() {
+      const result = await this.showSwal({
+        title: "Bảo trì",
+        showDenyButton: false,
+        showCancelButton: true,
+        html: "Nạp thẻ đang bảo trì!",
+        cancelButtonText: "Bỏ qua",
+        confirmButtonText: "Nạp tiền",
+      });
+
+      if (result?.isConfirmed) {
+        this.$router.push("/account/wallet/deposit/bank");
       }
     },
   },

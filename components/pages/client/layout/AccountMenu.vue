@@ -28,7 +28,7 @@
         <template v-else>
           <div class="dropdown-item" @click="openProfileModal">
             <v-icon small>mdi-account-circle</v-icon>
-            <span>Thông tin tài khoản</span>
+            <span>Thông tin cá nhân</span>
           </div>
           <div class="dropdown-item danger" @click="handleLogout">
             <v-icon small>mdi-logout</v-icon>

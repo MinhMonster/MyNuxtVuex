@@ -1,5 +1,5 @@
 <template>
-  <div class="home-slider" style="margin: -6px">
+  <div class="home-slider" style="margin: -3px">
     <v-carousel hide-delimiters cycle :interval="5000">
       <v-carousel-item v-for="(item, i) in items" :key="i" cover eager>
         <v-img

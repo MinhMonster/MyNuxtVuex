@@ -68,7 +68,7 @@
           v-else-if="Number(userInfo.cash) < price"
           color="success"
           class="text-black"
-          @click="$router.push('/account/wallet/deposits/bank')"
+          @click="$router.push('/account/wallet/deposit/bank')"
           ><span>Nap tiền</span></v-btn
         >
 
@@ -87,7 +87,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 import Loading from "@/components/global/molecules/common/Loading";
 import ModalPayload from "@/components/common/ModalPayload";
 import BuyAccountQRInstructions from "@/components/common/BuyAccountQRInstructions";
@@ -152,7 +151,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions("home/users", ["buyAccount"]),
     openModalLogin() {
       this.$refs.modal.close();
       setTimeout(() => {
@@ -161,21 +159,25 @@ export default {
     },
 
     async buyNow() {
-      this.isLoading = true;
-
-      const res = await this.buyAccount({
-        account_code: this.account.code,
-        account_type: this.account.account_type,
-      });
-      if (res?.data?.id) {
-        this.$router.push(`/account/purchases/${res?.data?.id}`);
-        this.showSwal({
-          icon: "success",
-          title: res?.data?.message || "Mua thành công!",
-          html: "Vui lòng chờ vài phút <br/> Để Admin cập nhật thông tin <br/> Cảm ơn bạn đã sử dụng dịch vụ!",
-        });
+      try {
+        this.isLoading = true;
+        const res =
+          await await this.$repositories.clientAccountPurchases.purchase({
+            account_code: this.account.code,
+            account_type: this.account.account_type,
+          });
+        const accountId = res?.data.data?.id;
+        if (accountId) {
+          this.$router.push(`/account/purchases/${accountId}`);
+          this.showSwal({
+            icon: "success",
+            title: res?.data?.message || "Mua thành công!",
+            html: "Vui lòng chờ vài phút <br/> Để Admin cập nhật thông tin <br/> Cảm ơn bạn đã sử dụng dịch vụ!",
+          });
+        }
+      } finally {
+        this.isLoading = false;
       }
-      this.isLoading = false;
     },
     show() {
       this.$refs.modal.show();

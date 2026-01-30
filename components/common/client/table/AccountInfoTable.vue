@@ -19,12 +19,13 @@
         <th class="info-nick">
           {{ row.label }}
         </th>
-
-        <td class="mua-nick">
-          <span v-if="!row.html">
+        <td class="mua-nick" :class="row.class">
+          <Status v-if="row.type === 'status'" :value="row.value" />
+          <span v-else-if="!row.html">
             {{ row.value }}
           </span>
           <span v-else v-html="row.value"></span>
+          <ButtonCoppy v-if="row?.copy" :content="row.value" />
         </td>
       </tr>
       <slot>
@@ -36,11 +37,15 @@
 
 <script>
 import PriceAccount from "@/components/common/client/table/PriceAccount";
+import ButtonCoppy from "@/components/common/ButtonCoppy";
+import Status from "@/components/global/molecules/common/Status";
 
 export default {
   name: "AccountInfoTable",
   components: {
     PriceAccount,
+    ButtonCoppy,
+    Status,
   },
   data() {
     return {
@@ -90,6 +95,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 th.info-nick {
+  vertical-align: middle;
   width: 50%;
   // min-width: 120px;
   padding: 7px;
@@ -103,14 +109,18 @@ th.info-nick {
 }
 
 .btn-buy-account,
-.mua-nick {
+td.mua-nick {
   cursor: pointer;
   padding: 6.5px;
+  vertical-align: middle;
   color: #663019;
   border: 1px solid #663019;
   background: #ffcf9c;
   border-radius: 3px !important;
   text-align: center;
+  > * {
+    vertical-align: middle;
+  }
 }
 
 .btn-buy-account-hover {

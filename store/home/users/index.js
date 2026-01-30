@@ -2,7 +2,6 @@ import { getField, updateField } from "vuex-map-fields";
 
 const SET_STATE = "SET_STATE";
 const AUTH_SUCCESS = "AUTH_SUCCESS";
-const AUTH_ERROR = "AUTH_ERROR";
 const AUTH_LOGOUT = "AUTH_LOGOUT";
 const SET_USER_INFO = "SET_USER_INFO";
 const SET_QUERY = "SET_QUERY";
@@ -15,15 +14,8 @@ export default {
     token: null,
     authenticated: false,
     user: null,
-    historyBuyAccount: {},
-    historyBuyAccounts: [],
-    walletTransactions: [],
-    historyWalletDepositVnd: {},
-    bankTopUpHistories: [],
     historyWalletDepositCard: {},
     historyWalletDepositCards: [],
-    historyBuyCarots: [],
-    historyBuyXuNinjas: [],
     historyMeta: {},
     pageSave: 1,
     query: {
@@ -80,68 +72,16 @@ export default {
         }
       } catch { }
     },
-    async buyAccount({ commit, state }, payload) {
-      try {
-        const res = await this.$repositories.homeUsers.buyAccount(payload);
-        return res.data
-      } catch { }
-    },
-
-    async historyBuyAccount({ commit, state }, id) {
-      try {
-        const res = await this.$repositories.homeUsers.historyBuyAccount(id);
-        commit(SET_STATE, { historyBuyAccount: res.data.response });
-
-      } catch { }
-    },
-    async historyBuyAccounts({ commit, state }) {
-      try {
-        const res = await this.$repositories.homeUsers.historyBuyAccounts({ input: state.query });
-        commit(SET_STATE, { historyBuyAccounts: res.data.response.data });
-        commit(SET_STATE, { historyMeta: res.data.response.meta });
-      } catch { }
-    },
-    async fetchWalletTransactions({ commit, state }) {
-      try {
-        const response = await this.$repositories.homeUsers.fetchWalletTransactions({ input: state.query });
-        commit(SET_STATE, { walletTransactions: response.data.response.data });
-        commit(SET_STATE, { historyMeta: response.data.response.meta });
-
-      } catch { }
-    },
-    async createBankTopUp({ commit }, payload) {
-      try {
-        const response = await this.$repositories.homeUsers.createBankTopUp(payload);
-        return response
-      } catch { }
-    },
-
     async depositCard({ commit }, payload) {
       try {
         const response = await this.$repositories.homeUsers.depositCard(payload);
         return response
       } catch { }
     },
-
-    async fetchHistoryWalletDepositVnd({ commit, state }, id) {
-      try {
-        const response = await this.$repositories.homeUsers.fetchHistoryWalletDepositVnd(id);
-        commit(SET_STATE, { historyWalletDepositVnd: response.data.historyWalletDepositVnd });
-
-      } catch { }
-    },
     async fetchHistoryWalletDepositCard({ commit, state }, id) {
       try {
         const response = await this.$repositories.homeUsers.fetchHistoryWalletDepositCard(id);
         commit(SET_STATE, { historyWalletDepositCard: response.data.historyWalletDepositCard });
-
-      } catch { }
-    },
-    async getBankTopUpHistory({ commit, state }) {
-      try {
-        const response = await this.$repositories.homeUsers.getBankTopUpHistory({ input: state.query });
-        commit(SET_STATE, { bankTopUpHistories: response.data.response.data });
-        commit(SET_STATE, { historyMeta: response.data.response.meta });
 
       } catch { }
     },
@@ -152,25 +92,6 @@ export default {
         commit(SET_STATE, { historyMeta: response.data.pagy });
 
       } catch { }
-    },
-    async buyCarot({ commit }, payload) {
-      try {
-        const response = await this.$repositories.homeUsers.buyCarot(payload);
-        return response
-      } catch { }
-    },
-    async fetchHistoryBuyCarots({ commit, state }) {
-      try {
-        const response = await this.$repositories.homeUsers.fetchHistoryBuyCarots({ input: state.query });
-        commit(SET_STATE, { historyBuyCarots: response.data.data });
-        commit(SET_STATE, { historyMeta: response.data.pagy });
-
-      } catch { }
-    },
-    resetHistoryBuyAccount({ commit }) {
-      commit(SET_QUERY, {
-        historyBuyAccount: null
-      });
     },
     setQuery({ commit, state }, payload) {
       commit(SET_QUERY, payload);

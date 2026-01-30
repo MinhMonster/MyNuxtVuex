@@ -104,9 +104,14 @@ const queryItems = _.cloneDeep({
     show: false,
     value: 24
   },
+  type: {
+    type: "text",
+    show: false,
+    value: ""
+  },
   code: {
     title: "Mã",
-    placeholder: "Mã số nick...",
+    placeholder: "Mã số...",
     type: "text",
     show: true,
     value: ''
