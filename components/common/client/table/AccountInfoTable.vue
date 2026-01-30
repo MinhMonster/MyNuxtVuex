@@ -225,6 +225,9 @@ td.mua-nick {
   border: 1px solid #663019;
   background: #ffcf9c;
   text-align: center;
+  > * {
+    vertical-align: middle;
+  }
 }
 
 .table td {
