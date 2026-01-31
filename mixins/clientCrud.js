@@ -55,6 +55,8 @@ export default {
       default: () => [],
       require: false,
     },
+    isTableModal: Boolean,
+    titleModal: String
   },
   computed: {
     ...mapFields("global", {

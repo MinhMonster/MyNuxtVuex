@@ -2,7 +2,6 @@ import { getField, updateField } from "vuex-map-fields";
 
 const SET_STATE = "SET_STATE";
 const AUTH_SUCCESS = "AUTH_SUCCESS";
-const AUTH_ERROR = "AUTH_ERROR";
 const AUTH_LOGOUT = "AUTH_LOGOUT";
 const SET_USER_INFO = "SET_USER_INFO";
 const SET_QUERY = "SET_QUERY";
@@ -22,7 +21,6 @@ export default {
     bankTopUpHistories: [],
     historyWalletDepositCard: {},
     historyWalletDepositCards: [],
-    historyBuyCarots: [],
     historyBuyXuNinjas: [],
     historyMeta: {},
     pageSave: 1,
@@ -159,14 +157,7 @@ export default {
         return response
       } catch { }
     },
-    async fetchHistoryBuyCarots({ commit, state }) {
-      try {
-        const response = await this.$repositories.homeUsers.fetchHistoryBuyCarots({ input: state.query });
-        commit(SET_STATE, { historyBuyCarots: response.data.data });
-        commit(SET_STATE, { historyMeta: response.data.pagy });
 
-      } catch { }
-    },
     resetHistoryBuyAccount({ commit }) {
       commit(SET_QUERY, {
         historyBuyAccount: null

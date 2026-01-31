@@ -7,6 +7,7 @@ import clientGameNinjaSchools from '~/repositories/client/game/ninjaSchools'
 
 import homeUsers from '~/repositories/home/users'
 import clientTopics from '~/repositories/client/topics'
+import clientCarrots from '~/repositories/client/carrots'
 
 import clientDailyEvents from '~/repositories/home/events/daily'
 import settings from '~/repositories/home/settings'
@@ -21,7 +22,7 @@ const repositories = {
 
   homeUsers,
   clientTopics,
-
+  clientCarrots,
   clientDailyEvents,
 
   // setting

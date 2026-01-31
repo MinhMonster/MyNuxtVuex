@@ -30,7 +30,7 @@
             <u>không hỗ trợ Hoàn tiền hoặc Nạp lại</u>.
           </div>
           <v-row>
-          <v-col cols="12" sm="3" class="middle">
+            <v-col cols="12" sm="3" class="middle">
               <div class="field">
                 <form-validator name="game_type">
                   <label for="game_type" class="form-label"
@@ -122,14 +122,22 @@
 
             <v-col cols="6">
               <div class="field submit mt-6">
-                <v-btn size="sm" class="btn-neon-purple w-100" @click="buyOffline()">
+                <v-btn
+                  size="sm"
+                  class="btn-neon-purple w-100"
+                  @click="buyOffline()"
+                >
                   <span>Nạp Offline </span>
                 </v-btn>
               </div>
             </v-col>
             <v-col cols="6">
               <div class="field submit mt-6">
-                <v-btn size="sm" class="btn-neon-purple w-100" @click="submit()">
+                <v-btn
+                  size="sm"
+                  class="btn-neon-purple w-100"
+                  @click="submit()"
+                >
                   <Loading v-if="isLoading" button></Loading>
                   <span v-else>Thanh toán </span>
                 </v-btn>
@@ -147,20 +155,29 @@
           :selected="selected"
         />
         <!-- histories -->
-        <template v-if="isLogin">
-          <HistoryBuyCarotTable
-            :histories="histories"
-            @show="showModalDetail"
-          />
-
-          <ModalHistoryBuyCarot ref="modalDetail" :history="history" />
-          <Pagination
-            v-if="historyMeta && historyMeta.pages > 1"
-            :meta="historyMeta"
-            @change="onPageChange"
-          >
-          </Pagination>
-        </template>
+        <BaseTableSearch
+          v-if="isLogin"
+          is-table-modal
+          title-modal="Chi tiết Giao dịch"
+          module="client/carrots"
+          ref="table"
+        >
+          <template #table-modal="{ row }">
+            <tr v-if="row.status === 'pending'">
+              <td class="mua-nick text-left instruction" colspan="2">
+                <div class="pd-5px text-white">
+                  <img src="/icon/icon-next-right.gif" /> Sau 30s-5p Admin sẽ
+                  nạp Lượng, Carot cho bạn.
+                  <br />
+                  <img src="/icon/icon-next-right.gif" /> Sau 5p khi bạn đã
+                  Thanh toán thành công nhưng vẫn chưa được xử lý thì hãy liên
+                  hệ cho Admin để được hỗ trợ:
+                  <GroupBtnInbox />
+                </div>
+              </td>
+            </tr>
+          </template>
+        </BaseTableSearch>
       </template>
     </HomePage>
   </client-only>
@@ -173,12 +190,10 @@ import CarotTable from "@/components/pages/services/CarotTable";
 import HomePage from "@/components/pages/home/HomePage";
 import FormValidator from "@/components/global/form/FormValidator";
 import ModalBuyCarrotOffline from "@/components/pages/services/ModalBuyCarrotOffline";
-import HistoryBuyCarotTable from "@/components/pages/services/HistoryBuyCarotTable";
-import ModalHistoryBuyCarot from "@/components/pages/services/ModalHistoryBuyCarot";
-import Pagination from "@/components/global/molecules/common/Pagination";
+import GroupBtnInbox from "@/components/common/client/button/GroupBtnInbox";
 import { mapFields } from "vuex-map-fields";
 import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("home/users");
+const { mapActions } = createNamespacedHelpers("home/users");
 
 export default {
   layout: "clientLayout",
@@ -188,9 +203,7 @@ export default {
     CarotTable,
     FormValidator,
     ModalBuyCarrotOffline,
-    HistoryBuyCarotTable,
-    ModalHistoryBuyCarot,
-    Pagination,
+    GroupBtnInbox,
   },
   watch: {
     isLogin: {
@@ -198,12 +211,12 @@ export default {
         this.reload();
       },
     },
-    'card.game_type': {
+    "card.game_type": {
       async handler(newValue, oldValue) {
         this.changeGameType();
       },
     },
-    'card.server': {
+    "card.server": {
       async handler(newValue, oldValue) {
         this.changeServer();
       },
@@ -222,22 +235,21 @@ export default {
       selected: {
         card: {},
         game: {},
-        server: {}
+        server: {},
       },
       isLoading: false,
       moneyReceived: "Bạn chưa chọn mệnh giá",
       gameOptions: [
         {
           text: "Ninja School",
-          value: 'ninja',
+          value: "ninja",
           subtext: " Ninja ",
         },
         {
           text: "Avatar DK",
-          value: 'avatar',
+          value: "avatar",
           subtext: " Avatar DK",
         },
-
       ],
       serverNinjaOptions: [
         {
@@ -365,26 +377,17 @@ export default {
   },
   computed: {
     ...mapFields("global", { ready: "ready" }),
-    ...mapFields("home/users", {
-      histories: "historyBuyCarots",
-      historyMeta: "historyMeta",
-      pageSave: "pageSave",
-    }),
   },
   mounted() {
     this.reload();
   },
   methods: {
-    ...mapActions(["buyCarot", "fetchHistoryBuyCarots", "setQuery"]),
+    ...mapActions(["buyCarot"]),
     reload() {
-      if (this.isLogin) {
-        this.onPageChange(this.pageSave);
-      } else {
-        this.ready = false;
-        setTimeout(() => {
-          this.ready = true;
-        }, 500);
-      }
+      this.ready = false;
+      setTimeout(() => {
+        this.ready = true;
+      }, 500);
     },
     buyOffline() {
       if (!this.checkValid()) {
@@ -429,23 +432,18 @@ export default {
         return;
       }
       this.isLoading = true;
-      const res = await this.buyCarot({
-        input: this.card,
-      });
-      this.isLoading = false;
-      const history = res.data.data;
-      if (history) {
-        await this.showModalDetail(history);
-        await this.resetInput();
-        await this.setQuery({ page: 1 });
-        this.fetchHistoryBuyCarots();
-      }
-    },
-    showModalDetail(history) {
-      this.history = history;
-      setTimeout(() => {
-        this.$refs.modalDetail.show();
-      }, 200);
+      try {
+        const res = await this.buyCarot({
+          input: this.card,
+        });
+        this.isLoading = false;
+        const history = res?.data?.data;
+        if (history) {
+          await this.$refs.table.showTableModal(history);
+          await this.resetInput();
+          this.$refs.table.fetchDataIndex();
+        }
+      } catch (e) {}
     },
     resetInput() {
       this.card = {
@@ -467,10 +465,10 @@ export default {
       }
     },
     changeGameType() {
-      if (this.card.game_type === 'ninja') {
+      if (this.card.game_type === "ninja") {
         this.serverOptions = this.serverNinjaOptions;
         this.card.server = null;
-      } else if (this.card.game_type === 'avatar') {
+      } else if (this.card.game_type === "avatar") {
         this.serverOptions = this.serverAvatarOptions;
         this.card.server = 1;
       } else {
@@ -485,17 +483,6 @@ export default {
       this.selected.server = this.serverOptions.find(
         (item) => item.value === this.card.server
       );
-    },
-    async onPageChange(page) {
-      this.ready = false;
-      await this.setQuery({ page });
-      await this.fetchHistoryBuyCarots();
-      page == 1 || !page
-        ? this.$router.push(`/services/nap-luong-carot`)
-        : this.$router.push(`/services/nap-luong-carot?page=${page}`);
-      setTimeout(() => {
-        this.ready = true;
-      }, 400);
     },
   },
   head() {

@@ -1,9 +1,4 @@
 const resource = ''
-const headers = {
-  headers: {
-    "Content-Type": "multipart/form-data"
-  },
-}
 export default ($api) => ({
   login(payload) {
     return $api.post(`${resource}/login`, payload);
@@ -24,7 +19,7 @@ export default ($api) => ({
     return $api.get(`${resource}/user`)
   },
   historyBuyAccounts(payload) {
-    return $api.get(`${resource}/account-purchases`, { params: { input: payload.input } },)
+    return $api.get(`${resource}/account-purchases`, { params: payload.input },)
   },
   historyBuyAccount(id) {
     return $api.get(`${resource}/account-purchases/${id}`)
@@ -40,10 +35,7 @@ export default ($api) => ({
     return $api.post(`${resource}/wallet/depositCard.php`, payload,)
   },
   buyCarot(payload) {
-    return $api.post(`${resource}/services/buyCarot.php`, payload,)
-  },
-  fetchHistoryBuyCarots(payload) {
-    return $api.get(`${resource}/services/fetchHistoryBuyCarots.php?`, { params: { input: payload.input } },)
+    return $api.post(`${resource}/carrots/topup`, payload.input,)
   },
   createBankTopUp(payload) {
     return $api.post(`${resource}/top-up/transactions/bank`, payload)
