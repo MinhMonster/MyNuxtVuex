@@ -1,9 +1,9 @@
 const resource = '/admin/settings';
 export default ($api) => ({
-  fetchNotification() {
+  fetch() {
     return $api.get(`${resource}`)
   },
-  updateNotification(payload) {
+  modify(payload) {
     return $api.post(`${resource}/modify`, payload)
   },
 })
