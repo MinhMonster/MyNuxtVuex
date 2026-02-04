@@ -1,12 +1,7 @@
 const resource = '/admin/game/avatars'
-const headers = {
-  headers: {
-    "Content-Type": "multipart/form-data"
-  },
-}
 export default ($api) => ({
   index(payload) {
-    return $api.get(`${resource}`, { params: { input: payload.input } },
+    return $api.get(`${resource}`, { params: payload.input },
     )
   },
   fetch(id) {
@@ -15,10 +10,10 @@ export default ($api) => ({
   modify(payload) {
     return $api.post(`${resource}/modify`, payload)
   },
-  destroyAccountAvatar(payload) {
-    return $api.post(`${resource}/destroy`, { id: payload })
+  destroy(id) {
+    return $api.post(`${resource}/${id}/destroy`)
   },
-  unDestroyAccountAvatar(payload) {
-    return $api.post(`${resource}/restore`, { id: payload })
+  restore(item) {
+    return $api.post(`${resource}/${item.id}/restore`)
   },
 })

@@ -1,4 +1,4 @@
-import { defaultPagy, typeOptions, classNinjaOptions, serverNinjaOptions } from '@/utils/admin/default'
+import { typeOptions, classNinjaOptions, serverNinjaOptions, defaultResponse, isSoldFilter, deletedAtFilter, textFilter, hiddenFilter } from '@/utils/admin/default'
 import { enableResetStore } from '@/utils/admin/common'
 import { getField, updateField } from "vuex-map-fields";
 
@@ -31,66 +31,15 @@ export default enableResetStore({
 });
 
 const queryItems = _.cloneDeep({
-  response: {
-    meta: defaultPagy,
-    data: [],
-    count: 0,
-    sums: []
-  },
-  page: {
-    type: "text",
-    show: false,
-    value: 1
-  },
-  perPage: {
-    type: "text",
-    show: false,
-    value: 15
-  },
-  id: {
-    placeholder: "ID",
-    type: "text",
-    show: true,
-    value: ''
-  },
-  code: {
-    placeholder: "code",
-    type: "text",
-    show: true,
-    value: ''
-  },
-  username: {
-    placeholder: "Username",
-    type: "text",
-    show: true,
-    value: ''
-  },
-  character_name: {
-    placeholder: "In Game",
-    type: "text",
-    show: true,
-    value: ''
-  },
-  status: {
-    placeholder: "Trạng Thái",
-    type: "select-options",
-    show: true,
-    value: "active",
-    options: [
-      {
-        text: "All",
-        value: 'all',
-      },
-      {
-        text: "Active",
-        value: "active",
-      },
-      {
-        text: "Deleted",
-        value: "deleted",
-      },
-    ],
-  },
+  response: defaultResponse(),
+  page: hiddenFilter(1),
+  perPage: hiddenFilter(15),
+  id: textFilter('ID'),
+  code: textFilter('Code'),
+  username: textFilter('Username'),
+  character_name: textFilter('In Game'),
+  is_sold: isSoldFilter(),
+  deleted_at: deletedAtFilter(),
 });
 
 const queryItem = _.cloneDeep({
@@ -294,9 +243,9 @@ const formItem =
       md: 3,
     },
     {
-      title: "Quần",
+      title: "Găng",
       type: "number",
-      value: 'tl_9',
+      value: 'tl_8',
       cols: 2,
       md: 2,
     },
@@ -329,9 +278,9 @@ const formItem =
       md: 3,
     },
     {
-      title: "Găng",
+      title: "Quần",
       type: "number",
-      value: 'tl_8',
+      value: 'tl_9',
       cols: 2,
       md: 2,
     },
@@ -537,6 +486,16 @@ const columns =
       },
     },
     {
+      key: "is_sold",
+      label: "Sold",
+      type: "is_sold",
+      attributes: {
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
       key: "deleted_at",
       label: "Status",
       type: "deleted_at",
@@ -586,9 +545,9 @@ const columns =
       },
     },
     {
-      key: "selling_price",
+      key: "price",
       label: "Price",
-      type: "cash_sale_off",
+      type: "number",
       attributes: {
         class: "text-right",
         style: {
@@ -597,7 +556,7 @@ const columns =
       },
     },
     {
-      key: "price",
+      key: "purchase_price",
       label: "Cost",
       type: "number",
       attributes: {

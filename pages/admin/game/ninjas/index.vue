@@ -5,20 +5,26 @@
     module="admin/game/ninjas"
     newPage
     isModify
-  >
-    <template #actions="props">
-      <v-btn light icon @click="$refs.table.showModal(props.row)">
-        <v-icon size="20" class="text-info">mdi-cash-edit</v-icon>
-      </v-btn>
-    </template>
-  </AdminIndex>
+    :actions="actions"
+    :modal-configs="modalConfigs"
+  />
 </template>
 
 <script>
 import AdminIndex from "@/components/base/AdminIndex";
+import {
+  accountGameActions,
+  accountGameModalConfigs,
+} from "@/utils/admin/actionConfigs";
 export default {
   layout: "adminDev",
   name: "Ninjas",
   components: { AdminIndex },
+  data() {
+    return {
+      actions: accountGameActions(),
+      modalConfigs: accountGameModalConfigs(),
+    };
+  },
 };
 </script>

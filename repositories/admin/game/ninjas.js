@@ -6,7 +6,7 @@ const headers = {
 }
 export default ($api) => ({
   index(payload) {
-    return $api.get(`${resource}`, { params: { input: payload.input } },
+    return $api.get(`${resource}`, { params: payload.input },
     )
   },
   fetch(id) {
@@ -15,10 +15,10 @@ export default ($api) => ({
   modify(payload) {
     return $api.post(`${resource}/modify`, payload)
   },
-  destroyAccountNinja(id) {
-    return $api.post(`${resource}/destroy`, { id: id })
+  destroy(id) {
+    return $api.post(`${resource}/${id}/destroy`)
   },
-  unDestroyAccountNinja(id) {
-    return $api.post(`${resource}/restore`, { id: id })
+  restore(item) {
+    return $api.post(`${resource}/${item.id}/restore`)
   },
 })

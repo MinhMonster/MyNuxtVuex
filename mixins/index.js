@@ -198,16 +198,21 @@ export default {
     },
 
     fileSizeFilter(size) {
-      if ((size > 0) && (size < 1000)) {
-        return size + "B";
-      } else if ((size >= 1000) && (size < 1000 * 1024)) {
-        return (size / 1000).toFixed(1) + "KB";
-      } else if ((size >= 1000 * 1024) && (size < 1000 * 1024)) {
-        return (size / (1000 * 1024)).toFixed(1) + "MB";
+      const KB = 1024;
+      const MB = KB * 1024;
+      const GB = MB * 1024;
+
+      if (size < KB) {
+        return size + " B";
+      } else if (size < MB) {
+        return (size / KB).toFixed(1) + " KB";
+      } else if (size < GB) {
+        return (size / MB).toFixed(1) + " MB";
       } else {
-        return (size / (1000 * 1024 * 1024)).toFixed(1) + "GB";
+        return (size / GB).toFixed(1) + " GB";
       }
     },
+
     isSelected(image, selectedImages) {
       return selectedImages.find((item) => item.url == image.url);
     },
@@ -266,15 +271,10 @@ export default {
 
     typeNinja(type) {
       switch (type) {
-        case "3":
-          return "Thường";
-          break;
         case "1":
           return "VIP";
-          break;
         case "2":
-          return "TTGT";
-          break;
+          return "Thường";
       }
     },
 
@@ -321,12 +321,29 @@ export default {
       return `<span class="${setting.color}">${setting.text}</span>`;
     },
 
+    isSold(value) {
+      let setting = {};
+      switch (Number(value)) {
+        case 0:
+          setting = {
+            text: "Available",
+            color: "text-primary"
+          };
+          break;
+        default:
+          setting = {
+            text: "Sold",
+            color: "text-danger"
+          };
+      }
+      return `<span class="${setting.color}">${setting.text}</span>`;
+    },
     deletedAt(value) {
       let setting = {};
       switch (value) {
         case "null":
           setting = {
-            text: "Actived",
+            text: "Active",
             color: "text-primary"
           };
           break;

@@ -1,8 +1,7 @@
-import { defaultPagy, typeOptions, statusOptions, planetNroOptions, serverNroOptions } from '@/utils/admin/default'
+import { typeOptions, planetNroOptions, serverNroOptions, defaultResponse, isSoldFilter, deletedAtFilter, textFilter, hiddenFilter } from '@/utils/admin/default'
 import { enableResetStore } from '@/utils/admin/common'
 import { getField, updateField } from "vuex-map-fields";
 
-const SET_STATE = "SET_STATE";
 export default enableResetStore({
   namespaced: true,
   state() {
@@ -32,86 +31,15 @@ export default enableResetStore({
   },
 });
 
-
 const queryItems = _.cloneDeep({
-  response: {
-    meta: defaultPagy,
-    data: [],
-    count: 0,
-    sum_value: 0
-  },
-  page: {
-    type: "text",
-    show: false,
-    value: 1
-  },
-  perPage: {
-    type: "text",
-    show: false,
-    value: 15
-  },
-  id: {
-    placeholder: "ID",
-    type: "text",
-    show: true,
-    value: ''
-  },
-  code: {
-    placeholder: "Mã",
-    type: "text",
-    show: true,
-    value: ''
-  },
-  username: {
-    placeholder: "Tài Khoản",
-    type: "text",
-    show: true,
-    value: ''
-  },
-  sex: {
-    placeholder: "Giới tính",
-    type: "select-options",
-    show: true,
-    value: null,
-    options: [
-      {
-        text: "Giới tính",
-        value: null,
-      },
-      {
-        text: "Nam",
-        value: "1",
-      },
-      {
-        text: "Nữ",
-        value: "2",
-      },
-      {
-        text: "Bê đê",
-        value: "3",
-      },
-    ],
-  },
-  status: {
-    placeholder: "Trạng Thái",
-    type: "select-options",
-    show: true,
-    value: "active",
-    options: [
-      {
-        text: "Tất cả",
-        value: 'all',
-      },
-      {
-        text: "Đang bán",
-        value: "active",
-      },
-      {
-        text: "Đã bán",
-        value: "deleted",
-      },
-    ],
-  },
+  response: defaultResponse(),
+  page: hiddenFilter(1),
+  perPage: hiddenFilter(15),
+  id: textFilter('ID'),
+  code: textFilter('Code'),
+  username: textFilter('Username'),
+  is_sold: isSoldFilter(),
+  deleted_at: deletedAtFilter(),
 });
 
 const queryItem = _.cloneDeep({

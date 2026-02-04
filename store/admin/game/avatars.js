@@ -1,8 +1,7 @@
-import { defaultPagy, sexAvatarOptions, statusOptions } from '@/utils/admin/default'
+import { sexAvatarOptions, defaultResponse, isSoldFilter, deletedAtFilter, textFilter, hiddenFilter } from '@/utils/admin/default'
 import { enableResetStore } from '@/utils/admin/common'
 import { getField, updateField } from "vuex-map-fields";
 
-const SET_STATE = "SET_STATE";
 export default enableResetStore({
   namespaced: true,
   state() {
@@ -36,40 +35,12 @@ export default enableResetStore({
 
 
 const queryItems = _.cloneDeep({
-  response: {
-    meta: defaultPagy,
-    data: [],
-    count: 0,
-    sum_value: 0
-  },
-  page: {
-    type: "text",
-    show: false,
-    value: 1
-  },
-  perPage: {
-    type: "text",
-    show: false,
-    value: 15
-  },
-  id: {
-    placeholder: "ID",
-    type: "text",
-    show: true,
-    value: ''
-  },
-  code: {
-    placeholder: "code",
-    type: "text",
-    show: true,
-    value: ''
-  },
-  username: {
-    placeholder: "Tài Khoản",
-    type: "text",
-    show: true,
-    value: ''
-  },
+  response: defaultResponse(),
+  page: hiddenFilter(1),
+  perPage: hiddenFilter(15),
+  id: textFilter('ID'),
+  code: textFilter('Code'),
+  username: textFilter('Username'),
   sex: {
     placeholder: "Giới tính",
     type: "select-options",
@@ -94,26 +65,8 @@ const queryItems = _.cloneDeep({
       },
     ],
   },
-  status: {
-    placeholder: "Trạng Thái",
-    type: "select-options",
-    show: true,
-    value: "active",
-    options: [
-      {
-        text: "Tất cả",
-        value: 'all',
-      },
-      {
-        text: "Đang bán",
-        value: "active",
-      },
-      {
-        text: "Đã bán",
-        value: "deleted",
-      },
-    ],
-  },
+  is_sold: isSoldFilter(),
+  deleted_at: deletedAtFilter(),
 });
 
 const queryItem = _.cloneDeep({
@@ -280,12 +233,22 @@ const columns =
       },
     },
     {
+      key: "is_sold",
+      label: "Sold",
+      type: "is_sold",
+      attributes: {
+        style: {
+          minWidth: "60px",
+        },
+      },
+    },
+    {
       key: "deleted_at",
       label: "Status",
       type: "deleted_at",
       attributes: {
         style: {
-          minWidth: "50px",
+          minWidth: "60px",
         },
       },
     },
@@ -334,7 +297,6 @@ const columns =
       label: "Cost",
       type: "number",
       attributes: {
-        // class: 'text-right',
         style: {
           minWidth: "60px",
         },
@@ -347,7 +309,7 @@ const columns =
       attributes: {
         class: "text-right",
         style: {
-          minWidth: "50px",
+          minWidth: "60px",
         },
       },
     },

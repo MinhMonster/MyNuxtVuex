@@ -26,6 +26,8 @@ export default {
           return this.typeNinja(value);
         case 'status-ninja':
           return this.statusNinja(value);
+        case 'is_sold':
+          return this.isSold(value);
         case 'deleted_at':
           return this.deletedAt(value);
         default:
