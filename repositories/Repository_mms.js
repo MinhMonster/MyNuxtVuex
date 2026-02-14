@@ -20,6 +20,7 @@ import adminHistoriesBankDeposits from '~/repositories/admin/histories/bankDepos
 import adminHistoriesWalletTransactions from '~/repositories/admin/histories/walletTransactions'
 import adminHistoriesGameAccountSolds from '~/repositories/admin/histories/gameAccountSolds'
 import adminHistoriesCarrots from '~/repositories/admin/histories/carrots'
+import adminHistoriesNinjaCoins from '~/repositories/admin/histories/ninjaCoins'
 
 export default ($api_mms) => ({
   // admin Auths
@@ -41,4 +42,5 @@ export default ($api_mms) => ({
   adminHistoriesWalletTransactions: adminHistoriesWalletTransactions($api_mms),
   adminHistoriesGameAccountSolds: adminHistoriesGameAccountSolds($api_mms),
   adminHistoriesCarrots: adminHistoriesCarrots($api_mms),
+  adminHistoriesNinjaCoins: adminHistoriesNinjaCoins($api_mms),
 })

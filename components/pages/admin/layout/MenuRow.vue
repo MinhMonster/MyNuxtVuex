@@ -121,7 +121,7 @@ export default {
         {
           icon: "mdi-image",
           title: "Xu Ninjas",
-          to: "/admin/history/xu-ninjas",
+          to: "/admin/history/ninja-coins",
         },
         {
           icon: "mdi-image",
