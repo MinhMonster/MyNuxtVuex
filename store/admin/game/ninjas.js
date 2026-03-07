@@ -151,11 +151,21 @@ const formItem =
       type: "number",
       value: 'weapon'
     },
-    // {
-    //   title: "Set Đồ",
-    //   type: "text",
-    //   value: 'do'
-    // },
+    {
+      title: "Gia tộc",
+      type: "select-options",
+      options: [
+        {
+          text: "Chưa có",
+          value: false,
+        },
+        {
+          text: "Có",
+          value: true,
+        },
+      ],
+      value: 'is_family'
+    },
     {
       title: "Thông tin",
       type: "text",
