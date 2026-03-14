@@ -1,5 +1,11 @@
 <template>
-  <v-dialog v-model="dialog" scrollable :max-width="width" light>
+  <v-dialog
+    v-model="dialog"
+    scrollable
+    :width="width"
+    :max-width="maxWidth"
+    light
+  >
     <v-card v-if="stateQuery">
       <v-card-title class="title-modal center">
         {{ title }} <br />
@@ -85,6 +91,11 @@ export default {
     width: {
       type: String,
       default: "300px",
+      require: false,
+    },
+    maxWidth: {
+      type: String,
+      default: "90%",
       require: false,
     },
     reset: Boolean,

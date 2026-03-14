@@ -50,7 +50,7 @@ export default {
         },
         updatePrice: {
           store: { formItem: "formPriceItem", modify: "update" },
-          style: { minHeight: "80vh", width: "800px" },
+          style: { minHeight: "65vh", maxHeight: "80vh", width: "800px" },
         },
       },
     };

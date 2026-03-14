@@ -1,6 +1,16 @@
 .v-dialog {
+  // max-height: 75vh;
   overflow: visible;
   overflow-y: unset !important;
+  // @media screen and (max-width: 768px) {
+  //   max-height: 70vh !important;
+  // }
+  // &:not(.v-dialog--fullscreen) {
+  //   max-height: 75vh !important;
+  //   @media screen and (max-width: 768px) {
+  //     max-height: 70vh !important;
+  //   }
+  // }
 
   .nav.nav-tabs {
     background: #333;
@@ -11,7 +21,6 @@
 
       &.active {
         color: #333;
-
       }
     }
   }
@@ -81,7 +90,6 @@
       align-items: center;
     }
 
-
     .v-card__text {
       position: relative;
       border-right: 2px solid #272727;
@@ -110,10 +118,9 @@
       }
     }
   }
-
 }
 
-.v-card>.v-card__actions {
+.v-card > .v-card__actions {
   width: 100%;
   border: 2px solid #272727 !important;
   background: #333;
