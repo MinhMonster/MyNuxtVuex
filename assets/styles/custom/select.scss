@@ -90,6 +90,11 @@
     }
   }
 
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 6px;
+  }
+
   // label {
   //   color: #a4a4a4;
   //   padding-left: 10px;

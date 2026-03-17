@@ -47,6 +47,11 @@ form {
         padding: 10px;
       }
     }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      right: 12px;
+      filter: invert(1);
+    }
   }
 }
 
@@ -54,10 +59,12 @@ form {
   align-items: flex-start;
   display: flex;
   flex: 1 1 auto;
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 14px !important;
   letter-spacing: normal;
   max-width: 100%;
   text-align: left;
+  padding: 7px 6px 7px !important;
 }
 
 @import "~/assets/styles/admin/swal.scss";

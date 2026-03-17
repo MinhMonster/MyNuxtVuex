@@ -6,7 +6,7 @@ const headers = {
 }
 export default ($api) => ({
   index(payload) {
-    return $api.get(`${resource}`, { params: { input: payload.input } },
+    return $api.get(`${resource}`, { params: payload.input },
     )
   },
   fetch(id) {

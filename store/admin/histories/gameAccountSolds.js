@@ -97,13 +97,13 @@ const queryItems = _.cloneDeep({
     show: true,
     value: ''
   },
-  from_time: {
+  created_at_from: {
     placeholder: "From Time",
     type: "date",
     show: true,
     value: ''
   },
-  to_time: {
+  created_at_to: {
     placeholder: "To Time",
     type: "date",
     show: true,
