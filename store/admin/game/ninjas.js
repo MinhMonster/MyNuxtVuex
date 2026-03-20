@@ -471,7 +471,6 @@ const columns =
       fixed: "left",
       attributes: {
         align: "center",
-
         style: {
           minWidth: "60px",
         },
@@ -480,6 +479,7 @@ const columns =
     {
       key: "username",
       label: "Account",
+      copy: true,
       attributes: {
         style: {
           minWidth: "150px",
@@ -489,6 +489,7 @@ const columns =
     {
       key: "character_name",
       label: "In Game",
+      copy: true,
       attributes: {
         style: {
           minWidth: "150px",

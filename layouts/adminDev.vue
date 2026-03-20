@@ -134,11 +134,11 @@ export default {
 #admin .v-text-field__slot {
   /* margin-top: 10px; */
 }
-#admin .v-text-field .v-label--active {
+/* #admin .v-text-field .v-label--active {
   max-width: 100%;
   transform: translateY(-20px) scale(0.8);
   pointer-events: auto;
-}
+} */
 
 #admin .v-input__control {
   /* margin-bottom: 10px; */

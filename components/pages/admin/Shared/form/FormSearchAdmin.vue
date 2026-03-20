@@ -6,8 +6,8 @@
           v-for="(item, key) in querySearch"
           cols="6"
           sm="4"
-          md="3"
-          lg="3"
+          md="2"
+          lg="2"
           :key="key"
           v-show="item.show"
         >
@@ -45,12 +45,12 @@
             <!-- </form-validator> -->
           </div>
         </v-col>
-        <v-col cols="6" sm="3" md="2">
+        <v-col cols="6" sm="2" md="2" lg="1">
           <v-btn type="submit" class="btn search-btn">
             <i class="fa fa-search"></i> Search
           </v-btn>
         </v-col>
-        <v-col cols="6" sm="4" md="3">
+        <v-col cols="6" sm="2" md="2" lg="1">
           <v-btn
             class="btn btn-success btn-search text-white w-100"
             @click="reset()"
@@ -95,6 +95,7 @@ export default {
   methods: {
     changeData() {
       this.searched = false;
+      this.search();
     },
     ...mapActions({
       resetQuery(dispatch) {

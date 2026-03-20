@@ -486,7 +486,7 @@ code {
   font-size: 16px;
 }
 
-#admin .bg-editor .v-text-field .v-label--active {
+#admin .v-text-field .v-label--active {
   max-width: 100%;
   transform: translateY(-35px) scale(0.8);
   pointer-events: auto;

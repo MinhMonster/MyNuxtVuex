@@ -206,6 +206,7 @@ const columns =
     {
       key: "username",
       label: "Account",
+      copy: true,
       attributes: {
         style: {
           minWidth: "150px",

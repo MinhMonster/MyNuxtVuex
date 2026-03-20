@@ -61,7 +61,7 @@ const queryItems = _.cloneDeep({
     value: null,
     options: [
       {
-        text: "Tất cả",
+        text: "Tất cả loại game",
         value: null,
       },
       {
@@ -78,21 +78,21 @@ const queryItems = _.cloneDeep({
       },
     ],
   },
-  taikhoan: {
+  account_name: {
     placeholder: "Account Name",
     type: "text",
     show: true,
     value: ''
   },
-  idnick: {
-    placeholder: "ID Account",
+  account_code: {
+    placeholder: "Account Code",
     type: "text",
     show: true,
     value: ''
   },
 
-  uid: {
-    placeholder: "UID",
+  user_id: {
+    placeholder: "User ID",
     type: "text",
     show: true,
     value: ''
