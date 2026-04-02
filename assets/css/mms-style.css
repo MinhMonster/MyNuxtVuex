@@ -4291,28 +4291,28 @@ meter.metter-authir::-webkit-meter-optimum-value {
 .text-warning a,
 .color-warning,
 .color-warning a {
-  color: var(--warning);
+  color: var(--warning) !important;
 }
 
 .text-info,
 .text-info a,
 .color-info,
 .color-info a {
-  color: var(--info);
+  color: var(--info) !important;
 }
 
 .text-secondary,
 .text-secondary a,
 .color-secondary,
 .color-secondary a {
-  color: var(--secondary);
+  color: var(--secondary) !important;
 }
 
 .text-light,
 .text-light a,
 .color-light,
 .color-light a {
-  color: var(--light);
+  color: var(--light) !important;
 }
 
 .text-danger,
@@ -4326,14 +4326,14 @@ meter.metter-authir::-webkit-meter-optimum-value {
 .text-white a,
 .color-white,
 .color-white a {
-  color: var(--white);
+  color: var(--white) !important;
 }
 
 .text-dark,
 .text-dark a,
 .color-dark,
 .color-dark a {
-  color: var(--dark);
+  color: var(--dark) !important;
 }
 
 .text-dark-2,

@@ -7,6 +7,12 @@ export default ($api) => ({
   show(id) {
     return $api.get(`${resource}/${id}`)
   },
+  cancel(id) {
+    return $api.get(`${resource}/${id}/cancel`)
+  },
+  payRemaining(id) {
+    return $api.get(`${resource}/${id}/pay-remaining`)
+  },
   purchase(payload) {
     return $api.post(`${resource}`, payload)
   },

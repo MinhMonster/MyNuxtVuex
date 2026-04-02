@@ -4,7 +4,8 @@
     :content="status.text"
     overlap
     class="pd-5px"
-    :class="value === 'failed' ? '' : 'text-black'"
+    :class="status.color === 'error' ? '' : 'text-black'"
+    @click="$emit('click')"
   >
     {{ status.text }}
   </v-btn>

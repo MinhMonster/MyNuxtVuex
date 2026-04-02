@@ -73,7 +73,12 @@ const columns =
       label: "Thời gian",
       class: "min-w-100px text-center",
     },
-        {
+    {
+      key: "status",
+      label: "Trạng thái",
+      class: "min-w-100px text-center",
+    },
+    {
       key: "actions",
       label: "Chi tiết",
       fixed: "right",

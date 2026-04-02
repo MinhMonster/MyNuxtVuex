@@ -1,5 +1,5 @@
 <template>
-  <div v-if="account" class="info-atm-momo">
+  <div v-if="history" class="info-atm-momo">
     <VietQRMB :amount="amount" :addInfo="content">
       <template #info>
         <div>*Nếu QR lỗi, hãy chuyển khoản theo thông tin sau:</div>
@@ -27,8 +27,8 @@
       </template>
     </VietQRMB>
 
-    <img src="/icon/icon-next-right.gif" /> Chuyển xong nhắn tin cho Admin nhận
-    Nick:
+    <img src="/icon/icon-next-right.gif" /> Chuyển xong nhắn tin cho Admin để xử
+    lý GD:
     <GroupBtnInbox />
   </div>
 </template>
@@ -40,18 +40,14 @@ import VietQRMB from "~/components/QR/VietQRMB.vue";
 export default {
   components: { ButtonCoppy, GroupBtnInbox, VietQRMB },
   props: {
-    account: {
+    history: {
       type: Object,
       default: () => {},
-    },
-    purchaseType: {
-      type: String,
-      default: "normal", // normal | installments | deposit
     },
   },
   computed: {
     game() {
-      switch (this.account.account_type) {
+      switch (this.history.account_type) {
         case "ninja":
           return "Ninja";
         case "avatar":
@@ -63,25 +59,18 @@ export default {
       }
     },
     amount() {
-      switch (this.purchaseType) {
-        case "installments":
-          return this.account.installments_price;
-        case "deposit":
-          return this.account.deposit_price;
-        default:
-          return this.account.price;
-      }
+      return this.history.second_paid_amount;
     },
     content() {
-      if (!this.account) return "";
-      const code = this.account.code;
-      switch (this.purchaseType) {
+      const accountCode = this.history.account_code;
+      const historyId = this.history.id;
+      switch (this.history.type) {
         case "installments":
-          return `Tra gop lan 1 Nick ${this.game} #${code}`;
+          return `Thanh toan GD Tra gop #${historyId} Nick ${this.game} #${accountCode}`;
         case "deposit":
-          return `Dat coc Nick ${this.game} #${code}`;
+          return `Thanh toan GD Dat coc #${historyId} Nick ${this.game} #${accountCode}`;
         default:
-          return `Mua Nick ${this.game} #${code}`;
+          return `Thanh toan GD Mua Nick #${historyId} Nick ${this.game} #${accountCode}`;
       }
     },
   },

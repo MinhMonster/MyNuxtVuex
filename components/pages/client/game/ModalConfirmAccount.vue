@@ -3,7 +3,7 @@
   <div>
     <ModalPayload
       ref="modal"
-      :title="title"
+      title="XÁC NHẬN THANH TOÁN"
       :text-close="`Hủy`"
       :disabled-close="isLoading"
       size="md"
@@ -11,36 +11,12 @@
     >
       <template #content>
         <div class="page-body">
-          <v-tabs v-model="tab" align-tabs="center">
-            <v-tab :value="0">Thông Tin</v-tab>
-            <v-tab :value="1">
-              {{
-                purchaseType === "installments"
-                  ? "QĐ Trả Góp"
-                  : purchaseType === "deposit"
-                  ? "QĐ Đặt Cọc"
-                  : "Chi tiết"
-              }}
-            </v-tab>
-          </v-tabs>
-          <v-window v-model="tab">
-            <v-window-item :value="0">
-              <AccountInfoTable
-                :account="account"
-                :accountInfos="gameInfos"
-                :purchaseType="purchaseType"
-              />
-            </v-window-item>
-            <v-window-item :value="1">
-              <DepositRegulations v-if="purchaseType === 'deposit'" />
-              <InstallmentsRegulations v-else-if="purchaseType === 'installments'" />
-              <AccountInfoTable
-                v-else
-                :account="account"
-                :account-infos="accountInfos"
-              />
-            </v-window-item>
-          </v-window>
+          <AccountInfoTable
+            :accountInfos="accountInfos"
+            :purchaseType="purchaseType"
+            :hiddenPrice="true"
+          />
+
           <v-radio-group v-model="isBuy">
             <v-radio
               name="some-radios"
@@ -56,10 +32,7 @@
 
           <v-row v-if="isBuy == 'atm-momo'">
             <v-col cols="12" sm="12" md="12">
-              <BuyAccountQRInstructions
-                :account="account"
-                :purchaseType="purchaseType"
-              />
+              <SettlementHistoryQRInstructions :history="history" />
             </v-col>
           </v-row>
         </div>
@@ -107,7 +80,7 @@
 <script>
 import Loading from "@/components/global/molecules/common/Loading";
 import ModalPayload from "@/components/common/ModalPayload";
-import BuyAccountQRInstructions from "@/components/common/BuyAccountQRInstructions";
+import SettlementHistoryQRInstructions from "@/components/common/SettlementHistoryQRInstructions";
 import AccountInfoTable from "@/components/common/client/table/AccountInfoTable.vue";
 import DepositRegulations from "@/components/pages/client/game/DepositRegulations";
 import InstallmentsRegulations from "@/components/pages/client/game/InstallmentsRegulations";
@@ -117,13 +90,13 @@ export default {
   components: {
     Loading,
     ModalPayload,
-    BuyAccountQRInstructions,
+    SettlementHistoryQRInstructions,
     AccountInfoTable,
     DepositRegulations,
-    InstallmentsRegulations
+    InstallmentsRegulations,
   },
   props: {
-    account: {
+    history: {
       type: Object,
       default: () => {},
     },
@@ -138,59 +111,13 @@ export default {
   },
   data() {
     return {
-      tab: null,
       isBuy: "wallet",
       isLoading: false,
     };
   },
   computed: {
-    title() {
-      switch (this.purchaseType) {
-        case "installments":
-          return "MUA TÀI KHOẢN TRẢ GÓP";
-        case "deposit":
-          return "ĐẶT CỌC TÀI KHOẢN";
-        default:
-          return "XÁC NHẬN MUA TÀI KHOẢN";
-      }
-    },
     price() {
-      switch (this.purchaseType) {
-        case "installments":
-          return this.account.installments_price;
-        case "deposit":
-          return this.account.deposit_price;
-        default:
-          return this.account.price;
-      }
-    },
-    gameName() {
-      switch (this.account.account_type) {
-        case "ninja":
-          return "Ninja School Online";
-        case "avatar":
-          return "Avatar DK";
-        case "dragon_ball":
-          return "Ngọc Rồng Online";
-        default:
-          return "";
-      }
-    },
-    gameInfos() {
-      return [
-        {
-          label: "Mã Số",
-          value: this.format_number(this.account.code),
-        },
-        {
-          label: "Tên game",
-          value: this.gameName,
-        },
-        {
-          label: "Nhà phát hành",
-          value: "TeaMobi",
-        },
-      ];
+      return this.history?.second_paid_amount || 0;
     },
   },
   methods: {
@@ -204,21 +131,18 @@ export default {
     async buyNow() {
       try {
         this.isLoading = true;
+        const historyId = this.history.id;
         const res =
-          await await this.$repositories.clientAccountPurchases.purchase({
-            account_code: this.account.code,
-            account_type: this.account.account_type,
-            purchase_type: this.purchaseType,
-          });
-        const accountId = res?.data.data?.id;
-        if (accountId) {
-          this.$router.push(`/account/purchases/${accountId}`);
-          this.showSwal({
-            icon: "success",
-            title: res?.data?.message || "Giao dịch thành công!",
-            html: "Cảm ơn bạn đã sử dụng dịch vụ!",
-          });
-        }
+          await this.$repositories.clientAccountPurchases.payRemaining(
+            historyId
+          );
+        this.showSwal({
+          icon: "success",
+          title: res?.data?.message || "Giao dịch thành công!",
+          html: "Cảm ơn bạn đã sử dụng dịch vụ!",
+        });
+        await this.$refs.modal.close();
+        this.$emit("payment-success");
       } finally {
         this.isLoading = false;
       }

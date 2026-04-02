@@ -2,7 +2,7 @@
 <template>
   <div>
     <ModalPayload
-      :title="`HD Mua Nick bằng ATM`"
+      :title="`Mua Nick bằng QR`"
       ref="modal"
       size="md"
       hiddenFooter
