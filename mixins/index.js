@@ -392,12 +392,8 @@ export default {
 
     numberWalletAdmin(wallet) {
       switch (wallet) {
-        case "Ví MOMO":
-          return "0961646828";
         case "MB Bank":
-          return "MuaBanNick";
-        case "VietcomBank":
-          return "MuaBanNick";
+          return "86812345678899";
       }
     },
     game_name(accountType) {

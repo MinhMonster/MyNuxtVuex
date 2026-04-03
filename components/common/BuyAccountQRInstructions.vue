@@ -8,8 +8,8 @@
         ><br />
         <img src="/icon/icon-next-right.gif" /> Số tài khoản:
         <span class="sms">
-          MuaBanNick
-          <ButtonCoppy content="MuaBanNick"></ButtonCoppy>
+          86812345678899
+          <ButtonCoppy content="86812345678899"></ButtonCoppy>
         </span>
         <br />
         <img src="/icon/icon-next-right.gif" /> Chủ tài khoản:<span class="sms">

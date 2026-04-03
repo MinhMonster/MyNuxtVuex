@@ -4,19 +4,9 @@
 
     Chủ tài khoản: <span class="sms">Đỗ Công Minh</span>
     <br />
-
-    <img src="/icon/icon-next-right.gif" /> Momo:
-    <span class="sms">0961646828</span>
-    <ButtonCoppy :content="`0961646828`"></ButtonCoppy><br />
-
     <img src="/icon/icon-next-right.gif" /> MB Bank:
-    <span class="sms">MuaBanNick</span>
-    <ButtonCoppy :content="'MuaBanNick'"></ButtonCoppy><br />
-
-    <img src="/icon/icon-next-right.gif" /> VietcomBank:
-    <span class="sms">MuaBanNick</span>
-    <ButtonCoppy :content="'MuaBanNick'"></ButtonCoppy><br />
-    <small class="text-italic"><span class="sms">*</span>STK là chữ <span class="sms">MuaBanNick</span> nhé ae ^^</small>
+    <span class="sms">86812345678899</span>
+    <ButtonCoppy :content="'86812345678899'"></ButtonCoppy><br />
   </div>
 </template>
 <script>

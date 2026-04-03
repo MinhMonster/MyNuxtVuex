@@ -80,7 +80,7 @@ export default {
       return Number(this.history.amount);
     },
     accountNo() {
-      return "MuaBanNick";
+      return "86812345678899";
     },
   },
 };

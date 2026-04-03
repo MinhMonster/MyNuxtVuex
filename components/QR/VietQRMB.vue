@@ -16,7 +16,7 @@ import VietQR from "~/components/QR/VietQR.vue";
 export default {
   name: "VietQRMB",
   props: {
-    accountNo: { type: [Number, String], default: "MuaBanNick" },
+    accountNo: { type: [Number, String], default: "86812345678899" },
     amount: { type: Number, default: 0 },
     addInfo: { type: String, default: "" },
   },

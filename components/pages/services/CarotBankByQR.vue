@@ -86,7 +86,7 @@ export default {
       return Number(this.selected.card.price);
     },
     accountNo() {
-      return "MuaBanNick";
+      return "86812345678899";
     },
   },
 };
