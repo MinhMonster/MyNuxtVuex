@@ -43,7 +43,7 @@
             <p>- <b>"Đăng nhập"</b> tài khoản của bạn trên Website. Nếu chưa có hãy <b>"Đăng ký"</b> tài khoản trước.</p>
             <p>- Tiến hành <b>"Nạp Tiền"</b> vào tài khoản.</p>
             <p>
-              - Sau khi có số dư, chọn Nick muốn mua và <b>"Thanh Toán Tự Động"</b>.
+              - Sau khi có số dư, chọn Nick muốn mua và <b>"Mua Ngay"</b>.
             </p>
             <p>
               - Khi thanh toán thành công, hệ thống sẽ tự động chuyển bạn đến
@@ -58,7 +58,8 @@
               với Admin để được hỗ trợ.
             </div>
           </div>
-
+          <InstallmentsRegulations />
+          <DepositRegulations />
           <div class="footer-note">
             <p>
               🎮 Chúc các bạn chọn được Nick ưng ý.<br/>Xin cảm ơn <span>❤️</span></p>
@@ -71,6 +72,8 @@
 
 <script>
 import HomePage from "@/components/pages/home/HomePage";
+import InstallmentsRegulations from "@/components/pages/client/game/InstallmentsRegulations";
+import DepositRegulations from "@/components/pages/client/game/DepositRegulations";
 
 import { mapFields } from "vuex-map-fields";
 
@@ -79,6 +82,8 @@ export default {
 
   components: {
     HomePage,
+    InstallmentsRegulations,
+    DepositRegulations,
   },
   computed: {
     ...mapFields("global", {
