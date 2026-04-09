@@ -41,9 +41,9 @@
       - Nếu huỷ trước hạn → bạn nhận lại 50% = <b>350,000đ</b>.<br />
       - Nếu quá hạn → bạn nhận lại 30% = <b>210,000đ</b>.
     </div>
-    <!-- <div class="note-box">
+    <div class="note-box">
       <b>Lưu ý:</b> Số tiền trả góp và tiền hoàn có thể được điều chỉnh tuỳ Nick sao cho hợp lý.<br />
-    </div> -->
+    </div>
   </div>
 </template>
 

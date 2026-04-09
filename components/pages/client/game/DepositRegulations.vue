@@ -25,7 +25,8 @@
 
     <div class="note-box">
       <b>Lưu ý:</b> Hệ thống xử lý hoàn toàn tự động. Không hỗ trợ gia hạn hoặc
-      thay đổi quy định.
+      thay đổi quy định.<br/>
+      - Số tiền Đặt cọc và tiền hoàn có thể được điều chỉnh tuỳ Nick sao cho hợp lý.<br />
     </div>
   </div>
 </template>
