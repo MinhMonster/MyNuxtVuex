@@ -25,6 +25,10 @@ export default {
           icon: "mdi-lead-pencil",
           color: "blue",
           modal: true,
+          condition: (row) =>
+            row.status === "completed" ||
+            (row.account_type !== "dragon_ball" &&
+              row.status === "installment_first"),
         },
         {
           type: "updatePrice",
@@ -32,6 +36,34 @@ export default {
           icon: "mdi-cash",
           color: "blue",
           modal: true,
+        },
+        {
+          type: "updateStatus",
+          label: "Complete",
+          method: "updateStatus",
+          payload: { status: "completed" },
+          icon: "mdi-check-circle-outline",
+          color: "green",
+          condition: (row) => row.status !== "completed",
+        },
+        {
+          label: "Cancel",
+          method: "updateStatus",
+          payload: { status: "cancelled" },
+          icon: "mdi-close-circle-outline",
+          color: "red",
+          condition: (row) =>
+            row.status !== "cancelled" && row.status !== "cancelled_refunded",
+        },
+        {
+          label: "Cancel & Refund",
+          method: "cancelAndRefund",
+          icon: "mdi-cash-refund",
+          color: "red",
+          condition: (row) =>
+            row.type !== "normal" &&
+            row.status !== "cancelled_refunded" &&
+            row.status !== "completed",
         },
         {
           type: "onDelete",
@@ -44,7 +76,7 @@ export default {
       modalConfigs: {
         updateAccount: {
           key: "account",
-          merge: [{ history_id: "id" }],
+          merge: [{ history_id: "id" }, { history_status: "status" }],
           store: { formItem: "formAccount", modify: "updateAccount" },
           style: { minHeight: "280px", width: "400px" },
         },

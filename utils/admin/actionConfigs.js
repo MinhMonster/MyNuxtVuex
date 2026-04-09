@@ -20,6 +20,7 @@ export const accountGameActions = () => _.cloneDeep([
     icon: "mdi-delete",
     color: "red",
     danger: true,
+    condition: (row) => !row.deleted_at,
   },
   {
     type: "onRestore",
@@ -27,5 +28,6 @@ export const accountGameActions = () => _.cloneDeep([
     label: "Restore",
     icon: "mdi-restore",
     color: "blue",
+    condition: (row) => row.deleted_at,
   },
 ])

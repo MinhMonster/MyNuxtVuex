@@ -39,6 +39,7 @@ export default {
           payload: { status: "locked" },
           icon: "mdi-lock",
           color: "red",
+          condition: (row) => row.status === "active",
         },
         {
           type: "updateStatus",
@@ -47,6 +48,7 @@ export default {
           payload: { status: "unlocked" },
           icon: "mdi-lock-open",
           color: "blue",
+          condition: (row) => row.status === "locked",
         },
       ],
       modalConfigs: {

@@ -212,6 +212,7 @@ const columns =
     {
       key: "is_active",
       label: "Active",
+      type: "checkbox"
     },
     {
       key: "price_tiers[0].value",

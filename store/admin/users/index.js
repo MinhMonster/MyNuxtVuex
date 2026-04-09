@@ -187,6 +187,21 @@ const columns =
     {
       key: "status",
       label: "Status",
+      type: "option-display",
+      options: [
+        {
+          text: "",
+          value: "active",
+          icon: "mdi-circle-small",
+          color: "blue",
+        },
+        {
+          text: "",
+          value: "locked",
+          color: "error",
+          icon: "mdi-lock",
+        },
+      ],
       attributes: {
         align: "center",
       },

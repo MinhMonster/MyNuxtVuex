@@ -10,7 +10,7 @@
     @reload="fetchDataIndex()"
   >
     <template #body>
-      <AdminBaseTable ref="table" :module="module">
+      <AdminBaseTable ref="table" :module="module" @changeCheckbox="changeCheckbox">
         <template #id="{ row }">
           <nuxt-link
             v-if="isModify"
@@ -30,9 +30,6 @@
               />
             </div>
           </slot>
-        </template>
-        <template #status="{ row }">
-          <StatusBtn :status="row.status" />
         </template>
         <template #amount="{ row }">
           <div v-if="row.direction === 'out'" class="text-danger">
@@ -187,6 +184,18 @@ export default {
       return merged;
     },
 
+    changeCheckbox({ row, column, value }) {
+      const payload = {
+        id: row.id,
+        [column.key]: value,
+      };
+
+      this.updateStateQueryItem(payload);
+      this.executeAction(column.method).then(() => {
+        this.fetchDataIndex();
+      });
+    },
+
     async handleAction({ action, item }) {
       this.currentAction = action;
 
@@ -227,6 +236,8 @@ export default {
         this.showModal(payload);
         return;
       }
+
+
 
       this.$emit("action", { action, item });
     },

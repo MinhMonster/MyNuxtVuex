@@ -63,12 +63,26 @@
         #[column.key]="{ row, value }"
       >
         <slot :name="column.key" :row="row" :value="value">
-          <span v-html="columnsValue(column.type, value)" v-bind:key="index">
-          </span>
-          <ButtonCoppy
-            v-if="column?.copy"
-            :content="getValue(row, column)"
-          ></ButtonCoppy>
+          <OptionDisplay
+            v-if="column.type === 'option-display'"
+            :value="getValue(row, column)"
+            :options="column.options"
+          />
+          <BaseCheckBox
+            v-else-if="column.type === 'checkbox'"
+            :value="getValue(row, column)"
+            @change="$emit('changeCheckbox', { row, column, value: $event })"
+           />
+          <template v-else>
+            <span
+              v-html="columnsValue(column.type, value)"
+              v-bind:key="index"
+            ></span>
+            <ButtonCoppy
+              v-if="column?.copy"
+              :content="getValue(row, column)"
+            ></ButtonCoppy>
+          </template>
         </slot>
       </template>
     </BaseTable>
@@ -78,6 +92,8 @@
 import FormSearchAdmin from "@/components/pages/admin/Shared/form/FormSearchAdmin";
 import BaseTable from "@/components/base/BaseTable";
 import ButtonCoppy from "@/components/common/ButtonCoppy";
+import OptionDisplay from "@/components/common/client/button/OptionDisplay.vue";
+import BaseCheckBox from "@/components/pages/admin/base/form/BaseCheckBox";
 import adminCrud from "@/mixins/adminCrud";
 
 export default {
@@ -86,6 +102,8 @@ export default {
     FormSearchAdmin,
     BaseTable,
     ButtonCoppy,
+    OptionDisplay,
+    BaseCheckBox,
   },
   props: {
     noTotal: Boolean,

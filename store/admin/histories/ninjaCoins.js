@@ -121,13 +121,30 @@ const columns =
     {
       key: "status",
       label: "Status",
+      type: "option-display",
+      options: [
+        {
+          text: "Pending",
+          value: "pending",
+          color: "warning",
+        },
+        {
+          text: "Success",
+          value: "success",
+          color: "success",
+        },
+        {
+          text: "Failed",
+          value: "failed",
+          color: "error",
+        },
+      ],
       attributes: {
         style: {
           minWidth: "80px",
         },
       },
     },
-
     {
       key: "amount",
       label: "Amount",

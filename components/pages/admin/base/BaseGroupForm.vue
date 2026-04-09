@@ -1,28 +1,30 @@
 <template>
   <v-row class="bg-editor bg-account row" justify="center">
     <v-col
-      v-for="(form, index) in visibleForms"
+      v-for="(form, index) in processedForms"
       :key="index"
       v-bind="form.layout"
       class="code-title"
     >
-      <div v-if="form.type === 'blank'"></div>
+      <div v-if="form.type === 'blank'" />
+
       <v-row v-else-if="form.type === 'forms'">
         <v-col
-          v-for="(formItem, indexFormItem) in visibleSubForms(form.forms)"
-          :key="indexFormItem"
-          v-bind="formItem.layout"
+          v-for="(subForm, subIndex) in processForms(form.forms)"
+          :key="subIndex"
+          v-bind="subForm.layout"
           class="code-title"
         >
           <GroupForm
-            :form="formItem"
-            :index="indexFormItem"
+            :form="subForm"
+            :index="subIndex"
             :keyForm="form.value"
             :dataForm="dataForm"
             @updated="updateForm"
           />
         </v-col>
       </v-row>
+
       <GroupForm
         v-else
         :form="form"
@@ -41,18 +43,21 @@ import BaseInput from "@/components/pages/admin/base/BaseInput";
 
 export default {
   name: "BaseGroupForm",
+
   components: {
     GroupForm,
     FormValidator,
     ContentEditer,
     BaseInput,
   },
+
   props: {
     dataForm: {
       type: Object,
       required: true,
       default: () => ({}),
     },
+
     forms: {
       type: Array,
       required: true,
@@ -61,17 +66,100 @@ export default {
   },
 
   computed: {
-    is_create() {
+    isCreate() {
       return this.$route.path.includes("/new");
     },
-    visibleForms() {
-      return this.forms
-        .filter((form) => (this.isTablet ? form.cols !== 0 : true))
-        .map((form) => this.normalizeLayout(form));
+
+    processedForms() {
+      return this.processForms(this.forms);
     },
   },
 
   methods: {
+    processForms(forms = []) {
+      return forms.filter(this.shouldRenderForm).map(this.normalizeLayout);
+    },
+
+    shouldRenderForm(form) {
+      if (this.isTablet && form.cols === 0) {
+        return false;
+      }
+
+      if (form.type === "blank") {
+        return true;
+      }
+
+      return this.evaluateCondition(form.condition);
+    },
+
+    evaluateCondition(condition) {
+      if (!condition) return true;
+
+      if (typeof condition === "boolean") {
+        return condition;
+      }
+
+      if (condition.and) {
+        return condition.and.every((item) => this.evaluateCondition(item));
+      }
+
+      if (condition.or) {
+        return condition.or.some((item) => this.evaluateCondition(item));
+      }
+
+      if (condition.not) {
+        return !this.evaluateCondition(condition.not);
+      }
+
+      const fieldValue = this.dataForm?.[condition.field];
+
+      switch (condition.operator) {
+        case "truthy":
+          return !!fieldValue;
+
+        case "falsy":
+          return !fieldValue;
+
+        case "equals":
+          return fieldValue === condition.value;
+
+        case "not_equals":
+          return fieldValue !== condition.value;
+
+        case "in":
+          return (
+            Array.isArray(condition.value) &&
+            condition.value.includes(fieldValue)
+          );
+
+        case "not_in":
+          return (
+            Array.isArray(condition.value) &&
+            !condition.value.includes(fieldValue)
+          );
+
+        case "includes":
+          return (
+            Array.isArray(fieldValue) && fieldValue.includes(condition.value)
+          );
+
+        case "gt":
+          return fieldValue > condition.value;
+
+        case "gte":
+          return fieldValue >= condition.value;
+
+        case "lt":
+          return fieldValue < condition.value;
+
+        case "lte":
+          return fieldValue <= condition.value;
+
+        default:
+          return true;
+      }
+    },
+
     normalizeLayout(form) {
       return {
         ...form,
@@ -81,16 +169,12 @@ export default {
         },
       };
     },
-    visibleSubForms(forms = []) {
-      return forms
-        .filter((form) => (this.isTablet ? form.cols !== 0 : true))
-        .map((form) => this.normalizeLayout(form));
-    },
 
     onChange(name, value) {
       this.$set(this.dataForm, name, value);
       this.updateForm();
     },
+
     updateForm() {
       this.$emit("updated", this.dataForm);
     },

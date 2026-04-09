@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _ from "lodash";
 
 export const defaultPagy = _.cloneDeep({
   count: 1,
@@ -6,9 +6,8 @@ export const defaultPagy = _.cloneDeep({
   per_page: 15,
   pages: 0,
   from: 0,
-  to: 0
-})
-
+  to: 0,
+});
 
 // Ninja
 export const typeOptions = _.cloneDeep([
@@ -48,7 +47,6 @@ export const serverNinjaOptions = _.cloneDeep([
     value: 8,
   },
 ]);
-
 
 export const classNinjaOptions = _.cloneDeep([
   {
@@ -94,7 +92,7 @@ export const sexAvatarOptions = _.cloneDeep([
   {
     text: "Bê đê",
     value: 3,
-  }
+  },
 ]);
 
 export const statusOptions = _.cloneDeep([
@@ -109,7 +107,7 @@ export const statusOptions = _.cloneDeep([
   {
     text: "Chờ Duyệt",
     value: "pending",
-  }
+  },
 ]);
 
 // Ninja
@@ -123,7 +121,6 @@ export const typeSeleOffOptions = _.cloneDeep([
     value: "avatar",
   },
 ]);
-
 
 export const serverNroOptions = _.cloneDeep([
   {
@@ -199,56 +196,117 @@ export const planetNroOptions = _.cloneDeep([
   },
 ]);
 
-export const defaultResponse = () => _.cloneDeep({
-  meta: defaultPagy,
-  data: [],
-  count: 0,
-})
+export const defaultResponse = () =>
+  _.cloneDeep({
+    meta: defaultPagy,
+    data: [],
+    count: 0,
+  });
 
-export const isSoldFilter = () => _.cloneDeep({
-  placeholder: "Sale status",
-  type: "select-options",
-  show: true,
-  value: "0",
-  options: [
-    { text: "All", value: null },
-    { text: "Available", value: "0" },
-    { text: "Sold", value: "1" },
-  ],
-})
+export const isSoldFilter = () =>
+  _.cloneDeep({
+    placeholder: "Sale status",
+    type: "select-options",
+    show: true,
+    value: "0",
+    options: [
+      { text: "All", value: null },
+      { text: "Available", value: "0" },
+      { text: "Sold", value: "1" },
+    ],
+  });
 
-
-export const deletedAtFilter = () => _.cloneDeep({
-  placeholder: "Status",
-  type: "select-options",
-  show: true,
-  value: "0",
-  options: [
-    {
-      text: "All",
-      value: null,
-    },
-    {
-      text: "Active",
-      value: "0",
-    },
-    {
-      text: "Deleted",
-      value: "1",
-    },
-  ],
-})
+export const deletedAtFilter = () =>
+  _.cloneDeep({
+    placeholder: "Status",
+    type: "select-options",
+    show: true,
+    value: "0",
+    options: [
+      {
+        text: "All",
+        value: null,
+      },
+      {
+        text: "Active",
+        value: "0",
+      },
+      {
+        text: "Deleted",
+        value: "1",
+      },
+    ],
+  });
 
 export const textFilter = (placeholder) => ({
-  type: 'text',
+  type: "text",
   show: true,
-  value: '',
+  value: "",
   placeholder,
-})
+});
 
 export const hiddenFilter = (value) => ({
-  type: 'text',
+  type: "text",
   show: false,
   value,
-})
+});
 
+export const formGameItemDefaultModal = _.cloneDeep([
+  {
+    title: "Discount",
+    type: "cash",
+    value: "discount_percent",
+    md: 6,
+  },
+  {
+    title: "Discount Active",
+    type: "text",
+    disabled: true,
+    value: "active_discount",
+    md: 6,
+  },
+  {
+    title: "Giá Bán (Vnd)",
+    type: "cash",
+    value: "selling_price",
+    md: 6,
+  },
+  {
+    title: "Giá Sale (Vnđ)",
+    type: "cash_sale_off",
+    value: "selling_price",
+    md: 6,
+  },
+  {
+    title: "Giá Nhập (Vnđ)",
+    type: "cash",
+    value: "purchase_price",
+    md: 6,
+  },
+  {
+    title: "Lợi Nhuận (Vnđ)",
+    value: "selling_price",
+    type: "profit",
+    md: 6,
+  },
+  {
+    title: "Đặt cọc (Vnđ)",
+    type: "cash",
+    value: "deposit_price",
+    condition: {
+      field: "is_deposit",
+      operator: "truthy",
+    },
+    md: 6,
+  },
+  {
+    title: "Trả góp (Vnđ)",
+    value: "installments_price",
+    type: "cash",
+    condition: {
+      field: "is_installments",
+      operator: "truthy",
+    },
+    md: 6,
+  },
+]);

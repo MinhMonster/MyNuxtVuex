@@ -1,5 +1,15 @@
-import { typeOptions, planetNroOptions, serverNroOptions, defaultResponse, isSoldFilter, deletedAtFilter, textFilter, hiddenFilter } from '@/utils/admin/default'
-import { enableResetStore } from '@/utils/admin/common'
+import {
+  typeOptions,
+  planetNroOptions,
+  serverNroOptions,
+  defaultResponse,
+  isSoldFilter,
+  deletedAtFilter,
+  textFilter,
+  hiddenFilter,
+  formGameItemDefaultModal,
+} from "@/utils/admin/default";
+import { enableResetStore } from "@/utils/admin/common";
 import { getField, updateField } from "vuex-map-fields";
 
 export default enableResetStore({
@@ -15,8 +25,8 @@ export default enableResetStore({
       queryItems: queryItems,
       queryItem: queryItem,
       formItem: formItem,
-      formItemModal: formItemModal
-    }
+      formItemModal: formItemModal,
+    };
   },
 
   getters: {
@@ -27,17 +37,16 @@ export default enableResetStore({
     updateField,
   },
 
-  actions: {
-  },
+  actions: {},
 });
 
 const queryItems = _.cloneDeep({
   response: defaultResponse(),
   page: hiddenFilter(1),
   perPage: hiddenFilter(15),
-  id: textFilter('ID'),
-  code: textFilter('Code'),
-  username: textFilter('Username'),
+  id: textFilter("ID"),
+  code: textFilter("Code"),
+  username: textFilter("Username"),
   is_sold: isSoldFilter(),
   deleted_at: deletedAtFilter(),
 });
@@ -58,236 +67,216 @@ const queryItem = _.cloneDeep({
   is_full_image: "0",
 });
 
-const formItem =
-  _.cloneDeep([
-    {
-      title: "Mã",
-      type: "cash",
-      value: 'code'
-    },
-    {
-      title: "Tài khoản",
-      type: "text",
-      value: 'username'
-    },
-    {
-      title: "Giá Bán",
-      type: "cash",
-      value: 'selling_price'
-    },
-    {
-      title: "Giá Nhập",
-      type: "cash",
-      value: 'purchase_price'
-    },
-    {
-      title: "Discount",
-      type: "number",
-      value: 'discount_percent'
-    },
-    {
-      title: "Loại Nick",
-      type: "select-options",
-      options: typeOptions,
-      value: 'type'
-    },
-    {
-      title: "Hành tinh",
-      type: "select-options",
-      options: planetNroOptions,
-      value: 'planet'
-    },
-    {
-      title: "Máy chủ",
-      type: "select-options",
-      options: serverNroOptions,
-      value: 'server'
+const formItem = _.cloneDeep([
+  {
+    title: "Mã",
+    type: "cash",
+    value: "code",
+  },
+  {
+    title: "Tài khoản",
+    type: "text",
+    value: "username",
+  },
+  {
+    title: "Giá Bán",
+    type: "cash",
+    value: "selling_price",
+  },
+  {
+    title: "Giá Nhập",
+    type: "cash",
+    value: "purchase_price",
+  },
+  {
+    title: "Discount",
+    type: "number",
+    value: "discount_percent",
+  },
+  {
+    title: "Loại Nick",
+    type: "select-options",
+    options: typeOptions,
+    value: "type",
+  },
+  {
+    title: "Hành tinh",
+    type: "select-options",
+    options: planetNroOptions,
+    value: "planet",
+  },
+  {
+    title: "Máy chủ",
+    type: "select-options",
+    options: serverNroOptions,
+    value: "server",
+  },
+  {
+    title: "Sức mạnh",
+    type: "cash",
+    value: "strength",
+  },
+  {
+    title: "Đệ tử",
+    type: "cash",
+    value: "disciple",
+  },
+  {
+    title: "Mô tả",
+    type: "content-editer",
+    value: "description",
+    cols: 12,
+    md: 12,
+  },
+]);
 
-    },
-    {
-      title: "Sức mạnh",
-      type: "cash",
-      value: 'strength'
-    },
-    {
-      title: "Đệ tử",
-      type: "cash",
-      value: 'disciple'
-    },
-    {
-      title: "Mô tả",
-      type: "content-editer",
-      value: 'description',
-      cols: 12,
-      md: 12,
-    },
+const formItemModal = _.cloneDeep([
+  {
+    title: "Mã",
+    type: "cash",
+    value: "code",
+    md: 6,
+  },
+  {
+    title: "Tài Khoản",
+    type: "text",
+    value: "username",
+    md: 6,
+  },
+  ...formGameItemDefaultModal,
+]);
 
-  ]);
-
-const formItemModal =
-  _.cloneDeep([
-    {
-      title: "Tài Khoản",
-      type: "text",
-      value: 'username',
-      md: 6
-    },
-    {
-      title: "Mã",
-      type: "cash",
-      value: 'code',
-      md: 6
-    },
-    {
-      title: "Discount",
-      type: "cash",
-      value: 'discount_percent',
-      md: 6
-    },
-    {
-      title: "Discount Active",
-      type: "text",
-      disabled: true,
-      value: 'active_discount',
-      md: 6
-    },
-    {
-      title: "Giá Bán (Vnd)",
-      type: "cash",
-      value: 'selling_price',
-      md: 6
-    },
-    {
-      title: "Giá Sale (Vnđ)",
-      type: "cash_sale_off",
-      value: 'selling_price',
-      md: 6
-    },
-    {
-      title: "Giá Nhập (Vnđ)",
-      type: "cash",
-      value: 'purchase_price',
-      md: 6
-    },
-    {
-      title: "Lợi Nhuận (Vnđ)",
-      value: 'selling_price',
-      type: "profit",
-      md: 6
-    },
-  ]);
-
-
-const columns =
-  _.cloneDeep([
-    {
-      key: "id",
-      label: "ID",
-      type: "number",
-      fixed: "left",
-      attributes: {
-        align: "left",
-        style: {
-          minWidth: "80px",
-        },
+const columns = _.cloneDeep([
+  {
+    key: "id",
+    label: "ID",
+    type: "number",
+    fixed: "left",
+    attributes: {
+      align: "left",
+      style: {
+        minWidth: "80px",
       },
     },
-    {
-      key: "code",
-      label: "Mã",
-      type: "number",
-      fixed: "left",
-      attributes: {
-        style: {
-          minWidth: "80px",
-        },
+  },
+  {
+    key: "code",
+    label: "Mã",
+    type: "number",
+    fixed: "left",
+    attributes: {
+      style: {
+        minWidth: "80px",
       },
     },
-    {
-      key: "username",
-      label: "Account",
-      copy: true,
-      attributes: {
-        style: {
-          minWidth: "150px",
-        },
+  },
+  {
+    key: "username",
+    label: "Account",
+    copy: true,
+    attributes: {
+      style: {
+        minWidth: "150px",
       },
     },
-    {
-      key: "deleted_at",
-      label: "Status",
-      type: "deleted_at",
-      attributes: {
-        style: {
-          minWidth: "50px",
-        },
+  },
+  {
+    key: "is_deposit",
+    label: "Deposit",
+    type: "checkbox",
+    method: "toggleDeposit",
+    attributes: {
+      class: "text-right",
+      style: {
+        minWidth: "60px",
       },
     },
-    {
-      key: "planet",
-      label: "Hành tinh",
-      type: "text",
-      attributes: {
-        style: {
-          minWidth: "70px",
-        },
+  },
+  {
+    key: "is_installments",
+    label: "Installments",
+    type: "checkbox",
+    method: "toggleInstallments",
+    attributes: {
+      class: "text-right",
+      style: {
+        minWidth: "60px",
       },
     },
-    {
-      key: "server",
-      label: "Máy chủ",
-      type: "text",
-      attributes: {
-        style: {
-          minWidth: "70px",
-        },
+  },
+  {
+    key: "deleted_at",
+    label: "Status",
+    type: "deleted_at",
+    attributes: {
+      style: {
+        minWidth: "50px",
       },
     },
-    {
-      key: "price",
-      label: "Price",
-      type: "number",
-      attributes: {
-        class: "text-right",
-        style: {
-          minWidth: "60px",
-        },
+  },
+  {
+    key: "planet",
+    label: "Hành tinh",
+    type: "text",
+    attributes: {
+      style: {
+        minWidth: "70px",
       },
     },
-    {
-      key: "purchase_price",
-      label: "Cost",
-      type: "number",
-      attributes: {
-        // class: 'text-right',
-        style: {
-          minWidth: "60px",
-        },
+  },
+  {
+    key: "server",
+    label: "Máy chủ",
+    type: "text",
+    attributes: {
+      style: {
+        minWidth: "70px",
       },
     },
-    {
-      key: "profit",
-      label: "Profit",
-      type: "number",
-      attributes: {
-        class: "text-right",
-        style: {
-          minWidth: "50px",
-        },
+  },
+  {
+    key: "price",
+    label: "Price",
+    type: "number",
+    attributes: {
+      class: "text-right",
+      style: {
+        minWidth: "60px",
       },
     },
-    {
-      key: "actions",
-      label: "Actions",
-      type: "actions",
-      fixed: "right",
-      attributes: {
-        align: "center",
-        style: {
-          maxWidth: "60px",
-        },
+  },
+  {
+    key: "purchase_price",
+    label: "Cost",
+    type: "number",
+    attributes: {
+      // class: 'text-right',
+      style: {
+        minWidth: "60px",
       },
     },
-  ]);
-
-
+  },
+  {
+    key: "profit",
+    label: "Profit",
+    type: "number",
+    attributes: {
+      class: "text-right",
+      style: {
+        minWidth: "50px",
+      },
+    },
+  },
+  {
+    key: "actions",
+    label: "Actions",
+    type: "actions",
+    fixed: "right",
+    attributes: {
+      align: "center",
+      style: {
+        maxWidth: "60px",
+      },
+    },
+  },
+]);

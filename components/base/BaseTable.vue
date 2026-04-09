@@ -19,7 +19,7 @@
             v-for="(column, indexColumn) in columns"
             :key="indexColumn"
             v-bind="column.attributes"
-            :class="getStickyClass(column)"
+            :class="column.attributes.class + ' ' + getStickyClass(column)"
           >
             <slot
               :name="column.key"

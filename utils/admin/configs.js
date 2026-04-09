@@ -31,7 +31,7 @@ export const menus = _.cloneDeep([
   },
   {
     icon: "mdi-cart-variant",
-    title: "History",
+    title: "Account Purchases",
     to: "/admin/history/game-account-sold",
   },
   {

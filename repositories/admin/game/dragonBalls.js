@@ -1,19 +1,2 @@
-const resource = '/admin/game/dragon-balls'
-export default ($api) => ({
-  index(payload) {
-    return $api.get(`${resource}`, { params: payload.input },
-    )
-  },
-  fetch(id) {
-    return $api.get(`${resource}/${id}`)
-  },
-  modify(payload) {
-    return $api.post(`${resource}/modify`, payload)
-  },
-  destroy(id) {
-    return $api.post(`${resource}/${id}/destroy`)
-  },
-  restore(item) {
-    return $api.post(`${resource}/${item.id}/restore`)
-  },
-})
+import baseAccountGameRepository from './baseAccountGameRepository'
+export default ($api) => baseAccountGameRepository($api, '/admin/game/dragon-balls')

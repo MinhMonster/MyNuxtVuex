@@ -16,9 +16,11 @@
         class="action-item pointer text-black"
         @click="emitAction(action)"
       >
-        <v-icon :color="action.color">{{ action.icon }}</v-icon>
-        {{ action.label }}
-        <hr />
+        <template v-if="!action.condition || action.condition(value)">
+          <v-icon :color="action.color">{{ action.icon }}</v-icon>
+          {{ action.label }}
+          <hr />
+        </template>
       </div>
     </template>
   </ModalPayload>
@@ -61,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-.action-item {
+.action-item:first-child {
   padding: 8px 0;
 }
 </style>

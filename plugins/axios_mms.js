@@ -67,7 +67,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     if (code && (code === 200 || code === 201)) {
       switch (layout) {
         case "clientLayout":
-          if(response.data.message){
+          if (response.data.message) {
             $swal.fire(response.data.message, response.data.content, "success");
           }
           break;
@@ -136,7 +136,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
       switch (layout) {
         case "clientLayout":
           redirect('/404')
-          if(response.data.message){
+          if (response.data.message) {
             $swal.fire(response.data.message, response.data.error_content, "error");
           }
           break;
@@ -207,7 +207,7 @@ export default function ({ store, $axios, $toast, redirect, $swal }, inject) {
     // const code = parseInt(error.response && error.response.status)
     console.log("code", error.response);
 
-    if (code === 500 || code === 404) {
+    if (code === 500 || code === 404 || code === 400 || code === 409 || code === 403) {
       $toast.error(error.response.data.message);
     }
 

@@ -17,15 +17,34 @@
 export default {
   name: "StatusBtn",
   props: {
-    status: {
+    value: {
       type: [String, Number],
       default: "0",
+    },
+    type: {
+      type: String,
+      default: "status",
     },
   },
   async mounted() {},
   computed: {
     setStatus() {
-      switch (this.status) {
+      switch (this.type) {
+        case "status":
+          return this.getStatus();
+        case "type":
+          return this.getType();
+        default:
+          return {
+            text: this.value,
+            color: "",
+          };
+      }
+    },
+  },
+  methods: {
+    getStatus() {
+      switch (this.value) {
         case "0":
         case "pending":
           return {
@@ -37,6 +56,31 @@ export default {
           return {
             text: "Success",
             color: "success",
+          };
+        case "completed":
+          return {
+            text: "Completed",
+            color: "success",
+          };
+        case "cancelled":
+          return {
+            text: "Cancelled",
+            color: "error",
+          };
+        case "installment_first":
+          return {
+            text: "Installment First",
+            color: "orange",
+          };
+        case "deposit":
+          return {
+            text: "Deposit",
+            color: "warning",
+          };
+        case "cancelled_refund_pending":
+          return {
+            text: "Cancelled & Refund Pending",
+            color: "error",
           };
         case "locked":
           return {
@@ -55,6 +99,30 @@ export default {
           return {
             text: "Failed",
             color: "error",
+          };
+      }
+    },
+    getType() {
+      switch (this.value) {
+        case "normal":
+          return {
+            text: "Normal",
+            color: "success",
+          };
+        case "deposit":
+          return {
+            text: "Deposit",
+            color: "warning",
+          };
+        case "installments":
+          return {
+            text: "Installments",
+            color: "orange",
+          };
+        default:
+          return {
+            text: this.value,
+            color: "",
           };
       }
     },
