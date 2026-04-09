@@ -178,10 +178,19 @@ export default {
     }
     th {
       vertical-align: middle;
+      // Bo góc và xử lý viền cho cột đầu tiên của hàng
+      &:first-child {
+        border-radius: 4px 0 0 4px !important;
+      }
+
+      // Bo góc cho cột cuối cùng của hàng
+      &:last-child {
+        border-radius: 0 4px 4px 0 !important;
+      }
     }
 
     td {
-      padding: 8px;
+      padding: 3px 7px;
       vertical-align: middle;
       font-size: 0.9rem;
       color: #e0e0e0;
@@ -196,7 +205,7 @@ export default {
         font-weight: 600;
         width: 35%;
         border-left: 1px solid rgba(189, 0, 255, 0.3) !important; // Viền tím nhấn ở đầu hàng
-        border-radius: 4px 0 0 4px;
+        border-radius: 4px 0 0 4px !important;
       }
 
       // Bo góc cho cột cuối cùng của hàng
@@ -204,15 +213,8 @@ export default {
         text-align: center;
         font-weight: 500;
         border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
-        border-radius: 0 4px 4px 0;
+        border-radius: 0 4px 4px 0 !important;
       }
-    }
-
-    // Làm nổi bật hàng số dư
-    tr:nth-child(4) td:last-child {
-      color: #ff4d4d !important;
-      font-weight: 700;
-      text-shadow: 0 0 8px rgba(255, 77, 77, 0.3);
     }
   }
 }

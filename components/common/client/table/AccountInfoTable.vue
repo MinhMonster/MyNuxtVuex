@@ -21,16 +21,29 @@
         </th>
         <td class="mua-nick" :class="row.class">
           <Status v-if="row.type === 'status'" :value="row.value" />
-          <span v-else-if="!row.html">
+          <template v-else-if="!row.html">
             {{ row.value }}
-          </span>
+          </template>
           <span v-else v-html="row.value"></span>
           <ButtonCoppy v-if="row?.copy" :content="row.value" />
         </td>
       </tr>
       <slot>
-        <PriceAccount :account="account" />
+        <PriceAccount v-if="!hiddenPrice" :account="account" />
       </slot>
+
+      <!-- Payment Info (Refactored) -->
+      <template v-if="paymentRows.length">
+        <tr v-for="(row, i) in paymentRows" :key="'payment-' + i">
+          <th class="info-nick">{{ row.label }}</th>
+          <td class="mua-nick">
+            <span :class="row.class">
+              {{ row.value }}
+              <template v-if="row.isMoney !== false"> Vnđ</template>
+            </span>
+          </td>
+        </tr>
+      </template>
     </tbody>
   </table>
 </template>
@@ -47,9 +60,35 @@ export default {
     ButtonCoppy,
     Status,
   },
+
+  props: {
+    account: {
+      type: Object,
+      default: () => null,
+    },
+    accountInfos: {
+      type: Array,
+      required: true,
+    },
+    isShow: {
+      type: Boolean,
+      default: true,
+    },
+    purchaseType: {
+      type: String,
+      default: "normal", // normal | installments | deposit
+    },
+    hiddenPrice: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
   data() {
     return {
       showMore: true,
+      now: new Date(),
+      timer: null,
     };
   },
   watch: {
@@ -62,24 +101,100 @@ export default {
   created() {
     this.handleShowMore();
   },
-  props: {
-    account: {
-      type: Object,
-      default: () => {},
+
+  mounted() {
+    this.timer = setInterval(() => {
+      this.now = new Date();
+    }, 60000);
+  },
+
+  beforeDestroy() {
+    clearInterval(this.timer);
+  },
+
+  computed: {
+    deadline() {
+      if (!this.account) return null;
+
+      const baseTime = new Date();
+
+      if (this.purchaseType === "deposit") {
+        return new Date(baseTime.getTime() + 7 * 24 * 60 * 60 * 1000);
+      }
+
+      if (this.purchaseType === "installments") {
+        const d = new Date(baseTime);
+        const day = d.getDate();
+
+        d.setMonth(d.getMonth() + 1);
+
+        // fix overflow cuối tháng
+        if (d.getDate() < day) {
+          d.setDate(0);
+        }
+
+        return d;
+      }
+
+      return null;
     },
-    /**
-     * items = [
-     *   { label, value },
-     *   { label, value, html: true }
-     * ]
-     */
-    accountInfos: {
-      type: Array,
-      required: true,
-    },
-    isShow: {
-      type: Boolean,
-      default: true,
+
+    paymentRows() {
+      if (!this.account) return [];
+
+      const price = this.account.price || 0;
+
+      if (this.purchaseType === "deposit") {
+        const deposit = this.account.deposit_price || 0;
+
+        return [
+          {
+            label: "Số tiền đặt cọc",
+            value: this.format_number(deposit),
+            class: "text-warning",
+          },
+          {
+            label: "Số tiền còn lại",
+            value: this.format_number(price - deposit),
+          },
+          {
+            label: "Hoàn tiền khi huỷ",
+            value: this.format_number(deposit * 0.2),
+          },
+          {
+            label: "Hạn thanh toán",
+            value: this.formatDateTime(this.deadline),
+            isMoney: false,
+          },
+        ];
+      }
+
+      if (this.purchaseType === "installments") {
+        const paid = this.account.installments_price || 0;
+
+        return [
+          {
+            label: "Thanh toán lần 1",
+            value: this.format_number(paid),
+            class: "text-warning",
+          },
+          {
+            label: "Số tiền còn lại",
+            value: this.format_number(price - paid),
+          },
+          {
+            label: "Hoàn tiền khi huỷ",
+            value: this.format_number(paid * 0.5),
+          },
+          {
+            label: "Hạn thanh toán",
+            value: this.formatDateTime(this.deadline),
+            isMoney: false,
+          },
+        ];
+      }
+
+      return [];
     },
   },
   methods: {
@@ -97,52 +212,31 @@ export default {
 th.info-nick {
   vertical-align: middle;
   width: 50%;
-  // min-width: 120px;
-  padding: 7px;
+  padding: 3px 7px;
   color: #ffcf9c;
   border: 1px solid #663019;
   background: #e28637;
-
-  &.detail {
-    vertical-align: middle;
-  }
 }
 
-.btn-buy-account,
 td.mua-nick {
-  cursor: pointer;
   padding: 6.5px;
   vertical-align: middle;
   color: #663019;
   border: 1px solid #663019;
   background: #ffcf9c;
-  border-radius: 3px !important;
   text-align: center;
   > * {
     vertical-align: middle;
   }
 }
 
-.btn-buy-account-hover {
-  color: #ffcf9c;
-  background: #e28637;
-  border: 1px solid #663019;
-}
-
 .table td {
   padding: 5px;
-  vertical-align: top;
   border: 1px solid #e28637;
 }
 
 .mua-nick span {
   font-size: 14px;
-  font-weight: 400;
   color: #663019;
-  ::v-deep {
-    p {
-      margin-bottom: 8px;
-    }
-  }
 }
 </style>

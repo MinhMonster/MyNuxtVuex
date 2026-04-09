@@ -13,8 +13,8 @@
           <template #actions="{ row }">
             <v-btn
               size="sx"
-              color="success"
-              class="btn btn-success btn-sm text-white bdrs-5px"
+              color="info"
+              class="btn btn-info btn-sm text-white bdrs-5px"
               :to="`/account/purchases/${row.id}`"
               >Xem
             </v-btn>

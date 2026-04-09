@@ -250,6 +250,10 @@ export default {
         maximumFractionDigits: 0,
       }).format(Number(number));
     },
+    formatDateTime(date) {
+      if (!date) return "";
+      return new Date(date).toLocaleString("vi-VN");
+    },
     cash_atm(number) {
       return this.format_number(Math.round((number * 0.85) / 10000).toFixed(0) * 10000)
     },
@@ -382,11 +386,71 @@ export default {
             color: "success",
             text: "Thành Công"
           };
+        case "completed":
+          return {
+            color: "success",
+            text: "Hoàn thành"
+          };
+        case "pay_remaining":
+          return {
+            color: "success",
+            text: "Thanh toán"
+          };
         case "failed":
           return {
             color: "error",
             text: "Thất bại"
-          };;
+          };
+        case "cancel_deposit":
+          return {
+            color: "error",
+            text: "Huỷ đặt cọc"
+          };
+        case "cancel_installments":
+          return {
+            color: "error",
+            text: "Huỷ trả góp"
+          };
+        case "cancelled":
+          return {
+            color: "error",
+            text: "Đã hủy"
+          };
+        case "overdue":
+          return {
+            color: "error",
+            text: "Quá hạn"
+          };
+        case "installment_first":
+          return {
+            color: "warning",
+            text: "Đang trả góp"
+          };
+        case "deposit":
+          return {
+            color: "warning",
+            text: "Đang đặt cọc"
+          };
+        case "cancelled_refund_pending":
+          return {
+            color: "warning",
+            text: "Đã huỷ, chờ hoàn tiền"
+          };
+          case "cancelled_refunded":
+          return {
+            color: "error",
+            text: "Đã huỷ và Hoàn tiền"
+          };
+        case "expired":
+          return {
+            color: "error",
+            text: "Đã hết hạn"
+          };
+        default:
+          return {
+            color: "secondary",
+            text: status
+          };
       }
     },
 

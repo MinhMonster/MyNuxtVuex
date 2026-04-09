@@ -2,12 +2,22 @@
   <v-row class="py-2 action-group-container">
     <v-col cols="6" class="pa-1">
       <div class="btn-gaming-unified primary-glow" @click="showBank()">
-        <BaseSvg content="Thanh Toán QR" name="next-right" />
+        <BaseSvg content="Thanh Toán QR" name="qr" color="white" />
       </div>
     </v-col>
     <v-col cols="6" class="pa-1">
-      <div class="btn-gaming-unified" @click="showModal()">
-        <BaseSvg content="Thanh Toán" name="next-right" />
+      <div class="btn-gaming-unified" @click="showModal('normal')">
+        <BaseSvg content="Mua Ngay" name="cart" />
+      </div>
+    </v-col>
+    <v-col v-if="account.is_installments" cols="6" class="pa-1">
+      <div class="btn-gaming-unified" @click="showModal('installments')">
+        <BaseSvg content="Mua Trả góp" name="cash-fast" />
+      </div>
+    </v-col>
+    <v-col v-if="account.is_deposit" cols="6" class="pa-1">
+      <div class="btn-gaming-unified" @click="showModal('deposit')">
+        <BaseSvg content="Đặt cọc nick" name="cash-fast" />
       </div>
     </v-col>
 
@@ -34,6 +44,7 @@
       ref="modal"
       :account="account"
       :accountInfos="accountInfos"
+      :purchaseType="purchaseType"
     />
     <ModalBuyAccountVietQR ref="ModalBuyAccountVietQR" :account="account" />
   </v-row>
@@ -49,6 +60,11 @@ export default {
     ModalBuyAccount,
     ModalBuyAccountVietQR,
   },
+  data() {
+    return {
+      purchaseType: "normal", // normal | installments | deposit (sau này)
+    };
+  },
   props: {
     account: {
       type: Object,
@@ -60,7 +76,8 @@ export default {
     },
   },
   methods: {
-    showModal() {
+    showModal(purchaseType = "normal") {
+      this.purchaseType = purchaseType;
       this.$refs.modal.show();
     },
     showBank() {
