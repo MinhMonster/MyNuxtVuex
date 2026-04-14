@@ -24,7 +24,10 @@ export default ($api) => ({
   updateStatus(payload) {
     return $api.post(`${resource}/${payload.id}/update-status`, { status: payload.status })
   },
-  destroy(payload) {
-    return $api.get(`${resource}/destroyGameAccountSold.php`, { params: { id: payload } })
+  destroy(id) {
+    return $api.delete(`${resource}/${id}/destroy`)
   },
+  restore(id) {
+    return $api.patch(`${resource}/${id}/restore`)
+  }
 })

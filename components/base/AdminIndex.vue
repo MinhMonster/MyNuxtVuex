@@ -10,7 +10,11 @@
     @reload="fetchDataIndex()"
   >
     <template #body>
-      <AdminBaseTable ref="table" :module="module" @changeCheckbox="changeCheckbox">
+      <AdminBaseTable
+        ref="table"
+        :module="module"
+        @changeCheckbox="changeCheckbox"
+      >
         <template #id="{ row }">
           <nuxt-link
             v-if="isModify"
@@ -211,8 +215,12 @@ export default {
         return;
       }
 
-      if (action.type === "onDelete") {
-        this.onDelete(item.id, action.label);
+      if (action.type === "onDelete" || action.type === "onRestore") {
+        if (action.type === "onDelete") {
+          this.onDelete(item.id, action.label);
+        } else if (action.type === "onRestore") {
+          this.onRestore(item.id, action.label);
+        }
         return;
       }
 
@@ -236,8 +244,6 @@ export default {
         this.showModal(payload);
         return;
       }
-
-
 
       this.$emit("action", { action, item });
     },

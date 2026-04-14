@@ -146,15 +146,11 @@ export default {
       const path = this.$route.path;
       return path.includes("/new");
     },
-    isDelete() {
-      const api = _.get(this.store, "delete", null);
+    // isDelete() {
+    //   const api = _.get(this.store, "delete", null);
 
-      return this.itemId && this.stateQueryItem.deleted_at === null && api;
-    },
-    isUnDelete() {
-      const api = _.get(this.store, "unDelete", null);
-      return this.itemId && this.stateQueryItem.deleted_at !== null && api;
-    },
+    //   return this.itemId && this.stateQueryItem.deleted_at === null && api;
+    // },
   },
   methods: {
     changeImage(images) {
@@ -261,38 +257,28 @@ export default {
         }
       }
     },
-    async unDelete() {
-      this.$swal
-        .fire({
-          title: `Un Delete ID: ${this.itemId}?`,
-          text: "",
-          icon: "question",
-          type: "warning",
-          showDenyButton: false,
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Accept",
-          cancelButtonText: "Cancel",
-          customClass: {
-            container: 'admin-swal',
-          },
-        })
-        .then(async (result) => {
-          if (result.isConfirmed) {
-            try {
-              const res = await this.repositoryKey[this.repository][
-                this.store.unDelete
-              ](this.itemId);
-              // if (res.data.code === 200) {
-              //   await this.$toasted.success(res.data.message);
-              this.fetchDataIndex();
-              // }
-            } catch (e) {
-              console.log(e);
-            }
-          }
-        });
+    async onRestore($id = this.itemId, $label = "Restore") {
+      const result = await this.showSwal({
+        title: $label + ` ID: ${$id} ?`,
+        text: "",
+        icon: "question",
+        type: "warning",
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Accept",
+        cancelButtonText: "Cancel",
+      });
+
+      if (result) {
+        try {
+          await this.repositoryKey[this.repo][this.store?.restore || "restore"]($id);
+          this.fetchDataIndex();
+        } catch (e) {
+          console.log(e);
+        }
+      }
     },
     async onChangePage(page) {
       await this.storeDispatch("setQueryPage", {

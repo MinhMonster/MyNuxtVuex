@@ -36,10 +36,10 @@
         </b-tab>
       </b-tabs>
       <div class="d-flex mt-3">
-        <v-btn v-if="isDelete" @click="onDelete()" color="red"> Delete</v-btn>
+        <!-- <v-btn v-if="isDelete" @click="onDelete()" color="red"> Delete</v-btn>
         <v-btn v-if="isUnDelete" @click="unDelete()" color="red">
           Un Delete
-        </v-btn>
+        </v-btn> -->
         <v-spacer />
         <div class="text-right">
           <v-btn type="submit" color="primary"> Submit </v-btn>

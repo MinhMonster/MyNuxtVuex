@@ -71,6 +71,14 @@ export default {
           icon: "mdi-delete",
           color: "red",
           danger: true,
+          condition: (row) => !row.deleted_at,
+        },
+        {
+          type: "onRestore",
+          label: "Restore",
+          icon: "mdi-restore",
+          color: "blue",
+          condition: (row) => row.deleted_at,
         },
       ],
       modalConfigs: {

@@ -245,6 +245,13 @@ export const textFilter = (placeholder) => ({
   placeholder,
 });
 
+export const dateFilter = (placeholder) => ({
+  type: "date",
+  show: true,
+  value: "",
+  placeholder,
+});
+
 export const hiddenFilter = (value) => ({
   type: "text",
   show: false,

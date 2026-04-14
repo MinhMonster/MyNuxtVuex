@@ -1,4 +1,4 @@
-import { defaultPagy } from "@/utils/admin/default";
+import { hiddenFilter, textFilter, dateFilter, deletedAtFilter, defaultResponse } from "@/utils/admin/default";
 import { enableResetStore } from "@/utils/admin/common";
 import { getField, updateField } from "vuex-map-fields";
 
@@ -32,24 +32,12 @@ export default enableResetStore({
 });
 
 const queryItems = _.cloneDeep({
-  response: {
-    meta: defaultPagy,
-    data: [],
-    count: 0,
-    sum_value: 0,
-    cost_value: 0,
-    profit_value: 0,
-  },
-  page: {
-    type: "text",
-    show: false,
-    value: 1,
-  },
-  perPage: {
-    type: "text",
-    show: false,
-    value: 15,
-  },
+  response: defaultResponse(),
+  page: hiddenFilter(1),
+  perPage: hiddenFilter(15),
+  account_code: textFilter("Account Code"),
+  account_name: textFilter("Account Name"),
+  user_id: textFilter("User ID"),
   type: {
     placeholder: "Game",
     type: "select-options",
@@ -74,37 +62,9 @@ const queryItems = _.cloneDeep({
       },
     ],
   },
-  account_name: {
-    placeholder: "Account Name",
-    type: "text",
-    show: true,
-    value: "",
-  },
-  account_code: {
-    placeholder: "Account Code",
-    type: "text",
-    show: true,
-    value: "",
-  },
-
-  user_id: {
-    placeholder: "User ID",
-    type: "text",
-    show: true,
-    value: "",
-  },
-  created_at_from: {
-    placeholder: "From Time",
-    type: "date",
-    show: true,
-    value: "",
-  },
-  created_at_to: {
-    placeholder: "To Time",
-    type: "date",
-    show: true,
-    value: "",
-  },
+  created_at_from: dateFilter("From Time"),
+  created_at_to: dateFilter("To Time"),
+  deleted_at: deletedAtFilter(),
 });
 
 const queryItem = _.cloneDeep({
