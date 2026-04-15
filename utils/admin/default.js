@@ -122,6 +122,89 @@ export const typeSeleOffOptions = _.cloneDeep([
   },
 ]);
 
+export const accountTypeOptions = _.cloneDeep([
+  {
+    text: "Account Type",
+    value: null,
+  },
+  {
+    text: "Ninja",
+    value: "ninja",
+  },
+  {
+    text: "Avatar",
+    value: "avatar",
+  },
+  {
+    text: "NRO",
+    value: "dragon_ball",
+  },
+]);
+
+export const purchaseTypeOptions = _.cloneDeep([
+  {
+    text: "Purchase Type",
+    value: null,
+    color: "secondary",
+  },
+  {
+    text: "Normal",
+    value: "normal",
+    color: "success",
+  },
+  {
+    text: "Deposit",
+    value: "deposit",
+    color: "warning",
+  },
+  {
+    text: "Installments",
+    value: "installments",
+    color: "orange",
+  },
+]);
+
+export const purchaseStatusOptions = _.cloneDeep([
+  {
+    text: "Status",
+    value: null,
+  },
+  {
+    text: "Completed",
+    value: "completed",
+    color: "success",
+  },
+  {
+    text: "Installment First",
+    value: "installment_first",
+    color: "orange",
+  },
+  {
+    text: "Deposit",
+    value: "deposit",
+    color: "warning",
+  },
+  {
+    text: "Cancelled & Refund Pending",
+    value: "cancelled_refund_pending",
+    color: "warning",
+  },
+  {
+    text: "Cancelled & Refunded",
+    value: "cancelled_refunded",
+    color: "error",
+  },
+  {
+    text: "Cancelled",
+    value: "cancelled",
+    color: "error",
+  },
+  {
+    text: "Expired",
+    value: "expired",
+    color: "error",
+  },
+]);
 export const serverNroOptions = _.cloneDeep([
   {
     text: "Vũ trụ 1",
@@ -256,6 +339,14 @@ export const hiddenFilter = (value) => ({
   type: "text",
   show: false,
   value,
+});
+
+export const optionFilter = (placeholder, options = []) => ({
+  type: "select-options",
+  placeholder,
+  show: true,
+  value: null,
+  options,
 });
 
 export const formGameItemDefaultModal = _.cloneDeep([

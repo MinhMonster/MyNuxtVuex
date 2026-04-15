@@ -1,4 +1,14 @@
-import { hiddenFilter, textFilter, dateFilter, deletedAtFilter, defaultResponse } from "@/utils/admin/default";
+import {
+  hiddenFilter,
+  textFilter,
+  dateFilter,
+  optionFilter,
+  deletedAtFilter,
+  defaultResponse,
+  accountTypeOptions,
+  purchaseTypeOptions,
+  purchaseStatusOptions,
+} from "@/utils/admin/default";
 import { enableResetStore } from "@/utils/admin/common";
 import { getField, updateField } from "vuex-map-fields";
 
@@ -38,30 +48,9 @@ const queryItems = _.cloneDeep({
   account_code: textFilter("Account Code"),
   account_name: textFilter("Account Name"),
   user_id: textFilter("User ID"),
-  type: {
-    placeholder: "Game",
-    type: "select-options",
-    show: true,
-    value: null,
-    options: [
-      {
-        text: "Tất cả loại game",
-        value: null,
-      },
-      {
-        text: "Ninja",
-        value: "ninja",
-      },
-      {
-        text: "Avatar",
-        value: "avatar",
-      },
-      {
-        text: "NRO",
-        value: "ngocrong",
-      },
-    ],
-  },
+  account_type: optionFilter("Account Type", accountTypeOptions),
+  type: optionFilter("Type", purchaseTypeOptions),
+  status: optionFilter("Status", purchaseStatusOptions),
   created_at_from: dateFilter("From Time"),
   created_at_to: dateFilter("To Time"),
   deleted_at: deletedAtFilter(),
@@ -212,80 +201,6 @@ const columns = _.cloneDeep([
     },
   },
   {
-    key: "type",
-    label: "Type",
-    type: "option-display",
-    options: [
-      {
-        text: "Normal",
-        value: "normal",
-        color: "success",
-      },
-      {
-        text: "Deposit",
-        value: "deposit",
-        color: "warning",
-      },
-      {
-        text: "Installments",
-        value: "installments",
-        color: "orange",
-      },
-    ],
-    attributes: {
-      style: {
-        minWidth: "100px",
-      },
-    },
-  },
-  {
-    key: "status",
-    label: "Status",
-    type: "option-display",
-    options: [
-      {
-        text: "Completed",
-        value: "completed",
-        color: "success",
-      },
-      {
-        text: "Installment First",
-        value: "installment_first",
-        color: "orange",
-      },
-      {
-        text: "Deposit",
-        value: "deposit",
-        color: "warning",
-      },
-      {
-        text: "Cancelled & Refund Pending",
-        value: "cancelled_refund_pending",
-        color: "warning",
-      },
-      {
-        text: "Cancelled & Refunded",
-        value: "cancelled_refunded",
-        color: "error",
-      },
-      {
-        text: "Cancelled",
-        value: "cancelled",
-        color: "error",
-      },
-      {
-        text: "Expired",
-        value: "expired",
-        color: "error",
-      },
-    ],
-    attributes: {
-      style: {
-        minWidth: "180px",
-      },
-    },
-  },
-  {
     key: "selling_price",
     label: "Price",
     type: "number",
@@ -328,18 +243,29 @@ const columns = _.cloneDeep([
     },
   },
   {
+    key: "user",
+    label: "User",
+    attributes: {
+      style: {
+        minWidth: "120px",
+      },
+    },
+  },
+  {
     key: "images",
     label: "Bills",
     type: "is-lengthy",
     attributes: {
       style: {
-        minWidth: "100px",
+        minWidth: "30px",
       },
     },
   },
   {
     key: "account_type",
     label: "Game",
+    type: "option-display",
+    options: accountTypeOptions,
     attributes: {
       style: {
         minWidth: "100px",
@@ -347,11 +273,24 @@ const columns = _.cloneDeep([
     },
   },
   {
-    key: "user",
-    label: "User",
+    key: "type",
+    label: "Type",
+    type: "option-display",
+    options: purchaseTypeOptions,
     attributes: {
       style: {
-        minWidth: "120px",
+        minWidth: "100px",
+      },
+    },
+  },
+  {
+    key: "status",
+    label: "Status",
+    type: "option-display",
+    options: purchaseStatusOptions,
+    attributes: {
+      style: {
+        minWidth: "180px",
       },
     },
   },

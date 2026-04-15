@@ -40,6 +40,7 @@
               :label="item.title"
               :placeholder="item.placeholder"
               :items="item.options"
+              :class="{ 'no-value': !item.value }"
               @change="changeData"
             ></v-select>
             <!-- </form-validator> -->
@@ -168,6 +169,17 @@ export default {
       }
       .v-input__slot {
         margin-bottom: 0;
+      }
+    }
+  }
+  .no-value {
+    ::v-deep {
+      .v-select__slot {
+        .v-select__selection {
+          &.v-select__selection--comma {
+            color: #a4a4a4;
+          }
+        }
       }
     }
   }
