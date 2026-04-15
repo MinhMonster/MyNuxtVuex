@@ -328,6 +328,16 @@ const columns = _.cloneDeep([
     },
   },
   {
+    key: "images",
+    label: "Bills",
+    type: "is-lengthy",
+    attributes: {
+      style: {
+        minWidth: "100px",
+      },
+    },
+  },
+  {
     key: "account_type",
     label: "Game",
     attributes: {

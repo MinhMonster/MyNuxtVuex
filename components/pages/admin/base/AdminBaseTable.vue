@@ -68,11 +68,21 @@
             :value="getValue(row, column)"
             :options="column.options"
           />
+          <v-icon
+            v-else-if="
+              column.type === 'is-lengthy' &&
+              (getValue(row, column) || []).length > 0
+            "
+            color="blue"
+            small
+          >
+            mdi-check-circle
+          </v-icon>
           <BaseCheckBox
             v-else-if="column.type === 'checkbox'"
             :value="getValue(row, column)"
             @change="$emit('changeCheckbox', { row, column, value: $event })"
-           />
+          />
           <template v-else>
             <span
               v-html="columnsValue(column.type, value)"
@@ -123,10 +133,6 @@ export default {
         null
       );
       return value;
-    },
-    valueCustom(row, column) {
-      const value = this.getValue(row, column);
-      return this.columnsValue(column.type, value);
     },
   },
   async created() {

@@ -88,7 +88,7 @@ export default {
         `${column.key_main ? column.key_main + "." : ""}${key}`,
         null
       );
-      return value;
+      return value !== null ? value : "";
     },
     valueCustom(row, column) {
       const value = this.getValue(row, column);
