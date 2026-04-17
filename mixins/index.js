@@ -1,6 +1,3 @@
-
-
-
 import { mapFields } from "vuex-map-fields";
 
 export default {
@@ -76,8 +73,8 @@ export default {
           text: "Chưa",
           value: 7,
         },
-      ]
-    }
+      ],
+    };
   },
   computed: {
     ...mapFields("global", {
@@ -85,10 +82,10 @@ export default {
       is_tablet: "is_tablet",
     }),
     isMobile() {
-      return this.isMb
+      return this.isMb;
     },
     isTablet() {
-      return this.is_tablet
+      return this.is_tablet;
     },
     isQueryCopy() {
       return this.$route.query?.copy ? true : false;
@@ -97,7 +94,7 @@ export default {
       return this.$route.path.replace(/\/+$/, "");
     },
     nowYear() {
-      var year = this.currentYear
+      var year = this.currentYear;
       return year;
     },
     days() {
@@ -150,12 +147,15 @@ export default {
     },
   },
   methods: {
-    convertToCamelCase(str, delimiter = '/') {
-      const parts = str.split(delimiter)
-      return parts.shift() + parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('')
+    convertToCamelCase(str, delimiter = "/") {
+      const parts = str.split(delimiter);
+      return (
+        parts.shift() +
+        parts.map((p) => p.charAt(0).toUpperCase() + p.slice(1)).join("")
+      );
     },
     convertToDot(str) {
-      return str.replace(/\//g, '.')
+      return str.replace(/\//g, ".");
     },
     onResize() {
       const screenWidth = document.querySelector("body").clientWidth;
@@ -164,25 +164,29 @@ export default {
     },
     format_number(number) {
       const number_toFixed = Number(number).toFixed(0);
-      const result = Intl.NumberFormat().format(number_toFixed)
-      return result.replace(",", ".").replace(",", ".").replace(",", ".").replace(",", ".");
+      const result = Intl.NumberFormat().format(number_toFixed);
+      return result
+        .replace(",", ".")
+        .replace(",", ".")
+        .replace(",", ".")
+        .replace(",", ".");
     },
     cash_atm(number) {
-      return this.format_number(Math.round((number * 0.85) / 10000).toFixed(0) * 10000)
+      return this.format_number(
+        Math.round((number * 0.85) / 10000).toFixed(0) * 10000
+      );
     },
     profit_atm(account) {
-      const percent = 1 - (((account.active_discount || 0) / 100) || 0);
-      const profit = (account.selling_price * percent) - account.purchase_price;
-      return this.format_number(Math.round(profit / 10000).toFixed(0) * 10000)
+      const percent = 1 - ((account.active_discount || 0) / 100 || 0);
+      const profit = account.selling_price * percent - account.purchase_price;
+      return this.format_number(Math.round(profit / 10000).toFixed(0) * 10000);
     },
     time_10(time) {
       if (time > 1000) {
         return time % 100;
       } else {
         return time < 10 ? "0" + time : time;
-
       }
-
     },
 
     format_money(money) {
@@ -193,7 +197,6 @@ export default {
         return 0;
       } else {
         return Intl.NumberFormat().format(Math.round(money / 1000)) + "K";
-
       }
     },
 
@@ -297,25 +300,25 @@ export default {
         case "yes":
           setting = {
             text: "Còn",
-            color: "text-primary"
+            color: "text-primary",
           };
           break;
         case "no":
           setting = {
             text: "Đã Bán",
-            color: "text-danger"
+            color: "text-danger",
           };
           break;
         case "pending":
           setting = {
             text: "Chờ duyệt",
-            color: "text-warning"
+            color: "text-warning",
           };
           break;
         default:
           setting = {
             text: "Không rõ",
-            color: "text-muted"
+            color: "text-muted",
           };
       }
       return `<span class="${setting.color}">${setting.text}</span>`;
@@ -327,13 +330,13 @@ export default {
         case 0:
           setting = {
             text: "Available",
-            color: "text-primary"
+            color: "text-primary",
           };
           break;
         default:
           setting = {
             text: "Sold",
-            color: "text-danger"
+            color: "text-danger",
           };
       }
       return `<span class="${setting.color}">${setting.text}</span>`;
@@ -342,15 +345,17 @@ export default {
       let setting = {};
       switch (value) {
         case "null":
+        case "":
+        case null:
           setting = {
             text: "Active",
-            color: "text-primary"
+            color: "text-primary",
           };
           break;
         default:
           setting = {
             text: "Deleted",
-            color: "text-danger"
+            color: "text-danger",
           };
       }
       return `<span class="${setting.color}">${setting.text}</span>`;
@@ -370,6 +375,6 @@ export default {
         case "VietcomBank":
           return "0541000311219";
       }
-    }
+    },
   },
 };

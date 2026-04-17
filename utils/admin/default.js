@@ -307,10 +307,6 @@ export const deletedAtFilter = () =>
     value: "0",
     options: [
       {
-        text: "All",
-        value: null,
-      },
-      {
         text: "Active",
         value: "0",
       },
