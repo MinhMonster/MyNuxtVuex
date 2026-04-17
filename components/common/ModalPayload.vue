@@ -13,6 +13,7 @@
     @hide="close()"
     class="modal-content"
     aria-labelledby="labeldiv"
+    persistent
   >
     <v-card>
       <v-btn
