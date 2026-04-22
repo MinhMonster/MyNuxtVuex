@@ -4,6 +4,7 @@ import {
   serverNinjaOptions,
   defaultResponse,
   isSoldFilter,
+  ownerFilter,
   deletedAtFilter,
   textFilter,
   hiddenFilter,
@@ -47,6 +48,7 @@ const queryItems = _.cloneDeep({
   code: textFilter("Code"),
   username: textFilter("Username"),
   character_name: textFilter("In Game"),
+  owner: ownerFilter(),
   is_sold: isSoldFilter(),
   deleted_at: deletedAtFilter(),
 });

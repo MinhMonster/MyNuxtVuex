@@ -4,6 +4,7 @@ import {
   serverNroOptions,
   defaultResponse,
   isSoldFilter,
+  ownerFilter,
   deletedAtFilter,
   textFilter,
   hiddenFilter,
@@ -47,6 +48,7 @@ const queryItems = _.cloneDeep({
   id: textFilter("ID"),
   code: textFilter("Code"),
   username: textFilter("Username"),
+  owner: ownerFilter(),
   is_sold: isSoldFilter(),
   deleted_at: deletedAtFilter(),
 });

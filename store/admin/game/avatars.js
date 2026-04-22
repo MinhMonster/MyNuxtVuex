@@ -2,6 +2,7 @@ import {
   sexAvatarOptions,
   defaultResponse,
   isSoldFilter,
+  ownerFilter,
   deletedAtFilter,
   textFilter,
   hiddenFilter,
@@ -69,6 +70,7 @@ const queryItems = _.cloneDeep({
       },
     ],
   },
+  owner: ownerFilter(),
   is_sold: isSoldFilter(),
   deleted_at: deletedAtFilter(),
 });

@@ -299,6 +299,19 @@ export const isSoldFilter = () =>
     ],
   });
 
+  export const ownerFilter = () =>
+  _.cloneDeep({
+    placeholder: "Owner",
+    type: "select-options",
+    show: true,
+    value: null,
+    options: [
+      { text: "Owner", value: null },
+      { text: "Admin", value: "admin" },
+      { text: "CTV", value: "ctv" },
+    ],
+  });
+
 export const deletedAtFilter = () =>
   _.cloneDeep({
     placeholder: "Status",
