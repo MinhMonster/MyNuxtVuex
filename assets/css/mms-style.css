@@ -345,9 +345,9 @@ body {
 .swal2-popup {
   background-color: #ffcf9c !important;
   border: 2px solid #561d00 !important;
-  border-image: url(https://muabannick.pro/images/box/box.jpg) 10 round;
-  background: #e28637 url(https://muabannick.pro/images/header/bg_top.png)
-    repeat-x !important;
+  /* border-image: url(https://muabannick.pro/images/box/box.jpg) 10 round;
+  background: #e28637 url(https://muabannick.pro/images/header/bg_top.png) */
+    /* repeat-x !important; */
   border-radius: 3px;
   border: 2px solid #561d00;
 }

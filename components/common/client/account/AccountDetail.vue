@@ -129,9 +129,9 @@ export default {
   methods: {
     normalizeImage(image) {
       if (!image) return "";
-      return image.includes("muabannick.pro")
+      return image.includes("http")
         ? image
-        : `https://muabannick.pro${image}`;
+        : `https://minhmonster.com${image}`;
     }
   }
 };

@@ -57,43 +57,43 @@ export default {
 
       {
         title: "Nick Ninja VIP",
-        image: "https://muabannick.pro/images/banners/banner_ninja_vip_min.jpg",
+        image: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner_ninja_vip_min.jpg",
         path: "/teamobi/ninja-school/nick-vip",
       },
       {
         title: "Nick Ninja Giá Rẻ",
         image:
-          "https://muabannick.pro/images/banners/banner_ninja_cheap_min.jpg",
+          `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner_ninja_cheap_min.jpg",
         path: "/teamobi/ninja-school/nick-gia-re",
       },
       {
         title: "Avatar XS.DKý",
-        image: "https://muabannick.pro/images/banners/banner_avatar_min.jpg",
+        image: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner_avatar_min.jpg",
         path: "/teamobi/avatar",
       },
       {
         title: "Liên Quân Mobile",
-        image: "https://muabannick.pro/images/banners/banner-lien-quan-300x224.jpg",
+        image: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner-lien-quan-300x224.jpg",
         path: "/garena/lien-quan-mobile",
       },
       {
         title: "Ngọc Rồng Online",
-        image: "https://muabannick.pro//images/banners/banner_nro_min.jpg",
+        image: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "//images/banners/banner_nro_min.jpg",
         path: "/teamobi/ngoc-rong",
       },
       {
         title: "Nạp Lượng, Carrot",
-        image: "https://muabannick.pro/images/banners/carot.png",
+        image: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/carot.png",
         path: "/services/nap-luong-carrot",
       },
       {
         title: "Bán Xu Ninja",
-        image: "https://muabannick.pro/images/banners/xu-ninja.png",
+        image: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/xu-ninja.png",
         path: "/services/mua-ban-xu-ninja-school",
       },
       {
         title: "GD Trung Gian",
-        image: "https://muabannick.pro/images/banners/gdtg.png",
+        image: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/gdtg.png",
         path: "/services/giao-dich-trung-gian",
       },
     ],

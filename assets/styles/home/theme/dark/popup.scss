@@ -1,7 +1,7 @@
 .swal-dark {
     .swal2-popup {
       background-color: #424242 !important;
-      border-image: url(https://muabannick.pro/images/box/box.jpg) 10 round;
+      // border-image: url(https://minhmonster.com/images/box/box.jpg) 10 round;
       background: linear-gradient(180deg, #b549cc, #0F0F0F 12%, #0F0F0F 58%, #0F0F0F) !important;
       border-radius: 3px;
       border: $border-theme-dark-2 !important;
@@ -21,6 +21,6 @@
     .swal2-success-circular-line-left, .swal2-success-circular-line-right, .swal2-success-fix {
       background-color: none !important;
     }
-  
-  
+
+
 }

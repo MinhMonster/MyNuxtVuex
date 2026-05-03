@@ -42,18 +42,18 @@ export default {
                   ? "/images/banners/banner-red.png"
                   : "/images/banners/banner-red.png"
                 : this.isMobile
-                ? "https://muabannick.pro/images/banners/banner_600x220.gif"
+                ? `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner_600x220.gif"
                 : this.isTablet
-                ? "https://muabannick.pro/images/banners/banner_800x294.gif"
+                ? `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner_800x294.gif"
                 : this.isShowNoti
-                ? "https://muabannick.pro/images/banners/muabannick_banner_min.png"
-                : "https://muabannick.pro/images/banners/banner_muabannick_14_mb.gif",
+                ? `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/muabannick_banner_min.png"
+                : `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner_muabannick_14_mb.gif",
             },
             // {
-            //   src: "https://muabannick.pro/images/banners/banner_ny_min.jpg",
+            //   src: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner_ny_min.jpg",
             // },
             // {
-            //   src: "https://muabannick.pro/images/banners/banner_ny_min.gif",
+            //   src: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner_ny_min.gif",
             // },
           ];
         } else {
@@ -67,10 +67,10 @@ export default {
   },
   methods: {
     onLoadAvatar(item) {
-      // if (item == "https://muabannick.pro/images/banners/banner_ny_min.gif") {
+      // if (item == `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner_ny_min.gif") {
       //   this.items = [
       //     {
-      //       src: "https://muabannick.pro/images/banners/banner_ny_min.gif",
+      //       src: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner_ny_min.gif",
       //     },
       //   ];
       // }
@@ -79,7 +79,7 @@ export default {
       if (item.endsWith(".gif")) {
         this.items = [
           {
-            src: "https://muabannick.pro/images/banners/banner-800x294.jpg",
+            src: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner-800x294.jpg",
           },
         ];
       }

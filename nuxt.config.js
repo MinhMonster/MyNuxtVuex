@@ -75,18 +75,18 @@ export default {
       }
     },
   },
-  generate: {
-    fallback: true,
-    routes: async () => {
-      const { data } = await axios.get(
-        'https://control.muabannick.pro/topics?perPage=1000'
-      )
+  // generate: {
+  //   fallback: true,
+  //   routes: async () => {
+  //     const { data } = await axios.get(
+  //       'https://control.minhmonster.com/topics?perPage=1000'
+  //     )
 
-      return data.response.data.map(
-        item => `/topics/${item.slug}/`
-      )
-    }
-  },
+  //     return data.response.data.map(
+  //       item => `/topics/${item.slug}/`
+  //     )
+  //   }
+  // },
   mounted() {
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -118,7 +118,7 @@ export default {
 
   ],
   axios: {
-    baseURL: process.env.API_BASE_MMS_URL || 'https://muabannick.pro'
+    baseURL: process.env.API_BASE_MMS_URL || 'https://minhmonster.com'
   },
   env: {
     // nodeEnv: process.env.NODE_ENV || "development",
@@ -164,22 +164,22 @@ export default {
     '@nuxtjs/robots',
   ],
   sitemap: {
-    hostname: 'https://muabannick.pro',
+    hostname: 'https://minhmonster.com',
     // routes: async () => {
-    //   const { data } = await axios.get('https://muabannick.pro/apis/sitemap/index.php');
+    //   const { data } = await axios.get('https://minhmonster.com/apis/sitemap/index.php');
     //   return data.sitemap.map((item) => `${item.link}`)
     // },
     sitemaps: [
       {
         path: '/sitemap.xml',
       },
-      {
-        path: '/sitemap/topics.xml',
-        routes: async () => {
-          const { data } = await axios.get('https://muabannick.pro/apis/sitemap/topics.php');
-          return data.sitemap_topics.map((item) => `${item.link}`)
-        },
-      },
+      // {
+      //   path: '/sitemap/topics.xml',
+      //   routes: async () => {
+      //     const { data } = await axios.get('https://minhmonster.com/apis/sitemap/topics.php');
+      //     return data.sitemap_topics.map((item) => `${item.link}`)
+      //   },
+      // },
     ]
   },
   robots: {

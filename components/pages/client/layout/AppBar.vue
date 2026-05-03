@@ -1,10 +1,6 @@
 <template>
   <client-only>
-    <v-app-bar
-      :clipped-right="clipped"
-      fixed
-      :style="{ height: isMobile ? '60px' : '137px' }"
-    >
+    <v-app-bar :clipped-right="clipped" fixed :style="{ height: isMobile ? '60px' : '137px' }">
       <div class="header-content w-100">
         <div class="header-user">
           <div class="header-logo" @click="nextHome()">
@@ -29,7 +25,7 @@ export default {
   components: { MenuBottom, AccountMenu },
   data() {
     return {
-      logo: "https://muabannick.pro/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png",
+      logo: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/files/uploads/images/logo/logo_violet_gradian_min-1707200146.png",
       clipped: true,
       miniVariant: false,
     };

@@ -38,7 +38,7 @@ export default {
     },
     async loginFb({ commit },) {
       try {
-        window.location.href = "https://muabannick.pro/login.php"
+        window.location.href = "https://minhmonster.com/login.php"
       } catch { }
     },
     async getToken({ commit }, payload) {

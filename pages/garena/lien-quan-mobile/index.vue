@@ -35,7 +35,7 @@ export default {
         { hid: "description", name: "description", content: this.title },
         { property: "og:title", content: this.title },
         { property: "og:description", content: this.title },
-        { property: "og:image", content: "https://muabannick.pro/images/banners/banner-lien-quan-300x224.jpg" },
+        { property: "og:image", content: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner-lien-quan-300x224.jpg" },
       ],
     };
   },

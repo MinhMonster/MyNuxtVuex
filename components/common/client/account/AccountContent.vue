@@ -88,19 +88,19 @@ import ModalChangeAccountRegister from "@/components/pages/client/game/ModalChan
 
 const CONFIGS = {
   ninjaSchools: {
-    src: "https://muabannick.pro/images/banners/banner-ninja-school.png",
+    src: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner-ninja-school.png",
     alt: "Nick Ninja School Online - TeaMobi",
     title: "Mua Nick Ninja School Online Uy Tín",
     name: "Nick Ninja School Online",
   },
   avatars: {
-    src: "https://muabannick.pro/images/banners/banner-avatar-500x-277.jpg",
+    src: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/banner-avatar-500x-277.jpg",
     alt: "Avatar Diệu Kỳ (2x) - TeaMobi",
     title: "Mua Nick Avatar Diệu Kỳ (2x)",
     name: "Nick Avatar Diệu Kỳ (2x)",
   },
   dragonBalls: {
-    src: "https://muabannick.pro/images/banners/nro.png",
+    src: `${process.env.NUXT_PUBLIC_ASSET_URL}` + "/images/banners/nro.png",
     alt: "Nick Ngọc Rồng Online - TeaMobi",
     title: "Mua Nick Ngọc Rồng Online",
     name: "Nick Ngọc Rồng Online",
